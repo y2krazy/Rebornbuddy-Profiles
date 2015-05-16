@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] [LTW] Raptor Skin - Grass Raptors
+Author: y2krazy
+Version: 1.0.0
+Required Level: 30
+Required Teleport Location:
+	Wineport
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	Acquire Wineport Aetheryte
+	Set Home Point (optional, if farming for an extended amount of time)
+Item Drops:
+	Raptor Shank
+	Raptor Sinew
+	Raptor Skin
+-->
+<Profile>
+	<Name>[O] [LTW] Raptor Skin - Grass Raptors</Name>
+	<KillRadius>90</KillRadius>
+	<GrindAreas>
+		<GrindArea name="Raptor_Skin">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="105.3352, 81.41289, -74.68613" name="Grass Raptor" />
+				<Hotspot Radius="90" XYZ="148.6704, 71.49593, -14.45549" name="Grass Raptor" />
+				<Hotspot Radius="90" XYZ="55.55973, 61.14231, 56.43181" name="Grass Raptor" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="411" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<Order>
+		<BotSettings AutoEquip="1" />
+
+		<!-- Grass Raptor -->
+
+		<If Condition="not IsOnMap(137)">
+			<TeleportTo Name="Wineport" AetheryteId="12" />
+		</If>
+
+		<Grind grindRef="Raptor_Skin" while="Core.Player.ClassLevel &lt; 61" />
+	</Order>
+</Profile>

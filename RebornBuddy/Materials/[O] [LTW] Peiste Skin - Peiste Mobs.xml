@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] [LTW] Peiste Skin - Peiste Mobs
+Author: y2krazy
+Version: 1.0.0
+Required Level: 25
+Required Teleport Location:
+	Little Ala Mhigo
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	Acquire Little Ala Mhigo Aetheryte
+	Set Home Point (optional, if farming for an extended amount of time)
+Item Drops:
+	Peiste Skin
+-->
+<Profile>
+	<Name>[O] [LTW] Peiste Skin - Peiste Mobs</Name>
+	<KillRadius>90</KillRadius>
+	<GrindAreas>
+		<GrindArea name="Peiste_Skin">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-294.091, 20.40638, -331.6211" name="Peiste Mobs" />
+				<Hotspot Radius="90" XYZ="-214.4815, 21.4475, -525.2601" name="Peiste Mobs" />
+				<Hotspot Radius="90" XYZ="-83.58411, 5.970957, -600.4368" name="Peiste Mobs" />
+				<Hotspot Radius="90" XYZ="-23.11708, 3.766378, -547.3219" name="Peiste Mobs" />
+				<Hotspot Radius="90" XYZ="-68.34543, 19.78356, -440.4822" name="Peiste Mobs" />
+				<Hotspot Radius="90" XYZ="-177.2625, 23.51783, -483.3023" name="Peiste Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="303" />
+				<TargetMob Id="1993" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<Order>
+		<BotSettings AutoEquip="1" />
+
+		<!-- Rockskin Peiste, Sandskin Peiste -->
+
+		<If Condition="not IsOnMap(146)">
+			<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+		</If>
+
+		<Grind grindRef="Peiste_Skin" while="Core.Player.ClassLevel &lt; 61" />
+	</Order>
+</Profile>

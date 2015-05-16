@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] [LTW] Raptor Skin - Velociraptors
+Author: y2krazy
+Version: 1.0.0
+Required Level: 32
+Required Teleport Location:
+	Camp Overlook
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	Acquire Camp Overlook Aetheryte
+	Set Home Point (optional, if farming for an extended amount of time)
+Item Drops:
+	Raptor Shank
+	Raptor Sinew
+	Raptor Skin
+-->
+<Profile>
+	<Name>[O] [LTW] Raptor Skin - Velociraptors</Name>
+	<KillRadius>90</KillRadius>
+	<GrindAreas>
+		<GrindArea name="Raptor_Skin">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="0.8782252, 69.47547, -201.4247" name="Velociraptor" />
+				<Hotspot Radius="90" XYZ="-57.80463, 64.73162, -302.053" name="Velociraptor" />
+				<Hotspot Radius="90" XYZ="-181.6216, 74.71216, -267.0354" name="Velociraptor" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="412" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<Order>
+		<BotSettings AutoEquip="1" />
+
+		<!-- Velociraptor -->
+
+		<If Condition="not IsOnMap(180)">
+			<TeleportTo Name="Camp Overlook" AetheryteId="16" />
+		</If>
+
+		<Grind grindRef="Raptor_Skin" while="Core.Player.ClassLevel &lt; 61" />
+	</Order>
+</Profile>
