@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] [LTW] Gigantoad Skin - Dreamtoads
+Author: y2krazy
+Version: 1.0.0
+Required Level: 45
+Required Teleport Locations:
+	The Hawthorne Hut
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	Acquire The Hawthorne Hut Aetheryte
+	Set Home Point (optional, if farming for an extended amount of time)
+Item Drops:
+	Gigantoad Skin
+-->
+<Profile>
+	<Name>[O] [LTW] Gigantoad Skin - Dreamtoads</Name>
+	<KillRadius>90</KillRadius>
+	<GrindAreas>
+		<GrindArea name="Gigantoad_Skin">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="246.3841, -9.484102, -133.004" name="Dreamtoad" />
+				<Hotspot Radius="90" XYZ="340.5068, -20.87032, -174.9725" name="Dreamtoad" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="164" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<Order>
+		<BotSettings AutoEquip="1" />
+
+		<!-- Dreamtoad -->
+
+		<If Condition="not IsOnMap(152)">
+			<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+		</If>
+
+		<Grind grindRef="Gigantoad_Skin" while="Core.Player.ClassLevel &lt; 61" />
+	</Order>
+</Profile>

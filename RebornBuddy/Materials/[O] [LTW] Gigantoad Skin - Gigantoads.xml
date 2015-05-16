@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] [LTW] Gigantoad Skin - Gigantoads
+Author: y2krazy
+Version: 1.0.0
+Required Level: 30
+Required Teleport Locations:
+	Wineport
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	Acquire Wineport Aetheryte
+	Set Home Point (optional, if farming for an extended amount of time)
+Item Drops:
+	Gigantoad Skin
+-->
+<Profile>
+	<Name>[O] [LTW] Gigantoad Skin - Gigantoads</Name>
+	<KillRadius>90</KillRadius>
+	<GrindAreas>
+		<GrindArea name="Gigantoad_Skin">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-100.8755, 33.83202, 229.2088" name="Gigantoad" />
+				<Hotspot Radius="90" XYZ="-203.9383, 33.94427, 268.8198" name="Gigantoad" />
+				<Hotspot Radius="90" XYZ="-311.8678, 45.07476, 355.5991" name="Gigantoad" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="26" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<Order>
+		<BotSettings AutoEquip="1" />
+
+		<!-- Gigantoad -->
+
+		<If Condition="not IsOnMap(137)">
+			<TeleportTo Name="Wineport" AetheryteId="12" />
+		</If>
+
+		<Grind grindRef="Gigantoad_Skin" while="Core.Player.ClassLevel &lt; 61" />
+	</Order>
+</Profile>
