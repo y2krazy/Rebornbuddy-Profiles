@@ -1,0 +1,553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Professionbuddy>
+  <If Condition="SecondaryBot.Name != &quot;Combat Bot&quot;" IgnoreCanRun="True">
+    <ChangeBot BotName="Combat Bot" />
+    <Custom Code="Log(Color.Orange,&quot;Now Running: Combat Bot&quot;);" />
+  </If>
+  <While Condition="true" IgnoreCanRun="True">
+    <If Condition="Me.FreeNormalBagSlots &lt;= 5" IgnoreCanRun="True">
+      <Custom Code="Log(Color.Orange,&quot;Posting auctions!&quot;);" />
+      <SellItemOnAH Category="Consumable" SubCategoryType="SubCategoryType" SubCategory="None" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="0" MinBuyout="0g10s0c" MaxBuyout="100g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.0001" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="False" Location="0, 0, 0" />
+    </If>
+    <If Condition="InbagCount(3371) &lt; 20" IgnoreCanRun="True">
+      <BuyItem NpcEntry="28725" Location="5882.353, 707.77, 643.2384" ItemID="3371" BuyItemType="SpecificItem" Count="60" BuyAdditively="True" />
+      <Wait Condition="false" Timeout="2000" />
+    </If>
+    <If Condition="HasNewMail || MailCount &gt; 0" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="GetMail" />
+    </If>
+    <If Condition="Alchemy.MaxLevel == 0" IgnoreCanRun="False">
+      <CallSubRoutine SubRoutineName="Training" />
+    </If>
+    <If Condition="Alchemy.Level &lt; 270 &amp;&amp; !Me.NormalBagsFull" IgnoreCanRun="False">
+      <If Condition="Alchemy.Level &lt; 60" IgnoreCanRun="False">
+        <CastSpell RepeatType="Craftable" Repeat="10" Entry="2330" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="!CanCraft(2330) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="Item" ItemID="2447" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          <BuyItemFromAH ItemListType="Item" ItemID="765" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=60 &amp;&amp; Alchemy.Level &lt; 105" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(2337)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Training" />
+        </If>
+        <CastSpell RepeatType="Craftable" Repeat="10" Entry="2337" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="!CanCraft(2337) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="Item" ItemID="118" MaxBuyout="5g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          <BuyItemFromAH ItemListType="Item" ItemID="2450" MaxBuyout="5g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=105 &amp;&amp; Alchemy.Level &lt; 110" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(3171)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Training" />
+        </If>
+        <CastSpell RepeatType="Craftable" Repeat="5" Entry="3171" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="!CanCraft(3171) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="Item" ItemID="785" MaxBuyout="5g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          <BuyItemFromAH ItemListType="Item" ItemID="2450" MaxBuyout="5g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=110 &amp;&amp; Alchemy.Level &lt; 155" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(3447)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Training" />
+        </If>
+        <CastSpell RepeatType="Craftable" Repeat="10" Entry="3447" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="!CanCraft(3447) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="Item" ItemID="2453" MaxBuyout="5g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          <BuyItemFromAH ItemListType="Item" ItemID="2450" MaxBuyout="5g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=155 &amp;&amp; Alchemy.Level &lt; 175" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(7181)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Training" />
+        </If>
+        <CastSpell RepeatType="Craftable" Repeat="10" Entry="7181" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="!CanCraft(7181) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="Item" ItemID="3357" MaxBuyout="5g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          <BuyItemFromAH ItemListType="Item" ItemID="3356" MaxBuyout="5g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=175 &amp;&amp; Alchemy.Level &lt; 185" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(3452)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Training" />
+        </If>
+        <CastSpell RepeatType="Craftable" Repeat="10" Entry="3452" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        <If Condition="!CanCraft(3452) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="Item" ItemID="3820" MaxBuyout="5g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          <BuyItemFromAH ItemListType="Item" ItemID="3356" MaxBuyout="5g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=185 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(11449)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="!HasRecipe(12609) &amp;&amp; Alchemy.Level &gt;= 200" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(11449)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="11449" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(3448)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="3448" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(3450)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="3450" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(7181)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="7181" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(3449)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="3449" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(12609)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="12609" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(11449) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="11449" MaxBuyout="5g0s0c" Amount="20" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(11449) &amp;&amp; !CanCraft(3450) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="3450" MaxBuyout="10g0s0c" Amount="20" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(11449) &amp;&amp; !CanCraft(3450) &amp;&amp; !CanCraft(3448) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="3448" MaxBuyout="10g0s0c" Amount="20" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(7181) &amp;&amp; !HasNewMail  &amp;&amp; Alchemy.Level &lt;195" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="7181" MaxBuyout="10g0s0c" Amount="20" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(3449) &amp;&amp; !HasNewMail &amp;&amp; Alchemy.Level &lt;195" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="3449" MaxBuyout="10g0s0c" Amount="20" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=205 &amp;&amp; Alchemy.Level &lt; 215" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(11450)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(11450)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="11450" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(11450) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="11450" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="CanCraft(12609)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="12609" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(12609) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="12609" MaxBuyout="10g0s0c" Amount="15" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=215 &amp;&amp; Alchemy.Level &lt; 235" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(11457) || !HasRecipe(11448) || !HasRecipe(11451)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(11457)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="11457" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(11448)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="11448" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(11451)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="11451" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(11457) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="11457" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(11448) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="11448" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(11451) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="11451" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=235 &amp;&amp; Alchemy.Level &lt; 240" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(11465)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(11465)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="11465" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(11465) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="11465" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="Alchemy.Level &gt;=240 &amp;&amp; Alchemy.Level &lt; 265" IgnoreCanRun="False">
+          <If Condition="!HasRecipe(11467)" IgnoreCanRun="True">
+            <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+          </If>
+          <If Condition="!HasRecipe(9233) &amp;&amp; Alchemy.Level &gt;= 250" IgnoreCanRun="True">
+            <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+          </If>
+          <If Condition="CanCraft(11467) " IgnoreCanRun="True">
+            <CastSpell RepeatType="Craftable" Repeat="5" Entry="11467" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <If Condition="CanCraft(11465) " IgnoreCanRun="True">
+            <CastSpell RepeatType="Craftable" Repeat="5" Entry="11465" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <If Condition="CanCraft(9233) " IgnoreCanRun="True">
+            <CastSpell RepeatType="Craftable" Repeat="5" Entry="9233" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+          <If Condition="!CanCraft(11467) " IgnoreCanRun="True">
+            <BuyItemFromAH ItemListType="RecipeMats" ItemID="11467" MaxBuyout="10g0s0c" Amount="25" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          </If>
+          <If Condition="!CanCraft(11465) " IgnoreCanRun="True">
+            <BuyItemFromAH ItemListType="RecipeMats" ItemID="11465" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          </If>
+          <If Condition="HasRecipe(9233) &amp;&amp; !CanCraft(9233) " IgnoreCanRun="True">
+            <BuyItemFromAH ItemListType="RecipeMats" ItemID="9233" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          </If>
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=265 &amp;&amp; Alchemy.Level &lt; 270" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(17553)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(17553)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="17553" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(17553) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="17553" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+    </If>
+    <If Condition="Alchemy.Level &gt;= 270 &amp;&amp; Alchemy.Level &lt; 350 &amp;&amp; !Me.NormalBagsFull" IgnoreCanRun="False">
+      <If Condition="Alchemy.Level &gt;=270 &amp;&amp; Alchemy.Level &lt; 285" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(17555)" IgnoreCanRun="True">
+          <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Herb" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="0" MinBuyout="0g10s0c" MaxBuyout="6g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(17555)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="17555" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(17555) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="17555" MaxBuyout="10g0s0c" Amount="15" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=285 &amp;&amp; Alchemy.Level &lt; 300" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(17556)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(17556)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="17556" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(17556) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="17556" MaxBuyout="10g0s0c" Amount="15" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=300 &amp;&amp; Alchemy.Level &lt; 315" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(33732)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(33732)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="33732" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(33740)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="33740" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(33738)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="33738" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(17573)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="17573" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(17556)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="17556" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(33740)  &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="33740" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(33732) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="33732" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(33738)  &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="33738" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(17573)  &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="17573" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(17556)  &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="17556" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=315 &amp;&amp; Alchemy.Level &lt; 325" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(28545)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(28545)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="28545" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(28545) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="28545" MaxBuyout="10g0s0c" Amount="15" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=325 &amp;&amp; Alchemy.Level &lt; 335" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(39638)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(45061)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="45061" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(39638)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="39638" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(45061) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="45061" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(39638) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="39638" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=335 &amp;&amp; Alchemy.Level &lt; 350" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(28551)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(45061)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="45061" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(28551)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="28551" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(39638)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="39638" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(39638) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="39638" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(45061) &amp;&amp; !HasNewMail" IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="45061" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(28551) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="28551" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+    </If>
+    <If Condition="Alchemy.Level &gt;= 350 &amp;&amp; Alchemy.Level &lt; 425 &amp;&amp; !Me.NormalBagsFull" IgnoreCanRun="False">
+      <If Condition="Alchemy.Level &gt;=350 &amp;&amp; Alchemy.Level &lt; 360" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(53838)" IgnoreCanRun="True">
+          <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Herb" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="0" MinBuyout="0g10s0c" MaxBuyout="6g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(53838)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="53838" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(53838) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="53838" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=360 &amp;&amp; Alchemy.Level &lt; 365" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(53839)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(53839)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="53839" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(53839) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="53839" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=365 &amp;&amp; Alchemy.Level &lt; 375" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(53842)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(53842)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="53842" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(53842) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="53842" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=375 &amp;&amp; Alchemy.Level &lt; 380" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(53812)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(53812)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="53812" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(53812) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="53812" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=380 &amp;&amp; Alchemy.Level &lt; 385" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(53900)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(53900)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="53900" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="CanCraft(53812)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="53812" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(53900) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="53900" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+        <If Condition="!CanCraft(53812) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="53812" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=385 &amp;&amp; Alchemy.Level &lt; 395" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(54218)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(54218)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="10" Entry="54218" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(54218) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="54218" MaxBuyout="10g0s0c" Amount="12" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=395 &amp;&amp; Alchemy.Level &lt; 405" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(53840)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(53840)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="10" Entry="53840" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(53840) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="53840" MaxBuyout="10g0s0c" Amount="14" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=405 &amp;&amp; Alchemy.Level &lt; 415" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(53905)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(53905)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="10" Entry="53905" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(53905) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="53905" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=415 &amp;&amp; Alchemy.Level &lt; 425" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(53837)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(53837)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="10" Entry="53837" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(53837) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="53837" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+    </If>
+    <If Condition="Alchemy.Level &gt;= 425 &amp;&amp; Alchemy.Level &lt;=525 &amp;&amp; !Me.NormalBagsFull" IgnoreCanRun="False">
+      <If Condition="Alchemy.Level &gt;=425 &amp;&amp; Alchemy.Level &lt; 450" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(93935)" IgnoreCanRun="True">
+          <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Herb" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="0" MinBuyout="0g10s0c" MaxBuyout="6g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(93935)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="93935" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(93935) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="93935" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=450 &amp;&amp; Alchemy.Level &lt; 455" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(80477)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(80477)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="80477" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(80477) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="80477" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=455 &amp;&amp; Alchemy.Level &lt; 460" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(80479)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(80479)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="80479" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(80479) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="80479" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=460 &amp;&amp; Alchemy.Level &lt; 465" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(80481)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(80481)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="80481" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(80481) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="80481" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=465 &amp;&amp; Alchemy.Level &lt; 475" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(80484)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(80484)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="80484" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(80484) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="80484" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=475 &amp;&amp; Alchemy.Level &lt; 480" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(80488)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(80488)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="80488" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(80488) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="80488" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=480 &amp;&amp; Alchemy.Level &lt; 490" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(80491)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(80491)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="80491" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(80491) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="80491" MaxBuyout="10g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=490 &amp;&amp; Alchemy.Level &lt; 495" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(80496)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(80496)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="15" Entry="80496" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(80496) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="80496" MaxBuyout="15g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=495 &amp;&amp; Alchemy.Level &lt; 500" IgnoreCanRun="False">
+        <If Condition="!HasRecipe(80497)" IgnoreCanRun="True">
+          <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        </If>
+        <If Condition="CanCraft(80497)" IgnoreCanRun="True">
+          <CastSpell RepeatType="Craftable" Repeat="5" Entry="80497" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="!CanCraft(80497) " IgnoreCanRun="True">
+          <BuyItemFromAH ItemListType="RecipeMats" ItemID="80497" MaxBuyout="10g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+        </If>
+      </If>
+      <If Condition="Alchemy.Level &gt;=500" IgnoreCanRun="True">
+        <SellItemOnAH Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Herb" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="0" MinBuyout="0g10s0c" MaxBuyout="6g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+        <SellItemOnAH Category="Consumable" SubCategoryType="SubCategoryType" SubCategory="None" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="0" MinBuyout="0g10s0c" MaxBuyout="200g0s0c" StackSize="5" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+        <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2379" />
+        <Custom Code="Log(&quot;Reached Alchemy level 500. Logging out&quot;);" />
+        <Custom Code="Lua.DoString(&quot;LogOut()&quot;);TreeRoot.Stop();" />
+      </If>
+    </If>
+  </While>
+  <SubRoutine SubRoutineName="GetMail">
+    <Custom Code="Log(Color.Orange,&quot;Retrieving your mail!&quot;);" />
+    <GetMail GetMailType="AllItems" ItemID="0" CheckNewMail="True" MaxCODAmount="0g0s0c" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+    <Wait Condition="false" Timeout="2000" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="SendMail">
+    <Custom Code="Log(Color.Orange,&quot;Sending mail!&quot;);" />
+    <MailItem Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Mail="All" ItemID="" Amount="0" AutoFindMailBox="False" Location="5889.271, 698.5286, 643.2389" ItemQuality="Uncommon" ItemSelection="Category" />
+    <!--SENDING MAIL IS NOT IMPLEMENTED-->
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Training">
+    <Custom Code="Log(Color.Orange,&quot;Interacting with: &lt;Alchemy Trainer&gt;&quot;);" />
+    <TrainSkill NpcEntry="28703" Location="5889.271, 698.5286, 643.2389" />
+  </SubRoutine>
+</Professionbuddy>
