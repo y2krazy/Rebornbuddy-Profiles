@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] [X] Snurble Tufts - Golden Fleece
+Author: y2krazy (used with permission from Arvind)
+Version: 1.0.0
+Required Level: 38
+Required Teleport Locations:
+	Camp Drybone
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	Acquire Camp Drybone Aetheryte
+	Set Home Point (optional, if farming for an extended amount of time)
+Item Drops:
+	Snurble Tufts
+-->
+<Profile>
+	<Name>[O] [X] Snurble Tufts - Golden Fleece</Name>
+	<KillRadius>100</KillRadius>
+	<GrindAreas>
+		<GrindArea name="Snurble_Tufts">
+			<Hotspots>
+				<Hotspot Radius="250" XYZ="251.318, -16.42159, 172.1474" name="Golden Fleece" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="271" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<Order>
+		<BotSettings AutoEquip="1" />
+
+		<!-- Golden Fleece -->
+
+		<If Condition="not IsOnMap(145)">
+			<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+		</If>
+
+		<Grind grindRef="Snurble_Tufts" while="Core.Player.ClassLevel &lt; 61" />
+	</Order>
+</Profile>
