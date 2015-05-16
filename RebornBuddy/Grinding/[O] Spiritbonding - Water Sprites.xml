@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] Spiritbonding - Water Sprites
+Author: y2krazy
+Version: 1.0.0
+Required Level: 48
+Required Teleport Location:
+	Quarrymill
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	Acquire Quarrymill Aetheryte
+	Set Home Point
+Item Drops:
+	Water Crystal
+-->
+<Profile>
+	<Name>[O] Spiritbonding - Water Sprites</Name>
+	<KillRadius>90</KillRadius>
+	<GrindAreas>
+		<GrindArea name="Spiritbonding">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="619.4559, 22.41551, 89.32269" name="Water Sprite" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="56" />
+			</TargetMobs>
+			<MinLevel>48</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<Order>
+		<BotSettings AutoEquip="1" />
+
+		<!-- Water Sprite -->
+
+		<If Condition="not IsOnMap(153)">
+			<TeleportTo Name="Quarrymill" AetheryteId="5" />
+		</If>
+
+		<NoCombatMoveTo Name="Urth's Fount" Distance="3" XYZ="619.4559, 22.41551, 89.32269" />
+
+		<Grind grindRef="Spiritbonding" while="Core.Player.ClassLevel &lt; 61" />
+	</Order>
+</Profile>
