@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] [LTW] Boar Hide - Wild Hogs
+Author: y2krazy
+Version: 1.0.0
+Required Level: 45
+Required Teleport Locations:
+	Quarrymill
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	Acquire Quarrymill Aetheryte
+	Set Home Point (optional, if farming for an extended amount of time)
+Item Drops:
+	Boar Hide
+-->
+<Profile>
+	<Name>[O] [LTW] Boar Hide - Wild Hogs</Name>
+	<KillRadius>90</KillRadius>
+	<GrindAreas>
+		<GrindArea name="Boar_Hide">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="370.7033, 0.4990824, 152.5462" name="Wild Hog" />
+				<Hotspot Radius="90" XYZ="476.0181, 0.5554026, 186.5246" name="Wild Hog" />
+				<Hotspot Radius="90" XYZ="383.4095, -1.090251, 126.7354" name="Wild Hog" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="15" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<Order>
+		<BotSettings AutoEquip="1" />
+
+		<!-- Wild Hog -->
+
+		<If Condition="not IsOnMap(153)">
+			<TeleportTo Name="Quarrymill" AetheryteId="5" />
+		</If>
+
+		<Grind grindRef="Boar_Hide" while="Core.Player.ClassLevel &lt; 61" />
+	</Order>
+</Profile>
