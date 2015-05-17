@@ -2,14 +2,14 @@
 <!--
 Profile: [O] [BTN] Chamomile Seeds - Upper La Noscea
 Author: y2krazy
-Version: 1.0.0
+Version: 1.0.1
 Required Level: 24
 Required Teleport Location:
-	Aleport (Not Yet Implemented)
+	Aleport
 Required User Interaction:
 	This profile should be AFKable.
 Required Setup:
-	None.
+	Acquire Aleport Aetheryte
 Item Drops:
 	Chamomile Seeds
 	Earth Shard
@@ -22,9 +22,16 @@ Item Drops:
 
 		<!-- Chamomile Seeds -->
 
-		<!-- <If Condition="not IsOnMap(139)">
-			<TeleportTo Name="Aleport" AetheryteId="14" />
-		</If> -->
+		<If Condition="not IsOnMap(138)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+				<TeleportTo Name="Aleport" AetheryteId="14" />
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+				<Travel To="138" />
+			</If>
+		</If>
+
+		<Travel To="139" />
 
 	    <Gather>
 			<GatherObject>Lush Vegetation Patch</GatherObject>
