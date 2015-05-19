@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] [MIN] [10] The Cutting Edge - Obsidian
+Author: y2krazy
+Version: 1.0.1
+Required Level: 10
+Required Teleport Locations:
+	Horizon
+	Ul'dah - Steps of Nald
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	Be a Miner.
+Item Drops:
+	Obsidian
+-->
+<Profile>
+	<Name>[O] [MIN] [10] The Cutting Edge - Obsidian</Name>
+	<KillRadius>90</KillRadius>
+	<Order>
+		<BotSettings AutoEquip="1" />
+
+		<!-- The Cutting Edge -->
+
+		<If Condition="not IsQuestCompleted(66138)">
+
+			<!-- Pickup the Quest -->
+
+			<If Condition="not HasQuest(66138)">
+				<If Condition="not IsOnMap(131)">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<Travel To="131" />
+				</If>
+				<MoveTo Name="Adalberta" XYZ="-17.13403, 6.2, 157.6623" />
+				<If Condition="IsQuestAcceptQualified(66138)">
+					<PickupQuest NpcId="1002298" QuestId="66138" XYZ="-17.13403, 6.2, 157.6623" />
+				</If>
+			</If>
+
+			<!-- Move to the Quest Zone -->
+
+			<If Condition="not NqHasAtLeast(5124,99)">
+				<If Condition="HasQuest(66138)">
+
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+
+					<!-- Mine 99 Obsidian -->
+
+					<Gather while="not NqHasAtLeast(5124,99)">
+						<GatherObject>Mineral Deposit</GatherObject>
+						<HotSpots>
+							<HotSpot Radius="90" XYZ="63.45242, 58.60076, 357.5111" name="Mineral Deposit" />
+							<HotSpot Radius="90" XYZ="22.24104, 58.26104, 360.0021" name="Mineral Deposit" />
+						</HotSpots>
+						<ItemNames>
+							<ItemName>Obsidian</ItemName>
+						</ItemNames>
+					</Gather>
+
+				</If>
+			</If>
+
+			<!-- Turn in the Quest -->
+
+			<If Condition="NqHasAtLeast(5124,99)">
+				<If Condition="GetQuestStep(66138) == 255">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<Travel To="131" />
+					</If>
+					<MoveTo Name="Adalberta" XYZ="-17.13403, 6.2, 157.6623" />
+					<TurnIn ItemId="5124" QuestId="66138" NpcId="1002298" XYZ="-17.13403, 6.2, 157.6623" />
+				</If>
+			</If>
+
+		</If>
+
+		<If Condition="IsQuestCompleted(66138)">
+			<LogMessage Message="You've completed the level 10 Miner class quest!" />
+        	<StopBot />
+		</If>
+
+	</Order>
+</Profile>
