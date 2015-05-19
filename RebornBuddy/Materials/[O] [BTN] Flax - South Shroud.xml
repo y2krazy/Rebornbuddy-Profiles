@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] [BTN] Flax - South Shroud
+Author: y2krazy
+Version: 1.0.0
+Required Level: 31
+Required Teleport Location:
+	Camp Tranquil or Quarrymill
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	Acquire Camp Tranquil or Quarrymill Aetheryte
+Item Drops:
+	Flax
+-->
+<Profile>
+	<Name>[O] [BTN] Flax - South Shroud</Name>
+	<KillRadius>90</KillRadius>
+	<Order>
+		<BotSettings AutoEquip="1" />
+
+		<!-- Flax -->
+
+		<If Condition="not IsOnMap(153)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+				<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+			</If>
+		</If>
+
+		<If Condition="not IsOnMap(153)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(5)">
+				<TeleportTo Name="Quarrymill" AetheryteId="5" />
+			</If>
+		</If>
+
+		<NoCombatMoveTo Name="Farming Area" Distance="3" XYZ="-149.179, -0.2530651, 345.0852" />
+
+	    <Gather>
+			<GatherObject>Lush Vegetation Patch</GatherObject>
+			<HotSpots>
+				<HotSpot Radius="90" XYZ="-181.9901, 0.7185107, 393.3036" name="Lush Vegetation Patch" />
+				<HotSpot Radius="90" XYZ="-236.1356, 1.293108, 415.8862" name="Lush Vegetation Patch" />
+			</HotSpots>
+			<ItemNames>
+				<ItemName>Flax</ItemName>
+			</ItemNames>
+	  	</Gather>
+
+	</Order>
+</Profile>
