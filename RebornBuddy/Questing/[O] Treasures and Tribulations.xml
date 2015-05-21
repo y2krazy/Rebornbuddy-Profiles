@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] Treasures and Tribulations
+Author: y2krazy
+Version: 1.0.0
+Required Level: 36
+Required Teleport Locations:
+	Wineport
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	None.
+Rewards:
+	Decipher Action
+	Dig Action
+-->
+<Profile>
+	<Name>[O] Treasures and Tribulations</Name>
+	<KillRadius>90</KillRadius>
+	<GrindAreas>
+		<GrindArea name="Disturbances">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="602.7211, -2.444126, 171.121" name="Territorial Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2375" />
+				<TargetMob Id="2376" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<Order>
+		<BotSettings AutoEquip="1" />
+
+		<!-- Treasures and Tribulations -->
+
+		<If Condition="not IsQuestCompleted(66747)">
+
+			<!-- Pickup the Quest -->
+
+			<If Condition="not HasQuest(66747)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+						<TeleportTo Name="Wineport" AetheryteId="12" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<MoveTo Name="H'loonh" XYZ="-18.07682, 70.43877, -16.13299" />
+				<If Condition="IsQuestAcceptQualified(66747)">
+					<PickupQuest NpcId="1005526" QuestId="66747" XYZ="-18.07682, 70.43877, -16.13299" />
+				</If>
+			</If>
+
+			<!-- Move to the Quest Zone -->
+
+			<If Condition="HasQuest(66747)">
+
+				<!-- Step 1 -->
+
+				<If Condition="GetQuestStep(66747) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+							<TeleportTo Name="Wineport" AetheryteId="12" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1005527" XYZ="-68.41243, 45.32172, 180.6208" />
+				</If>
+
+				<!-- Step 2 -->
+
+				<If Condition="GetQuestStep(66747) == 2">
+					<Travel To="139" />
+					<TalkTo InteractDistance="3.0" NpcId="1005528" XYZ="623.9114, -3.002749, 164.178" />
+				</If>
+
+				<!-- Step 3 -->
+
+				<If Condition="GetQuestStep(66747) == 3">
+					<UseObject NpcId="2003139" XYZ="602.7211, -2.444126, 171.121" Radius="10" WaitTime="6000" QuestId="66747" StepId="3" />
+					<Grind grindRef="Disturbances" while="HasQuest(66747) and GetQuestStep(66747) == 3" />
+				</If>
+
+				<!-- Step 4 -->
+
+				<If Condition="GetQuestStep(66747) == 4">
+					<UseObject NpcId="2003007" XYZ="602.7211, -2.444126, 171.121" Radius="10" WaitTime="10000" QuestId="66747" StepId="4" />
+				</If>
+
+				<!-- Turn In Quest -->
+
+				<If Condition="GetQuestStep(66747) == 255">
+					<TurnIn ItemId="2001130,2001149" QuestId="66747" NpcId="1005528" XYZ="623.9114, -3.002749, 164.178" />
+				</If>
+
+			</If>
+
+		</If>
+
+		<If Condition="IsQuestCompleted(66747)">
+			<LogMessage Message="You've unlocked your Decipher and Dig actions!" />
+        	<StopBot />
+		</If>
+
+	</Order>
+</Profile>
