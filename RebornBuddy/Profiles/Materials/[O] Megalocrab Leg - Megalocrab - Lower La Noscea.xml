@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] Megalocrab Leg - Megalocrab - Lower La Noscea
+Author: y2krazy
+Version: 1.0.0
+Required Level: 12
+Required Teleport Location:
+	The Moraby Drydocks
+Required User Interaction:
+	This profile should be AFKable.
+Required Setup:
+	Acquire The Moraby Drydocks Aetheryte
+	Set Home Point (optional, if farming for an extended amount of time)
+Item Drops:
+	Green Megalocrab Shell
+	Megalocrab Leg
+-->
+<Profile>
+	<Name>[O] Megalocrab Leg - Megalocrab - Lower La Noscea</Name>
+	<KillRadius>90</KillRadius>
+	<GrindAreas>
+		<GrindArea name="Megalocrab_Leg">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="121.0941, 21.67302, 791.0867" name="Megalocrab" />
+				<Hotspot Radius="90" XYZ="-56.12908, 2.919922, 791.8495" name="Megalocrab" />
+				<Hotspot Radius="90" XYZ="-203.1439, -0.2431329, 688.7357" name="Megalocrab" />
+				<Hotspot Radius="90" XYZ="-85.4175, 3.523351, 703.5215" name="Megalocrab" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="561" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<Order>
+
+		<!-- Megalocrab -->
+
+		<If Condition="not IsOnMap(135)">
+			<TeleportTo Name="The Moraby Drydocks" AetheryteId="10" />
+		</If>
+
+		<Grind grindRef="Megalocrab_Leg" while="Core.Player.ClassLevel &lt; 61" />
+	</Order>
+</Profile>
