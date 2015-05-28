@@ -1,0 +1,893 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] Seventh Astral Era - A Realm Awoken
+Author: y2krazy
+Version: 1.0.0
+Required Level: 50
+Required Teleport Locations:
+	
+Required User Interaction:
+	Minimal interaction.
+Required Setup:
+	The Ultimate Weapon quest completed.
+
+Rewards:
+	
+-->
+<Profile>
+	<Name>[O] Seventh Astral Era - A Realm Awoken</Name>
+	<KillRadius>90</KillRadius>
+	<CodeChunks>
+		<CodeChunk Name="YouHaveSelectedRegicide">
+			<![CDATA[ 
+				if(Core.Player.IsMounted)
+				{
+					ff14bot.Managers.Actionmanager.Dismount();
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
+				}
+				ff14bot.Managers.MovementManager.SetFacing(0.8310049f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(1500);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="OnthePropertiesofPrimals">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1000460).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
+					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="WakingSands">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2001711).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="WakingSands2">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2001715).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TheGifted">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TheRisingStones">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2002881).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TheRisingStones2">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2002878).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="66719a">
+			<![CDATA[
+				var loc = new Vector3(-529.4203f, -1.86901f, -276.4742f);
+				if(Core.Player.InCombat)
+				{
+					await Buddy.Coroutines.Coroutine.Wait(5000, () => !Core.Player.InCombat);
+				}
+				Actionmanager.DoActionLocation(ActionType.KeyItem, 2001079, loc);
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="66719b">
+			<![CDATA[
+				var loc = new Vector3(-484.6563f, -3.99858f, -283.9678f);
+				if(Core.Player.InCombat)
+				{
+					await Buddy.Coroutines.Coroutine.Wait(5000, () => !Core.Player.InCombat);
+				}
+				Actionmanager.DoActionLocation(ActionType.KeyItem, 2001079, loc);
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="66719c">
+			<![CDATA[
+				var loc = new Vector3(-469.3038f, -4.000072f, -256.8525f);
+				if(Core.Player.InCombat)
+				{
+					await Buddy.Coroutines.Coroutine.Wait(5000, () => !Core.Player.InCombat);
+				}
+				Actionmanager.DoActionLocation(ActionType.KeyItem, 2001079, loc);
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+		<GrindArea name="The_Gifted">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-469.1342, 22.86516, -442.4682" name="Brutish Imps" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="692" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Gifted2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-387.4815, 24.83591, -500.3035" name="Gruesome Gargoyle" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="693" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Gifted3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-367.9207, 16.6294, -627.9803" name="Gnarled Gargoyle" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="694" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Gifted4">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-346.0502, 14.82433, -746.4316" name="Ascian Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="695" />
+				<TargetMob Id="697" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<Order>
+
+		<!-- The Price of Principles -->
+
+		<If Condition="not IsQuestCompleted(66711)">
+			<If Condition="not HasQuest(66711)">
+				<LogMessage Message="Please manually complete The Price of Principles!" />
+				<LogMessage Message="Run this profile again once you finish The Price of Principles." />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(66711)">
+				<LogMessage Message="Please manually complete The Price of Principles!" />
+				<LogMessage Message="Run this profile again once you finish The Price of Principles." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- Moving On -->
+
+		<If Condition="not IsQuestCompleted(66712)">
+			<If Condition="not HasQuest(66712)">
+				<LogMessage Message="Please manually complete Moving On!" />
+				<LogMessage Message="Run this profile again once you finish Moving On." />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(66712)">
+				<LogMessage Message="Please manually complete Moving On!" />
+				<LogMessage Message="Run this profile again once you finish Moving On." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- Flowers for One -->
+
+		<If Condition="not IsQuestCompleted(66713)">
+			<If Condition="not HasQuest(66713)">
+				<LogMessage Message="Please manually complete Flowers for One!" />
+				<LogMessage Message="Run this profile again once you finish Flowers for One." />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(66713)">
+				<LogMessage Message="Please manually complete Flowers for One!" />
+				<LogMessage Message="Run this profile again once you finish Flowers for One." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- All Things in Time -->
+
+		<If Condition="not IsQuestCompleted(66714)">
+			<If Condition="not HasQuest(66714)">
+				<LogMessage Message="Please manually complete All Things in Time!" />
+				<LogMessage Message="Run this profile again once you finish All Things in Time." />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(66714)">
+				<LogMessage Message="Please manually complete All Things in Time!" />
+				<LogMessage Message="Run this profile again once you finish All Things in Time." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- The Resolute -->
+
+		<If Condition="not IsQuestCompleted(66715)">
+			<If Condition="not HasQuest(66715)">
+				<LogMessage Message="Please manually complete The Resolute!" />
+				<LogMessage Message="Run this profile again once you finish The Resolute." />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(66715)">
+				<LogMessage Message="Please manually complete The Resolute!" />
+				<LogMessage Message="Run this profile again once you finish The Resolute." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- Laying the Foundation -->
+
+		<If Condition="not IsQuestCompleted(66716)">
+			<If Condtion="not HasQuest(66716)">
+				<LogMessage Message="This quest was done by Sodimm and has not been tested." />
+				<LogMessage Message="PLEASE REPORT ANY ISSUES, IF ANY OCCUR!" />
+				<If Condition="not IsOnMap(140)">
+					<TeleportTo AetheryteId="17" Name="140"/>
+				</If>
+				<If Condition="IsOnMap(140)">
+					<UseTransport NpcId="2001711" DialogOption="0" Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" WaitTime="5000"/>
+				</If>
+				<If Condition="IsOnSubMap(356)">
+					<UseTransport NpcId="2001715" DialogOption="0" Name="Entrance to the Solar" XYZ="23.23944, 2.090454, -0.01531982" WaitTime="5000"/>
+				</If>
+				<If Condition="IsOnSubMap(374)">
+					<If Condition="IsQuestAcceptQualified(66716)">
+						<PickupQuest NpcId="1006693" QuestId="66716" XYZ="39.29187, 1.214808, 0.8086548"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(66716)">
+				<LogMessage Message="This quest was done by Sodimm and has not been tested." />
+				<LogMessage Message="PLEASE REPORT ANY ISSUES, IF ANY OCCUR!" />
+				<If Condition="GetQuestStep(66716) == 255">
+					<If Condition="not IsOnMap(156)">
+						<TeleportTo AetheryteId="24" Name="156"/>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<TurnIn ItemId="2001077" QuestId="66716" StepId="255" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063"/>
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- Better Late than Sever -->
+
+		<If Condition="not IsQuestCompleted(66717)">
+			<If Condition="not HasQuest(66717)">
+				<LogMessage Message="This quest was done by Sodimm and has not been tested." />
+				<LogMessage Message="PLEASE REPORT ANY ISSUES, IF ANY OCCUR!" />
+				<If Condition="not IsOnMap(156)">
+					<TeleportTo AetheryteId="24" Name="156"/>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<If Condition="IsQuestAcceptQualified(66717)">
+						<PickupQuest NpcId="1006544" QuestId="66717" XYZ="24.09399, 28.99997, -750.0573"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(66717)">
+				<LogMessage Message="This quest was done by Sodimm and has not been tested." />
+				<LogMessage Message="PLEASE REPORT ANY ISSUES, IF ANY OCCUR!" />
+				<If Condition="not IsOnMap(154)">
+					<TeleportTo AetheryteId="7" Name="154"/>
+				</If>
+				<If Condition="IsOnMap(154)">
+					<If Condition="GetQuestStep(66717) == 1">
+						<TalkTo InteractDistance="3.0" NpcId="1007741" XYZ="-24.94855, -40.87433, 239.2156"/>
+					</If>
+					<If Condition="GetQuestStep(66717) == 2">
+						<TalkTo InteractDistance="3.0" NpcId="1007742" XYZ="179.3392, -27.80587, 176.7147"/>
+					</If>
+
+					<!-- Could be more than 1, and up to 5 different location sets -->
+
+					<If Condition="GetQuestStep(66717) == 3">
+						<NoCombatMoveTo XYZ="-26.16925, -7.583801, -147.0513"/>
+						<UseObject NpcId="2002844" XYZ="-26.16925, -7.583801, -147.0513" Radius="5" UseTimes="1" BlacklistAfter="True" Condition="GetQuestById(66717).QuestI8B == 0"/>
+						<UseObject NpcId="1007747" XYZ="-41.03156, -6.904075, -161.1811" Radius="5" UseTimes="1" BlacklistAfter="True" Condition="GetQuestById(66717).QuestI8B == 1"/>
+						<UseObject NpcId="1007746" XYZ="-51.95703, -7.130762, -158.0988" Radius="5" UseTimes="1" BlacklistAfter="True" Condition="GetQuestById(66717).QuestI8B == 17"/>
+						<UseObject NpcId="2002846" XYZ="-147.6006, -1.907471, -120.3174" Radius="5" UseTimes="1" BlacklistAfter="True" Condition="GetQuestById(66717).QuestI8B == 33"/>
+						<UseObject NpcId="2002845" XYZ="-137.2855, -9.597961, -80.8576" Radius="5" UseTimes="1" BlacklistAfter="True" Condition="GetQuestById(66717).QuestI8B == 34"/>
+					</If>
+					<If Condition="GetQuestStep(66717) == 4">
+						<NoCombatMoveTo Name="Elezen Coachman" XYZ="178.851, -28.27971, 185.748"/>
+						<TalkTo InteractDistance="3.0" NpcId="1007748" XYZ="178.851, -28.27971, 185.748"/>
+					</If>
+				</If>
+				<If Condition="GetQuestStep(66717) == 255">
+					<If Condition="not IsOnMap(156)">
+						<TeleportTo AetheryteId="24" Name="156"/>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<TurnIn NpcId="1006544" QuestId="66717" StepId="255" XYZ="24.09399, 28.99997, -750.0573"/>
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- Crate Go Kaboom -->
+
+		<If Condition="not IsQuestCompleted(66719)">
+			<If Condition="not HasQuest(66719)">
+				<LogMessage Message="This quest was done by Sodimm and has not been tested." />
+				<LogMessage Message="PLEASE REPORT ANY ISSUES, IF ANY OCCUR!" />
+				<If Condition="not IsOnMap(156)">
+					<TeleportTo AetheryteId="24" Name="156"/>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<If Condition="IsQuestAcceptQualified(66719)">
+						<PickupQuest NpcId="1006552" QuestId="66719" XYZ="54.79517, 25.54827, -698.0544"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(66719)">
+				<LogMessage Message="This quest was done by Sodimm and has not been tested." />
+				<LogMessage Message="PLEASE REPORT ANY ISSUES, IF ANY OCCUR!" />
+				<If Condition="not IsOnMap(156)">
+					<TeleportTo AetheryteId="24" Name="156"/>
+				</If>
+				<If Condition="IsOnMap(156)">
+
+					<!-- Could be more than 1, and up to 5 different location sets -->
+
+					<!-- Core.Player.IsCasting might return false and cancel the interaction -->
+
+					<If Condition="GetQuestStep(66719) == 1">
+						<NoCombatMoveTo XYZ="-529.4203, -1.86901, -276.4742"/>
+						<MoveTo XYZ="-529.4203, -1.86901, -276.4742"/>
+						<RunCode Name="66719a"/>
+						<WaitWhile Condition="Core.Player.IsCasting"/>
+						<MoveTo XYZ="-484.6563, -3.99858, -283.9678"/>
+						<RunCode Name="66719b"/>
+						<WaitWhile Condition="Core.Player.IsCasting"/>
+						<MoveTo XYZ="-469.3038, -4.000072, -256.8525"/>
+						<RunCode Name="66719c"/>
+						<WaitWhile Condition="Core.Player.IsCasting"/>
+					</If>
+					<If Condition="GetQuestStep(66719) == 255">
+						<TeleportTo AetheryteId="24" Name="156" Force="True"/>
+						<TurnIn NpcId="1006552" QuestId="66719" StepId="255" XYZ="54.79517, 25.54827, -698.0544"/>
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- Rock-solid Protection -->
+
+		<If Condition="not IsQuestCompleted(66718)">
+			<If Condition="not HasQuest(66718)">
+				<LogMessage Message="This quest was done by Sodimm and has not been tested." />
+				<LogMessage Message="PLEASE REPORT ANY ISSUES, IF ANY OCCUR!" />
+				<If Condition="not IsOnMap(156)">
+					<TeleportTo AetheryteId="24" Name="156"/>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<If Condition="IsQuestAcceptQualified(66718)">
+						<PickupQuest NpcId="1006530" QuestId="66718" XYZ="21.92719, 20.74698, -682.063"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(66718)">
+				<LogMessage Message="This quest was done by Sodimm and has not been tested." />
+				<LogMessage Message="PLEASE REPORT ANY ISSUES, IF ANY OCCUR!" />
+				<If Condition="GetQuestStep(66718) == 1">
+					<If Condition="not IsOnMap(146)">
+						<TeleportTo AetheryteId="19" Name="146"/>
+					</If>
+					<If Condition="IsOnMap(146)">
+						<TalkTo InteractDistance="3.0" NpcId="1006220" XYZ="185.748, 13.7212, -443.1983"/>
+					</If>
+				</If>
+				<If Condition="GetQuestStep(66718) == 2">
+					<LogMessage Message="Run the Sunken Temple of Qarn (Normal) and restart the bot."/>
+				</If>
+				<If Condition="GetQuestStep(66718) == 255">
+					<If Condition="not IsOnMap(156)">
+						<TeleportTo AetheryteId="24" Name="156"/>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<TurnIn QuestId="66718" NpcId="1006530" ItemIds="2001078" XYZ="21.92719, 20.74698, -682.063"/>
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- Hest of the Best -->
+
+		<If Condition="not IsQuestCompleted(66720)">
+			<If Condition="not HasQuest(66720)">
+				<LogMessage Message="This quest was done by Sodimm and has not been tested." />
+				<LogMessage Message="PLEASE REPORT ANY ISSUES, IF ANY OCCUR!" />
+				<If Condition="not IsOnMap(156)">
+					<TeleportTo AetheryteId="24" Name="156"/>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<If Condition="IsQuestAcceptQualified(66720)">
+						<PickupQuest NpcId="1006530" QuestId="66720" XYZ="21.92719, 20.74698, -682.063"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(66720)">
+				<LogMessage Message="This quest was done by Sodimm and has not been tested." />
+				<LogMessage Message="PLEASE REPORT ANY ISSUES, IF ANY OCCUR!" />
+				<LogMessage Message="The next series of quests from Slafborn will take you through the Guildhests. The last quest is You're Gonna Carry That. Complete these and restart the profile." />
+			</If>
+		</If>
+
+		<!-- Pass the Smell Hest -->
+
+		<If Condition="not IsQuestCompleted(66721)">
+			<If Condition="not HasQuest(66721)">
+				<LogMessage Message="Please manually complete Pass the Smell Hest!" />
+				<LogMessage Message="Run this profile again once you finish Pass the Smell Hest." />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(66721)">
+				<LogMessage Message="Please manually complete Pass the Smell Hest!" />
+				<LogMessage Message="Run this profile again once you finish Pass the Smell Hest." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- You're Gonna Carry That -->
+
+		<If Condition="not IsQuestCompleted(66722)">
+			<If Condition="not HasQuest(66722)">
+				<LogMessage Message="Please manually complete You're Gonna Carry That!" />
+				<LogMessage Message="Run this profile again once you finish You're Gonna Carry That." />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(66722)">
+				<LogMessage Message="Please manually complete You're Gonna Carry That!" />
+				<LogMessage Message="Run this profile again once you finish You're Gonna Carry That." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- The Things We Do for Tea -->
+
+		<If Condition="not IsQuestCompleted(66723)">
+			<If Condition="not HasQuest(66723)">
+				<LogMessage Message="Please manually complete The Things We Do for Tea!" />
+				<LogMessage Message="Run this profile again once you finish The Things We Do for Tea." />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(66723)">
+				<LogMessage Message="Please manually complete The Things We Do for Tea!" />
+				<LogMessage Message="Run this profile again once you finish The Things We Do for Tea." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- It's Possibly a Primal -->
+
+		<If Condition="not IsQuestCompleted(66724)">
+			<If Condition="not HasQuest(66724)">
+				<LogMessage Message="Please manually complete It's Possibly a Primal!" />
+				<LogMessage Message="Run this profile again once you finish It's Possibly a Primal." />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(66724)">
+				<LogMessage Message="Please manually complete It's Possibly a Primal!" />
+				<LogMessage Message="Run this profile again once you finish It's Possibly a Primal." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- Hail to the King, Kupo -->
+
+		<If Condition="not IsQuestCompleted(66725)">
+			<If Condition="not HasQuest(66725)">
+				<LogMessage Message="Please manually complete Hail to the King, Kupo!" />
+				<LogMessage Message="Run this profile again once you finish Hail to the King, Kupo." />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(66725)">
+				<LogMessage Message="Please manually complete Hail to the King, Kupo!" />
+				<LogMessage Message="Run this profile again once you finish Hail to the King, Kupo." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- You Have Selected Regicide -->
+
+		<If Condition="not IsQuestCompleted(66726)">
+			<If Condition="not HasQuest(66726)">
+				<LogMessage Message="Please manually complete You Have Selected Regicide!" />
+				<LogMessage Message="Run this profile again once you finish You Have Selected Regicide." />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(66726)">
+				<!-- <If Condition="GetQuestStep(66726) == 255">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<MoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762" />
+					<RunCode Name="YouHaveSelectedRegicide" />
+					<TurnIn QuestId="66726" NpcId="1007862" XYZ="-140.032, 8.647763, 280.8728" />
+				</If> -->
+				<LogMessage Message="Please manually complete You Have Selected Regicide!" />
+				<LogMessage Message="Run this profile again once you finish You Have Selected Regicide." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- On the Properties of Primals -->
+
+		<If Condition="not IsQuestCompleted(66727)">
+
+			<If Condition="not HasQuest(66727)">
+				<If Condition="not IsOnMap(153)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+						<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+					</If>
+					<WaitTimer WaitTime="5" />
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(5)">
+							<TeleportTo Name="Quarrymill" AetheryteId="5" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(5)">
+						<Travel To="153" />
+					</If>
+				</If>
+				<MoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762" />
+				<RunCode Name="YouHaveSelectedRegicide" />
+				<If Condition="IsQuestAcceptQualified(66727)">
+					<PickupQuest NpcId="1006751" QuestId="66727" XYZ="-139.4522, 8.712891, 281.6968" />
+				</If>
+			</If>
+			<If Condition="HasQuest(66727)">
+				<If Condition="GetQuestStep(66727) == 1">
+					<If Condition="not IsOnMap(132)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+							<TeleportTo Name="New Gridania" AetheryteId="2" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+							<Travel To="132" />
+						</If>
+					</If>
+					<Travel To="133" />
+					<MoveTo Name="Silent Conjurer" XYZ="-159.411, 4.054098, -4.104736" />
+					<RunCode Name="OnthePropertiesofPrimals" />
+					<If Condition="not IsOnMap(205)">
+						<LogMessage Message="Please restart the profile." />
+						<StopBot />
+					</If>
+					<If Condition="IsOnMap(205)">
+						<TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(66727) == 255">
+
+					<!-- TO DO -->
+
+					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
+					<!-- NOT YET IMPLEMENTED! -->
+
+					<!-- TO DO -->
+
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<MoveTo Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" />
+					<RunCode Name="WakingSands" />
+					<MoveTo Name="Entrance to the Solar" XYZ="23.23944, 2.090454, -0.01531982" />
+					<RunCode Name="WakingSands2" />
+					<TurnIn QuestId="66727" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
+				</If>
+			</If>
+		</If>
+
+		<!-- The Gifted -->
+
+		<If Condition="not IsQuestCompleted(66728)">
+			<If Condition="not HasQuest(66728)">
+
+				<!-- TO DO -->
+
+				<!-- This quest step requires zone checking work-arounds, unfortunately. -->
+				<!-- NOT YET IMPLEMENTED! -->
+
+				<!-- TO DO -->
+
+				<If Condition="not IsOnMap(140)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+						<TeleportTo Name="Horizon" AetheryteId="17" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+						<Travel To="140" />
+					</If>
+				</If>
+				<MoveTo Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" />
+				<RunCode Name="WakingSands" />
+				<MoveTo Name="Entrance to the Solar" XYZ="23.23944, 2.090454, -0.01531982" />
+				<RunCode Name="WakingSands2" />
+				<If Condition="IsQuestAcceptQualified(66728)">
+					<PickupQuest NpcId="1006693" QuestId="66728" XYZ="39.29187, 1.214808, 0.8086548" />
+				</If>
+			</If>
+			<If Condition="HasQuest(66728)">
+				<If Condition="GetQuestStep(66728) == 1">
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
+					<If Condition="not IsOnMap(205)">
+						<LogMessage Message="Please restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(66728) == 2">
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<MoveTo Name="White-robed Ascian" XYZ="-460.5335, 23.19217, -369.1557" />
+					<RunCode Name="TheGifted" />
+				</If>
+				<If Condition="GetQuestStep(66728) == 3">
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<MoveTo Name="White-robed Ascian" XYZ="-469.1342, 22.86516, -442.4682" />
+					<Grind grindRef="The_Gifted" while="HasQuest(66728) and GetQuestStep(66728) == 3" />
+				</If>
+				<If Condition="GetQuestStep(66728) == 4">
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<MoveTo Name="White-robed Ascian" XYZ="-387.4815, 24.83591, -500.3035" />
+					<Grind grindRef="The_Gifted2" while="HasQuest(66728) and GetQuestStep(66728) == 4" />
+				</If>
+				<If Condition="GetQuestStep(66728) == 5">
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<MoveTo Name="White-robed Ascian" XYZ="-367.9207, 16.6294, -627.9803" />
+					<Grind grindRef="The_Gifted3" while="HasQuest(66728) and GetQuestStep(66728) == 5" />
+				</If>
+				<If Condition="GetQuestStep(66728) == 6">
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+
+					<!-- TO DO -->
+
+					<!-- Avoid Alectryon (ID: 2940) -->
+
+					<!-- TO DO -->
+
+					<MoveTo Name="White-robed Ascian" XYZ="-325.185, 14.7074, -784.3595" />
+					<Grind grindRef="The_Gifted4" while="HasQuest(66728) and GetQuestStep(66728) == 6" />
+					<If Condition="not IsOnMap(205)">
+						<LogMessage Message="Please restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(66728) == 7">
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1007751" XYZ="-325.185, 14.7074, -784.3595" />
+					<Grind grindRef="The_Gifted4" while="HasQuest(66728) and GetQuestStep(66728) == 6" />
+					<If Condition="not IsOnMap(205)">
+						<LogMessage Message="Please restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(66728) == 255">
+
+					<!-- TO DO -->
+
+					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
+					<!-- NOT YET IMPLEMENTED! -->
+
+					<!-- TO DO -->
+
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<MoveTo Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" />
+					<RunCode Name="WakingSands" />
+					<MoveTo Name="Entrance to the Solar" XYZ="23.23944, 2.090454, -0.01531982" />
+					<RunCode Name="WakingSands2" />
+					<TurnIn QuestId="66728" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Build on the Stone -->
+
+		<If Condition="not IsQuestCompleted(66729)">
+			<If Condition="not HasQuest(66729)">
+
+				<!-- TO DO -->
+
+				<!-- This quest step requires zone checking work-arounds, unfortunately. -->
+				<!-- NOT YET IMPLEMENTED! -->
+
+				<!-- TO DO -->
+
+				<If Condition="not IsOnMap(140)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+						<TeleportTo Name="Horizon" AetheryteId="17" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+						<Travel To="140" />
+					</If>
+				</If>
+				<MoveTo Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" />
+				<RunCode Name="WakingSands" />
+				<MoveTo Name="Entrance to the Solar" XYZ="23.23944, 2.090454, -0.01531982" />
+				<RunCode Name="WakingSands2" />
+				<If Condition="IsQuestAcceptQualified(66729)">
+					<PickupQuest NpcId="1006693" QuestId="66729" XYZ="39.29187, 1.214808, 0.8086548" />
+				</If>
+			</If>
+			<If Condition="HasQuest(66729)">
+				<If Condition="GetQuestStep(66729) == 1">
+
+					<!-- TO DO -->
+
+					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
+					<!-- NOT YET IMPLEMENTED! -->
+
+					<!-- TO DO -->
+
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<MoveTo Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" />
+					<RunCode Name="WakingSands" />
+					<HandOver ItemId="2001124" QuestId="66729" StepId="1" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
+				</If>
+				<If Condition="GetQuestStep(66729) == 2">
+					<If Condition="not IsOnMap(156)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1007765" XYZ="20.2182, 21.25272, -632.3796" />
+				</If>
+				<If Condition="GetQuestStep(66729) == 255">
+
+					<!-- TO DO -->
+
+					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
+					<!-- NOT YET IMPLEMENTED! -->
+
+					<!-- TO DO -->
+
+					<If Condition="not IsOnMap(156)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<MoveTo Name="Rising Stones Entrance" XYZ="21.13373, 22.32391, -631.281" />
+					<RunCode Name="TheRisingStones" />
+					<MoveTo Name="Entrance to the Solar" XYZ="-0.01531982, -1.022339, -26.7796" />
+					<RunCode Name="TheRisingStones2" />
+					<TurnIn QuestId="66729" NpcId="1007724" XYZ="1.022339, -1.995725, -45.79236" />
+				</If>
+			</If>
+		</If>
+
+		<!-- TO DO -->
+
+		<!-- Delete the below code when the profile is completed. -->
+
+		<!-- TO DO -->
+
+		<If Condition="IsQuestCompleted(66729)">
+			<LogMessage Message="You've completed the all of the currently supported A Realm Awoken quests!" />
+			<StopBot />
+			<!-- <LoadProfile Path="Profiles/Questing/[O] Seventh Astral Era - Through the Maelstrom.xml" /> -->
+		</If>
+
+		<!-- TO DO -->
+
+		<!-- Delete the above code when the profile is completed. -->
+
+		<!-- TO DO -->
+
+		<!-- <If Condition="IsQuestCompleted(66729)">
+			<LogMessage Message="You've completed the A Realm Awoken questline!" />
+			<LoadProfile Path="Profiles/Questing/[O] Seventh Astral Era - Through the Maelstrom.xml" />
+		</If> -->
+
+	</Order>
+</Profile>
