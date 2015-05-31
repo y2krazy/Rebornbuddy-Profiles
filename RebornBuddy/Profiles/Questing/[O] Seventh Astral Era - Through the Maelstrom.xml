@@ -2,7 +2,7 @@
 <!--
 Profile: [O] Seventh Astral Era - Through the Maelstrom
 Author: y2krazy
-Version: 1.0.1
+Version: 1.0.2
 Required Level: 50
 Required Teleport Locations:
 	
@@ -153,11 +153,12 @@ Rewards:
 		</GrindArea>
 		<GrindArea name="The_Gift_of_Eternity3">
 			<Hotspots>
-				<Hotspot Radius="90" XYZ="-237.8885, -41.40048, -238.5069" name="Sahagin Mobs" />
+				<Hotspot Radius="90" XYZ="-299.0577, -41.59381, -327.6577" name="Sahagin Mobs" />
 			</Hotspots>
 			<TargetMobs>
-				<TargetMob Id="2678" />
-				<TargetMob Id="2679" />
+				<TargetMob Id="2680" />
+				<TargetMob Id="2681" />
+				<TargetMob Id="2682" />
 			</TargetMobs>
 			<MinLevel>1</MinLevel>
 			<MaxLevel>61</MaxLevel>
@@ -1301,7 +1302,7 @@ Rewards:
 		<!-- The Gift of Eternity -->
 
 		<If Condition="not IsQuestCompleted(66895)">
-			<!-- <If Condition="not HasQuest(66895)">
+			<If Condition="not HasQuest(66895)">
 				<If Condition="not IsOnMap(138)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(14)">
 						<TeleportTo Name="Aleport" AetheryteId="14" />
@@ -1348,6 +1349,17 @@ Rewards:
 					</If>
 					<Grind grindRef="The_Gift_of_Eternity3" while="HasQuest(66895) and GetQuestStep(66895) == 3" />
 				</If>
+				<If Condition="GetQuestStep(66895) == 4">
+					<If Condition="not IsOnMap(138)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+							<TeleportTo Name="Aleport" AetheryteId="14" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+							<Travel To="138" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1008706" XYZ="-404.8371, -32.80984, -297.2305" />
+				</If>
 				<If Condition="GetQuestStep(66895) == 255">
 					<If Condition="not IsOnMap(138)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(14)">
@@ -1357,15 +1369,8 @@ Rewards:
 							<Travel To="138" />
 						</If>
 					</If>
-					<TurnIn QuestId="66895" NpcId="1006614" ItemId="2001215" XYZ="65.87317, -3.118188, 61.41748" />
-				</If> -->
-			<If Condition="not HasQuest(66895)">
-				<LogMessage Message="The Gift of Eternity quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(66895)">
-				<LogMessage Message="The Gift of Eternity quest is coming soon! Stay tuned!" />
-				<StopBot />
+					<TurnIn QuestId="66895" NpcId="1008803" XYZ="-418.9059, -35.7011, -400.5035" />
+				</If>
 			</If>
 		</If>
 
@@ -1373,12 +1378,75 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66896)">
 			<If Condition="not HasQuest(66896)">
-				<LogMessage Message="Into the Heart of the Whorl quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(138)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+						<TeleportTo Name="Aleport" AetheryteId="14" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+						<Travel To="138" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(66896)">
+					<PickupQuest NpcId="1008803" QuestId="66896" XYZ="-418.9059, -35.7011, -400.5035" />
+				</If>
 			</If>
 			<If Condition="HasQuest(66896)">
-				<LogMessage Message="Into the Heart of the Whorl quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(66896) == 1">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<MoveTo Name="Zanthael" XYZ="9.170593, 20.9994, -15.21332" />
+					<RunCode Name="LimsaCommandRoom" />
+					<TalkTo InteractDistance="3.0" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" />
+				</If>
+				<If Condition="GetQuestStep(66896) == 2">
+
+					<!-- TO DO -->
+
+					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
+					<!-- NOT YET IMPLEMENTED! -->
+
+					<!-- TO DO -->
+
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<MoveTo Name="Zanthael" XYZ="9.170593, 20.9994, -15.21332" />
+					<RunCode Name="LimsaCommandRoom" />
+					<TalkTo InteractDistance="3.0" NpcId="1008679" XYZ="-1.205505, 1.604133, -3.830017" />
+				</If>
+				<If Condition="GetQuestStep(66896) == 3">
+					<If Condition="not IsOnMap(135)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+							<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+							<Travel To="135" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1008692" XYZ="712.8556, 66.027, -279.0723" />
+				</If>
+				<If Condition="GetQuestStep(66896) == 255">
+					<If Condition="not IsOnMap(135)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+							<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+							<Travel To="135" />
+						</If>
+					</If>
+					<TurnIn QuestId="66896" NpcId="1008693" XYZ="155.4741, 8.973627, 584.1306" />
+				</If>
 			</If>
 		</If>
 
@@ -1386,12 +1454,37 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66897)">
 			<If Condition="not HasQuest(66897)">
-				<LogMessage Message="Lord of the Whorl quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(135)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+						<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+						<Travel To="135" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(66897)">
+					<PickupQuest NpcId="1008693" QuestId="66897" XYZ="155.4741, 8.973627, 584.1306" />
+				</If>
 			</If>
 			<If Condition="HasQuest(66897)">
-				<LogMessage Message="Lord of the Whorl quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(66897) == 1">
+					<LogMessage Message="Please complete Whorleater (Hard) manually!" />
+					<LogMessage Message="Please restart this profile after you are done." />
+					<StopBot />
+				</If>
+				<If Condition="GetQuestStep(66897) == 255">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<MoveTo Name="Zanthael" XYZ="9.170593, 20.9994, -15.21332" />
+					<RunCode Name="LimsaCommandRoom" />
+					<TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" />
+				</If>
 			</If>
 		</If>
 
@@ -1399,12 +1492,30 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66898)">
 			<If Condition="not HasQuest(66898)">
-				<LogMessage Message="When Yugiri Met the Fraternity quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(129)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+						<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+						<Travel To="129" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(66898)">
+					<PickupQuest NpcId="1001029" QuestId="66898" XYZ="9.170593, 20.9994, -15.21332" />
+				</If>
 			</If>
 			<If Condition="HasQuest(66898)">
-				<LogMessage Message="When Yugiri Met the Fraternity quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(66898) == 255">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<TurnIn QuestId="66898" NpcId="1008694" ItemId="2001216" XYZ="-117.2656, 9.999866, 154.7417" />
+				</If>
 			</If>
 		</If>
 
@@ -1412,35 +1523,48 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66899)">
 			<If Condition="not HasQuest(66899)">
-				<LogMessage Message="Through the Maelstrom quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(129)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+						<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+						<Travel To="129" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(66899)">
+					<PickupQuest NpcId="1008696" QuestId="66899" XYZ="-115.5872, 9.999782, 156.0845" />
+				</If>
 			</If>
 			<If Condition="HasQuest(66899)">
-				<LogMessage Message="Through the Maelstrom quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(66899) == 255">
+					<!-- TO DO -->
+
+					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
+					<!-- NOT YET IMPLEMENTED! -->
+
+					<!-- TO DO -->
+
+					<If Condition="not IsOnMap(156)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<MoveTo Name="Rising Stones Entrance" XYZ="21.13373, 22.32391, -631.281" />
+					<RunCode Name="TheRisingStones" />
+					<MoveTo Name="Entrance to the Solar" XYZ="-0.01531982, -1.022339, -26.7796" />
+					<RunCode Name="TheRisingStones2" />
+					<TurnIn QuestId="66899" NpcId="1008579" XYZ="1.022339, -1.995725, -45.73132" />
+				</If>
 			</If>
 		</If>
-
-		<!-- TO DO -->
-
-		<!-- Delete the below code when the profile is 100% completed. -->
-
-		<!-- TO DO -->
-
-		<!-- <If Condition="IsQuestCompleted(66727)">
-			<LogMessage Message="You've completed the all of the currently supported A Realm Awoken quests!" />
-			<StopBot />
-		</If> -->
-
-		<!-- TO DO -->
-
-		<!-- Delete the above code when the profile is completed. -->
-
-		<!-- TO DO -->
 
 		<If Condition="IsQuestCompleted(66899)">
 			<LogMessage Message="You've completed the Through the Maelstrom questline!" />
 			<StopBot />
+			<!-- <LoadProfile Path="Profiles/Questing/[O] Seventh Astral Era - Defenders of Eorzea.xml" /> -->
 		</If>
 
 	</Order>
