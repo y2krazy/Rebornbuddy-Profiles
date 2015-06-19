@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Profile: [O] Aethernets - All City-States
+Author: y2krazy
+Version: 1.0.0
+Required Level: 15
+Required Teleport Locations:
+	Limsa Lominsa Lower Decks
+	New Gridania
+	Ul'dah - Steps of Nald
+Required User Interaction:
+	None.
+Required Setup:
+	The Gridanian Envoy quest completed, or
+	The Lominsan Envoy quest completed, or
+	The Ul'dahn Envoy quest completed
+Rewards:
+	Access to all Gridania Aethernet Shards
+	Access to the Blue Badger Gate (Central Shroud)
+	Access to the Yellow Serpent Gate (North Shroud)
+	Access to all Limsa Lominsa Aethernet Shards
+	Access to the Tempest Gate (Lower La Noscea)
+	Access to the Zephyr Gate (Middle La Noscea)
+	Access to all Ul'dah Aethernet Shards
+	Access to the Gate of Nald (Western Thanalan)
+	Access to the Gate of Thal (Central Thanalan)
+	Access to the Gate of the Sultana (Western Thanalan)
+-->
+<Profile>
+	<Name>[O] Aethernets - All City-States</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<CodeChunks>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+	<Order>
+
+		<!-- Required Quest Check -->
+
+		<If Condition="not IsQuestCompleted(66043) or not IsQuestCompleted(66082) or not IsQuestCompleted(66064)">
+			<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
+			<LogMessage Message="Please complete one of the following:" />
+			<LogMessage Message="The Gridanian Envoy, or" />
+			<LogMessage Message="The Lominsan Envoy, or" />
+			<LogMessage Message="The Ul'dahn Envoy" />
+			<StopBot />
+		</If>
+
+		<If Condition="IsQuestCompleted(66043) or IsQuestCompleted(66082) or IsQuestCompleted(66064)">
+
+			<!-- Gridania Aethernet -->
+
+			<If Condition="not IsOnMap(132)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+					<TeleportTo Name="New Gridania" AetheryteId="2" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+					<Travel To="132" />
+				</If>
+			</If>
+
+			<!-- Archers' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="25" XYZ="166.5828, -1.724304, 86.13721" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<If Condition="not IsOnMap(133)">
+				<If Condition="not IsOnMap(132)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+						<TeleportTo Name="New Gridania" AetheryteId="2" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+						<Travel To="132" />
+					</If>
+				</If>
+				<Travel To="133" />
+			</If>
+
+			<!-- Leatherworkers' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="26" XYZ="101.274, 9.018005, -111.3146" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Lancers' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="27" XYZ="121.2329, 12.64966, -229.6331" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Mih Khetto's Amphitheatre -->
+
+			<UseObject UseDistance="3.0" NpcId="30" XYZ="-73.92999, 7.980469, -140.1542" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Conjurers' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="28" XYZ="-145.1591, 4.959106, -11.76477" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Botanists' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="29" XYZ="-311.0857, 7.94989, -177.0505" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<LogMessage Message="You have unlocked all of the Gridania Aethernet Shards!" />
+			<LogMessage Message="Moving on to the Limsa Lominsa Aethernet..." />
+
+			<!-- Limsa Lominsa Aethernet -->
+
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+
+			<!-- Hawkers' Alley -->
+
+			<UseObject UseDistance="3.0" NpcId="49" XYZ="-213.6111, 16.73914, 51.80432" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Arcanists' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="43" XYZ="-335.1645, 12.6192, 56.38196" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Fisherman's Bottom -->
+
+			<UseObject UseDistance="3.0" NpcId="44" XYZ="-179.4003, 4.806519, 182.9709" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<If Condition="not IsOnMap(128)">
+				<If Condition="not IsOnMap(129)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+						<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+						<Travel To="129" />
+					</If>r
+				</If>
+				<Travel To="128" />
+			</If>
+
+			<!-- The Aftcastle -->
+
+			<UseObject UseDistance="3.0" NpcId="41" XYZ="16.06769, 40.78735, 68.80286" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Culinarians' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="42" XYZ="-56.50421, 44.47998, -131.4565" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Marauders' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="48" XYZ="-5.172852, 44.63257, -218.0667" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<LogMessage Message="You have unlocked all of the Limsa Lominsa Aethernet Shards!" />
+			<LogMessage Message="Moving on to the Ul'dah Aethernet..." />
+
+			<!-- Ul'dah Aethernet -->
+
+			<If Condition="not IsOnMap(130)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+					<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+					<Travel To="130" />
+				</If>
+			</If>
+
+			<!-- Thaumaturges' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="34" XYZ="-154.8333, 14.63336, 73.07532" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Adventurers' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="33" XYZ="64.22522, 4.53186, -115.3124" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<If Condition="not IsOnMap(131)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<Travel To="131" />
+			</If>
+
+			<!-- Gladiators' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="35" XYZ="-53.84918, 10.69653, 12.22241" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Goldsmiths' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="50" XYZ="-19.33325, 14.60284, 72.03784" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Miners' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="36" XYZ="33.49353, 13.22949, 113.2067" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Weavers' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="47" XYZ="89.64673, 12.92438, 58.27417" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Chamber of Rule -->
+
+			<UseObject UseDistance="3.0" NpcId="51" XYZ="6.637634, 30.65527, -24.82648" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Alchemists' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="37" XYZ="-98.25293, 42.34375, 88.45642" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<LogMessage Message="You have unlocked all of the major city Aethernetss!" />
+			<StopBot />
+
+		</If>
+
+	</Order>
+</Profile>
