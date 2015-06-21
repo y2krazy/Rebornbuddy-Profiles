@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 #########################################################
-############### SUGGESTED ITEM LEVEL: 90+ ###############
+############### SUGGESTED ITEM LEVEL: 100+ ##############
 #########################################################
-# Profile: [O] Seventh Astral Era - Dreams of Ice       #
+# Profile: [O] Seventh Astral Era - Before the Fall     #
 #########################################################
 # Author: y2krazy                                       #
 #########################################################
@@ -12,37 +12,40 @@
 # Required Level: 50                                    #
 #########################################################
 # Required Teleport Locations:                          #
-# 	Camp Bluefog                                        #
+# 	Black Brush Station                                 #
 # 	Camp Dragonhead                                     #
-# 	Camp Tranquil or Quarrymill                         #
+# 	Camp Drybone                                        #
+# 	Camp Tranquil                                       #
 # 	Ceruleum Processing Plant                           #
-# 	New Gridania                                        #
+# 	Costa del Sol                                       #
+# 	Limsa Lominsa Lower Decks                           #
 # 	Revenant's Toll                                     #
-# 	The Hawthorne Hut                                   #
+# 	Summerford Farms                                    #
 # 	Ul'dah - Steps of Nald                              #
 #########################################################
 # Required User Interaction:                            #
 # 	Interaction required for Duty Finder when prompted. #
 #########################################################
 # Required Setup:                                       #
-# 	Brave New Companions quest completed.               #
+# 	Let Us Cling Together quest completed.              #
 #########################################################
 # Rewards:                                              #
+# 	Bearer of the Torch Title                           #
 # 	Gil                                                 #
-# 	Icebreaker Title                                    #
+# 	Midgardsormr Minion                                 #
 # 	Miscellaneous Items                                 #
 #########################################################
 -->
 <Profile>
-	<Name>[O] Seventh Astral Era - Dreams of Ice</Name>
-	<KillRadius>90</KillRadius>
+	<Name>[O] Seventh Astral Era - Before the Fall</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
 	<Order>
 
-		<!-- Traitor in the Midst -->
+		<!-- Good Intentions -->
 
-		<If Condition="not IsQuestCompleted(65588)">
-			<If Condition="not HasQuest(65588)">
+		<If Condition="not IsQuestCompleted(65899)">
+			<If Condition="not HasQuest(65899)">
 				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -58,13 +61,20 @@
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
 				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65588)">
-						<PickupQuest NpcId="1008969" QuestId="65588" XYZ="0.9917603, -1.995725, -45.70081" />
+					<If Condition="not IsQuestAcceptQualified(65899)">
+						<LogMessage Message="Please make sure The Bowl of Embers (Hard) has been completed!" />
+						<LogMessage Message="Please make sure The Navel (Hard) has been completed!" />
+						<LogMessage Message="Please make sure The Howling Eye (Hard) has been completed!" />
+						<LogMessage Message="Please restart this profile after you have done all 3." />
+						<StopBot />
+					</If>
+					<If Condition="IsQuestAcceptQualified(65899)">
+						<PickupQuest NpcId="1008969" QuestId="65899" XYZ="0.9917603, -1.995725, -45.70081" />
 					</If>
 				</If>
 			</If>
-			<If Condition="HasQuest(65588)">
-				<If Condition="GetQuestStep(65588) == 1">
+			<If Condition="HasQuest(65899)">
+				<If Condition="GetQuestStep(65899) == 1">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -80,60 +90,145 @@
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
+						<TalkTo InteractDistance="3.0" NpcId="1010844" XYZ="3.067017, 0.009977885, -4.287842" />
 					</If>
 				</If>
-				<If Condition="GetQuestStep(65588) == 2">
-					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+				<If Condition="GetQuestStep(65899) == 255">
+					<If Condition="not IsOnMap(145)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+							<TeleportTo Name="Camp Drybone" AetheryteId="18" />
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-							<Travel To="156" />
-						</If>
-					</If>
-					<If Condition="IsOnMap(156)">
-						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
-					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
-					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1009959" XYZ="3.524841, 0.009977885, -4.44043" />
-					</If>
-				</If>
-				<If Condition="GetQuestStep(65588) == 255">
-					<If Condition="not IsOnMap(130)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-							<Travel To="130" />
+						<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+							<Travel To="145" />
 						</If>
 					</If>
-					<TurnIn QuestId="65588" NpcId="1008700" XYZ="-132.5247, 4.1, -111.9249" />
+					<TurnIn QuestId="65899" NpcId="1010845" XYZ="-17.22742, -10.01511, -18.50922" />
 				</If>
 			</If>
 		</If>
 
-		<!-- Back and Fourth -->
+		<!-- Bait and Switch -->
 
-		<If Condition="not IsQuestCompleted(65589)">
-			<If Condition="not HasQuest(65589)">
-				<If Condition="not IsOnMap(130)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+		<If Condition="not IsQuestCompleted(65900)">
+			<If Condition="not HasQuest(65900)">
+				<If Condition="not IsOnMap(145)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+						<TeleportTo Name="Camp Drybone" AetheryteId="18" />
 					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-						<Travel To="130" />
+					<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+						<Travel To="145" />
 					</If>
 				</If>
-				<If Condition="IsQuestAcceptQualified(65589)">
-					<PickupQuest NpcId="1009961" QuestId="65589" XYZ="-131.8838, 4.1, -109.6361" />
+				<If Condition="IsQuestAcceptQualified(65900)">
+					<PickupQuest NpcId="1010845" QuestId="65900" XYZ="-17.22742, -10.01511, -18.50922" />
 				</If>
 			</If>
-			<If Condition="HasQuest(65589)">
-				<If Condition="GetQuestStep(65589) == 1">
+			<If Condition="HasQuest(65900)">
+				<If Condition="GetQuestStep(65900) == 1">
+					<If Condition="not IsOnMap(145)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+							<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+							<Travel To="145" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010846" XYZ="349.0806, 23.13136, 103.8071" />
+				</If>
+				<If Condition="GetQuestStep(65900) == 2">
+					<If Condition="not IsOnMap(145)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+							<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+							<Travel To="145" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010846" XYZ="349.0806, 23.13136, 103.8071" />
+					<Grind grindRef="Bait_and_Switch" while="HasQuest(65900) and GetQuestStep(65900) == 2" />
+				</If>
+				<If Condition="GetQuestStep(65900) == 3">
+					<If Condition="not IsOnMap(145)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+							<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+							<Travel To="145" />
+						</If>
+					</If>
+					<UseObject NpcId="2005112" XYZ="199.6947, -14.72504, 162.4628" Radius="10" QuestId="65900" StepId="3" />
+				</If>
+				<If Condition="GetQuestStep(65900) == 255">
+					<If Condition="not IsOnMap(145)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+							<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+							<Travel To="145" />
+						</If>
+					</If>
+					<TurnIn QuestId="65900" NpcId="1010849" XYZ="192.401, -27.4872, 199.3286" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Best Laid Schemes -->
+
+		<If Condition="not IsQuestCompleted(65901)">
+			<If Condition="not HasQuest(65901)">
+				<If Condition="not IsOnMap(145)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+						<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+						<Travel To="145" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(65901)">
+					<PickupQuest NpcId="1010849" QuestId="65901" XYZ="192.401, -27.4872, 199.3286" />
+				</If>
+			</If>
+			<If Condition="HasQuest(65901)">
+				<If Condition="GetQuestStep(65901) == 1">
+					<If Condition="not IsOnMap(145)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+							<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+							<Travel To="145" />
+						</If>
+					</If>
+					<UseObject NpcId="2005113" XYZ="192.8893, -26.65753, 203.6011" Radius="10" QuestId="65901" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(65901) == 2">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<Travel To="131" />
+					</If>
+					<HandOver ItemId="2001498" QuestId="65901" StepId="2" NpcId="1010850" XYZ="53.3302, 10.00012, -10.20831" />
+				</If>
+				<If Condition="GetQuestStep(65901) == 3">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<Travel To="131" />
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010853" XYZ="137.2548, 4, -20.58447" />
+				</If>
+				<If Condition="GetQuestStep(65901) == 255">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -149,91 +244,16 @@
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
-					</If>
-				</If>
-				<If Condition="GetQuestStep(65589) == 2">
-					<If Condition="not IsOnMap(156)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-							<Travel To="156" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009962" XYZ="-354.6044, -15.98189, -477.4395" />
-				</If>
-				<If Condition="GetQuestStep(65589) == 3">
-					<If Condition="not IsOnMap(156)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-							<Travel To="156" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009966" XYZ="-455.8939, -4.098358, -302.7238" />
-				</If>
-				<If Condition="GetQuestStep(65589) == 4">
-					<If Condition="not IsOnMap(156)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-							<Travel To="156" />
-						</If>
-					</If>
-					<NoCombatMoveTo Name="First Location" XYZ="-466.6962, -3.2168, -236.041" />
-					<Dismount />
-					<WaitTimer WaitTime="1" />
-					<NoCombatMoveTo Name="Second Location" XYZ="-541.4116, -1.737358, -293.567" />
-					<Dismount />
-					<WaitTimer WaitTime="1" />
-					<NoCombatMoveTo Name="Third Location" XYZ="-592.8009, -3.216822, -388.8668" />
-					<Dismount />
-					<LogMessage Message="Waiting 60 seconds for cooldowns to refresh!" />
-					<WaitTimer WaitTime="60" />
-					<NoCombatMoveTo Name="Final Location" XYZ="-598.9959, -3.216822, -396.2319" />
-					<Dismount />
-					<WaitTimer WaitTime="1" />
-				</If>
-				<If Condition="GetQuestStep(65589) == 5">
-					<If Condition="not IsOnMap(156)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-							<Travel To="156" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009112" XYZ="-355.459, -16.03057, -477.0428" />
-				</If>
-				<If Condition="GetQuestStep(65589) == 255">
-					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-							<Travel To="156" />
-						</If>
-					</If>
-					<If Condition="IsOnMap(156)">
-						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
-					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
-					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TurnIn QuestId="65589" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
+						<TurnIn QuestId="65901" NpcId="1010891" XYZ="-3.677429, 0.01804011, -7.034485" />
 					</If>
 				</If>
 			</If>
 		</If>
 
-		<!-- Coming to Terms -->
+		<!-- The Rising Chorus -->
 
-		<If Condition="not IsQuestCompleted(65590)">
-			<If Condition="not HasQuest(65590)">
+		<If Condition="not IsQuestCompleted(65902)">
+			<If Condition="not HasQuest(65902)">
 				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -249,13 +269,13 @@
 					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 				</If>
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-					<If Condition="IsQuestAcceptQualified(65590)">
-						<PickupQuest NpcId="1010078" QuestId="65590" XYZ="31.54041, -1, -0.8087769" />
+					<If Condition="IsQuestAcceptQualified(65902)">
+						<PickupQuest NpcId="1010891" QuestId="65902" XYZ="-3.677429, 0.01804011, -7.034485" />
 					</If>
 				</If>
 			</If>
-			<If Condition="HasQuest(65590)">
-				<If Condition="GetQuestStep(65590) == 1">
+			<If Condition="HasQuest(65902)">
+				<If Condition="GetQuestStep(65902) == 1">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -274,797 +294,7 @@
 						<TalkTo InteractDistance="3.0" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
 					</If>
 				</If>
-				<If Condition="GetQuestStep(65590) == 2">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" />
-				</If>
-				<If Condition="GetQuestStep(65590) == 255">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
-					<RunCode Name="ComingtoTerms" />
-				</If>
-			</If>
-		</If>
-
-		<!-- The Intercession of Saints -->
-
-		<If Condition="not IsQuestCompleted(65593)">
-			<If Condition="not HasQuest(65593)">
-				<If Condition="not IsOnMap(155)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-						<Travel To="155" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65593)">
-					<PickupQuest NpcId="1009976" QuestId="65593" XYZ="261.5853, 302.196, -223.1022" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65593)">
-				<If Condition="GetQuestStep(65593) == 1">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" />
-				</If>
-				<If Condition="GetQuestStep(65593) == 2">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009979" XYZ="-281.4832, 225.5088, 556.115" />
-				</If>
-				<If Condition="GetQuestStep(65593) == 3">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009982" XYZ="208.8806, 229.05, 322.4994" />
-				</If>
-				<If Condition="GetQuestStep(65593) == 255">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TurnIn QuestId="65593" NpcId="1009977" XYZ="261.0055, 303.1, -198.5962" />
-				</If>
-			</If>
-		</If>
-
-		<!-- Strength in Unity -->
-
-		<If Condition="not IsQuestCompleted(65598)">
-			<If Condition="not HasQuest(65598)">
-				<If Condition="not IsOnMap(155)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-						<Travel To="155" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65598)">
-					<PickupQuest NpcId="1009977" QuestId="65598" XYZ="261.0055, 303.1, -198.5962" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65598)">
-				<If Condition="GetQuestStep(65598) == 255">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TurnIn InteractDistance="3.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" />
-				</If>
-			</If>
-		</If>
-
-		<!-- Dark Words, Dark Deeds -->
-
-		<If Condition="not IsQuestCompleted(65605)">
-			<If Condition="not HasQuest(65605)">
-				<If Condition="not IsOnMap(155)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-						<Travel To="155" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65605)">
-					<PickupQuest NpcId="1006444" QuestId="65605" XYZ="-432.9748, 233.4727, -199.6643" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65605)">
-				<If Condition="GetQuestStep(65605) == 1">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<UseObject NpcId="2004652" XYZ="-440.6301, 211, -263.6248" Radius="10" QuestId="65605" StepId="1" />
-				</If>
-				<If Condition="GetQuestStep(65605) == 2">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<UseObject NpcId="2004653" XYZ="-451.8959, 221.6372, -149.2791" Radius="10" QuestId="65605" StepId="2" />
-				</If>
-				<If Condition="GetQuestStep(65605) == 3">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<UseObject NpcId="2004654" XYZ="-345.1439, 254.4137, -95.38416" Radius="10" QuestId="65605" StepId="3" />
-				</If>
-				<If Condition="GetQuestStep(65605) == 4">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<UseObject NpcId="2004655" XYZ="-386.1906, 270.4661, 77.62268" Radius="10" QuestId="65605" StepId="4" />
-				</If>
-				<If Condition="GetQuestStep(65605) == 255">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TurnIn InteractDistance="3.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" />
-				</If>
-			</If>
-		</If>
-
-		<!-- First Blood -->
-
-		<If Condition="not IsQuestCompleted(65610)">
-			<If Condition="not HasQuest(65610)">
-				<If Condition="not IsOnMap(155)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-						<Travel To="155" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65610)">
-					<PickupQuest NpcId="1006444" QuestId="65610" XYZ="-432.9748, 233.4727, -199.6643" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65610)">
-				<If Condition="GetQuestStep(65610) == 1">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<MoveTo Name="Rendezvous Point" XYZ="-383.403, 231.5027, 308.0612" />
-					<Grind grindRef="First_Blood" while="HasQuest(65610) and GetQuestStep(65610) == 1" />
-				</If>
-				<If Condition="GetQuestStep(65610) == 2">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<UseObject NpcId="2005002" XYZ="-381.7655, 230.8231, 303.5781" Radius="10" QuestId="65610" StepId="2" />
-				</If>
-				<If Condition="GetQuestStep(65610) == 255">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TurnIn InteractDistance="3.0" QuestId="65610" ItemId="2001470" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" />
-				</If>
-			</If>
-		</If>
-
-		<!-- The Path of the Righteous -->
-
-		<If Condition="not IsQuestCompleted(65611)">
-			<If Condition="not HasQuest(65611)">
-				<If Condition="not IsOnMap(155)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-						<Travel To="155" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65611)">
-					<PickupQuest NpcId="1006444" QuestId="65611" XYZ="-432.9748, 233.4727, -199.6643" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65611)">
-				<If Condition="GetQuestStep(65611) == 1">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010001" XYZ="-915.2514, 229.3554, -3.158691" />
-				</If>
-				<If Condition="GetQuestStep(65611) == 2">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009996" XYZ="-902.6169, 229.2524, -9.689575" />
-				</If>
-				<If Condition="GetQuestStep(65611) == 3">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010054" XYZ="-916.6552, 229.3692, -6.424072" />
-				</If>
-				<If Condition="GetQuestStep(65611) == 4">
-					<LogMessage Message="Please complete Snowcloak manually!" />
-					<LogMessage Message="Please restart this profile after you are done." />
-					<StopBot />
-				</If>
-				<If Condition="GetQuestStep(65611) == 255">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TurnIn QuestId="65611" NpcId="1009996" XYZ="-902.6169, 229.2524, -9.689575" />
-				</If>
-			</If>
-		</If>
-
-		<!-- For the Greater Good -->
-
-		<If Condition="not IsQuestCompleted(65613)">
-			<If Condition="not HasQuest(65613)">
-				<If Condition="not IsOnMap(155)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-						<Travel To="155" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65613)">
-					<PickupQuest NpcId="1009996" QuestId="65613" XYZ="-902.6169, 229.2524, -9.689575" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65613)">
-				<If Condition="GetQuestStep(65613) == 1">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009997" XYZ="-897.1847, 230.4836, -17.50214" />
-				</If>
-				<If Condition="GetQuestStep(65613) == 2">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010148" XYZ="-427.1153, 235.9197, -119.7681" />
-				</If>
-				<If Condition="GetQuestStep(65613) == 3">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<UseObject NpcId="2004657" XYZ="-395.3156, 239.6124, 343.8315" Radius="10" QuestId="65613" StepId="3" />
-				</If>
-				<If Condition="GetQuestStep(65613) == 4">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010149" XYZ="-302.0524, 233.0815, 406.0577" />
-				</If>
-				<If Condition="GetQuestStep(65613) == 5">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<MoveTo Name="Heretics' Trail" XYZ="-192.0487, 221.2777, 439.6082" />
-					<Grind grindRef="For_the_Greater_Good" while="HasQuest(65610) and GetQuestStep(65610) == 5" />
-				</If>
-				<If Condition="GetQuestStep(65613) == 6">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010150" XYZ="-190.1122, 221.1358, 438.8342" />
-				</If>
-				<If Condition="GetQuestStep(65613) == 7">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010151" XYZ="158.7396, 222.4369, 302.9678" />
-				</If>
-				<If Condition="GetQuestStep(65613) == 255">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TurnIn QuestId="65613" NpcId="1010191" XYZ="229.4498, 222, 347.3105" />
-				</If>
-			</If>
-		</If>
-
-		<!-- Tendrils of Intrigue -->
-
-		<If Condition="not IsQuestCompleted(65614)">
-			<If Condition="not HasQuest(65614)">
-				<If Condition="not IsOnMap(155)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-						<Travel To="155" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65614)">
-					<PickupQuest NpcId="1010191" QuestId="65614" XYZ="229.4498, 222, 347.3105" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65614)">
-				<If Condition="GetQuestStep(65614) == 1">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010191" XYZ="229.4498, 222, 347.3105" />
-				</If>
-				<If Condition="GetQuestStep(65614) == 2">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<Travel To="133" />
-					<TalkTo InteractDistance="3.0" NpcId="1009130" XYZ="-157.0001, 4, -20.18774" />
-				</If>
-				<If Condition="GetQuestStep(65614) == 3">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<Travel To="133" />
-					<MoveTo Name="Silent Conjurer" XYZ="-159.411, 4.054098, -4.104736" />
-					<RunCode Name="TendrilsofIntrigue" />
-					<If Condition="not IsOnMap(205)">
-						<LogMessage Message="Please restart the profile." />
-						<StopBot />
-					</If>
-					<If Condition="IsOnMap(205)">
-						<TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" />
-					</If>
-				</If>
-				<If Condition="GetQuestStep(65614) == 4">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<Travel To="133" />
-					<TalkTo InteractDistance="3.0" NpcId="1009130" XYZ="-157.0001, 4, -20.18774" />
-				</If>
-				<If Condition="GetQuestStep(65614) == 255">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<TurnIn QuestId="65614" NpcId="1010010" XYZ="-50.94995, -3.440948, 20.58435" />
-				</If>
-			</If>
-		</If>
-
-		<!-- Chasing Ivy -->
-
-		<If Condition="not IsQuestCompleted(65615)">
-			<If Condition="not HasQuest(65615)">
-				<If Condition="not IsOnMap(132)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-						<TeleportTo Name="New Gridania" AetheryteId="2" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-						<Travel To="132" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65615)">
-					<PickupQuest NpcId="1010010" QuestId="65615" XYZ="-50.94995, -3.440948, 20.58435" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65615)">
-				<If Condition="GetQuestStep(65615) == 1">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010017" XYZ="22.17133, 1.2, 28.85474" />
-				</If>
-				<If Condition="GetQuestStep(65615) == 2">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010018" XYZ="49.72913, -8.046955, 100.2059" />
-				</If>
-				<If Condition="GetQuestStep(65615) == 3">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010012" XYZ="23.91083, -18.8, 89.89087" />
-				</If>
-				<If Condition="GetQuestStep(65615) == 4">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010018" XYZ="49.72913, -8.046955, 100.2059" />
-				</If>
-				<If Condition="GetQuestStep(65615) == 5">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010013" XYZ="131.3038, -13.4725, 158.6174" />
-					<TalkTo InteractDistance="3.0" NpcId="1010014" XYZ="-100.267, -7.145398, 87.26636" />
-					<Travel To="133" />
-					<TalkTo InteractDistance="3.0" NpcId="1010016" XYZ="137.743, 11.84144, -223.3464" />
-					<TalkTo InteractDistance="3.0" NpcId="1010015" XYZ="-154.5892, 7.058627, -85.52692" />
-				</If>
-				<If Condition="GetQuestStep(65615) == 255">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<TurnIn QuestId="65615" NpcId="1010017" XYZ="22.17133, 1.2, 28.85474" />
-				</If>
-			</If>
-		</If>
-
-		<!-- Doman Connection -->
-
-		<If Condition="not IsQuestCompleted(65616)">
-			<If Condition="not HasQuest(65616)">
-				<If Condition="not IsOnMap(132)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-						<TeleportTo Name="New Gridania" AetheryteId="2" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-						<Travel To="132" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65616)">
-					<PickupQuest NpcId="1010017" QuestId="65616" XYZ="22.17133, 1.2, 28.85474" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65616)">
-				<If Condition="GetQuestStep(65616) == 1">
-					<If Condition="not IsOnMap(152)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(4)">
-							<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(4)">
-							<Travel To="152" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010020" XYZ="-569.3904, 9.822201, 65.17126" />
-				</If>
-				<If Condition="GetQuestStep(65616) == 2">
-					<If Condition="not IsOnMap(153)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(5)">
-							<TeleportTo Name="Quarrymill" AetheryteId="5" />
-						</If>
-						<WaitTimer WaitTime="5" />
-						<If Condition="not IsOnMap(153)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(6)">
-								<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
-							<Travel To="153" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010021" XYZ="192.9198, 18.12, -6.33252" />
-				</If>
-				<If Condition="GetQuestStep(65616) == 3">
-					<If Condition="not IsOnMap(153)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(5)">
-							<TeleportTo Name="Quarrymill" AetheryteId="5" />
-						</If>
-						<WaitTimer WaitTime="5" />
-						<If Condition="not IsOnMap(153)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(6)">
-								<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
-							<Travel To="153" />
-						</If>
-					</If>
-					<MoveTo Name="Magitek Weapons" XYZ="172.0389, 15.61513, 57.98799" />
-					<Grind grindRef="Doman_Connection" while="HasQuest(65616) and GetQuestStep(65616) == 3" />
-				</If>
-				<If Condition="GetQuestStep(65616) == 255">
-					<If Condition="not IsOnMap(153)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(5)">
-							<TeleportTo Name="Quarrymill" AetheryteId="5" />
-						</If>
-						<WaitTimer WaitTime="5" />
-						<If Condition="not IsOnMap(153)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(6)">
-								<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
-							<Travel To="153" />
-						</If>
-					</If>
-					<TurnIn QuestId="65616" NpcId="1010034" XYZ="90.74536, 21.96121, 178.8204" />
-				</If>
-			</If>
-		</If>
-
-		<!-- In Flagrante Delicto -->
-
-		<If Condition="not IsQuestCompleted(65617)">
-			<If Condition="not HasQuest(65617)">
-				<If Condition="not IsOnMap(153)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(5)">
-						<TeleportTo Name="Quarrymill" AetheryteId="5" />
-					</If>
-					<WaitTimer WaitTime="5" />
-					<If Condition="not IsOnMap(153)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
-							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
-						</If>
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
-						<Travel To="153" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65617)">
-					<PickupQuest NpcId="1010034" QuestId="65617" XYZ="90.74536, 21.96121, 178.8204" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65617)">
-				<If Condition="GetQuestStep(65617) == 1">
-					<If Condition="not IsOnMap(152)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(4)">
-							<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(4)">
-							<Travel To="152" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010037" XYZ="-300.9843, 0.4458849, 267.8416" />
-				</If>
-				<If Condition="GetQuestStep(65617) == 2">
-					<If Condition="not IsOnMap(152)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(4)">
-							<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(4)">
-							<Travel To="152" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010038" XYZ="-173.663, 1.469695, 146.8375" />
-				</If>
-				<If Condition="GetQuestStep(65617) == 3">
-					<If Condition="not IsOnMap(152)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(4)">
-							<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(4)">
-							<Travel To="152" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009987" XYZ="-207.6906, 4.192081, 100.267" />
-				</If>
-				<If Condition="GetQuestStep(65617) == 255">
-					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-							<Travel To="156" />
-						</If>
-					</If>
-					<If Condition="IsOnMap(156)">
-						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
-					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
-					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65617" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" />
-					</If>
-				</If>
-			</If>
-		</If>
-
-		<!-- A Simple Plan -->
-
-		<If Condition="not IsQuestCompleted(65618)">
-			<If Condition="not HasQuest(65618)">
-				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-						<Travel To="156" />
-					</If>
-				</If>
-				<If Condition="IsOnMap(156)">
-					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
-				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
-				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65618)">
-						<PickupQuest NpcId="1010147" QuestId="65618" XYZ="0.8086548, -1.995725, -45.67035" />
-					</If>
-				</If>
-			</If>
-			<If Condition="HasQuest(65618)">
-				<If Condition="GetQuestStep(65618) == 1">
+				<If Condition="GetQuestStep(65902) == 2">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -1073,9 +303,20 @@
 							<Travel To="156" />
 						</If>
 					</If>
-					<UseObject NpcId="2004661" XYZ="83.14636, 31.20471, -741.1765" Radius="10" QuestId="65618" StepId="1" />
+					<NoCombatMoveTo Name="Doman Refugee" XYZ="336.3545, -27.80885, -369.7414" />
+					<TalkTo InteractDistance="3.0" NpcId="1010881" XYZ="336.3545, -27.80885, -369.7414" />
 				</If>
-				<If Condition="GetQuestStep(65618) == 2">
+				<If Condition="GetQuestStep(65902) == 3">
+					<LogMessage Message="Please complete The Keeper of the Lake manually!" />
+					<LogMessage Message="Please restart this profile after you are done." />
+					<StopBot />
+				</If>
+				<!-- <If Condition="GetQuestStep(65902) == 4">
+
+				WHY WAS THIS STEP SKIPPED?
+
+				</If> -->
+				<If Condition="GetQuestStep(65902) == 5">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -1084,9 +325,10 @@
 							<Travel To="156" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010039" XYZ="83.81775, 31.21601, -744.6555" />
+					<NoCombatMoveTo Name="Doman Refugee" XYZ="336.3545, -27.80885, -369.7414" />
+					<TalkTo InteractDistance="3.0" NpcId="1010881" XYZ="336.3545, -27.80885, -369.7414" />
 				</If>
-				<If Condition="GetQuestStep(65618) == 255">
+				<If Condition="GetQuestStep(65902) == 6">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -1102,208 +344,10 @@
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65618" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" />
+						<TalkTo InteractDistance="3.0" NpcId="1010857" XYZ="2.548157, -1.995725, -42.00812" />
 					</If>
 				</If>
-			</If>
-		</If>
-
-		<!-- The Instruments of Our Deliverance -->
-
-		<If Condition="not IsQuestCompleted(65620)">
-			<If Condition="not HasQuest(65620)">
-				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-						<Travel To="156" />
-					</If>
-				</If>
-				<If Condition="IsOnMap(156)">
-					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
-				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
-				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65620)">
-						<PickupQuest NpcId="1008969" QuestId="65620" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
-				</If>
-			</If>
-			<If Condition="HasQuest(65620)">
-				<If Condition="GetQuestStep(65620) == 1">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009996" XYZ="-902.6169, 229.2524, -9.689575" />
-				</If>
-				<If Condition="GetQuestStep(65620) == 2">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009996" XYZ="-902.6169, 229.2524, -9.689575" />
-				</If>
-				<If Condition="GetQuestStep(65620) == 3">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010054" XYZ="-916.6552, 229.3692, -6.424072" />
-				</If>
-				<If Condition="GetQuestStep(65620) == 4">
-					<LogMessage Message="Please complete Akh Afah Amphitheatre (Hard) manually!" />
-					<LogMessage Message="Please restart this profile after you are done." />
-					<StopBot />
-				</If>
-				<If Condition="GetQuestStep(65620) == 255">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TurnIn QuestId="65620" NpcId="1010042" XYZ="-905.7603, 229.2982, -10.14728" />
-				</If>
-			</If>
-		</If>
-
-		<!-- The Road Less Traveled -->
-
-		<If Condition="not IsQuestCompleted(65622)">
-			<If Condition="not HasQuest(65622)">
-				<If Condition="not IsOnMap(155)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-						<Travel To="155" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65622)">
-					<PickupQuest NpcId="1010042" QuestId="65622" XYZ="-905.7603, 229.2982, -10.14728" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65622)">
-				<If Condition="GetQuestStep(65622) == 1">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009984" XYZ="-431.1742, 233.4727, -201.0071" />
-				</If>
-				<If Condition="GetQuestStep(65622) == 2">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" />
-				</If>
-				<If Condition="GetQuestStep(65622) == 255">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
-					</If>
-					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
-					<RunCode Name="TheRoadLessTraveled" />
-				</If>
-			</If>
-		</If>
-
-		<!-- Eyes Unclouded -->
-
-		<If Condition="not IsQuestCompleted(65623)">
-			<If Condition="not HasQuest(65623)">
-				<If Condition="not IsOnMap(155)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-						<Travel To="155" />
-					</If>
-				</If>
-				<If Condition="IsQuestAcceptQualified(65623)">
-					<PickupQuest NpcId="1009976" QuestId="65623" XYZ="261.5853, 302.196, -223.1022" />
-				</If>
-			</If>
-			<If Condition="HasQuest(65623)">
-				<If Condition="GetQuestStep(65623) == 255">
-					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-							<Travel To="156" />
-						</If>
-					</If>
-					<If Condition="IsOnMap(156)">
-						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
-					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
-					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65623" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
-				</If>
-			</If>
-		</If>
-
-		<!-- The Reason Roaille -->
-
-		<If Condition="not IsQuestCompleted(65624)">
-			<If Condition="not HasQuest(65624)">
-				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-						<Travel To="156" />
-					</If>
-				</If>
-				<If Condition="IsOnMap(156)">
-					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
-				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
-				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65624)">
-						<PickupQuest NpcId="1008969" QuestId="65624" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
-				</If>
-			</If>
-			<If Condition="HasQuest(65624)">
-				<If Condition="GetQuestStep(65624) == 1">
+				<If Condition="GetQuestStep(65902) == 255">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -1319,97 +363,57 @@
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1010045" XYZ="-1.999023, 7.450581E-09, -7.126038" />
+						<TurnIn QuestId="65902" NpcId="1010858" XYZ="-1.907471, 7.450581E-09, -3.128174" />
 					</If>
-				</If>
-				<If Condition="GetQuestStep(65624) == 2">
-					<If Condition="not IsOnMap(147)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(21)">
-							<TeleportTo Name="Camp Bluefog" AetheryteId="21" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(21)">
-							<Travel To="147" />
-						</If>
-					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010533" XYZ="47.2876, 4, 453.9711" />
-				</If>
-				<If Condition="GetQuestStep(65624) == 3">
-					<If Condition="not IsOnMap(147)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
-							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
-							<Travel To="147" />
-						</If>
-					</If>
-					<SimpleDuty InteractNpcId="1010046" XYZ="-140.1236, 58.3273, -82.07831" QuestId="65624" StepId="3">
-						<HotSpots>
-							<HotSpot XYZ="130.6932, -5.360226, -544.574" Radius="90" />
-						</HotSpots>
-						<TargetMobs>
-							<TargetMob Id="3111" Weight="10000" />
-							<TargetMob Id="3117" Weight="9000" />
-							<TargetMob Id="3110" Weight="8000" />
-							<TargetMob Id="2120" Weight="7000" />
-							<TargetMob Id="3114" Weight="6000" />
-							<TargetMob Id="3116" Weight="5000" />
-							<TargetMob Id="3118" Weight="4000" />
-							<TargetMob Id="3112" Weight="3000" />
-							<TargetMob Id="3115" Weight="2000" />
-							<TargetMob Id="3113" Weight="1000" />
-						</TargetMobs>
-					</SimpleDuty>
-					<!-- Instance
-
-					Location:
-					Map ID: 147, Location: <-209.3703, 73.67029, -148.3192>
-
-					Enemies:
-					NPC ID: 3111 | Name: 7th Cohort Medicus
-					NPC ID: 3117 | Name: 7th Cohort Aquilifer
-					NPC ID: 3110 | Name: 7th Cohort Hoplomachus
-					NPC ID: 2120 | Name: 7th Cohort Eques
-					NPC ID: 3114 | Name: 7th Cohort Sagittarius
-					NPC ID: 3116 | Name: 7th Cohort Colossus
-					NPC ID: 3118 | Name: 7th Cohort Vanguard
-					NPC ID: 3112 | Name: Eline the Razor
-					NPC ID: 3115 | Name: 7th Cohort Death Claw
-					NPC ID: 3113 | Name: 7th Cohort Centurion
-
-					-->
-				</If>
-				<If Condition="GetQuestStep(65624) == 255">
-					<If Condition="not IsOnMap(147)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
-							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
-							<Travel To="147" />
-						</If>
-					</If>
-					<TurnIn QuestId="65624" NpcId="1010063" XYZ="-207.5685, 71.61736, -132.5247" />
 				</If>
 			</If>
 		</If>
 
-		<!-- Let Us Cling Together -->
+		<!-- Aether on Demand -->
 
-		<If Condition="not IsQuestCompleted(65625)">
-			<If Condition="not HasQuest(65625)">
-				<If Condition="not IsOnMap(147)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(22)">
-						<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+		<If Condition="not IsQuestCompleted(65903)">
+			<If Condition="not HasQuest(65903)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
-						<Travel To="147" />
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
 					</If>
 				</If>
-				<If Condition="IsQuestAcceptQualified(65625)">
-					<PickupQuest NpcId="1010063" QuestId="65625" XYZ="-207.5685, 71.61736, -132.5247" />
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<If Condition="IsQuestAcceptQualified(65903)">
+						<PickupQuest NpcId="1010858" QuestId="65903" XYZ="-1.907471, 7.450581E-09, -3.128174" />
+					</If>
 				</If>
 			</If>
-			<If Condition="HasQuest(65625)">
-				<If Condition="GetQuestStep(65625) == 255">
+			<If Condition="HasQuest(65903)">
+				<If Condition="GetQuestStep(65903) == 1">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<TalkTo InteractDistance="3.0" NpcId="1010890" XYZ="31.96765, -1, 2.914429" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(65903) == 2">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -1425,52 +429,1707 @@
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65625" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
+						<TalkTo InteractDistance="3.0" NpcId="1010860" XYZ="2.822876, -1.995725, -41.24518" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(65903) == 3">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<TalkTo InteractDistance="3.0" NpcId="1010858" XYZ="-1.907471, 7.450581E-09, -3.128174" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(65903) == 4">
+					<If Condition="not IsOnMap(147)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+							<Travel To="147" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010861" XYZ="-63.52338, 47, 25.19263" />
+				</If>
+				<If Condition="GetQuestStep(65903) == 5">
+					<If Condition="not IsOnMap(147)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+							<Travel To="147" />
+						</If>
+					</If>
+
+					<!-- TO DO -->
+
+					<!-- Figure out how to navigate to the 4th suspicious item up in the air. -->
+
+					<!-- TO DO -->
+
+					<!-- <UseObject NpcId="2004586" XYZ="39.59705, 46.98242, -10.6051" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65903" StepId="5" />
+					<UseObject NpcId="2004587" XYZ="-32.39496, 47.98962, -71.91577" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65903" StepId="5" />
+					<UseObject NpcId="2004585" XYZ="-112.6879, 47.95898, -17.22742" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65903" StepId="5" />
+					<MoveTo Name="Staircase" XYZ="-105.9178, 48, -29.73863" />
+					<UseObject NpcId="2004584" XYZ="-31.81512, 74.08252, -67.88745" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65903" StepId="5" /> -->
+
+					<LogMessage Message="Please gather the suspicious items manually!" />
+					<LogMessage Message="Go up the stairs on the west side of the quest area for the last suspicious item." />
+					<LogMessage Message="Please restart this profile after you are done." />
+					<StopBot />
+				</If>
+				<If Condition="GetQuestStep(65903) == 255">
+					<If Condition="not IsOnMap(147)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+							<Travel To="147" />
+						</If>
+					</If>
+					<TurnIn QuestId="65903" NpcId="1006646" ItemId="2001548" XYZ="-29.95355, 46.99734, 32.54749" />
+				</If>
+			</If>
+		</If>
+
+		<!-- On the Counteroffensive -->
+
+		<If Condition="not IsQuestCompleted(65904)">
+			<If Condition="not HasQuest(65904)">
+				<If Condition="not IsOnMap(147)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+						<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+						<Travel To="147" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(65904)">
+					<PickupQuest NpcId="1006646" QuestId="65904" XYZ="-29.95355, 46.99734, 32.54749" />
+				</If>
+			</If>
+			<If Condition="HasQuest(65904)">
+				<If Condition="GetQuestStep(65904) == 1">
+					<If Condition="not IsOnMap(147)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+							<Travel To="147" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010924" XYZ="-72.12946, 47, -8.86554" />
+				</If>
+				<If Condition="GetQuestStep(65904) == 2">
+					<If Condition="not IsOnMap(147)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+							<Travel To="147" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010867" XYZ="-133.9285, 59.66894, -94.22449" />
+				</If>
+				<If Condition="GetQuestStep(65904) == 3">
+					<If Condition="not IsOnMap(147)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+							<Travel To="147" />
+						</If>
+					</If>
+					<MoveTo Name="Imperial Squad" XYZ="-258.1064, 60.33958, -65.62909" />
+					<Grind grindRef="On_the_Counteroffensive2" while="HasQuest(65904) and GetQuestStep(65904) == 3" />
+				</If>
+				<If Condition="GetQuestStep(65904) == 4">
+					<If Condition="not IsOnMap(147)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+							<Travel To="147" />
+						</If>
+					</If>
+					<MoveTo Name="Second Imperial Squad" XYZ="-267.4754, 82.42139, -177.8135" />
+					<Grind grindRef="On_the_Counteroffensive2" while="HasQuest(65904) and GetQuestStep(65904) == 4" />
+				</If>
+				<If Condition="GetQuestStep(65904) == 5">
+					<If Condition="not IsOnMap(147)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+							<Travel To="147" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010876" XYZ="-110.3685, 64.86192, -127.2756" />
+				</If>
+				<If Condition="GetQuestStep(65904) == 255">
+					<If Condition="not IsOnMap(147)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+							<Travel To="147" />
+						</If>
+					</If>
+					<TurnIn QuestId="65904" NpcId="1006646" ItemId="2001548" XYZ="-29.95355, 46.99734, 32.54749" />
+				</If>
+			</If>
+		</If>
+
+		<!-- An Uninvited Ascian -->
+
+		<If Condition="not IsQuestCompleted(65905)">
+			<If Condition="not HasQuest(65905)">
+				<If Condition="not IsOnMap(147)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+						<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+						<Travel To="147" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(65905)">
+					<PickupQuest NpcId="1006646" QuestId="65905" XYZ="-29.95355, 46.99734, 32.54749" />
+				</If>
+			</If>
+			<If Condition="HasQuest(65905)">
+				<If Condition="GetQuestStep(65905) == 1">
+					<If Condition="not IsOnMap(147)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+							<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+							<Travel To="147" />
+						</If>
+					</If>
+
+					<!-- TO DO -->
+
+					<!-- Add a CodeChunk to address an issue with RB stopping mid-cutscene. -->
+
+					<!-- TO DO -->
+
+					<TalkTo InteractDistance="3.0" NpcId="1010879" XYZ="136.3392, 31.9962, 16.09827" />
+				</If>
+				<If Condition="GetQuestStep(65905) == 2">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+
+					<!-- TO DO -->
+
+					<!-- Add a CodeChunk to address an issue with RB stopping mid-cutscene. -->
+
+					<!-- TO DO -->
+
+				</If>
+				<If Condition="GetQuestStep(65905) == 3">
+					<LogMessage Message="Please complete The Chrysalis manually!" />
+					<LogMessage Message="Please restart this profile after you are done." />
+					<StopBot />
+				</If>
+				<If Condition="GetQuestStep(65905) == 255">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<TurnIn QuestId="65905" NpcId="1011000" XYZ="-0.07635498, -1.995725, -42.25226" />
 					</If>
 				</If>
 			</If>
 		</If>
 
-		<If Condition="IsQuestCompleted(65625)">
-			<LogMessage Message="You've completed the Dreams of Ice questline!" />
+		<!-- In Memory of Moenbryda -->
+
+		<If Condition="not IsQuestCompleted(65965)">
+			<If Condition="not HasQuest(65965)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsQuestAcceptQualified(65965)">
+						<PickupQuest NpcId="1011000" QuestId="65965" XYZ="-0.07635498, -1.995725, -42.25226" />
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(65965)">
+				<If Condition="GetQuestStep(65965) == 1">
+					<If Condition="not IsOnMap(156)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Safe Spot" XYZ="-146.0642, 43.90116, -190.8459" />
+					<UseObject NpcId="2005045" XYZ="-146.4409, 43.65601, -188.6168" Radius="10" QuestId="65965" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(65965) == 255">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<TurnIn QuestId="65965" NpcId="1010897" XYZ="0.9613037, -1.995725, -45.60925" />
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- Mask of Grief -->
+
+		<If Condition="not IsQuestCompleted(65906)">
+			<If Condition="not HasQuest(65906)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsQuestAcceptQualified(65906)">
+						<PickupQuest NpcId="1010897" QuestId="65906" XYZ="0.9613037, -1.995725, -45.60925" />
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(65906)">
+				<If Condition="GetQuestStep(65906) == 1">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<TalkTo InteractDistance="3.0" NpcId="1010903" XYZ="24.88745, -1, -1.022339" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(65906) == 2">
+					<If Condition="not IsOnMap(156)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<HandOver ItemId="2001546" QuestId="65906" StepId="2" NpcId="1001304" XYZ="25.58936, 29, -825.3757" />
+				</If>
+				<If Condition="GetQuestStep(65906) == 3">
+					<If Condition="not IsOnMap(156)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Safe Spot" XYZ="-146.0642, 43.90116, -190.8459" />
+					<HandOver ItemId="2001547" QuestId="65906" StepId="3" NpcId="1010929" XYZ="-146.8071, 43.49525, -187.3961" />
+				</If>
+				<If Condition="GetQuestStep(65906) == 255">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<TurnIn QuestId="65906" NpcId="1010930" XYZ="-1.266479, -1.995725, -42.06915" />
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- Defenders for Ishgard -->
+
+		<If Condition="not IsQuestCompleted(65907)">
+			<If Condition="not HasQuest(65907)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsQuestAcceptQualified(65907)">
+						<PickupQuest NpcId="1010930" QuestId="65907" XYZ="-1.266479, -1.995725, -42.06915" />
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(65907)">
+				<If Condition="GetQuestStep(65907) == 1">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010931" XYZ="232.5017, 302, -190.9362" />
+				</If>
+				<If Condition="GetQuestStep(65907) == 2">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010942" XYZ="-132.1279, 304.2877, -298.3902" />
+					<TalkTo InteractDistance="3.0" NpcId="1010940" XYZ="-143.2365, 304.1538, -289.3569" />
+					<TalkTo InteractDistance="3.0" NpcId="1010941" XYZ="-157.0001, 304.1538, -308.1255" />
+					<TalkTo InteractDistance="3.0" NpcId="1010939" XYZ="-152.697, 304.1538, -321.2177" />
+				</If>
+				<If Condition="GetQuestStep(65907) == 255">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<TurnIn QuestId="65907" NpcId="1010951" XYZ="-144.1825, 304.154, -300.7401" />
+				</If>
+			</If>
+		</If>
+
+		<!-- The Wyrm's Roar -->
+
+		<If Condition="not IsQuestCompleted(65908)">
+			<If Condition="not HasQuest(65908)">
+				<If Condition="not IsOnMap(155)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+						<Travel To="155" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(65908)">
+					<PickupQuest NpcId="1010951" QuestId="65908" XYZ="-144.1825, 304.154, -300.7401" />
+				</If>
+			</If>
+			<If Condition="HasQuest(65908)">
+				<If Condition="GetQuestStep(65908) == 1">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" />
+				</If>
+				<If Condition="GetQuestStep(65908) == 2">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
+					<RunCode Name="TheWyrmsRoar" />
+					<If Condition="not IsOnSubMap(1429)">
+						<If Condition="not IsOnMap(155)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+								<Travel To="155" />
+							</If>
+						</If>
+					</If>
+
+					<!-- TO DO -->
+
+					<!-- Area not meshed? -->
+
+					<!-- [06:52:53.355 D] Requesting path on 155 from <-4.091, -5.960464E-08, 7.592> to <3.860474, 0.01498271, -0.01531982> -->
+					
+					<!-- [06:52:53.426 D] No viable path from <-4.091, -5.960464E-08, 7.592> to <3.860474, 0.01498271, -0.01531982> in 00:00:00.0704099 ms -->
+
+					<!-- TO DO -->
+
+					<If Condition="IsOnSubMap(1429)">
+						<RunCode Name="TheWyrmsRoar2" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(65908) == 255">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
+					<RunCode Name="TheWyrmsRoar" />
+					<If Condition="not IsOnSubMap(1429)">
+						<If Condition="not IsOnMap(155)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+								<Travel To="155" />
+							</If>
+						</If>
+					</If>
+
+					<!-- TO DO -->
+
+					<!-- Area not meshed? -->
+
+					<!-- TO DO -->
+
+					<If Condition="IsOnSubMap(1429)">
+						<RunCode Name="TheWyrmsRoar3" />
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- Committed to the Cause -->
+
+		<If Condition="not IsQuestCompleted(65909)">
+			<If Condition="not HasQuest(65909)">
+				<If Condition="not IsOnSubMap(1429)">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
+					<RunCode Name="TheWyrmsRoar" />
+				</If>
+				<If Condition="IsQuestAcceptQualified(65909)">
+					<If Condition="not IsOnSubMap(1429)">
+						<If Condition="not IsOnMap(155)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+								<Travel To="155" />
+							</If>
+						</If>
+					</If>
+
+					<!-- TO DO -->
+
+					<!-- Area not meshed? -->
+
+					<!-- TO DO -->
+
+					<If Condition="IsOnSubMap(1429)">
+						<RunCode Name="TheWyrmsRoar4" />
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(65909)">
+				<If Condition="GetQuestStep(65909) == 255">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<TurnIn QuestId="65909" NpcId="1010896" XYZ="0.503479, -1.995725, -42.61847" />
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- Volunteer Dragonslayers -->
+
+		<If Condition="not IsQuestCompleted(65927)">
+			<If Condition="not HasQuest(65927)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsQuestAcceptQualified(65927)">
+						<PickupQuest NpcId="1010896" QuestId="65927" XYZ="0.503479, -1.995725, -42.61847" />
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(65927)">
+				<If Condition="GetQuestStep(65927) == 1">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<TalkTo InteractDistance="3.0" NpcId="1010911" XYZ="-3.738525, 0.01804011, -9.353821" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(65927) == 2">
+					<If Condition="not IsOnMap(156)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
+				</If>
+				<If Condition="GetQuestStep(65927) == 3">
+					<If Condition="not IsOnMap(156)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010954" XYZ="24.2771, 20.04224, -679.9573" />
+				</If>
+				<If Condition="GetQuestStep(65927) == 4">
+					<If Condition="not IsOnMap(156)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010958" XYZ="47.74548, 20.66574, -685.1759" />
+					<TalkTo InteractDistance="3.0" NpcId="1010955" XYZ="103.4408, 31.6068, -739.559" />
+					<TalkTo InteractDistance="3.0" NpcId="1010957" XYZ="33.67664, 29, -789.0898" />
+					<TalkTo InteractDistance="3.0" NpcId="1010956" XYZ="68.86389, 50, -774.3496" />
+				</If>
+				<If Condition="GetQuestStep(65927) == 255">
+					<If Condition="not IsOnMap(156)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<TurnIn QuestId="65927" NpcId="1010961" XYZ="33.27991, 20.495, -655.2072" />
+				</If>
+			</If>
+		</If>
+
+		<!-- An Allied Perspective -->
+
+		<If Condition="not IsQuestCompleted(65954)">
+			<If Condition="not HasQuest(65954)">
+				<If Condition="not IsOnMap(156)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(65954)">
+					<PickupQuest NpcId="1010961" QuestId="65954" XYZ="33.27991, 20.495, -655.2072" />
+				</If>
+			</If>
+			<If Condition="HasQuest(65954)">
+				<If Condition="GetQuestStep(65954) == 1">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<Travel To="131" />
+					<TalkTo InteractDistance="3.0" NpcId="1009057" XYZ="-25.49786, 38.01001, 83.35999" />
+				</If>
+				<If Condition="GetQuestStep(65954) == 2">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<Travel To="131" />
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1009057" XYZ="-25.49786, 38.01001, 83.35999" />
+				</If>
+				<If Condition="GetQuestStep(65954) == 3">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1006454" XYZ="-168.8411, 304.1538, -328.6641" />
+				</If>
+				<If Condition="GetQuestStep(65954) == 4">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<MoveTo Name="Dravanian Forces" XYZ="-495.8852, 206.4118, -363.0651" />
+					<Grind grindRef="An_Allied_Perspective" while="HasQuest(65954) and GetQuestStep(65954) == 4" />
+				</If>
+				<If Condition="GetQuestStep(65954) == 5">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<MoveTo Name="Dravanian Forces" XYZ="125.1264, 373.6523, -654.3644" />
+					<Grind grindRef="An_Allied_Perspective2" while="HasQuest(65954) and GetQuestStep(65954) == 5" />
+				</If>
+				<If Condition="GetQuestStep(65954) == 255">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<TurnIn QuestId="65954" NpcId="1006454" ItemId="2001548" XYZ="-168.8411, 304.1538, -328.6641" />
+				</If>
+			</If>
+		</If>
+
+		<!-- The Steps of Faith -->
+
+		<If Condition="not IsQuestCompleted(65955)">
+			<If Condition="not HasQuest(65955)">
+				<If Condition="not IsOnMap(155)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+						<Travel To="155" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(65955)">
+					<PickupQuest NpcId="1006454" QuestId="65955" XYZ="-168.8411, 304.1538, -328.6641" />
+				</If>
+			</If>
+			<If Condition="HasQuest(65955)">
+				<If Condition="GetQuestStep(65955) == 1">
+					<LogMessage Message="Please complete The Steps of Faith manually!" />
+					<LogMessage Message="Please restart this profile after you are done." />
+					<StopBot />
+				</If>
+				<!-- <If Condition="GetQuestStep(65955) == 2">
+
+				WHY WAS THIS STEP SKIPPED?
+
+				</If> -->
+				<If Condition="GetQuestStep(65955) == 3">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010978" XYZ="-157.8241, 304.1538, -313.8323" />
+				</If>
+				<If Condition="GetQuestStep(65955) == 255">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<TurnIn QuestId="65955" NpcId="1010897" XYZ="0.9613037, -1.995725, -45.60925" />
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- Administrative Decision -->
+
+		<If Condition="not IsQuestCompleted(65956)">
+			<If Condition="not HasQuest(65956)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsQuestAcceptQualified(65956)">
+						<PickupQuest NpcId="1010897" QuestId="65956" XYZ="0.9613037, -1.995725, -45.60925" />
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(65956)">
+				<If Condition="GetQuestStep(65956) == 1">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseObject NpcId="2005060" XYZ="-4.135254, 0.01519775, -9.628479" Radius="10" QuestId="65956" StepId="1" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(65956) == 2">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<TalkTo InteractDistance="3.0" NpcId="1011612" XYZ="7.736328, -7.450581E-09, -8.438293" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(65956) == 3">
+					<If Condition="not IsOnMap(156)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010979" XYZ="27.02368, 32.41246, -697.3525" />
+				</If>
+				<If Condition="GetQuestStep(65956) == 255">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<TurnIn QuestId="65956" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- An Unexpected Ambition -->
+
+		<If Condition="not IsQuestCompleted(65957)">
+			<If Condition="not HasQuest(65957)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsQuestAcceptQualified(65957)">
+						<PickupQuest NpcId="1010897" QuestId="65957" XYZ="0.9917603, -1.995725, -45.70081" />
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(65957)">
+				<If Condition="GetQuestStep(65957) == 1">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010980" XYZ="-341.6648, -2.374471, 10.69653" />
+				</If>
+				<If Condition="GetQuestStep(65957) == 2">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1000909" XYZ="-326.3752, 12.89966, 9.994568" />
+				</If>
+				<If Condition="GetQuestStep(65957) == 3">
+					<If Condition="not IsOnMap(134)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+							<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+							<Travel To="134" />
+						</If>
+					</If>
+					<UseObject NpcId="2005073" XYZ="-1.022339, 29.55664, 172.9609" Radius="10" QuestId="65957" StepId="3" />
+				</If>
+				<If Condition="GetQuestStep(65957) == 4">
+					<If Condition="not IsOnMap(134)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+							<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+							<Travel To="134" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010981" XYZ="124.7424, 45.74832, 135.7594" />
+				</If>
+				<If Condition="GetQuestStep(65957) == 255">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<TurnIn QuestId="65957" NpcId="1000909" XYZ="-326.3752, 12.89966, 9.994568" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Ancient Ways, Timeless Wants -->
+
+		<If Condition="not IsQuestCompleted(65958)">
+			<If Condition="not HasQuest(65958)">
+				<If Condition="not IsOnMap(129)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+						<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+						<Travel To="129" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(65958)">
+					<PickupQuest NpcId="1011020" QuestId="65958" XYZ="-329.0914, 12.89974, 12.03937" />
+				</If>
+			</If>
+			<If Condition="HasQuest(65958)">
+				<If Condition="GetQuestStep(65958) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010982" XYZ="570.1838, 20.67162, 490.6233" />
+				</If>
+				<If Condition="GetQuestStep(65958) == 2">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010983" XYZ="594.7814, 8.632993, 601.77" />
+				</If>
+				<If Condition="GetQuestStep(65958) == 3">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<UseObject NpcId="2005064" XYZ="602.9907, 8.987488, 577.6608" Radius="10" QuestId="65958" StepId="3" />
+					<Grind grindRef="Ancient_Ways_Timeless_Wants" while="HasQuest(65958) and GetQuestStep(65958) == 3" />
+				</If>
+				<If Condition="GetQuestStep(65958) == 4">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010983" XYZ="594.7814, 8.632993, 601.77" />
+				</If>
+				<If Condition="GetQuestStep(65958) == 255">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<TurnIn QuestId="65958" NpcId="1010897" XYZ="0.9917603, -1.995725, -45.70081" />
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- Where We Are Needed -->
+
+		<If Condition="not IsQuestCompleted(65959)">
+			<If Condition="not HasQuest(65959)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsQuestAcceptQualified(65959)">
+						<PickupQuest NpcId="1010897" QuestId="65959" XYZ="0.9613037, -1.995725, -45.60925" />
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(65959)">
+				<If Condition="GetQuestStep(65959) == 1">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<TalkTo InteractDistance="3.0" NpcId="1011615" XYZ="-1.327576, 7.450581E-09, -2.700867" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(65959) == 2">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010984" XYZ="-207.4464, 20.86788, 360.067" />
+				</If>
+				<If Condition="GetQuestStep(65959) == 3">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010985" XYZ="-223.7126, 12.27764, 47.98962" />
+				</If>
+				<If Condition="GetQuestStep(65959) == 4">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<UseObject NpcId="2005065" XYZ="-225.269, 13.13794, 56.90088" Radius="10" QuestId="65959" StepId="4" />
+					<Grind grindRef="Where_We_Are_Needed" while="HasQuest(65959) and GetQuestStep(65959) == 4" />
+				</If>
+				<If Condition="GetQuestStep(65959) == 5">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010985" XYZ="-223.7126, 12.27764, 47.98962" />
+				</If>
+				<If Condition="GetQuestStep(65959) == 6">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010986" XYZ="122.9419, 24.53415, 169.7261" />
+				</If>
+				<If Condition="GetQuestStep(65959) == 7">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<UseObject NpcId="2005066" XYZ="109.6665, 24.15503, 174.7616" Radius="10" QuestId="65959" StepId="7" />
+					<Grind grindRef="Where_We_Are_Needed2" while="HasQuest(65959) and GetQuestStep(65959) == 7" />
+				</If>
+				<If Condition="GetQuestStep(65959) == 8">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010986" XYZ="122.9419, 24.53415, 169.7261" />
+				</If>
+				<If Condition="GetQuestStep(65959) == 9">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010987" XYZ="-355.2453, 0.6691613, 459.3728" />
+				</If>
+				<If Condition="GetQuestStep(65959) == 10">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<UseObject NpcId="2005067" XYZ="-338.4299, -0.07635498, 453.4828" Radius="10" QuestId="65959" StepId="10" />
+					<Grind grindRef="Where_We_Are_Needed3" while="HasQuest(65959) and GetQuestStep(65959) == 10" />
+				</If>
+				<If Condition="GetQuestStep(65959) == 11">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010987" XYZ="-355.2453, 0.6691613, 459.3728" />
+				</If>
+				<If Condition="GetQuestStep(65959) == 255">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<TurnIn QuestId="65959" NpcId="1010984" XYZ="-207.4464, 20.86788, 360.067" />
+				</If>
+			</If>
+		</If>
+
+		<!-- The Least Among Us -->
+
+		<If Condition="not IsQuestCompleted(65960)">
+			<If Condition="not HasQuest(65960)">
+				<If Condition="not IsOnMap(153)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+						<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+						<Travel To="153" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(65960)">
+					<PickupQuest NpcId="1010984" QuestId="65960" XYZ="-207.4464, 20.86788, 360.067" />
+				</If>
+			</If>
+			<If Condition="HasQuest(65960)">
+				<If Condition="GetQuestStep(65960) == 1">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+
+					<!-- TO DO -->
+
+					<!-- Verify mesh is navigable. -->
+
+					<!-- TO DO -->
+
+					<NoCombatMoveTo Name="Safe Spot" XYZ="608.5513, 21.65253, 94.61467" />
+					<Dismount />
+					<TalkTo InteractDistance="3.0" NpcId="1010988" XYZ="618.4023, 22.52846, 105.6382" />
+				</If>
+				<If Condition="GetQuestStep(65960) == 2">
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<UseObject NpcId="2005068" XYZ="604.5776, 24.03296, 105.1194" Radius="10" QuestId="65960" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(65960) == 255">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+							<Travel To="156" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<TurnIn QuestId="65960" NpcId="1010897" XYZ="0.9613037, -1.995725, -45.60925" />
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<!-- A Time to Every Purpose -->
+
+		<If Condition="not IsQuestCompleted(65961)">
+			<If Condition="not HasQuest(65961)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsQuestAcceptQualified(65961)">
+						<PickupQuest NpcId="1010897" QuestId="65961" XYZ="0.9613037, -1.995725, -45.60925" />
+					</If>
+				</If>
+			</If>
+			<If Condition="HasQuest(65961)">
+				<If Condition="GetQuestStep(65961) == 255">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<Travel To="131" />
+					<MoveTo Name="Minfilia" XYZ="-5.05399, 29.99997, 21.27789" />
+					
+					<!-- TO DO -->
+
+					<!-- Figure out why you are unable to interact with Minfilia. -->
+
+					<!-- TO DO -->
+
+					<!-- <RunCode Name="ATimetoEveryPurpose" /> -->
+					<LogMessage Message="Please turn in A Time to Every Purpose manually!" />
+					<LogMessage Message="Please restart this profile after you are done." />
+					<StopBot />
+				</If>
+			</If>
+		</If>
+
+		<!-- Come, but Not Gone -->
+
+		<If Condition="not IsQuestCompleted(65962)">
+			<If Condition="not HasQuest(65962)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<Travel To="131" />
+				<If Condition="IsQuestAcceptQualified(65962)">
+					<PickupQuest NpcId="1010992" QuestId="65962" XYZ="-6.149414, 29.99998, 19.15009" />
+				</If>
+			</If>
+			<If Condition="HasQuest(65962)">
+				<If Condition="GetQuestStep(65962) == 1">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1001353" XYZ="21.07263, 7.45, -78.78235" />
+				</If>
+				<If Condition="GetQuestStep(65962) == 2">
+					<If Condition="not IsOnMap(141)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+							<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+							<Travel To="141" />
+						</If>
+					</If>
+					<UseObject NpcId="2005069" XYZ="-289.1738, 22.81219, -56.6568" Radius="10" QuestId="65962" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(65962) == 3">
+					<If Condition="not IsOnMap(141)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+							<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+							<Travel To="141" />
+						</If>
+					</If>
+					<UseObject NpcId="2005070" XYZ="-289.1738, 22.81219, -56.6568" Radius="10" QuestId="65962" StepId="3" />
+				</If>
+				<If Condition="GetQuestStep(65962) == 4">
+					<If Condition="not IsOnMap(141)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+							<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+							<Travel To="141" />
+						</If>
+					</If>
+					<UseObject NpcId="2005072" XYZ="-289.1738, 22.81219, -56.6568" Radius="10" QuestId="65962" StepId="4" />
+				</If>
+				<If Condition="GetQuestStep(65962) == 255">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<TurnIn QuestId="65962" NpcId="1001353" ItemId="2001545" XYZ="21.07263, 7.45, -78.78235" />
+				</If>
+			</If>
+		</If>
+
+		<!-- The Parting Glass -->
+
+		<If Condition="not IsQuestCompleted(65963)">
+			<If Condition="not HasQuest(65963)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(65963)">
+					<PickupQuest NpcId="1001353" QuestId="65963" XYZ="21.07263, 7.45, -78.78235" />
+				</If>
+			</If>
+			<If Condition="HasQuest(65963)">
+				<If Condition="GetQuestStep(65963) == 1">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<Travel To="131" />
+					</If>
+					<!-- <MoveTo Name="Lady-in-waiting" XYZ="-22.35449, 38.01001, 83.42102" />
+					<RunCode Name="ThePartingGlass" /> -->
+
+					<!-- TO DO -->
+
+					<!-- Verify TalkToPlus handles this TalkTo properly. -->
+
+					<!-- TO DO -->
+
+					<TalkToPlus InteractDistance="3.0" NpcId="1010997" XYZ="-22.35449, 38.01001, 83.42102" />
+				</If>
+				<If Condition="GetQuestStep(65963) == 2">
+					<If Condition="not IsOnMap(141)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+							<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+							<Travel To="141" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010998" XYZ="78.41602, -0.6357315, -166.3386" />
+				</If>
+				<If Condition="GetQuestStep(65963) == 255">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<TurnIn QuestId="65963" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Before the Dawn -->
+
+		<If Condition="not IsQuestCompleted(65964)">
+			<If Condition="not HasQuest(65964)">
+				<If Condition="not IsOnMap(155)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+						<Travel To="155" />
+					</If>
+				</If>
+				<If Condition="IsQuestAcceptQualified(65964)">
+					<PickupQuest NpcId="1006384" QuestId="65964" XYZ="263.5996, 303.1, -199.9695" />
+				</If>
+			</If>
+			<If Condition="HasQuest(65964)">
+				<If Condition="GetQuestStep(65964) == 255">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<TurnInPlus QuestId="65964" NpcId="1007603" XYZ="264.9119, 302.2624, -223.7126" />
+				</If>
+			</If>
+		</If>
+
+		<If Condition="IsQuestCompleted(65964)">
+			<LogMessage Message="You've completed the Before the Fall questline!" />
 			<StopBot />
 		</If>
 
 	</Order>
 	<GrindAreas>
-		<GrindArea name="First_Blood">
+		<GrindArea name="Bait_and_Switch">
 			<Hotspots>
-				<Hotspot Radius="90" XYZ="-383.403, 231.5027, 308.0612" name="Hateful Harriers" />
+				<Hotspot Radius="90" XYZ="349.0806, 23.13136, 103.8071" name="Black Marketeer Mobs" />
 			</Hotspots>
 			<TargetMobs>
-				<TargetMob Id="3182" />
+				<TargetMob Id="3332" />
+				<TargetMob Id="3333" />
 			</TargetMobs>
 			<MinLevel>1</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
-		<GrindArea name="For_the_Greater_Good">
+		<GrindArea name="On_the_Counteroffensive">
 			<Hotspots>
-				<Hotspot Radius="90" XYZ="-192.0487, 221.2777, 439.6082" name="Hateful Harriers" />
+				<Hotspot Radius="90" XYZ="-258.1064, 60.33958, -65.62909" name="Imperial Squad" />
 			</Hotspots>
 			<TargetMobs>
-				<TargetMob Id="3182" />
+				<TargetMob Id="3334" Weight="3000" />
+				<TargetMob Id="3110" Weight="2000" />
+				<TargetMob Id="3118" Weight="1000" />
 			</TargetMobs>
 			<MinLevel>1</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
-		<GrindArea name="Doman_Connection">
+		<GrindArea name="On_the_Counteroffensive2">
 			<Hotspots>
-				<Hotspot Radius="90" XYZ="172.0389, 15.61513, 57.98799" name="3rd Cohort Death Claws" />
+				<Hotspot Radius="90" XYZ="-267.4754, 82.42139, -177.8135" name="Second Imperial Squad" />
 			</Hotspots>
 			<TargetMobs>
-				<TargetMob Id="3109" />
+				<TargetMob Id="3335" Weight="3000" />
+				<TargetMob Id="2120" Weight="2000" />
+				<TargetMob Id="3118" Weight="1000" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="An_Allied_Perspective">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-495.8852, 206.4118, -363.0651" name="Dravanian Forces" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3339" Weight="2000" />
+				<TargetMob Id="3338" Weight="1000" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="An_Allied_Perspective2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="128.5977, 372.7061, -649.8469" name="Dravanian Forces" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3337" Weight="2000" />
+				<TargetMob Id="3336" Weight="1000" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Ancient_Ways_Timeless_Wants">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="602.9907, 8.987488, 577.6608" name="Morgawr" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3340" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Where_We_Are_Needed">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-225.269, 13.13794, 56.90088" name="Violet Flytraps" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3341" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Where_We_Are_Needed2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="109.6665, 24.15503, 174.7616" name="Snakemolt Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3343" Weight="2000" />
+				<TargetMob Id="3342" Weight="1000" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Where_We_Are_Needed3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-338.4299, -0.07635498, 453.4828" name="Amdapori Wraiths" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3344" />
 			</TargetMobs>
 			<MinLevel>1</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
 	<CodeChunks>
-		<CodeChunk Name="ComingtoTerms">
+		<CodeChunk Name="TheWyrmsRoar">
 			<![CDATA[ 
 				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1007603).Interact();
 				await Buddy.Coroutines.Coroutine.Sleep(2000);
@@ -1478,77 +2137,94 @@
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
 				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
 					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(28000);
-				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TheWyrmsRoar2">
+			<![CDATA[ 
+				ff14bot.Managers.MovementManager.SetFacing(2.322996f);
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(20000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(1500);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1009974).Interact();
 				await Buddy.Coroutines.Coroutine.Sleep(8000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(6000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(9000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				await Buddy.Coroutines.Coroutine.Sleep(500);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(3000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(10000);
 				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(28000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(4000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(2000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(5000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(8000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(3000);
 				ff14bot.RemoteWindows.Talk.Next();
@@ -1556,57 +2232,123 @@
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(5000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(4000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(2000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				await Buddy.Coroutines.Coroutine.Sleep(15000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TheWyrmsRoar3">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(1500);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1010953).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
 				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.SelectSlot(0);
 					ff14bot.RemoteWindows.JournalResult.Complete();
 		]]>
 		</CodeChunk>
-		<CodeChunk Name="TendrilsofIntrigue">
+		<CodeChunk Name="TheWyrmsRoar4">
 			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1000460).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(1500);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1010953).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				if (ff14bot.RemoteWindows.JournalAccept.IsOpen)
+					ff14bot.RemoteWindows.JournalAccept.Accept();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="ATimetoEveryPurpose">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1010922).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+		<!-- <CodeChunk Name="ThePartingGlass">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1010997).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
 				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
 					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(25000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(6000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(6000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(14000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(18000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(22000);
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(16000);
 				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(10000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(35000);
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(9000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(30000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(30000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(30000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(14000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(8000);
 				ff14bot.RemoteWindows.Talk.Next();
@@ -1616,135 +2358,348 @@
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(5000);
 				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(100000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(14000);
+				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(10000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(30000);
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				await Buddy.Coroutines.Coroutine.Sleep(42000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				await Buddy.Coroutines.Coroutine.Sleep(28000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(30000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="TheRoadLessTraveled">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1007603).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(45000);
+				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(15000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(6000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(6000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(7000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(4000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(4000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(6000);
 				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(48000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(16000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(40000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(18000);
-				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.Complete();
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(28000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(14000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(14000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(32000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(45000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(35000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(30000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(22000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(9000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(25000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(75000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(64000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(34000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(18000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(95000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(26000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(14000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(42000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(66000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(28000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(9000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(16000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(26000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(68000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(14000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(32000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(98000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(24000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(22000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(96000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(32000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(14000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(35000);
 		]]>
-		</CodeChunk>
+		</CodeChunk> -->
 	</CodeChunks>
 </Profile>
