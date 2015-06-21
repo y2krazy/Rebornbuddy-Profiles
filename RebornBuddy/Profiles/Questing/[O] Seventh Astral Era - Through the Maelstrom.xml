@@ -1,185 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Profile: [O] Seventh Astral Era - Through the Maelstrom
-Author: y2krazy
-Version: 1.0.3
-Required Level: 50
-Required Teleport Locations:
-	
-Required User Interaction:
-	Minimal interaction.
-Required Setup:
-	Build on the Stone quest completed.
-	
-Rewards:
-	
+###########################################################
+################ SUGGESTED ITEM LEVEL: 70+ ################
+###########################################################
+# Profile: [O] Seventh Astral Era - Through the Maelstrom #
+###########################################################
+# Author: y2krazy                                         #
+###########################################################
+# Version: 1.0.4                                          #
+###########################################################
+# Required Level: 50                                      #
+###########################################################
+# Required Teleport Locations:                            #
+# 	Aleport                                               #
+# 	Black Brush Station                                   #
+# 	Camp Drybone                                          #
+# 	Horizon                                               #
+# 	Limsa Lominsa Lower Decks                             #
+# 	Moraby Drydocks                                       #
+# 	Revenant's Toll                                       #
+# 	Ul'dah - Steps of Nald                                #
+###########################################################
+# Required User Interaction:                              #
+# 	Interaction required for Duty Finder when prompted.   #
+###########################################################
+# Required Setup:                                         #
+# 	Build on the Stone quest completed.                   #
+###########################################################
+# Rewards:                                                #
+# 	Gil                                                   #
+# 	Miscellaneous Items                                   #
+###########################################################
 -->
 <Profile>
 	<Name>[O] Seventh Astral Era - Through the Maelstrom</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
-	<CodeChunks>
-		<CodeChunk Name="TheRisingStones">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2002881).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(12000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="TheRisingStones2">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2002878).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(12000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="TheMotherofExiles">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(12000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="PromisestoKeep">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1008624).Target();
-				ff14bot.Managers.ChatManager.SendChat("/me");
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="LimsaCommandRoom">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1001029).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(12000);
-		]]>
-		</CodeChunk>
-	</CodeChunks>
-	<GrindAreas>
-		<GrindArea name="A_Final_Temptation">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="175.0667, 52.6283, -51.65179" name="Unknown Ravagers" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="2670" />
-			</TargetMobs>
-			<MinLevel>1</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="Promises_to_Keep">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="89.43311, 15.28377, 154.2839" name="Brass Blade Mobs" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="1255" />
-				<TargetMob Id="2671" />
-			</TargetMobs>
-			<MinLevel>1</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="Why_We_Adenveture">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="189.4086, 52.05615, 28.48048" name="Wandering Eye" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="2672" />
-			</TargetMobs>
-			<MinLevel>1</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="Scouts_in_Distress">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-451.7739, -41.98507, -237.7203" name="Drowned Ravager" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="2677" />
-			</TargetMobs>
-			<MinLevel>1</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="The_Gift_of_Eternity">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-237.8885, -41.40048, -238.5069" name="Sahagin Mobs" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="2678" />
-				<TargetMob Id="2679" />
-			</TargetMobs>
-			<MinLevel>1</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="The_Gift_of_Eternity2">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-241.1377, -42.26929, -305.0814" name="Sahagin Mobs" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="2678" />
-				<TargetMob Id="2679" />
-			</TargetMobs>
-			<MinLevel>1</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="The_Gift_of_Eternity3">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-299.0577, -41.59381, -327.6577" name="Sahagin Mobs" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="2680" />
-				<TargetMob Id="2681" />
-				<TargetMob Id="2682" />
-			</TargetMobs>
-			<MinLevel>1</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-	</GrindAreas>
 	<Order>
 
 		<!-- Still Waters -->
 
 		<If Condition="not IsQuestCompleted(66881)">
 			<If Condition="not HasQuest(66881)">
-				
-				<!-- TO DO -->
-
-				<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-				<!-- NOT YET IMPLEMENTED! -->
-
-				<!-- TO DO -->
-
-				<If Condition="not IsOnMap(156)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 					</If>
@@ -187,12 +50,16 @@ Rewards:
 						<Travel To="156" />
 					</If>
 				</If>
-				<MoveTo Name="Rising Stones Entrance" XYZ="21.13373, 22.32391, -631.281" />
-				<RunCode Name="TheRisingStones" />
-				<MoveTo Name="Entrance to the Solar" XYZ="-0.01531982, -1.022339, -26.7796" />
-				<RunCode Name="TheRisingStones2" />
-				<If Condition="IsQuestAcceptQualified(66881)">
-					<PickupQuest NpcId="1007724" QuestId="66881" XYZ="1.022339, -1.995725, -45.79236" />
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsQuestAcceptQualified(66881)">
+						<PickupQuest NpcId="1007724" QuestId="66881" XYZ="1.022339, -1.995725, -45.79236" />
+					</If>
 				</If>
 			</If>
 			<If Condition="HasQuest(66881)">
@@ -904,15 +771,7 @@ Rewards:
 					<TalkTo InteractDistance="3.0" NpcId="1008659" XYZ="22.53754, 20.07001, -678.1567" />
 				</If>
 				<If Condition="GetQuestStep(66889) == 255">
-
-					<!-- TO DO -->
-
-					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-					<!-- NOT YET IMPLEMENTED! -->
-
-					<!-- TO DO -->
-
-					<If Condition="not IsOnMap(156)">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 						</If>
@@ -920,11 +779,15 @@ Rewards:
 							<Travel To="156" />
 						</If>
 					</If>
-					<MoveTo Name="Rising Stones Entrance" XYZ="21.13373, 22.32391, -631.281" />
-					<RunCode Name="TheRisingStones" />
-					<MoveTo Name="Entrance to the Solar" XYZ="-0.01531982, -1.022339, -26.7796" />
-					<RunCode Name="TheRisingStones2" />
-					<TurnIn QuestId="66889" NpcId="1008547" XYZ="0.7781982, -1.995725, -45.48718" />
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<TurnIn QuestId="66889" NpcId="1008547" XYZ="0.7781982, -1.995725, -45.48718" />
+					</If>
 				</If>
 			</If>
 		</If>
@@ -933,15 +796,7 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66890)">
 			<If Condition="not HasQuest(66890)">
-
-				<!-- TO DO -->
-
-				<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-				<!-- NOT YET IMPLEMENTED! -->
-
-				<!-- TO DO -->
-
-				<If Condition="not IsOnMap(156)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 					</If>
@@ -949,25 +804,21 @@ Rewards:
 						<Travel To="156" />
 					</If>
 				</If>
-				<MoveTo Name="Rising Stones Entrance" XYZ="21.13373, 22.32391, -631.281" />
-				<RunCode Name="TheRisingStones" />
-				<MoveTo Name="Entrance to the Solar" XYZ="-0.01531982, -1.022339, -26.7796" />
-				<RunCode Name="TheRisingStones2" />
-				<If Condition="IsQuestAcceptQualified(66890)">
-					<PickupQuest NpcId="1008554" QuestId="66890" XYZ="1.632629, -1.995725, -41.91656" />
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsQuestAcceptQualified(66890)">
+						<PickupQuest NpcId="1008554" QuestId="66890" XYZ="1.632629, -1.995725, -41.91656" />
+					</If>
 				</If>
 			</If>
 			<If Condition="HasQuest(66890)">
 				<If Condition="GetQuestStep(66890) == 1">
-
-					<!-- TO DO -->
-
-					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-					<!-- NOT YET IMPLEMENTED! -->
-
-					<!-- TO DO -->
-
-					<If Condition="not IsOnMap(156)">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 						</If>
@@ -975,20 +826,18 @@ Rewards:
 							<Travel To="156" />
 						</If>
 					</If>
-					<MoveTo Name="Rising Stones Entrance" XYZ="21.13373, 22.32391, -631.281" />
-					<RunCode Name="TheRisingStones" />
-					<TalkTo InteractDistance="3.0" NpcId="1008559" XYZ="9.567322, 7.450581E-09, -10.17786" />
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<TalkTo InteractDistance="3.0" NpcId="1008559" XYZ="9.567322, 7.450581E-09, -10.17786" />
+					</If>
 				</If>
 				<If Condition="GetQuestStep(66890) == 2">
-
-					<!-- TO DO -->
-
-					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-					<!-- NOT YET IMPLEMENTED! -->
-
-					<!-- TO DO -->
-
-					<If Condition="not IsOnMap(156)">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 						</If>
@@ -996,9 +845,15 @@ Rewards:
 							<Travel To="156" />
 						</If>
 					</If>
-					<MoveTo Name="Rising Stones Entrance" XYZ="21.13373, 22.32391, -631.281" />
-					<RunCode Name="TheRisingStones" />
-					<UseObject NpcIds="2003574,2003575" XYZ="10.45239, 0.9002075, -9.079163" Radius="10" QuestId="66890" StepId="2" />
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseObject NpcIds="2003574,2003575" XYZ="10.45239, 0.9002075, -9.079163" Radius="10" QuestId="66890" StepId="2" />
+					</If>
 				</If>
 				<If Condition="GetQuestStep(66890) == 3">
 					<If Condition="not IsOnMap(156)">
@@ -1086,15 +941,7 @@ Rewards:
 					<TalkTo InteractDistance="3.0" NpcId="1008705" XYZ="32.66956, 20.47859, -681.3916" />
 				</If>
 				<If Condition="GetQuestStep(66891) == 255">
-
-					<!-- TO DO -->
-
-					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-					<!-- NOT YET IMPLEMENTED! -->
-
-					<!-- TO DO -->
-
-					<If Condition="not IsOnMap(156)">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 						</If>
@@ -1102,11 +949,15 @@ Rewards:
 							<Travel To="156" />
 						</If>
 					</If>
-					<MoveTo Name="Rising Stones Entrance" XYZ="21.13373, 22.32391, -631.281" />
-					<RunCode Name="TheRisingStones" />
-					<MoveTo Name="Entrance to the Solar" XYZ="-0.01531982, -1.022339, -26.7796" />
-					<RunCode Name="TheRisingStones2" />
-					<TurnIn QuestId="66891" NpcId="1008565" XYZ="1.632629, -1.995725, -41.91656" />
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<TurnIn QuestId="66891" NpcId="1008565" XYZ="1.632629, -1.995725, -41.91656" />
+					</If>
 				</If>
 			</If>
 		</If>
@@ -1115,15 +966,7 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66892)">
 			<If Condition="not HasQuest(66892)">
-
-				<!-- TO DO -->
-
-				<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-				<!-- NOT YET IMPLEMENTED! -->
-
-				<!-- TO DO -->
-
-				<If Condition="not IsOnMap(156)">
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 					</If>
@@ -1131,12 +974,16 @@ Rewards:
 						<Travel To="156" />
 					</If>
 				</If>
-				<MoveTo Name="Rising Stones Entrance" XYZ="21.13373, 22.32391, -631.281" />
-				<RunCode Name="TheRisingStones" />
-				<MoveTo Name="Entrance to the Solar" XYZ="-0.01531982, -1.022339, -26.7796" />
-				<RunCode Name="TheRisingStones2" />
-				<If Condition="IsQuestAcceptQualified(66892)">
-					<PickupQuest NpcId="1008542" QuestId="66892" XYZ="0.8086548, -1.995725, -42.55743" />
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsQuestAcceptQualified(66892)">
+						<PickupQuest NpcId="1008542" QuestId="66892" XYZ="0.8086548, -1.995725, -42.55743" />
+					</If>
 				</If>
 			</If>
 			<If Condition="HasQuest(66892)">
@@ -1539,14 +1386,7 @@ Rewards:
 			</If>
 			<If Condition="HasQuest(66899)">
 				<If Condition="GetQuestStep(66899) == 255">
-					<!-- TO DO -->
-
-					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-					<!-- NOT YET IMPLEMENTED! -->
-
-					<!-- TO DO -->
-
-					<If Condition="not IsOnMap(156)">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 						</If>
@@ -1554,11 +1394,15 @@ Rewards:
 							<Travel To="156" />
 						</If>
 					</If>
-					<MoveTo Name="Rising Stones Entrance" XYZ="21.13373, 22.32391, -631.281" />
-					<RunCode Name="TheRisingStones" />
-					<MoveTo Name="Entrance to the Solar" XYZ="-0.01531982, -1.022339, -26.7796" />
-					<RunCode Name="TheRisingStones2" />
-					<TurnIn QuestId="66899" NpcId="1008579" XYZ="1.022339, -1.995725, -45.73132" />
+					<If Condition="IsOnMap(156)">
+						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<TurnIn QuestId="66899" NpcId="1008579" XYZ="1.022339, -1.995725, -45.73132" />
+					</If>
 				</If>
 			</If>
 		</If>
@@ -1570,4 +1414,133 @@ Rewards:
 		</If>
 
 	</Order>
+	<GrindAreas>
+		<GrindArea name="A_Final_Temptation">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="175.0667, 52.6283, -51.65179" name="Unknown Ravagers" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2670" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Promises_to_Keep">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="89.43311, 15.28377, 154.2839" name="Brass Blade Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="1255" />
+				<TargetMob Id="2671" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Why_We_Adenveture">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="189.4086, 52.05615, 28.48048" name="Wandering Eye" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2672" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Scouts_in_Distress">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-451.7739, -41.98507, -237.7203" name="Drowned Ravager" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2677" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Gift_of_Eternity">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-237.8885, -41.40048, -238.5069" name="Sahagin Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2678" />
+				<TargetMob Id="2679" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Gift_of_Eternity2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-241.1377, -42.26929, -305.0814" name="Sahagin Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2678" />
+				<TargetMob Id="2679" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Gift_of_Eternity3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-299.0577, -41.59381, -327.6577" name="Sahagin Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2680" />
+				<TargetMob Id="2681" />
+				<TargetMob Id="2682" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="TheMotherofExiles">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="PromisestoKeep">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1008624).Target();
+				ff14bot.Managers.ChatManager.SendChat("/me");
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="LimsaCommandRoom">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1001029).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
 </Profile>
