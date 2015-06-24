@@ -41,6 +41,12 @@ namespace ff14bot.NeoProfiles
 						SelectYesno.ClickYes();
 					})
 				),
+                new Decorator(ret => QuestId == 67138 && SelectString.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectString.ClickSlot(0);
+                    })
+                ),
 				base.CreateBehavior()
 				);
 		}
