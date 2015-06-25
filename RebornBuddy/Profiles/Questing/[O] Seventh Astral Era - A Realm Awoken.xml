@@ -7,7 +7,7 @@
 ###########################################################
 # Author: y2krazy                                         #
 ###########################################################
-# Version: 1.0.2                                          #
+# Version: 1.0.3                                          #
 ###########################################################
 # Required Level: 50                                      #
 ###########################################################
@@ -45,6 +45,13 @@
 	<KillRadius>90</KillRadius>
 	<Order>
 
+		<If Condition="(Core.Me.CurrentJob == ClassJobType.Arcanist) or (Core.Me.CurrentJob == ClassJobType.Archer) or (Core.Me.CurrentJob == ClassJobType.Conjurer) or (Core.Me.CurrentJob == ClassJobType.Gladiator) or (Core.Me.CurrentJob == ClassJobType.Lancer) or (Core.Me.CurrentJob == ClassJobType.Marauder) or (Core.Me.CurrentJob == ClassJobType.Pugilist) or (Core.Me.CurrentJob == ClassJobType.Rogue) or (Core.Me.CurrentJob == ClassJobType.Thaumaturge)">
+			<LogMessage Message="You do not have a job assigned on your character." />
+			<LogMessage Message="Ensure your Soul Crystal is equipped or that you've completed your level 30 job quest." />
+			<LogMessage Message="Please restart this profile after you are done." />
+			<StopBot />
+		</If>
+
 		<!-- The Price of Principles -->
 
 		<If Condition="not IsQuestCompleted(66711)">
@@ -63,10 +70,8 @@
 				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
 				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-					<If Condition="IsQuestAcceptQualified(66711)">
-						<PickupQuest NpcId="1006693" QuestId="66711" XYZ="39.29187, 1.214808, 0.8086548" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(66711)">
+					<PickupQuest NpcId="1006693" QuestId="66711" XYZ="39.29187, 1.214808, 0.8086548" />
 				</If>
 			</If>
 			<If Condition="HasQuest(66711)">
@@ -85,17 +90,15 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<TalkTo InteractDistance="3.0" NpcId="1007534" XYZ="1.480042, -3.000001, -48.72211" />
-						<WaitTimer WaitTime="1" />
-						<TalkTo InteractDistance="3.0" NpcId="1007533" XYZ="-0.8087769, -3, -47.80658" />
-						<WaitTimer WaitTime="1" />
-						<TalkTo InteractDistance="3.0" NpcId="1007530" XYZ="1.296936, -3.000001, -52.26221" />
-						<WaitTimer WaitTime="1" />
-						<TalkTo InteractDistance="3.0" NpcId="1007531" XYZ="0.1677856, -3.000001, -52.71997" />
-						<WaitTimer WaitTime="1" />
-						<TalkTo InteractDistance="3.0" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1007534" XYZ="1.480042, -3.000001, -48.72211" />
+					<WaitTimer WaitTime="1" />
+					<TalkTo InteractDistance="3.0" NpcId="1007533" XYZ="-0.8087769, -3, -47.80658" />
+					<WaitTimer WaitTime="1" />
+					<TalkTo InteractDistance="3.0" NpcId="1007530" XYZ="1.296936, -3.000001, -52.26221" />
+					<WaitTimer WaitTime="1" />
+					<TalkTo InteractDistance="3.0" NpcId="1007531" XYZ="0.1677856, -3.000001, -52.71997" />
+					<WaitTimer WaitTime="1" />
+					<TalkTo InteractDistance="3.0" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
 				</If>
 				<If Condition="GetQuestStep(66711) == 255">
 					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -112,20 +115,25 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<TurnIn QuestId="66711" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" />
+
+					<!-- Rewards
+
+					0: Vitality Earrings
+					1: Strength Earrings (Accuracy)
+					2: Strength Earrings (Critical Strike)
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Warrior) or (Core.Me.CurrentJob == ClassJobType.Paladin)">
+						<TurnIn QuestId="66711" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" RewardSlot="0" />
 					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Monk) or (Core.Me.CurrentJob == ClassJobType.Dragoon)">
+						<TurnIn QuestId="66711" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" RewardSlot="1" />
+					</If>
+					<TurnIn QuestId="66711" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: VIT Earrings
-		1: STR Earrings
-		2: STR Earrings
-
-		-->
 
 		<!-- Moving On -->
 
@@ -145,10 +153,8 @@
 				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
 				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-					<If Condition="IsQuestAcceptQualified(66712)">
-						<PickupQuest NpcId="1006693" QuestId="66712" XYZ="39.29187, 1.214808, 0.8086548" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(66712)">
+					<PickupQuest NpcId="1006693" QuestId="66712" XYZ="39.29187, 1.214808, 0.8086548" />
 				</If>
 			</If>
 			<If Condition="HasQuest(66712)">
@@ -167,9 +173,7 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<TalkTo InteractDistance="3.0" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" />
 				</If>
 				<If Condition="GetQuestStep(66712) == 2">
 					<If Condition="not IsOnMap(145)">
@@ -202,18 +206,28 @@
 							<Travel To="145" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Dexterity Earrings
+					1: Mind/Piety Earrings
+					2: Intelligence Earrings
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Bard) or (Core.Me.CurrentJob == ClassJobType.Ninja)">
+						<TurnIn QuestId="66712" NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.WhiteMage) or (Core.Me.CurrentJob == ClassJobType.Scholar)">
+						<TurnIn QuestId="66712" NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.BlackMage) or (Core.Me.CurrentJob == ClassJobType.Summoner)">
+						<TurnIn QuestId="66712" NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" RewardSlot="2" />
+					</If>
 					<TurnIn QuestId="66712" NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: DEX Earrings
-		1: MND/PIE Earrings
-		2: INT Earrings
-
-		-->
 
 		<!-- Flowers for One -->
 
@@ -405,20 +419,19 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<TurnIn QuestId="66714" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
-					</If>
+
+					<!-- Rewards
+
+					0: Gathering Materia IV
+					1: Perception Materia IV
+					2: GP Materia IV
+
+					-->
+
+					<TurnIn QuestId="66714" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" RewardSlot="0" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: GTH Materia IV
-		1: PER Materia IV
-		2: GP Materia IV
-
-		-->
 
 		<!-- The Resolute -->
 
@@ -438,10 +451,8 @@
 				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
 				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-					<If Condition="IsQuestAcceptQualified(66715)">
-						<PickupQuest NpcId="1006693" QuestId="66715" XYZ="39.29187, 1.214808, 0.8086548" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(66715)">
+					<PickupQuest NpcId="1006693" QuestId="66715" XYZ="39.29187, 1.214808, 0.8086548" />
 				</If>
 			</If>
 			<If Condition="HasQuest(66715)">
@@ -460,9 +471,7 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<TalkTo InteractDistance="3.0" NpcId="1007723" XYZ="3.341675, 4.768372E-07, 3.860474" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1007723" XYZ="3.341675, 4.768372E-07, 3.860474" />
 				</If>
 				<If Condition="GetQuestStep(66715) == 2">
 					<If Condition="not IsOnMap(131)">
@@ -523,9 +532,7 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<HandOver ItemId="2001076" QuestId="66715" StepId="5" NpcId="1007723" XYZ="3.341675, 4.768372E-07, 3.860474" />
-					</If>
+					<HandOver ItemId="2001076" QuestId="66715" StepId="5" NpcId="1007723" XYZ="3.341675, 4.768372E-07, 3.860474" />
 				</If>
 				<If Condition="GetQuestStep(66715) == 255">
 					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -542,20 +549,19 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<TurnIn QuestId="66715" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
-					</If>
+
+					<!-- Rewards
+
+					0: Craftsmanship Materia IV
+					1: CP Materia IV
+					2: Control Materia IV
+
+					-->
+
+					<TurnIn QuestId="66715" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" RewardSlot="0" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: CRF Materia IV
-		1: CP Materia IV
-		2: CON Materia IV
-
-		-->
 
 		<!-- Laying the Foundation -->
 
@@ -575,10 +581,8 @@
 				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
 				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-					<If Condition="IsQuestAcceptQualified(66716)">
-						<PickupQuest NpcId="1006693" QuestId="66716" XYZ="39.29187, 1.214808, 0.8086548" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(66716)">
+					<PickupQuest NpcId="1006693" QuestId="66716" XYZ="39.29187, 1.214808, 0.8086548" />
 				</If>
 			</If>
 			<If Condition="HasQuest(66716)">
@@ -591,18 +595,25 @@
 							<Travel To="156" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Vitality Ring
+					1: Strength Ring
+					2: Strength Ring
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Warrior) or (Core.Me.CurrentJob == ClassJobType.Paladin)">
+						<TurnIn QuestId="66716" NpcId="1006530" ItemId="2001077" XYZ="21.92719, 20.74698, -682.063" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Monk) or (Core.Me.CurrentJob == ClassJobType.Dragoon)">
+						<TurnIn QuestId="66716" NpcId="1006530" ItemId="2001077" XYZ="21.92719, 20.74698, -682.063" RewardSlot="1" />
+					</If>
 					<TurnIn QuestId="66716" NpcId="1006530" ItemId="2001077" XYZ="21.92719, 20.74698, -682.063" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: VIT Ring
-		1: STR Ring
-		2: STR Ring
-
-		-->
 
 		<!-- Better Late than Sever -->
 
@@ -682,18 +693,28 @@
 							<Travel To="156" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Dexterity Ring
+					1: Mind/Piety Ring
+					2: Intelligence Ring
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Bard) or (Core.Me.CurrentJob == ClassJobType.Ninja)">
+						<TurnIn QuestId="66717" NpcId="1006544" XYZ="24.09399, 28.99997, -750.0573" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.WhiteMage) or (Core.Me.CurrentJob == ClassJobType.Scholar)">
+						<TurnIn QuestId="66717" NpcId="1006544" XYZ="24.09399, 28.99997, -750.0573" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.BlackMage) or (Core.Me.CurrentJob == ClassJobType.Summoner)">
+						<TurnIn QuestId="66717" NpcId="1006544" XYZ="24.09399, 28.99997, -750.0573" RewardSlot="2" />
+					</If>
 					<TurnIn QuestId="66717" NpcId="1006544" XYZ="24.09399, 28.99997, -750.0573" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: DEX Ring
-		1: MND/PIE Ring
-		2: INT Ring
-
-		-->
 
 		<!-- Crate Go Kaboom -->
 
@@ -739,18 +760,28 @@
 							<Travel To="156" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Dexterity Necklace
+					1: Mind/Piety Necklace
+					2: Intelligence Necklace
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Bard) or (Core.Me.CurrentJob == ClassJobType.Ninja)">
+						<TurnIn QuestId="66719" NpcId="1006552" XYZ="54.79517, 25.54827, -698.0544" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.WhiteMage) or (Core.Me.CurrentJob == ClassJobType.Scholar)">
+						<TurnIn QuestId="66719" NpcId="1006552" XYZ="54.79517, 25.54827, -698.0544" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.BlackMage) or (Core.Me.CurrentJob == ClassJobType.Summoner)">
+						<TurnIn QuestId="66719" NpcId="1006552" XYZ="54.79517, 25.54827, -698.0544" RewardSlot="2" />
+					</If>
 					<TurnIn QuestId="66719" NpcId="1006552" XYZ="54.79517, 25.54827, -698.0544" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: DEX Necklace
-		1: MND/PIE Necklace
-		2: INT Necklace
-
-		-->
 
 		<!-- Rock-solid Protection -->
 
@@ -799,18 +830,25 @@
 							<Travel To="156" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Vitality Necklace
+					1: Strength Necklace (Accuracy)
+					2: Strength Necklace (Critical Strike)
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Warrior) or (Core.Me.CurrentJob == ClassJobType.Paladin)">
+						<TurnIn QuestId="66718" NpcId="1006530" ItemId="2001078" XYZ="21.92719, 20.74698, -682.063" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Monk) or (Core.Me.CurrentJob == ClassJobType.Dragoon)">
+						<TurnIn QuestId="66718" NpcId="1006530" ItemId="2001078" XYZ="21.92719, 20.74698, -682.063" RewardSlot="1" />
+					</If>
 					<TurnIn QuestId="66718" NpcId="1006530" ItemId="2001078" XYZ="21.92719, 20.74698, -682.063" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: VIT Necklace
-		1: STR Necklace
-		2: STR Necklace
-
-		-->
 
 		<!-- Simply the Hest (Gridania) -->
 
@@ -996,18 +1034,25 @@
 							<Travel To="156" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Vitality Bracelets
+					1: Strength Bracelets (Accuracy)
+					2: Strength Bracelets (Critical Strike)
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Warrior) or (Core.Me.CurrentJob == ClassJobType.Paladin)">
+						<TurnIn QuestId="66720" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Monk) or (Core.Me.CurrentJob == ClassJobType.Dragoon)">
+						<TurnIn QuestId="66720" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="1" />
+					</If>
 					<TurnIn QuestId="66720" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: VIT Bracelets
-		1: STR Bracelets
-		2: STR Bracelets
-
-		-->
 
 		<!-- Pass the Smell Hest -->
 
@@ -1040,18 +1085,28 @@
 							<Travel To="156" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Dexterity Bracelets
+					1: Mind/Piety Bracelets
+					2: Intelligence Bracelets
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Bard) or (Core.Me.CurrentJob == ClassJobType.Ninja)">
+						<TurnIn QuestId="66721" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.WhiteMage) or (Core.Me.CurrentJob == ClassJobType.Scholar)">
+						<TurnIn QuestId="66721" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.BlackMage) or (Core.Me.CurrentJob == ClassJobType.Summoner)">
+						<TurnIn QuestId="66721" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="2" />
+					</If>
 					<TurnIn QuestId="66721" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: DEX Bracelets
-		1: MND/PIE Bracelets
-		2: INT Bracelets
-
-		-->
 
 		<!-- You're Gonna Carry That -->
 
@@ -1085,9 +1140,7 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<TalkTo InteractDistance="3.0" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" />
 				</If>
 				<If Condition="GetQuestStep(66722) == 2">
 					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -1104,17 +1157,15 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseObject NpcId="2002852" XYZ="10.26929, -1.113953, -23.69727" Radius="10" UseTimes="1" QuestId="66722" StepId="2" />
-						<UseObject NpcId="2002853" XYZ="20.40125, -2.151611, -45.91449" Radius="10" UseTimes="1" QuestId="66722" StepId="2" />
-						<UseObject NpcId="2002850" XYZ="2.120972, -2.212585, -58.54895" Radius="10" UseTimes="1" QuestId="66722" StepId="2" />
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
-						<WaitTimer WaitTime="10" />
-						<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-							<While="HasQuest(66728) and GetQuestStep(66728) == 2">
-								<UseObject NpcId="2002851" XYZ="31.44885, 1.693726, 5.905212" Radius="10" UseTimes="1" QuestId="66722" StepId="2" />
-							</While>
-						</If>
+					<UseObject NpcId="2002852" XYZ="10.26929, -1.113953, -23.69727" Radius="10" UseTimes="1" QuestId="66722" StepId="2" />
+					<UseObject NpcId="2002853" XYZ="20.40125, -2.151611, -45.91449" Radius="10" UseTimes="1" QuestId="66722" StepId="2" />
+					<UseObject NpcId="2002850" XYZ="2.120972, -2.212585, -58.54895" Radius="10" UseTimes="1" QuestId="66722" StepId="2" />
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
+					<WaitTimer WaitTime="10" />
+					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
+						<While="HasQuest(66728) and GetQuestStep(66728) == 2">
+							<UseObject NpcId="2002851" XYZ="31.44885, 1.693726, 5.905212" Radius="10" UseTimes="1" QuestId="66722" StepId="2" />
+						</While>
 					</If>
 				</If>
 				<If Condition="GetQuestStep(66722) == 255">
@@ -1132,21 +1183,32 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 						<UseTransport Name="Exit to Vesper Bay" InteractDistance="3.0" NpcId="2001716" XYZ="-15.7016, 1.083313, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(140)">
-						<TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" />
+
+					<!-- Rewards
+
+					0: Paladin Weapon
+					1: Monk Weapon
+					2: Warrior Weapon
+					3: Dragoon Weapon
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Paladin)">
+						<TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="0" />
 					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Monk)">
+						<TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Warrior)">
+						<TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="2" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Dragoon)">
+						<TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="3" />
+					</If>
+					<TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: GLA Weapon
-		1: PGL Weapon
-		2: MRD Weapon
-		3: LNC Weapon
-
-		-->
 
 		<!-- The Things We Do for Tea -->
 
@@ -1228,19 +1290,32 @@
 							<Travel To="140" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Bard Weapon
+					1: White Mage Weapon
+					2: Black Mage Weapon
+					3: Summoner Weapon
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Bard)">
+						<TurnIn QuestId="66723" NpcId="1003785" ItemId="2001081" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.WhiteMage)">
+						<TurnIn QuestId="66723" NpcId="1003785" ItemId="2001081" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.BlackMage)">
+						<TurnIn QuestId="66723" NpcId="1003785" ItemId="2001081" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="2" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Summoner)">
+						<TurnIn QuestId="66723" NpcId="1003785" ItemId="2001081" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="3" />
+					</If>
 					<TurnIn QuestId="66723" NpcId="1003785" ItemId="2001081" XYZ="-489.8299, 21.48999, -381.9791" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: ARC Weapon
-		1: CNJ Weapon
-		2: THM Weapon
-		3: ACN Weapon
-
-		-->
 
 		<!-- It's Possibly a Primal -->
 
@@ -1274,9 +1349,7 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<TalkTo InteractDistance="3.0" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
 				</If>
 				<If Condition="GetQuestStep(66724) == 255">
 					<If Condition="not IsOnMap(132)">
@@ -1287,18 +1360,28 @@
 							<Travel To="132" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Scholar Weapon
+					1: Rogue Weapon
+					2: Gladiator Shield
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Scholar)">
+						<TurnIn QuestId="66724" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Rogue)">
+						<TurnIn QuestId="66724" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == ClassJobType.Gladiator)">
+						<TurnIn QuestId="66724" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" RewardSlot="2" />
+					</If>
 					<TurnIn QuestId="66724" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: ACN Weapon
-		1: ROG Weapon
-		2: GLA Shield
-
-		-->
 
 		<!-- Hail to the King, Kupo -->
 
@@ -1352,18 +1435,23 @@
 						</If>
 						<Travel To="133" />
 					</If>
+
+					<!-- Rewards
+
+					0: X-Potion
+					1: X-Ether
+					2: Hi-Elixir
+
+					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+					<TurnIn QuestId="66725" NpcId="1000692" XYZ="-258.8083, -5.773526, -27.26788" RewardSlot="0" />
+
+					-->
+
 					<TurnIn QuestId="66725" NpcId="1000692" XYZ="-258.8083, -5.773526, -27.26788" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: X-Potion
-		1: X-Ether
-		2: Hi-Elixir
-
-		-->
 
 		<!-- You Have Selected Regicide -->
 
@@ -1531,19 +1619,24 @@
 					</If>
 					<MoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762" />
 					<RunCode Name="CampTranquilJump" />
+
+					<!-- Rewards
+
+					0: Red Drop (Slow Resistance)
+					1: Blue Drop (Silence Resistance)
+					2: Clear Drop (Blind Resistance)
+					3: Purple Drop (Poison Resistance)
+
+					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+					<TurnIn QuestId="66726" NpcId="1007862" XYZ="-140.032, 8.647763, 280.8728" RewardSlot="0" />
+
+					-->
+
 					<TurnIn QuestId="66726" NpcId="1007862" XYZ="-140.032, 8.647763, 280.8728" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: Red Drop (Slow Resistance)
-		1: Blue Drop (Silence Resistance)
-		2: Clear Drop (Blind Resistance)
-		3: Purple Drop (Poison Resistance)
-
-		-->
 
 		<!-- On the Properties of Primals -->
 
@@ -1606,21 +1699,24 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<TurnIn QuestId="66727" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
-					</If>
+
+					<!-- Rewards
+
+					0: White Drop (Stun Resistance)
+					1: Black Drop (Sleep Resistance)
+					2: Yellow Drop (Bind Resistance)
+					3: Green Drop (Heavy Resistance)
+
+					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+					<TurnIn QuestId="66727" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" RewardSlot="0" />
+
+					-->
+
+					<TurnIn QuestId="66727" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: White Drop (Stun Resistance)
-		1: Black Drop (Sleep Resistance)
-		2: Yellow Drop (Bind Resistance)
-		3: Green Drop (Heavy Resistance)
-
-		-->
 
 		<!-- The Gifted -->
 
@@ -1640,10 +1736,8 @@
 				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
 				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-					<If Condition="IsQuestAcceptQualified(66728)">
-						<PickupQuest NpcId="1006693" QuestId="66728" XYZ="39.29187, 1.214808, 0.8086548" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(66728)">
+					<PickupQuest NpcId="1006693" QuestId="66728" XYZ="39.29187, 1.214808, 0.8086548" />
 				</If>
 			</If>
 			<If Condition="HasQuest(66728)">
@@ -1662,9 +1756,7 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<TalkTo InteractDistance="3.0" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
 				</If>
 				<If Condition="GetQuestStep(66728) == 2">
 					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -1771,9 +1863,7 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<TurnIn QuestId="66728" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
-					</If>
+					<TurnIn QuestId="66728" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
 				</If>
 			</If>
 		</If>
@@ -1796,10 +1886,8 @@
 				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
 				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-					<If Condition="IsQuestAcceptQualified(66729)">
-						<PickupQuest NpcId="1006693" QuestId="66729" XYZ="39.29187, 1.214808, 0.8086548" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(66729)">
+					<PickupQuest NpcId="1006693" QuestId="66729" XYZ="39.29187, 1.214808, 0.8086548" />
 				</If>
 			</If>
 			<If Condition="HasQuest(66729)">
@@ -1818,9 +1906,7 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<HandOver ItemId="2001124" QuestId="66729" StepId="1" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
-					</If>
+					<HandOver ItemId="2001124" QuestId="66729" StepId="1" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
 				</If>
 				<If Condition="GetQuestStep(66729) == 2">
 					<If Condition="not IsOnMap(156)">
@@ -1848,9 +1934,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="66729" NpcId="1007724" XYZ="1.022339, -1.995725, -45.79236" />
-					</If>
+					<TurnIn QuestId="66729" NpcId="1007724" XYZ="1.022339, -1.995725, -45.79236" />
 				</If>
 			</If>
 		</If>
