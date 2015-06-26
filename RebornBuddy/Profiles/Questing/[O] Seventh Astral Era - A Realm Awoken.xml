@@ -51,7 +51,7 @@
 	<KillRadius>90</KillRadius>
 	<Order>
 
-		<If Condition="(Core.Me.CurrentJob == ClassJobType.Arcanist) or (Core.Me.CurrentJob == ClassJobType.Archer) or (Core.Me.CurrentJob == ClassJobType.Conjurer) or (Core.Me.CurrentJob == ClassJobType.Gladiator) or (Core.Me.CurrentJob == ClassJobType.Lancer) or (Core.Me.CurrentJob == ClassJobType.Marauder) or (Core.Me.CurrentJob == ClassJobType.Pugilist) or (Core.Me.CurrentJob == ClassJobType.Rogue) or (Core.Me.CurrentJob == ClassJobType.Thaumaturge)">
+		<If Condition="(Core.Me.CurrentJob != Enums.ClassJobType.Bard) and (Core.Me.CurrentJob != Enums.ClassJobType.BlackMage) and (Core.Me.CurrentJob != Enums.ClassJobType.DarkKnight) and (Core.Me.CurrentJob != Enums.ClassJobType.Dragoon) and (Core.Me.CurrentJob != Enums.ClassJobType.Machinist) and (Core.Me.CurrentJob != Enums.ClassJobType.Monk) and (Core.Me.CurrentJob != Enums.ClassJobType.Ninja) and (Core.Me.CurrentJob != Enums.ClassJobType.Paladin) and (Core.Me.CurrentJob != Enums.ClassJobType.Scholar) and (Core.Me.CurrentJob != Enums.ClassJobType.Summoner) and (Core.Me.CurrentJob != Enums.ClassJobType.Warrior) and (Core.Me.CurrentJob != Enums.ClassJobType.WhiteMage)">
 			<LogMessage Message="You do not have a job assigned on your character." />
 			<LogMessage Message="Ensure your Soul Crystal is equipped or that you've completed your level 30 job quest." />
 			<LogMessage Message="Please restart this profile after you are done." />
@@ -126,14 +126,14 @@
 
 					0: Vitality Earrings
 					1: Strength Earrings (Accuracy)
-					2: Strength Earrings (Critical Strike)
+					2: Strength Earrings (Critical Hit Rate)
 
 					-->
 
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Warrior) or (Core.Me.CurrentJob == ClassJobType.Paladin)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
 						<TurnIn QuestId="66711" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Monk) or (Core.Me.CurrentJob == ClassJobType.Dragoon)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
 						<TurnIn QuestId="66711" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" RewardSlot="1" />
 					</If>
 					<TurnIn QuestId="66711" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" />
@@ -221,13 +221,13 @@
 
 					-->
 
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Bard) or (Core.Me.CurrentJob == ClassJobType.Ninja)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
 						<TurnIn QuestId="66712" NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.WhiteMage) or (Core.Me.CurrentJob == ClassJobType.Scholar)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
 						<TurnIn QuestId="66712" NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" RewardSlot="1" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.BlackMage) or (Core.Me.CurrentJob == ClassJobType.Summoner)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
 						<TurnIn QuestId="66712" NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" RewardSlot="2" />
 					</If>
 					<TurnIn QuestId="66712" NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" />
@@ -432,6 +432,8 @@
 					1: Perception Materia IV
 					2: GP Materia IV
 
+					If you want a specific reward from the above list, change the "Reward Slot" to the number you want:
+
 					-->
 
 					<TurnIn QuestId="66714" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" RewardSlot="0" />
@@ -562,6 +564,8 @@
 					1: CP Materia IV
 					2: Control Materia IV
 
+					If you want a specific reward from the above list, change the "Reward Slot" to the number you want:
+
 					-->
 
 					<TurnIn QuestId="66715" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" RewardSlot="0" />
@@ -605,15 +609,15 @@
 					<!-- Rewards
 
 					0: Vitality Ring
-					1: Strength Ring
-					2: Strength Ring
+					1: Strength Ring (Accuracy)
+					2: Strength Ring (Skill Speed)
 
 					-->
 
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Warrior) or (Core.Me.CurrentJob == ClassJobType.Paladin)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
 						<TurnIn QuestId="66716" NpcId="1006530" ItemId="2001077" XYZ="21.92719, 20.74698, -682.063" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Monk) or (Core.Me.CurrentJob == ClassJobType.Dragoon)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
 						<TurnIn QuestId="66716" NpcId="1006530" ItemId="2001077" XYZ="21.92719, 20.74698, -682.063" RewardSlot="1" />
 					</If>
 					<TurnIn QuestId="66716" NpcId="1006530" ItemId="2001077" XYZ="21.92719, 20.74698, -682.063" />
@@ -708,13 +712,13 @@
 
 					-->
 
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Bard) or (Core.Me.CurrentJob == ClassJobType.Ninja)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
 						<TurnIn QuestId="66717" NpcId="1006544" XYZ="24.09399, 28.99997, -750.0573" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.WhiteMage) or (Core.Me.CurrentJob == ClassJobType.Scholar)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
 						<TurnIn QuestId="66717" NpcId="1006544" XYZ="24.09399, 28.99997, -750.0573" RewardSlot="1" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.BlackMage) or (Core.Me.CurrentJob == ClassJobType.Summoner)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
 						<TurnIn QuestId="66717" NpcId="1006544" XYZ="24.09399, 28.99997, -750.0573" RewardSlot="2" />
 					</If>
 					<TurnIn QuestId="66717" NpcId="1006544" XYZ="24.09399, 28.99997, -750.0573" />
@@ -775,13 +779,13 @@
 
 					-->
 
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Bard) or (Core.Me.CurrentJob == ClassJobType.Ninja)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
 						<TurnIn QuestId="66719" NpcId="1006552" XYZ="54.79517, 25.54827, -698.0544" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.WhiteMage) or (Core.Me.CurrentJob == ClassJobType.Scholar)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
 						<TurnIn QuestId="66719" NpcId="1006552" XYZ="54.79517, 25.54827, -698.0544" RewardSlot="1" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.BlackMage) or (Core.Me.CurrentJob == ClassJobType.Summoner)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
 						<TurnIn QuestId="66719" NpcId="1006552" XYZ="54.79517, 25.54827, -698.0544" RewardSlot="2" />
 					</If>
 					<TurnIn QuestId="66719" NpcId="1006552" XYZ="54.79517, 25.54827, -698.0544" />
@@ -841,14 +845,14 @@
 
 					0: Vitality Necklace
 					1: Strength Necklace (Accuracy)
-					2: Strength Necklace (Critical Strike)
+					2: Strength Necklace (Critical Hit Rate)
 
 					-->
 
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Warrior) or (Core.Me.CurrentJob == ClassJobType.Paladin)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
 						<TurnIn QuestId="66718" NpcId="1006530" ItemId="2001078" XYZ="21.92719, 20.74698, -682.063" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Monk) or (Core.Me.CurrentJob == ClassJobType.Dragoon)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
 						<TurnIn QuestId="66718" NpcId="1006530" ItemId="2001078" XYZ="21.92719, 20.74698, -682.063" RewardSlot="1" />
 					</If>
 					<TurnIn QuestId="66718" NpcId="1006530" ItemId="2001078" XYZ="21.92719, 20.74698, -682.063" />
@@ -1059,14 +1063,14 @@
 
 					0: Vitality Bracelets
 					1: Strength Bracelets (Accuracy)
-					2: Strength Bracelets (Critical Strike)
+					2: Strength Bracelets (Critical Hit Rate)
 
 					-->
 
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Warrior) or (Core.Me.CurrentJob == ClassJobType.Paladin)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
 						<TurnIn QuestId="66720" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Monk) or (Core.Me.CurrentJob == ClassJobType.Dragoon)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
 						<TurnIn QuestId="66720" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="1" />
 					</If>
 					<TurnIn QuestId="66720" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
@@ -1114,13 +1118,13 @@
 
 					-->
 
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Bard) or (Core.Me.CurrentJob == ClassJobType.Ninja)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
 						<TurnIn QuestId="66721" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.WhiteMage) or (Core.Me.CurrentJob == ClassJobType.Scholar)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
 						<TurnIn QuestId="66721" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="1" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.BlackMage) or (Core.Me.CurrentJob == ClassJobType.Summoner)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
 						<TurnIn QuestId="66721" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="2" />
 					</If>
 					<TurnIn QuestId="66721" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
@@ -1213,16 +1217,16 @@
 
 					-->
 
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Paladin)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
 						<TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Monk)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk)">
 						<TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="1" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Warrior)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior)">
 						<TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="2" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Dragoon)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
 						<TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="3" />
 					</If>
 					<TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" />
@@ -1320,16 +1324,16 @@
 
 					-->
 
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Bard)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard)">
 						<TurnIn QuestId="66723" NpcId="1003785" ItemId="2001081" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.WhiteMage)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage)">
 						<TurnIn QuestId="66723" NpcId="1003785" ItemId="2001081" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="1" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.BlackMage)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage)">
 						<TurnIn QuestId="66723" NpcId="1003785" ItemId="2001081" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="2" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Summoner)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
 						<TurnIn QuestId="66723" NpcId="1003785" ItemId="2001081" XYZ="-489.8299, 21.48999, -381.9791" RewardSlot="3" />
 					</If>
 					<TurnIn QuestId="66723" NpcId="1003785" ItemId="2001081" XYZ="-489.8299, 21.48999, -381.9791" />
@@ -1389,13 +1393,13 @@
 
 					-->
 
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Scholar)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
 						<TurnIn QuestId="66724" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Rogue)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Rogue)">
 						<TurnIn QuestId="66724" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" RewardSlot="1" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == ClassJobType.Gladiator)">
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Gladiator)">
 						<TurnIn QuestId="66724" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" RewardSlot="2" />
 					</If>
 					<TurnIn QuestId="66724" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" />
@@ -1961,7 +1965,9 @@
 
 		<If Condition="IsQuestCompleted(66729)">
 			<LogMessage Message="You've completed the A Realm Awoken questline!" />
-			<LoadProfile Path="./[O] Seventh Astral Era - Through the Maelstrom.xml" />
+			<StopBot />
+			<!-- <LogMessage Message="Loading the Through the Maelstrom profile..." />
+			<LoadProfile Path="Profiles/Questing/[O] Seventh Astral Era - Through the Maelstrom.xml" /> -->
 		</If>
 
 	</Order>

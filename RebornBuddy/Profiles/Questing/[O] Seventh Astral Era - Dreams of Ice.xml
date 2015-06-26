@@ -7,7 +7,7 @@
 #########################################################
 # Author: y2krazy                                       #
 #########################################################
-# Version: 1.0.3                                        #
+# Version: 1.0.4                                        #
 #########################################################
 # Required Level: 50                                    #
 #########################################################
@@ -22,7 +22,8 @@
 # 	Ul'dah - Steps of Nald                              #
 #########################################################
 # Required User Interaction:                            #
-# 	Interaction required for Duty Finder when prompted. #
+# 	Akh Afah Amphitheatre (Hard) Duty                   #
+# 	Snowcloak Duty                                      #
 #########################################################
 # Required Setup:                                       #
 # 	Brave New Companions quest completed.               #
@@ -38,6 +39,13 @@
 	<KillRadius>90</KillRadius>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<Order>
+
+		<If Condition="(Core.Me.CurrentJob != Enums.ClassJobType.Bard) and (Core.Me.CurrentJob != Enums.ClassJobType.BlackMage) and (Core.Me.CurrentJob != Enums.ClassJobType.DarkKnight) and (Core.Me.CurrentJob != Enums.ClassJobType.Dragoon) and (Core.Me.CurrentJob != Enums.ClassJobType.Machinist) and (Core.Me.CurrentJob != Enums.ClassJobType.Monk) and (Core.Me.CurrentJob != Enums.ClassJobType.Ninja) and (Core.Me.CurrentJob != Enums.ClassJobType.Paladin) and (Core.Me.CurrentJob != Enums.ClassJobType.Scholar) and (Core.Me.CurrentJob != Enums.ClassJobType.Summoner) and (Core.Me.CurrentJob != Enums.ClassJobType.Warrior) and (Core.Me.CurrentJob != Enums.ClassJobType.WhiteMage)">
+			<LogMessage Message="You do not have a job assigned on your character." />
+			<LogMessage Message="Ensure your Soul Crystal is equipped or that you've completed your level 30 job quest." />
+			<LogMessage Message="Please restart this profile after you are done." />
+			<StopBot />
+		</If>
 
 		<!-- Traitor in the Midst -->
 
@@ -57,10 +65,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65588)">
-						<PickupQuest NpcId="1008969" QuestId="65588" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65588)">
+					<PickupQuest NpcId="1008969" QuestId="65588" XYZ="0.9917603, -1.995725, -45.70081" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65588)">
@@ -79,9 +85,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
 				</If>
 				<If Condition="GetQuestStep(65588) == 2">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
@@ -98,9 +102,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1009959" XYZ="3.524841, 0.009977885, -4.44043" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1009959" XYZ="3.524841, 0.009977885, -4.44043" />
 				</If>
 				<If Condition="GetQuestStep(65588) == 255">
 					<If Condition="not IsOnMap(130)">
@@ -111,18 +113,28 @@
 							<Travel To="130" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Paladin/Warrior/Dark Knight Hands
+					1: Dragoon Hands
+					2: Monk/Ninja Hands
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
+						<TurnIn QuestId="65588" NpcId="1008700" XYZ="-132.5247, 4.1, -111.9249" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
+						<TurnIn QuestId="65588" NpcId="1008700" XYZ="-132.5247, 4.1, -111.9249" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
+						<TurnIn QuestId="65588" NpcId="1008700" XYZ="-132.5247, 4.1, -111.9249" RewardSlot="2" />
+					</If>
 					<TurnIn QuestId="65588" NpcId="1008700" XYZ="-132.5247, 4.1, -111.9249" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: GLA MRD DRK Hands
-		1: LNC Hands
-		2: PGL ROG Hands
-
-		-->
 
 		<!-- Back and Fourth -->
 
@@ -156,9 +168,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
 				</If>
 				<If Condition="GetQuestStep(65589) == 2">
 					<If Condition="not IsOnMap(156)">
@@ -231,20 +241,28 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TurnIn QuestId="65589" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
+
+					<!-- Rewards
+
+					0: Bard/Machinist Hands
+					1: White Mage/Scholoar/Astrologian Hands
+					2: Black Mage/Summoner Hands
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard)">
+						<TurnIn QuestId="65589" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" RewardSlot="0" />
 					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
+						<TurnIn QuestId="65589" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
+						<TurnIn QuestId="65589" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" RewardSlot="2" />
+					</If>
+					<TurnIn QuestId="65589" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: ARC MCH Hands
-		1: CNJ AST Hands
-		2: THM ACN Hands
-
-		-->
 
 		<!-- Coming to Terms -->
 
@@ -264,10 +282,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-					<If Condition="IsQuestAcceptQualified(65590)">
-						<PickupQuest NpcId="1010078" QuestId="65590" XYZ="31.54041, -1, -0.8087769" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65590)">
+					<PickupQuest NpcId="1010078" QuestId="65590" XYZ="31.54041, -1, -0.8087769" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65590)">
@@ -286,9 +302,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TalkTo InteractDistance="3.0" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
 				</If>
 				<If Condition="GetQuestStep(65590) == 2">
 					<If Condition="not IsOnMap(155)">
@@ -311,18 +325,34 @@
 						</If>
 					</If>
 					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
+
+					<!-- Rewards
+
+					0: Paladin/Warrior/Dark Knight Legs
+					1: Dragoon Legs
+					2: Monk/Ninja Legs
+
+					-->
+
+					<!-- TO DO -->
+
+					<!-- Replace the CodeChunk to allow for reward selection. -->
+
+					<!-- TO DO -->
+
+					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
+						<TurnIn QuestId="65590" NpcId="" XYZ="" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
+						<TurnIn QuestId="65590" NpcId="" XYZ="" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
+						<TurnIn QuestId="65590" NpcId="" XYZ="" RewardSlot="2" />
+					</If> -->
 					<RunCode Name="ComingtoTerms" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: GLA MRD DRK Legs
-		1: LNC Legs
-		2: PGL ROG Legs
-
-		-->
 
 		<!-- The Intercession of Saints -->
 
@@ -383,18 +413,28 @@
 							<Travel To="155" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Bard/Machinist Legs
+					1: White Mage/Scholoar/Astrologian Legs
+					2: Black Mage/Summoner Legs
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard)">
+						<TurnIn QuestId="65593" NpcId="1009977" XYZ="261.0055, 303.1, -198.5962" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
+						<TurnIn QuestId="65593" NpcId="1009977" XYZ="261.0055, 303.1, -198.5962" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
+						<TurnIn QuestId="65593" NpcId="1009977" XYZ="261.0055, 303.1, -198.5962" RewardSlot="2" />
+					</If>
 					<TurnIn QuestId="65593" NpcId="1009977" XYZ="261.0055, 303.1, -198.5962" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: ARC MCH Legs
-		1: CNJ AST Legs
-		2: THM ACN Legs
-
-		-->
 
 		<!-- Strength in Unity -->
 
@@ -422,19 +462,28 @@
 							<Travel To="155" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Paladin/Warrior/Dark Knight Feet
+					1: Dragoon Feet
+					2: Monk/Ninja Feet
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
+						<TurnIn InteractDistance="3.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
+						<TurnIn InteractDistance="3.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
+						<TurnIn InteractDistance="3.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="2" />
+					</If>
 					<TurnIn InteractDistance="3.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: GLA MRD DRK Feet
-		1: LNC Feet
-		2: PGL ROG Feet
-
-		-->
-
 
 		<!-- Dark Words, Dark Deeds -->
 
@@ -506,18 +555,28 @@
 							<Travel To="155" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Bard/Machinist Feet
+					1: White Mage/Scholoar/Astrologian Feet
+					2: Black Mage/Summoner Feet
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard)">
+						<TurnIn InteractDistance="3.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
+						<TurnIn InteractDistance="3.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
+						<TurnIn InteractDistance="3.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="2" />
+					</If>
 					<TurnIn InteractDistance="3.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: ARC MCH Feet
-		1: CNJ AST Feet
-		2: THM ACN Feet
-
-		-->
 
 		<!-- First Blood -->
 
@@ -832,18 +891,28 @@
 							<Travel To="132" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Paladin/Warrior/Dark Knight Body
+					1: Dragoon Body
+					2: Monk/Ninja Body
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
+						<TurnIn QuestId="65614" NpcId="1010010" XYZ="-50.94995, -3.440948, 20.58435" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
+						<TurnIn QuestId="65614" NpcId="1010010" XYZ="-50.94995, -3.440948, 20.58435" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
+						<TurnIn QuestId="65614" NpcId="1010010" XYZ="-50.94995, -3.440948, 20.58435" RewardSlot="2" />
+					</If>
 					<TurnIn QuestId="65614" NpcId="1010010" XYZ="-50.94995, -3.440948, 20.58435" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: GLA MRD DRK Body
-		1: LNC Body
-		2: PGL ROG Body
-
-		-->
 
 		<!-- Chasing Ivy -->
 
@@ -930,18 +999,28 @@
 							<Travel To="132" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Bard/Machinist Body
+					1: White Mage/Scholoar/Astrologian Body
+					2: Black Mage/Summoner Body
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard)">
+						<TurnIn QuestId="65615" NpcId="1010017" XYZ="22.17133, 1.2, 28.85474" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
+						<TurnIn QuestId="65615" NpcId="1010017" XYZ="22.17133, 1.2, 28.85474" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
+						<TurnIn QuestId="65615" NpcId="1010017" XYZ="22.17133, 1.2, 28.85474" RewardSlot="2" />
+					</If>
 					<TurnIn QuestId="65615" NpcId="1010017" XYZ="22.17133, 1.2, 28.85474" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: ARC MCH Body
-		1: CNJ AST Body
-		2: THM ACN Body
-
-		-->
 
 		<!-- Doman Connection -->
 
@@ -1097,20 +1176,28 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65617" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" />
+
+					<!-- Rewards
+
+					0: Paladin/Warrior/Dark Knight Waist
+					1: Dragoon Waist
+					2: Monk/Ninja Waist
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
+						<TurnIn QuestId="65617" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" RewardSlot="0" />
 					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
+						<TurnIn QuestId="65617" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
+						<TurnIn QuestId="65617" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" RewardSlot="2" />
+					</If>
+					<TurnIn QuestId="65617" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: GLA MRD DRK Waist
-		1: LNC Waist
-		2: PGL ROG Waist
-
-		-->
 
 		<!-- A Simple Plan -->
 
@@ -1130,10 +1217,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65618)">
-						<PickupQuest NpcId="1010147" QuestId="65618" XYZ="0.8086548, -1.995725, -45.67035" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65618)">
+					<PickupQuest NpcId="1010147" QuestId="65618" XYZ="0.8086548, -1.995725, -45.67035" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65618)">
@@ -1174,20 +1259,28 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65618" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" />
+
+					<!-- Rewards
+
+					0: Bard/Machinist Waist
+					1: White Mage/Scholoar/Astrologian Waist
+					2: Black Mage/Summoner Waist
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard)">
+						<TurnIn QuestId="65618" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" RewardSlot="0" />
 					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
+						<TurnIn QuestId="65618" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
+						<TurnIn QuestId="65618" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" RewardSlot="2" />
+					</If>
+					<TurnIn QuestId="65618" NpcId="1010147" XYZ="0.8086548, -1.995725, -45.67035" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: ARC MCH Waist
-		1: CNJ AST Waist
-		2: THM ACN Waist
-
-		-->
 
 		<!-- The Instruments of Our Deliverance -->
 
@@ -1207,10 +1300,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65620)">
-						<PickupQuest NpcId="1008969" QuestId="65620" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65620)">
+					<PickupQuest NpcId="1008969" QuestId="65620" XYZ="0.9917603, -1.995725, -45.70081" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65620)">
@@ -1315,19 +1406,38 @@
 						</If>
 					</If>
 					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
+
+					<!-- Rewards
+
+					0: Paladin Weapon
+					1: Monk Weapon
+					2: Warrior Weapon
+					3: Dragoon Weapon
+
+					-->
+
+					<!-- TO DO -->
+
+					<!-- Replace the CodeChunk to allow for reward selection. -->
+
+					<!-- TO DO -->
+
+					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
+						<TurnIn QuestId="65622" NpcId="" XYZ="" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk)">
+						<TurnIn QuestId="65622" NpcId="" XYZ="" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior)">
+						<TurnIn QuestId="65622" NpcId="" XYZ="" RewardSlot="2" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
+						<TurnIn QuestId="65622" NpcId="" XYZ="" RewardSlot="3" />
+					</If> -->
 					<RunCode Name="TheRoadLessTraveled" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: GLA Weapon
-		1: PGL Weapon
-		2: MRD Weapon
-		3: LNC Weapon
-
-		-->
 
 		<!-- Eyes Unclouded -->
 
@@ -1361,21 +1471,32 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65623" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
+
+					<!-- Rewards
+
+					0: Bard Weapon
+					1: White Mage Weapon
+					2: Black Mage Weapon
+					3: Summoner Weapon
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard)">
+						<TurnIn QuestId="65623" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" RewardSlot="0" />
 					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage)">
+						<TurnIn QuestId="65623" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage)">
+						<TurnIn QuestId="65623" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" RewardSlot="2" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
+						<TurnIn QuestId="65623" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" RewardSlot="3" />
+					</If>
+					<TurnIn QuestId="65623" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: ARC Weapon
-		1: CNJ Weapon
-		2: THM Weapon
-		3: ACN Weapon
-
-		-->
 
 		<!-- The Reason Roaille -->
 
@@ -1395,10 +1516,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65624)">
-						<PickupQuest NpcId="1008969" QuestId="65624" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65624)">
+					<PickupQuest NpcId="1008969" QuestId="65624" XYZ="0.9917603, -1.995725, -45.70081" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65624)">
@@ -1417,9 +1536,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1010045" XYZ="-1.999023, 7.450581E-09, -7.126038" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010045" XYZ="-1.999023, 7.450581E-09, -7.126038" />
 				</If>
 				<If Condition="GetQuestStep(65624) == 2">
 					<If Condition="not IsOnMap(147)">
@@ -1486,18 +1603,28 @@
 							<Travel To="147" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					0: Scholar Weapon
+					1: Ninja Weapon
+					2: Paladin Shield
+
+					-->
+
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
+						<TurnIn QuestId="65624" NpcId="1010063" XYZ="-207.5685, 71.61736, -132.5247" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
+						<TurnIn QuestId="65624" NpcId="1010063" XYZ="-207.5685, 71.61736, -132.5247" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
+						<TurnIn QuestId="65624" NpcId="1010063" XYZ="-207.5685, 71.61736, -132.5247" RewardSlot="2" />
+					</If>
 					<TurnIn QuestId="65624" NpcId="1010063" XYZ="-207.5685, 71.61736, -132.5247" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: ACN Weapon
-		1: ROG Weapon
-		2: GLA Shield
-
-		-->
 
 		<!-- Let Us Cling Together -->
 
@@ -1531,9 +1658,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65625" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
+					<TurnIn QuestId="65625" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
 				</If>
 			</If>
 		</If>
@@ -1541,6 +1666,8 @@
 		<If Condition="IsQuestCompleted(65625)">
 			<LogMessage Message="You've completed the Dreams of Ice questline!" />
 			<StopBot />
+			<!-- <LogMessage Message="Loading the Before the Fall profile..." />
+			<LoadProfile Path="Profiles/Questing/[O] Seventh Astral Era - Before the Fall.xml" /> -->
 		</If>
 
 	</Order>
@@ -1552,7 +1679,7 @@
 			<TargetMobs>
 				<TargetMob Id="3182" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="For_the_Greater_Good">
@@ -1562,7 +1689,7 @@
 			<TargetMobs>
 				<TargetMob Id="3182" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="Doman_Connection">
@@ -1572,7 +1699,7 @@
 			<TargetMobs>
 				<TargetMob Id="3109" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>

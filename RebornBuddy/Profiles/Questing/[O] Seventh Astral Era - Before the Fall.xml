@@ -7,7 +7,7 @@
 #########################################################
 # Author: y2krazy                                       #
 #########################################################
-# Version: 1.0.3                                        #
+# Version: 1.0.4                                        #
 #########################################################
 # Required Level: 50                                    #
 #########################################################
@@ -24,7 +24,11 @@
 # 	Ul'dah - Steps of Nald                              #
 #########################################################
 # Required User Interaction:                            #
-# 	Interaction required for Duty Finder when prompted. #
+# 	A Time to Every Purpose Duty                        #
+# 	Aether on Demand Quest: Gather Quest Items          #
+# 	The Chrysalis Duty                                  #
+# 	The Keeper of the Lake Duty                         #
+# 	The Steps of Faith Duty                             #
 #########################################################
 # Required Setup:                                       #
 # 	Let Us Cling Together quest completed.              #
@@ -41,6 +45,13 @@
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
+
+		<If Condition="(Core.Me.CurrentJob != Enums.ClassJobType.Bard) and (Core.Me.CurrentJob != Enums.ClassJobType.BlackMage) and (Core.Me.CurrentJob != Enums.ClassJobType.DarkKnight) and (Core.Me.CurrentJob != Enums.ClassJobType.Dragoon) and (Core.Me.CurrentJob != Enums.ClassJobType.Machinist) and (Core.Me.CurrentJob != Enums.ClassJobType.Monk) and (Core.Me.CurrentJob != Enums.ClassJobType.Ninja) and (Core.Me.CurrentJob != Enums.ClassJobType.Paladin) and (Core.Me.CurrentJob != Enums.ClassJobType.Scholar) and (Core.Me.CurrentJob != Enums.ClassJobType.Summoner) and (Core.Me.CurrentJob != Enums.ClassJobType.Warrior) and (Core.Me.CurrentJob != Enums.ClassJobType.WhiteMage)">
+			<LogMessage Message="You do not have a job assigned on your character." />
+			<LogMessage Message="Ensure your Soul Crystal is equipped or that you've completed your level 30 job quest." />
+			<LogMessage Message="Please restart this profile after you are done." />
+			<StopBot />
+		</If>
 
 		<!-- Good Intentions -->
 
@@ -60,17 +71,15 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="not IsQuestAcceptQualified(65899)">
-						<LogMessage Message="Please make sure The Bowl of Embers (Hard) has been completed!" />
-						<LogMessage Message="Please make sure The Navel (Hard) has been completed!" />
-						<LogMessage Message="Please make sure The Howling Eye (Hard) has been completed!" />
-						<LogMessage Message="Please restart this profile after you have done all 3." />
-						<StopBot />
-					</If>
-					<If Condition="IsQuestAcceptQualified(65899)">
-						<PickupQuest NpcId="1008969" QuestId="65899" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
+				<If Condition="not IsQuestAcceptQualified(65899)">
+					<LogMessage Message="Please make sure The Bowl of Embers (Hard) has been completed!" />
+					<LogMessage Message="Please make sure The Navel (Hard) has been completed!" />
+					<LogMessage Message="Please make sure The Howling Eye (Hard) has been completed!" />
+					<LogMessage Message="Please restart this profile after you have done all 3." />
+					<StopBot />
+				</If>
+				<If Condition="IsQuestAcceptQualified(65899)">
+					<PickupQuest NpcId="1008969" QuestId="65899" XYZ="0.9917603, -1.995725, -45.70081" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65899)">
@@ -89,9 +98,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1010844" XYZ="3.067017, 0.009977885, -4.287842" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010844" XYZ="3.067017, 0.009977885, -4.287842" />
 				</If>
 				<If Condition="GetQuestStep(65899) == 255">
 					<If Condition="not IsOnMap(145)">
@@ -243,9 +250,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TurnIn QuestId="65901" NpcId="1010891" XYZ="-3.677429, 0.01804011, -7.034485" />
-					</If>
+					<TurnIn QuestId="65901" NpcId="1010891" XYZ="-3.677429, 0.01804011, -7.034485" />
 				</If>
 			</If>
 		</If>
@@ -268,10 +273,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-					<If Condition="IsQuestAcceptQualified(65902)">
-						<PickupQuest NpcId="1010891" QuestId="65902" XYZ="-3.677429, 0.01804011, -7.034485" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65902)">
+					<PickupQuest NpcId="1010891" QuestId="65902" XYZ="-3.677429, 0.01804011, -7.034485" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65902)">
@@ -290,9 +293,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TalkTo InteractDistance="3.0" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
 				</If>
 				<If Condition="GetQuestStep(65902) == 2">
 					<If Condition="not IsOnMap(156)">
@@ -343,9 +344,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TalkTo InteractDistance="3.0" NpcId="1010857" XYZ="2.548157, -1.995725, -42.00812" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010857" XYZ="2.548157, -1.995725, -42.00812" />
 				</If>
 				<If Condition="GetQuestStep(65902) == 255">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
@@ -362,9 +361,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TurnIn QuestId="65902" NpcId="1010858" XYZ="-1.907471, 7.450581E-09, -3.128174" />
-					</If>
+					<TurnIn QuestId="65902" NpcId="1010858" XYZ="-1.907471, 7.450581E-09, -3.128174" />
 				</If>
 			</If>
 		</If>
@@ -387,10 +384,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-					<If Condition="IsQuestAcceptQualified(65903)">
-						<PickupQuest NpcId="1010858" QuestId="65903" XYZ="-1.907471, 7.450581E-09, -3.128174" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65903)">
+					<PickupQuest NpcId="1010858" QuestId="65903" XYZ="-1.907471, 7.450581E-09, -3.128174" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65903)">
@@ -409,9 +404,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1010890" XYZ="31.96765, -1, 2.914429" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010890" XYZ="31.96765, -1, 2.914429" />
 				</If>
 				<If Condition="GetQuestStep(65903) == 2">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
@@ -428,9 +421,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TalkTo InteractDistance="3.0" NpcId="1010860" XYZ="2.822876, -1.995725, -41.24518" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010860" XYZ="2.822876, -1.995725, -41.24518" />
 				</If>
 				<If Condition="GetQuestStep(65903) == 3">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
@@ -447,9 +438,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1010858" XYZ="-1.907471, 7.450581E-09, -3.128174" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010858" XYZ="-1.907471, 7.450581E-09, -3.128174" />
 				</If>
 				<If Condition="GetQuestStep(65903) == 4">
 					<If Condition="not IsOnMap(147)">
@@ -669,20 +658,21 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65905" NpcId="1011000" XYZ="-0.07635498, -1.995725, -42.25226" />
-					</If>
+
+					<!-- Rewards
+
+					0: Accuracy Materia IV
+					1: Critical Hit Rate Materia IV
+					2: Determination Materia IV
+
+					If you want a specific reward from the above list, change the "Reward Slot" to the number you want:
+
+					-->
+
+					<TurnIn QuestId="65905" NpcId="1011000" XYZ="-0.07635498, -1.995725, -42.25226" RewardSlot="0" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: ACC Materia IV
-		1: CRT Materia IV
-		2: DET Materia IV
-
-		-->
 
 		<!-- In Memory of Moenbryda -->
 
@@ -702,10 +692,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65965)">
-						<PickupQuest NpcId="1011000" QuestId="65965" XYZ="-0.07635498, -1.995725, -42.25226" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65965)">
+					<PickupQuest NpcId="1011000" QuestId="65965" XYZ="-0.07635498, -1.995725, -42.25226" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65965)">
@@ -736,9 +724,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65965" NpcId="1010897" XYZ="0.9613037, -1.995725, -45.60925" />
-					</If>
+					<TurnIn QuestId="65965" NpcId="1010897" XYZ="0.9613037, -1.995725, -45.60925" />
 				</If>
 			</If>
 		</If>
@@ -761,10 +747,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65906)">
-						<PickupQuest NpcId="1010897" QuestId="65906" XYZ="0.9613037, -1.995725, -45.60925" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65906)">
+					<PickupQuest NpcId="1010897" QuestId="65906" XYZ="0.9613037, -1.995725, -45.60925" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65906)">
@@ -783,9 +767,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1010903" XYZ="24.88745, -1, -1.022339" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010903" XYZ="24.88745, -1, -1.022339" />
 				</If>
 				<If Condition="GetQuestStep(65906) == 2">
 					<If Condition="not IsOnMap(156)">
@@ -825,9 +807,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65906" NpcId="1010930" XYZ="-1.266479, -1.995725, -42.06915" />
-					</If>
+					<TurnIn QuestId="65906" NpcId="1010930" XYZ="-1.266479, -1.995725, -42.06915" />
 				</If>
 			</If>
 		</If>
@@ -850,10 +830,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65907)">
-						<PickupQuest NpcId="1010930" QuestId="65907" XYZ="-1.266479, -1.995725, -42.06915" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65907)">
+					<PickupQuest NpcId="1010930" QuestId="65907" XYZ="-1.266479, -1.995725, -42.06915" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65907)">
@@ -1050,9 +1028,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65909" NpcId="1010896" XYZ="0.503479, -1.995725, -42.61847" />
-					</If>
+					<TurnIn QuestId="65909" NpcId="1010896" XYZ="0.503479, -1.995725, -42.61847" />
 				</If>
 			</If>
 		</If>
@@ -1075,10 +1051,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65927)">
-						<PickupQuest NpcId="1010896" QuestId="65927" XYZ="0.503479, -1.995725, -42.61847" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65927)">
+					<PickupQuest NpcId="1010896" QuestId="65927" XYZ="0.503479, -1.995725, -42.61847" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65927)">
@@ -1097,9 +1071,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1010911" XYZ="-3.738525, 0.01804011, -9.353821" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1010911" XYZ="-3.738525, 0.01804011, -9.353821" />
 				</If>
 				<If Condition="GetQuestStep(65927) == 2">
 					<If Condition="not IsOnMap(156)">
@@ -1296,19 +1268,20 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65955" NpcId="1010897" XYZ="0.9613037, -1.995725, -45.60925" />
-					</If>
+
+					<!-- Rewards
+
+					0: Skill Speed Materia IV
+					1: Spell Speed Materia IV
+
+					If you want a specific reward from the above list, change the "Reward Slot" to the number you want:
+
+					-->
+
+					<TurnIn QuestId="65955" NpcId="1010897" XYZ="0.9613037, -1.995725, -45.60925" RewardSlot="0" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: SKL Materia IV
-		1: SPL Materia IV
-
-		-->
 
 		<!-- Administrative Decision -->
 
@@ -1328,10 +1301,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65956)">
-						<PickupQuest NpcId="1010897" QuestId="65956" XYZ="0.9613037, -1.995725, -45.60925" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65956)">
+					<PickupQuest NpcId="1010897" QuestId="65956" XYZ="0.9613037, -1.995725, -45.60925" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65956)">
@@ -1350,9 +1321,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<UseObject NpcId="2005060" XYZ="-4.135254, 0.01519775, -9.628479" Radius="10" QuestId="65956" StepId="1" />
-					</If>
+					<UseObject NpcId="2005060" XYZ="-4.135254, 0.01519775, -9.628479" Radius="10" QuestId="65956" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65956) == 2">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
@@ -1369,9 +1338,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1011612" XYZ="7.736328, -7.450581E-09, -8.438293" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1011612" XYZ="7.736328, -7.450581E-09, -8.438293" />
 				</If>
 				<If Condition="GetQuestStep(65956) == 3">
 					<If Condition="not IsOnMap(156)">
@@ -1399,9 +1366,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65956" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
+					<TurnIn QuestId="65956" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
 				</If>
 			</If>
 		</If>
@@ -1424,10 +1389,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65957)">
-						<PickupQuest NpcId="1010897" QuestId="65957" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65957)">
+					<PickupQuest NpcId="1010897" QuestId="65957" XYZ="0.9917603, -1.995725, -45.70081" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65957)">
@@ -1566,9 +1529,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65958" NpcId="1010897" XYZ="0.9917603, -1.995725, -45.70081" />
-					</If>
+					<TurnIn QuestId="65958" NpcId="1010897" XYZ="0.9917603, -1.995725, -45.70081" />
 				</If>
 			</If>
 		</If>
@@ -1591,10 +1552,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65959)">
-						<PickupQuest NpcId="1010897" QuestId="65959" XYZ="0.9613037, -1.995725, -45.60925" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65959)">
+					<PickupQuest NpcId="1010897" QuestId="65959" XYZ="0.9613037, -1.995725, -45.60925" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65959)">
@@ -1613,9 +1572,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<TalkTo InteractDistance="3.0" NpcId="1011615" XYZ="-1.327576, 7.450581E-09, -2.700867" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1011615" XYZ="-1.327576, 7.450581E-09, -2.700867" />
 				</If>
 				<If Condition="GetQuestStep(65959) == 2">
 					<If Condition="not IsOnMap(153)">
@@ -1807,19 +1764,20 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<TurnIn QuestId="65960" NpcId="1010897" XYZ="0.9613037, -1.995725, -45.60925" />
-					</If>
+
+					<!-- Rewards
+
+					0: Durability Draught
+					1: Spiritbond Potion
+
+					If you want a specific reward from the above list, change the "Reward Slot" to the number you want:
+
+					-->
+
+					<TurnIn QuestId="65960" NpcId="1010897" XYZ="0.9613037, -1.995725, -45.60925" RewardSlot="1" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Rewards
-
-		0: Durability Draught
-		1: Spiritbond Potion
-
-		-->
 
 		<!-- A Time to Every Purpose -->
 
@@ -1839,10 +1797,8 @@
 				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 				</If>
-				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<If Condition="IsQuestAcceptQualified(65961)">
-						<PickupQuest NpcId="1010897" QuestId="65961" XYZ="0.9613037, -1.995725, -45.60925" />
-					</If>
+				<If Condition="IsQuestAcceptQualified(65961)">
+					<PickupQuest NpcId="1010897" QuestId="65961" XYZ="0.9613037, -1.995725, -45.60925" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65961)">
@@ -2047,6 +2003,8 @@
 		<If Condition="IsQuestCompleted(65964)">
 			<LogMessage Message="You've completed the Before the Fall questline!" />
 			<StopBot />
+			<!-- <LogMessage Message="Loading the Heavensward profile..." />
+			<LoadProfile Path="Profiles/Questing/[O] Heavensward.xml" /> -->
 		</If>
 
 	</Order>
@@ -2059,7 +2017,7 @@
 				<TargetMob Id="3332" />
 				<TargetMob Id="3333" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="On_the_Counteroffensive">
@@ -2071,7 +2029,7 @@
 				<TargetMob Id="3110" Weight="2000" />
 				<TargetMob Id="3118" Weight="1000" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="On_the_Counteroffensive2">
@@ -2083,7 +2041,7 @@
 				<TargetMob Id="2120" Weight="2000" />
 				<TargetMob Id="3118" Weight="1000" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="An_Allied_Perspective">
@@ -2094,7 +2052,7 @@
 				<TargetMob Id="3339" Weight="2000" />
 				<TargetMob Id="3338" Weight="1000" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="An_Allied_Perspective2">
@@ -2105,7 +2063,7 @@
 				<TargetMob Id="3337" Weight="2000" />
 				<TargetMob Id="3336" Weight="1000" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="Ancient_Ways_Timeless_Wants">
@@ -2115,7 +2073,7 @@
 			<TargetMobs>
 				<TargetMob Id="3340" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="Where_We_Are_Needed">
@@ -2125,7 +2083,7 @@
 			<TargetMobs>
 				<TargetMob Id="3341" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="Where_We_Are_Needed2">
@@ -2136,7 +2094,7 @@
 				<TargetMob Id="3343" Weight="2000" />
 				<TargetMob Id="3342" Weight="1000" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="Where_We_Are_Needed3">
@@ -2146,7 +2104,7 @@
 			<TargetMobs>
 				<TargetMob Id="3344" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
