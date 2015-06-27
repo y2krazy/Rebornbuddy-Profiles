@@ -7,7 +7,7 @@
 #########################################################
 # Author: y2krazy                                       #
 #########################################################
-# Version: 1.0.7                                        #
+# Version: 1.0.8                                        #
 #########################################################
 # Required Level: 50                                    #
 #########################################################
@@ -54,24 +54,22 @@
 
 		<If Condition="not IsQuestCompleted(66978)">
 			<If Condition="not HasQuest(66978)">
-				<If Condition="GetQuestStep(66899) == 255">
-					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
-							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
-							<Travel To="156" />
-						</If>
+				<If Condition="not IsOnMap(156) and not IsOnMap(351)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 					</If>
-					<If Condition="IsOnMap(156)">
-						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
-					</If>
-					<If Condition="IsQuestAcceptQualified(66978)">
-						<PickupQuest NpcId="1008579" QuestId="66978" XYZ="1.022339, -1.995725, -45.73132" />
-					</If>
+				</If>
+				<If Condition="IsOnMap(156)">
+					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+				</If>
+				<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
+				</If>
+				<If Condition="IsQuestAcceptQualified(66978)">
+					<PickupQuest NpcId="1008579" QuestId="66978" XYZ="1.022339, -1.995725, -45.73132" />
 				</If>
 			</If>
 			<If Condition="HasQuest(66978)">
