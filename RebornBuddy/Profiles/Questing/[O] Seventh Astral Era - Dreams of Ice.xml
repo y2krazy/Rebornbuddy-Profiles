@@ -7,7 +7,7 @@
 #########################################################
 # Author: y2krazy                                       #
 #########################################################
-# Version: 1.0.4                                        #
+# Version: 1.0.5                                        #
 #########################################################
 # Required Level: 50                                    #
 #########################################################
@@ -87,7 +87,7 @@
 						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
 					</If>
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
 					<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
 				</If>
@@ -104,7 +104,7 @@
 						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
 					</If>
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
 					<TalkTo InteractDistance="3.0" NpcId="1009959" XYZ="3.524841, 0.009977885, -4.44043" />
 				</If>
@@ -170,7 +170,7 @@
 						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
 					</If>
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
 					<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
 				</If>
@@ -208,14 +208,15 @@
 					<NoCombatMoveTo Name="First Location" XYZ="-466.6962, -3.2168, -236.041" />
 					<Dismount />
 					<WaitTimer WaitTime="1" />
-					<NoCombatMoveTo Name="Second Location" XYZ="-541.4116, -1.737358, -293.567" />
+					<MoveTo Name="Second Location" XYZ="-541.4116, -1.737358, -293.567" />
 					<Dismount />
 					<WaitTimer WaitTime="1" />
-					<NoCombatMoveTo Name="Third Location" XYZ="-592.8009, -3.216822, -388.8668" />
+					<MoveTo Name="Third Location" XYZ="-592.8009, -3.216822, -388.8668" />
 					<Dismount />
-					<LogMessage Message="Waiting 60 seconds for cooldowns to refresh!" />
+					<WaitTimer WaitTime="1" />
+					<LogMessage Message="Waiting 60 seconds for cooldowns to refresh..." />
 					<WaitTimer WaitTime="60" />
-					<NoCombatMoveTo Name="Final Location" XYZ="-598.9959, -3.216822, -396.2319" />
+					<MoveTo Name="Final Location" XYZ="-598.9959, -3.216822, -396.2319" />
 					<Dismount />
 					<WaitTimer WaitTime="1" />
 				</If>
@@ -243,7 +244,7 @@
 						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
 					</If>
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
 
 					<!-- Rewards
@@ -284,7 +285,7 @@
 					<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
 				</If>
 				<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 				</If>
 				<If Condition="IsQuestAcceptQualified(65590)">
 					<PickupQuest NpcId="1010078" QuestId="65590" XYZ="31.54041, -1, -0.8087769" />
@@ -476,15 +477,15 @@
 					-->
 
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
-						<TurnIn InteractDistance="3.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="0" />
+						<TurnIn InteractDistance="2.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
-						<TurnIn InteractDistance="3.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="1" />
+						<TurnIn InteractDistance="2.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="1" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
-						<TurnIn InteractDistance="3.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="2" />
+						<TurnIn InteractDistance="2.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="2" />
 					</If>
-					<TurnIn InteractDistance="3.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" />
+					<TurnIn InteractDistance="2.0" QuestId="65598" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" />
 				</If>
 			</If>
 		</If>
@@ -569,15 +570,15 @@
 					-->
 
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard)">
-						<TurnIn InteractDistance="3.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="0" />
+						<TurnIn InteractDistance="2.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
-						<TurnIn InteractDistance="3.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="1" />
+						<TurnIn InteractDistance="2.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="1" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
-						<TurnIn InteractDistance="3.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="2" />
+						<TurnIn InteractDistance="2.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" RewardSlot="2" />
 					</If>
-					<TurnIn InteractDistance="3.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" />
+					<TurnIn InteractDistance="2.0" QuestId="65605" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" />
 				</If>
 			</If>
 		</If>
@@ -631,7 +632,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TurnIn InteractDistance="3.0" QuestId="65610" ItemId="2001470" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" />
+					<TurnIn InteractDistance="2.0" QuestId="65610" ItemId="2001470" NpcId="1006444" XYZ="-432.9748, 233.4727, -199.6643" />
 				</If>
 			</If>
 		</If>
@@ -1538,7 +1539,7 @@
 						<UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
 					</If>
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
 					<TalkTo InteractDistance="3.0" NpcId="1010045" XYZ="-1.999023, 7.450581E-09, -7.126038" />
 				</If>
