@@ -77,10 +77,11 @@ namespace ff14bot.NeoProfiles
 
         public override bool IsDone { get { return _done; } }
 		
-		public Version Version { get { return new Version(1, 2, 0); } }
+		public Version Version { get { return new Version(1, 2, 1); } }
 
 		private int mooch = 0;
         private int fishcount = 0;
+		private int amissfish = 0;
         private int fishlimit = System.Convert.ToInt32(Clio.Common.MathEx.Random(20, 30));
 
         private bool spotinit = false;
@@ -97,6 +98,14 @@ namespace ff14bot.NeoProfiles
                 new Decorator(ret => !ConditionCheck(),
                     new Action(r =>
                     {
+                        _done = true;
+                    })
+                ),
+				new Decorator(ret => amissfish > FishSpots.Count,
+                    new Action(r =>
+                    {
+						Logging.Write(Colors.Gold, "[Fish v" + Version.ToString() +"] The fish are amiss at all of the FishSpots.");
+						Logging.Write(Colors.Gold, "[Fish v" + Version.ToString() +"] This zone has been blacklisted, please fish somewhere else and then restart the profile.");
                         _done = true;
                     })
                 ),
@@ -121,18 +130,10 @@ namespace ff14bot.NeoProfiles
 						new Decorator(ret => Core.Player.IsMounted,
                             CommonBehaviors.Dismount()
                         ),
-						new Decorator(ret => Weather != null && Weather != WorldManager.CurrentWeather,
-                            new Sequence(
-								new Action(r =>
-								{
-									Logging.Write(Colors.Gold, "[Fish v" + Version.ToString() +"] Waiting for the proper weather...");
-								}),
-								new Wait(3600, ret => Weather == WorldManager.CurrentWeather, new ActionAlwaysSucceed())
-							)
-                        ),
                         new Decorator(ret => fishcount >= fishlimit,
                             new Action(r =>
                             {
+                                Thread.Sleep(10000);
 								Actionmanager.DoAction(299, Core.Player);
                                 ChangeFishSpot();
                                 spotinit = false;
@@ -151,6 +152,15 @@ namespace ff14bot.NeoProfiles
 								Logging.Write(Colors.Gold, "[Fish v" + Version.ToString() +"] Will fish for " + fishlimit + " fish before moving again.");
                                 spotinit = true;
                             })
+                        ),
+						new Decorator(ret => Weather != null && Weather != WorldManager.CurrentWeather,
+                            new Sequence(
+								new Action(r =>
+								{
+									Logging.Write(Colors.Gold, "[Fish v" + Version.ToString() +"] Waiting for the proper weather...");
+								}),
+								new Wait(36000, ret => Weather == WorldManager.CurrentWeather, new ActionAlwaysSucceed())
+							)
                         ),
 						new Decorator(ret => Actionmanager.CanCast(297, Core.Player) && MoochLevel != 0 && mooch < MoochLevel,
 							new Sequence(
@@ -183,7 +193,10 @@ namespace ff14bot.NeoProfiles
                             new Action(r =>
                             {
                                 FishingManager.Hook();
-								fishcount++;
+								amissfish = 0;
+								if(mooch == 0) {
+									fishcount++;
+								}
 								
 								Logging.Write(Colors.Gold, "[Fish v" + Version.ToString() +"] Fished " + fishcount + " of " + fishlimit + " fish at this FishSpot.");
                             })
@@ -219,6 +232,8 @@ namespace ff14bot.NeoProfiles
 
         public void ChangeFishSpot()
         {
+            Thread.Sleep(10000);
+            Actionmanager.DoAction(299, Core.Player);
             FishSpots.Next();
 			Logging.Write(Colors.Gold, "[Fish v" + Version.ToString() +"] Changing FishSpots...");
             fishcount = 0;
@@ -232,6 +247,7 @@ namespace ff14bot.NeoProfiles
             if (e.ChatLogEntry.MessageType == (MessageType)2115 && e.ChatLogEntry.Contents == "The fish sense something amiss. Perhaps it is time to try another location.")
             {
 				Logging.Write(Colors.Gold, "[Fish v" + Version.ToString() +"] The fish sense something amiss!");
+				amissfish++;
 				Actionmanager.DoAction(299, Core.Player);
                 ChangeFishSpot();
 				spotinit = false;
@@ -247,6 +263,7 @@ namespace ff14bot.NeoProfiles
 
         protected override void OnDone()
         {
+            Thread.Sleep(10000);
 			Actionmanager.DoAction(299, Core.Player);
         }
     }
