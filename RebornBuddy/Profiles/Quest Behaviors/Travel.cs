@@ -223,6 +223,10 @@ namespace ff14bot.NeoProfiles
             SupportedNPC.Add("Ferry Skipper");
             SupportedNPC.Add("Tribunal Gatekeep");
             SupportedNPC.Add("Arc Guard");
+            SupportedNPC.Add("Roderic");
+            SupportedNPC.Add("Airship Ticketer");
+            SupportedNPC.Add("Airship Attendant");
+
             pathing a = new pathing();
             a.setStart(WorldManager.ZoneId.ToString());
             a.setEnd(Destination);
@@ -369,8 +373,10 @@ namespace ff14bot.NeoProfiles
           areas.Add("155-418", new AreaInfo() { x = -163.8972, y = 304.1538, z = -333.0587, Name = "Coerthas Central Highlands --> Foundation", Communicationlocalindex = 1 });
           areas.Add("418-155", new AreaInfo() { x = 4.592957, y = -2.52555, z = 149.4926, Name = " Foundation -->Coerthas Central Highlands ", Communicationlocalindex = 1 });
           areas.Add("418-419", new AreaInfo() { x =-57.32227, y =20.69349, z =-97.31832, Name = "Foundation --> The Pillars", Communicationlocalindex = -1 });
-          areas.Add("419-418", new AreaInfo() { x = -16.78843, y = -13.06285, z = -67.11987, Name = " --> The Pillars-->Foundation", Communicationlocalindex = -1 });
-           
+         // areas.Add("418-397", new AreaInfo() { x = -163.4394, y = 2.15106, z = -5.508545, Name = " The Pillars--> Coerthas Western Highlands", Communicationlocalindex = -1 });
+          areas.Add("419-401", new AreaInfo() { x =149.7367, y =-12.26397, z =-7.858459, Name = " The Pillars --> Camp Cloudtop", Communicationlocalindex = -1 });
+          areas.Add("401-419", new AreaInfo() { x = -734.9813, y = -105.0583, z = 459.3728, Name = " Camp Cloudtop -->  The Pillars", Communicationlocalindex = -1 });
+
                //ul dah lift unten nach komen
             areas.Add("130-130_1", new AreaInfo() { x =-20.59343, y = 10, z = -44.79702, Name = "ul'dah- ul dah list lower", Communicationlocalindex = 1 });
            
@@ -535,7 +541,8 @@ namespace ff14bot.NeoProfiles
             g.add_vertex("339", new Dictionary<String, int>() { { "135", 5 } });
             g.add_vertex("212", new Dictionary<String, int>() { { "140", 5 } });
             g.add_vertex("418", new Dictionary<String, int>() { { "155", 5 }, { "419", 5 } });
-            g.add_vertex("419", new Dictionary<String, int>() { { "418", 5 } });
+            g.add_vertex("419", new Dictionary<String, int>() { { "418", 5 }, { "401 ",5} });
+            g.add_vertex("401", new Dictionary<String, int>() { { "419", 5 } });
 
         }
 
