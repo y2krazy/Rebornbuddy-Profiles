@@ -39,10 +39,10 @@ namespace ff14bot.NeoProfiles
         [DefaultValue("128")]
         [XmlAttribute("To")]
         public string Destination { get; set; }
-
+		private bool _prio=true;
         private String Present_NPC;
         public override bool IsDone { get { return _done; } }
-
+		public override bool HighPriority { get { return _prio; } }
         public bool IsCompleted = false;
         List<string> SupportedNPC = new List<string>();
         Vector3 Position = new Vector3("0,0,0");
@@ -112,7 +112,7 @@ namespace ff14bot.NeoProfiles
 
                     }
                      ),
-                    new Sleep(4, 4)
+                    new Sleep(10, 10)
                     )),
 
 
@@ -159,12 +159,14 @@ namespace ff14bot.NeoProfiles
             
                  new Decorator(ret => Vector3.Distance(Core.Player.Location, Position)  <= Distance && wayhome[currentstep].Communicationlocalindex < 0,
                        new Sequence(
+                         
                         new Action(r =>MovementManager.MoveForwardStart()),
                         new Sleep(1000),
                          new Action(r =>MovementManager.MoveForwardStop()),
-                        new Sleep(2000),
+                        new Sleep(5000),
                          new Action(r =>
                              {stepcomplete = true;
+
                               currentstep++;
                               Logging.Write("Increased Currentstep {0}", currentstep);
                     }))),
@@ -219,6 +221,8 @@ namespace ff14bot.NeoProfiles
             SupportedNPC.Add("Rerenasu"); 
             SupportedNPC.Add("Romarique");
             SupportedNPC.Add("Ferry Skipper");
+            SupportedNPC.Add("Tribunal Gatekeep");
+            SupportedNPC.Add("Arc Guard");
             pathing a = new pathing();
             a.setStart(WorldManager.ZoneId.ToString());
             a.setEnd(Destination);
@@ -359,10 +363,15 @@ namespace ff14bot.NeoProfiles
         public pathing()
         {
 
-           // lift oben nach limsa
-         
-            //ul dah lift unten nach komen
-            
+           // expansion
+
+
+            areas.Add("155-418", new AreaInfo() { x = -163.8972, y = 304.1538, z = -333.0587, Name = "Coerthas Central Highlands --> Foundation: ", Communicationlocalindex = 1 });
+            areas.Add("418-155", new AreaInfo() { x = 4.592957, y = -2.52555, z = 149.4926, Name = "  Foundation -->Coerthas Central Highlands ", Communicationlocalindex = 1 });
+            areas.Add("418-419", new AreaInfo() { x = -57.32227, y = 20.69349, z = -97.31832, Name = "  Foundation --> The Pillars:", Communicationlocalindex = -1 });
+            areas.Add("419-418", new AreaInfo() { x = -16.78843, y = -13.06285, z = -67.11987, Name = " --> The Pillars-->Foundation", Communicationlocalindex = -1 });
+           
+               //ul dah lift unten nach komen
             areas.Add("130-130_1", new AreaInfo() { x =-20.59343, y = 10, z = -44.79702, Name = "ul'dah- ul dah list lower", Communicationlocalindex = 1 });
            
             areas.Add("130-131", new AreaInfo() { x = -120.054825, z = -8.766253, y = 10.031486, Name = "ul'dah-Ul dah - Steps of Thal", Communicationlocalindex = -1 });
@@ -512,7 +521,7 @@ namespace ff14bot.NeoProfiles
             g.add_vertex("152", new Dictionary<String, int>() { { "133", 3 }, { "148", 5 }, { "153", 5 } });
             g.add_vertex("153", new Dictionary<String, int>() { { "148", 5 }, { "152", 5 }, { "145", 5 } });
             g.add_vertex("154", new Dictionary<String, int>() { { "133", 5 }, { "148", 5 }, { "155", 5 } });
-            g.add_vertex("155", new Dictionary<String, int>() { { "154", 5 }, { "156", 5 } });
+            g.add_vertex("155", new Dictionary<String, int>() { { "154", 5 }, { "156", 5 }, { "418", 5 } });
             
             g.add_vertex("177", new Dictionary<String, int>() { { "128", 1 } });
 
@@ -525,7 +534,8 @@ namespace ff14bot.NeoProfiles
             g.add_vertex("180", new Dictionary<String, int>() { { "139", 5 } });
             g.add_vertex("339", new Dictionary<String, int>() { { "135", 5 } });
             g.add_vertex("212", new Dictionary<String, int>() { { "140", 5 } });
-
+            g.add_vertex("418", new Dictionary<String, int>() { { "155", 5 }, { "419", 5 } });
+            g.add_vertex("419", new Dictionary<String, int>() {  { "418", 5 } });
 
         }
 
