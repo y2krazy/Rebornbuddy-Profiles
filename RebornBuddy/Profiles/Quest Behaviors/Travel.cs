@@ -40,11 +40,11 @@ namespace ff14bot.NeoProfiles
         [XmlAttribute("To")]
         public string Destination { get; set; }
 		private bool _prio=true;
-        private String Present_NPC;
+        private uint Present_NPC;
         public override bool IsDone { get { return _done; } }
 		public override bool HighPriority { get { return _prio; } }
         public bool IsCompleted = false;
-        List<string> SupportedNPC = new List<string>();
+        List<uint> SupportedNPC = new List<uint>();
         Vector3 Position = new Vector3("0,0,0");
         private int currentstep = 0;
         private bool stepcomplete=false;
@@ -129,8 +129,8 @@ namespace ff14bot.NeoProfiles
 
                     Logging.Write("Setting Communication localindex to:" + wayhome[currentstep].Communicationlocalindex);
                     localindex = (uint)wayhome[currentstep].Communicationlocalindex-1;
-                     GameObjectManager.GetObjectByName(Present_NPC).Target();
-                    Logging.Write("Found NP with Name " + Present_NPC);
+                    GameObjectManager.GetObjectByNPCId(Present_NPC).Target();
+                    Logging.Write("Found NPC with NpcId " + Present_NPC);
                     Core.Player.CurrentTarget.Interact();
                     //  await Buddy.Coroutines.Coroutine.Sleep(1000);
 
@@ -207,25 +207,28 @@ namespace ff14bot.NeoProfiles
 
         protected override void OnStart()
         {
-            SupportedNPC.Add("Blanmhas");
-            SupportedNPC.Add("Skaenrael");
-            SupportedNPC.Add("Lionnellais");
-            SupportedNPC.Add("Grehfarr");
-            SupportedNPC.Add("L'nophlo");
-            SupportedNPC.Add("Elyenora");
-            SupportedNPC.Add("Nanahomi");
-            SupportedNPC.Add("Willahelm"); 
-            SupportedNPC.Add("Rhetkympf");
-            SupportedNPC.Add("Muraudel");
-            SupportedNPC.Add("Nunuri");
-            SupportedNPC.Add("Rerenasu"); 
-            SupportedNPC.Add("Romarique");
-            SupportedNPC.Add("Ferry Skipper");
-            SupportedNPC.Add("Tribunal Gatekeep");
-            SupportedNPC.Add("Arc Guard");
-            SupportedNPC.Add("Roderic");
-            SupportedNPC.Add("Airship Ticketer");
-            SupportedNPC.Add("Airship Attendant");
+            SupportedNPC.Add(1003583);
+            SupportedNPC.Add(1003597);
+            SupportedNPC.Add(1000106);
+            SupportedNPC.Add(1003611);
+            SupportedNPC.Add(1002695);
+            SupportedNPC.Add(1004433);
+            SupportedNPC.Add(1004339);
+            SupportedNPC.Add(1001834);
+            SupportedNPC.Add(1003540);
+            SupportedNPC.Add(1000541);
+            SupportedNPC.Add(1004037);
+            SupportedNPC.Add(1000868);
+            SupportedNPC.Add(1001263);
+            SupportedNPC.Add(1002039);
+            SupportedNPC.Add(1003587);
+            SupportedNPC.Add(1003585);
+            SupportedNPC.Add(1005238);
+            SupportedNPC.Add(1012149);
+            SupportedNPC.Add(1011224);
+            SupportedNPC.Add(1012331);
+            SupportedNPC.Add(1011211);
+            SupportedNPC.Add(1011949);
 
             pathing a = new pathing();
             a.setStart(WorldManager.ZoneId.ToString());
@@ -261,13 +264,13 @@ namespace ff14bot.NeoProfiles
             foreach (var unit in units.OrderBy(r => r.Distance()))
             {
                 if (found > 0) break;
-                foreach (var name in SupportedNPC)
+                foreach (var npcid in SupportedNPC)
                 {
                     // Logging.Write("name=" + name + " Gameobject=" + unit.EnglishName);
-                    if (name == unit.EnglishName && found == 0)
+                    if (npcid == unit.NpcId && found == 0)
                     {
 
-                        Present_NPC = name;
+                        Present_NPC = npcid;
                         found++;
 
                     }
@@ -374,10 +377,16 @@ namespace ff14bot.NeoProfiles
           areas.Add("418-155", new AreaInfo() { x = 4.592957, y = -2.52555, z = 149.4926, Name = " Foundation -->Coerthas Central Highlands ", Communicationlocalindex = 1 });
           areas.Add("418-419", new AreaInfo() { x =-57.32227, y =20.69349, z =-97.31832, Name = "Foundation --> The Pillars", Communicationlocalindex = -1 });
          // areas.Add("418-397", new AreaInfo() { x = -163.4394, y = 2.15106, z = -5.508545, Name = " The Pillars--> Coerthas Western Highlands", Communicationlocalindex = -1 });
-          areas.Add("419-401", new AreaInfo() { x =149.7367, y =-12.26397, z =-7.858459, Name = " The Pillars --> Camp Cloudtop", Communicationlocalindex = -1 });
-          areas.Add("401-419", new AreaInfo() { x = -734.9813, y = -105.0583, z = 459.3728, Name = " Camp Cloudtop -->  The Pillars", Communicationlocalindex = -1 });
+          areas.Add("419-401", new AreaInfo() { x = 151.9916, y =-12.55534, z =-7.858459, Name = " The Pillars --> Camp Cloudtop", Communicationlocalindex = 1 });
+          
+ 
 
-               //ul dah lift unten nach komen
+            areas.Add("401-419", new AreaInfo() { x = -734.9813, y = -105.0583, z = 459.3728, Name = " Camp Cloudtop -->  The Pillars", Communicationlocalindex = 1 });
+          areas.Add("397-398", new AreaInfo() { x = -848.7283, y = 117.683, z =-655.5744, Name = " Coerthas Western Highlands --> The Dravanian Forelands", Communicationlocalindex = -1 });
+          areas.Add("398-397", new AreaInfo() { x = 870.7913, y = -3.649778, z = 350.4391, Name = "The Dravanian Forelands --> Coerthas Western Highlands", Communicationlocalindex = -1 });
+         
+            
+            //ul dah lift unten nach komen
             areas.Add("130-130_1", new AreaInfo() { x =-20.59343, y = 10, z = -44.79702, Name = "ul'dah- ul dah list lower", Communicationlocalindex = 1 });
            
             areas.Add("130-131", new AreaInfo() { x = -120.054825, z = -8.766253, y = 10.031486, Name = "ul'dah-Ul dah - Steps of Thal", Communicationlocalindex = -1 });
@@ -541,8 +550,10 @@ namespace ff14bot.NeoProfiles
             g.add_vertex("339", new Dictionary<String, int>() { { "135", 5 } });
             g.add_vertex("212", new Dictionary<String, int>() { { "140", 5 } });
             g.add_vertex("418", new Dictionary<String, int>() { { "155", 5 }, { "419", 5 } });
-            g.add_vertex("419", new Dictionary<String, int>() { { "418", 5 }, { "401 ",5} });
+            g.add_vertex("419", new Dictionary<String, int>() { { "418", 5 }, { "401" ,5} });
             g.add_vertex("401", new Dictionary<String, int>() { { "419", 5 } });
+            g.add_vertex("397", new Dictionary<String, int>() { { "398", 5 } });
+            g.add_vertex("398", new Dictionary<String, int>() { { "397", 5 } });
 
         }
 
@@ -564,9 +575,15 @@ namespace ff14bot.NeoProfiles
 
             List<String> mlist = new List<String>();
             mlist = g.shortest_path(start, end);
-            mlist.Add(start);
-            mlist.Reverse();
-            myarray = mlist.ToArray();
+            var size = mlist.Count;
+            if (size > 0)
+            {
+                mlist.Add(start);
+                mlist.Reverse();
+                myarray = mlist.ToArray();
+            }
+            else
+            { Logging.Write("cloud not Find a valid Path"); }
         }
 
         public List<AreaInfo> GetPath()
@@ -583,6 +600,7 @@ namespace ff14bot.NeoProfiles
 
 
                 }
+                { Logging.Write("I did not find Coordinates for moving  {0}", test); }
                 n++;
             }
             return returnlist;
