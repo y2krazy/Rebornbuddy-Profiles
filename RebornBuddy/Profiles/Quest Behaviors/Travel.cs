@@ -376,6 +376,7 @@ namespace ff14bot.NeoProfiles
           areas.Add("155-418", new AreaInfo() { x = -163.8972, y = 304.1538, z = -333.0587, Name = "Coerthas Central Highlands --> Foundation", Communicationlocalindex = 1 });
           areas.Add("418-155", new AreaInfo() { x = 4.592957, y = -2.52555, z = 149.4926, Name = " Foundation -->Coerthas Central Highlands ", Communicationlocalindex = 1 });
           areas.Add("418-419", new AreaInfo() { x =-57.32227, y =20.69349, z =-97.31832, Name = "Foundation --> The Pillars", Communicationlocalindex = -1 });
+          areas.Add("419-418", new AreaInfo() { x =-16.78843, y =-13.06285, z =-67.11987, Name = "The Pillars --> Foundation", Communicationlocalindex = -1 });
          // areas.Add("418-397", new AreaInfo() { x = -163.4394, y = 2.15106, z = -5.508545, Name = " The Pillars--> Coerthas Western Highlands", Communicationlocalindex = -1 });
           areas.Add("419-401", new AreaInfo() { x = 151.9916, y =-12.55534, z =-7.858459, Name = " The Pillars --> Camp Cloudtop", Communicationlocalindex = 1 });
           
