@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+############################################
+# Profile: [O] The Sea of Clouds           #
+############################################
+# Author: y2krazy                          #
+############################################
+# Version: 1.0.0                           #
+############################################
+# Required Level: 50                       #
+############################################
+# Required Teleport Locations:             #
+# 	Camp Cloudtop                          #
+############################################
+# Required User Interaction:               #
+# 	None.                                  #
+############################################
+# Required Setup:                          #
+# 	Access to The Sea of Clouds.           #
+############################################
+# Rewards:                                 #
+# 	Access to flying in The Sea of Clouds. #
+############################################
+-->
+<Profile>
+	<Name>[O] The Sea of Clouds</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- The Sea of Clouds -->
+
+		<If Condition="not IsOnMap(401)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+				<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+						
+				<!-- TO DO -->
+
+				<!-- Update Travel.cs with new zone information.  -->
+
+				<!-- TO DO -->
+
+				<!-- <Travel To="401" /> -->
+				<LogMessage Message="Please manually move to Camp Cloudtop and restart the profile." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- Aether Current #1 -->
+
+		<NoCombatMoveTo Name="Aether Current #1" XYZ="-595.0256, -166.2471, 582.4215" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006225).IsVisible">
+			<UseObject NpcId="2006225" XYZ="-595.0256, -166.2471, 582.4215" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<!-- Aether Current #2 -->
+
+		<NoCombatMoveTo Name="Aether Current #2" XYZ="-505.5772, -217.5784, 329.8542" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006227).IsVisible">
+			<UseObject NpcId="2006227" XYZ="-505.5772, -217.5784, 329.8542" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<!-- Aether Current #3 -->
+
+		<NoCombatMoveTo Name="Aether Current #3" XYZ="163.8138, -176.8911, 753.5175" />
+		<NoCombatMoveTo Name="Aether Current #3" XYZ="157.946, -177.2946, 785.1223" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006228).IsVisible">
+			<UseObject NpcId="2006228" XYZ="157.946, -177.2946, 785.1223" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<!-- Aether Current #4 -->
+
+		<NoCombatMoveTo Name="Aether Current #4" XYZ="484.7333, -142.4735, 689.1127" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006226).IsVisible">
+			<UseObject NpcId="2006226" XYZ="484.7333, -142.4735, 689.1127" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<!-- Aether Current #5 -->
+
+		<NoCombatMoveTo Name="Bridge Start" XYZ="614.0318, -128.1633, 238.6139" />
+		<NoCombatMoveTo Name="Bridge Middle" XYZ="631.653, -111.5915, 161.1299" UseMesh="False" />
+		<NoCombatMoveTo Name="Bridge End" XYZ="667.8245, -96.2358, 134.2106" UseMesh="False" />
+		<NoCombatMoveTo Name="Aether Current #5" XYZ="601.2562, -65.53652, -101.5156" />
+		<MoveTo Name="Aether Current #5" XYZ="616.0219, -65.53754, -111.5892" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006234).IsVisible">
+			<UseObject NpcId="2006234" XYZ="616.0219, -65.53754, -111.5892" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<!-- Aether Current #6 -->
+
+		<NoCombatMoveTo Name="Bridge Start" XYZ="667.8245, -96.2358, 134.2106" />
+		<NoCombatMoveTo Name="Bridge Middle" XYZ="631.653, -111.5915, 161.1299" UseMesh="False" />
+		<NoCombatMoveTo Name="Bridge End" XYZ="614.0318, -128.1633, 238.6139" UseMesh="False" />
+		<NoCombatMoveTo Name="Aether Current #6" XYZ="231.2809, -82.1394, 261.0055" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006233).IsVisible">
+			<UseObject NpcId="2006233" XYZ="231.2809, -82.1394, 261.0055" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<If Condition="not IsQuestCompleted(67179)">
+			<LogMessage Message="Into the Blue quest is required to continue!" />
+			<LogMessage Message="Please restart this profile after you are done." />
+			<StopBot />
+		</If>
+		<If Condition="IsQuestCompleted(67179)">
+
+			<LogMessage Message="The last 4 Aether Currents are coming soon! Stay tuned!" />
+			<StopBot />
+
+			<!-- Aether Current #7 -->
+
+			<!-- <NoCombatMoveTo Name="Aether Current #7" XYZ="" />
+			<If Condition="GameObjectManager.GetObjectByNPCId().IsVisible">
+				<UseObject NpcId="" XYZ="" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If> -->
+
+			<!-- Aether Current #8 -->
+
+			<!-- <NoCombatMoveTo Name="Aether Current #8" XYZ="" />
+			<If Condition="GameObjectManager.GetObjectByNPCId().IsVisible">
+				<UseObject NpcId="" XYZ="" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If> -->
+
+			<!-- Aether Current #9 -->
+
+			<!-- <NoCombatMoveTo Name="Aether Current #9" XYZ="" />
+			<If Condition="GameObjectManager.GetObjectByNPCId().IsVisible">
+				<UseObject NpcId="" XYZ="" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If> -->
+
+			<!-- Aether Current #10 -->
+
+			<!-- <NoCombatMoveTo Name="Aether Current #10" XYZ="" />
+			<If Condition="GameObjectManager.GetObjectByNPCId().IsVisible">
+				<UseObject NpcId="" XYZ="" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If> -->
+
+		</If>
+
+		<LogMessage Message="You've attuned to the Aether Currents in The Sea of Clouds!" />
+		<StopBot />
+
+	</Order>
+	<CodeChunks>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
