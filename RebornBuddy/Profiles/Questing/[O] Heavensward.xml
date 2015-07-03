@@ -10051,12 +10051,87 @@
 
 		<If Condition="not IsQuestCompleted(67148)">
 			<If Condition="not HasQuest(67148)">
-				<LogMessage Message="Gifts for the Outcasts quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+						<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="398" /> -->
+						<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Ysayle" XYZ="-247.6387, -30.29022, 109.3918" />
+				<If Condition="IsQuestAcceptQualified(67148)">
+					<PickupQuest NpcId="1012628" QuestId="67148" XYZ="-247.6387, -30.29022, 109.3918" />
+				</If>
 			</If>
 			<If Condition="HasQuest(67148)">
-				<LogMessage Message="Gifts for the Outcasts quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67148) == 1">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1011916" XYZ="470.0236, -49.89133, 20.37079" />
+				</If>
+				<If Condition="GetQuestStep(67148) == 2">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<Grind grindRef="Gifts_for_the_Outcasts" while="HasQuest(67148) and GetQuestStep(67148) == 2" />
+				</If>
+				<If Condition="GetQuestStep(67148) == 255">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
 
 					<!-- Rewards
 
@@ -10066,16 +10141,17 @@
 
 					-->
 
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
-						
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
+						<TurnIn QuestId="67148" NpcId="1012629" ItemId="2001580" XYZ="200, -55.46249, -233.4478" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar) or (Core.Me.CurrentJob == Enums.ClassJobType.Astrologian)">
-					
+						<TurnIn QuestId="67148" NpcId="1012629" ItemId="2001580" XYZ="200, -55.46249, -233.4478" RewardSlot="1" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
-					
+						<TurnIn QuestId="67148" NpcId="1012629" ItemId="2001580" XYZ="200, -55.46249, -233.4478" RewardSlot="2" />
 					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
+					<TurnIn QuestId="67148" NpcId="1012629" ItemId="2001580" XYZ="200, -55.46249, -233.4478" />
+				</If>
 			</If>
 		</If>
 
@@ -15915,6 +15991,16 @@
 				<TargetMob Id="3901" Weight="3000" />
 				<TargetMob Id="3902" Weight="2000" />
 				<TargetMob Id="3900" Weight="1000" />
+			</TargetMobs>
+			<MinLevel>52</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Gifts_for_the_Outcasts">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="307.6536, -63.51617, -13.85168" name="Clearwater Nanka" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3570" />
 			</TargetMobs>
 			<MinLevel>52</MinLevel>
 			<MaxLevel>61</MaxLevel>
