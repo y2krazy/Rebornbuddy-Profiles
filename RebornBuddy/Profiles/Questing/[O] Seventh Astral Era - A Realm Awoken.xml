@@ -17,7 +17,7 @@
 # 	Camp Dragonhead                                       #
 # 	Camp Drybone                                          #
 # 	Camp Tranquil or Quarrymill                           #
-# 	Costa del Sol or Wineport                             #
+# 	Costa del Sol                                         #
 # 	Fallgourd Float                                       #
 # 	Forgotten Springs or Little Ala Mhigo                 #
 # 	Horizon                                               #
@@ -25,6 +25,7 @@
 # 	Revenant's Toll                                       #
 # 	The Hawthorne Hut                                     #
 # 	Ul'dah - Steps of Nald                                #
+# 	Wineport                                              #
 ###########################################################
 # Required User Interaction:                              #
 # 	Hero on the Halfshell Guidhest                        #
@@ -64,7 +65,8 @@
 
 		<If Condition="not IsQuestCompleted(66060)">
 			<LogMessage Message="You haven't completed The Ultimate Weapon quest yet!" />
-			<LogMessage Message="Please restart this profile after you are done." />
+			<LogMessage Message="Please restart this profile after you have done so." />
+			<StopBot/>
 		</If>
 
 		<!-- The Price of Principles -->
@@ -106,15 +108,17 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1007534" XYZ="1.480042, -3.000001, -48.72211" />
-					<WaitTimer WaitTime="1" />
-					<TalkTo InteractDistance="3.0" NpcId="1007533" XYZ="-0.8087769, -3, -47.80658" />
-					<WaitTimer WaitTime="1" />
-					<TalkTo InteractDistance="3.0" NpcId="1007530" XYZ="1.296936, -3.000001, -52.26221" />
-					<WaitTimer WaitTime="1" />
-					<TalkTo InteractDistance="3.0" NpcId="1007531" XYZ="0.1677856, -3.000001, -52.71997" />
-					<WaitTimer WaitTime="1" />
-					<TalkTo InteractDistance="3.0" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
+					<While Condition="not IsTodoChecked(66711, 1, 1)">
+						<TalkTo InteractDistance="3.0" NpcId="1007534" XYZ="1.480042, -3.000001, -48.72211" />
+						<WaitTimer WaitTime="1" />
+						<TalkTo InteractDistance="3.0" NpcId="1007533" XYZ="-0.8087769, -3, -47.80658" />
+						<WaitTimer WaitTime="1" />
+						<TalkTo InteractDistance="3.0" NpcId="1007530" XYZ="1.296936, -3.000001, -52.26221" />
+						<WaitTimer WaitTime="1" />
+						<TalkTo InteractDistance="3.0" NpcId="1007531" XYZ="0.1677856, -3.000001, -52.71997" />
+						<WaitTimer WaitTime="1" />
+						<TalkTo InteractDistance="3.0" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
+					</While>
 				</If>
 				<If Condition="GetQuestStep(66711) == 255">
 					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -265,14 +269,7 @@
 			</If>
 			<If Condition="HasQuest(66713)">
 				<If Condition="GetQuestStep(66713) == 1">
-
-					<!-- TO DO -->
-
-					<!-- Add a transport to Costa del Sol with zone checks -->
-
-					<!-- TO DO -->
-
-					<If Condition="not IsOnMap(137)">
+					<If Condition="not IsOnSubMap(206)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
 							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
 						</If>
@@ -283,14 +280,7 @@
 					<TalkTo InteractDistance="3.0" NpcId="1006273" XYZ="619.0126, 23.93624, 455.1002" />
 				</If>
 				<If Condition="GetQuestStep(66713) == 2">
-
-					<!-- TO DO -->
-
-					<!-- Add a transport from Costa del Sol to Wineport with zone checks -->
-
-					<!-- TO DO -->
-
-					<If Condition="not IsOnMap(137)">
+					<If Condition="not IsOnSubMap(206)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
 							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
 						</If>
@@ -299,11 +289,13 @@
 						</If>
 					</If>
 					<UseTransport Name="Raincatcher Gully Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
-					<TalkTo InteractDistance="3.0" NpcId="1006306" XYZ="-25.86407, 71.75401, -36.78955" />
-					<TalkTo InteractDistance="3.0" NpcId="1006309" XYZ="-116.5637, 86.05164, -5.874817" />
+					<While Condition="not IsTodoChecked(66713, 2, 1)">
+						<TalkTo InteractDistance="3.0" NpcId="1006306" XYZ="-25.86407, 71.75401, -36.78955" />
+						<TalkTo InteractDistance="3.0" NpcId="1006309" XYZ="-116.5637, 86.05164, -5.874817" />
+					</If>
 				</If>
 				<If Condition="GetQuestStep(66713) == 3">
-					<If Condition="not IsOnMap(137)">
+					<If Condition="not IsOnSubMap(216)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
 							<TeleportTo Name="Wineport" AetheryteId="12" />
 						</If>
@@ -314,7 +306,7 @@
 					<TalkTo InteractDistance="3.0" NpcId="1006305" XYZ="10.60498, 71.47817, -16.61713" />
 				</If>
 				<If Condition="GetQuestStep(66713) == 4">
-					<If Condition="not IsOnMap(137)">
+					<If Condition="not IsOnSubMap(216)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
 							<TeleportTo Name="Wineport" AetheryteId="12" />
 						</If>
@@ -335,7 +327,7 @@
 
 					<!-- TO DO -->
 
-					<If Condition="not IsOnMap(137)">
+					<If Condition="not IsOnSubMap(216)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
 							<TeleportTo Name="Wineport" AetheryteId="12" />
 						</If>
@@ -347,7 +339,7 @@
 					<RunCode Name="FlowersforOne" />
 				</If>
 				<If Condition="GetQuestStep(66713) == 255">
-					<If Condition="not IsOnMap(137)">
+					<If Condition="not IsOnSubMap(216)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
 							<TeleportTo Name="Wineport" AetheryteId="12" />
 						</If>
@@ -364,7 +356,7 @@
 
 		<If Condition="not IsQuestCompleted(66714)">
 			<If Condition="not HasQuest(66714)">
-				<If Condition="not IsOnMap(137)">
+				<If Condition="not IsOnSubMap(216)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(12)">
 						<TeleportTo Name="Wineport" AetheryteId="12" />
 					</If>
@@ -379,7 +371,7 @@
 			</If>
 			<If Condition="HasQuest(66714)">
 				<If Condition="GetQuestStep(66714) == 1">
-					<If Condition="not IsOnMap(139)">
+					<If Condition="not IsOnSubMap(239)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(15)">
 							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
 						</If>
@@ -390,7 +382,7 @@
 					<Grind grindRef="All_Things_in_Time" while="HasQuest(66714) and GetQuestStep(66714) == 1" />
 				</If>
 				<If Condition="GetQuestStep(66714) == 2">
-					<If Condition="not IsOnMap(139)">
+					<If Condition="not IsOnSubMap(239)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(15)">
 							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
 						</If>
@@ -401,7 +393,7 @@
 					<UseObject NpcId="2002842" XYZ="286.366, -3.158691, 145.6168" Radius="10" QuestId="66714" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(66714) == 3">
-					<If Condition="not IsOnMap(139)">
+					<If Condition="not IsOnSubMap(239)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(15)">
 							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
 						</If>
@@ -413,7 +405,7 @@
 					<Grind grindRef="All_Things_in_Time2" while="HasQuest(66714) and GetQuestStep(66714) == 3" />
 				</If>
 				<If Condition="GetQuestStep(66714) == 4">
-					<If Condition="not IsOnMap(137)">
+					<If Condition="not IsOnSubMap(216)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
 							<TeleportTo Name="Wineport" AetheryteId="12" />
 						</If>
