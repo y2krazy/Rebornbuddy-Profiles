@@ -8212,7 +8212,7 @@
 					<NoCombatMoveTo Name="Aimebert" XYZ="592.0031, -27.30173, -433.0325" />
 					<MoveTo Name="Aimebert" XYZ="635.7115, -22.13107, -413.288" />
 					<NoCombatMoveTo Name="Aimebert" XYZ="644.592, -19.92412, -409.5549" />
-					<RunCode Name="Aimebert" />
+					<RunCode Name="ChocoboForestJump" />
 					<TalkTo InteractDistance="3.0" NpcId="1011932" XYZ="685.9692, -24.38285, -269.0624" />
 					<While Condition="not IsTodoChecked(67307, 1, 1)">
 						<TalkTo InteractDistance="3.0" NpcId="1011924" XYZ="849.0576, -37.66994, -39.56665" />
@@ -8453,7 +8453,7 @@
 				<NoCombatMoveTo Name="Aimebert" XYZ="592.0031, -27.30173, -433.0325" />
 				<MoveTo Name="Aimebert" XYZ="635.7115, -22.13107, -413.288" />
 				<NoCombatMoveTo Name="Aimebert" XYZ="644.592, -19.92412, -409.5549" />
-				<RunCode Name="Aimebert" />
+				<RunCode Name="ChocoboForestJump" />
 				<If Condition="IsQuestAcceptQualified(67310)">
 					<PickupQuest NpcId="1011932" QuestId="67310" XYZ="685.9692, -24.38285, -269.0624" />
 				</If>
@@ -8500,7 +8500,7 @@
 					<NoCombatMoveTo Name="Aimebert" XYZ="592.0031, -27.30173, -433.0325" />
 					<MoveTo Name="Aimebert" XYZ="635.7115, -22.13107, -413.288" />
 					<NoCombatMoveTo Name="Aimebert" XYZ="644.592, -19.92412, -409.5549" />
-					<RunCode Name="Aimebert" />
+					<RunCode Name="ChocoboForestJump" />
 					<TurnIn QuestId="67310" NpcId="1011932" XYZ="685.9692, -24.38285, -269.0624" />
 				</If>
 			</If>
@@ -9189,12 +9189,118 @@
 
 		<If Condition="not IsQuestCompleted(67147)">
 			<If Condition="not HasQuest(67147)">
-				<LogMessage Message="The Trine Towers quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+						<TeleportTo Name="Tailfeather" AetheryteId="76" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="398" /> -->
+						<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Ysayle" XYZ="167.2542, -63.61838, -9.23175" />
+				<If Condition="IsQuestAcceptQualified(67147)">
+					<PickupQuest NpcId="1012619" QuestId="67147" XYZ="167.2542, -63.61838, -9.23175" />
+				</If>
 			</If>
 			<If Condition="HasQuest(67147)">
-				<LogMessage Message="The Trine Towers quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67147) == 1">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1012622" XYZ="-178.9731, -105.5901, 508.812" />
+				</If>
+				<If Condition="GetQuestStep(67147) == 2">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Anyx Trine" XYZ="-247.3205, -84.0005, 449.3726" />
+					<Grind grindRef="The_Trine_Towers" while="HasQuest(67147) and GetQuestStep(67147) == 2" />
+				</If>
+				<If Condition="GetQuestStep(67147) == 3">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Anyx Trine" XYZ="-281.8102, -63.24166, 333.3829" />
+					<Grind grindRef="The_Trine_Towers2" while="HasQuest(67147) and GetQuestStep(67147) == 3" />
+				</If>
+				<If Condition="GetQuestStep(67147) == 255">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+						<NoCombatMoveTo Name="Anyx Trine Aetheryte" XYZ="-270.1471, -27.54079, 95.68582" />
+						<NoCombatMoveTo Name="Anyx Trine Aetheryte" XYZ="-299.6545, -21.18409, 42.59823" UseMesh="False" />
+						<LogMessage Message="Attuning to the Anyx Trine Aetheryte..." />
+						<UseObject UseDistance="8.0" NpcId="77" XYZ="-304.1276, -16.70868, 32.05908" Radius="10" UseTimes="1" BlacklistAfter="True" />
+						<!-- <LogMessage Message="Setting Anyx Trine as your Home Point..." />
+						<UseTransport NpcId="77" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="-304.1276, -16.70868, 32.05908" Radius="10" WaitTime="5000" /> -->
+						<NoCombatMoveTo Name="Ysayle" XYZ="-264.4431, -30.1, 105.014" UseMesh="False" />
+					</If>
 
 					<!-- Rewards
 
@@ -9205,55 +9311,214 @@
 
 					-->
 
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
-						
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
+						<TurnIn QuestId="67147" NpcId="1012625" XYZ="-212.726, -37.57478, 185.1682" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
-						
+						<TurnIn QuestId="67147" NpcId="1012625" XYZ="-212.726, -37.57478, 185.1682" RewardSlot="1" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk)">
-						
+						<TurnIn QuestId="67147" NpcId="1012625" XYZ="-212.726, -37.57478, 185.1682" RewardSlot="2" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
-						
+						<TurnIn QuestId="67147" NpcId="1012625" XYZ="-212.726, -37.57478, 185.1682" RewardSlot="3" />
 					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
+					<TurnIn QuestId="67147" NpcId="1012625" XYZ="-212.726, -37.57478, 185.1682" />
+				</If>
 			</If>
 		</If>
 
 		<!-- Sidequest: First Impressions -->
 
-		<If Condition="not IsQuestCompleted(66246)">
-			<If Condition="not HasQuest(66246)">
-				<LogMessage Message="First Impressions quest is coming soon! Stay tuned!" />
-				<StopBot />
+		<If Condition="not IsQuestCompleted(67313)">
+			<If Condition="not HasQuest(67313)">
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+						<TeleportTo Name="Tailfeather" AetheryteId="76" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="398" /> -->
+						<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Loupard" XYZ="535.3016, -51.34064, 65.29333" />
+				<If Condition="IsQuestAcceptQualified(67313)">
+					<PickupQuest NpcId="1011917" QuestId="67313" XYZ="535.3016, -51.34064, 65.29333" />
+				</If>
 			</If>
-			<If Condition="HasQuest(66246)">
-				<LogMessage Message="First Impressions quest is coming soon! Stay tuned!" />
-				<StopBot />
+			<If Condition="HasQuest(67313)">
+				<If Condition="GetQuestStep(67313) == 1">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014486" XYZ="831.0826, -22.25132, 213.611" />
+				</If>
+				<If Condition="GetQuestStep(67313) == 2">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" />
+				</If>
+				<If Condition="GetQuestStep(67313) == 3">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014484" XYZ="533.2263, -51.38044, 63.43164" />
+				</If>
+				<If Condition="GetQuestStep(67313) == 4">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<UseObject NpcIds="2006133,2006134,2006132" QuestId="67313" StepId="4">
+						<HotSpots>
+							<HotSpot XYZ="360.0365, -44.44952, -284.0162" Radius="10" />
+							<HotSpot XYZ="319.1118, -48.20331, -318.0743" Radius="10" />
+							<HotSpot XYZ="312.7947, -47.16565, -256.2753" Radius="10" />
+						</HotSpots>
+					</UseObject>
+				</If>
+				<If Condition="GetQuestStep(67313) == 5">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014480" XYZ="536.3087, -51.32523, 64.98816" />
+				</If>
+				<If Condition="GetQuestStep(67313) == 6">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014485" XYZ="832.7915, -22.16046, 214.3739" />
+				</If>
+				<If Condition="GetQuestStep(67313) == 255">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
 
 					<!-- Rewards
 
-					0: Paladin/Warrior/Dark Knight Head
-					1: Dragoon Head
-					2: Monk Head
-					3: Ninja Head
+					0: Bard/Machinist Feet
+					1: White Mage/Scholoar/Astrologian Feet
+					2: Black Mage/Summoner Feet
 
 					-->
 
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
-						
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
+						<TurnIn QuestId="67313" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" RewardSlot="0" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
-						
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar) or (Core.Me.CurrentJob == Enums.ClassJobType.Astrologian)">
+						<TurnIn QuestId="67313" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" RewardSlot="1" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk)">
-						
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
+						<TurnIn QuestId="67313" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" RewardSlot="2" />
 					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
-						
-					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
+					<TurnIn QuestId="67313" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" />
+				</If>
 			</If>
 		</If>
 
@@ -9261,12 +9526,127 @@
 
 		<If Condition="not IsQuestCompleted(67317)">
 			<If Condition="not HasQuest(67317)">
-				<LogMessage Message="The Man Who Slew Too Much quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+						<TeleportTo Name="Tailfeather" AetheryteId="76" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="398" /> -->
+						<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Loupard" XYZ="535.3016, -51.34064, 65.29333" />
+				<If Condition="IsQuestAcceptQualified(67317)">
+					<PickupQuest NpcId="1011917" QuestId="67317" XYZ="535.3016, -51.34064, 65.29333" />
+				</If>
 			</If>
 			<If Condition="HasQuest(67317)">
-				<LogMessage Message="The Man Who Slew Too Much quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67317) == 1">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014490" XYZ="440.8789, -51.07749, 107.4998" />
+				</If>
+				<If Condition="GetQuestStep(67317) == 2">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014481" XYZ="352.0103, -30.0694, -413.1075" />
+				</If>
+				<If Condition="GetQuestStep(67317) == 3">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014491" XYZ="794.705, -33.55555, -271.6259" />
+				</If>
+				<If Condition="GetQuestStep(67317) == 4">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014481" XYZ="352.0103, -30.0694, -413.1075" />
+				</If>
+				<If Condition="GetQuestStep(67317) == 255">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
 
 					<!-- Rewards
 
@@ -9277,19 +9657,20 @@
 
 					-->
 
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
-						
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
+						<TurnIn QuestId="67317" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
-						
+						<TurnIn QuestId="67317" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" RewardSlot="1" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk)">
-						
+						<TurnIn QuestId="67317" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" RewardSlot="2" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
-						
+						<TurnIn QuestId="67317" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" RewardSlot="3" />
 					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
+					<TurnIn QuestId="67317" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" />
+				</If>
 			</If>
 		</If>
 
@@ -9297,12 +9678,195 @@
 
 		<If Condition="not IsQuestCompleted(67318)">
 			<If Condition="not HasQuest(67318)">
-				<LogMessage Message="A Budding Partnership quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+						<TeleportTo Name="Tailfeather" AetheryteId="76" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="398" /> -->
+						<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Loupard" XYZ="535.3016, -51.34064, 65.29333" />
+				<If Condition="IsQuestAcceptQualified(67318)">
+					<PickupQuest NpcId="1011917" QuestId="67318" XYZ="535.3016, -51.34064, 65.29333" />
+				</If>
 			</If>
 			<If Condition="HasQuest(67318)">
-				<LogMessage Message="A Budding Partnership quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67318) == 1">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014496" XYZ="481.8036, -50.85715, -5.233948" />
+				</If>
+				<If Condition="GetQuestStep(67318) == 2">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014494" XYZ="479.7893, -50.83053, -5.722229" />
+				</If>
+				<If Condition="GetQuestStep(67318) == 3">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<While Condition="not IsTodoChecked(67318, 3, 1)">
+						<TalkTo InteractDistance="3.0" NpcId="1011919" XYZ="497.8256, -49.79028, 11.82568" />
+						<TalkTo InteractDistance="3.0" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" />
+						<TalkTo InteractDistance="3.0" NpcId="1011916" XYZ="470.0236, -49.89133, 20.37079" />
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67318) == 4">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014494" XYZ="479.7893, -50.83053, -5.722229" />
+				</If>
+				<If Condition="GetQuestStep(67318) == 5">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Q'yantaa" XYZ="592.0031, -27.30173, -433.0325" />
+					<MoveTo Name="Q'yantaa" XYZ="635.7115, -22.13107, -413.288" />
+					<NoCombatMoveTo Name="Q'yantaa" XYZ="644.592, -19.92412, -409.5549" />
+					<RunCode Name="ChocoboForestJump" />
+					<TalkTo InteractDistance="3.0" NpcId="1014495" XYZ="665.8884, -24.48961, -289.1738" />
+				</If>
+				<If Condition="GetQuestStep(67318) == 6">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<UseObject NpcId="2006141" XYZ="664.576, -24.27716, -289.0212" Radius="10" QuestId="67318" StepId="6" />
+				</If>
+				<If Condition="GetQuestStep(67318) == 7">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<HandOver ItemId="2001791" QuestId="67318" StepId="7" NpcId="1014495" XYZ="665.8884, -24.48961, -289.1738" />
+				</If>
+				<If Condition="GetQuestStep(67318) == 255">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
 
 					<!-- Rewards
 
@@ -9312,16 +9876,17 @@
 
 					-->
 
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
-						
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
+						<TurnIn QuestId="67318" NpcId="1014494" XYZ="479.7893, -50.83053, -5.722229" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar) or (Core.Me.CurrentJob == Enums.ClassJobType.Astrologian)">
-					
+						<TurnIn QuestId="67318" NpcId="1014494" XYZ="479.7893, -50.83053, -5.722229" RewardSlot="1" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
-					
+						<TurnIn QuestId="67318" NpcId="1014494" XYZ="479.7893, -50.83053, -5.722229" RewardSlot="2" />
 					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
+					<TurnIn QuestId="67318" NpcId="1014494" XYZ="479.7893, -50.83053, -5.722229" />
+				</If>
 			</If>
 		</If>
 
@@ -9329,12 +9894,156 @@
 
 		<If Condition="not IsQuestCompleted(67319)">
 			<If Condition="not HasQuest(67319)">
-				<LogMessage Message="Persistence Makes Perfect quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+						<TeleportTo Name="Tailfeather" AetheryteId="76" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="398" /> -->
+						<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Loupard" XYZ="479.7893, -50.83053, -5.722229" />
+				<If Condition="IsQuestAcceptQualified(67319)">
+					<PickupQuest NpcId="1014494" QuestId="67319" XYZ="479.7893, -50.83053, -5.722229" />
+				</If>
 			</If>
 			<If Condition="HasQuest(67319)">
-				<LogMessage Message="Persistence Makes Perfect quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67319) == 1">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Q'yantaa" XYZ="592.0031, -27.30173, -433.0325" />
+					<MoveTo Name="Q'yantaa" XYZ="635.7115, -22.13107, -413.288" />
+					<NoCombatMoveTo Name="Q'yantaa" XYZ="644.592, -19.92412, -409.5549" />
+					<RunCode Name="ChocoboForestJump" />
+					<TalkTo InteractDistance="3.0" NpcId="1014495" XYZ="665.8884, -24.48961, -289.1738" />
+				</If>
+				<If Condition="GetQuestStep(67319) == 2">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014498" XYZ="527.9773, -34.53429, -389.1814" />
+				</If>
+				<If Condition="GetQuestStep(67319) == 3">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014499" XYZ="346.6697, -30.19796, -424.918" />
+				</If>
+				<If Condition="GetQuestStep(67319) == 4">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Q'yantaa" XYZ="182.7613, -20.13519, -529.6022" />
+					<MoveTo Name="Q'yantaa" XYZ="156.0529, -18.17694, -551.2727" UseMesh="False" />
+					<TalkTo InteractDistance="3.0" NpcId="1014500" XYZ="164.6906, -18.14656, -566.2471" />
+				</If>
+				<If Condition="GetQuestStep(67319) == 5">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<UseObject NpcId="2006143" XYZ="162.4323, -17.95996, -566.7048" Radius="10" QuestId="67319" StepId="5" />
+				</If>
+				<If Condition="GetQuestStep(67319) == 255">
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="398" /> -->
+							<LogMessage Message="Please manually move to Tailfeather and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<MoveTo Name="Loupard" XYZ="189.9001, -19.63038, -558.8601" UseMesh="False" />
+					<TurnIn QuestId="67319" NpcId="1011917" XYZ="535.3016, -51.34064, 65.29333" />
+				</If>
 			</If>
 		</If>
 
@@ -15186,6 +15895,30 @@
 			<MinLevel>52</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
+		<GrindArea name="The_Trine_Towers">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-247.3205, -84.0005, 449.3726" name="Marching Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3901" Weight="3000" />
+				<TargetMob Id="3902" Weight="2000" />
+				<TargetMob Id="3900" Weight="1000" />
+			</TargetMobs>
+			<MinLevel>52</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Trine_Towers2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-281.8102, -63.24166, 333.3829" name="Marching Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3901" Weight="3000" />
+				<TargetMob Id="3902" Weight="2000" />
+				<TargetMob Id="3900" Weight="1000" />
+			</TargetMobs>
+			<MinLevel>52</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
 	</GrindAreas>
 	<CodeChunks>
 		<CodeChunk Name="RunIntoZone">
@@ -15251,7 +15984,7 @@
 				await Buddy.Coroutines.Coroutine.Sleep(6000);
 		]]>
 		</CodeChunk>
-		<CodeChunk Name="Aimebert">
+		<CodeChunk Name="ChocoboForestJump">
 			<![CDATA[
 				ff14bot.Managers.MovementManager.SetFacing(1.043983f);
 				ff14bot.Managers.MovementManager.MoveForwardStart();
