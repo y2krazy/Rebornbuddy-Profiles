@@ -7,7 +7,7 @@
 #########################################################
 # Author: y2krazy                                       #
 #########################################################
-# Version: 1.0.8                                        #
+# Version: 1.0.9                                        #
 #########################################################
 # Required Level: 50                                    #
 #########################################################
@@ -55,6 +55,12 @@
 			<LogMessage Message="Ensure your Soul Crystal is equipped or that you've completed your level 30 job quest." />
 			<LogMessage Message="Please restart this profile after you are done." />
 			<StopBot />
+		</If>
+
+		<If Condition="not IsQuestCompleted(65625)">
+			<LogMessage Message="You haven't completed the Let Us Cling Together quest yet!" />
+			<LogMessage Message="Loading the Dreams of Ice profile..." />
+			<LoadProfile Path="Profiles/y2krazy/Questing/[O] Seventh Astral Era - Dreams of Ice.xml" />
 		</If>
 
 		<!-- Good Intentions -->
@@ -918,7 +924,7 @@
 					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" />
 				</If>
 				<If Condition="GetQuestStep(65908) == 2">
-					<If Condition="not IsOnMap(155)">
+					<If Condition="not IsOnMap(155) and not IsOnSubMap(1429)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
 						</If>
@@ -926,17 +932,8 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
-					<RunCode Name="TheWyrmsRoar" />
-					<If Condition="not IsOnSubMap(1429)">
-						<If Condition="not IsOnMap(155)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-								<Travel To="155" />
-							</If>
-						</If>
+					<If Condition="IsOnMap(155)">
+						<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126" />
 					</If>
 
 					<!-- TO DO -->
@@ -962,17 +959,8 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
-					<RunCode Name="TheWyrmsRoar" />
-					<If Condition="not IsOnSubMap(1429)">
-						<If Condition="not IsOnMap(155)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-								<Travel To="155" />
-							</If>
-						</If>
+					<If Condition="IsOnMap(155)">
+						<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126" />
 					</If>
 
 					<!-- TO DO -->
@@ -992,30 +980,18 @@
 
 		<If Condition="not IsQuestCompleted(65909)">
 			<If Condition="not HasQuest(65909)">
-				<If Condition="not IsOnSubMap(1429)">
-					<If Condition="not IsOnMap(155)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-							<Travel To="155" />
-						</If>
+				<If Condition="not IsOnMap(155) and not IsOnSubMap(1429)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
 					</If>
-					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
-					<RunCode Name="TheWyrmsRoar" />
+					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+						<Travel To="155" />
+					</If>
 				</If>
-				<!-- <NoCombatMoveTo Name="" XYZ="" /> -->
+				<If Condition="IsOnMap(155)">
+					<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126" />
+				</If>
 				<If Condition="IsQuestAcceptQualified(65909)">
-					<If Condition="not IsOnSubMap(1429)">
-						<If Condition="not IsOnMap(155)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-								<Travel To="155" />
-							</If>
-						</If>
-					</If>
 
 					<!-- TO DO -->
 
@@ -1159,15 +1135,17 @@
 			</If>
 			<If Condition="HasQuest(65954)">
 				<If Condition="GetQuestStep(65954) == 1">
-					<If Condition="not IsOnMap(130)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-							<Travel To="130" />
-						</If>
+						<Travel To="131" />
 					</If>
-					<Travel To="131" />
 					<TalkTo InteractDistance="3.0" NpcId="1009057" XYZ="-25.49786, 38.01001, 83.35999" />
 				</If>
 				<If Condition="GetQuestStep(65954) == 2">
@@ -1828,15 +1806,17 @@
 			</If>
 			<If Condition="HasQuest(65961)">
 				<If Condition="GetQuestStep(65961) == 255">
-					<If Condition="not IsOnMap(130)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-							<Travel To="130" />
-						</If>
+						<Travel To="131" />
 					</If>
-					<Travel To="131" />
 					<MoveTo Name="Minfilia" XYZ="-5.05399, 29.99997, 21.27789" />
 					
 					<!-- TO DO -->
@@ -1857,15 +1837,17 @@
 
 		<If Condition="not IsQuestCompleted(65962)">
 			<If Condition="not HasQuest(65962)">
-				<If Condition="not IsOnMap(130)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+				<If Condition="not IsOnMap(131)">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
 					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-						<Travel To="130" />
-					</If>
+					<Travel To="131" />
 				</If>
-				<Travel To="131" />
 				<NoCombatMoveTo Name="1010992" XYZ="-6.149414, 29.99998, 19.15009" />
 				<If Condition="IsQuestAcceptQualified(65962)">
 					<PickupQuest NpcId="1010992" QuestId="65962" XYZ="-6.149414, 29.99998, 19.15009" />
@@ -2136,17 +2118,6 @@
 		</GrindArea>
 	</GrindAreas>
 	<CodeChunks>
-		<CodeChunk Name="TheWyrmsRoar">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1007603).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-		]]>
-		</CodeChunk>
 		<CodeChunk Name="TheWyrmsRoar2">
 			<![CDATA[ 
 				ff14bot.Managers.MovementManager.SetFacing(2.322996f);

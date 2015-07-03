@@ -7,7 +7,7 @@
 ###########################################################
 # Author: y2krazy                                         #
 ###########################################################
-# Version: 1.0.8                                          #
+# Version: 1.0.9                                          #
 ###########################################################
 # Required Level: 50                                      #
 ###########################################################
@@ -60,6 +60,11 @@
 			<LogMessage Message="Ensure your Soul Crystal is equipped or that you've completed your level 30 job quest." />
 			<LogMessage Message="Please restart this profile after you are done." />
 			<StopBot />
+		</If>
+
+		<If Condition="not IsQuestCompleted(66060)">
+			<LogMessage Message="You haven't completed The Ultimate Weapon quest yet!" />
+			<LogMessage Message="Please restart this profile after you are done." />
 		</If>
 
 		<!-- The Price of Principles -->
@@ -1465,15 +1470,17 @@
 			</If>
 			<If Condition="HasQuest(66725)">
 				<If Condition="GetQuestStep(66725) == 1">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
+					<If Condition="not IsOnMap(133)">
+						<If Condition="not IsOnMap(132)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+								<TeleportTo Name="New Gridania" AetheryteId="2" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+								<Travel To="132" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
+						<Travel To="133" />
 					</If>
-					<Travel To="133" />
 					<MoveTo Name="Silent Conjurer" XYZ="-159.411, 4.054098, -4.104736" />
 					<RunCode Name="LotusStand" />
 					<If Condition="not IsOnMap(205)">
@@ -1734,15 +1741,17 @@
 			</If>
 			<If Condition="HasQuest(66727)">
 				<If Condition="GetQuestStep(66727) == 1">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
+					<If Condition="not IsOnMap(133)">
+						<If Condition="not IsOnMap(132)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+								<TeleportTo Name="New Gridania" AetheryteId="2" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+								<Travel To="132" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
+						<Travel To="133" />
 					</If>
-					<Travel To="133" />
 					<MoveTo Name="Silent Conjurer" XYZ="-159.411, 4.054098, -4.104736" />
 					<RunCode Name="LotusStand" />
 					<If Condition="not IsOnMap(205)">

@@ -7,7 +7,7 @@
 #########################################################
 # Author: y2krazy                                       #
 #########################################################
-# Version: 1.0.7                                        #
+# Version: 1.0.8                                        #
 #########################################################
 # Required Level: 50                                    #
 #########################################################
@@ -49,6 +49,12 @@
 			<LogMessage Message="Ensure your Soul Crystal is equipped or that you've completed your level 30 job quest." />
 			<LogMessage Message="Please restart this profile after you are done." />
 			<StopBot />
+		</If>
+
+		<If Condition="not IsQuestCompleted(66996)">
+			<LogMessage Message="You haven't completed the Brave New Companions quest yet!" />
+			<LogMessage Message="Loading the Defenders of Eorzea profile..." />
+			<LoadProfile Path="Profiles/y2krazy/Questing/[O] Seventh Astral Era - Defenders of Eorzea.xml" />
 		</If>
 
 		<!-- Traitor in the Midst -->
@@ -854,27 +860,31 @@
 					<TalkTo InteractDistance="3.0" NpcId="1010191" XYZ="229.4498, 222, 347.3105" />
 				</If>
 				<If Condition="GetQuestStep(65614) == 2">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
+					<If Condition="not IsOnMap(133)">
+						<If Condition="not IsOnMap(132)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+								<TeleportTo Name="New Gridania" AetheryteId="2" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+								<Travel To="132" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
+						<Travel To="133" />
 					</If>
-					<Travel To="133" />
 					<TalkTo InteractDistance="3.0" NpcId="1009130" XYZ="-157.0001, 4, -20.18774" />
 				</If>
 				<If Condition="GetQuestStep(65614) == 3">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
+					<If Condition="not IsOnMap(133)">
+						<If Condition="not IsOnMap(132)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+								<TeleportTo Name="New Gridania" AetheryteId="2" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+								<Travel To="132" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
+						<Travel To="133" />
 					</If>
-					<Travel To="133" />
 					<MoveTo Name="Silent Conjurer" XYZ="-159.411, 4.054098, -4.104736" />
 					<RunCode Name="TendrilsofIntrigue" />
 					<If Condition="not IsOnMap(205)">
@@ -886,15 +896,17 @@
 					</If>
 				</If>
 				<If Condition="GetQuestStep(65614) == 4">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
+					<If Condition="not IsOnMap(133)">
+						<If Condition="not IsOnMap(132)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+								<TeleportTo Name="New Gridania" AetheryteId="2" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+								<Travel To="132" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
+						<Travel To="133" />
 					</If>
-					<Travel To="133" />
 					<TalkTo InteractDistance="3.0" NpcId="1009130" XYZ="-157.0001, 4, -20.18774" />
 				</If>
 				<If Condition="GetQuestStep(65614) == 255">
@@ -1002,9 +1014,11 @@
 					</If>
 					<TalkTo InteractDistance="3.0" NpcId="1010013" XYZ="131.3038, -13.4725, 158.6174" />
 					<TalkTo InteractDistance="3.0" NpcId="1010014" XYZ="-100.267, -7.145398, 87.26636" />
-					<Travel To="133" />
-					<TalkTo InteractDistance="3.0" NpcId="1010016" XYZ="137.743, 11.84144, -223.3464" />
-					<TalkTo InteractDistance="3.0" NpcId="1010015" XYZ="-154.5892, 7.058627, -85.52692" />
+					<If Condition="not IsOnMap(133)">
+						<Travel To="133" />
+						<TalkTo InteractDistance="3.0" NpcId="1010016" XYZ="137.743, 11.84144, -223.3464" />
+						<TalkTo InteractDistance="3.0" NpcId="1010015" XYZ="-154.5892, 7.058627, -85.52692" />
+					</If>
 				</If>
 				<If Condition="GetQuestStep(65615) == 255">
 					<If Condition="not IsOnMap(132)">

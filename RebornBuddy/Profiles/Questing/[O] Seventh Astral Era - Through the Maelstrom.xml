@@ -7,7 +7,7 @@
 ###########################################################
 # Author: y2krazy                                         #
 ###########################################################
-# Version: 1.0.8                                          #
+# Version: 1.0.9                                          #
 ###########################################################
 # Required Level: 50                                      #
 ###########################################################
@@ -47,6 +47,12 @@
 			<LogMessage Message="Ensure your Soul Crystal is equipped or that you've completed your level 30 job quest." />
 			<LogMessage Message="Please restart this profile after you are done." />
 			<StopBot />
+		</If>
+
+		<If Condition="not IsQuestCompleted(66729)">
+			<LogMessage Message="You haven't completed the Build on the Stone quest yet!" />
+			<LogMessage Message="Loading the A Realm Awoken profile..." />
+			<LoadProfile Path="Profiles/y2krazy/Questing/[O] Seventh Astral Era - A Realm Awoken.xml" />
 		</If>
 
 		<!-- Still Waters -->
@@ -227,15 +233,17 @@
 					<TalkTo InteractDistance="3.0" NpcId="1008600" XYZ="-516.35, 14.95691, -370.4738" />
 				</If>
 				<If Condition="GetQuestStep(66883) == 2">
-					<If Condition="not IsOnMap(130)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-							<Travel To="130" />
-						</If>
+						<Travel To="131" />
 					</If>
-					<Travel To="131" />
 					<MoveTo Name="Domans" XYZ="-21.40631, 37.76, 79.3424" />
 					<RunCode Name="TheMotherofExiles" />
 				</If>
@@ -273,15 +281,17 @@
 					<TalkTo InteractDistance="3.0" NpcId="1001353" XYZ="21.07263, 7.45, -78.78235" />
 				</If>
 				<If Condition="GetQuestStep(66883) == 6">
-					<If Condition="not IsOnMap(130)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-							<Travel To="130" />
-						</If>
+						<Travel To="131" />
 					</If>
-					<Travel To="131" />
 					<HandOver ItemId="2001202" QuestId="66883" StepId="6" NpcId="1001968" XYZ="136.0951, 4.009988, -67.85687" />
 					<HandOver ItemId="2001202" QuestId="66883" StepId="6" NpcId="1001966" XYZ="126.7262, 4.01, -83.84839" />
 				</If>
@@ -308,15 +318,17 @@
 					<TalkTo InteractDistance="3.0" NpcId="1008608" XYZ="33.18835, 7.199998, -95.38416" />
 				</If>
 				<If Condition="GetQuestStep(66883) == 255">
-					<If Condition="not IsOnMap(130)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-							<Travel To="130" />
-						</If>
+						<Travel To="131" />
 					</If>
-					<Travel To="131" />
 
 					<!-- Rewards
 
@@ -339,15 +351,17 @@
 
 		<If Condition="not IsQuestCompleted(66884)">
 			<If Condition="not HasQuest(66884)">
-				<If Condition="not IsOnMap(130)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+				<If Condition="not IsOnMap(131)">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
 					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-						<Travel To="130" />
-					</If>
+					<Travel To="131" />
 				</If>
-				<Travel To="131" />
 				<NoCombatMoveTo Name="1008616" XYZ="-18.26508, 36.0139, 57.93848" />
 				<If Condition="IsQuestAcceptQualified(66884)">
 					<PickupQuest NpcId="1008616" QuestId="66884" XYZ="-18.26508, 36.0139, 57.93848" />
