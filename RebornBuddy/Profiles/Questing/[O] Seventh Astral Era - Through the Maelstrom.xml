@@ -7,7 +7,7 @@
 ###########################################################
 # Author: y2krazy                                         #
 ###########################################################
-# Version: 1.0.9                                          #
+# Version: 1.0.10                                         #
 ###########################################################
 # Required Level: 50                                      #
 ###########################################################
@@ -244,8 +244,8 @@
 						</If>
 						<Travel To="131" />
 					</If>
-					<MoveTo Name="Domans" XYZ="-21.40631, 37.76, 79.3424" />
-					<RunCode Name="TheMotherofExiles" />
+					<MoveTo Name="Domans" XYZ="-24.06354, 38.01001, 82.6886" />
+					<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
 				</If>
 				<If Condition="GetQuestStep(66883) == 3">
 					<If Condition="not IsOnMap(130)">
@@ -410,7 +410,9 @@
 							<Travel To="141" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1008624" XYZ="-96.97113, -11.35, -42.00812" />
+					<While Condition="not IsTodoChecked(66884, 4, 1)">
+						<TalkTo InteractDistance="3.0" NpcId="1008624" XYZ="-96.97113, -11.35, -42.00812" />
+					</While>
 				</If>
 				<If Condition="GetQuestStep(66884) == 5">
 					<If Condition="not IsOnMap(141)">
@@ -692,7 +694,7 @@
 							<Travel To="140" />
 						</If>
 					</If>
-					<UseItem NpcId="1008611" ItemId="2001208" XYZ="-386.4042, 23, -350.1183" Radius="10" />
+					<UseItem NpcId="1008611" ItemId="2001208" XYZ="-386.4042, 23, -350.1183" Radius="10" UseTimes="1" BlacklistAfter="True" />
 				</If>
 				<If Condition="GetQuestStep(66887) == 3">
 					<If Condition="not IsOnMap(140)">
@@ -1034,7 +1036,7 @@
 							<Travel To="156" />
 						</If>
 					</If>
-					<UseItem NpcId="2003579,2003580,2003581,2003582,2003583,2003584" ItemId="2001212" Radius="250" QuestId="66891" StepId="1">
+					<UseItem NpcIds="2003579,2003580,2003581,2003582,2003583,2003584" ItemId="2001212" Radius="250" QuestId="66891" StepId="1">
 						<HotSpots>
 							<HotSpot XYZ="211.2001, 1.266479, -561.059" Radius="10" />
 							<HotSpot XYZ="234.0886, -2.304138, -544.3961" Radius="10" />
@@ -1127,8 +1129,7 @@
 							<Travel To="129" />
 						</If>
 					</If>
-					<MoveTo Name="Zanthael" XYZ="9.170593, 20.9994, -15.21332" />
-					<RunCode Name="LimsaCommandRoom" />
+					<UseTransport Name="Command Room" InteractDistance="3.0" NpcId="1001029" XYZ="9.170593, 20.9994, -15.21332" />
 					<TalkTo InteractDistance="3.0" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" />
 				</If>
 				<If Condition="GetQuestStep(66892) == 255">
@@ -1205,7 +1206,7 @@
 							<Travel To="138" />
 						</If>
 					</If>
-					<UseItem NpcId="2003585,2003586,2003587,2003588,2003589" ItemId="2001213" Radius="250" QuestId="66893" StepId="2">
+					<UseItem NpcIds="2003585,2003586,2003587,2003588,2003589" ItemId="2001213" Radius="250" QuestId="66893" StepId="2">
 						<HotSpots>
 							<HotSpot XYZ="-34.92792, -19.7605, -129.0456" Radius="10" />
 							<HotSpot XYZ="-47.62347, -22.87329, -152.7886" Radius="10" />
@@ -1275,7 +1276,7 @@
 						</If>
 					</If>
 					<NoCombatMoveTo Name="Scouts" XYZ="-208.4536, -38.99379, -113.2983" />
-					<UseItem NpcId="1008683" ItemId="2001214" XYZ="-208.4536, -38.99379, -113.2983" Radius="10" />
+					<UseItem NpcId="1008683" ItemId="2001214" XYZ="-208.4536, -38.99379, -113.2983" Radius="10" UseTimes="1" BlacklistAfter="True" />
 				</If>
 				<If Condition="GetQuestStep(66894) == 2">
 					<If Condition="not IsOnMap(138)">
@@ -1311,19 +1312,18 @@
 
 					<!-- Rewards
 
-					0: Spiritbond Potion
-					1: Intelligence Bracelets
-					2: Mind/Piety Bracelets
+					0: Intelligence Bracelets
+					1: Mind/Piety Bracelets
 
 					-->
 
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
-						<TurnIn QuestId="66894" NpcId="1006614" ItemId="2001215" XYZ="65.87317, -3.118188, 61.41748" RewardSlot="1" />
+						<TurnIn QuestId="66894" NpcId="1006614" ItemId="2001215" XYZ="65.87317, -3.118188, 61.41748" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar)">
-						<TurnIn QuestId="66894" NpcId="1006614" ItemId="2001215" XYZ="65.87317, -3.118188, 61.41748" RewardSlot="2" />
+						<TurnIn QuestId="66894" NpcId="1006614" ItemId="2001215" XYZ="65.87317, -3.118188, 61.41748" RewardSlot="1" />
 					</If>
-					<TurnIn QuestId="66894" NpcId="1006614" ItemId="2001215" XYZ="65.87317, -3.118188, 61.41748" RewardSlot="0" />
+					<TurnIn QuestId="66894" NpcId="1006614" ItemId="2001215" XYZ="65.87317, -3.118188, 61.41748" />
 				</If>
 			</If>
 		</If>
@@ -1389,6 +1389,7 @@
 						</If>
 					</If>
 					<TalkTo InteractDistance="3.0" NpcId="1008706" XYZ="-404.8371, -32.80984, -297.2305" />
+					<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
 				</If>
 				<If Condition="GetQuestStep(66895) == 255">
 					<If Condition="not IsOnMap(138)">
@@ -1442,20 +1443,11 @@
 							<Travel To="129" />
 						</If>
 					</If>
-					<MoveTo Name="Zanthael" XYZ="9.170593, 20.9994, -15.21332" />
-					<RunCode Name="LimsaCommandRoom" />
+					<UseTransport Name="Command Room" InteractDistance="3.0" NpcId="1001029" XYZ="9.170593, 20.9994, -15.21332" />
 					<TalkTo InteractDistance="3.0" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" />
 				</If>
 				<If Condition="GetQuestStep(66896) == 2">
-
-					<!-- TO DO -->
-
-					<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-					<!-- NOT YET IMPLEMENTED! -->
-
-					<!-- TO DO -->
-
-					<If Condition="not IsOnMap(129)">
+					<If Condition="not IsOnMap(129) and not IsOnSubMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
 							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
 						</If>
@@ -1463,8 +1455,9 @@
 							<Travel To="129" />
 						</If>
 					</If>
-					<MoveTo Name="Zanthael" XYZ="9.170593, 20.9994, -15.21332" />
-					<RunCode Name="LimsaCommandRoom" />
+					<If Condition="IsOnMap(129)">
+						<UseTransport Name="Command Room" InteractDistance="3.0" NpcId="1001029" XYZ="9.170593, 20.9994, -15.21332" />
+					</If>
 					<TalkTo InteractDistance="3.0" NpcId="1008679" XYZ="-1.205505, 1.604133, -3.830017" />
 				</If>
 				<If Condition="GetQuestStep(66896) == 3">
@@ -1535,30 +1528,28 @@
 							<Travel To="129" />
 						</If>
 					</If>
-					<MoveTo Name="Zanthael" XYZ="9.170593, 20.9994, -15.21332" />
-					<RunCode Name="LimsaCommandRoom" />
+					<UseTransport Name="Command Room" InteractDistance="3.0" NpcId="1001029" XYZ="9.170593, 20.9994, -15.21332" />
 
 					<!-- Rewards
 
-					0: Durability Draught
-					1: Paladin Weapon
-					2: Monk Weapon
-					3: Warrior Weapon
-					4: Dragoon Weapon
+					0: Paladin Weapon
+					1: Monk Weapon
+					2: Warrior Weapon
+					3: Dragoon Weapon
 
 					-->
 
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
-						<TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" RewardSlot="1" />
+						<TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk)">
-						<TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" RewardSlot="2" />
+						<TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" RewardSlot="1" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior)">
-						<TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" RewardSlot="3" />
+						<TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" RewardSlot="2" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
-						<TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" RewardSlot="4" />
+						<TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" RewardSlot="3" />
 					</If>
 					<TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" />
 				</If>
@@ -1760,31 +1751,6 @@
 		</GrindArea>
 	</GrindAreas>
 	<CodeChunks>
-		<CodeChunk Name="TheMotherofExiles">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(12000);
-		]]>
-		</CodeChunk>
 		<CodeChunk Name="PromisestoKeep">
 			<![CDATA[ 
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
@@ -1798,17 +1764,6 @@
 				await Buddy.Coroutines.Coroutine.Sleep(500);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(3000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="LimsaCommandRoom">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1001029).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(12000);
 		]]>
 		</CodeChunk>
 	</CodeChunks>
