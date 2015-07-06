@@ -3326,14 +3326,17 @@
 						</If>
 					</If>
 					<NoCombatMoveTo Name="Emmanellain" XYZ="-293.0496, -183.7349, 812.6802" />
-					<Dismount />
-					<RunCode Name="SenseofUrgency" />
+					<!-- <Dismount />
+					<RunCode Name="SenseofUrgency" /> -->
+					<EmoteNPC NpcId="1013498" Emote="psych" XYZ="-293.0496, -183.7349, 812.6802" Radius="10" QuestId="67129" StepId="1" />
 					<NoCombatMoveTo Name="House Haillenarte Knight" XYZ="-260.9141, -184.9108, 705.4092" />
-					<Dismount />
-					<RunCode Name="SenseofUrgency2" />
+					<!-- <Dismount />
+					<RunCode Name="SenseofUrgency2" /> -->
+					<EmoteNPC NpcId="1012359" Emote="psych" XYZ="-260.9141, -184.9108, 705.4092" Radius="10" QuestId="67129" StepId="1" />
 					<NoCombatMoveTo Name="House Haillenarte Knight" XYZ="-337.7584, -186.0735, 618.5549" />
-					<Dismount />
-					<RunCode Name="SenseofUrgency3" />
+					<!-- <Dismount />
+					<RunCode Name="SenseofUrgency3" /> -->
+					<EmoteNPC NpcId="1012360" Emote="psych" XYZ="-337.7584, -186.0735, 618.5549" Radius="10" QuestId="67129" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(67129) == 255">
 					<If Condition="not IsOnMap(401)">
@@ -3967,7 +3970,7 @@
 
 			<!-- Learn the Black Chocobo Mount -->
 
-			<UseItem ItemId="12075" XYZ="120.6531, 14.95313, -156.6339" />
+			<UseItem ItemId="12075" XYZ="120.6531, 14.95313, -156.6339" UseTimes="1" BlacklistAfter="True" />
 		</If>
 
 		<!-- Disclosure -->
@@ -4639,8 +4642,7 @@
 							<StopBot />
 						</If>
 					</If>
-					<UseItem NpcId="2005995" ItemId="2001741" XYZ="333.8826, 171.0994, -619.8673" Radius="10" />
-					<WaitTimer WaitTime="5" />
+					<UseItem NpcId="2005995" ItemId="2001741" XYZ="333.8826, 171.0994, -619.8673" Radius="10" QuestId="67283" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(67283) == 4">
 					<If Condition="not IsOnMap(397)">
@@ -4660,8 +4662,7 @@
 							<StopBot />
 						</If>
 					</If>
-					<UseItem NpcId="2005996" ItemId="2001742" XYZ="333.8826, 171.0994, -619.8673" Radius="10" />
-					<WaitTimer WaitTime="5" />
+					<UseItem NpcId="2005996" ItemId="2001742" XYZ="333.8826, 171.0994, -619.8673" Radius="10" QuestId="67283" StepId="4" />
 				</If>
 				<If Condition="GetQuestStep(67283) == 5">
 					<If Condition="not IsOnMap(397)">
@@ -8689,7 +8690,7 @@
 							<StopBot />
 						</If>
 					</If>
-					<UseItem NpcId="2006130" ItemId="2001790" XYZ="378.7441, -42.55743, -373.0984" Radius="10" />
+					<UseItem NpcId="2006130" ItemId="2001790" XYZ="378.7441, -42.55743, -373.0984" Radius="10" QuestId="67312" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(67312) == 3">
 					<If Condition="not IsOnMap(398)">
@@ -10310,7 +10311,7 @@
 							<StopBot />
 						</If>
 					</If>
-					<UseItem NpcId="2005603,2005605,2005604" ItemId="2001609" Radius="250" QuestId="67315" StepId="1">
+					<UseItem NpcIds="2005603,2005605,2005604" ItemId="2001609" Radius="250" QuestId="67315" StepId="1">
 						<HotSpots>
 							<HotSpot XYZ="641.9012, -34.13446, 332.0515" Radius="10" />
 							<HotSpot XYZ="663.4164, -32.48651, 321.3701" Radius="10" />
@@ -12812,7 +12813,7 @@
 							<StopBot />
 						</If>
 					</If>
-					<UseItem NpcId="2006029" ItemId="2001752" XYZ="26.99316, -138.5062, 718.6541" Radius="10" />
+					<UseItem NpcId="2006029" ItemId="2001752" XYZ="26.99316, -138.5062, 718.6541" Radius="10" QuestId="67351" StepId="3" />
 					<Grind grindRef="A_Dragon_and_His_Boy2" while="HasQuest(67351) and GetQuestStep(67351) == 3" />					
 				</If>
 				<If Condition="GetQuestStep(67351) == 4">
@@ -13970,7 +13971,7 @@
 
 			<!-- Learn the Manacutter Mount -->
 
-			<!-- <UseItem ItemId="12073" XYZ="" />
+			<!-- <UseItem ItemId="12073" XYZ="" UseTimes="1" BlacklistAfter="True" />
 		</If> -->
 
 		<!-- The Song Begins -->
@@ -18393,19 +18394,6 @@
 				await Buddy.Coroutines.Coroutine.Sleep(8000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(6000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="SenseofUrgency3">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1012360).Target();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.Managers.ChatManager.SendChat("/psych");
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(6000);
 		]]>

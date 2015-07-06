@@ -81,13 +81,19 @@
 			</If>
 			<If Condition="HasQuest(66978)">
 				<If Condition="GetQuestStep(66978) == 1">
-					<If Condition="not IsOnMap(156)">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 						</If>
 						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
 							<Travel To="156" />
 						</If>
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Exit to Revenant's Toll" InteractDistance="3.0" NpcId="2002879" XYZ="-0.01531982, 2.975464, 27.48145" />
 					</If>
 					<TalkTo InteractDistance="3.0" NpcId="1009239" XYZ="18.32605, 21.25272, -639.7345" />
 				</If>
@@ -143,8 +149,7 @@
 							<Travel To="130" />
 						</If>
 					</If>
-					<MoveTo Name="Swift" XYZ="-141.6495, 4.1, -114.67161" />
-					<RunCode Name="DesperateTimes" />
+					<TalkToPlus InteractDistance="3.0" NpcId="1004576" XYZ="-141.6495, 4.1, -114.67161" />
 				</If>
 				<If Condition="GetQuestStep(66979) == 3">
 					<If Condition="not IsOnMap(141)">
@@ -155,8 +160,10 @@
 							<Travel To="141" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1001484" XYZ="93.24792, 0.3407532, -272.6024" />
-					<TalkTo InteractDistance="3.0" NpcId="1001605" XYZ="94.46863, 0.3407532, -272.6024" />
+					<While Condition="not IsTodoChecked(66979, 3, 1)">
+						<TalkTo InteractDistance="3.0" NpcId="1001484" XYZ="93.24792, 0.3407532, -272.6024" />
+						<TalkTo InteractDistance="3.0" NpcId="1001605" XYZ="94.46863, 0.3407532, -272.6024" />
+					</While>
 				</If>
 				<If Condition="GetQuestStep(66979) == 4">
 					<If Condition="not IsOnMap(141)">
@@ -179,6 +186,7 @@
 						</If>
 					</If>
 					<TalkTo InteractDistance="3.0" NpcId="1009049" XYZ="187.5486, -1, -302.9374" />
+					<WaitTimer WaitTime="5" />
 				</If>
 				<If Condition="GetQuestStep(66979) == 255">
 					<If Condition="not IsOnMap(141)">
@@ -189,9 +197,11 @@
 							<Travel To="141" />
 						</If>
 					</If>
-					<MoveTo Name="Terrified Refugee" XYZ="187.5486, -1, -302.9374" />
+					<!-- <MoveTo Name="Terrified Refugee" XYZ="187.5486, -1, -302.9374" />
 					<Dismount />
-					<RunCode Name="DesperateTimes2" />
+					<RunCode Name="DesperateTimes" />
+					<WaitTimer WaitTime="5" /> -->
+					<EmoteNPC NpcId="1009049" Emote="soothe" XYZ="-96.97113, -11.35, -42.00812" Radius="10" QuestId="66979" StepId="255" />
 				</If>
 			</If>
 		</If>
@@ -208,7 +218,7 @@
 						<Travel To="141" />
 					</If>
 				</If>
-				<NoCombatMoveTo Name="1009049" XYZ="187.5486, -1, -302.9374" />
+				<NoCombatMoveTo Name="Terrified Refugee" XYZ="187.5486, -1, -302.9374" />
 				<If Condition="IsQuestAcceptQualified(66980)">
 					<PickupQuest NpcId="1009049" QuestId="66980" XYZ="187.5486, -1, -302.9374" />
 				</If>
@@ -443,6 +453,14 @@
 				</If>
 				<NoCombatMoveTo Name="Alphinaud" XYZ="-25.49786, 38.01001, 83.35999" />
 				<If Condition="IsQuestAcceptQualified(66983)">
+					
+					<!-- TO DO -->
+
+					<!-- Figure out why it gets stuck in the PickupQuest cutscene. -->
+
+					<!-- TO DO -->
+
+					<!-- <PickupQuest NpcId="1009057" QuestId="66983" XYZ="-25.49786, 38.01001, 83.35999" /> -->
 					<RunCode Name="StoriesWeTell" />
 				</If>
 			</If>
@@ -517,7 +535,7 @@
 					<TalkTo InteractDistance="3.0" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" />
 				</If>
 				<If Condition="GetQuestStep(66984) == 2">
-					<If Condition="not IsOnMap(133)">
+					<If Condition="not IsOnMap(133) and not IsOnMap(205)">
 						<If Condition="not IsOnMap(132)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
 								<TeleportTo Name="New Gridania" AetheryteId="2" />
@@ -528,15 +546,10 @@
 						</If>
 						<Travel To="133" />
 					</If>
-					<MoveTo Name="Silent Conjurer" XYZ="-159.411, 4.054098, -4.104736" />
-					<RunCode Name="LotusStand" />
-					<If Condition="not IsOnMap(205)">
-						<LogMessage Message="Please restart the profile." />
-						<StopBot />
+					<If Condition="IsOnMap(133)">
+						<UseTransport Name="Lotus Stand" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736" />
 					</If>
-					<If Condition="IsOnMap(205)">
-						<TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" />
 				</If>
 				<If Condition="GetQuestStep(66984) == 255">
 					<If Condition="not IsOnMap(152)">
@@ -645,10 +658,12 @@
 							<Travel To="152" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009098" XYZ="262.2567, -8.989602, -78.08051" />
-					<MoveTo Name="Sweet-smelling Wildflower" XYZ="308.1254, -15.48798, -136.431" />
-					<RunCode Name="ASylphlandsSting4" />
-					<UseItem NpcId="1009104" ItemId="2001311" XYZ="376.2417, -17.92897, -135.1187" Radius="10" />
+					<While Condition="not IsTodoChecked(66985, 5, 1)">
+						<TalkTo InteractDistance="3.0" NpcId="1009098" XYZ="262.2567, -8.989602, -78.08051" />
+						<MoveTo Name="Sweet-smelling Wildflower" XYZ="308.1254, -15.48798, -136.431" />
+						<RunCode Name="ASylphlandsSting4" />
+						<UseItem NpcId="1009104" ItemId="2001311" XYZ="376.2417, -17.92897, -135.1187" Radius="10" QuestId="66985" StepId="5" />
+					</While>
 				</If>
 				<If Condition="GetQuestStep(66985) == 6">
 					<If Condition="not IsOnMap(152)">
@@ -717,7 +732,6 @@
 						</If>
 					</If>
 					<NoCombatMoveTo Name="Papalymo" XYZ="523.6437, -21.92256, -303.1205" />
-					<Dismount />
 					<TalkTo InteractDistance="3.0" NpcId="1009114" XYZ="523.6437, -21.92256, -303.1205" />
 					<Grind grindRef="Scattered_Scions" while="HasQuest(66986) and GetQuestStep(66986) == 1" />
 				</If>
@@ -752,8 +766,10 @@
 							<Travel To="152" />
 						</If>
 					</If>
-					<UseItem NpcIds="1009113,1009114" ItemId="2001312" XYZ="526.0306, -21.85023, -302.42" Radius="90" />
-					<Grind grindRef="Scattered_Scions2" while="HasQuest(66986) and GetQuestStep(66986) == 4" />
+					<While Condition="not IsTodoChecked(66986, 4, 1)">
+						<UseItem NpcId="1009113" ItemId="2001312" XYZ="526.0306, -21.85023, -302.42" Radius="90" UseTimes="1" BlacklistAfter="True" QuestId="66986" StepId="4" />
+						<UseItem NpcId="1009114" ItemId="2001312" XYZ="526.0306, -21.85023, -302.42" Radius="90" QuestId="66986" StepId="4" />
+					</While>
 				</If>
 				<If Condition="GetQuestStep(66986) == 5">
 					<If Condition="not IsOnMap(152)">
@@ -775,7 +791,9 @@
 							<Travel To="152" />
 						</If>
 					</If>
+					<NoCombatMoveTo Name="Yda" XYZ="258.1368, -23.38493, -526.8788" />
 					<TalkTo InteractDistance="3.0" NpcId="1009414" XYZ="258.1368, -23.38493, -526.8788" />
+					<WaitTimer WaitTime="5" />
 				</If>
 				<If Condition="GetQuestStep(66986) == 7">
 					<If Condition="not IsOnMap(152)">
@@ -786,13 +804,10 @@
 							<Travel To="152" />
 						</If>
 					</If>
-					<UseItem NpcId="1009414,1009115" ItemId="2001312" Radius="250" QuestId="66986" StepId="7">
-						<HotSpots>
-							<HotSpot XYZ="258.1368, -23.38493, -526.8788" Radius="10" />
-							<HotSpot XYZ="255.6038, -24.15306, -532.25" Radius="10" />
-						</HotSpots>
-					</UseItem>
-					<Grind grindRef="Scattered_Scions3" while="HasQuest(66986) and GetQuestStep(66986) == 7" />
+					<While Condition="not IsTodoChecked(66986, 7, 1)">
+						<UseItem NpcId="1009414" ItemId="2001312" XYZ="258.1368, -23.38493, -526.8788" Radius="90" UseTimes="1" BlacklistAfter="True" QuestId="66986" StepId="7" />
+						<UseItem NpcId="1009115" ItemId="2001312" XYZ="255.6038, -24.15306, -532.25" Radius="90" QuestId="66986" StepId="7" />
+					</While>
 				</If>
 				<If Condition="GetQuestStep(66986) == 255">
 					<If Condition="not IsOnMap(152)">
@@ -875,8 +890,7 @@
 							<Travel To="152" />
 						</If>
 					</If>
-					<UseItem NpcIds="1009118" ItemId="2001313" XYZ="107.1641, -27.23767, -364.004" Radius="90" />
-					<Grind grindRef="True_to_Form" while="HasQuest(66987) and GetQuestStep(66987) == 3" />
+					<UseItem NpcId="1009118" ItemId="2001313" XYZ="107.1641, -27.23767, -364.004" Radius="90" QuestId="66987" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(66987) == 4">
 					<If Condition="not IsOnMap(152)">
@@ -957,6 +971,7 @@
 						</If>
 					</If>
 					<NoCombatMoveTo Name="Beastman Aetheryte" XYZ="193.4081, -31.44195, -219.6841" />
+					<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
 				</If>
 				<If Condition="GetQuestStep(66988) == 2">
 					<If Condition="GetQuestStep(66988) == 2">
@@ -1009,15 +1024,10 @@
 						</If>
 						<Travel To="133" />
 					</If>
-					<MoveTo Name="Silent Conjurer" XYZ="-159.411, 4.054098, -4.104736" />
-					<RunCode Name="LotusStand" />
-					<If Condition="not IsOnMap(205)">
-						<LogMessage Message="Please restart the profile." />
-						<StopBot />
+					<If Condition="IsOnMap(133)">
+						<UseTransport Name="Lotus Stand" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736" />
 					</If>
-					<If Condition="IsOnMap(205)">
-						<TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" />
 				</If>
 				<If Condition="GetQuestStep(66989) == 2">
 					<If Condition="not IsOnMap(133)">
@@ -1120,8 +1130,9 @@
 							<Travel To="156" />
 						</If>
 					</If>
-					<MoveTo Name="Struggling Adventurer" XYZ="558.5481, -8.752387, -762.9776" />
-					<RunCode Name="AHardHapalittoBreak" />
+					<!-- <MoveTo Name="Struggling Adventurer" XYZ="558.5481, -8.752387, -762.9776" />
+					<RunCode Name="AHardHapalittoBreak" /> -->
+					<EmoteNPC NpcId="1009076" Emote="huh" XYZ="558.5481, -8.752387, -762.9776" Radius="10" QuestId="66990" StepId="4" />
 				</If>
 				<If Condition="GetQuestStep(66990) == 255">
 					<If Condition="not IsOnMap(156)">
@@ -1208,8 +1219,9 @@
 							<Travel To="129" />
 						</If>
 					</If>
-					<MoveTo Name="Prickly Porter" XYZ="-103.563, 6, 202.655" />
-					<RunCode Name="PickinguptheSledge" />
+					<!-- <MoveTo Name="Prickly Porter" XYZ="-103.563, 6, 202.655" />
+					<RunCode Name="PickinguptheSledge" /> -->
+					<EmoteNPC NpcId="1009061" Emote="doubt" XYZ="-103.563, 6, 202.655" Radius="10" QuestId="66991" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(66991) == 4">
 					<If Condition="not IsOnMap(129)">
@@ -1894,26 +1906,6 @@
 			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
-		<GrindArea name="Scattered_Scions2">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="526.0306, -21.85023, -302.42" name="Sylphs" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="2877" />
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="Scattered_Scions3">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="256.9425, -23.73159, -529.6048" name="Sylphs" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="2877" />
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
 		<GrindArea name="True_to_Form">
 			<Hotspots>
 				<Hotspot Radius="90" XYZ="96.63538, -26.65423, -321.1567" name="Beigad" />
@@ -1956,24 +1948,7 @@
 		</GrindArea>
 	</GrindAreas>
 	<CodeChunks>
-		<CodeChunk Name="DesperateTimes">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1004576).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
-					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="DesperateTimes2">
+		<!-- <CodeChunk Name="DesperateTimes">
 			<![CDATA[ 
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
 				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1009049).Target();
@@ -1993,7 +1968,7 @@
 				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
 					ff14bot.RemoteWindows.JournalResult.Complete();
 		]]>
-		</CodeChunk>
+		</CodeChunk> -->
 		<CodeChunk Name="StoriesWeTell">
 			<![CDATA[ 
 				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1009057).Interact();
@@ -2047,20 +2022,6 @@
 				await Buddy.Coroutines.Coroutine.Sleep(500);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(20000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="LotusStand">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1000460).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
-					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(12000);
 		]]>
 		</CodeChunk>
 		<CodeChunk Name="ASylphlandsSting">
@@ -2123,7 +2084,7 @@
 				await Buddy.Coroutines.Coroutine.Sleep(500);
 		]]>
 		</CodeChunk>
-		<CodeChunk Name="AHardHapalittoBreak">
+		<!-- <CodeChunk Name="AHardHapalittoBreak">
 			<![CDATA[ 
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
 				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1009076).Target();
@@ -2152,7 +2113,7 @@
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(2000);
 		]]>
-		</CodeChunk>
+		</CodeChunk> -->
 		<CodeChunk Name="RecruitingtheRealm">
 			<![CDATA[ 
 				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1003597).Interact();
