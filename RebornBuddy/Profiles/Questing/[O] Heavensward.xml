@@ -3970,7 +3970,8 @@
 
 			<!-- Learn the Black Chocobo Mount -->
 
-			<UseItem ItemId="12075" XYZ="120.6531, 14.95313, -156.6339" UseTimes="1" BlacklistAfter="True" />
+			<RunCode Name="LearnBlackChocobo" />
+			<!-- <UseItem ItemId="12075" XYZ="120.6531, 14.95313, -156.6339" UseTimes="1" BlacklistAfter="True" /> -->
 		</If>
 
 		<!-- Disclosure -->
@@ -13968,12 +13969,13 @@
 			</If>
 		</If>
 
-		<!-- <If Condition="(ItemCount(12073) &gt; 0)"> -->
+		<If Condition="(ItemCount(12073) &gt; 0)">
 
 			<!-- Learn the Manacutter Mount -->
 
-			<!-- <UseItem ItemId="12073" XYZ="" UseTimes="1" BlacklistAfter="True" />
-		</If> -->
+			<RunCode Name="LearnManacutter" />
+			<!-- <UseItem ItemId="12075" XYZ="120.6531, 14.95313, -156.6339" UseTimes="1" BlacklistAfter="True" /> -->
+		</If>
 
 		<!-- The Song Begins -->
 
@@ -18362,6 +18364,17 @@
 		</GrindArea>
 	</GrindAreas>
 	<CodeChunks>
+		<CodeChunk Name="LearnBlackChocobo">
+			<![CDATA[
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+				{
+					if(slot.RawItemId == 12075)
+					{
+						slot.UseItem();
+					}
+				}
+		]]>
+		</CodeChunk>
 		<CodeChunk Name="RunIntoZone">
 			<![CDATA[
 				await Buddy.Coroutines.Coroutine.Sleep(500);
@@ -18371,7 +18384,7 @@
 				await Buddy.Coroutines.Coroutine.Sleep(500);
 		]]>
 		</CodeChunk>
-		<CodeChunk Name="SenseofUrgency">
+		<!-- <CodeChunk Name="SenseofUrgency">
 			<![CDATA[ 
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
 				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1013498).Target();
@@ -18411,7 +18424,7 @@
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(6000);
 		]]>
-		</CodeChunk>
+		</CodeChunk> -->
 		<CodeChunk Name="ChocoboForestJump">
 			<![CDATA[
 				ff14bot.Managers.MovementManager.SetFacing(1.043983f);
@@ -18436,5 +18449,16 @@
 				}
 		]]>
 		</CodeChunk>
+		<CodeChunk Name="LearnManacutter">
+			<![CDATA[
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+				{
+					if(slot.RawItemId == 12073)
+					{
+						slot.UseItem();
+					}
+				}
+		]]>
+		</CodeChunk>		
 	</CodeChunks>
 </Profile>
