@@ -96,7 +96,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
+					<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" QuestId="65588" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65588) == 2">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
@@ -113,7 +113,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009959" XYZ="3.524841, 0.009977885, -4.44043" />
+					<TalkTo InteractDistance="3.0" NpcId="1009959" XYZ="3.524841, 0.009977885, -4.44043" QuestId="65588" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65588) == 255">
 					<If Condition="not IsOnMap(130)">
@@ -180,7 +180,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" />
+					<TalkTo InteractDistance="3.0" NpcId="1010078" XYZ="31.54041, -1, -0.8087769" QuestId="65589" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65589) == 2">
 					<If Condition="not IsOnMap(156)">
@@ -191,7 +191,7 @@
 							<Travel To="156" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009962" XYZ="-354.6044, -15.98189, -477.4395" />
+					<TalkTo InteractDistance="3.0" NpcId="1009962" XYZ="-354.6044, -15.98189, -477.4395" QuestId="65589" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65589) == 3">
 					<If Condition="not IsOnMap(156)">
@@ -202,7 +202,7 @@
 							<Travel To="156" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009966" XYZ="-455.8939, -4.098358, -302.7238" />
+					<TalkTo InteractDistance="3.0" NpcId="1009966" XYZ="-455.8939, -4.098358, -302.7238" QuestId="65589" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(65589) == 4">
 					<If Condition="not IsOnMap(156)">
@@ -237,7 +237,7 @@
 							<Travel To="156" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009112" XYZ="-355.459, -16.03057, -477.0428" />
+					<TalkTo InteractDistance="3.0" NpcId="1009112" XYZ="-355.459, -16.03057, -477.0428" QuestId="65589" StepId="4" />
 				</If>
 				<If Condition="GetQuestStep(65589) == 255">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
@@ -316,7 +316,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
 						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796" />
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" />
+					<TalkTo InteractDistance="3.0" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" QuestId="65590" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65590) == 2">
 					<If Condition="not IsOnMap(155)">
@@ -327,10 +327,10 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" />
+					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" QuestId="65590" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65590) == 255">
-					<If Condition="not IsOnMap(155)">
+					<If Condition="not IsOnMap(155) and not IsOnSubMap(1429)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
 						</If>
@@ -338,7 +338,9 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
+					<If Condition="IsOnMap(155)">
+						<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126" />
+					</If>
 
 					<!-- Rewards
 
@@ -348,22 +350,15 @@
 
 					-->
 
-					<!-- TO DO -->
-
-					<!-- Replace the CodeChunk to allow for reward selection. -->
-
-					<!-- TO DO -->
-
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
-						<TurnIn QuestId="65590" NpcId="" XYZ="" RewardSlot="0" />
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
+						<RunCode Name="ComingtoTerms" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
-						<TurnIn QuestId="65590" NpcId="" XYZ="" RewardSlot="1" />
+						<RunCode Name="ComingtoTerms2" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
-						<TurnIn QuestId="65590" NpcId="" XYZ="" RewardSlot="2" />
-					</If> -->
-					<RunCode Name="ComingtoTerms" />
+						<RunCode Name="ComingtoTerms3" />
+					</If>
 				</If>
 			</If>
 		</If>
@@ -395,7 +390,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" />
+					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" QuestId="65593" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65593) == 2">
 					<If Condition="not IsOnMap(155)">
@@ -406,7 +401,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009979" XYZ="-281.4832, 225.5088, 556.115" />
+					<TalkTo InteractDistance="3.0" NpcId="1009979" XYZ="-281.4832, 225.5088, 556.115" QuestId="65593" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65593) == 3">
 					<If Condition="not IsOnMap(155)">
@@ -417,7 +412,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009982" XYZ="208.8806, 229.05, 322.4994" />
+					<TalkTo InteractDistance="3.0" NpcId="1009982" XYZ="208.8806, 229.05, 322.4994" QuestId="65593" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(65593) == 255">
 					<If Condition="not IsOnMap(155)">
@@ -677,7 +672,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010001" XYZ="-915.2514, 229.3554, -3.158691" />
+					<TalkTo InteractDistance="3.0" NpcId="1010001" XYZ="-915.2514, 229.3554, -3.158691" QuestId="65611" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65611) == 2">
 					<If Condition="not IsOnMap(155)">
@@ -688,7 +683,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009996" XYZ="-902.6169, 229.2524, -9.689575" />
+					<TalkTo InteractDistance="3.0" NpcId="1009996" XYZ="-902.6169, 229.2524, -9.689575" QuestId="65611" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65611) == 3">
 					<If Condition="not IsOnMap(155)">
@@ -699,7 +694,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010054" XYZ="-916.6552, 229.3692, -6.424072" />
+					<TalkTo InteractDistance="3.0" NpcId="1010054" XYZ="-916.6552, 229.3692, -6.424072" QuestId="65611" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(65611) == 4">
 					<LogMessage Message="Please complete Snowcloak manually!" />
@@ -747,7 +742,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009997" XYZ="-897.1847, 230.4836, -17.50214" />
+					<TalkTo InteractDistance="3.0" NpcId="1009997" XYZ="-897.1847, 230.4836, -17.50214" QuestId="65613" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65613) == 2">
 					<If Condition="not IsOnMap(155)">
@@ -758,7 +753,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010148" XYZ="-427.1153, 235.9197, -119.7681" />
+					<TalkTo InteractDistance="3.0" NpcId="1010148" XYZ="-427.1153, 235.9197, -119.7681" QuestId="65613" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65613) == 3">
 					<If Condition="not IsOnMap(155)">
@@ -780,7 +775,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010149" XYZ="-302.0524, 233.0815, 406.0577" />
+					<TalkTo InteractDistance="3.0" NpcId="1010149" XYZ="-302.0524, 233.0815, 406.0577" QuestId="65613" StepId="4" />
 				</If>
 				<If Condition="GetQuestStep(65613) == 5">
 					<If Condition="not IsOnMap(155)">
@@ -803,7 +798,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010150" XYZ="-190.1122, 221.1358, 438.8342" />
+					<TalkTo InteractDistance="3.0" NpcId="1010150" XYZ="-190.1122, 221.1358, 438.8342" QuestId="65613" StepId="6" />
 				</If>
 				<If Condition="GetQuestStep(65613) == 7">
 					<If Condition="not IsOnMap(155)">
@@ -814,7 +809,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010151" XYZ="158.7396, 222.4369, 302.9678" />
+					<TalkTo InteractDistance="3.0" NpcId="1010151" XYZ="158.7396, 222.4369, 302.9678" QuestId="65613" StepId="7" />
 				</If>
 				<If Condition="GetQuestStep(65613) == 255">
 					<If Condition="not IsOnMap(155)">
@@ -857,7 +852,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010191" XYZ="229.4498, 222, 347.3105" />
+					<TalkTo InteractDistance="3.0" NpcId="1010191" XYZ="229.4498, 222, 347.3105" QuestId="65614" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65614) == 2">
 					<If Condition="not IsOnMap(133)">
@@ -871,10 +866,10 @@
 						</If>
 						<Travel To="133" />
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009130" XYZ="-157.0001, 4, -20.18774" />
+					<TalkTo InteractDistance="3.0" NpcId="1009130" XYZ="-157.0001, 4, -20.18774" QuestId="65614" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65614) == 3">
-					<If Condition="not IsOnMap(133)">
+					<If Condition="not IsOnMap(133) and not IsOnMap(205)">
 						<If Condition="not IsOnMap(132)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
 								<TeleportTo Name="New Gridania" AetheryteId="2" />
@@ -885,15 +880,10 @@
 						</If>
 						<Travel To="133" />
 					</If>
-					<MoveTo Name="Silent Conjurer" XYZ="-159.411, 4.054098, -4.104736" />
-					<RunCode Name="TendrilsofIntrigue" />
-					<If Condition="not IsOnMap(205)">
-						<LogMessage Message="Please restart the profile." />
-						<StopBot />
+					<If Condition="IsOnMap(133)">
+						<UseTransport Name="Lotus Stand" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736" />
 					</If>
-					<If Condition="IsOnMap(205)">
-						<TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" />
-					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" QuestId="65614" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(65614) == 4">
 					<If Condition="not IsOnMap(133)">
@@ -907,7 +897,7 @@
 						</If>
 						<Travel To="133" />
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009130" XYZ="-157.0001, 4, -20.18774" />
+					<TalkTo InteractDistance="3.0" NpcId="1009130" XYZ="-157.0001, 4, -20.18774" QuestId="65614" StepId="4" />
 				</If>
 				<If Condition="GetQuestStep(65614) == 255">
 					<If Condition="not IsOnMap(132)">
@@ -968,7 +958,7 @@
 							<Travel To="132" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010017" XYZ="22.17133, 1.2, 28.85474" />
+					<TalkTo InteractDistance="3.0" NpcId="1010017" XYZ="22.17133, 1.2, 28.85474" QuestId="65615" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65615) == 2">
 					<If Condition="not IsOnMap(132)">
@@ -979,7 +969,7 @@
 							<Travel To="132" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010018" XYZ="49.72913, -8.046955, 100.2059" />
+					<TalkTo InteractDistance="3.0" NpcId="1010018" XYZ="49.72913, -8.046955, 100.2059" QuestId="65615" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65615) == 3">
 					<If Condition="not IsOnMap(132)">
@@ -990,7 +980,7 @@
 							<Travel To="132" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010012" XYZ="23.91083, -18.8, 89.89087" />
+					<TalkTo InteractDistance="3.0" NpcId="1010012" XYZ="23.91083, -18.8, 89.89087" QuestId="65615" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(65615) == 4">
 					<If Condition="not IsOnMap(132)">
@@ -1001,7 +991,7 @@
 							<Travel To="132" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010018" XYZ="49.72913, -8.046955, 100.2059" />
+					<TalkTo InteractDistance="3.0" NpcId="1010018" XYZ="49.72913, -8.046955, 100.2059" QuestId="65615" StepId="4" />
 				</If>
 				<If Condition="GetQuestStep(65615) == 5">
 					<If Condition="not IsOnMap(132)">
@@ -1012,8 +1002,8 @@
 							<Travel To="132" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010013" XYZ="131.3038, -13.4725, 158.6174" />
-					<TalkTo InteractDistance="3.0" NpcId="1010014" XYZ="-100.267, -7.145398, 87.26636" />
+					<TalkTo InteractDistance="3.0" NpcId="1010013" XYZ="131.3038, -13.4725, 158.6174" QuestId="65615" StepId="5" />
+					<TalkTo InteractDistance="3.0" NpcId="1010014" XYZ="-100.267, -7.145398, 87.26636" QuestId="65615" StepId="5" />
 					<If Condition="not IsOnMap(133)">
 						<Travel To="133" />
 						<TalkTo InteractDistance="3.0" NpcId="1010016" XYZ="137.743, 11.84144, -223.3464" />
@@ -1079,7 +1069,7 @@
 							<Travel To="152" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010020" XYZ="-569.3904, 9.822201, 65.17126" />
+					<TalkTo InteractDistance="3.0" NpcId="1010020" XYZ="-569.3904, 9.822201, 65.17126" QuestId="65616" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65616) == 2">
 					<If Condition="not IsOnMap(153)">
@@ -1096,7 +1086,7 @@
 							<Travel To="153" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010021" XYZ="192.9198, 18.12, -6.33252" />
+					<TalkTo InteractDistance="3.0" NpcId="1010021" XYZ="192.9198, 18.12, -6.33252" QuestId="65616" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65616) == 3">
 					<If Condition="not IsOnMap(153)">
@@ -1169,7 +1159,7 @@
 							<Travel To="152" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010037" XYZ="-300.9843, 0.4458849, 267.8416" />
+					<TalkTo InteractDistance="3.0" NpcId="1010037" XYZ="-300.9843, 0.4458849, 267.8416" QuestId="65617" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65617) == 2">
 					<If Condition="not IsOnMap(152)">
@@ -1180,7 +1170,7 @@
 							<Travel To="152" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010038" XYZ="-173.663, 1.469695, 146.8375" />
+					<TalkTo InteractDistance="3.0" NpcId="1010038" XYZ="-173.663, 1.469695, 146.8375" QuestId="65617" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65617) == 3">
 					<If Condition="not IsOnMap(152)">
@@ -1191,7 +1181,7 @@
 							<Travel To="152" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009987" XYZ="-207.6906, 4.192081, 100.267" />
+					<TalkTo InteractDistance="3.0" NpcId="1009987" XYZ="-207.6906, 4.192081, 100.267" QuestId="65617" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(65617) == 255">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
@@ -1275,7 +1265,7 @@
 							<Travel To="156" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010039" XYZ="83.81775, 31.21601, -744.6555" />
+					<TalkTo InteractDistance="3.0" NpcId="1010039" XYZ="83.81775, 31.21601, -744.6555" QuestId="65618" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65618) == 255">
 					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
@@ -1348,7 +1338,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009996" XYZ="-902.6169, 229.2524, -9.689575" />
+					<TalkTo InteractDistance="3.0" NpcId="1009996" XYZ="-902.6169, 229.2524, -9.689575" QuestId="65620" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65620) == 2">
 					<If Condition="not IsOnMap(155)">
@@ -1359,7 +1349,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009996" XYZ="-902.6169, 229.2524, -9.689575" />
+					<TalkTo InteractDistance="3.0" NpcId="1009996" XYZ="-902.6169, 229.2524, -9.689575" QuestId="65620" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65620) == 3">
 					<If Condition="not IsOnMap(155)">
@@ -1370,7 +1360,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010054" XYZ="-916.6552, 229.3692, -6.424072" />
+					<TalkTo InteractDistance="3.0" NpcId="1010054" XYZ="-916.6552, 229.3692, -6.424072" QuestId="65620" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(65620) == 4">
 					<LogMessage Message="Please complete Akh Afah Amphitheatre (Hard) manually!" />
@@ -1418,7 +1408,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1009984" XYZ="-431.1742, 233.4727, -201.0071" />
+					<TalkTo InteractDistance="3.0" NpcId="1009984" XYZ="-431.1742, 233.4727, -201.0071" QuestId="65622" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65622) == 2">
 					<If Condition="not IsOnMap(155)">
@@ -1429,10 +1419,10 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" />
+					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" QuestId="65622" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65622) == 255">
-					<If Condition="not IsOnMap(155)">
+					<If Condition="not IsOnMap(155) and not IsOnSubMap(1429)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
 						</If>
@@ -1440,7 +1430,9 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<MoveTo Name="House Fortemps Guard" XYZ="264.9119, 302.2624, -223.7126" />
+					<If Condition="IsOnMap(155)">
+						<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1007603" XYZ="264.9119, 302.2624, -223.7126" />
+					</If>
 
 					<!-- Rewards
 
@@ -1451,25 +1443,18 @@
 
 					-->
 
-					<!-- TO DO -->
-
-					<!-- Replace the CodeChunk to allow for reward selection. -->
-
-					<!-- TO DO -->
-
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
-						<TurnIn QuestId="65622" NpcId="" XYZ="" RewardSlot="0" />
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Paladin)">
+						<RunCode Name="TheRoadLessTraveled" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk)">
-						<TurnIn QuestId="65622" NpcId="" XYZ="" RewardSlot="1" />
+						<RunCode Name="TheRoadLessTraveled2" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior)">
-						<TurnIn QuestId="65622" NpcId="" XYZ="" RewardSlot="2" />
+						<RunCode Name="TheRoadLessTraveled3" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
-						<TurnIn QuestId="65622" NpcId="" XYZ="" RewardSlot="3" />
-					</If> -->
-					<RunCode Name="TheRoadLessTraveled" />
+						<RunCode Name="TheRoadLessTraveled4" />
+					</If>
 				</If>
 			</If>
 		</If>
@@ -1573,7 +1558,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010045" XYZ="-1.999023, 7.450581E-09, -7.126038" />
+					<TalkTo InteractDistance="3.0" NpcId="1010045" XYZ="-1.999023, 7.450581E-09, -7.126038" QuestId="65624" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65624) == 2">
 					<If Condition="not IsOnMap(147)">
@@ -1584,7 +1569,7 @@
 							<Travel To="147" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010533" XYZ="47.2876, 4, 453.9711" />
+					<TalkTo InteractDistance="3.0" NpcId="1010533" XYZ="47.2876, 4, 453.9711" QuestId="65624" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65624) == 3">
 					<If Condition="not IsOnMap(147)">
@@ -1846,8 +1831,218 @@
 					ff14bot.RemoteWindows.JournalResult.SelectSlot(0);
 					ff14bot.RemoteWindows.JournalResult.Complete();
 		]]>
+		</CodeChunk><CodeChunk Name="ComingtoTerms2">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1007603).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(28000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(9000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.SelectSlot(1);
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk><CodeChunk Name="ComingtoTerms3">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1007603).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(28000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(9000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.SelectSlot(2);
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
 		</CodeChunk>
-		<CodeChunk Name="TendrilsofIntrigue">
+		<!-- <CodeChunk Name="TendrilsofIntrigue">
 			<![CDATA[ 
 				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1000460).Interact();
 				await Buddy.Coroutines.Coroutine.Sleep(4000);
@@ -1901,7 +2096,7 @@
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(30000);
 		]]>
-		</CodeChunk>
+		</CodeChunk> -->
 		<CodeChunk Name="TheRoadLessTraveled">
 			<![CDATA[ 
 				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1007603).Interact();
@@ -2014,6 +2209,355 @@
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(18000);
 				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.SelectSlot(0);
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TheRoadLessTraveled2">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1007603).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(15000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(18000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.SelectSlot(1);
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TheRoadLessTraveled3">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1007603).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(15000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(18000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.SelectSlot(2);
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TheRoadLessTraveled4">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1007603).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(15000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(18000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.SelectSlot(3);
 					ff14bot.RemoteWindows.JournalResult.Complete();
 		]]>
 		</CodeChunk>

@@ -3950,6 +3950,7 @@
 
 			<!-- Learn the Black Chocobo Mount -->
 
+			<LogMessage Message="Learning the Black Chocobo mount..." />
 			<RunCode Name="LearnBlackChocobo" />
 			<!-- <UseItem ItemId="12075" XYZ="120.6531, 14.95313, -156.6339" UseTimes="1" BlacklistAfter="True" /> -->
 		</If>
@@ -9028,6 +9029,15 @@
 			</If>
 		</If>
 
+		<If Condition="(ItemCount(6032) &gt; 0)">
+
+			<!-- Learn the Flyer Shaffron -->
+
+			<LogMessage Message="Learning the Flyer Shaffron..." />
+			<RunCode Name="LearnFlyerShaffron" />
+			<!-- <UseItem ItemId="6032" XYZ="120.6531, 14.95313, -156.6339" UseTimes="1" BlacklistAfter="True" /> -->
+		</If>
+
 		<!-- Worse than Dragons -->
 
 		<If Condition="not IsQuestCompleted(67146)">
@@ -13890,6 +13900,7 @@
 
 			<!-- Learn the Manacutter Mount -->
 
+			<LogMessage Message="Learning the Manacutter mount..." />
 			<RunCode Name="LearnManacutter" />
 			<!-- <UseItem ItemId="12075" XYZ="120.6531, 14.95313, -156.6339" UseTimes="1" BlacklistAfter="True" /> -->
 		</If>
@@ -18286,6 +18297,17 @@
 				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
 				{
 					if(slot.RawItemId == 12075)
+					{
+						slot.UseItem();
+					}
+				}
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="LearnFlyerShaffron">
+			<![CDATA[
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+				{
+					if(slot.RawItemId == 6032)
 					{
 						slot.UseItem();
 					}
