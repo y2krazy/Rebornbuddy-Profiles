@@ -1699,6 +1699,7 @@
 							<Travel To="155" />
 						</If>
 					</If>
+					<NoCombatMoveTo Name="1006384" XYZ="-705.4629, 224.5067, -31.42881" />
 					<Grind grindRef="When_the_Cold_Sets_In" while="HasQuest(66995) and GetQuestStep(66995) == 3" />
 				</If>
 				<If Condition="GetQuestStep(66995) == 4">
@@ -1813,13 +1814,19 @@
 					<TalkTo InteractDistance="3.0" NpcId="1008997" XYZ="-5.844238, 0.510258, -9.628479" QuestId="66996" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(66996) == 2">
-					<If Condition="not IsOnMap(156)">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 						</If>
 						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
 							<Travel To="156" />
 						</If>
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Exit to Revenant's Toll" InteractDistance="3.0" NpcId="2002879" XYZ="-0.01531982, 2.975464, 27.48145" />
 					</If>
 					<While Condition="not IsTodoChecked(66996, 2, 1)">
 						<HandOver ItemId="2001315" QuestId="66996" StepId="2" NpcId="1009147" XYZ="41.15356, 20.495, -650.4464" />
@@ -1949,7 +1956,7 @@
 		</GrindArea>
 		<GrindArea name="When_the_Cold_Sets_In">
 			<Hotspots>
-				<Hotspot Radius="90" XYZ="-698.8304, 224.1323, -30.76961" name="Loyal Heretics" />
+				<Hotspot Radius="90" XYZ="-705.4629, 224.5067, -31.42881" name="Loyal Heretics" />
 			</Hotspots>
 			<TargetMobs>
 				<TargetMob Id="2875" />

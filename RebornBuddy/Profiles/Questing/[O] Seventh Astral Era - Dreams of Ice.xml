@@ -213,20 +213,22 @@
 							<Travel To="156" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="First Location" XYZ="-466.6962, -3.2168, -236.041" />
-					<Dismount />
-					<WaitTimer WaitTime="1" />
-					<MoveTo Name="Second Location" XYZ="-541.4116, -1.737358, -293.567" />
-					<Dismount />
-					<WaitTimer WaitTime="1" />
-					<MoveTo Name="Third Location" XYZ="-592.8009, -3.216822, -388.8668" />
-					<Dismount />
-					<WaitTimer WaitTime="1" />
-					<LogMessage Message="Waiting 60 seconds for cooldowns to refresh..." />
-					<WaitTimer WaitTime="60" />
-					<MoveTo Name="Final Location" XYZ="-598.9959, -3.216822, -396.2319" />
-					<Dismount />
-					<WaitTimer WaitTime="1" />
+					<While Condition="not IsTodoChecked(65589, 4, 1)">
+						<NoCombatMoveTo Name="First Location" XYZ="-466.6962, -3.2168, -236.041" />
+						<Dismount />
+						<WaitTimer WaitTime="1" />
+						<MoveTo Name="Second Location" XYZ="-541.4116, -1.737358, -293.567" />
+						<Dismount />
+						<WaitTimer WaitTime="1" />
+						<MoveTo Name="Third Location" XYZ="-592.8009, -3.216822, -388.8668" />
+						<Dismount />
+						<WaitTimer WaitTime="1" />
+						<LogMessage Message="Waiting 60 seconds for cooldowns to refresh..." />
+						<WaitTimer WaitTime="60" />
+						<MoveTo Name="Final Location" XYZ="-598.9959, -3.216822, -396.2319" />
+						<Dismount />
+						<WaitTimer WaitTime="1" />
+					</While>
 				</If>
 				<If Condition="GetQuestStep(65589) == 5">
 					<If Condition="not IsOnMap(156)">
@@ -1002,13 +1004,18 @@
 							<Travel To="132" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1010013" XYZ="131.3038, -13.4725, 158.6174" QuestId="65615" StepId="5" />
-					<TalkTo InteractDistance="3.0" NpcId="1010014" XYZ="-100.267, -7.145398, 87.26636" QuestId="65615" StepId="5" />
-					<If Condition="not IsOnMap(133)">
-						<Travel To="133" />
-						<TalkTo InteractDistance="3.0" NpcId="1010016" XYZ="137.743, 11.84144, -223.3464" />
-						<TalkTo InteractDistance="3.0" NpcId="1010015" XYZ="-154.5892, 7.058627, -85.52692" />
-					</If>
+					<While Condition="not IsTodoChecked(65615, 5, 1)">
+						<If Condition="not IsOnMap(132)">
+							<Travel To="132" />
+							<TalkTo InteractDistance="3.0" NpcId="1010013" XYZ="131.3038, -13.4725, 158.6174" QuestId="65615" StepId="5" />
+							<TalkTo InteractDistance="3.0" NpcId="1010014" XYZ="-100.267, -7.145398, 87.26636" QuestId="65615" StepId="5" />
+						</If>
+						<If Condition="not IsOnMap(133)">
+							<Travel To="133" />
+							<TalkTo InteractDistance="3.0" NpcId="1010016" XYZ="137.743, 11.84144, -223.3464" QuestId="65615" StepId="5" />
+							<TalkTo InteractDistance="3.0" NpcId="1010015" XYZ="-154.5892, 7.058627, -85.52692" QuestId="65615" StepId="5" />
+						</If>
+					</While>
 				</If>
 				<If Condition="GetQuestStep(65615) == 255">
 					<If Condition="not IsOnMap(132)">
