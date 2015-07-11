@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Profile: [O] Duty Finder Unlocks Completed
-Author: y2krazy
-Version: 1.0.2
-Required Level: 50
-Required Teleport Locations:
-	Aleport
-	Bentbranch Meadows
-	Camp Bronze Lake
-	Camp Tranquil or Quarrymill
-	Limsa Lominsa Lower Decks
-	Revenant's Toll
-	Ul'dah - Steps of Nald
-Required User Interaction:
-	Complete the required dungeons manually when prompted.
-Required Setup:
-	Complete the Duty Finder Unlocks profile.
-Rewards:
-	Unlocks up to 16 new items in your Duty Finder.
+############################################################
+# Profile: [O] Duty Finder Unlocks Completed               #
+############################################################
+# Author: y2krazy                                          #
+############################################################
+# Version: 1.0.3                                           #
+############################################################
+# Required Level: 50                                       #
+############################################################
+# Required Teleport Locations:                             #
+# 	Aleport                                                #
+# 	Bentbranch Meadows                                     #
+# 	Camp Bronze Lake                                       #
+# 	Camp Tranquil or Quarrymill                            #
+# 	Limsa Lominsa Lower Decks                              #
+# 	Revenant's Toll                                        #
+# 	Ul'dah - Steps of Nald                                 #
+############################################################
+# Required User Interaction:                               #
+# 	Complete the required dungeons manually when prompted. #
+############################################################
+# Required Setup:                                          #
+# 	Complete the Duty Finder Unlocks profile.              #
+############################################################
+# Rewards:                                                 #
+# 	Unlocks up to 16 new items in your Duty Finder.        #
+############################################################
 -->
 <Profile>
 	<Name>[O] Duty Finder Unlocks Completed</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
-	<CodeChunks>
-	</CodeChunks>
-	<GrindAreas>
-	</GrindAreas>
 	<Order>
 
 		<!-- King of the Hull -->
@@ -125,6 +130,17 @@ Rewards:
 					<LogMessage Message="Please restart this profile after you are done." />
 					<StopBot />
 				</If>
+				<If Condition="GetQuestStep(65630) == 4">
+					<If Condition="not IsOnMap(138)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+							<TeleportTo Name="Aleport" AetheryteId="14" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+							<Travel To="138" />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1005064" XYZ="335.0117, 10.59511, 3.92157" />
+				</If>
 				<If Condition="GetQuestStep(65630) == 255">
 					<If Condition="not IsOnMap(138)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(14)">
@@ -134,7 +150,7 @@ Rewards:
 							<Travel To="138" />
 						</If>
 					</If>
-					<TurnIn QuestId="65630" NpcId="1006975" XYZ="-113.2372, -39.73311, 338.6434" />
+					<TurnIn QuestId="65630" NpcId="1010359" XYZ="206.6833, -24.99666, 242.0538" />
 				</If>
 			</If>
 		</If>
@@ -152,15 +168,17 @@ Rewards:
 					<StopBot />
 				</If>
 				<If Condition="GetQuestStep(65632) == 255">
-					<If Condition="not IsOnMap(130)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-							<Travel To="130" />
-						</If>
+						<Travel To="131" />
 					</If>
-					<Travel To="131" />
 					<TurnIn QuestId="65632" NpcId="1010365" XYZ="-10.63556, 7.499994, 146.6849" />
 				</If>
 			</If>
@@ -232,8 +250,14 @@ Rewards:
 			</If>
 		</If>
 
-		<LogMessage Message="You've completed all of your Duty Finder unlocks!" />
-		<StopBot />
+		<If Condition="IsQuestCompleted(65966)">	
+			<LogMessage Message="You've completed all of your Duty Finder unlocks!" />
+			<StopBot />
+		</If>
 
 	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
 </Profile>

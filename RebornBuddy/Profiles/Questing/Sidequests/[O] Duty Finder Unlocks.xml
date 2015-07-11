@@ -1,68 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Profile: [O] Duty Finder Unlocks
-Author: y2krazy
-Version: 1.0.2
-Required Level: 50
-Required Teleport Locations:
-	Aleport
-	Camp Dragonhead
-	Horizon
-	New Gridania
-	Revenant's Toll
-	Ul'dah - Steps of Nald
-Required User Interaction:
-	Complete the required dungeons manually when prompted, if needed.
-Required Setup:
-	8+ spots left in your Quest Log.
-Rewards:
-	Unlocks up to 16 new items in your Duty Finder.
+############################################################
+# Profile: [O] Duty Finder Unlocks                         #
+############################################################
+# Author: y2krazy                                          #
+############################################################
+# Version: 1.0.3                                           #
+############################################################
+# Required Level: 50                                       #
+############################################################
+# Required Teleport Locations:                             #
+# 	Aleport                                                #
+# 	Camp Dragonhead                                        #
+# 	Horizon                                                #
+# 	New Gridania                                           #
+# 	Revenant's Toll                                        #
+# 	Ul'dah - Steps of Nald                                 #
+############################################################
+# Required User Interaction:                               #
+# 	Complete the required dungeons manually when prompted. #
+############################################################
+# Required Setup:                                          #
+# 	8+ spots left in your Quest Log.                       #
+############################################################
+# Rewards:                                                 #
+# 	Unlocks up to 16 new items in your Duty Finder.        #
+############################################################
 -->
 <Profile>
 	<Name>[O] Duty Finder Unlocks</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
-	<CodeChunks>
-		<CodeChunk Name="ManiacManor">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2003023).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.Complete();
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="OneNightinAmdapor">
-			<![CDATA[ 
-				if(Core.Player.IsMounted)
-				{
-					ff14bot.Managers.Actionmanager.Dismount();
-					await Buddy.Coroutines.Coroutine.Sleep(3000);
-				}
-				ff14bot.Managers.MovementManager.SetFacing(0.8310049f);
-				ff14bot.Managers.MovementManager.MoveForwardStart();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.Managers.MovementManager.Jump();
-				await Buddy.Coroutines.Coroutine.Sleep(1500);
-				ff14bot.Managers.MovementManager.MoveForwardStop();
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="SiriusBusinessTravel">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1003584).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
-					ff14bot.RemoteWindows.SelectIconString.ClickSlot(2);
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-		]]>
-		</CodeChunk>
-	</CodeChunks>
-	<GrindAreas>
-	</GrindAreas>
 	<Order>
 
 		<!-- Curds and Slay -->
@@ -750,15 +718,17 @@ Rewards:
 			</If>
 			<If Condition="HasQuest(65632)">
 				<If Condition="GetQuestStep(65632) == 1">
-					<If Condition="not IsOnMap(130)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-							<Travel To="130" />
-						</If>
+						<Travel To="131" />
 					</If>
-					<Travel To="131" />
 					<TalkTo InteractDistance="3.0" NpcId="1010365" XYZ="-10.63556, 7.499994, 146.6849" />
 				</If>
 				<If Condition="GetQuestStep(65632) == 2">
@@ -820,8 +790,49 @@ Rewards:
 		</If>
 
 		<LogMessage Message="You've started all of your Duty Finder unlocks!" />
-		<LogMessage Message="Please load the Duty Finder Unlocks Completed profile to continue." />
-		<!-- <LoadProfile Path="Profiles/Questing/Sidequests/[O] Duty Finder Unlocks Completed.xml" /> -->
+		<LogMessage Message="Loading the next Duty Finder Unlock profile..." />
+		<LoadProfile Path="Profiles/y2krazy/Questing/Sidequests/[O] Duty Finder Unlocks Completed.xml" />
 
 	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="ManiacManor">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2003023).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="OneNightinAmdapor">
+			<![CDATA[ 
+				if(Core.Player.IsMounted)
+				{
+					ff14bot.Managers.Actionmanager.Dismount();
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
+				}
+				ff14bot.Managers.MovementManager.SetFacing(0.8310049f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(1500);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SiriusBusinessTravel">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1003584).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
+					ff14bot.RemoteWindows.SelectIconString.ClickSlot(2);
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
 </Profile>
