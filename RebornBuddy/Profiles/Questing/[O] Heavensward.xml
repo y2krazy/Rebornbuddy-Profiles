@@ -15147,6 +15147,84 @@
 			</If>
 		</If>
 
+		<!-- Sidequest: The Bathing Bully -->
+
+		<If Condition="not IsQuestCompleted(67355)">
+			<If Condition="not HasQuest(67355)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+						<TeleportTo Name="Moghome" AetheryteId="78" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="400" /> -->
+						<LogMessage Message="Please manually move to Moghome and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Mogret" XYZ="363.241, -73.25598, 678.4314" />
+				<If Condition="IsQuestAcceptQualified(67355)">
+					<PickupQuest NpcId="1012284" QuestId="67355" XYZ="363.241, -73.25598, 678.4314" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67355)">
+				<If Condition="GetQuestStep(67355) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Hropkens" XYZ="714.7452, -50.23019, 407.4195" />
+					<Grind grindRef="The_Bathing_Bully" while="HasQuest(67355) and GetQuestStep(67355) == 1" />
+				</If>
+				<If Condition="GetQuestStep(67355) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<TurnIn QuestId="67355" NpcId="1012284" XYZ="363.241, -73.25598, 678.4314" />
+				</If>
+			</If>
+		</If>
+
 		<!-- Moglin's Judgment -->
 
 		<If Condition="not IsQuestCompleted(67159)">
@@ -15192,6 +15270,11 @@
 							<StopBot />
 						</If>
 					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1012673" XYZ="360.0061, -73.64376, 669.5811" QuestId="67159" StepId="1" />
+					<TalkTo InteractDistance="3.0" NpcId="1012674" XYZ="337.7279, -74.33926, 648.0048" QuestId="67159" StepId="1" />
+					<TalkTo InteractDistance="3.0" NpcId="1012675" XYZ="392.0804, -72.3437, 655.024" QuestId="67159" StepId="1" />
+					<TalkTo InteractDistance="3.0" NpcId="1012676" XYZ="368.5206, -74.14886, 647.9437" QuestId="67159" StepId="1" />
+					<TalkTo InteractDistance="3.0" NpcId="1012679" XYZ="392.2635, -72.34358, 645.1361" QuestId="67159" StepId="1" />
 					<!-- <If Condition="not IsTodoChecked(67159, 1, 0)">
 						<TalkTo InteractDistance="3.0" NpcId="1012673" XYZ="360.0061, -73.64376, 669.5811" QuestId="67159" StepId="1" />
 					</If>
@@ -20467,6 +20550,16 @@
 			<TargetMobs>
 				<TargetMob Id="3903" Weight="2000" />
 				<TargetMob Id="4027" Weight="1000" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Bathing_Bully">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="714.7452, -50.23019, 407.4195" name="Hropkens" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3614" />
 			</TargetMobs>
 			<MinLevel>54</MinLevel>
 			<MaxLevel>61</MaxLevel>
