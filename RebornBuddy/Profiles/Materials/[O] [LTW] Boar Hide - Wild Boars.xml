@@ -1,22 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-Profile: [O] [LTW] Boar Hide - Wild Boars
-Author: y2krazy
-Version: 1.0.0
-Required Level: 18
-Required Teleport Locations:
-	The Hawthorne Hut
-Required User Interaction:
-	This profile should be AFKable.
-Required Setup:
-	Acquire The Hawthorne Hut Aetheryte
-	Set Home Point (optional, if farming for an extended amount of time)
-Item Drops:
-	Boar Hide
+<!--	
+#############################################
+# Profile: [O] [LTW] Boar Hide - Wild Boars #
+#############################################
+# Author: y2krazy                           #
+#############################################
+# Version: 1.0.1                            #
+#############################################
+# Required Level: 18                        #
+#############################################
+# Required Teleport Locations:              #
+# 	The Hawthorne Hut                       #
+#############################################
+# Required User Interaction:                #
+# 	This profile should be AFKable.         #
+#############################################
+# Required Setup:                           #
+# 	Acquire The Hawthorne Hut Aetheryte.    #
+# 	Set Home Point. (Optional)              #
+#############################################
+# Item Drops:                               #
+# 	Boar Hide                               #
+#############################################
 -->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Boar Hide to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
 <Profile>
 	<Name>[O] [LTW] Boar Hide - Wild Boars</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Wild Boar -->
+
+		<If Condition="(ItemCount(5303) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 18">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 18 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 17">
+				<LogMessage Message="You need more Boar Hide!" />
+				<If Condition="not IsOnMap(152)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(4)">
+						<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+						<Travel To="152" />
+					</If>
+				</If>
+				<Grind grindRef="Boar_Hide" while="Core.Player.ClassLevel &lt; 61" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(5303) == &MatCount;) or (ItemCount(5303) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Boar Hide!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
 	<GrindAreas>
 		<GrindArea name="Boar_Hide">
 			<Hotspots>
@@ -27,19 +81,8 @@ Item Drops:
 			<TargetMobs>
 				<TargetMob Id="16" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>18</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
-	<Order>
-		<BotSettings AutoEquip="1" />
-
-		<!-- Wild Boar -->
-
-		<If Condition="not IsOnMap(152)">
-			<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
-		</If>
-
-		<Grind grindRef="Boar_Hide" while="Core.Player.ClassLevel &lt; 61" />
-	</Order>
 </Profile>

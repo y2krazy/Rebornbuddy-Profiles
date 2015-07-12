@@ -1,24 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Profile: [O] [LTW] Raptor Skin - Lindwurms
-Author: y2krazy
-Version: 1.0.1
-Required Level: 30
-Required Teleport Location:
-	Bentbranch Meadows
-Required User Interaction:
-	This profile should be AFKable.
-Required Setup:
-	Acquire Bentbranch Meadows Aetheryte
-	Set Home Point (optional, if farming for an extended amount of time)
-Item Drops:
-	Raptor Shank
-	Raptor Sinew
-	Raptor Skin
+##############################################
+# Profile: [O] [LTW] Raptor Skin - Lindwurms #
+##############################################
+# Author: y2krazy                            #
+##############################################
+# Version: 1.0.2                             #
+##############################################
+# Required Level: 30                         #
+##############################################
+# Required Teleport Locations:               #
+# 	Bentbranch Meadows                       #
+##############################################
+# Required User Interaction:                 #
+# 	This profile should be AFKable.          #
+##############################################
+# Required Setup:                            #
+# 	Acquire Bentbranch Meadows Aetheryte.    #
+# 	Set Home Point. (Optional)               #
+##############################################
+# Item Drops:                                #
+# 	Raptor Shank                             #
+# 	Raptor Sinew                             #
+# 	Raptor Skin                              #
+##############################################
 -->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Raptor Skin to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
 <Profile>
 	<Name>[O] [LTW] Raptor Skin - Lindwurms</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Lindwurm -->
+
+		<If Condition="(ItemCount(5310) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 30">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 30 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 29">
+				<LogMessage Message="You need more Raptor Skin!" />
+				<If Condition="not IsOnMap(148)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+						<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+						<Travel To="148" />
+					</If>
+				</If>
+				<Grind grindRef="Raptor_Skin" while="Core.Player.ClassLevel &lt; 61" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(5310) == &MatCount;) or (ItemCount(5310) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Raptor Skin!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
 	<GrindAreas>
 		<GrindArea name="Raptor_Skin">
 			<Hotspots>
@@ -33,19 +87,8 @@ Item Drops:
 			<TargetMobs>
 				<TargetMob Id="130" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>30</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
-	<Order>
-		<BotSettings AutoEquip="1" />
-
-		<!-- Lindwurm -->
-
-		<If Condition="not IsOnMap(148)">
-			<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
-		</If>
-
-		<Grind grindRef="Raptor_Skin" while="Core.Player.ClassLevel &lt; 61" />
-	</Order>
 </Profile>

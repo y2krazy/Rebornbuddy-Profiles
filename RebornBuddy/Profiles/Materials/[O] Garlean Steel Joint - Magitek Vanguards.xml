@@ -1,23 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-Profile: [O] Garlean Steel Joint - Magitek Vanguards
-Author: y2krazy
-Version: 1.0.0
-Required Level: 50
-Required Teleport Location:
-	Camp Bluefog or Ceruleum Processing Plant
-Required User Interaction:
-	This profile should be AFKable.
-Required Setup:
-	Acquire Camp Bluefog or Ceruleum Processing Plant Aetheryte
-	Set Home Point (optional, if farming for an extended amount of time)
-Item Drops:
-	Garlean Steel Joint
-	Garlean Steel Plate
+<!--	
+##################################################################
+# Profile: [O] Garlean Steel Joint - Magitek Vanguards           #
+##################################################################
+# Author: y2krazy                                                #
+##################################################################
+# Version: 1.0.1                                                 #
+##################################################################
+# Required Level: 50                                             #
+##################################################################
+# Required Teleport Locations:                                   #
+# 	Camp Bluefog or Ceruleum Processing Plant                    #
+##################################################################
+# Required User Interaction:                                     #
+# 	This profile should be AFKable.                              #
+##################################################################
+# Required Setup:                                                #
+# 	Acquire Camp Bluefog or Ceruleum Processing Plant Aetheryte. #
+# 	Set Home Point. (Optional)                                   #
+##################################################################
+# Item Drops:                                                    #
+# 	Garlean Steel Joint                                          #
+# 	Garlean Steel Plate                                          #
+##################################################################
 -->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Garlean Steel Joints to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
 <Profile>
 	<Name>[O] Garlean Steel Joint - Magitek Vanguards</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Magitek Vanguard -->
+
+		<If Condition="(ItemCount(5104) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 50">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 50 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 49">
+				<LogMessage Message="You need more Garlean Steel Joints!" />
+				<If Condition="not IsOnMap(147)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+						<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+					</If>
+					<If Condition="Managers.WorldManager.HasAetheryteId(21)">
+						<TeleportTo Name="Camp Bluefog" AetheryteId="21" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(21)">
+						<Travel To="147" />
+					</If>
+				</If>
+				<Grind grindRef="Garlean_Steel_Joint" while="Core.Player.ClassLevel &lt; 61" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(5104) == &MatCount;) or (ItemCount(5104) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Garlean Steel Joints!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
 	<GrindAreas>
 		<GrindArea name="Garlean_Steel_Joint">
 			<Hotspots>
@@ -38,27 +95,8 @@ Item Drops:
 			<TargetMobs>
 				<TargetMob Id="269" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
-	<Order>
-		<BotSettings AutoEquip="1" />
-
-		<!-- Magitek Vanguard -->
-
-		<If Condition="Managers.WorldManager.HasAetheryteId(22)">
-			<If Condition="not IsOnMap(147)">
-				<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
-			</If>
-		</If>
-
-		<If Condition="Managers.WorldManager.HasAetheryteId(21)">
-			<If Condition="not IsOnMap(147)">
-				<TeleportTo Name="Camp Bluefog" AetheryteId="21" />
-			</If>
-		</If>
-
-		<Grind grindRef="Garlean_Steel_Joint" while="Core.Player.ClassLevel &lt; 61" />
-	</Order>
 </Profile>

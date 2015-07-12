@@ -1,22 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Profile: [O] [LTW] Peiste Skin - Peiste Mobs
-Author: y2krazy
-Version: 1.0.0
-Required Level: 25
-Required Teleport Location:
-	Little Ala Mhigo
-Required User Interaction:
-	This profile should be AFKable.
-Required Setup:
-	Acquire Little Ala Mhigo Aetheryte
-	Set Home Point (optional, if farming for an extended amount of time)
-Item Drops:
-	Peiste Skin
+###############################################
+# Profile: [O] LTW] Peiste Skin - Peiste Mobs #
+###############################################
+# Author: y2krazy                             #
+###############################################
+# Version: 1.0.1                              #
+###############################################
+# Required Level: 25                          #
+###############################################
+# Required Teleport Locations:                #
+# 	Little Ala Mhigo                          #
+###############################################
+# Required User Interaction:                  #
+# 	This profile should be AFKable.           #
+###############################################
+# Required Setup:                             #
+# 	Acquire Little Ala Mhigo Aetheryte.       #
+# 	Set Home Point. (Optional)                #
+###############################################
+# Item Drops:                                 #
+# 	Peiste Skin                               #
+###############################################
 -->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Peiste Skin to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
 <Profile>
 	<Name>[O] [LTW] Peiste Skin - Peiste Mobs</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Rockskin Peiste, Sandskin Peiste -->
+
+		<If Condition="(ItemCount(5306) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 25">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 25 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 24">
+				<LogMessage Message="You need more Peiste Skin!" />
+				<If Condition="not IsOnMap(146)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+						<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+						<Travel To="146" />
+					</If>
+				</If>
+				<Grind grindRef="Peiste_Skin" while="Core.Player.ClassLevel &lt; 61" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(5306) == &MatCount;) or (ItemCount(5306) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Peiste Skin!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
 	<GrindAreas>
 		<GrindArea name="Peiste_Skin">
 			<Hotspots>
@@ -31,19 +85,8 @@ Item Drops:
 				<TargetMob Id="303" />
 				<TargetMob Id="1993" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>25</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
-	<Order>
-		<BotSettings AutoEquip="1" />
-
-		<!-- Rockskin Peiste, Sandskin Peiste -->
-
-		<If Condition="not IsOnMap(146)">
-			<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
-		</If>
-
-		<Grind grindRef="Peiste_Skin" while="Core.Player.ClassLevel &lt; 61" />
-	</Order>
 </Profile>

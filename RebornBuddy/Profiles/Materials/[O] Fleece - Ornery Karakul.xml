@@ -1,23 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Profile: [O] Fleece - Ornery Karakul
-Author: y2krazy (used with permission from Grimmjow)
-Version: 1.0.0
-Required Level: 35
-Required Teleport Locations:
-	Camp Dragonhead
-Required User Interaction:
-	This profile should be AFKable.
-Required Setup:
-	Acquire Camp Dragonhead Aetheryte
-	Set Home Point (optional, if farming for an extended amount of time)
-Item Drops:
-	Fleece
-	Karakul Skin
+########################################################
+# Profile: [O] Fleece - Ornery Karakul                 #
+########################################################
+# Author: y2krazy (used with permission from Grimmjow) #
+########################################################
+# Version: 1.0.1                                       #
+########################################################
+# Required Level: 35                                   #
+########################################################
+# Required Teleport Locations:                         #
+# 	Camp Dragonhead                                    #
+########################################################
+# Required User Interaction:                           #
+# 	This profile should be AFKable.                    #
+########################################################
+# Required Setup:                                      #
+# 	Acquire Camp Dragonhead Aetheryte.                 #
+#	Set Home Point. (Optional)                         #
+########################################################
+# Item Drops:                                          #
+# 	Fleece                                             #
+# 	Karakul Skin                                       #
+########################################################
 -->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Fleece to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
 <Profile>
 	<Name>[O] Fleece - Ornery Karakul</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>100</KillRadius>
+	<Order>
+
+		<!-- Fleece -->
+
+		<If Condition="(ItemCount(5347) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 35">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 35 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 34">
+				<LogMessage Message="You need more Fleece!" />
+				<If Condition="not IsOnMap(155)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+						<Travel To="155" />
+					</If>
+				</If>
+				<Grind grindRef="Ornery_Karakul" while="Core.Player.ClassLevel &lt; 61" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(5347) == &MatCount;) or (ItemCount(5347) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Fleece!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
 	<GrindAreas>
 		<GrindArea name="Ornery_Karakul">
 			<Hotspots>
@@ -26,19 +80,8 @@ Item Drops:
 			<TargetMobs>
 				<TargetMob Id="795" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>35</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
-	<Order>
-		<BotSettings AutoEquip="1" />
-
-		<!-- Fleece -->
-
-		<If Condition="not IsOnMap(155)">
-			<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-		</If>
-
-		<Grind grindRef="Ornery_Karakul" while="Core.Player.ClassLevel &lt; 61" />
-	</Order>
 </Profile>

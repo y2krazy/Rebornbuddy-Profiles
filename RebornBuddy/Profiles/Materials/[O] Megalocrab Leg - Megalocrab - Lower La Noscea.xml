@@ -1,23 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-Profile: [O] Megalocrab Leg - Megalocrab - Lower La Noscea
-Author: y2krazy
-Version: 1.0.0
-Required Level: 12
-Required Teleport Location:
-	The Moraby Drydocks
-Required User Interaction:
-	This profile should be AFKable.
-Required Setup:
-	Acquire The Moraby Drydocks Aetheryte
-	Set Home Point (optional, if farming for an extended amount of time)
-Item Drops:
-	Green Megalocrab Shell
-	Megalocrab Leg
+<!--	
+##############################################################
+# Profile: [O] Megalocrab Leg - Megalocrab - Lower La Noscea #
+##############################################################
+# Author: y2krazy                                            #
+##############################################################
+# Version: 1.0.1                                             #
+##############################################################
+# Required Level: 12                                         #
+##############################################################
+# Required Teleport Locations:                               #
+# 	The Moraby Drydocks                                      #
+##############################################################
+# Required User Interaction:                                 #
+# 	This profile should be AFKable.                          #
+##############################################################
+# Required Setup:                                            #
+# 	Acquire The Moraby Drydocks Aetheryte.                   #
+#	Set Home Point. (Optional)                               #
+##############################################################
+# Item Drops:                                                #
+# 	Green Megalocrab Shell                                   #
+# 	Megalocrab Leg                                           #
+##############################################################
 -->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Megalocrab Legs to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
 <Profile>
 	<Name>[O] Megalocrab Leg - Megalocrab - Lower La Noscea</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Megalocrab -->
+
+		<If Condition="(ItemCount(4771) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 12">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 12 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 11">
+				<LogMessage Message="You need more Megalocrab Legs!" />
+				<If Condition="not IsOnMap(135)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+						<TeleportTo Name="The Moraby Drydocks" AetheryteId="10" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+						<Travel To="135" />
+					</If>
+				</If>
+				<Grind grindRef="Megalocrab_Leg" while="Core.Player.ClassLevel &lt; 61" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(4771) == &MatCount;) or (ItemCount(4771) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Megalocrab Legs!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
 	<GrindAreas>
 		<GrindArea name="Megalocrab_Leg">
 			<Hotspots>
@@ -29,18 +83,8 @@ Item Drops:
 			<TargetMobs>
 				<TargetMob Id="561" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>12</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
-	<Order>
-
-		<!-- Megalocrab -->
-
-		<If Condition="not IsOnMap(135)">
-			<TeleportTo Name="The Moraby Drydocks" AetheryteId="10" />
-		</If>
-
-		<Grind grindRef="Megalocrab_Leg" while="Core.Player.ClassLevel &lt; 61" />
-	</Order>
 </Profile>

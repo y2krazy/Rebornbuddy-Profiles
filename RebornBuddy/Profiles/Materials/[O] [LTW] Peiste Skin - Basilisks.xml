@@ -1,23 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Profile: [O] [LTW] Peiste Skin - Basilisks
-Author: y2krazy
-Version: 1.0.0
-Required Level: 48
-Required Teleport Locations:
-	Camp Bluefog
-Required User Interaction:
-	This profile should be AFKable.
-Required Setup:
-	Acquire Camp Bluefog Aetheryte
-	Set Home Point (optional, if farming for an extended amount of time)
-Item Drops:
-	Basilisk Egg
-	Peiste Skin
+##############################################
+# Profile: [O] [LTW] Peiste Skin - Basilisks #
+##############################################
+# Author: y2krazy                            #
+##############################################
+# Version: 1.0.1                             #
+##############################################
+# Required Level: 48                         #
+##############################################
+# Required Teleport Locations:               #
+# 	Camp Bluefog                             #
+##############################################
+# Required User Interaction:                 #
+# 	This profile should be AFKable.          #
+##############################################
+# Required Setup:                            #
+# 	Acquire Camp Bluefog Aetheryte.          #
+# 	Set Home Point. (Optional)               #
+##############################################
+# Item Drops:                                #
+# 	Basilisk Egg                             #
+# 	Peiste Skin                              #
+##############################################
 -->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Peiste Skin to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
 <Profile>
 	<Name>[O] [LTW] Peiste Skin - Basilisks</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Basilisk -->
+
+		<If Condition="(ItemCount(5306) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 48">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 48 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 47">
+				<LogMessage Message="You need more Peiste Skin!" />
+				<If Condition="not IsOnMap(147)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(21)">
+						<TeleportTo Name="Camp Bluefog" AetheryteId="21" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(21)">
+						<Travel To="147" />
+					</If>
+				</If>
+				<Grind grindRef="Peiste_Skin" while="Core.Player.ClassLevel &lt; 61" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(5306) == &MatCount;) or (ItemCount(5306) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Peiste Skin!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
 	<GrindAreas>
 		<GrindArea name="Peiste_Skin">
 			<Hotspots>
@@ -29,19 +83,8 @@ Item Drops:
 			<TargetMobs>
 				<TargetMob Id="304" />
 			</TargetMobs>
-			<MinLevel>1</MinLevel>
+			<MinLevel>48</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
-	<Order>
-		<BotSettings AutoEquip="1" />
-
-		<!-- Basilisk -->
-
-		<If Condition="not IsOnMap(147)">
-			<TeleportTo Name="Camp Bluefog" AetheryteId="21" />
-		</If>
-
-		<Grind grindRef="Peiste_Skin" while="Core.Player.ClassLevel &lt; 61" />
-	</Order>
 </Profile>
