@@ -325,7 +325,8 @@ namespace ff14bot.NeoProfiles
 				foreach (var neighbor in vertices[smallest])
 				{
 					var alt = distances[smallest] + neighbor.Value;
-					if (alt < distances[neighbor.Key])
+                 
+                    if (alt < distances[neighbor.Key])
 					{
 						distances[neighbor.Key] = alt;
 						previous[neighbor.Key] = smallest;
@@ -357,9 +358,9 @@ namespace ff14bot.NeoProfiles
 			// areas.Add("418-397", new AreaInfo() { x = -163.4394, y = 2.15106, z = -5.508545, Name = " The Pillars--> Coerthas Western Highlands", Communicationlocalindex = -1 });
 			areas.Add("419-401", new AreaInfo() { x = 151.9916, y =-12.55534, z =-7.858459, Name = " The Pillars --> Camp Cloudtop", Communicationlocalindex = 1 });
 			areas.Add("398-399", new AreaInfo() { x = 798.7896, y = -122.5395, z = 577.9781, Name =" Dravanian Forelands --> The Dravanian Hinterlands", Communicationlocalindex = -1 });
-			areas.Add("398-400", new AreaInfo() { x =-693.843, y = 5.20875, z =-840.9705, Name = "Dravanian Forelands --> Churning Mists", Communicationlocalindex = 1 });
+            areas.Add("398-400", new AreaInfo() { x = -692.5875, y= 5.001416, z= -838.3893, Name = "Dravanian Forelands --> Churning Mists", Communicationlocalindex = 1 });
 			areas.Add("400-398", new AreaInfo() { x = 201.5868, y =-68.68091, z = 709.3461, Name = "Churning Mists --> The Dravanian Forelands", Communicationlocalindex = 1 });
-
+           
 			areas.Add("401-419", new AreaInfo() { x = -734.9813, y = -105.0583, z = 459.3728, Name = " Camp Cloudtop -->  The Pillars", Communicationlocalindex = 1 });
 			areas.Add("397-398", new AreaInfo() { x = -848.7283, y = 117.683, z =-655.5744, Name = " Coerthas Western Highlands --> The Dravanian Forelands", Communicationlocalindex = -1 });
 			areas.Add("398-397", new AreaInfo() { x = 870.7913, y = -3.649778, z = 350.4391, Name = "The Dravanian Forelands --> Coerthas Western Highlands", Communicationlocalindex = -1 });
@@ -519,7 +520,7 @@ namespace ff14bot.NeoProfiles
 			g.add_vertex("419", new Dictionary<String, int>() { { "418", 5 }, { "401" , 5 } });
 			g.add_vertex("401", new Dictionary<String, int>() { { "419", 5 } });
 			g.add_vertex("397", new Dictionary<String, int>() { { "398", 5 } });
-			g.add_vertex("398", new Dictionary<String, int>() { { "397", 5 }, { "399", 5 }, { "400", 5 } });
+			g.add_vertex("398", new Dictionary<String, int>() { { "397", 5 }, { "400", 5 } });
             g.add_vertex("400", new Dictionary<String, int>() { { "398", 5  }} );
 
         }
