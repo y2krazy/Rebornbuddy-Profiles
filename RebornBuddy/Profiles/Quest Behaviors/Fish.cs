@@ -130,15 +130,13 @@ namespace ff14bot.NeoProfiles
 						new Decorator(ret => Core.Player.IsMounted,
                             CommonBehaviors.Dismount()
                         ),
-                        new Decorator(ret => fishcount >= fishlimit,
-                            new Action(r =>
-                            {
-                                Thread.Sleep(10000);
-								Actionmanager.DoAction(299, Core.Player);
+                        new Decorator(ret => fishcount >= fishlimit && Actionmanager.CanCast(299, Core.Player),
+                              new Action(r => {
+                                Actionmanager.DoAction(299, Core.Player);
                                 ChangeFishSpot();
                                 spotinit = false;
-                            })
-                        ),
+                              })
+                          ),
 						new Decorator(ret => MovementManager.IsMoving,
                             new Action(r =>
                             {
@@ -178,6 +176,15 @@ namespace ff14bot.NeoProfiles
 								new Sleep(2,3)
 							)
                         ),
+                        new Decorator(ret => (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady) && (Core.Player.CurrentGPPercent == 100f || Core.Player.CurrentGP > 600 && Actionmanager.CanCast(4102, Core.Player)),
+                            new Action(r =>
+                            {
+                                if (Core.Player.CurrentGPPercent == 100f || Core.Player.CurrentGP > 600 && Actionmanager.CanCast(4102, Core.Player))
+                                {
+                                    Actionmanager.DoAction(4102, Core.Player);
+                                }
+                            })
+                        ),
                         new Decorator(ret => FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady,
                             new Action(r =>
                             {
@@ -192,7 +199,16 @@ namespace ff14bot.NeoProfiles
                         new Decorator(ret => FishingManager.CanHook && FishingManager.State == FishingState.Bite,
                             new Action(r =>
                             {
-                                FishingManager.Hook();
+                                if (Core.Player.CurrentGP >= 74 && Actionmanager.CanCast(4103, Core.Player) && Core.Player.HasAura("Gathering Fortune Up"))
+                                {
+                                    Actionmanager.DoAction(4103, Core.Player);
+                                    Logging.Write(Colors.Green, "[Fish v" + Version.ToString() +"] Powerful Hookset");
+                                }
+                                else
+                                {
+                                    FishingManager.Hook();
+                                }
+
 								amissfish = 0;
 								if(mooch == 0) {
 									fishcount++;
@@ -232,8 +248,6 @@ namespace ff14bot.NeoProfiles
 
         public void ChangeFishSpot()
         {
-            Thread.Sleep(10000);
-            Actionmanager.DoAction(299, Core.Player);
             FishSpots.Next();
 			Logging.Write(Colors.Gold, "[Fish v" + Version.ToString() +"] Changing FishSpots...");
             fishcount = 0;
@@ -263,7 +277,6 @@ namespace ff14bot.NeoProfiles
 
         protected override void OnDone()
         {
-            Thread.Sleep(10000);
 			Actionmanager.DoAction(299, Core.Player);
         }
     }
