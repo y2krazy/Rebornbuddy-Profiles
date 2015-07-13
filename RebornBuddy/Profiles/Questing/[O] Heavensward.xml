@@ -15304,7 +15304,7 @@
 							<StopBot />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1012077" XYZ="381.7043, -66.84979, 700.8619" QuestId="67159" StepId="2" />
+					<TalkTo NpcId="1012077" XYZ="381.7043, -66.84979, 700.8619" QuestId="67159" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(67159) == 255">
 					<If Condition="not IsOnMap(400)">
@@ -15333,12 +15333,128 @@
 
 		<If Condition="not IsQuestCompleted(67357)">
 			<If Condition="not HasQuest(67357)">
-				<LogMessage Message="A Pebble for Your Thoughts quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+						<TeleportTo Name="Moghome" AetheryteId="78" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="400" /> -->
+						<LogMessage Message="Please manually move to Moghome and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Mogleo" XYZ="357.4731, 2.76622, 638.3002" />
+				<If Condition="IsQuestAcceptQualified(67357)">
+					<PickupQuest NpcId="1014424" QuestId="67357" XYZ="357.4731, 2.76622, 638.3002" />
+				</If>
 			</If>
 			<If Condition="HasQuest(67357)">
-				<LogMessage Message="A Pebble for Your Thoughts quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67357) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014425" XYZ="475.7915, -4.496035, 722.1331" QuestId="67357" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67357) == 2">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014427" XYZ="474.6012, -4.475058, 721.5532" QuestId="67357" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(67357) == 3">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Mogleo" XYZ="772.8536, -9.491282, 291.4273" />
+					<Grind grindRef="A_Pebble_for_Your_Thoughts" while="HasQuest(67357) and GetQuestStep(67357) == 3" />
+				</If>
+				<If Condition="GetQuestStep(67357) == 4">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014426" XYZ="770.2295, -9.491283, 287.9529" QuestId="67357" StepId="4" />
+				</If>
+				<If Condition="GetQuestStep(67357) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
 
 					<!-- Rewards
 
@@ -15349,19 +15465,20 @@
 
 					-->
 
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
-						
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
+						<TurnIn QuestId="67357" NpcId="1014427" XYZ="474.6012, -4.475058, 721.5532" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
-						
+						<TurnIn QuestId="67357" NpcId="1014427" XYZ="474.6012, -4.475058, 721.5532" RewardSlot="1" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk)">
-						
+						<TurnIn QuestId="67357" NpcId="1014427" XYZ="474.6012, -4.475058, 721.5532" RewardSlot="2" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
-						
+						<TurnIn QuestId="67357" NpcId="1014427" XYZ="474.6012, -4.475058, 721.5532" RewardSlot="3" />
 					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
+					<TurnIn QuestId="67357" NpcId="1014427" XYZ="474.6012, -4.475058, 721.5532" />
+				</If>
 			</If>
 		</If>
 
@@ -20555,6 +20672,16 @@
 			</Hotspots>
 			<TargetMobs>
 				<TargetMob Id="3614" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="A_Pebble_for_Your_Thoughts">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="772.8536, -9.491282, 291.4273" name="Sea Beggar" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4277" />
 			</TargetMobs>
 			<MinLevel>54</MinLevel>
 			<MaxLevel>61</MaxLevel>
