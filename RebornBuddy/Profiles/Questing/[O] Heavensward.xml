@@ -5300,7 +5300,7 @@
 				<If Condition="IsOnMap(419)">
 					<UseTransport Name="Fortemps Manor" InteractDistance="3.0" NpcId="1011217" XYZ="17.99036, 16.00967, -9.567444" />
 				</If>
-				<NoCombatMoveTo Name="1012579" XYZ="1.113892, 0.02225424, -4.409851" />
+				<NoCombatMoveTo Name="Alphinaud" XYZ="1.113892, 0.02225424, -4.409851" />
 				<If Condition="IsQuestAcceptQualified(67139)">
 					<PickupQuest NpcId="1012579" QuestId="67139" XYZ="1.113892, 0.02225424, -4.409851" />
 				</If>
@@ -5402,7 +5402,7 @@
 						<StopBot />
 					</If>
 				</If>
-				<NoCombatMoveTo Name="1012175" XYZ="-82.96338, 15.23318, -44.57166" />
+				<NoCombatMoveTo Name="Bohemondas" XYZ="-82.96338, 15.23318, -44.57166" />
 				<If Condition="IsQuestAcceptQualified(67286)">
 					<PickupQuest NpcId="1012175" QuestId="67286" XYZ="-82.96338, 15.23318, -44.57166" />
 				</If>
@@ -8767,7 +8767,7 @@
 								<Travel To="132" />
 							</If>
 						</If>
-						<NoCombatMoveTo Name="1000384" XYZ="30.80798, -8, 112.2301" />
+						<NoCombatMoveTo Name="Naoh Gamduhla" XYZ="30.80798, -8, 112.2301" />
 						<If Condition="IsQuestAcceptQualified(65698)">
 							<PickupQuest NpcId="1000384" QuestId="65698" XYZ="30.80798, -8, 112.2301" />
 						</If>
@@ -8850,7 +8850,7 @@
 							<StopBot />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="1013715" XYZ="503.3798, -48.98983, 33.06628" />
+					<NoCombatMoveTo Name="Kester Ironheart" XYZ="503.3798, -48.98983, 33.06628" />
 					<If Condition="IsQuestAcceptQualified(67643)">
 						<PickupQuest NpcId="1013715" QuestId="67643" XYZ="503.3798, -48.98983, 33.06628" />
 					</If>
@@ -15225,6 +15225,77 @@
 			</If>
 		</If>
 
+		<!-- Sidequest: A Show of Devotion -->
+
+		<If Condition="not IsQuestCompleted(67356)">
+			<If Condition="not HasQuest(67356)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+						<TeleportTo Name="Moghome" AetheryteId="78" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="400" /> -->
+						<LogMessage Message="Please manually move to Moghome and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Mogmug" XYZ="392.2026, -72.34356, 649.5612" />
+				<If Condition="IsQuestAcceptQualified(67356)">
+					<PickupQuest NpcId="1012080" QuestId="67356" XYZ="392.2026, -72.34356, 649.5612" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67356)">
+				<If Condition="GetQuestStep(67356) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Sankchinnis" XYZ="257.9366, -38.15964, 469.0589" />
+					<Grind grindRef="A_Show_of_Devotion" while="HasQuest(67356) and GetQuestStep(67356) == 1" />
+				</If>
+				<If Condition="GetQuestStep(67356) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TurnIn QuestId="67356" NpcId="1012080" ItemId="2001631" XYZ="392.2026, -72.34356, 649.5612" />
+				</If>
+			</If>
+		</If>
+
 		<!-- Moglin's Judgment -->
 
 		<If Condition="not IsQuestCompleted(67159)">
@@ -15482,74 +15553,288 @@
 			</If>
 		</If>
 
-		<!-- Sidequest: Spineless Wadjets -->
-
-		<If Condition="not IsQuestCompleted(67360)">
-			<If Condition="not HasQuest(67360)">
-				<LogMessage Message="Spineless Wadjets quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67360)">
-				<LogMessage Message="Spineless Wadjets quest is coming soon! Stay tuned!" />
-				<StopBot />
-
-					<!-- Rewards
-
-					0: Bard/Machinist Head
-					1: White Mage/Scholoar/Astrologian Head
-					2: Black Mage/Summoner Head
-
-					-->
-
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
-						
-					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar) or (Core.Me.CurrentJob == Enums.ClassJobType.Astrologian)">
-					
-					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
-					
-					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
-			</If>
-		</If>
-
 		<!-- Leaving Moghome -->
 
 		<If Condition="not IsQuestCompleted(67160)">
 			<If Condition="not HasQuest(67160)">
-				<LogMessage Message="Leaving Moghome quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+						<TeleportTo Name="Moghome" AetheryteId="78" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="400" /> -->
+						<LogMessage Message="Please manually move to Moghome and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Moghan" XYZ="375.3567, -69.42934, 693.5072" />
+				<If Condition="IsQuestAcceptQualified(67160)">
+					<PickupQuest NpcId="1012078" QuestId="67160" XYZ="375.3567, -69.42934, 693.5072" />
+				</If>
 			</If>
 			<If Condition="HasQuest(67160)">
-				<LogMessage Message="Leaving Moghome quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67160) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1012664" XYZ="364.3091, -74.10719, 654.322" QuestId="67160" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67160) == 2">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1013589" XYZ="368.5206, -74.14886, 647.9437" QuestId="67160" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(67160) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TurnIn QuestId="67160" NpcId="1012682" XYZ="241.1992, -42.24947, 609.2775" />
+				</If>
 			</If>
 		</If>
 
-		<!-- Sidequest: Road Kill -->
-
-		<If Condition="not IsQuestCompleted(67359)">
-			<If Condition="not HasQuest(67359)">
-				<LogMessage Message="Road Kill quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67359)">
-				<LogMessage Message="Road Kill quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-		</If>
+		<!-- [Pickup Quests] -->
 
 		<!-- The Road to Zenith -->
-
 		<If Condition="not IsQuestCompleted(67161)">
 			<If Condition="not HasQuest(67161)">
-				<LogMessage Message="The Road to Zenith quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+						<TeleportTo Name="Moghome" AetheryteId="78" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="400" /> -->
+						<LogMessage Message="Please manually move to Moghome and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Moghan" XYZ="241.1992, -42.24947, 609.2775" />
+				<If Condition="IsQuestAcceptQualified(67161)">
+					<PickupQuest NpcId="1012682" QuestId="67161" XYZ="241.1992, -42.24947, 609.2775" />
+				</If>
 			</If>
+		</If>
+		<!-- Sidequest: Road Kill -->
+		<If Condition="not IsQuestCompleted(67359)">
+			<If Condition="not HasQuest(67359)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+						<TeleportTo Name="Moghome" AetheryteId="78" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="400" /> -->
+						<LogMessage Message="Please manually move to Moghome and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Mogsy" XYZ="247.1199, -42.33362, 565.3314" />
+				<If Condition="IsQuestAcceptQualified(67359)">
+					<PickupQuest NpcId="1012285" QuestId="67359" XYZ="247.1199, -42.33362, 565.3314" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [Complete Quests] -->
+
+		<!-- The Road to Zenith -->
+		<If Condition="not IsQuestCompleted(67161)">
 			<If Condition="HasQuest(67161)">
-				<LogMessage Message="The Road to Zenith quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67161) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Path to Asah" XYZ="308.1642, -41.18605, 320.0522" />
+					<Grind grindRef="The_Road_to_Zenith" while="HasQuest(67161) and GetQuestStep(67161) == 1" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Road Kill -->
+		<If Condition="not IsQuestCompleted(67359)">
+			<If Condition="HasQuest(67359)">
+				<If Condition="GetQuestStep(67359) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Archaeosaurs" XYZ="432.7348, -31.88561, 196.7521" />
+					<Grind grindRef="Road_Kill" while="HasQuest(67359) and GetQuestStep(67359) == 1" />
+				</If>
+			</If>
+		</If>
+		<!-- The Road to Zenith (2) -->
+		<If Condition="not IsQuestCompleted(67161)">
+			<If Condition="HasQuest(67161)">
+				<If Condition="GetQuestStep(67161) == 2">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Path to Asah" XYZ="202.4413, -23.34785, 166.9489" />
+					<Grind grindRef="The_Road_to_Zenith2" while="HasQuest(67161) and GetQuestStep(67161) == 2" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [TurnIn Quests] -->
+
+		<!-- Sidequest: Road Kill -->
+		<If Condition="not IsQuestCompleted(67359)">
+			<If Condition="HasQuest(67359)">
+				<If Condition="GetQuestStep(67359) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<NoCombatMoveTo Name="Mogmont" XYZ="-47.04364, -8.866012, 165.9418" />
+					<TurnIn QuestId="67359" NpcId="1012288" XYZ="-47.04364, -8.866012, 165.9418" />
+				</If>
+			</If>
+		</If>
+		<!-- The Road to Zenith -->
+		<If Condition="not IsQuestCompleted(67161)">
+			<If Condition="HasQuest(67161)">
+				<If Condition="GetQuestStep(67161) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
 
 					<!-- Rewards
 
@@ -15560,32 +15845,657 @@
 
 					-->
 
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
-						
+					<NoCombatMoveTo Name="Moghan" XYZ="-79.88104, -8.844478, 206.2256" />
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
+						<TurnIn QuestId="67161" NpcId="1013202" XYZ="-79.88104, -8.844478, 206.2256" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
-						
+						<TurnIn QuestId="67161" NpcId="1013202" XYZ="-79.88104, -8.844478, 206.2256" RewardSlot="1" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk)">
-						
+						<TurnIn QuestId="67161" NpcId="1013202" XYZ="-79.88104, -8.844478, 206.2256" RewardSlot="2" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
-						
+						<TurnIn QuestId="67161" NpcId="1013202" XYZ="-79.88104, -8.844478, 206.2256" RewardSlot="3" />
 					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
+					<TurnIn QuestId="67161" NpcId="1013202" XYZ="-79.88104, -8.844478, 206.2256" />
+				</If>
 			</If>
 		</If>
 
-		<!-- Sidequest: Who's Got the Baskets -->
+		<!-- [Pickup Quests] -->
 
+		<!-- Waiting for the Wind to Change -->
+		<If Condition="not IsQuestCompleted(67162)">
+			<If Condition="not HasQuest(67162)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+						<TeleportTo Name="Moghome" AetheryteId="78" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="400" /> -->
+						<LogMessage Message="Please manually move to Moghome and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Moghan" XYZ="-79.88104, -8.844478, 206.2256" />
+				<If Condition="IsQuestAcceptQualified(67162)">
+					<PickupQuest NpcId="1013202" QuestId="67162" XYZ="-79.88104, -8.844478, 206.2256" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Who's Got the Baskets -->
 		<If Condition="not IsQuestCompleted(67361)">
 			<If Condition="not HasQuest(67361)">
-				<LogMessage Message="Who's Got the Baskets quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+						<TeleportTo Name="Moghome" AetheryteId="78" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="400" /> -->
+						<LogMessage Message="Please manually move to Moghome and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Mogson" XYZ="-94.80432, -2.981276, 250.782" />
+				<If Condition="IsQuestAcceptQualified(67361)">
+					<PickupQuest NpcId="1012091" QuestId="67361" XYZ="-94.80432, -2.981276, 250.782" />
+				</If>
 			</If>
+		</If>
+		<!-- Sidequest: Something Needs to Change -->
+		<If Condition="not IsQuestCompleted(67363)">
+			<If Condition="not HasQuest(67363)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+						<TeleportTo Name="Moghome" AetheryteId="78" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="400" /> -->
+						<LogMessage Message="Please manually move to Moghome and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Mogmont" XYZ="-47.04364, -8.866012, 165.9418" />
+				<If Condition="IsQuestAcceptQualified(67363)">
+					<PickupQuest NpcId="1012288" QuestId="67363" XYZ="-47.04364, -8.866012, 165.9418" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Spineless Wadjets -->
+		<If Condition="not IsQuestCompleted(67360)">
+			<If Condition="not HasQuest(67360)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+						<TeleportTo Name="Moghome" AetheryteId="78" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="400" /> -->
+						<LogMessage Message="Please manually move to Moghome and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Mogleo" XYZ="-77.34796, -8.65556, 165.2399" />
+				<If Condition="IsQuestAcceptQualified(67360)">
+					<PickupQuest NpcId="1014429" QuestId="67360" XYZ="-77.34796, -8.65556, 165.2399" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Where Dragons Tread -->
+		<If Condition="not IsQuestCompleted(67362)">
+			<If Condition="not HasQuest(67362)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+						<TeleportTo Name="Moghome" AetheryteId="78" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="400" /> -->
+						<LogMessage Message="Please manually move to Moghome and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+
+				<!-- [Pickup Aether Current] -->
+
+				<MoveTo Name="Aether Current #5" XYZ="-115.0683, 36.3927, 173.9985" />
+				<If Condition="GameObjectManager.GetObjectByNPCId(2006217).IsVisible">
+					<UseObject NpcId="2006217" XYZ="-115.0683, 36.3927, 173.9985" Radius="10" UseTimes="1" BlacklistAfter="True" />
+				</If>
+
+				<MoveTo Name="Mogmum" XYZ="-124.0406, 36.39444, 180.621" />
+				<If Condition="IsQuestAcceptQualified(67362)">
+					<PickupQuest NpcId="1012092" QuestId="67362" XYZ="-124.0406, 36.39444, 180.621" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [Complete Quests] -->
+
+		<!-- Sidequest: Spineless Wadjets -->
+		<If Condition="not IsQuestCompleted(67360)">
+			<If Condition="HasQuest(67360)">
+				<If Condition="GetQuestStep(67360) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<TalkTo InteractDistance="3.0" NpcId="1014431" XYZ="-77.37854, -8.65556, 166.369" QuestId="67360" StepId="1" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Something Needs to Change -->
+		<If Condition="not IsQuestCompleted(67363)">
+			<If Condition="HasQuest(67363)">
+				<If Condition="GetQuestStep(67363) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<While Condition="not IsTodoChecked(67363, 1, 1)">
+						<NoCombatMoveTo Name="Lower Skylords" XYZ="-153.3288, -23.20564, 276.7774" />
+						<Grind grindRef="Something_Needs_to_Change" while="HasQuest(67363) and GetQuestStep(67363) == 1" />
+					</While>
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Where Dragons Tread -->
+		<If Condition="not IsQuestCompleted(67362)">
+			<If Condition="HasQuest(67362)">
+				<If Condition="GetQuestStep(67362) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Amphipteres" XYZ="-221.8529, 13.36514, 425.5582" />
+					<Grind grindRef="Where_Dragons_Tread" while="HasQuest(67362) and GetQuestStep(67362) == 1" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Who's Got the Baskets -->
+		<If Condition="not IsQuestCompleted(67361)">
 			<If Condition="HasQuest(67361)">
-				<LogMessage Message="Who's Got the Baskets quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67361) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Four Arms" XYZ="-295.3899, 23.71065, 489.1003" />
+					<UseObject NpcIds="2005680,2005681,2005679" QuestId="67361" StepId="1">
+						<HotSpots>
+							<HotSpot XYZ="-261.8297, 29.25146, 508.873" Radius="10" />
+							<HotSpot XYZ="-302.3575, 30.07544, 507.6827" Radius="10" />
+							<HotSpot XYZ="-256.0007, 30.04492, 587.6401" Radius="10" />
+						</HotSpots>
+					</UseObject>
+				</If>
+			</If>
+		</If>
+		<!-- Waiting for the Wind to Change -->
+		<If Condition="not IsQuestCompleted(67162)">
+			<If Condition="HasQuest(67162)">
+				<If Condition="GetQuestStep(67162) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Moghan" XYZ="-258.5031, 30.37311, 562.2797" />
+					<TalkTo InteractDistance="3.0" NpcId="1012759" XYZ="-258.5031, 30.37311, 562.2797" QuestId="67162" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67162) == 2">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<While Condition="not IsTodoChecked(67162, 2, 0)">
+						<NoCombatMoveTo Name="Threatening Monsters" XYZ="-206.5459, -14.9097, 343.5305" />
+						<Grind grindRef="Waiting_for_the_Wind_to_Change" while="HasQuest(67162) and not IsTodoChecked(67162, 2, 0)" />
+					</While>
+					<While Condition="not IsTodoChecked(67162, 2, 1)">
+						<NoCombatMoveTo Name="Threatening Monsters" XYZ="-109.5393, -9.73815, 386.3467" />
+						<Grind grindRef="Waiting_for_the_Wind_to_Change2" while="HasQuest(67162) and not IsTodoChecked(67162, 2, 1)" />
+					</While>
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Something Needs to Change (2) -->
+		<If Condition="not IsQuestCompleted(67363)">
+			<If Condition="HasQuest(67363)">
+				<If Condition="GetQuestStep(67363) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<While Condition="not IsTodoChecked(67363, 1, 0)">
+						<NoCombatMoveTo Name="Moss Dragons" XYZ="-20.7372, -20.78923, 16.33071" />
+						<Grind grindRef="Something_Needs_to_Change2" while="HasQuest(67363) and GetQuestStep(67363) == 1" />
+					</While>
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Spineless Wadjets (2) -->
+		<If Condition="not IsQuestCompleted(67360)">
+			<If Condition="HasQuest(67360)">
+				<If Condition="GetQuestStep(67360) == 2">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Mogleo" XYZ="357.9003, -29.89769, -105.2111" />
+					<TalkTo InteractDistance="3.0" NpcId="1014430" XYZ="357.9003, -29.89769, -105.2111" QuestId="67360" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(67360) == 3">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+
+					<!-- [Pickup Aether Current] -->
+
+					<NoCombatMoveTo Name="Aether Current #3" XYZ="595.2894, -11.89169, -344.529" />
+					<If Condition="GameObjectManager.GetObjectByNPCId(2006222).IsVisible">
+						<UseObject NpcId="2006222" XYZ="601.8004, -9.475891, -336.3242" Radius="10" UseTimes="1" BlacklistAfter="True" />
+					</If>
+
+					<NoCombatMoveTo Name="Wadjets" XYZ="276.245, -37.36354, -119.2368" />
+					<Grind grindRef="Spineless_Wadjets" while="HasQuest(67360) and GetQuestStep(67360) == 3" />
+				</If>
+				<If Condition="GetQuestStep(67360) == 4">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Mogleo" XYZ="357.9003, -29.89769, -105.2111" />
+					<TalkTo InteractDistance="3.0" NpcId="1014430" XYZ="357.9003, -29.89769, -105.2111" QuestId="67360" StepId="4" />
+				</If>
+				<If Condition="GetQuestStep(67360) == 5">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Wadjets" XYZ="276.245, -37.36354, -119.2368" />
+					<Grind grindRef="Spineless_Wadjets" while="HasQuest(67360) and GetQuestStep(67360) == 5" />
+				</If>
+				<If Condition="GetQuestStep(67360) == 6">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Mogleo" XYZ="357.9003, -29.89769, -105.2111" />
+					<TalkTo InteractDistance="3.0" NpcId="1014430" XYZ="357.9003, -29.89769, -105.2111" QuestId="67360" StepId="6" />
+				</If>
+				<If Condition="GetQuestStep(67360) == 7">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Wadjets" XYZ="276.245, -37.36354, -119.2368" />
+					<Grind grindRef="Spineless_Wadjets" while="HasQuest(67360) and GetQuestStep(67360) == 7" />
+				</If>
+				<If Condition="GetQuestStep(67360) == 8">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Mogleo" XYZ="357.9003, -29.89769, -105.2111" />
+					<TalkTo InteractDistance="3.0" NpcId="1014430" XYZ="357.9003, -29.89769, -105.2111" QuestId="67360" StepId="8" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [TurnIn Quests] -->
+
+		<!-- Sidequest: Something Needs to Change -->
+		<If Condition="not IsQuestCompleted(67363)">
+			<If Condition="HasQuest(67363)">
+				<If Condition="GetQuestStep(67363) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Mogmont" XYZ="47.04364, -8.866012, 165.9418" />
+					<TurnIn QuestId="67363" NpcId="1012288" XYZ="-47.04364, -8.866012, 165.9418" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Spineless Wadjets -->
+		<If Condition="not IsQuestCompleted(67360)">
+			<If Condition="HasQuest(67360)">
+				<If Condition="GetQuestStep(67360) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					0: Bard/Machinist Head
+					1: White Mage/Scholoar/Astrologian Head
+					2: Black Mage/Summoner Head
+
+					-->
+
+					<NoCombatMoveTo Name="Zooming Moogle" XYZ="-77.37854, -8.65556, 166.369" />
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
+						<TurnIn QuestId="67360" NpcId="1014431" XYZ="-77.37854, -8.65556, 166.369" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar) or (Core.Me.CurrentJob == Enums.ClassJobType.Astrologian)">
+						<TurnIn QuestId="67360" NpcId="1014431" XYZ="-77.37854, -8.65556, 166.369" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
+						<TurnIn QuestId="67360" NpcId="1014431" XYZ="-77.37854, -8.65556, 166.369" RewardSlot="2" />
+					</If>
+					<TurnIn QuestId="67360" NpcId="1014431" XYZ="-77.37854, -8.65556, 166.369" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Where Dragons Tread -->
+		<If Condition="not IsQuestCompleted(67362)">
+			<If Condition="HasQuest(67362)">
+				<If Condition="GetQuestStep(67362) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					0: Bard/Machinist Feet
+					1: White Mage/Scholoar/Astrologian Feet
+					2: Black Mage/Summoner Feet
+
+					-->
+
+					<MoveTo Name="Mogmum" XYZ="-124.0406, 36.39444, 180.621" />
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
+						<TurnIn QuestId="67362" NpcId="1012092" XYZ="-124.0406, 36.39444, 180.621" RewardSlot="0" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar) or (Core.Me.CurrentJob == Enums.ClassJobType.Astrologian)">
+						<TurnIn QuestId="67362" NpcId="1012092" XYZ="-124.0406, 36.39444, 180.621" RewardSlot="1" />
+					</If>
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
+						<TurnIn QuestId="67362" NpcId="1012092" XYZ="-124.0406, 36.39444, 180.621" RewardSlot="2" />
+					</If>
+					<TurnIn QuestId="67362" NpcId="1012092" XYZ="-124.0406, 36.39444, 180.621" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Who's Got the Baskets -->
+		<If Condition="not IsQuestCompleted(67361)">
+			<If Condition="HasQuest(67361)">
+				<If Condition="GetQuestStep(67361) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
 
 					<!-- Rewards
 
@@ -15596,77 +16506,44 @@
 
 					-->
 
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
-						
+					<NoCombatMoveTo Name="Mogson" XYZ="-94.80432, -2.981276, 250.782" />
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
+						<TurnIn QuestId="67361" NpcId="1012091" ItemId="2001633" XYZ="-94.80432, -2.981276, 250.782" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
-						
+						<TurnIn QuestId="67361" NpcId="1012091" ItemId="2001633" XYZ="-94.80432, -2.981276, 250.782" RewardSlot="1" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk)">
-						
+						<TurnIn QuestId="67361" NpcId="1012091" ItemId="2001633" XYZ="-94.80432, -2.981276, 250.782" RewardSlot="2" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
-						
+						<TurnIn QuestId="67361" NpcId="1012091" ItemId="2001633" XYZ="-94.80432, -2.981276, 250.782" RewardSlot="3" />
 					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
+					<TurnIn QuestId="67361" NpcId="1012091" ItemId="2001633" XYZ="-94.80432, -2.981276, 250.782" />
+				</If>
 			</If>
 		</If>
-
-		<!-- Sidequest: Where Dragons Tread -->
-
-		<If Condition="not IsQuestCompleted(67362)">
-			<If Condition="not HasQuest(67362)">
-				<LogMessage Message="Where Dragons Tread quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67362)">
-				<LogMessage Message="Where Dragons Tread quest is coming soon! Stay tuned!" />
-				<StopBot />
-
-					<!-- Rewards
-
-					0: Bard/Machinist Feet
-					1: White Mage/Scholoar/Astrologian Feet
-					2: Black Mage/Summoner Feet
-
-					-->
-
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
-						
-					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar) or (Core.Me.CurrentJob == Enums.ClassJobType.Astrologian)">
-					
-					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
-					
-					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
-			</If>
-		</If>
-
-		<!-- Sidequest: Something Needs to Change -->
-
-		<If Condition="not IsQuestCompleted(67363)">
-			<If Condition="not HasQuest(67363)">
-				<LogMessage Message="Something Needs to Change quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67363)">
-				<LogMessage Message="Something Needs to Change quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-		</If>
-
 		<!-- Waiting for the Wind to Change -->
-
 		<If Condition="not IsQuestCompleted(67162)">
-			<If Condition="not HasQuest(67162)">
-				<LogMessage Message="Waiting for the Wind to Change quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
 			<If Condition="HasQuest(67162)">
-				<LogMessage Message="Waiting for the Wind to Change quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67162) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="400" /> -->
+							<LogMessage Message="Please manually move to Moghome and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
 
 					<!-- Rewards
 
@@ -15676,16 +16553,18 @@
 
 					-->
 
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
-						
+					<NoCombatMoveTo Name="Estinien" XYZ="-261.8297, 30.37311, 557.946" />
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
+						<TurnIn QuestId="67162" NpcId="1012757" XYZ="-261.8297, 30.37311, 557.946" RewardSlot="0" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar) or (Core.Me.CurrentJob == Enums.ClassJobType.Astrologian)">
-					
+						<TurnIn QuestId="67162" NpcId="1012757" XYZ="-261.8297, 30.37311, 557.946" RewardSlot="1" />
 					</If>
 					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
-					
+						<TurnIn QuestId="67162" NpcId="1012757" XYZ="-261.8297, 30.37311, 557.946" RewardSlot="2" />
 					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
+					<TurnIn QuestId="67162" NpcId="1012757" XYZ="-261.8297, 30.37311, 557.946" />
+				</If>
 			</If>
 		</If>
 
@@ -20676,12 +21555,114 @@
 			<MinLevel>54</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
+		<GrindArea name="A_Show_of_Devotion">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="257.9366, -38.15964, 469.0589" name="Sankchinnis" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3613" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
 		<GrindArea name="A_Pebble_for_Your_Thoughts">
 			<Hotspots>
 				<Hotspot Radius="90" XYZ="772.8536, -9.491282, 291.4273" name="Sea Beggar" />
 			</Hotspots>
 			<TargetMobs>
 				<TargetMob Id="4277" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Road_to_Zenith">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="308.1642, -41.18605, 320.0522" name="Dragons in Waiting" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3904" Weight="2000" />
+				<TargetMob Id="3905" Weight="1000" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Road_Kill">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="452.8487, -24.88893, 110.8987" name="Archaeosaurs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3620" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Road_to_Zenith2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="202.4413, -23.34785, 166.9489" name="Dragons in Waiting" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3904" Weight="2000" />
+				<TargetMob Id="3905" Weight="1000" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Something_Needs_to_Change">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-96.05539, -5.738907, 382.809" name="Lower Skylords" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3618" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Where_Dragons_Tread">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-378.918, 34.66922, 448.5861" name="Amphipteres" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3619" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Waiting_for_the_Wind_to_Change">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-234.3998, -12.65855, 320.767" name="Melia Matron" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4052" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Waiting_for_the_Wind_to_Change2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-90.09085, -5.342505, 378.3353" name="Melia Matron" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4052" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Something_Needs_to_Change2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-33.21917, -18.65302, -54.53126" name="Moss Dragons" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3617" />
+			</TargetMobs>
+			<MinLevel>54</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Spineless_Wadjets">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="239.5918, -37.70324, -164.532" name="Wadjets" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3616" />
 			</TargetMobs>
 			<MinLevel>54</MinLevel>
 			<MaxLevel>61</MaxLevel>
