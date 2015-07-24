@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class FishResult
+    public class FishResult
     {
         public bool IsHighQuality { get; set; }
 
@@ -19,6 +19,12 @@
 
                 return this.Name;
             }
+        }
+        
+        public bool IsKeeper(Keeper keeper)
+        {
+            return string.Equals(keeper.Name, this.FishName, StringComparison.InvariantCultureIgnoreCase)
+                    && (this.IsHighQuality || !keeper.OnlyHq);
         }
     }
 }

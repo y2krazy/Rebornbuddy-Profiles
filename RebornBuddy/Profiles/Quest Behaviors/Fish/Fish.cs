@@ -28,13 +28,57 @@ namespace ExBuddy.NeoProfiles
     [XmlElement("Fish")]
     public class FishTag : ProfileBehavior
     {
+        const uint WM_KEYDOWN = 0x100;
+        const uint WM_KEYUP = 0x0101;
+
+        [return: System.Runtime.InteropServices.MarshalAs(System.Runtime.InteropServices.UnmanagedType.Bool)]
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        protected static extern bool PostMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+
+        protected static void PostKeyPress(VirtualKeys key)
+        {
+            PostKeyPress((int)key);
+        }
+
+        protected static void PostKeyPress(int key)
+        {
+            PostMessage(Core.Memory.Process.MainWindowHandle, WM_KEYDOWN, new IntPtr(key), IntPtr.Zero);
+            PostMessage(Core.Memory.Process.MainWindowHandle, WM_KEYUP, new IntPtr(key), IntPtr.Zero);
+        }
+
+        [Serializable]
+        public enum Abilities : int
+        {
+            None = -1,
+            Sprint = 3,
+            Bait = 288,
+            Cast = 289,
+            Hook = 296,
+            Mooch = 297,
+            Stealth = 298,
+            Quit = 299,
+            Release = 300,
+            CastLight = 2135,
+            Snagging = 4100,
+            CollectorsGlove = 4101,
+            Patience = 4102,
+            PowerfulHookset = 4103,
+            Chum = 4104,
+            FishEyes = 4105,
+            PrecisionHookset = 4179,
+            Patience2 = 9001 // Need to Check this value when i get skill
+        }
+
         #region Fields
 
         private static bool isFishing;
-        private static Regex regex = new Regex(@"You land an{0,1} (.+) measuring \d{1,4}\.\d ilms!", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        protected static Regex fishRegex = new Regex(@"You land an{0,1} (.+) measuring \d{1,4}\.\d ilms!", RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        protected static Regex baitRegex = new Regex(@"You apply an{0,1} (.+) to your line.", RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-        private FishResult fishResult = new FishResult();
+        protected static FishResult fishResult = new FishResult();
+        private static string currentBait;
 
+        private int baitCount = InventoryManager.FilledSlots.Count(bs => bs.Item.Affinity == 19);
         private bool _done;
         private int minfish = 20;
         private int maxfish = 30;
@@ -48,8 +92,10 @@ namespace ExBuddy.NeoProfiles
 
         #region Public Properties
 
-        [XmlElement("ItemNames")]
-        public List<string> ItemNames { get; set; }
+        // TODO: Make custom type to keep HQ or reg fish by name
+        // Keepers > Keeper attr HqOnly
+        [XmlElement("Keepers")]
+        public List<Keeper> Keepers { get; set; }
 
         [XmlElement("Collectables")]
         public List<Collectable> Collectables { get; set; }
@@ -95,12 +141,33 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
+        [XmlAttribute("Bait")]
+        public string Bait { get; set; }
+
+        [DefaultValue(1)]
+        [XmlAttribute("BaitDelay")]
+        public int BaitDelay { get; set; }
+
+        [XmlAttribute("Chum")]
+        public bool Chum { get; set; }
+
+        [DefaultValue(VirtualKeys.N0)]
+        [XmlAttribute("ConfirmKey")]
+        public VirtualKeys ConfirmKey { get; set; }
+
+        [DefaultValue(VirtualKeys.N6)]
+        [XmlAttribute("MoveCursorRightKey")]
+        public VirtualKeys MoveCursorRightKey { get; set; }
+
         [DefaultValue("True")]
         [XmlAttribute("Condition")]
         public string Condition { get; set; }
 
         [XmlAttribute("Weather")]
         public string Weather { get; set; }
+
+        [XmlAttribute("ShuffleFishSpots")]
+        public bool Shuffle { get; set; }
 
         [XmlAttribute("Stealth")]
         public bool Stealth { get; set; }
@@ -112,22 +179,16 @@ namespace ExBuddy.NeoProfiles
         public int UCollectabilityValue { get; set; }
         public uint CollectabilityValue { get { return Convert.ToUInt32(UCollectabilityValue); } }
 
+        [DefaultValue(Abilities.None)]
         [XmlAttribute("Patience")]
-        public bool Patience { get; set; }
+        public Abilities Patience { get; set; }
 
         [XmlAttribute("Snagging")]
         public bool Snagging { get; set; }
 
-        [DefaultValue(4102)]
-        [XmlAttribute("PatienceId")]
-        public int UPatienceId { get; set; }
-        public uint PatienceId { get { return Convert.ToUInt32(UPatienceId); } }
-
-        // 4103 - Powerful | 4179 Precision
-        [DefaultValue(4103)]
-        [XmlAttribute("HooksetId")]
-        public int UHooksetId { get; set; }
-        public uint HooksetId { get { return Convert.ToUInt32(UHooksetId); } }
+        [DefaultValue(Abilities.PowerfulHookset)]
+        [XmlAttribute("Hookset")]
+        public Abilities Hookset { get; set; }
 
         public override bool IsDone { get { return _done; } }
 
@@ -137,7 +198,7 @@ namespace ExBuddy.NeoProfiles
         
         #region Fishing Composites
 
-        protected Composite DismountAction
+        protected Composite DismountComposite
         {
             get
             {
@@ -145,14 +206,14 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
-        protected Composite CollectablesAction
+        protected Composite CollectablesComposite
         {
             get
             {
                 return
                     new Decorator(
                         ret =>
-                        Collect == true && SelectYesNoItem.IsOpen
+                        Collect && SelectYesNoItem.IsOpen
                         && InventoryManager.FilledSlots.Count(c => c.BagId != InventoryBagId.KeyItems) <= 98,
                         new Sequence(
                             new Sleep(2, 3),
@@ -185,25 +246,25 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
-        protected Composite FishCountLimitAction
+        protected Composite FishCountLimitComposite
         {
             get
             {
                 return
                     new Decorator(
                         ret =>
-                        fishcount >= fishlimit && Actionmanager.CanCast(299, Core.Player) && !HasPatience
+                        fishcount >= fishlimit && CanDoAbility(Abilities.Quit) && !HasPatience
                         && !SelectYesNoItem.IsOpen,
                         new Action(
                             r =>
                                 {
-                                    Actionmanager.DoAction(299, Core.Player);
+                                    DoAbility(Abilities.Quit);
                                     ChangeFishSpot();
                                 }));
             }
         }
 
-        protected Composite StopMovingAction
+        protected Composite StopMovingComposite
         {
             get
             {
@@ -217,7 +278,7 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
-        protected Composite InitFishSpotAction
+        protected Composite InitFishSpotComposite
         {
             get
             {
@@ -234,7 +295,7 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
-        protected Composite CheckWeatherAction
+        protected Composite CheckWeatherComposite
         {
             get
             {
@@ -250,53 +311,53 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
-        protected Composite CollectorsGloveAction
+        protected Composite CollectorsGloveComposite
         {
             get
             {
                 return
                     new Decorator(
                         ret =>
-                        Actionmanager.HasSpell(4101) && (Collect == true && !Core.Player.HasAura("Collector's Glove"))
-                        || (Collect != true && Core.Player.HasAura("Collector's Glove")),
+                        CanDoAbility(Abilities.CollectorsGlove)
+                        && Collect ^ HasCollectorsGlove,
                         new Sequence(
                             new Action(
                                 r =>
                                     {
                                         Log("Casting Collector's Glove");
-                                        Actionmanager.DoAction(4101, Core.Player);
+                                        DoAbility(Abilities.CollectorsGlove);
                                     }),
                             new Sleep(2, 3)));
             }
         }
 
-        protected Composite SnaggingAction
+        protected Composite SnaggingComposite
         {
             get
             {
                 return
                     new Decorator(
                         ret =>
-                        Actionmanager.HasSpell(4100) && Actionmanager.CanCast(4100, Core.Player)
-                        && ((Snagging == true && !HasSnagging) || (Snagging != true && HasSnagging)),
+                        CanDoAbility(Abilities.Snagging)
+                        && Snagging ^ HasSnagging,
                         new Sequence(
                             new Action(
                                 r =>
                                     {
                                         Log("Toggle Snagging");
-                                        Actionmanager.DoAction(4100, Core.Player);
+                                        DoAbility(Abilities.Snagging);
                                     }),
                             new Sleep(2, 3)));
             }
         }
 
-        protected Composite MoochAction
+        protected Composite MoochComposite
         {
             get
             {
                 return
                     new Decorator(
-                        ret => Actionmanager.CanCast(297, Core.Player) && MoochLevel != 0 && mooch < MoochLevel && MoochConditionCheck(),
+                        ret => CanDoAbility(Abilities.Mooch) && MoochLevel != 0 && mooch < MoochLevel && MoochConditionCheck(),
                         new Sequence(
                             new Action(
                                 r =>
@@ -316,59 +377,68 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
-        protected Composite PatienceAction
+        protected Composite ChumComposite
+        {
+            get
+            {
+                return new Decorator(
+                    ret => Chum && !HasChum && CanDoAbility(Abilities.Chum),
+                    new Sequence(new Action(r => DoAbility(Abilities.Chum)), new Sleep(1, 2)));
+            }
+        }
+
+        protected Composite PatienceComposite
         {
             get
             {
                 return
                     new Decorator(
                         ret =>
-                        Patience == true
+                        Patience > Abilities.None
                         && (FishingManager.State == FishingState.None || FishingManager.State == FishingState.PoleReady)
-                        && !HasPatience && Actionmanager.CanCast(PatienceId, Core.Player)
+                        && !HasPatience && CanDoAbility(Patience)
                         && (Core.Player.CurrentGP >= 600 || Core.Player.CurrentGPPercent == 100f),
                         new Sequence(
                             new Action(
                                 r =>
                                     {
-                                        Actionmanager.DoAction(PatienceId, Core.Player);
+                                        DoAbility(Patience);
                                         Log("Patience activated");
                                     }),
                             new Sleep(1, 2)));
             }
         }
 
-        protected Composite ReleaseAction
+        protected Composite ReleaseComposite
         {
             get
             {
                 return
                     new Decorator(
-                        ret => FishingManager.State == FishingState.PoleReady && Actionmanager.CanCast(300, Core.Player),
+                        ret => FishingManager.State == FishingState.PoleReady && CanDoAbility(Abilities.Release),
                         new Action(
                             r =>
                                 {
                                     ResetMooch();
 
                                     // Keep the fish
-                                    if (this.ItemNames.Count == 0
-                                        || this.ItemNames.Contains(
-                                            this.fishResult.FishName,
-                                            StringComparer.InvariantCultureIgnoreCase))
+                                    if (this.Keepers.Count == 0
+                                        || this.Keepers.Any(fishResult.IsKeeper)
+                                        || (CanDoAbility(Abilities.Mooch) && MoochLevel != 0)) // Do not toss an HQ fish when mooch is active, even if the condition isn't met to currently mooch.
                                     {
                                         FishingManager.Cast();
                                         return;
                                     }
 
-                                    Log("Released " + this.fishResult.FishName);
+                                    Log("Released " + fishResult.FishName);
 
                                     // Release the fish
-                                    Actionmanager.DoAction(300, Core.Player);
+                                    DoAbility(Abilities.Release);
                                 }));
             }
         }
 
-        protected Composite CastAction
+        protected Composite CastComposite
         {
             get
             {
@@ -385,7 +455,7 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
-        protected Composite HookAction
+        protected Composite HookComposite
         {
             get
             {
@@ -394,10 +464,10 @@ namespace ExBuddy.NeoProfiles
                     new Action(
                         r =>
                             {
-                                if (HasPatience && Actionmanager.CanCast(HooksetId, Core.Player))
+                                if (HasPatience && CanDoAbility(Hookset))
                                 {
-                                    Actionmanager.DoAction(HooksetId, Core.Player);
-                                    Log("Using Hookset (" + HooksetId + ")");
+                                    DoAbility(Hookset);
+                                    Log("Using (" + Hookset + ")");
                                 }
                                 else
                                 {
@@ -464,6 +534,100 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
+        private bool HasSpecifiedBait
+        {
+            get
+            {
+                return
+                    InventoryManager.FilledSlots.Any(
+                        i => string.Equals(i.Name, this.Bait, StringComparison.InvariantCultureIgnoreCase));
+            }
+        }
+
+        private bool IsBaitWindowOpen
+        {
+            get
+            {
+                return RaptureAtkUnitManager.Controls.Any(c => c.Name == "Bait");    
+            }
+        }
+
+        private bool IsBaitSpecified
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(this.Bait);    
+            }
+        }
+
+        private bool IsCorrectBaitSelected
+        {
+            get
+            {
+                return string.Equals(currentBait, this.Bait, StringComparison.InvariantCultureIgnoreCase);
+            }
+        }
+
+        protected Composite OpenBait
+        {
+            get
+            {
+                return
+                    new Decorator(
+                        ret =>
+                        IsBaitSpecified && !IsCorrectBaitSelected && !IsBaitWindowOpen
+                        && CanDoAbility(Abilities.Bait),
+                        new Sequence(
+                            new Action(
+                                r =>
+                                    {
+                                        DoAbility(Abilities.Bait);
+                                        PostKeyPress(this.MoveCursorRightKey);
+                                    }),
+                            new Sleep(this.BaitDelay)));
+            }
+        }
+
+        protected Composite ApplyBait
+        {
+            get
+            {
+                return
+                    new Decorator(
+                        ret =>
+                        IsBaitSpecified
+                        && IsBaitWindowOpen
+                        && HasSpecifiedBait,
+                        new Sequence(
+                            new Sleep(this.BaitDelay),
+                            new Action(
+                                r =>
+                                    {
+                                        if (IsCorrectBaitSelected)
+                                        {
+                                            Log("Correct Bait Selected -> " + this.Bait);
+                                            DoAbility(Abilities.Bait);
+                                            return;
+                                        }
+
+                                        PostKeyPress(this.MoveCursorRightKey);
+                                        Thread.Sleep(100);
+
+                                        PostKeyPress(this.ConfirmKey);
+                                        Thread.Sleep(100);
+
+                                        PostKeyPress(this.ConfirmKey);
+
+                                        if (baitCount < -1 && !IsCorrectBaitSelected)
+                                        {
+                                            Log("Unable to find specified bait -> " + this.Bait + ", ending profile");
+                                            _done = true;
+                                        }
+                                    }),
+                            new Sleep(1, 2)));
+            }
+        }
+
         protected Composite CheckStealth
         {
             get
@@ -475,7 +639,7 @@ namespace ExBuddy.NeoProfiles
                             r =>
                                 {
                                     CharacterSettings.Instance.UseMount = false;
-                                    Actionmanager.DoAction(298, Core.Player);
+                                    DoAbility(Abilities.Stealth);
                                 }),
                         new Sleep(2, 3)));
             }
@@ -507,7 +671,23 @@ namespace ExBuddy.NeoProfiles
 
         #endregion
 
-        private bool HasPatience
+        #region Ability Checks and Actions
+
+        protected bool CanDoAbility(Abilities ability)
+        {
+            return Actionmanager.CanCast((uint)ability, Core.Player);
+        }
+
+        protected void DoAbility(Abilities ability)
+        {
+            Actionmanager.DoAction((uint)ability, Core.Player);
+        }
+
+        #endregion
+
+
+
+        protected bool HasPatience
         {
             get
             {
@@ -515,11 +695,27 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
-        private bool HasSnagging
+        protected bool HasSnagging
         {
             get
             {
                 return Core.Player.HasAura("Snagging");
+            }
+        }
+
+        protected bool HasCollectorsGlove
+        {
+            get
+            {
+                return Core.Player.HasAura("Collector's Glove");
+            }
+        }
+
+        protected bool HasChum
+        {
+            get
+            {
+                return Core.Player.HasAura("Chum");
             }
         }
 
@@ -530,9 +726,9 @@ namespace ExBuddy.NeoProfiles
 
         protected override void OnStart()
         {
-            if (this.ItemNames == null)
+            if (this.Keepers == null)
             {
-                this.ItemNames = new List<string>();
+                this.Keepers = new List<Keeper>();
             }
 
             if (this.Collectables == null)
@@ -543,13 +739,25 @@ namespace ExBuddy.NeoProfiles
             GamelogManager.MessageRecevied += ReceiveMessage;
             FishSpots.IsCyclic = true;
             isFishing = false;
+            ShuffleFishSpots();
+
+            if (IsBaitWindowOpen && CanDoAbility(Abilities.Bait))
+            {
+                DoAbility(Abilities.Bait);
+            }
+
+            if (CanDoAbility(Abilities.Quit))
+            {
+                DoAbility(Abilities.Quit);
+            }
         }
 
         protected override void OnDone()
         {
             Thread.Sleep(6000);
-            Actionmanager.DoAction(299, Core.Player);
+            DoAbility(Abilities.Quit);
             isFishing = false;
+            CharacterSettings.Instance.UseMount = true;
         }
 
         protected override void OnResetCachedDone()
@@ -568,23 +776,27 @@ namespace ExBuddy.NeoProfiles
                 Conditional,
                 Blacklist,
                 InventoryFull,
+                // TODO: GetBait
+                OpenBait,
+                ApplyBait,
                 CheckStealth,
                 StateTransitionAlwaysSucceed,
                 MoveToFishSpot,
                 GoFish(
-                    DismountAction,
-                    CollectablesAction,
-                    FishCountLimitAction,
-                    StopMovingAction,
-                    InitFishSpotAction,
-                    CheckWeatherAction,
-                    CollectorsGloveAction,
-                    SnaggingAction,
-                    MoochAction,
-                    PatienceAction,
-                    ReleaseAction,
-                    CastAction,
-                    HookAction));
+                    DismountComposite,
+                    StopMovingComposite,
+                    CheckWeatherComposite,
+                    InitFishSpotComposite,
+                    CollectablesComposite,
+                    MoochComposite,
+                    ReleaseComposite,
+                    FishCountLimitComposite,
+                    CollectorsGloveComposite,
+                    SnaggingComposite,
+                    PatienceComposite,
+                    ChumComposite,
+                    CastComposite,
+                    HookComposite));
         }
 
         protected Composite GoFish(params Composite[] children)
@@ -598,21 +810,21 @@ namespace ExBuddy.NeoProfiles
 
         #region Methods
 
-        private bool ConditionCheck()
+        protected virtual bool ConditionCheck()
         {
             var conditional = ScriptManager.GetCondition(Condition);
 
             return conditional();
         }
 
-        private bool MoochConditionCheck()
+        protected virtual bool MoochConditionCheck()
         {
             var moochConditional = ScriptManager.GetCondition(MoochCondition);
 
             return moochConditional();
         }
 
-        private void FaceFishSpot()
+        protected virtual void FaceFishSpot()
         {
             double i = Clio.Common.MathEx.Random(0, 25);
             i = i/100;
@@ -629,7 +841,7 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
-        private void ChangeFishSpot()
+        protected virtual void ChangeFishSpot()
         {
             FishSpots.Next();
             Log("Changing FishSpots...");
@@ -640,12 +852,21 @@ namespace ExBuddy.NeoProfiles
             isFishing = false;
         }
 
-        private int GetFishLimit()
+        protected virtual int GetFishLimit()
         {
             return System.Convert.ToInt32(Clio.Common.MathEx.Random(this.MinimumFishPerSpot, this.MaximumFishPerSpot));
         }
 
-        private void ResetMooch()
+        protected void ShuffleFishSpots()
+        {
+            if (Shuffle && FishSpots.Index == 0)
+            {
+                FishSpots.Shuffle();
+                Log("Shuffled fish spots");
+            }
+        }
+
+        protected void ResetMooch()
         {
             if (mooch != 0)
             {
@@ -654,21 +875,11 @@ namespace ExBuddy.NeoProfiles
             }
         }
 
-        private FishResult GetFishResult(string message)
+        protected static string GetCurrentBait(string message)
         {
-            var fish = new FishResult();
-
-            fish.Name = this.ParseFishName(message);
-            fish.IsHighQuality = this.IsCatchHQ(fish.Name);
-
-            return fish;
-        }
-
-        private string ParseFishName(string message)
-        {
-            if (regex.IsMatch(message))
+            if (baitRegex.IsMatch(message))
             {
-                var match = regex.Match(message);
+                var match = baitRegex.Match(message);
 
                 return match.Groups[1].Value;
             }
@@ -676,7 +887,29 @@ namespace ExBuddy.NeoProfiles
             return "Parse Error";
         }
 
-        private bool IsCatchHQ(string fishname)
+        protected static FishResult GetFishResult(string message)
+        {
+            var fish = new FishResult();
+
+            fish.Name = ParseFishName(message);
+            fish.IsHighQuality = IsCatchHQ(fish.Name);
+
+            return fish;
+        }
+
+        protected static string ParseFishName(string message)
+        {
+            if (fishRegex.IsMatch(message))
+            {
+                var match = fishRegex.Match(message);
+
+                return match.Groups[1].Value;
+            }
+
+            return "Parse Error";
+        }
+
+        protected static bool IsCatchHQ(string fishname)
         {
             if(fishname[fishname.Length-2] == ' ')
             {
@@ -685,29 +918,36 @@ namespace ExBuddy.NeoProfiles
 
             return false;
         }
-        
-        private void ReceiveMessage(object sender, ChatEventArgs e)
+
+        protected void ReceiveMessage(object sender, ChatEventArgs e)
         {
+            if (e.ChatLogEntry.MessageType == MessageType.SystemMessages && e.ChatLogEntry.Contents.StartsWith("You apply"))
+            {
+                currentBait = GetCurrentBait(e.ChatLogEntry.Contents);
+                this.baitCount--;
+                Log("Applied Bait -> " + currentBait);
+            }
+
             if (e.ChatLogEntry.MessageType == (MessageType)2115 && e.ChatLogEntry.Contents.StartsWith("You land"))
             {
-                this.fishResult = this.GetFishResult(e.ChatLogEntry.Contents);
+                fishResult = GetFishResult(e.ChatLogEntry.Contents);
             }
 
             if (e.ChatLogEntry.MessageType == (MessageType)2115 && e.ChatLogEntry.Contents == "The fish sense something amiss. Perhaps it is time to try another location.")
             {
                 Log("The fish sense something amiss!");
                 amissfish++;
-                Actionmanager.DoAction(299, Core.Player);
+                DoAbility(Abilities.Quit);
                 ChangeFishSpot();
             }
         }
 
-        private void Log(string message, Color color)
+        protected void Log(string message, Color color)
         {
             Logging.Write(color, string.Format("[Fish v" + Version.ToString() + "] {0}", message));
         }
 
-        private void Log(string message)
+        protected void Log(string message)
         {
             Log(message, Colors.Gold);
         }
