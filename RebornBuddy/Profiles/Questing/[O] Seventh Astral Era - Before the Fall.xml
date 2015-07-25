@@ -179,7 +179,7 @@
 							<Travel To="145" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="2005112" XYZ="199.6947, -14.72504, 162.4628" />
+					<NoCombatMoveTo Name="Tunnel Entrance" XYZ="199.6947, -14.72504, 162.4628" />
 					<UseObject NpcId="2005112" XYZ="199.6947, -14.72504, 162.4628" Radius="10" QuestId="65900" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(65900) == 255">
@@ -224,7 +224,7 @@
 							<Travel To="145" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="2005113" XYZ="192.8893, -26.65753, 203.6011" />
+					<NoCombatMoveTo Name="Wooden Crate" XYZ="192.8893, -26.65753, 203.6011" />
 					<UseObject NpcId="2005113" XYZ="192.8893, -26.65753, 203.6011" Radius="10" QuestId="65901" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65901) == 2">
@@ -321,13 +321,19 @@
 					<TalkTo InteractDistance="3.0" NpcId="1008969" XYZ="0.9917603, -1.995725, -45.70081" QuestId="65902" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65902) == 2">
-					<If Condition="not IsOnMap(156)">
+					<If Condition="not IsOnMap(156) and not IsOnMap(351)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
 						</If>
 						<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
 							<Travel To="156" />
 						</If>
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
+					</If>
+					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
+						<UseTransport Name="Exit to Revenant's Toll" InteractDistance="3.0" NpcId="2002879" XYZ="-0.01531982, 2.975464, 27.48145" />
 					</If>
 					<NoCombatMoveTo Name="Doman Refugee" XYZ="336.3545, -27.80885, -369.7414" />
 					<TalkTo InteractDistance="3.0" NpcId="1010881" XYZ="336.3545, -27.80885, -369.7414" QuestId="65902" StepId="2" />
@@ -337,11 +343,6 @@
 					<LogMessage Message="Please restart this profile after you are done." />
 					<StopBot />
 				</If>
-				<!-- <If Condition="GetQuestStep(65902) == 4">
-
-				WHY WAS THIS STEP SKIPPED?
-
-				</If> -->
 				<If Condition="GetQuestStep(65902) == 5">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
@@ -492,28 +493,42 @@
 							<Travel To="147" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="Suspicious Items" XYZ="-105.9178, 48, -29.73863" />
-					<LogMessage Message="Please gather the suspicious items manually!" />
-					<LogMessage Message="Go up the stairs for the first suspicious item, then find the others on the ground." />
-					<LogMessage Message="Please restart this profile after you are done." />
-					<StopBot />
-
-					<!-- TO DO -->
-
-					<!-- Figure out how to navigate to the 4th suspicious item up in the air. -->
-
-					<!-- TO DO -->
-
-					<!-- <If Condition="GetQuestById(65903).QuestI8AH == 0">
+					<NoCombatMoveTo Name="Inconspicuously Suspicious Items" XYZ="-105.9178, 48, -29.73863" />
+					<If Condition="GetQuestById(65903).QuestI8BH == 0">
 						<UseObject NpcId="2004586" XYZ="39.59705, 46.98242, -10.6051" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65903" StepId="5" />
-					<If Condition="GetQuestById(65903).QuestI8AH == 1">
+					</If>
+					<If Condition="GetQuestById(65903).QuestI8BH == 1">
 						<UseObject NpcId="2004587" XYZ="-32.39496, 47.98962, -71.91577" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65903" StepId="5" />
-					<If Condition="GetQuestById(65903).QuestI8AH == 2">
+					</If>
+					<If Condition="GetQuestById(65903).QuestI8BH == 2">
 						<UseObject NpcId="2004585" XYZ="-112.6879, 47.95898, -17.22742" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65903" StepId="5" />
-					<If Condition="GetQuestById(65903).QuestI8AH == 3">
-						<NoCombatMoveTo Name="Staircase" XYZ="-105.9178, 48, -29.73863" />
-						<UseObject NpcId="2004584" XYZ="-31.81512, 74.08252, -67.88745" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65903" StepId="5" />
-					</If> -->
+					</If>
+					<If Condition="GetQuestById(65903).QuestI8BH == 3">
+						<NoCombatMoveTo Name="Staircase" XYZ="-91.8381, 48.01114, -31.78416" />
+						<LogMessage Message="Please gather the last inconspicuously suspicious item manually!" />
+						<LogMessage Message="Go up the stairs to the top of the pipeline and follow it East." />
+						<LogMessage Message="Please restart this profile after you are done." />
+						<StopBot />
+						<!-- <MoveTo Name="Staircase" XYZ="-119.356, 55.99916, -29.805" UseMesh="False" />
+						<MoveTo Name="Staircase" XYZ="-118.5872, 55.90768, -26.62424" UseMesh="False" />
+						<MoveTo Name="Staircase" XYZ="-108.9193, 55.90769, -26.79032" UseMesh="False" />
+						<MoveTo Name="Staircase" XYZ="-123.9662, 61.74369, -27.62225" UseMesh="False" />
+						<MoveTo Name="Staircase" XYZ="-124.5509, 61.74369, -29.45959" UseMesh="False" />
+						<MoveTo Name="Staircase" XYZ="-112.6066, 67.49513, -28.87921" UseMesh="False" />
+						<MoveTo Name="Staircase" XYZ="-110.6761, 67.49513, -27.94129" UseMesh="False" />
+						<MoveTo Name="Staircase" XYZ="-119.6761, 67.49513, -27.44129" UseMesh="False" />
+						<MoveTo Name="Staircase" XYZ="-116.6087, 69.65623, -27.24675" UseMesh="False" />
+						<MoveTo Name="Top of Staircase" XYZ="-123.5781, 73.23672, -28.12395" UseMesh="False" />
+						<MoveTo Name="Pipeline" XYZ="-122.5176, 73.90717, -18.06414" UseMesh="False" />
+						<MoveTo Name="Jump Spot" XYZ="-122.5176, 73.90717, -18.06414" UseMesh="False" />
+						<RunCode Name="JumpForward" />
+						<MoveTo Name="Jump Spot" XYZ="-82.59093, 74.54077, -28.30046" UseMesh="False" />
+						<RunCode Name="JumpForward" />
+						<MoveTo Name="Jump Spot" XYZ="-53.63249, 74.55066, -45.40225" UseMesh="False" />
+						<RunCode Name="JumpForward" />
+						<MoveTo Name="Inconspicuously Suspicious Item" XYZ="-31.81512, 74.08252, -67.88745" UseMesh="False" />
+						<UseObject NpcId="2004584" XYZ="-31.81512, 74.08252, -67.88745" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65903" StepId="5" /> -->
+					</If>
 				</If>
 				<If Condition="GetQuestStep(65903) == 255">
 					<If Condition="not IsOnMap(147)">
@@ -526,6 +541,7 @@
 					</If>
 					<NoCombatMoveTo Name="Edelstein" XYZ="-29.95355, 46.99734, 32.54749" />
 					<TurnIn QuestId="65903" NpcId="1006646" ItemId="2001548" XYZ="-29.95355, 46.99734, 32.54749" />
+					<WaitTimer WaitTime="5" />
 				</If>
 			</If>
 		</If>
@@ -618,7 +634,8 @@
 						</If>
 					</If>
 					<NoCombatMoveTo Name="Edelstein" XYZ="-29.95355, 46.99734, 32.54749" />
-					<TurnIn QuestId="65904" NpcId="1006646" ItemId="2001548" XYZ="-29.95355, 46.99734, 32.54749" />
+					<TurnIn QuestId="65904" NpcId="1006646" XYZ="-29.95355, 46.99734, 32.54749" />
+					<WaitTimer WaitTime="5" />
 				</If>
 			</If>
 		</If>
@@ -650,13 +667,6 @@
 							<Travel To="147" />
 						</If>
 					</If>
-
-					<!-- TO DO -->
-
-					<!-- Add a CodeChunk to address an issue with RB stopping mid-cutscene. -->
-
-					<!-- TO DO -->
-
 					<NoCombatMoveTo Name="Moenbryda" XYZ="136.3392, 31.9962, 16.09827" />
 					<TalkTo InteractDistance="3.0" NpcId="1010879" XYZ="136.3392, 31.9962, 16.09827" QuestId="65905" StepId="1" />
 				</If>
@@ -675,13 +685,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
-
-					<!-- TO DO -->
-
-					<!-- Add a CodeChunk to address an issue with RB stopping mid-cutscene. -->
-
-					<!-- TO DO -->
-
+					<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
 				</If>
 				<If Condition="GetQuestStep(65905) == 3">
 					<LogMessage Message="Please complete The Chrysalis manually!" />
