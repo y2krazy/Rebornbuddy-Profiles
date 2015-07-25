@@ -5,9 +5,9 @@
 ############################################
 # Author: y2krazy                          #
 ############################################
-# Version: 1.0.0                           #
+# Version: 1.0.1                           #
 ############################################
-# Required Level: 50                       #
+# Required Level: 57                       #
 ############################################
 # Required Teleport Locations:             #
 # 	Camp Cloudtop                          #
@@ -44,6 +44,173 @@
 
 				<!-- <Travel To="401" /> -->
 				<LogMessage Message="Please manually move to Camp Cloudtop and restart the profile." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- ######## -->
+		<!-- LEVEL 50 -->
+		<!-- ######## -->
+
+		<LogMessage Message="Checking level 50 quest..." />
+
+		<!-- Sidequest: Clipped Wings -->
+
+		<If Condition="not IsQuestCompleted(67284)">
+			<If Condition="not HasQuest(67284)">
+				<If Condition="not IsOnMap(401)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+						<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="401" /> -->
+						<LogMessage Message="Please manually move to Camp Cloudtop and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="1011952" XYZ="-277.6379, -184.5974, 741.6038" />
+				<If Condition="IsQuestAcceptQualified(67284)">
+					<PickupQuest NpcId="1011952" QuestId="67284" XYZ="-277.6379, -184.5974, 741.6038" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67284)">
+				<If Condition="GetQuestStep(67284) == 1">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+							<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="401" /> -->
+							<LogMessage Message="Please manually move to Camp Cloudtop and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<Grind grindRef="Clipped_Wings" while="HasQuest(67284) and GetQuestStep(67284) == 1" />
+				</If>
+				<If Condition="GetQuestStep(67284) == 2">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+							<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="401" /> -->
+							<LogMessage Message="Please manually move to Camp Cloudtop and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<Grind grindRef="Clipped_Wings" while="HasQuest(67284) and GetQuestStep(67284) == 2" />
+				</If>
+				<If Condition="GetQuestStep(67284) == 255">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+							<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="401" /> -->
+							<LogMessage Message="Please manually move to Camp Cloudtop and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<TurnIn QuestId="67284" NpcId="1011952" ItemId="2001599" XYZ="-277.6379, -184.5974, 741.6038" />
+				</If>
+			</If>
+		</If>
+
+		<!-- ######## -->
+		<!-- LEVEL 56 -->
+		<!-- ######## -->
+
+		<LogMessage Message="Checking level 56 quest..." />
+
+		<!-- Sidequest: Search and Rescue -->
+
+		<If Condition="not IsQuestCompleted(67437)">
+			<If Condition="not HasQuest(67437)">
+				<LogMessage Message="Search and Rescue quest is coming soon! Stay tuned!" />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(67437)">
+				<LogMessage Message="Search and Rescue quest is coming soon! Stay tuned!" />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- ######## -->
+		<!-- LEVEL 57 -->
+		<!-- ######## -->
+
+		<LogMessage Message="Checking level 57 quests..." />
+
+		<!-- Sidequest: Sleepless in Ok' Zundu -->
+
+		<If Condition="not IsQuestCompleted(67445)">
+			<If Condition="not HasQuest(67445)">
+				<LogMessage Message="Sleepless in Ok' Zundu quest is coming soon! Stay tuned!" />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(67445)">
+				<LogMessage Message="Sleepless in Ok' Zundu quest is coming soon! Stay tuned!" />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- Sidequest: Flying the Nest -->
+
+		<If Condition="not IsQuestCompleted(67446)">
+			<If Condition="not HasQuest(67446)">
+				<LogMessage Message="Flying the Nest quest is coming soon! Stay tuned!" />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(67446)">
+				<LogMessage Message="Flying the Nest quest is coming soon! Stay tuned!" />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- Bolt, Chain, and Island -->
+
+		<If Condition="not IsQuestCompleted(67183)">
+			<If Condition="not HasQuest(67183)">
+				<LogMessage Message="Bolt, Chain, and Island quest is coming soon! Stay tuned!" />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(67183)">
+				<LogMessage Message="Bolt, Chain, and Island quest is coming soon! Stay tuned!" />
 				<StopBot />
 			</If>
 		</If>
