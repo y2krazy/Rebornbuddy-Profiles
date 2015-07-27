@@ -927,19 +927,19 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="Bothered Bowman" XYZ="-132.1279, 304.2877, -298.3902" />
-					<!-- <If Condition="GetQuestById(65907).QuestI8AH == 0"> -->
+					<NoCombatMoveTo Name="Knights" XYZ="-132.1279, 304.2877, -298.3902" />
+					<If Condition="GetQuestById(65907).QuestI8AL == 0">
 						<TalkTo InteractDistance="3.0" NpcId="1010942" XYZ="-132.1279, 304.2877, -298.3902" QuestId="65907" StepId="2" />
-					<!-- </If> -->
-					<!-- <If Condition="GetQuestById(65907).QuestI8AH == 1"> -->
+					</If>
+					<If Condition="GetQuestById(65907).QuestI8AL == 1">
 						<TalkTo InteractDistance="3.0" NpcId="1010940" XYZ="-143.2365, 304.1538, -289.3569" QuestId="65907" StepId="2" />
-					<!-- </If> -->
-					<!-- <If Condition="GetQuestById(65907).QuestI8AH == 2"> -->
+					</If>
+					<If Condition="GetQuestById(65907).QuestI8AL == 2">
 						<TalkTo InteractDistance="3.0" NpcId="1010941" XYZ="-157.0001, 304.1538, -308.1255" QuestId="65907" StepId="2" />
-					<!-- </If> -->
-					<!-- <If Condition="GetQuestById(65907).QuestI8AH == 3"> -->
+					</If>
+					<If Condition="GetQuestById(65907).QuestI8AL == 3">
 						<TalkTo InteractDistance="3.0" NpcId="1010939" XYZ="-152.697, 304.1538, -321.2177" QuestId="65907" StepId="2" />
-					<!-- </If> -->
+					</If>
 				</If>
 				<If Condition="GetQuestStep(65907) == 255">
 					<If Condition="not IsOnMap(155)">
@@ -987,7 +987,7 @@
 					<TalkTo InteractDistance="3.0" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695" QuestId="65908" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65908) == 2">
-					<If Condition="not IsOnMap(155) and not IsOnSubMap(1429)">
+					<If Condition="not IsOnMap(155) and not IsOnMap(395)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
 						</If>
@@ -995,24 +995,14 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<If Condition="IsOnMap(155) and not IsOnSubMap(1429)">
-						<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126" />
+					<If Condition="IsOnMap(155)">
+						<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1007603" XYZ="264.9119, 302.2624, -223.7126" />
 					</If>
-
-					<!-- TO DO -->
-
-					<!-- Area not meshed? -->
-
-					<!-- [06:52:53.355 D] Requesting path on 155 from <-4.091, -5.960464E-08, 7.592> to <3.860474, 0.01498271, -0.01531982> -->
-					
-					<!-- [06:52:53.426 D] No viable path from <-4.091, -5.960464E-08, 7.592> to <3.860474, 0.01498271, -0.01531982> in 00:00:00.0704099 ms -->
-
-					<!-- TO DO -->
-
-					<RunCode Name="TheWyrmsRoar2" />
+					<MoveTo Name="Aymeric" XYZ="3.860474, 0.01498271, -0.01531982" />
+					<TalkTo InteractDistance="3.0" NpcId="1009974" XYZ="3.860474, 0.01498271, -0.01531982" QuestId="65908" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(65908) == 255">
-					<If Condition="not IsOnMap(155) and not IsOnSubMap(1429)">
+					<If Condition="not IsOnMap(155) and not IsOnMap(395)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
 						</If>
@@ -1020,17 +1010,11 @@
 							<Travel To="155" />
 						</If>
 					</If>
-					<If Condition="IsOnMap(155) and not IsOnSubMap(1429)">
-						<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126" />
+					<If Condition="IsOnMap(155)">
+						<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1007603" XYZ="264.9119, 302.2624, -223.7126" />
 					</If>
-
-					<!-- TO DO -->
-
-					<!-- Area not meshed? -->
-
-					<!-- TO DO -->
-
-					<RunCode Name="TheWyrmsRoar3" />
+					<MoveTo Name="Alphinaud" XYZ="-2.792419, 0.01498272, -0.7477417" />
+					<TurnIn QuestId="65908" NpcId="1010953" XYZ="-2.792419, 0.01498272, -0.7477417" />
 				</If>
 			</If>
 		</If>
@@ -1039,7 +1023,7 @@
 
 		<If Condition="not IsQuestCompleted(65909)">
 			<If Condition="not HasQuest(65909)">
-				<If Condition="not IsOnMap(155) and not IsOnSubMap(1429)">
+				<If Condition="not IsOnMap(155) and not IsOnMap(395)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
 					</If>
@@ -1047,18 +1031,12 @@
 						<Travel To="155" />
 					</If>
 				</If>
-				<If Condition="IsOnMap(155) and not IsOnSubMap(1429)">
+				<If Condition="IsOnMap(155)">
 					<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126" />
 				</If>
 				<If Condition="IsQuestAcceptQualified(65909)">
-
-					<!-- TO DO -->
-
-					<!-- Area not meshed? -->
-
-					<!-- TO DO -->
-
-					<RunCode Name="TheWyrmsRoar4" />
+					<MoveTo Name="Alphinaud" XYZ="-2.792419, 0.01498272, -0.7477417" />
+					<PickupQuest NpcId="1010953" QuestId="65909" XYZ="-2.792419, 0.01498272, -0.7477417" />
 				</If>
 			</If>
 			<If Condition="HasQuest(65909)">
@@ -1122,7 +1100,7 @@
 					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
-					<MoveTo Name="Minfilia" XYZ="-3.738525, 0.01804011, -9.353821" />
+					<MoveTo Name="Tataru" XYZ="-3.738525, 0.01804011, -9.353821" />
 					<TalkTo InteractDistance="3.0" NpcId="1010911" XYZ="-3.738525, 0.01804011, -9.353821" QuestId="65927" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(65927) == 2">
@@ -1134,7 +1112,7 @@
 							<Travel To="156" />
 						</If>
 					</If>
-					<If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+					<If Condition="IsOnMap(A351) and IsOnSubMap(1350)">
 						<UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
 					</If>
 					<If Condition="IsOnMap(351) and IsOnSubMap(481)">
@@ -1164,17 +1142,18 @@
 							<Travel To="156" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="Accomplished Adventurer" XYZ="47.74548, 20.66574, -685.1759" />
-					<!-- <If Condition="GetQuestById(65927).QuestI8AH == 0"> -->
+					<NoCombatMoveTo Name="Adventurers" XYZ="40.84889, 20.295, -677.4947" />
+					<!-- <If Condition="GetQuestById(65927).QuestI8AL == 0"> -->
 						<TalkTo InteractDistance="3.0" NpcId="1010958" XYZ="47.74548, 20.66574, -685.1759" QuestId="65927" StepId="4" />
+						<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
 					<!-- </If> -->
-					<!-- <If Condition="GetQuestById(65927).QuestI8AH == 1"> -->
+					<!-- <If Condition="GetQuestById(65927).QuestI8AL == 1"> -->
 						<TalkTo InteractDistance="3.0" NpcId="1010955" XYZ="103.4408, 31.6068, -739.559" QuestId="65927" StepId="4" />
 					<!-- </If> -->
-					<!-- <If Condition="GetQuestById(65927).QuestI8AH == 2"> -->
+					<!-- <If Condition="GetQuestById(65927).QuestI8AL == 2"> -->
 						<TalkTo InteractDistance="3.0" NpcId="1010957" XYZ="33.67664, 29, -789.0898" QuestId="65927" StepId="4" />
 					<!-- </If> -->
-					<!-- <If Condition="GetQuestById(65927).QuestI8AH == 3"> -->
+					<!-- <If Condition="GetQuestById(65927).QuestI8AL == 3"> -->
 						<TalkTo InteractDistance="3.0" NpcId="1010956" XYZ="68.86389, 50, -774.3496" QuestId="65927" StepId="4" />
 					<!-- </If> -->
 				</If>
@@ -2247,146 +2226,6 @@
 		</GrindArea>
 	</GrindAreas>
 	<CodeChunks>
-		<CodeChunk Name="TheWyrmsRoar2">
-			<![CDATA[ 
-				ff14bot.Managers.MovementManager.SetFacing(2.322996f);
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.MovementManager.MoveForwardStart();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.Managers.MovementManager.Jump();
-				await Buddy.Coroutines.Coroutine.Sleep(1500);
-				ff14bot.Managers.MovementManager.MoveForwardStop();
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1009974).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(28000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(6000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(6000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(15000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="TheWyrmsRoar3">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.MovementManager.MoveForwardStart();
-				await Buddy.Coroutines.Coroutine.Sleep(1500);
-				ff14bot.Managers.MovementManager.MoveForwardStop();
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1010953).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.Complete();
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="TheWyrmsRoar4">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.MovementManager.MoveForwardStart();
-				await Buddy.Coroutines.Coroutine.Sleep(1500);
-				ff14bot.Managers.MovementManager.MoveForwardStop();
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1010953).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				if (ff14bot.RemoteWindows.JournalAccept.IsOpen)
-					ff14bot.RemoteWindows.JournalAccept.Accept();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-		]]>
-		</CodeChunk>
 		<CodeChunk Name="ATimetoEveryPurpose">
 			<![CDATA[ 
 				await Buddy.Coroutines.Coroutine.Sleep(2000);

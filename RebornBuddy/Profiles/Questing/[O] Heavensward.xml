@@ -4255,8 +4255,9 @@
 							<Travel To="140" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="Waking Sands Entrance" XYZ="-316.2433, -24.34079, 424.3076" />
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
+					<If Condition="IsOnMap(140)">
+						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
+					</If>
 					<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
 				</If>
 				<If Condition="GetQuestStep(67137) == 255">
@@ -4360,8 +4361,7 @@
 					<If Condition="IsOnMap(419)">
 						<UseTransport Name="Fortemps Manor" InteractDistance="3.0" NpcId="1011217" XYZ="17.99036, 16.00967, -9.567444" />
 					</If>
-					<NoCombatMoveTo Name="Alphinaud" XYZ="-316.2433, -24.34079, 424.3076" />
-					<TalkTo InteractDistance="3.0" NpcId="1013031" XYZ="-316.2433, -24.34079, 424.3076" QuestId="67138" StepId="2" />
+					<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
 				</If>
 				<If Condition="GetQuestStep(67138) == 255">
 					<If Condition="not IsOnMap(418) and not IsOnMap(419) and not IsOnMap(433)">
