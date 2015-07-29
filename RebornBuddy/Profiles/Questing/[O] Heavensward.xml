@@ -81,9 +81,9 @@
 				<If Condition="IsOnMap(155)">
 					<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126" />
 				</If>
-				<NoCombatMoveTo Name="Alphinaud" XYZ="-1.419189, 0.01498272, -0.07635498" />
+				<MoveTo Name="Alphinaud" XYZ="-1.419189, 0.01498272, -0.07635498" />
 				<If Condition="IsQuestAcceptQualified(67116)">
-					<PickupQuest NpcId="1010925" QuestId="67116" XYZ="-1.419189, 0.01498272, -0.07635498" UseMesh="False" />
+					<PickupQuest NpcId="1010925" QuestId="67116" XYZ="-1.419189, 0.01498272, -0.07635498" />
 				</If>
 			</If>
 			<If Condition="HasQuest(67116)">
@@ -99,14 +99,11 @@
 					<If Condition="IsOnMap(155)">
 						<UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126" />
 					</If>
-					<NoCombatMoveTo Name="Haurchefant" XYZ="-3.128174, 7.450581E-09, 2.822876" UseMesh="False" />
-					<TalkTo InteractDistance="3.0" NpcId="1012308" XYZ="-3.128174, 7.450581E-09, 2.822876" QuestId="67116" StepId="1" UseMesh="False" />
+					<MoveTo Name="Haurchefant" XYZ="-3.128174, 7.450581E-09, 2.822876" />
+					<TalkTo NpcId="1012308" XYZ="-3.128174, 7.450581E-09, 2.822876" QuestId="67116" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(67116) == 2">
-					<If Condition="IsOnMap(395)">
-						<UseTransport Name="Exit (Intercessory)" InteractDistance="3.0" NpcId="2004781" XYZ="-4, 1.2, 11" />
-					</If>
-					<If Condition="not IsOnMap(155)">
+					<If Condition="not IsOnMap(155) and not IsOnMap(395)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
 						</If>
@@ -114,10 +111,13 @@
 							<Travel To="155" />
 						</If>
 					</If>
+					<If Condition="IsOnMap(395)">
+						<UseTransport Name="Exit (Intercessory)" InteractDistance="3.0" NpcId="2004781" XYZ="-4, 1.2, 11" />
+					</If>
 					<NoCombatMoveTo Name="Temple Knight Gateguard" XYZ="-163.8972, 304.1538, -333.0587" />
 					<UseTransport Name="Ishgard" InteractDistance="3.0" NpcId="1012309" XYZ="-163.8972, 304.1538, -333.0587" />
 				</If>
-				<If Condition="GetQuestStep(67116) == 3">
+				<If Condition="GetQuestStep(67116) == 4">
 					<If Condition="not IsOnMap(418)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(70)">
 							<TeleportTo Name="Foundation" AetheryteId="70" />
@@ -126,8 +126,8 @@
 							<Travel To="418" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="House Fortemps Manservant" XYZ="-10.26941, 1.279128, 83.42102" />
-					<TalkTo InteractDistance="3.0" NpcId="1012310" XYZ="-10.26941, 1.279128, 83.42102" QuestId="67116" StepId="3" />
+					<MoveTo Name="House Fortemps Manservant" XYZ="-10.26941, 1.279128, 83.42102" />
+					<TalkTo NpcId="1012310" XYZ="-10.26941, 1.279128, 83.42102" QuestId="67116" StepId="4" />
 				</If>
 				<If Condition="GetQuestStep(67116) == 255">
 					<If Condition="not IsOnMap(418)">
@@ -140,12 +140,13 @@
 					</If>
 					<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
 						<LogMessage Message="Attuning to the Foundation Aetheryte..." />
-						<!-- <NoCombatMoveTo Name="Foundation Aetheryte" XYZ="-63.95592, 11.17874, 43.99885" /> -->
+						<MoveTo Name="Foundation Aetheryte" XYZ="-35.43415, 5.474271, 45.84561" />
 						<UseObject UseDistance="8.0" NpcId="70" XYZ="-63.95592, 11.17874, 43.99885" Radius="10" UseTimes="1" BlacklistAfter="True" />
 						<LogMessage Message="Setting Foundation as your Home Point..." />
-						<UseTransport NpcId="70" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="-63.95592, 11.17874, 43.99885" Radius="10" WaitTime="5000" />
+						<UseTransport NpcId="70" UseTimes="1" DialogOption="1" BlacklistAfter="True" UseDistance="10" XYZ="-62.11708, 8.113298, 49.06438" Radius="10" WaitTime="5000" />
 					</If>
 					<Travel To="419" />
+					<MoveTo Name="Haurchefant" XYZ="15.60992, 16.00967, -6.515625" />
 					<TurnIn QuestId="67116" NpcId="1012313" XYZ="15.60992, 16.00967, -6.515625" />
 				</If>
 			</If>
