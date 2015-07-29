@@ -5,7 +5,7 @@
 ##########################################################
 # Author: y2krazy                                        #
 ##########################################################
-# Version: 1.0.0                                         #
+# Version: 1.0.1                                         #
 ##########################################################
 # Required Level: 15                                     #
 ##########################################################
@@ -43,14 +43,35 @@
 
 		<!-- Required Quest Check -->
 
-		<!-- <If Condition="not IsQuestCompleted(66043) or not IsQuestCompleted(66082) or not IsQuestCompleted(66064)">
-			<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
-			<LogMessage Message="Please complete one of the following:" />
-			<LogMessage Message="The Gridanian Envoy, or" />
-			<LogMessage Message="The Lominsan Envoy, or" />
-			<LogMessage Message="The Ul'dahn Envoy" />
-			<StopBot />
-		</If> -->
+		<If Condition="IsQuestCompleted(65575)">
+
+			<If Condition="not IsQuestCompleted(66043)">
+				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
+				<LogMessage Message="Please complete The Gridanian Envoy and restart the profile." />
+				<StopBot />
+			</If>
+
+		</If>
+
+		<If Condition="IsQuestCompleted(65643)">
+
+			<If Condition="not IsQuestCompleted(66082)">
+				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
+				<LogMessage Message="Please complete The Lominsan Envoy and restart the profile." />
+				<StopBot />
+			</If>
+
+		</If>
+
+		<If Condition="IsQuestCompleted(66130)">
+
+			<If Condition="not IsQuestCompleted(66064)">
+				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
+				<LogMessage Message="Please complete The Ul'dahn Envoy and restart the profile." />
+				<StopBot />
+			</If>
+
+		</If>
 
 		<If Condition="IsQuestCompleted(66043) or IsQuestCompleted(66082) or IsQuestCompleted(66064)">
 
