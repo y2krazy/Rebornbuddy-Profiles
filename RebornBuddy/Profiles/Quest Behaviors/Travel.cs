@@ -41,7 +41,7 @@ namespace ff14bot.NeoProfiles
 		Vector3 Position = new Vector3("0,0,0");
 		private int currentstep = 0;
 		private bool stepcomplete = false;
-		private int Distance = 2;
+		private int Distance = 3;
 		private List<AreaInfo> wayhome = new List<AreaInfo>();
 		private float DistanceToTarget = 999;
 
@@ -51,83 +51,83 @@ namespace ff14bot.NeoProfiles
                 new Decorator(ret => currentstep >= wayhome.Count(),
                  new Sequence(
                     new Action(r =>
-          						{
-          							_done = true;
-          							Logging.Write("We reached the end of our path");
-          						}),
+    												{
+    													_done = true;
+    													Logging.Write("We reached the end of our path");
+    												}),
                    new ActionAlwaysSucceed()
-              )
-              ),
+            )
+            ),
 
                 new Decorator(ret => SelectIconString.IsOpen,
                     new Sequence(
                     new Action(r =>
-              						{
-              							Logging.Write("Inside SelctIconString");
-              							SelectIconString.ClickSlot(localindex);
-              						}
+        												{
+        													Logging.Write("Inside SelctIconString");
+        													SelectIconString.ClickSlot(localindex);
+        												}
 
-                  ),
+                ),
                     new Sleep(2, 4)
-                  )),
+                )),
 
                 new Decorator(ret => SelectString.IsOpen ,
                      new Sequence(
                     new Action(r =>
-              						{
-              							Logging.Write("Inside SelctString");
-              							SelectString.ClickSlot(localindex);
-              						}
+        												{
+        													Logging.Write("Inside SelctString");
+        													SelectString.ClickSlot(localindex);
+        												}
 
-                   ),
+                 ),
                     new Sleep(2, 4)
-                  )),
+                )),
                 new Decorator(ret => Talk.DialogOpen,
                     new Sequence(
                     new Action(r =>
-              						{
-              							Logging.Write("Inside Talk");
-              							Talk.Next();
-              						}
+        												{
+        													Logging.Write("Inside Talk");
+        													Talk.Next();
+        												}
 
-                   ),
+                 ),
                     new Sleep(2, 4)
-                  )),
+                )),
 
                 new Decorator(ret => SelectYesno.IsOpen,
                      new Sequence(
                     new Action(r =>
-              						{
-              							Logging.Write("Inside YesNog");
-              							SelectYesno.ClickYes();
-              							stepcomplete = false;
+        												{
+        													Logging.Write("Inside YesNog");
+        													SelectYesno.ClickYes();
+        													stepcomplete = false;
 
-              							currentstep++;
-              							Logging.Write("Increased Currentstep {0}", currentstep);
-              						}
+        													currentstep++;
+        													Logging.Write("Increased Currentstep {0}", currentstep);
+        												}
 
-                   ),
+                 ),
                     new Sleep(10, 10)
-                  )),
+                )),
 
                new Decorator(ret => ConditionCheck() && wayhome[currentstep].Communicationlocalindex > 0 && Vector3.Distance(Core.Player.Location, Position) <= Distance,
                  new Sequence(
                      new Action(r =>
-                      						{
-                      							ff14bot.Managers.MovementManager.MoveForwardStop();
-                      							Logging.Write("Stopping player");
-                      						}),
+                												{
+                													ff14bot.Managers.MovementManager.MoveForwardStop();
+                													Logging.Write("Stopping player");
+                												}),
                     new Action(r =>
-          						{
-          							Logging.Write("Setting Communication localindex to:" + wayhome[currentstep].Communicationlocalindex);
-          							localindex = (uint)wayhome[currentstep].Communicationlocalindex-1;
-          							GameObjectManager.GetObjectByNPCId(Present_NPC).Target();
-          							Logging.Write("Found NPC with NpcId " + Present_NPC);
-          							Core.Player.CurrentTarget.Interact();
-          							//  await Buddy.Coroutines.Coroutine.Sleep(1000);
-          						}),
+    												{
+    													Logging.Write("Setting Communication localindex to:" + wayhome[currentstep].Communicationlocalindex);
+    													localindex = (uint)wayhome[currentstep].Communicationlocalindex-1;
+    													GameObjectManager.GetObjectByNPCId(Present_NPC).Target();
+    													Logging.Write("Found NPC with NpcId " + Present_NPC);
+    													Core.Player.CurrentTarget.Interact();
+    													//  await Buddy.Coroutines.Coroutine.Sleep(1000);
+    												}),
                  new Sleep(1, 4)
-              )),
+            )),
 
                  new Decorator(ret => WorldManager.ZoneId.ToString() == "139" && Core.Player.Location.X >-300.0000 && wayhome[currentstep].Name == "Upper La Noscea-->Western La Noscea",
 			//  new Decorator(ret => wayhome[currentstep].Name == "Upper La Noscea-->Western La Noscea",
@@ -135,16 +135,17 @@ namespace ff14bot.NeoProfiles
                        new Action (r => Lanosca_spezial()),
                        new Action (r => Position = new Vector3("219.4604, -0.9591975, 258.5569")),
                        CommonBehaviors.MoveAndStop(ret => Position, 1, stopInRange: true, destinationName : "Ferry Skipper")
-                                    )),
+                                  )),
 
                  new Decorator(ret => Vector3.Distance(Core.Player.Location, Position) > Distance,
                      new Sequence(
 			//  new Action(r =>           Logging.Write("Moving player")),
 
                         new Action(r => Position = new Vector3((float)wayhome[currentstep].x, (float)wayhome[currentstep].y, (float)wayhome[currentstep].z)),
-                        CommonBehaviors.MoveAndStop(ret => Position, Distance, stopInRange: true, destinationName :"travelbot"),
+                        CommonBehaviors.MoveAndStop(ret => Position, Distance-1, stopInRange: true, destinationName :"travelbot"),
 
                          new Action(r => DistanceToTarget = Core.Me.Location.Distance(Position))
+						  //new Action(r =>            Logging.Write("Distance to Target is {0}",DistanceToTarget))
 					)),
 
                  new Decorator(ret => Vector3.Distance(Core.Player.Location, Position) <= Distance && wayhome[currentstep].Communicationlocalindex < 0,
@@ -155,15 +156,15 @@ namespace ff14bot.NeoProfiles
                          new Action(r =>MovementManager.MoveForwardStop()),
                         new Sleep(5000),
                          new Action(r =>
-                       						{
-                       							stepcomplete = true;
+                    									{
+                    										stepcomplete = true;
 
-                       							currentstep++;
-                       							Logging.Write("Increased Currentstep {0}", currentstep);
-                       						}))),
+                    										currentstep++;
+                    										Logging.Write("Increased Currentstep {0}", currentstep);
+                    									}))),
 
                 new ActionAlwaysSucceed()
-              );
+             );
 		}
 
 		protected override void OnResetCachedDone()
@@ -216,7 +217,7 @@ namespace ff14bot.NeoProfiles
 			SupportedNPC.Add(1011211);
 			SupportedNPC.Add(1011949);
 			SupportedNPC.Add(2005371);
-            SupportedNPC.Add(1011946);
+			SupportedNPC.Add(1011946);
 
 			pathing a = new pathing();
 			a.setStart(WorldManager.ZoneId.ToString());
@@ -325,8 +326,8 @@ namespace ff14bot.NeoProfiles
 				foreach (var neighbor in vertices[smallest])
 				{
 					var alt = distances[smallest] + neighbor.Value;
-                 
-                    if (alt < distances[neighbor.Key])
+
+					if (alt < distances[neighbor.Key])
 					{
 						distances[neighbor.Key] = alt;
 						previous[neighbor.Key] = smallest;
@@ -351,16 +352,16 @@ namespace ff14bot.NeoProfiles
 		{
 			// expansion
 
-          areas.Add("155-418", new AreaInfo() { x = -163.8972, y = 304.1538, z = -333.0587, Name = "Coerthas Central Highlands --> Foundation", Communicationlocalindex = 1 });
+            areas.Add("155-418", new AreaInfo() { x = -163.8972, y = 304.1538, z = -333.0587, Name = "Coerthas Central Highlands --> Foundation", Communicationlocalindex = 1 });
 			areas.Add("418-155", new AreaInfo() { x = 4.592957, y = -2.52555, z = 149.4926, Name = " Foundation -->Coerthas Central Highlands ", Communicationlocalindex = 1 });
-			areas.Add("418-419", new AreaInfo() { x =-57.32227, y = 20.69349, z =-97.31832, Name = "Foundation --> The Pillars", Communicationlocalindex = -1 });
+			areas.Add("418-419", new AreaInfo() { x =-57.32227, y = 20.69349, z =-96.31832, Name = "Foundation --> The Pillars", Communicationlocalindex = -1 });
 			areas.Add("419-418", new AreaInfo() { x =-16.78843, y =-13.06285, z =-67.11987, Name = "The Pillars --> Foundation", Communicationlocalindex = -1 });
 			// areas.Add("418-397", new AreaInfo() { x = -163.4394, y = 2.15106, z = -5.508545, Name = " The Pillars--> Coerthas Western Highlands", Communicationlocalindex = -1 });
 			areas.Add("419-401", new AreaInfo() { x = 151.9916, y =-12.55534, z =-7.858459, Name = " The Pillars --> Camp Cloudtop", Communicationlocalindex = 1 });
-			areas.Add("398-399", new AreaInfo() { x = 798.7896, y = -122.5395, z = 577.9781, Name =" Dravanian Forelands --> The Dravanian Hinterlands", Communicationlocalindex = -1 });
-            areas.Add("398-400", new AreaInfo() { x = -692.5875, y= 5.001416, z= -838.3893, Name = "Dravanian Forelands --> Churning Mists", Communicationlocalindex = 1 });
+			areas.Add("398-399", new AreaInfo() { x = 798.7896, y = -122.5395, z = 577.9781, Name = " Dravanian Forelands --> The Dravanian Hinterlands", Communicationlocalindex = -1 });
+			areas.Add("398-400", new AreaInfo() { x = -692.5875, y = 5.001416, z = -838.3893, Name = "Dravanian Forelands --> Churning Mists", Communicationlocalindex = 1 });
 			areas.Add("400-398", new AreaInfo() { x = 201.5868, y =-68.68091, z = 709.3461, Name = "Churning Mists --> The Dravanian Forelands", Communicationlocalindex = 1 });
-           
+
 			areas.Add("401-419", new AreaInfo() { x = -734.9813, y = -105.0583, z = 459.3728, Name = " Camp Cloudtop -->  The Pillars", Communicationlocalindex = 1 });
 			areas.Add("397-398", new AreaInfo() { x = -848.7283, y = 117.683, z =-655.5744, Name = " Coerthas Western Highlands --> The Dravanian Forelands", Communicationlocalindex = -1 });
 			areas.Add("398-397", new AreaInfo() { x = 870.7913, y = -3.649778, z = 350.4391, Name = "The Dravanian Forelands --> Coerthas Western Highlands", Communicationlocalindex = -1 });
@@ -521,53 +522,52 @@ namespace ff14bot.NeoProfiles
 			g.add_vertex("401", new Dictionary<String, int>() { { "419", 5 } });
 			g.add_vertex("397", new Dictionary<String, int>() { { "398", 5 } });
 			g.add_vertex("398", new Dictionary<String, int>() { { "397", 5 }, { "400", 5 } });
-            g.add_vertex("400", new Dictionary<String, int>() { { "398", 5  }} );
+			g.add_vertex("400", new Dictionary<String, int>() { { "398", 5 } });
+		}
 
-        }
+		public void setStart(String Start)
+		{
+			start = Start;
+		}
 
-        public void setStart(String Start)
-        {
-            start = Start;
-        }
-        public void setEnd(String End)
-        {
-            end = End;
-        }
+		public void setEnd(String End)
+		{
+			end = End;
+		}
 
-        public void Calculate()
-        {
-            //start = WorldManager.ZoneId;
-            //Logging.Write("We are currently in Zone " + start);
-            // end = Destination;
-            // Logging.Write("Our Destination= " + end);
+		public void Calculate()
+		{
+			//start = WorldManager.ZoneId;
+			//Logging.Write("We are currently in Zone " + start);
+			// end = Destination;
+			// Logging.Write("Our Destination= " + end);
 
-            List<String> mlist = new List<String>();
-            mlist = g.shortest_path(start, end);
-            var size = mlist.Count;
-            if (size > 0)
-            {
-                mlist.Add(start);
-                mlist.Reverse();
-                myarray = mlist.ToArray();
-            }
-            else
-            { Logging.Write("cloud not Find a valid Path"); }
-        }
+			List<String> mlist = new List<String>();
+			mlist = g.shortest_path(start, end);
+			var size = mlist.Count;
+			if (size > 0)
+			{
+				mlist.Add(start);
+				mlist.Reverse();
+				myarray = mlist.ToArray();
+			}
+			else
+			{ Logging.Write("cloud not Find a valid Path"); }
+		}
 
-        public List<AreaInfo> GetPath()
-        {
-            int n = 0;
-            while (n < (myarray.Length - 1))
-            {
-                String test = myarray[n] + "-" + myarray[n + 1];
-                if (areas.ContainsKey(test))
-                {
-                    Logging.Write(test);
-                    returnlist.Add(areas[test]);
-                    //Console.WriteLine(areas[test]);
-
-
-                }
+		public List<AreaInfo> GetPath()
+		{
+			int n = 0;
+			while (n < (myarray.Length - 1))
+			{
+				String test = myarray[n] + "-" + myarray[n + 1];
+				if (areas.ContainsKey(test))
+				{
+					Logging.Write(test);
+					returnlist.Add(areas[test]);
+					//Console.WriteLine(areas[test]);
+				}
+				else
                 { Logging.Write("I did not find Coordinates for moving  {0}", test); }
                 n++;
             }
