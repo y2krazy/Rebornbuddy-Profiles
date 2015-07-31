@@ -66,8 +66,9 @@
 
 		<LogMessage Message="Checking level 50 quests..." />
 
-		<!-- Coming to Ishgard -->
+		<!-- [Pickup Quest] -->
 
+		<!-- Coming to Ishgard -->
 		<If Condition="not IsQuestCompleted(67116)">
 			<If Condition="not HasQuest(67116)">
 				<If Condition="not IsOnMap(155) and not IsOnMap(395)">
@@ -86,6 +87,9 @@
 					<PickupQuest NpcId="1010925" QuestId="67116" XYZ="-1.419189, 0.01498272, -0.07635498" />
 				</If>
 			</If>
+
+			<!-- [Complete Quest] -->
+
 			<If Condition="HasQuest(67116)">
 				<If Condition="GetQuestStep(67116) == 1">
 					<If Condition="not IsOnMap(155) and not IsOnMap(395)">
@@ -129,6 +133,9 @@
 					<MoveTo Name="House Fortemps Manservant" XYZ="-10.26941, 1.279128, 83.42102" />
 					<TalkTo NpcId="1012310" XYZ="-10.26941, 1.279128, 83.42102" QuestId="67116" StepId="4" />
 				</If>
+
+				<!-- [TurnIn Quest] -->
+
 				<If Condition="GetQuestStep(67116) == 255">
 					<If Condition="not IsOnMap(418)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -148,12 +155,14 @@
 					<Travel To="419" />
 					<MoveTo Name="Haurchefant" XYZ="15.60992, 16.00967, -6.515625" />
 					<TurnIn QuestId="67116" NpcId="1012313" XYZ="15.60992, 16.00967, -6.515625" />
+					<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
 				</If>
 			</If>
 		</If>
 
-		<!-- Taking in the Sights -->
+		<!-- [Pickup Quest] -->
 
+		<!-- Taking in the Sights -->
 		<If Condition="not IsQuestCompleted(67117)">
 			<If Condition="not HasQuest(67117)">
 				<If Condition="not IsOnMap(418) and not IsOnMap(419) and not IsOnMap(433)">
@@ -170,11 +179,14 @@
 				<If Condition="IsOnMap(419)">
 					<UseTransport Name="Fortemps Manor" InteractDistance="3.0" NpcId="1011217" XYZ="17.99036, 16.00967, -9.567444" />
 				</If>
-				<NoCombatMoveTo Name="Alphinaud" XYZ="-0.2289429, 0, 7.339539" />
+				<MoveTo Name="Alphinaud" XYZ="-0.2289429, 0, 7.339539" />
 				<If Condition="IsQuestAcceptQualified(67117)">
 					<PickupQuest NpcId="1013036" QuestId="67117" XYZ="-0.2289429, 0, 7.339539" />
 				</If>
 			</If>
+
+			<!-- [Complete Quest] -->
+
 			<If Condition="HasQuest(67117)">
 				<If Condition="GetQuestStep(67117) == 1">
 					<If Condition="not IsOnMap(418) and not IsOnMap(419)">
@@ -188,8 +200,8 @@
 					<If Condition="IsOnMap(418)">
 						<Travel To="419" />
 					</If>
-					<NoCombatMoveTo Name="House Fortemps Manservant" XYZ="12.13086, 16.00967, -7.003906" />
-					<TalkTo InteractDistance="3.0" NpcId="1012316" XYZ="12.13086, 16.00967, -7.003906" QuestId="67117" StepId="1" />
+					<MoveTo Name="House Fortemps Manservant" XYZ="12.13086, 16.00967, -7.003906" />
+					<TalkTo NpcId="1012316" XYZ="12.13086, 16.00967, -7.003906" QuestId="67117" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(67117) == 2">
 					<If Condition="not IsOnMap(418) and not IsOnMap(419)">
@@ -203,8 +215,8 @@
 					<If Condition="IsOnMap(418)">
 						<Travel To="419" />
 					</If>
-					<NoCombatMoveTo Name="House Fortemps Manservant" XYZ="-4.379395, 27.75385, -148.272" />
-					<TalkTo InteractDistance="3.0" NpcId="1012317" XYZ="-4.379395, 27.75385, -148.272" QuestId="67117" StepId="2" />
+					<MoveTo Name="House Fortemps Manservant" XYZ="-4.379395, 27.75385, -148.272" />
+					<TalkTo NpcId="1012317" XYZ="-4.379395, 27.75385, -148.272" QuestId="67117" StepId="2" />
 				</If>
 				<If Condition="GetQuestStep(67117) == 3">
 					<If Condition="not IsOnMap(418) and not IsOnMap(419)">
@@ -218,8 +230,8 @@
 					<If Condition="IsOnMap(418)">
 						<Travel To="419" />
 					</If>
-					<NoCombatMoveTo Name="Elaisse" XYZ="-174.1818, -12.55547, -21.56104" />
-					<TalkTo InteractDistance="3.0" NpcId="1012180" XYZ="-174.1818, -12.55547, -21.56104" QuestId="67117" StepId="3" />
+					<MoveTo Name="Elaisse" XYZ="-174.1818, -12.55547, -21.56104" />
+					<TalkTo NpcId="1012180" XYZ="-174.1818, -12.55547, -21.56104" QuestId="67117" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(67117) == 255">
 					<If Condition="not IsOnMap(418) and not IsOnMap(419)">
@@ -247,7 +259,7 @@
 
 					-->
 
-					<NoCombatMoveTo Name="House Fortemps Manservant" XYZ="-50.21753, 8.05915, 15.45734" />
+					<MoveTo Name="House Fortemps Manservant" XYZ="-50.21753, 8.05915, 15.45734" />
 					<TurnIn QuestId="67117" NpcId="1012323" XYZ="-50.21753, 8.05915, 15.45734" />
 				</If>
 			</If>
@@ -255,7 +267,7 @@
 
 		<!-- The Better Half -->
 
-		<If Condition="not IsQuestCompleted(67118)">
+		<!-- <If Condition="not IsQuestCompleted(67118)">
 			<If Condition="not HasQuest(67118)">
 				<If Condition="not IsOnMap(418)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -333,7 +345,7 @@
 					<TurnIn QuestId="67118" NpcId="1013036" XYZ="-0.2289429, 0, 7.339539" />
 				</If>
 			</If>
-		</If>
+		</If> -->
 
 		<!-- Sidequest: Remembering Ishgard -->
 
@@ -1018,10 +1030,10 @@
 					</If>
 					<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
 						<LogMessage Message="Attuning to the Falcon's Nest Aetheryte..." />
-						<!-- <NoCombatMoveTo Name="Falcon's Nest Aetheryte" XYZ="474.8815, 217.9469, 708.5289" /> -->
+						<NoCombatMoveTo Name="Falcon's Nest Aetheryte" XYZ="474.882, 212.5399, 738.4299" />
 						<UseObject UseDistance="8.0" NpcId="71" XYZ="474.8815, 217.9469, 708.5289" Radius="10" UseTimes="1" BlacklistAfter="True" />
 						<LogMessage Message="Setting Falcon's Nest as your Home Point..." />
-						<UseTransport NpcId="71" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="474.8815, 217.9469, 708.5289" Radius="10" WaitTime="5000" />
+						<UseTransport NpcId="71" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="474.5527, 213.6828, 712.7769" Radius="10" WaitTime="5000" />
 					</If>
 					<NoCombatMoveTo Name="Redwald" XYZ="503.1051, 217.9515, 790.2189" />
 					<TurnIn QuestId="67119" NpcId="1011231" XYZ="503.1051, 217.9515, 790.2189" />
@@ -2273,10 +2285,10 @@
 					</If>
 					<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
 						<LogMessage Message="Attuning to the Camp Cloudtop Aetheryte..." />
-						<!-- <NoCombatMoveTo Name="Camp Cloudtop Aetheryte" XYZ="-615.7401, -118.3467, 546.6131" /> -->
+						<NoCombatMoveTo Name="Camp Cloudtop Aetheryte" XYZ="-639.8214, -123.975, 528.6072" />
 						<UseObject UseDistance="8.0" NpcId="72" XYZ="-615.7401, -118.3467, 546.6131" Radius="10" UseTimes="1" BlacklistAfter="True" />
 						<LogMessage Message="Setting Camp Cloudtop as your Home Point..." />
-						<UseTransport NpcId="72" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="-615.7401, -118.3467, 546.6131" Radius="10" WaitTime="5000" />
+						<UseTransport NpcId="72" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="-619.0568, -122.5, 544.1796" Radius="10" WaitTime="5000" />
 					</If>
 					<NoCombatMoveTo Name="Laniaitte" XYZ="-277.6379, -184.5974, 741.6038" />
 					<TurnIn QuestId="67126" NpcId="1011952" XYZ="-277.6379, -184.5974, 741.6038" />
@@ -6961,10 +6973,10 @@
 					</If>
 					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
 						<LogMessage Message="Attuning to the Tailfeather Aetheryte..." />
-						<!-- <NoCombatMoveTo Name="Tailfeather Aetheryte" XYZ="532.6771, -48.72211, 30.16699" /> -->
+						<NoCombatMoveTo Name="Tailfeather Aetheryte" XYZ="529.6061, -51.27571, 47.09751" />
 						<UseObject UseDistance="8.0" NpcId="76" XYZ="532.6771, -48.72211, 30.16699" Radius="10" UseTimes="1" BlacklistAfter="True" />
 						<LogMessage Message="Setting Tailfeather as your Home Point..." />
-						<UseTransport NpcId="76" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="532.6771, -48.72211, 30.16699" Radius="10" WaitTime="5000" />
+						<UseTransport NpcId="76" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="532.7175, -50.11925, 35.24749" Radius="10" WaitTime="5000" />
 					</If>
 
 					<!-- Rewards
@@ -7851,10 +7863,10 @@
 					</If>
 					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
 						<LogMessage Message="Attuning to the Anyx Trine Aetheryte..." />
-						<!-- <NoCombatMoveTo Name="Anyx Trine Aetheryte" XYZ="-304.1276, -16.70868, 32.05908" /> -->
+						<NoCombatMoveTo Name="Anyx Trine Aetheryte" XYZ="-291.7064, -22.97101, 55.18987" />
 						<UseObject UseDistance="8.0" NpcId="77" XYZ="-304.1276, -16.70868, 32.05908" Radius="10" UseTimes="1" BlacklistAfter="True" />
-						<!-- <LogMessage Message="Setting Anyx Trine as your Home Point..." />
-						<UseTransport NpcId="77" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="-304.1276, -16.70868, 32.05908" Radius="10" WaitTime="5000" /> -->
+						<LogMessage Message="Setting Anyx Trine as your Home Point..." />
+						<UseTransport NpcId="77" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="-302.5732, -21.06209, 35.12996" Radius="10" WaitTime="5000" />
 					</If>
 
 					<!-- Rewards
@@ -11295,10 +11307,10 @@
 					</If>
 					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
 						<LogMessage Message="Attuning to the Moghome Aetheryte..." />
-						<!-- <NoCombatMoveTo Name="Moghome Aetheryte" XYZ="259.205, -37.70508, 596.8566" /> -->
+						<NoCombatMoveTo Name="Moghome Aetheryte" XYZ="247.9632, -41.89064, 608.1402" />
 						<UseObject UseDistance="8.0" NpcId="78" XYZ="259.205, -37.70508, 596.8566" Radius="10" UseTimes="1" BlacklistAfter="True" />
 						<LogMessage Message="Setting Moghome as your Home Point..." />
-						<UseTransport NpcId="78" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="259.205, -37.70508, 596.8566" Radius="10" WaitTime="5000" />
+						<UseTransport NpcId="78" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="256.8984, -41.13433, 598.9907" Radius="10" WaitTime="5000" />
 					</If>
 
 					<!-- Rewards
@@ -12784,10 +12796,10 @@
 					</If>
 					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
 						<LogMessage Message="Attuning to the Zenith Aetheryate..." />
-						<!-- <NoCombatMoveTo Name="Zenith Aetheryte" XYZ="-584.9546, 52.84192, 313.4354" /> -->
+						<NoCombatMoveTo Name="Zenith Aetheryte" XYZ="-562.9605, 48, 327.0059" />
 						<UseObject UseDistance="8.0" NpcId="79" XYZ="-584.9546, 52.84192, 313.4354" Radius="10" UseTimes="1" BlacklistAfter="True" />
 						<LogMessage Message="Setting Zenith as your Home Point..." />
-						<UseTransport NpcId="79" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="-584.9546, 52.84192, 313.4354" Radius="10" WaitTime="5000" />
+						<UseTransport NpcId="79" UseTimes="1" DialogOption="0" BlacklistAfter="True" UseDistance="10" XYZ="-582.3618, 49.77404, 315.2174" Radius="10" WaitTime="5000" />
 					</If>
 
 					<!-- [Pickup Aether Current] -->
