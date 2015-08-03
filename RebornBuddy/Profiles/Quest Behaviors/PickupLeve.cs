@@ -167,3 +167,4 @@ namespace ff14bot.NeoProfiles
         }
     }
 }
+
