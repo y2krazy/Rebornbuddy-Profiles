@@ -307,75 +307,84 @@
 
 							<If Condition="not HasAtLeast(4857,&BatteredFish;)">
 								<If Condition="not IsQuestCompleted(66910)">
-
-									<!-- Fire Shard -->
-								
-									<If Condition="not HasAtLeast(2,&BatteredFish;)">
-										<If Condition="not IsOnMap(134)">
-											<If Condition="Managers.WorldManager.HasAetheryteId(52)">
-												<TeleportTo Name="Summerford Farms" AetheryteId="52" />
-											</If>
-											<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
-												<Travel To="134" />
-											</If>
-										</If>
-										<If Condition="Core.Player.ClassLevel &lt; 35">
-											<RunCode Name="Botanist" />
-											<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
-											<Gather while="not HasAtLeast(2,&BatteredFish;)">
-												<GatherObject>Lush Vegetation Patch</GatherObject>
-												<HotSpots>
-													<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
-												</HotSpots>
-												<ItemNames>
-													<ItemName>Fire Shard</ItemName>
-												</ItemNames>
-												<GatheringSkillOrder>
-													<GatheringSkill SpellName="Blessed Harvest" ActionId="222" TimesToCast="1" />
-												</GatheringSkillOrder>
-											</Gather>
-										</If>
-										<If Condition="Core.Player.ClassLevel &gt; 34">
-											<RunCode Name="Botanist" />
-											<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
-											<Gather while="not HasAtLeast(2,&BatteredFish;)">
-												<GatherObject>Lush Vegetation Patch</GatherObject>
-												<HotSpots>
-													<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
-												</HotSpots>
-												<ItemNames>
-													<ItemName>Fire Shard</ItemName>
-												</ItemNames>
-												<GatheringSkillOrder>
-													<GatheringSkill SpellName="Blessed Harvest II" ActionId="224" TimesToCast="1" />
-												</GatheringSkillOrder>
-											</Gather>
-										</If>
-									</If>
-								
-									<!-- Cinderfoot Olive -->
-								
-									<If Condition="not HasAtLeast(4804,&CinderfootOlives;)">
-										<If Condition="not IsOnMap(128)">
-											<If Condition="not IsOnMap(129)">
-												<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-													<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-												</If>
-												<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-													<Travel To="129" />
-												</If>
-											</If>
-											<Travel To="128" />
-										</If>
-										<BuyItem ItemId="4804" ItemCount="&CinderfootOlives;" NpcId="1003249" XYZ="-62.91296, 42.29975, -164.7517" />
-									</If>
 									<RunCode Name="Culinarian" />
-									<While Condition="True">
-										<Synthesize RecipeId="924" HQMats="-2"/>
-										<While Condition="CraftingManager.IsCrafting">
-											<CraftAction Name="Careful Synthesis" ActionId="100063" />
+									<If Condition="Core.Player.ClassLevel &lt; 11">
+										<LogMessage Message="You do not meet the minimum level requirement." />
+										<LogMessage Message="Please reach level 11 Culinarian or higher." />
+										<LogMessage Message="Alternatively, you can purchase Olive Oil from the Market Board." />
+										<StopBot />
+									</If>
+									<If Condition="Core.Player.ClassLevel &gt; 10">
+
+										<!-- Fire Shard -->
+									
+										<If Condition="not HasAtLeast(2,&BatteredFish;)">
+											<If Condition="not IsOnMap(134)">
+												<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+													<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+												</If>
+												<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+													<Travel To="134" />
+												</If>
+											</If>
+											<If Condition="Core.Player.ClassLevel &lt; 35">
+												<RunCode Name="Botanist" />
+												<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+												<Gather while="not HasAtLeast(2,&BatteredFish;)">
+													<GatherObject>Lush Vegetation Patch</GatherObject>
+													<HotSpots>
+														<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+													</HotSpots>
+													<ItemNames>
+														<ItemName>Fire Shard</ItemName>
+													</ItemNames>
+													<GatheringSkillOrder>
+														<GatheringSkill SpellName="Blessed Harvest" ActionId="222" TimesToCast="1" />
+													</GatheringSkillOrder>
+												</Gather>
+											</If>
+											<If Condition="Core.Player.ClassLevel &gt; 34">
+												<RunCode Name="Botanist" />
+												<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+												<Gather while="not HasAtLeast(2,&BatteredFish;)">
+													<GatherObject>Lush Vegetation Patch</GatherObject>
+													<HotSpots>
+														<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+													</HotSpots>
+													<ItemNames>
+														<ItemName>Fire Shard</ItemName>
+													</ItemNames>
+													<GatheringSkillOrder>
+														<GatheringSkill SpellName="Blessed Harvest II" ActionId="224" TimesToCast="1" />
+													</GatheringSkillOrder>
+												</Gather>
+											</If>
+										</If>
+								
+										<!-- Cinderfoot Olive -->
+									
+										<If Condition="not HasAtLeast(4804,&CinderfootOlives;)">
+											<If Condition="not IsOnMap(128)">
+												<If Condition="not IsOnMap(129)">
+													<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+														<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+													</If>
+													<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+														<Travel To="129" />
+													</If>
+												</If>
+												<Travel To="128" />
+											</If>
+											<BuyItem ItemId="4804" ItemCount="&CinderfootOlives;" NpcId="1003249" XYZ="-62.91296, 42.29975, -164.7517" />
+										</If>
+										<RunCode Name="Culinarian" />
+										<While Condition="True">
+											<Synthesize RecipeId="924" HQMats="-2"/>
+											<While Condition="CraftingManager.IsCrafting">
+												<CraftAction Name="Careful Synthesis" ActionId="100063" />
+											</While>
 										</While>
-									</While>
+									</If>
 								</If>
 								<If Condition="IsQuestCompleted(66910)">
 									<If Condition="not HasAtLeast(4857,&BatteredFish;)">
