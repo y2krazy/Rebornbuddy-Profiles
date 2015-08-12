@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################
+# Profile: [O] Moonfire Faire  #
+################################
+# Author: y2krazy              #
+################################
+# Version: 1.0.0               #
+################################
+# Required Level: 15           #
+################################
+# Required Teleport Locations: #
+# 	                           #
+################################
+# Required User Interaction:   #
+# 	None                       #
+################################
+# Required Setup:              #
+# 	None                       #
+################################
+# Rewards:                     #
+# 	Bomb Dance Emote           #
+################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY TokenCount "7"> <!-- Faire Tokens to earn before stopping. -->
+  <!ENTITY FreshHaddock "1"> <!-- Fresh Haddock to gather before stopping. -->
+  <!ENTITY BaitCount "99"> <!-- Lugworms to maintain in your inventory to catch Fresh Haddocks. -->
+  <!ENTITY BatteredFish "1"> <!-- Battered Fish materials to gather before stopping. -->
+  <!ENTITY CinderfootOlives "4"> <!-- Multiply Battered Fish * 4 for items to purchase (if needed). -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] Moonfire Faire</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<LogMessage Message="Checking for completed quests..." />
+
+		<!-- Reigniting the Festivities -->
+
+		<If Condition="not IsQuestCompleted(67660)">
+			<If Condition="not HasQuest(67660)">
+				<If Condition="not IsOnMap(128)">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<Travel To="128" />
+				</If>
+				<MoveTo Name="Haermaga" XYZ="11.70367, 44.5, 119.5543" />
+				<If Condition="IsQuestAcceptQualified(67660)">
+					<PickupQuest NpcId="1015616" QuestId="67660" XYZ="11.70367, 44.5, 119.5543" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67660)">
+				<If Condition="GetQuestStep(67660) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Storm Tracers
+					Flame Tracers
+					Serpent Tracers
+
+					-->
+
+					<NoCombatMoveTo Name="P'obyano" XYZ="462.7299, 13.19904, 311.9097" />
+					<TurnIn QuestId="67660" NpcId="1015611" XYZ="462.7299, 13.19904, 311.9097" />
+				</If>
+			</If>
+		</If>
+
+		<!-- An Adventurer's Life for Me -->
+
+		<If Condition="not IsQuestCompleted(67663)">
+			<If Condition="not HasQuest(67663)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="P'obyano" XYZ="462.7299, 13.19904, 311.9097" />
+				<If Condition="IsQuestAcceptQualified(67663)">
+					<PickupQuest NpcId="1015611" QuestId="67663" XYZ="462.7299, 13.19904, 311.9097" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67663)">
+				<If Condition="GetQuestStep(67663) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="P'obyano" XYZ="462.7299, 13.19904, 311.9097" />
+					<HandOver ItemId="10333" QuestId="67663" StepId="1" NpcId="1015611" XYZ="462.7299, 13.19904, 311.9097" />
+				</If>
+				<If Condition="GetQuestStep(67663) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Southern Seas Swimsuit
+
+					-->
+
+					<NoCombatMoveTo Name="Wunthyll" XYZ="545.4946, 8.911804, 142.6871" />
+					<TurnIn QuestId="67663" NpcId="1015630" XYZ="545.4946, 8.911804, 142.6871" />
+					<LogMessage Message="You've completed the Moonfire Faire seasonal event!" />
+					<StopBot />
+				</If>
+			</If>
+		</If>
+		<While Condition="not HasAtLeast(10333,&TokenCount;)">
+			<RegisterDailies QuestIds="67661,67662" />
+			<If Condition="not HasAtLeastOneQuest(Array[int]([67661,67662]))">
+
+				<!-- [PickUp Quests] -->
+
+				<!-- What's in the Dish -->
+				<If Condition="not HasQuest(67662)">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<RunCode Name="Fisher" />
+					<NoCombatMoveTo Name="Espan" XYZ="460.0747, 13.26007, 309.285" />
+					<If Condition="IsQuestAcceptQualified(67662)">
+						<PickupDailyQuest NpcId="1015614" QuestId="67662" XYZ="460.0747, 13.26007, 309.285" />
+					</If>
+				</If>
+				<!-- A Matter of Taste -->
+				<If Condition="not HasQuest(67661)">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="C'zibho Tia" XYZ="460.0137, 13.22949, 314.6257" />
+					<If Condition="IsQuestAcceptQualified(67661)">
+						<PickupDailyQuest NpcId="1015613" QuestId="67661" XYZ="460.0137, 13.22949, 314.6257" />
+					</If>
+				</If>
+			</If>
+
+			<If Condition="HasAtLeastOneQuest(Array[int]([67661,67662]))">
+
+				<!-- [Complete Quests] -->
+
+				<!-- What's in the Dish -->
+					<If Condition="HasQuest(67662)">
+						<If Condition="GetQuestStep(67662) == 1">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+									<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<If Condition="not HasAtLeast(2585,&BaitCount;)">
+								<LogMessage Message="You need more Lugworms!" />
+								<NoCombatMoveTo Name="Festive Fisher" XYZ="462.8823, 12.73574, 328.4198" />
+								<BuyItem ItemId="2585" ItemCount="&BaitCount;" InteractDistance="3.0" NpcId="1015615" XYZ="462.8823, 12.73574, 328.4198" />
+							</If>
+							<If Condition="IsOnMap(137) and not IsOnSubMap(1452)">
+								<UseTransport Name="Rhotano privateer" InteractDistance="3.0" NpcId="1003585" XYZ="607.8126, 11.62379, 391.8668" />
+							</If>
+							<If Condition="IsOnMap(137) and IsOnSubMap(1452)">
+								<Fish Mooch="0" MoveCursorRightKey="Right" Bait="Lugworm" Shuffle="True" Condition="not HasAtLeast(2001889,&FreshHaddock;)">
+									<FishSpots>
+										<FishSpot XYZ="878.1394, 20.74091, 133.8562" Heading="3.977538" />
+										<FishSpot XYZ="889.2092, 20.74123, 142.9867" Heading="0.8862116" />
+										<FishSpot XYZ="872.6266, 20.74028, 140.3154" Heading="3.994294" />
+										<FishSpot XYZ="883.5912, 20.74005, 149.4295" Heading="0.8568888" />
+										<FishSpot XYZ="865.7617, 22.23998, 167.683" Heading="6.264618" />
+										<FishSpot XYZ="896.2814, 19.24, 130.6822" Heading="1.627627" />
+										<FishSpot XYZ="857.8608, 22.23998, 161.0017" Heading="4.867657" />
+										<FishSpot XYZ="886.9316, 19.24, 125.2088" Heading="3.541904" />
+									</FishSpots>
+								</Fish>
+								<UseTransport Name="Costa del Sol" InteractDistance="3.0" NpcId="1005414" XYZ="886.9916, 21.40931, 134.2335" />
+							</If>
+						</If>
+					</If>
+				<!-- A Matter of Taste -->
+				<If Condition="HasQuest(67661)">
+					<If Condition="GetQuestStep(67661) == 255">
+						<If Condition="IsOnMap(137) and IsOnSubMap(1452)">
+							<UseTransport Name="Costa del Sol" InteractDistance="3.0" NpcId="1005414" XYZ="886.9916, 21.40931, 134.2335" />
+						</If>
+						<If Condition="not HasAtLeast(10332,&BatteredFish;)">
+
+							<!-- Haddock -->
+
+							<If Condition="not HasAtLeast(12990,&BatteredFish;)">
+								<If Condition="not IsOnMap(137)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+										<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+										<Travel To="137" />
+									</If>
+								</If>
+								<BuyItem ItemId="12990" ItemCount="&BatteredFish;" NpcId="1015615" XYZ="462.8823, 12.73574, 328.4198" />
+							</If>
+
+							<!-- Popoto -->
+
+							<If Condition="not HasAtLeast(4787,&BatteredFish;)">
+								<If Condition="Core.Player.ClassLevel &lt; 18">
+									<LogMessage Message="You do not meet the minimum level requirement." />
+									<LogMessage Message="Please reach level 18 Botany or higher." />
+									<LogMessage Message="Alternatively, you can purchase Popoto from the Market Board." />
+									<StopBot />
+								</If>
+								<If Condition="Core.Player.ClassLevel &gt; 17">
+									<If Condition="Core.Player.ClassLevel &lt; 35">
+										<If Condition="not IsOnMap(145)">
+											<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+												<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+											</If>
+											<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+												<Travel To="145" />
+											</If>
+										</If>
+										<RunCode Name="Botanist" />
+										<NoCombatMoveTo Name="Farming Area" XYZ="-248.0157, -31.05733, 277.7605" />
+										<Gather while="not HasAtLeast(4787,&BatteredFish;)">
+											<GatherObject>Lush Vegetation Patch</GatherObject>
+											<HotSpots>
+												<HotSpot Radius="90" XYZ="-248.0157, -31.05733, 277.7605" name="Lush Vegetation Patch" />
+											</HotSpots>
+											<ItemNames>
+												<ItemName>Popoto</ItemName>
+												<ItemName>Fire Shard</ItemName>
+											</ItemNames>
+											<GatheringSkillOrder>
+												<GatheringSkill SpellName="Blessed Harvest" ActionId="222" TimesToCast="1" />
+											</GatheringSkillOrder>
+										</Gather>
+									</If>
+									<If Condition="Core.Player.ClassLevel &gt; 34">
+										<If Condition="not IsOnMap(145)">
+											<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+												<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+											</If>
+											<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+												<Travel To="145" />
+											</If>
+										</If>
+										<RunCode Name="Botanist" />
+										<NoCombatMoveTo Name="Farming Area" XYZ="-248.0157, -31.05733, 277.7605" />
+										<Gather while="not HasAtLeast(4787,&BatteredFish;)">
+											<GatherObject>Lush Vegetation Patch</GatherObject>
+											<HotSpots>
+												<HotSpot Radius="90" XYZ="-248.0157, -31.05733, 277.7605" name="Lush Vegetation Patch" />
+											</HotSpots>
+											<ItemNames>
+												<ItemName>Popoto</ItemName>
+												<ItemName>Fire Shard</ItemName>
+											</ItemNames>
+											<GatheringSkillOrder>
+												<GatheringSkill SpellName="Blessed Harvest II" ActionId="224" TimesToCast="1" />
+											</GatheringSkillOrder>
+										</Gather>
+									</If>
+								</If>
+							</If>
+
+							<!-- Olive Oil -->
+
+							<If Condition="not HasAtLeast(4857,&BatteredFish;)">
+								<If Condition="not IsQuestCompleted(66910)">
+
+									<!-- Fire Shard -->
+								
+									<If Condition="not HasAtLeast(2,&BatteredFish;)">
+										<If Condition="not IsOnMap(134)">
+											<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+												<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+											</If>
+											<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+												<Travel To="134" />
+											</If>
+										</If>
+										<If Condition="Core.Player.ClassLevel &lt; 35">
+											<RunCode Name="Botanist" />
+											<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+											<Gather while="not HasAtLeast(2,&BatteredFish;)">
+												<GatherObject>Lush Vegetation Patch</GatherObject>
+												<HotSpots>
+													<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+												</HotSpots>
+												<ItemNames>
+													<ItemName>Fire Shard</ItemName>
+												</ItemNames>
+												<GatheringSkillOrder>
+													<GatheringSkill SpellName="Blessed Harvest" ActionId="222" TimesToCast="1" />
+												</GatheringSkillOrder>
+											</Gather>
+										</If>
+										<If Condition="Core.Player.ClassLevel &gt; 34">
+											<RunCode Name="Botanist" />
+											<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+											<Gather while="not HasAtLeast(2,&BatteredFish;)">
+												<GatherObject>Lush Vegetation Patch</GatherObject>
+												<HotSpots>
+													<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+												</HotSpots>
+												<ItemNames>
+													<ItemName>Fire Shard</ItemName>
+												</ItemNames>
+												<GatheringSkillOrder>
+													<GatheringSkill SpellName="Blessed Harvest II" ActionId="224" TimesToCast="1" />
+												</GatheringSkillOrder>
+											</Gather>
+										</If>
+									</If>
+								
+									<!-- Cinderfoot Olive -->
+								
+									<If Condition="not HasAtLeast(4804,&CinderfootOlives;)">
+										<If Condition="not IsOnMap(128)">
+											<If Condition="not IsOnMap(129)">
+												<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+													<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+												</If>
+												<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+													<Travel To="129" />
+												</If>
+											</If>
+											<Travel To="128" />
+										</If>
+										<BuyItem ItemId="4804" ItemCount="&CinderfootOlives;" NpcId="1003249" XYZ="-62.91296, 42.29975, -164.7517" />
+									</If>
+									<RunCode Name="Culinarian" />
+									<While Condition="True">
+										<Synthesize RecipeId="924" HQMats="-2"/>
+										<While Condition="CraftingManager.IsCrafting">
+											<CraftAction Name="Careful Synthesis" ActionId="100063" />
+										</While>
+									</While>
+								</If>
+								<If Condition="IsQuestCompleted(66910)">
+									<If Condition="not HasAtLeast(4857,&BatteredFish;)">
+										<If Condition="not IsOnMap(138)">
+											<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+												<TeleportTo Name="Aleport" AetheryteId="14" />
+											</If>
+											<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+												<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+													<TeleportTo Name="Swiftperch" AetheryteId="13" />
+												</If>
+											</If>
+											<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+												<Travel To="138" />
+											</If>
+										</If>
+										<NoCombatMoveTo Name="Sahagin Vendor" XYZ="-225.0859, -40.48583, 46.9519" />
+										<BuyItem ItemId="4857" ItemCount="&BatteredFish;" DialogOption="0" NpcId="1008907" XYZ="-225.0859, -40.48583, 46.9519" />
+									</If>
+								</If>
+							</If>
+
+							<!-- Table Salt -->
+
+							<If Condition="not HasAtLeast(4847,&BatteredFish;)">
+								<If Condition="not IsQuestCompleted(66910)">
+
+									<!-- Fire Shard -->
+							
+									<If Condition="not HasAtLeast(2,&BatteredFish;)">
+										<If Condition="not IsOnMap(134)">
+											<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+												<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+											</If>
+											<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+												<Travel To="134" />
+											</If>
+										</If>
+										<If Condition="Core.Player.ClassLevel &gt; 34">
+											<RunCode Name="Botanist" />
+											<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+											<Gather while="not HasAtLeast(2,&BatteredFish;)">
+												<GatherObject>Lush Vegetation Patch</GatherObject>
+												<HotSpots>
+													<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+												</HotSpots>
+												<ItemNames>
+													<ItemName>Fire Shard</ItemName>
+												</ItemNames>
+												<GatheringSkillOrder>
+													<GatheringSkill SpellName="Blessed Harvest II" ActionId="224" TimesToCast="1" />
+												</GatheringSkillOrder>
+											</Gather>
+										</If>
+										<RunCode Name="Botanist" />
+										<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+										<Gather while="not HasAtLeast(2,&BatteredFish;)">
+											<GatherObject>Lush Vegetation Patch</GatherObject>
+											<HotSpots>
+												<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+											</HotSpots>
+											<ItemNames>
+												<ItemName>Fire Shard</ItemName>
+											</ItemNames>
+											<GatheringSkillOrder>
+												<GatheringSkill SpellName="Blessed Harvest" ActionId="222" TimesToCast="1" />
+											</GatheringSkillOrder>
+										</Gather>
+									</If>
+								
+									<!-- Distilled Water -->
+								
+									<If Condition="not HasAtLeast(5487,&BatteredFish;)">
+										<If Condition="not IsOnMap(128)">
+											<If Condition="not IsOnMap(129)">
+												<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+													<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+												</If>
+												<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+													<Travel To="129" />
+												</If>
+											</If>
+											<Travel To="128" />
+										</If>
+										<BuyItem ItemId="5487" ItemCount="&BatteredFish;" NpcId="1003249" XYZ="-62.91296, 42.29975, -164.7517" />
+									</If>
+									
+									<!-- Rock Salt -->
+								
+									<If Condition="not HasAtLeast(5518,&BatteredFish;)">
+										<If Condition="not IsOnMap(128)">
+											<If Condition="not IsOnMap(129)">
+												<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+													<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+												</If>
+												<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+													<Travel To="129" />
+												</If>
+											</If>
+											<Travel To="128" />
+										</If>
+										<BuyItem ItemId="5518" ItemCount="&BatteredFish;" NpcId="1003249" XYZ="-62.91296, 42.29975, -164.7517" />
+									</If>
+									<RunCode Name="Culinarian" />
+									<While Condition="True">
+										<Synthesize RecipeId="924" HQMats="-2"/>
+										<While Condition="CraftingManager.IsCrafting">
+											<CraftAction Name="Careful Synthesis" ActionId="100063" />
+										</While>
+									</While>
+								</If>
+								<If Condition="IsQuestCompleted(66910)">
+									<If Condition="not HasAtLeast(4847,&BatteredFish;)">
+										<If Condition="not IsOnMap(138)">
+											<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+												<TeleportTo Name="Aleport" AetheryteId="14" />
+											</If>
+											<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+												<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+													<TeleportTo Name="Swiftperch" AetheryteId="13" />
+												</If>
+											</If>
+											<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+												<Travel To="138" />
+											</If>
+										</If>
+										<NoCombatMoveTo Name="Sahagin Vendor" XYZ="-225.0859, -40.48583, 46.9519" />
+										<BuyItem ItemId="4847" ItemCount="&BatteredFish;" DialogOption="0" NpcId="1008907" XYZ="-225.0859, -40.48583, 46.9519" />
+									</If>
+								</If>
+							</If>
+						</If>
+						<RunCode Name="Culinarian" />
+						<While Condition="not HasAtLeast(10332,&BatteredFish;)">
+							<Synthesize RecipeId="2790" HQMats="-2,-2,-2,-2"/>
+							<While Condition="CraftingManager.IsCrafting">
+								<CraftAction Name="Basic Synthesis" ActionId="100105"/>
+							</While>
+						</While>
+						<If Condition="not IsOnMap(137)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+								<Travel To="137" />
+							</If>
+						</If>
+						<RunCode Name="NonCombatLvl30Plus" />
+						<WaitTimer WaitTime="5" />
+
+						<!-- Rewards
+
+						Faire Token
+
+						-->
+
+						<NoCombatMoveTo Name="C'zibho Tia" XYZ="460.0137, 13.22949, 314.6257" />
+						<TurnIn QuestId="67661" NpcId="1015613" ItemId="10332" XYZ="460.0137, 13.22949, 314.6257" />
+					</If>
+				</If>
+				<!-- What's in the Dish -->
+				<If Condition="HasQuest(67662)">
+					<If Condition="GetQuestStep(67662) == 255">
+						<If Condition="not IsOnMap(137)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+								<Travel To="137" />
+							</If>
+						</If>
+						<If Condition="IsOnMap(137) and IsOnSubMap(1452)">
+							<UseTransport Name="Costa del Sol" InteractDistance="3.0" NpcId="1005414" XYZ="886.9916, 21.40931, 134.2335" />
+						</If>
+						<RunCode Name="Fisher" />
+						<WaitTimer WaitTime="5" />
+
+						<!-- Rewards
+
+						Faire Token
+
+						-->
+
+						<NoCombatMoveTo Name="Espan" XYZ="460.0747, 13.26007, 309.285" />
+						<TurnIn QuestId="67662" NpcId="1015614" ItemId="2001889" XYZ="460.0747, 13.26007, 309.285" StepId="255" />
+					</If>
+				</If>
+
+			</If>
+
+		</While>
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="Botanist">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 22");
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="NonCombatLvl30Plus">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 21");
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Culinarian">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 20");
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Fisher">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 23");
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
