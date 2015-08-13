@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#######################################################
+# Profile: [O] Fresh Haddock (Repeatable)             #
+#######################################################
+# Author: y2krazy                                     #
+#######################################################
+# Version: 1.0.0                                      #
+#######################################################
+# Required Level: 30                                  #
+#######################################################
+# Required Teleport Locations:                        #
+# 	Costa del Sol                                     #
+#######################################################
+# Required User Interaction:                          #
+# 	PickUp Quest (Bugged)                             #
+# 	TurnIn Quest (Bugged)                             #
+#######################################################
+# Required Setup:                                     #
+# 	Fill out User Configuration below.                #
+# 	Level 30+ Any Non-Combat Class                    #
+# 	Level 5+ Fisher                                   #
+# 	Set class Gear Sets at the bottom of the profile. #
+#######################################################
+# Rewards:                                            #
+# 	Faire Token                                       #
+#######################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY TokenCount "1"> <!-- Faire Tokens to earn before stopping. -->
+  <!ENTITY FreshHaddock "1"> <!-- Fresh Haddock to gather before stopping. -->
+  <!ENTITY BaitCount "99"> <!-- Lugworms to maintain in your inventory to catch Fresh Haddocks. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] Fresh Haddock (Repeatable)</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<LogMessage Message="Checking for &TokenCount; Faire Tokens..." />
+
+		<While Condition="not HasAtLeast(10333,&TokenCount;)">
+			<RegisterDailies QuestId="67662" />
+
+			<!-- What's in the Dish -->
+
+			<If Condition="not HasQuest(67662)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<RunCode Name="Fisher" />
+				<NoCombatMoveTo Name="Espan" XYZ="460.0747, 13.26007, 309.285" />
+				<If Condition="IsQuestAcceptQualified(67662)">
+					<PickupDailyQuest NpcId="1015614" QuestId="67662" XYZ="460.0747, 13.26007, 309.285" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67662)">
+				<If Condition="GetQuestStep(67662) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="not HasAtLeast(2585,&BaitCount;)">
+						<LogMessage Message="You need more Lugworms!" />
+						<NoCombatMoveTo Name="Festive Fisher" XYZ="462.8823, 12.73574, 328.4198" />
+						<BuyItem ItemId="2585" ItemCount="&BaitCount;" InteractDistance="3.0" NpcId="1015615" XYZ="462.8823, 12.73574, 328.4198" />
+					</If>
+					<If Condition="IsOnMap(137)">
+						<UseTransport Name="Rhotano privateer" InteractDistance="3.0" NpcId="1003585" XYZ="607.8126, 11.62379, 391.8668" />
+					</If>
+					<If Condition="IsOnMap(137) and IsOnSubMap(1452)">
+						<Fish Mooch="0" MoveCursorRightKey="Right" Bait="Lugworm" Shuffle="True" Condition="not HasAtLeast(2001889,&FreshHaddock;)">
+							<FishSpots>
+								<FishSpot XYZ="878.1394, 20.74091, 133.8562" Heading="3.977538" />
+								<FishSpot XYZ="889.2092, 20.74123, 142.9867" Heading="0.8862116" />
+								<FishSpot XYZ="872.6266, 20.74028, 140.3154" Heading="3.994294" />
+								<FishSpot XYZ="883.5912, 20.74005, 149.4295" Heading="0.8568888" />
+								<FishSpot XYZ="865.7617, 22.23998, 167.683" Heading="6.264618" />
+								<FishSpot XYZ="896.2814, 19.24, 130.6822" Heading="1.627627" />
+								<FishSpot XYZ="857.8608, 22.23998, 161.0017" Heading="4.867657" />
+								<FishSpot XYZ="886.9316, 19.24, 125.2088" Heading="3.541904" />
+							</FishSpots>
+						</Fish>
+						<UseTransport Name="Costa del Sol" InteractDistance="3.0" NpcId="1005414" XYZ="886.9916, 21.40931, 134.2335" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(67662) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and IsOnSubMap(1452)">
+						<UseTransport Name="Costa del Sol" InteractDistance="3.0" NpcId="1005414" XYZ="886.9916, 21.40931, 134.2335" />
+					</If>
+					<RunCode Name="NonCombatLvl30Plus" />
+					<WaitTimer WaitTime="5" />
+
+					<!-- Rewards
+
+					Faire Token
+
+					-->
+
+					<NoCombatMoveTo Name="Espan" XYZ="460.0747, 13.26007, 309.285" />
+					<TurnIn QuestId="67662" NpcId="1015614" ItemId="2001889" XYZ="460.0747, 13.26007, 309.285" StepId="255" />
+				</If>
+			</If>
+
+		</While>
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="Fisher">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 23");
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="NonCombatLvl30Plus">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 21");
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
