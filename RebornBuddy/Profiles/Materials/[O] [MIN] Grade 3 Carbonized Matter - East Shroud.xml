@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################
+# Profile: [O] [MIN] Grade 3 Carbonized Matter - East Shroud #
+##############################################################
+# Author: y2krazy                                            #
+##############################################################
+# Version: 1.0.0                                             #
+##############################################################
+# Required Level: 50                                         #
+##############################################################
+# Required Teleport Locations:                               #
+# 	Little Ala Mhigo                                         #
+##############################################################
+# Required User Interaction:                                 #
+# 	None                                                     #
+##############################################################
+# Required Setup:                                            #
+# 	Fill out User Configuration below.                       #
+# 	Level 50+ Miner                                          #
+# 	Set Miner Gear Set at the bottom of the profile.         #
+##############################################################
+# Item Drops:                                                #
+# 	Grade 3 Carbonized Matter                                #
+##############################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Grade 3 Carbonized Matter to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] [MIN] Grade 3 Carbonized Matter - East Shroud</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Grade 3 Carbonized Matter -->
+
+		<RunCode Name="Miner" />
+		<WaitTimer WaitTime="3" />
+		<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+			<If Condition="(ItemCount(5601) &lt; &MatCount;)">
+				<If Condition="Core.Player.ClassLevel &lt; 50">
+					<LogMessage Message="You do not meet the minimum level requirement." />
+					<LogMessage Message="Please reach level 50 Miner or higher." />
+					<StopBot />
+				</If>
+				<If Condition="Core.Player.ClassLevel &gt; 49">
+					<LogMessage Message="You need more Grade 3 Carbonized Matter!" />
+					<If Condition="not IsOnMap(152)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(4)">
+							<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+							<Travel To="152" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Farming Area" XYZ="-185.6458, -4.84562, 193.8963" />
+					<Gather while="(ItemCount(5601) &lt; &MatCount;)">
+						<GatherObject>Rocky Outcrop</GatherObject>
+						<HotSpots>
+							<HotSpot Radius="250" XYZ="-155.8013, -0.2726408, 161.3902" name="Rocky Outcrops" />
+						</HotSpots>
+						<ItemNames>
+							<ItemName>Grade 3 Carbonized Matter</ItemName>
+						</ItemNames>
+						<GatheringSkillOrder>
+							<GatheringSkill SpellName="King's Yield" TimesToCast="1" />
+						</GatheringSkillOrder>
+					</Gather>
+				</If>
+			</If>
+		</If>
+
+		<If Condition="(ItemCount(5601) == &MatCount;) or (ItemCount(5601) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Grade 3 Carbonized Matter!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+		</If>
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="Miner">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 21");
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
