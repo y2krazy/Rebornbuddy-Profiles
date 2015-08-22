@@ -1,82 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Profile: [O] Chronicles of a New Era - Primal
-Author: y2krazy
-Version: 1.0.0
-Required Level: 50
-Required Teleport Locations:
-	
-Required User Interaction:
-	Minimal interaction.
-Required Setup:
-	Build on the Stone quest completed.
-	
-Rewards:
-	
+#########################################################
+# Profile: [O] Chronicles of a New Era - Primal #
+#########################################################
+# Author: y2krazy                                       #
+#########################################################
+# Version: 1.0.1                                        #
+#########################################################
+# Required Level: 50                                    #
+#########################################################
+# Required Teleport Locations:                          #
+# 	                                                    #
+#########################################################
+# Required User Interaction:                            #
+# 	Guardian of Eorzea Duty                             #
+# 	Striking Tree (Hard) Duty                           #
+#########################################################
+# Required Setup:                                       #
+# 	Build on the Stone quest completed.                 #
+#########################################################
+# Rewards:                                              #
+# 	                                                    #
+#########################################################
 -->
 <Profile>
 	<Name>[O] Chronicles of a New Era - Primal</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
-	<CodeChunks>
-		<CodeChunk Name="WakingSands">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2001711).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(12000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="WakingSands2">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2001715).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(12000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="InforGarudaAwakening">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2002582).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.Complete();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="InaTitanSpot">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2002583).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.Complete();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-		]]>
-		</CodeChunk>
-	</CodeChunks>
-	<GrindAreas>
-	</GrindAreas>
 	<Order>
+
+		<If Condition="not IsQuestCompleted(66060)">
+			<LogMessage Message="You haven't completed The Ultimate Weapon quest yet!" />
+			<LogMessage Message="Please restart this profile after you have done so." />
+			<StopBot/>
+		</If>
 
 		<!-- A Recurring Problem -->
 
 		<If Condition="not IsQuestCompleted(66583)">
 			<If Condition="not HasQuest(66583)">
-
-				<!-- TO DO -->
-
-				<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-				<!-- NOT YET IMPLEMENTED! -->
-
-				<!-- TO DO -->
-
-				<If Condition="not IsOnMap(140)">
+				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 						<TeleportTo Name="Horizon" AetheryteId="17" />
 					</If>
@@ -84,36 +47,36 @@ Rewards:
 						<Travel To="140" />
 					</If>
 				</If>
-				<MoveTo Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" />
-				<RunCode Name="WakingSands" />
-				<MoveTo Name="Entrance to the Solar" XYZ="23.23944, 2.090454, -0.01531982" />
-				<RunCode Name="WakingSands2" />
-				<LogMessage Message="Please manually complete A Recurring Problem!" />
-				<LogMessage Message="Run this profile again once you finish A Recurring Problem." />
-				<StopBot />
+				<If Condition="IsOnMap(140)">
+					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
+				</If>
+				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
+					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
+				</If>
+				<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548" />
+				<If Condition="IsQuestAcceptQualified(66583)">
+					<PickupQuest NpcId="1006693" QuestId="66583" XYZ="39.29187, 1.214808, 0.8086548" />
+				</If>
 			</If>
 			<If Condition="HasQuest(66583)">
-
-				<!-- TO DO -->
-
-				<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-				<!-- NOT YET IMPLEMENTED! -->
-
-				<!-- TO DO -->
-
-				<If Condition="not IsOnMap(140)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(17)">
-						<TeleportTo Name="Horizon" AetheryteId="17" />
+				<If Condition="GetQuestStep(66583) == 255">
+					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
 					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
-						<Travel To="140" />
+					<If Condition="IsOnMap(140)">
+						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
 					</If>
+					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<MoveTo Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955" />
+					<TurnIn QuestId="66583" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
 				</If>
-				<MoveTo Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" />
-				<RunCode Name="WakingSands" />
-				<LogMessage Message="Please manually complete A Recurring Problem!" />
-				<LogMessage Message="Run this profile again once you finish A Recurring Problem." />
-				<StopBot />
 			</If>
 		</If>
 
@@ -121,15 +84,7 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66584)">
 			<If Condition="not HasQuest(66584)">
-
-				<!-- TO DO -->
-
-				<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-				<!-- NOT YET IMPLEMENTED! -->
-
-				<!-- TO DO -->
-
-				<If Condition="not IsOnMap(140)">
+				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 						<TeleportTo Name="Horizon" AetheryteId="17" />
 					</If>
@@ -137,8 +92,13 @@ Rewards:
 						<Travel To="140" />
 					</If>
 				</If>
-				<MoveTo Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" />
-				<RunCode Name="WakingSands" />
+				<If Condition="IsOnMap(140)">
+					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
+				</If>
+				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
+					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+				</If>
+				<MoveTo Name="Thancred" XYZ="1.480042, -3.000001, -48.72211" />
 				<If Condition="IsQuestAcceptQualified(66584)">
 					<PickupQuest NpcId="1007534" QuestId="66584" XYZ="1.480042, -3.000001, -48.72211" />
 				</If>
@@ -153,15 +113,15 @@ Rewards:
 							<Travel To="130" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1004576" XYZ="-141.6495, 4.1, -114.6716" />
+					<MoveTo Name="Swift" XYZ="-141.6495, 4.1, -114.6716" />
+					<TalkTo NpcId="1004576" XYZ="-141.6495, 4.1, -114.6716" QuestId="66584" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(66584) == 255">
 					<If Condition="not IsOnMap(146)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(19)">
 							<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
 						</If>
-						<WaitTimer WaitTime="5" />
-						<If Condition="not IsOnMap(146)">
+						<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(20)">
 								<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
 							</If>
@@ -170,15 +130,12 @@ Rewards:
 							<Travel To="146" />
 						</If>
 					</If>
+					<LogMessage Message="Attuning to the Zahar'ak Aetheryte..." />
 					<NoCombatMoveTo Name="Safe Spot" XYZ="713.4625, 3.846601, -72.28091" />
-					<LogMessage Message="Manually attune to the Zahar'ak Aetheryte." />
-					<LogMessage Message="Please restart this profile after you are done." />
-					<StopBot />
-					<!-- <WaitTimer WaitTime="3" />
-					<Dismount />
-					<MoveTo Name="Aetheryte" XYZ="694.2023, 5.071219, -83.18669" />
-					<WaitTimer WaitTime="1" />
-					<UseObject NpcId="2002581" XYZ="694.3617, 7.919373, -80.1557" Radius="10" QuestId="66584" StepId="255" /> -->
+					<NoCombatMoveTo Name="Zahar'ak Aetheryte" XYZ="681.8185, 3.846601, -88.34937" />
+					<Dismount/>
+					<NoCombatMoveTo Name="Zahar'ak Aetheryte" XYZ="693.2882, 5.605333, -77.85355" UseMesh="False" />
+					<TurnIn QuestId="66584" NpcId="2002581" XYZ="694.3617, 7.919373, -80.1557" />
 				</If>
 			</If>
 		</If>
@@ -187,15 +144,7 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66693)">
 			<If Condition="not HasQuest(66693)">
-
-				<!-- TO DO -->
-
-				<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-				<!-- NOT YET IMPLEMENTED! -->
-
-				<!-- TO DO -->
-
-				<If Condition="not IsOnMap(140)">
+				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 						<TeleportTo Name="Horizon" AetheryteId="17" />
 					</If>
@@ -203,8 +152,13 @@ Rewards:
 						<Travel To="140" />
 					</If>
 				</If>
-				<MoveTo Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" />
-				<RunCode Name="WakingSands" />
+				<If Condition="IsOnMap(140)">
+					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
+				</If>
+				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
+					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+				</If>
+				<MoveTo Name="Papalymo" XYZ="0.1677856, -3.000001, -52.71997" />
 				<If Condition="not IsQuestAcceptQualified(66693)">
 					<LogMessage Message="Please manually complete The Bowl of Embers (Hard)!" />
 					<LogMessage Message="Run this profile again once you finish The Bowl of Embers (Hard)." />
@@ -224,7 +178,8 @@ Rewards:
 							<Travel To="132" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" />
+					<MoveTo Name="Vorsaile Heuloix" XYZ="-75.48645, -0.5013741, -5.081299" />
+					<TalkTo NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" QuestId="66693" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(66693) == 255">
 					<If Condition="not IsOnMap(155)">
@@ -235,12 +190,11 @@ Rewards:
 							<Travel To="155" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="Safe Spot" XYZ="642.0778, 287.3693, 174.2653" />
-					<WaitTimer WaitTime="3" />
-					<Dismount />
-					<MoveTo Name="Aetheryte" XYZ="649.7748, 292.4391, 175.3414" />
-					<WaitTimer WaitTime="1" />
-					<RunCode Name="InforGarudaAwakening" />
+					<LogMessage Message="Attuning to the Natalan Aetheryte..." />
+					<NoCombatMoveTo Name="Safe Spot" XYZ="642.5112, 287.5269, 187.7667" />
+					<Dismount/>
+					<NoCombatMoveTo Name="Natalan Aetheryte" XYZ="649.7748, 292.4391, 175.3414" />
+					<TurnIn QuestId="66693" NpcId="2002582" XYZ="649.7748, 292.4391, 175.3414" />
 				</If>
 			</If>
 		</If>
@@ -249,15 +203,7 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66694)">
 			<If Condition="not HasQuest(66694)">
-
-				<!-- TO DO -->
-
-				<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-				<!-- NOT YET IMPLEMENTED! -->
-
-				<!-- TO DO -->
-
-				<If Condition="not IsOnMap(140)">
+				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 						<TeleportTo Name="Horizon" AetheryteId="17" />
 					</If>
@@ -265,12 +211,17 @@ Rewards:
 						<Travel To="140" />
 					</If>
 				</If>
-				<MoveTo Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" />
-				<RunCode Name="WakingSands" />
+				<If Condition="IsOnMap(140)">
+					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
+				</If>
+				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
+					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+				</If>
+				<MoveTo Name="Y'shtola" XYZ="-0.8087769, -3, -47.80658" />
 				<If Condition="not IsQuestAcceptQualified(66694)">
 					<LogMessage Message="Please manually complete The Howling Eye (Hard)!" />
 					<LogMessage Message="Run this profile again once you finish The Howling Eye (Hard)." />
-					<StopBot />	
+					<StopBot />
 				</If>
 				<If Condition="IsQuestAcceptQualified(66694)">
 					<PickupQuest NpcId="1007533" QuestId="66694" XYZ="-0.8087769, -3, -47.80658" />
@@ -278,16 +229,19 @@ Rewards:
 			</If>
 			<If Condition="HasQuest(66694)">
 				<If Condition="GetQuestStep(66694) == 1">
-					<If Condition="not IsOnMap(129)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+					<If Condition="not IsOnMap(128)">
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-							<Travel To="129" />
-						</If>
+						<Travel To="128" />
 					</If>
-					<Travel To="128" />
-					<TalkTo InteractDistance="3.0" NpcId="1003281" XYZ="97.52039, 40.24854, 81.1322" />
+					<MoveTo Name="R'ashaht Rhiki" XYZ="97.52039, 40.24854, 81.1322" />
+					<TalkTo NpcId="1003281" XYZ="97.52039, 40.24854, 81.1322" QuestId="66694" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(66694) == 255">
 					<If Condition="not IsOnMap(180)">
@@ -298,12 +252,11 @@ Rewards:
 							<Travel To="180" />
 						</If>
 					</If>
+					<LogMessage Message="Attuning to the U'Ghamaro Mines Aetheryte..." />
 					<NoCombatMoveTo Name="Safe Spot" XYZ="144.4336, 27.1674, -622.5881" />
-					<WaitTimer WaitTime="1" />
 					<Dismount />
-					<MoveTo Name="Aetheryte" XYZ="144.4336, 27.1674, -622.5881" />
-					<WaitTimer WaitTime="1" />
-					<RunCode Name="InaTitanSpot" />
+					<NoCombatMoveTo Name="U'Ghamaro Aetheryte" XYZ="144.4336, 27.1674, -622.5881" />
+					<TurnIn QuestId="66694" NpcId="2002583" XYZ="144.4336, 27.1674, -622.5881" />
 				</If>
 			</If>
 		</If>
@@ -312,15 +265,7 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66730)">
 			<If Condition="not HasQuest(66730)">
-
-				<!-- TO DO -->
-
-				<!-- This quest step requires zone checking work-arounds, unfortunately. -->
-				<!-- NOT YET IMPLEMENTED! -->
-
-				<!-- TO DO -->
-
-				<If Condition="not IsOnMap(140)">
+				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 						<TeleportTo Name="Horizon" AetheryteId="17" />
 					</If>
@@ -328,8 +273,13 @@ Rewards:
 						<Travel To="140" />
 					</If>
 				</If>
-				<MoveTo Name="Waking Sands Entrance" XYZ="-480.9186, 17.99036, -386.862" />
-				<RunCode Name="WakingSands" />
+				<If Condition="IsOnMap(140)">
+					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
+				</If>
+				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
+					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+				</If>
+				<MoveTo Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955" />
 				<If Condition="not IsQuestAcceptQualified(66730)">
 					<LogMessage Message="Please manually complete The Navel (Hard)!" />
 					<LogMessage Message="Run this profile again once you finish The Navel (Hard)." />
@@ -349,6 +299,7 @@ Rewards:
 							<Travel To="132" />
 						</If>
 					</If>
+					<MoveTo Name="Vorsaile Heuloix" XYZ="-75.48645, -0.5013741, -5.081299" />
 					<TurnIn QuestId="66730" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" />
 				</If>
 			</If>
@@ -358,12 +309,70 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66731)">
 			<If Condition="not HasQuest(66731)">
-				<LogMessage Message="Gale-force Warning quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(132)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+						<TeleportTo Name="New Gridania" AetheryteId="2" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+						<Travel To="132" />
+					</If>
+				</If>
+				<MoveTo Name="Vorsaile Heuloix" XYZ="-75.48645, -0.5013741, -5.081299" />
+				<If Condition="IsQuestAcceptQualified(66731)">
+					<PickupQuest NpcId="1000168" QuestId="66731" XYZ="-75.48645, -0.5013741, -5.081299" />
+				</If>
 			</If>
 			<If Condition="HasQuest(66731)">
-				<LogMessage Message="Gale-force Warning quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(66731) == 1">
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<LogMessage Message="Re-attuning to the Natalan Aetheryte..." />
+					<NoCombatMoveTo Name="Safe Spot" XYZ="642.5112, 287.5269, 187.7667" />
+					<Dismount/>
+					<NoCombatMoveTo Name="Natalan Aetheryte" XYZ="649.7748, 292.4391, 175.3414" />
+					<UseObject NpcId="2003456" XYZ="649.7748, 292.4391, 175.3414" Radius="10" QuestId="66731" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(66731) == 2">
+					<LogMessage Message="Please manually complete The Howling Eye (Extreme)!" />
+					<LogMessage Message="Run this profile again once you finish The Howling Eye (Extreme)." />
+					<StopBot />
+				</If>
+				<If Condition="GetQuestStep(66731) == 4">
+					<If Condition="not IsOnMap(132)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+							<TeleportTo Name="New Gridania" AetheryteId="2" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+							<Travel To="132" />
+						</If>
+					</If>
+					<MoveTo Name="Vorsaile Heuloix" XYZ="-75.48645, -0.5013741, -5.081299" />
+					<HandOver ItemId="2001139" QuestId="66731" StepId="4" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" />
+				</If>
+				<If Condition="GetQuestStep(66731) == 255">
+					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(140)">
+						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
+					</If>
+					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<MoveTo Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955" />
+					<TurnIn QuestId="66731" NpcId="1007478" ItemId="2001139" XYZ="-2.822998, -3.000001, -56.22955" />
+				</If>
 			</If>
 		</If>
 
@@ -371,12 +380,79 @@ Rewards:
 
 		<If Condition="not IsQuestCompleted(66732)">
 			<If Condition="not HasQuest(66732)">
-				<LogMessage Message="Quake Me Up Before You O'Ghomoro quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+						<TeleportTo Name="Horizon" AetheryteId="17" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+						<Travel To="140" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(140)">
+					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
+				</If>
+				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
+					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+				</If>
+				<MoveTo Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955" />
+				<If Condition="IsQuestAcceptQualified(66732)">
+					<PickupQuest NpcId="1007478" QuestId="66732" XYZ="-2.822998, -3.000001, -56.22955" />
+				</If>
 			</If>
 			<If Condition="HasQuest(66732)">
-				<LogMessage Message="Quake Me Up Before You O'Ghomoro quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(66732) == 1">
+					<If Condition="not IsOnMap(128)">
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<Travel To="128" />
+					</If>
+					<MoveTo Name="R'ashaht Rhiki" XYZ="97.52039, 40.24854, 81.1322" />
+					<TalkTo NpcId="1003281" XYZ="97.52039, 40.24854, 81.1322" QuestId="66732" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(66732) == 2">
+					<If Condition="not IsOnMap(180)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(16)">
+							<TeleportTo Name="Camp Overlook" AetheryteId="16" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(16)">
+							<Travel To="180" />
+						</If>
+					</If>
+					<LogMessage Message="Attuning to the U'Ghamaro Mines Aetheryte..." />
+					<NoCombatMoveTo Name="Safe Spot" XYZ="144.4336, 27.1674, -622.5881" />
+					<Dismount />
+					<NoCombatMoveTo Name="U'Ghamaro Aetheryte" XYZ="144.4336, 27.1674, -622.5881" />
+					<UseObject NpcId="2003457" XYZ="144.4336, 27.1674, -622.5881" Radius="10" QuestId="66732" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(66732) == 3">
+					<LogMessage Message="Please manually complete The Navel (Extreme)!" />
+					<LogMessage Message="Run this profile again once you finish The Navel (Extreme)." />
+					<StopBot />
+				</If>
+				<If Condition="GetQuestStep(66732) == 255">
+					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(140)">
+						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
+					</If>
+					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
+						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
+					</If>
+					<MoveTo Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955" />
+					<TurnIn QuestId="66732" NpcId="1007478" ItemId="1" XYZ="-2.822998, -3.000001, -56.22955" />
+				</If>
 			</If>
 		</If>
 
@@ -531,4 +607,8 @@ Rewards:
 		</If>
 
 	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
 </Profile>

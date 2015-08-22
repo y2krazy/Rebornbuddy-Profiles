@@ -1,207 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-Profile: [O] Hildibrand
-Author: y2krazy
-Version: 1.0.0
-Required Level: 50
-Required Teleport Locations:
-	Aleport
-	Limsa Lominsa Lower Decks
-	Wineport
-Required User Interaction:
-	Minimal interaction.
-Required Setup:
-	The Ultimate Weapon quest completed.
-Rewards:
-	Emote: Manderville Dance
-	Emote: Most Gentlemanly
-	Minion: Wind-up Gentleman
-	Parley (Mini-Game)
-	Title: "Gentleman/Gentlewoman"
+###########################################################
+# Profile: [O] Hildibrand                                 #
+###########################################################
+# Author: y2krazy                                         #
+###########################################################
+# Version: 1.0.1                                          #
+###########################################################
+# Required Level: 50                                      #
+###########################################################
+# Required Teleport Locations:                            #
+# 	Aleport                                               #
+# 	Limsa Lominsa Lower Decks                             #
+# 	Wineport                                              #
+###########################################################
+# Required User Interaction:                              #
+# 	Click the LEVEL SYNC button for the Fallen Corpses Writhe in Style FATE #
+# 	Hero on the Halfshell Guidhest                        #
+# 	Leves of Bentbranch Quest (if applicable)             #
+# 	Leves of Swiftperch Quest (if applicable)             #
+# 	More than a Feeler Guildhest                          #
+# 	Simply the Hest Quest (if applicable)                 #
+# 	Sunken Temple of Qarn Duty                            #
+# 	Thornmarch (Hard) Duty                                #
+###########################################################
+# Required Setup:                                         #
+# 	The Ultimate Weapon quest completed.                  #
+###########################################################
+# Rewards:                                                #
+# 	Emote: Manderville Dance                              #
+# 	Emote: Most Gentlemanly                               #
+# 	Minion: Wind-up Gentleman                             #
+# 	Parley (Mini-Game)                                    #
+# 	Title: "Gentleman/Gentlewoman"                        #
+###########################################################
 -->
 <Profile>
 	<Name>[O] Hildibrand</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
-	<CodeChunks>
-		<CodeChunk Name="TheScienceofDeduction">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1008716).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				if (ff14bot.RemoteWindows.Request.IsOpen)
-					ff14bot.RemoteWindows.Request.HandOver();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.Complete();
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="TheHammer">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2003666).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(20000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(12000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(12000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(7000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(9000);
-				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.Complete();
-		]]>
-		</CodeChunk>
-		<!-- <CodeChunk Name="TheThreeCollectors">
-			<![CDATA[ 
-				
-				This quest step (4) would work best with a CodeChunk
-
-		]]>
-		</CodeChunk> -->
-		<CodeChunk Name="TheBusinessofBetrothal">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2004317).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(15000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(6000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(6000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.Complete();
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="SeedsofRebellionTravel">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1003584).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
-					ff14bot.RemoteWindows.SelectIconString.ClickSlot(2);
-				await Buddy.Coroutines.Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="SeedsofRebellion">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2004324).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="SeedsofRebellion2">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2004325).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(6000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="SeedsofRebellion3">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2004326).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(20000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="SeedsofRebellion4">
-			<![CDATA[ 
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1009335).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(200);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-		]]>
-		</CodeChunk>
-	</CodeChunks>
-	<GrindAreas>
-		<GrindArea name="FATE_66740">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-256.7704, 8.861147, 217.5086" name="Dapper Zombies" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="2332" />
-			</TargetMobs>
-			<MinLevel>1</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="The_Mandragoras">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-256.7026, -40.18569, 684.1992" name="The Mandragoras" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="2827" />
-				<TargetMob Id="2828" />
-				<TargetMob Id="2829" />
-				<TargetMob Id="2830" />
-				<TargetMob Id="2831" />
-			</TargetMobs>
-			<MinLevel>1</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-	</GrindAreas>
 	<Order>
 
 		<!-- The Rise and Fall of Gentlemen -->
@@ -231,15 +68,15 @@ Rewards:
 							<Travel To="145" />
 						</If>
 					</If>
-					<TalkTo InteractDistance="3.0" NpcId="1005709" XYZ="-464.4021, -26.93746, 84.21367" />
+					<NoCombatMoveTo Name="Nashu Mhakaracca" XYZ="-464.1642, -26.94504, 85.40466" />
+					<ExtendedTalkTo NpcId="1005709" XYZ="-464.1642, -26.94504, 85.40466" QuestId="66740" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(66740) == 2">
 					<If Condition="not IsOnMap(146)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(20)">
 							<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
 						</If>
-						<WaitTimer WaitTime="5" />
-						<If Condition="not IsOnMap(146)">
+						<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(19)">
 								<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
 							</If>
@@ -248,7 +85,8 @@ Rewards:
 							<Travel To="146" />
 						</If>
 					</If>
-					<Grind grindRef="FATE_66740" while="HasQuest(66740) and GetQuestStep(66740) == 2" />
+					<NoCombatMoveTo Name="FATE: Fallen Corpses Writhe in Style" XYZ="-256.7704, 8.861147, 217.5086" />
+					<Grind grindRef="The_Rise_and_Fall_of_Gentlemen" while="HasQuest(66740) and GetQuestStep(66740) == 2" />
 				</If>
 				<If Condition="GetQuestStep(66740) == 3">
 					<If Condition="not IsOnMap(145)">
@@ -259,15 +97,15 @@ Rewards:
 							<Travel To="145" />
 						</If>
 					</If>
-					<HandOver ItemId="2001125" QuestId="66740" StepId="3" NpcId="1005709" XYZ="-464.4021, -26.93746, 84.21367" />
+					<NoCombatMoveTo Name="Nashu Mhakaracca" XYZ="-464.1642, -26.94504, 85.40466" />
+					<HandOver ItemId="2001125" QuestId="66740" StepId="3" NpcId="1005709" XYZ="-464.1642, -26.94504, 85.40466" />
 				</If>
 				<If Condition="GetQuestStep(66740) == 255">
 					<If Condition="not IsOnMap(146)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(20)">
 							<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
 						</If>
-						<WaitTimer WaitTime="5" />
-						<If Condition="not IsOnMap(146)">
+						<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(19)">
 								<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
 							</If>
@@ -276,18 +114,14 @@ Rewards:
 							<Travel To="146" />
 						</If>
 					</If>
-
-					<!-- TO DO -->
-
-					<!-- Need to Select Option 2 (A gentleman is, rather than does!) When Turning In -->
-
-					<!-- TO DO -->
-
-					<TurnIn QuestId="66740" NpcId="1005710" XYZ="4.483184, 7.274037, 885.5565" />
+					<NoCombatMoveTo Name="Nashu Mhakaracca" XYZ="4.483184, 7.274037, 885.5565" />
+					<RunCode Name="TheRiseandFallofGentlemen" />
+					<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
+					<!-- <TurnIn QuestId="66740" NpcId="1005710" XYZ="4.483184, 7.274037, 885.5565" /> -->
 				</If>
 			</If>
 		</If>
-		
+<StopBot/>
 		<!-- Back in the Saddle -->
 
 		<If Condition="not IsQuestCompleted(66741)">
@@ -1414,4 +1248,193 @@ Rewards:
 		</If>
 
 	</Order>
+	<GrindAreas>
+		<GrindArea name="The_Rise_and_Fall_of_Gentlemen">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-256.7704, 8.861147, 217.5086" name="Dapper Zombies" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2332" />
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Mandragoras">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-256.7026, -40.18569, 684.1992" name="The Mandragoras" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2827" Weight="5000" />
+				<TargetMob Id="2828" Weight="4000" />
+				<TargetMob Id="2829" Weight="3000" />
+				<TargetMob Id="2830" Weight="2000" />
+				<TargetMob Id="2831" Weight="1000" />
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="TheRiseandFallofGentlemen">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1005710).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectString.IsOpen)
+					ff14bot.RemoteWindows.SelectString.ClickSlot(1);
+		]]>
+		</CodeChunk>
+		<!-- <CodeChunk Name="TheScienceofDeduction">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1008716).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				if (ff14bot.RemoteWindows.Request.IsOpen)
+					ff14bot.RemoteWindows.Request.HandOver();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TheHammer">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2003666).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(9000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk> -->
+		<!-- <CodeChunk Name="TheThreeCollectors">
+			<![CDATA[ 
+				
+				This quest step (4) would work best with a CodeChunk
+
+		]]>
+		</CodeChunk> -->
+		<!-- <CodeChunk Name="TheBusinessofBetrothal">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2004317).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(15000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SeedsofRebellionTravel">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1003584).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
+					ff14bot.RemoteWindows.SelectIconString.ClickSlot(2);
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SeedsofRebellion">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2004324).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SeedsofRebellion2">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2004325).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SeedsofRebellion3">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2004326).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SeedsofRebellion4">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1009335).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(200);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk> -->
+	</CodeChunks>
 </Profile>
