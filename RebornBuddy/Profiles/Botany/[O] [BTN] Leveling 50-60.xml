@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#########################################################
+# Profile: [O] [BTN] Leveling 50-60                     #
+#########################################################
+# Author: y2krazy                                       #
+#########################################################
+# Version: 1.0.0                                        #
+#########################################################
+# Required Level: 50                                    #
+#########################################################
+# Required Teleport Locations:                          #
+# 	Anyx Trine or Tailfeather                           #
+# 	Camp Cloudtop                                       #
+# 	Falcon's Nest                                       #
+#########################################################
+# Required User Interaction:                            #
+# 	None                                                #
+#########################################################
+# Required Setup:                                       #
+# 	Fill out User Configuration below.                  #
+# 	Level 50+ Botanist                                  #
+# 	Set Botanist Gear Set at the bottom of the profile. #
+#########################################################
+# Item Drops:                                           #
+# 	Birch Sap                                           #
+# 	Coneflower                                          #
+# 	Dark Chestnut Log                                   #
+# 	Highland Wheat                                      #
+# 	Rainbow Cotton Boll                                 #
+#########################################################
+-->
+<Profile>
+	<Name>[O] [BTN] Leveling 50-60</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<RunCode Name="Botanist" />
+		<WaitTimer WaitTime="3" />
+		<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+
+			<If Condition="Core.Player.ClassLevel &lt; 50">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 50 Botanist or higher." />
+				<StopBot />
+			</If>
+
+			<!-- Level 50-52 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 52">
+				<If Condition="not IsOnMap(397)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+						<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="397" /> -->
+						<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-163.4057, 86.64782, -223.922" />
+				<Gather Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-163.4057, 86.64782, -223.922" name="Lush Vegetation Patches" />
+					</HotSpots>
+					<Slot>3</Slot> <!-- Rainbow Cotton Boll -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-318.2626, 76.98337, -296.2144" />
+				<Gather Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-315.2786, 76.98337, -303.794" name="Lush Vegetation Patches" />
+					</HotSpots>
+					<Slot>3</Slot> <!-- Rainbow Cotton Boll -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-179.7895, 91.5311, -382.9218" />
+				<Gather Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-178.0997, 90.86474, -369.4435" name="Lush Vegetation Patches" />
+					</HotSpots>
+					<Slot>3</Slot> <!-- Rainbow Cotton Boll -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+			</While>
+
+			<!-- Level 52-54 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 54">
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+						<TeleportTo Name="Tailfeather" AetheryteId="76" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+							<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+						<Travel To="398" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="700.7754, -58.43658, -70.32034" />
+				<Gather Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="684.601, -54.15158, -100.313" name="Lush Vegetation Patches" />
+					</HotSpots>
+					<Slot>2</Slot> <!-- Highland Wheat -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<NoCombatMoveTo Name="Farming Area" XYZ="764.4918, -37.45871, -196.7805" />
+				<Dismount />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<Gather Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="756.155, -35.62535, -233.2589" name="Lush Vegetation Patches" />
+						<HotSpot Radius="5" XYZ="764.4918, -37.45871, -196.7805" name="Safe Spot" />
+					</HotSpots>
+					<Slot>2</Slot> <!-- Highland Wheat -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<RunCode Name="EnableMount" />
+				<WaitTimer WaitTime="3" />
+				<NoCombatMoveTo Name="Farming Area" XYZ="827.1143, -39.3457, -35.07686" />
+				<Dismount />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<Gather Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="817.932, -38.83355, -92.01728" name="Lush Vegetation Patches" />
+						<HotSpot Radius="5" XYZ="819.035, -40.03667, -56.18562" name="Safe Spot" />
+					</HotSpots>
+					<Slot>2</Slot> <!-- Highland Wheat -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<RunCode Name="EnableMount" />
+				<WaitTimer WaitTime="3" />
+			</While>
+
+			<!-- Level 54-56 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 56">
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+						<TeleportTo Name="Tailfeather" AetheryteId="76" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+							<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+						<Travel To="398" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="157.1309, -83.08733, 129.3156" />
+				<Dismount />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<Gather Loops="1">
+					<GatherObject>Mature Tree</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="163.3487, -83.65044, 138.6271" name="Mature Trees" />
+					</HotSpots>
+					<Slot>5</Slot> <!-- Dark Chestnut Log -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<RunCode Name="EnableMount" />
+				<WaitTimer WaitTime="3" />
+				<NoCombatMoveTo Name="Farming Area" XYZ="297.8087, -69.77157, 172.8933" />
+				<Dismount />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<Gather Loops="1">
+					<GatherObject>Mature Tree</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="277.2468, -74.04049, 176.6622" name="Mature Trees" />
+						<HotSpot Radius="5" XYZ="297.8087, -69.77157, 172.8933" name="Safe Spot" />
+					</HotSpots>
+					<Slot>5</Slot> <!-- Dark Chestnut Log -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<RunCode Name="EnableMount" />
+				<WaitTimer WaitTime="3" />
+				<NoCombatMoveTo Name="Farming Area" XYZ="98.81393, -114.1475, 351.9715" />
+				<Dismount />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<Gather Loops="1">
+					<GatherObject>Mature Tree</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="106.4639, -112.0723, 362.2173" name="Mature Trees" />
+						<HotSpot Radius="5" XYZ="98.81393, -114.1475, 351.9715" name="Safe Spot" />
+					</HotSpots>
+					<Slot>5</Slot> <!-- Dark Chestnut Log -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<RunCode Name="EnableMount" />
+				<WaitTimer WaitTime="3" />
+			</While>
+
+			<!-- Level 56-58 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 58">
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+						<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+						<Travel To="398" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-530.593, -96.94361, 485.03686" />
+				<NoCombatMoveTo Name="Farming Area" XYZ="-548.0259, -85.81905, 423.4666" />
+				<Dismount />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<Gather Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-548.0259, -85.81905, 423.4666" name="Lush Vegetation Patchs" />
+					</HotSpots>
+					<Slot>0</Slot> <!-- Coneflower -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<RunCode Name="EnableMount" />
+				<WaitTimer WaitTime="3" />
+				<NoCombatMoveTo Name="Farming Area" XYZ="-566.7139, -97.0237, 544.4297" />
+				<Gather Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-566.7139, -97.0237, 544.4297" name="Lush Vegetation Patchs" />
+					</HotSpots>
+					<Slot>0</Slot> <!-- Coneflower -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-699.5511, -114.3527, 574.657" />
+				<Gather Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-705.5204, -114.4788, 579.652" name="Lush Vegetation Patchs" />
+						<HotSpot Radius="5" XYZ="-699.5511, -114.3527, 574.657" name="Safe Spot" />
+					</HotSpots>
+					<Slot>0</Slot> <!-- Coneflower -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+			</While>
+
+			<!-- Level 58-60 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 60">
+				<If Condition="not IsOnMap(401)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+						<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+						<Travel To="401" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="137.9522, -147.8377, 567.9448" />
+				<Dismount />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<Gather Loops="1">
+					<GatherObject>Mature Tree</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="144.6908, -147.8377, 484.7838" name="Mature Trees" />
+						<HotSpot Radius="5" XYZ="137.9522, -147.8377, 567.9448" name="Safe Spot" />
+					</HotSpots>
+					<Slot>3</Slot> <!-- Birch Sap -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<RunCode Name="EnableMount" />
+				<WaitTimer WaitTime="3" />
+				<NoCombatMoveTo Name="Farming Area" XYZ="65.69433, -144.075, 576.7248" />
+				<Dismount />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<Gather Loops="1">
+					<GatherObject>Mature Tree</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="84.49673, -146.5234, 603.3362" name="Mature Trees" />
+						<HotSpot Radius="5" XYZ="65.69433, -144.075, 576.7248" name="Safe Spot" />
+					</HotSpots>
+					<Slot>3</Slot> <!-- Birch Sap -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<RunCode Name="EnableMount" />
+				<WaitTimer WaitTime="3" />
+				<NoCombatMoveTo Name="Farming Area" XYZ="315.2445, -125.2895, 589.0366" />
+				<Dismount />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<Gather Loops="1">
+					<GatherObject>Mature Tree</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="315.2445, -125.2895, 589.0366" name="Mature Trees" />
+						<HotSpot Radius="5" XYZ="288.5976, -124.0199, 601.2742" name="Safe Spot" />
+					</HotSpots>
+					<Slot>3</Slot> <!-- Birch Sap -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<RunCode Name="EnableMount" />
+				<WaitTimer WaitTime="3" />
+			</While>
+
+		</If>
+
+		<If Condition="Core.Player.ClassLevel == 60">
+			<LogMessage Message="Congrats! You've hit level 60 Botanist!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+		</If>
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="Botanist">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 22");
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DisableMount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = false;
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="EnableMount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = true;
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Stealth">
+			<![CDATA[ SpellData data;
+				if (!Core.Me.HasAura(47) && Actionmanager.CurrentActions.TryGetValue(212, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(212, Core.Me);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
