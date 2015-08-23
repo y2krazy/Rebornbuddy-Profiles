@@ -5,12 +5,13 @@
 #########################################################
 # Author: y2krazy                                       #
 #########################################################
-# Version: 1.0.0                                        #
+# Version: 1.0.1                                        #
 #########################################################
 # Required Level: 50                                    #
 #########################################################
 # Required Teleport Locations:                          #
 # 	Anyx Trine or Tailfeather                           #
+# 	Black Brush Station                                 #
 # 	Camp Cloudtop                                       #
 # 	Falcon's Nest                                       #
 #########################################################
@@ -45,7 +46,31 @@
 				<StopBot />
 			</If>
 
-			<!-- Level 50-52 -->
+			<!-- Level 50-51 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 51">
+				<If Condition="not IsOnMap(141)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+						<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+						<Travel To="141" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="332.6265, -15.65481, -15.12926" />
+				<Gather while="Core.Player.ClassLevel &lt; 51">
+					<GatherObject>Mature Tree</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="250" XYZ="382.7507, -17.89353, -95.69798" name="Mature Trees" />
+					</HotSpots>
+					<Slot>0</Slot> <!-- Grade 3 Carbonized Matter -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+			</While>
+
+			<!-- Level 51-52 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 52">
 				<If Condition="not IsOnMap(397)">
@@ -312,7 +337,7 @@
 						<Travel To="401" />
 					</If>
 				</If>
-				<NoCombatMoveTo Name="Farming Area" XYZ="137.9522, -147.8377, 567.9448" />
+				<NoCombatMoveTo Name="Farming Area" XYZ="138.6298, -147.8377, 450.6087" />
 				<Dismount />
 				<WaitTimer WaitTime="3" />
 				<RunCode Name="Stealth" />
@@ -321,8 +346,8 @@
 				<Gather Loops="1">
 					<GatherObject>Mature Tree</GatherObject>
 					<HotSpots>
-						<HotSpot Radius="90" XYZ="144.6908, -147.8377, 484.7838" name="Mature Trees" />
-						<HotSpot Radius="5" XYZ="137.9522, -147.8377, 567.9448" name="Safe Spot" />
+						<HotSpot Radius="90" XYZ="138.6298, -147.8377, 450.6087" name="Mature Trees" />
+						<HotSpot Radius="5" XYZ="151.7816, -147.8377, 464.445" name="Safe Spot" />
 					</HotSpots>
 					<Slot>3</Slot> <!-- Birch Sap -->
 					<GatheringSkillOrder>
@@ -340,8 +365,7 @@
 				<Gather Loops="1">
 					<GatherObject>Mature Tree</GatherObject>
 					<HotSpots>
-						<HotSpot Radius="90" XYZ="84.49673, -146.5234, 603.3362" name="Mature Trees" />
-						<HotSpot Radius="5" XYZ="65.69433, -144.075, 576.7248" name="Safe Spot" />
+						<HotSpot Radius="90" XYZ="79.40888, -146.5234, 584.2872" name="Mature Trees" />
 					</HotSpots>
 					<Slot>3</Slot> <!-- Birch Sap -->
 					<GatheringSkillOrder>

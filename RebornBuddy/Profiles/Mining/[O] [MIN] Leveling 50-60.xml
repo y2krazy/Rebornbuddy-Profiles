@@ -5,7 +5,7 @@
 ######################################################
 # Author: y2krazy                                    #
 ######################################################
-# Version: 1.0.0                                     #
+# Version: 1.0.1                                     #
 ######################################################
 # Required Level: 50                                 #
 ######################################################
@@ -13,6 +13,7 @@
 # 	Anyx Trine or Tailfeather                        #
 # 	Camp Cloudtop                                    #
 # 	Falcon's Nest                                    #
+# 	The Hawthorne Hut                                #
 ######################################################
 # Required User Interaction:                         #
 # 	None                                             #
@@ -45,7 +46,31 @@
 				<StopBot />
 			</If>
 
-			<!-- Level 50-52 -->
+			<!-- Level 50-51 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 51">
+				<If Condition="not IsOnMap(152)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(4)">
+						<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+						<Travel To="152" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-185.6458, -4.84562, 193.8963" />
+				<Gather while="Core.Player.ClassLevel &lt; 51">
+					<GatherObject>Rocky Outcrop</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-155.8013, -0.2726408, 161.3902" name="Rocky Outcrops" />
+					</HotSpots>
+					<Slot>0</Slot> <!-- Grade 3 Carbonized Matter -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Solid Reason" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+			</While>
+
+			<!-- Level 51-52 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 52">
 				<If Condition="not IsOnMap(397)">
