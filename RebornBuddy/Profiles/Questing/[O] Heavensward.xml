@@ -7214,7 +7214,7 @@
 						<StopBot />
 					</If>
 				</If>
-				<NoCombatMoveTo Name="1013360" XYZ="543.2668, 228.377, 734.4929" />
+				<NoCombatMoveTo Name="Nonplussed Noblewoman" XYZ="543.2668, 228.377, 734.4929" />
 				<If Condition="IsQuestAcceptQualified(67290)">
 					<PickupQuest NpcId="1013360" QuestId="67290" XYZ="543.2668, 228.377, 734.4929" />
 				</If>
@@ -7245,7 +7245,8 @@
 
 					<!-- TO DO -->
 
-					<!-- <TalkTo InteractDistance="3.0" NpcId="1013361" XYZ="541.1306, 238.7222, 742.0309" QuestId="67290" StepId="1" />
+					<!-- <FlyTo Name="Quavering Kitten" XYZ="541.1306, 238.7222, 742.0309" />
+					<TalkTo NpcId="1013361" XYZ="541.1306, 238.7222, 742.0309" QuestId="67290" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(67290) == 255">
 					<If Condition="not IsOnMap(397)">
@@ -7265,7 +7266,8 @@
 							<StopBot />
 						</If>
 					</If>
-					<TurnIn QuestId="67290" NpcId="1013360" XYZ="543.2668, 228.377, 734.4929" />
+					<NoCombatMoveTo Name="Nonplussed Noblewoman" XYZ="543.2668, 228.377, 734.4929" />
+					<TurnIn QuestId="67290" NpcId="1013360" ItemId="2001606" XYZ="543.2668, 228.377, 734.4929" />
 				</If>
 			</If>
 		</If> -->
@@ -14987,23 +14989,6 @@
 
 		<!-- [PickUp Quests] -->
 
-		<!-- Unrest in Ishgard -->
-		<If Condition="not IsQuestCompleted(67172)">
-			<If Condition="not HasQuest(67172)">
-				<If Condition="not IsOnMap(400)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-						<TeleportTo Name="Zenith" AetheryteId="79" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-						<Travel To="400" />
-					</If>
-				</If>
-				<MoveTo Name="Estinien" XYZ="-753.7194, 123.5725, 212.5734" />
-				<If Condition="IsQuestAcceptQualified(67172)">
-					<PickupQuest NpcId="1014110" QuestId="67172" XYZ="-753.7194, 123.5725, 212.5734" />
-				</If>
-			</If>
-		</If>
 		<!-- Sidequest: If Living Is Without Nuts -->
 		<If Condition="not IsQuestCompleted(67384)">
 			<If Condition="not HasQuest(67384)">
@@ -15073,7 +15058,7 @@
 						<Travel To="400" />
 					</If>
 				</If>
-				<MoveTo Name="Mognell" XYZ="-93.85828, 90.08418, 283.3142" />
+				<FlyTo Name="Mognell" XYZ="-93.85828, 90.08418, 283.3142" />
 				<If Condition="IsQuestAcceptQualified(67378)">
 					<PickupQuest NpcId="1012090" QuestId="67378" XYZ="-93.85828, 90.08418, 283.3142" />
 				</If>
@@ -15097,14 +15082,14 @@
 						<Travel To="400" />
 					</If>
 				</If>
-				<MoveTo Name="Mogeuge" XYZ="-65.87323, 91.65202, 264.4846" />
+				<FlyTo Name="Mogeuge" XYZ="-65.87323, 91.65202, 264.4846" />
 				<If Condition="IsQuestAcceptQualified(67379)">
 					<PickupQuest NpcId="1012089" QuestId="67379" XYZ="-65.87323, 91.65202, 264.4846" />
 				</If>
 			</If>
 		</If> -->
 
-		<!-- [Complete Quest] -->
+		<!-- [Complete Quests] -->
 
 		<!-- TO DO -->
 
@@ -15115,8 +15100,83 @@
 		<!-- Sidequest: Just Another Bug Hunt -->
 		<!-- <If Condition="not IsQuestCompleted(67378)">
 			<If Condition="HasQuest(67378)">
-				<LogMessage Message="Just Another Bug Hunt quest is coming soon! Stay tuned!" />
-				<StopBot /> -->
+				<If Condition="GetQuestStep(67378) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+					</If>
+					<If Condition="GetQuestById(67378).QuestI8AH == 0">
+						<FlyTo Name="Big Bad Bugs" XYZ="-152.5752, -12.88081, 388.9396" />
+						<MoveTo Name="Big Bad Bugs" XYZ="-113.4514, -13.73471, 423.0106" />
+						<Grind grindRef="Just_Another_Bug_Hunt" while="HasQuest(67378) and GetQuestById(67378).QuestI8AH == 0" />
+					</If>
+					<If Condition="GetQuestById(67378).QuestI8AH == 1">
+						<FlyTo Name="Big Bad Bugs" XYZ="-47.47429, -7.713746, 482.4277" />
+						<MoveTo Name="Big Bad Bugs" XYZ="-55.22462, -8.294361, 453.845" />
+						<Grind grindRef="Just_Another_Bug_Hunt2" while="HasQuest(67378) and GetQuestById(67378).QuestI8AH == 1" />
+					</If>
+					<If Condition="GetQuestById(67378).QuestI8AH == 2">
+						<FlyTo Name="Big Bad Bugs" XYZ="-7.196342, -21.05265, 410.1738" />
+						<MoveTo Name="Big Bad Bugs" XYZ="-7.196342, -21.05265, 410.1738" />
+						<Grind grindRef="Just_Another_Bug_Hunt3" while="HasQuest(67378) and GetQuestById(67378).QuestI8AH == 2" />
+					</If>
+				</If>
+			</If>
+		</If> -->
+		<!-- Sidequest: Wyvern Let Die -->
+		<!-- <If Condition="not IsQuestCompleted(67379)">
+			<If Condition="HasQuest(67379)">
+				<If Condition="GetQuestStep(67379) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+					</If>
+					<FlyTo Name="Elder Wyverns" XYZ="122.9087, 39.9952, 259.3929" />
+					<Grind grindRef="Wyvern_Let_Die" while="HasQuest(67379) and GetQuestStep(67379) == 1" />
+				</If>
+			</If>
+		</If> -->
+
+		<!-- [TurnIn Quests] -->
+
+		<!-- Sidequest: Wyvern Let Die -->
+		<!-- <If Condition="not IsQuestCompleted(67379)">
+			<If Condition="HasQuest(67379)">
+				<If Condition="GetQuestStep(67379) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+					</If>
+					<FlyTo Name="Mogeuge" XYZ="-65.87323, 91.65202, 264.4846" />
+					<NoCombatMoveTo Name="Mogeuge" XYZ="-65.87323, 91.65202, 264.4846" />
+					<TurnIn QuestId="67379" NpcId="1012089" XYZ="-65.87323, 91.65202, 264.4846" />
+				</If>
+			</If>
+		</If> -->
+		<!-- Sidequest: Just Another Bug Hunt -->
+		<!-- <If Condition="not IsQuestCompleted(67378)">
+			<If Condition="HasQuest(67378)">
+				<If Condition="GetQuestStep(67378) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+					</If> -->
 
 					<!-- Rewards
 
@@ -15126,27 +15186,85 @@
 
 					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
 
-					<TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="0" />
+					<TurnIn QuestId="67378" NpcId="1012090" XYZ="-93.85828, 90.08418, 283.3142" RewardSlot="0" />
 
 					-->
 
-					<!-- <TurnIn QuestId="" NpcId="" XYZ="" /> -->
-			<!-- </If>
-		</If> -->
-
-		<!-- TO DO -->
-
-		<!-- REQUIRES FLYING TO COMPLETE! -->
-
-		<!-- TO DO -->
-
-		<!-- Sidequest: Wyvern Let Die -->
-		<!-- <If Condition="not IsQuestCompleted(67379)">
-			<If Condition="HasQuest(67379)">
-				<LogMessage Message="Wyvern Let Die quest is coming soon! Stay tuned!" />
-				<StopBot />
+					<!-- <FlyTo Name="Mognell" XYZ="-93.85828, 90.08418, 283.3142" />
+					<NoCombatMoveTo Name="Mognell" XYZ="-93.85828, 90.08418, 283.3142" />
+					<TurnIn QuestId="67378" NpcId="1012090" XYZ="-93.85828, 90.08418, 283.3142" />
+				</If>
 			</If>
 		</If> -->
+
+		<!-- [PickUp Quest] -->
+
+		<!-- TO DO -->
+
+		<!-- REQUIRES FLYING TO ACCEPT! -->
+
+		<!-- TO DO -->
+
+		<!-- Sidequest: Root Maneuvers -->
+		<!-- <If Condition="not IsQuestCompleted(67380)">
+			<If Condition="not HasQuest(67380)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+				</If>
+				<MoveTo Name="Mogeuge" XYZ="-65.87323, 91.65202, 264.4846" />
+				<If Condition="IsQuestAcceptQualified(67380)">
+					<PickupQuest NpcId="1012089" QuestId="67380" XYZ="-65.87323, 91.65202, 264.4846" />
+				</If>
+			</If> -->
+
+			<!-- [Complete Quest] -->
+
+			<!-- <If Condition="HasQuest(67380)">
+				<If Condition="GetQuestStep(67380) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+					</If>
+					<FlyTo Name="Crackleweed Seedlings" XYZ="145.3116, 49.69861, 306.0197" />
+					<While Condition="not IsTodoChecked(67380, 1, 0)">
+						<UseObject NpcId="2005731" XYZ="145.3116, 49.69861, 306.0197" Radius="10" QuestId="67380" StepId="1" />
+						<UseObject NpcId="2005729" XYZ="114.5189, 39.9939, 256.5193" Radius="10" QuestId="67380" StepId="1" />
+						<UseObject NpcId="2005728" XYZ="79.51477, 27.35938, 286.5186" Radius="10" QuestId="67380" StepId="1" />
+						<FlyTo Name="Crackleweed Seedlings" XYZ="184.4968, 26.0166, 249.7444" />
+						<UseObject NpcId="2005730" XYZ="184.4968, 26.0166, 249.7444" Radius="10" QuestId="67380" StepId="1" />
+						<FlyTo Name="Crackleweed Seedlings" XYZ="138.9639, 4.653992, 349.2026" />
+						<UseObject NpcId="2005732" XYZ="138.9639, 4.653992, 349.2026" Radius="10" QuestId="67380" StepId="1" />
+					</While>
+				</If> -->
+
+				<!-- [TurnIn Quest] -->
+
+				<!-- <If Condition="GetQuestStep(67380) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+							<Travel To="400" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Moggzia" XYZ="225.5436, 6.960201, 709.3461" />
+					<TurnIn QuestId="67380" NpcId="1012084" ItemId="2001645" XYZ="225.5436, 6.960201, 709.3461" />
+				</If>
+			</If>
+		</If> -->
+
+		<!-- [Complete Quest] -->
+
 		<!-- Sidequest: An Immaculate Home -->
 		<If Condition="not IsQuestCompleted(67377)">
 			<If Condition="HasQuest(67377)">
@@ -16109,23 +16227,39 @@
 							<Travel To="400" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="Wildfowl Nests" XYZ="<-758.9141, 73, 313.2263" />
-					<If Condition="GetQuestById(67385).QuestI8AH == 0">
+					<If Condition="GetQuestById(67385).QuestI8AH == 1">
+						<FlyTo Name="Wildfowl Nests" XYZ="-758.9141, 73, 313.2263" />
 						<UseObject NpcId="2005745" XYZ="-787.2892, 73.10596, 301.1978" Radius="10" QuestId="67385" StepId="1" />
 					</If>
 					<If Condition="GetQuestById(67385).QuestI8AH == 1">
-						
+						<FlyTo Name="Wildfowl Nests" XYZ="-800.9918, 238.5443, 265.0645" />
+						<UseObject NpcId="2005741" XYZ="-800.9918, 238.5443, 265.0645" Radius="10" QuestId="67385" StepId="1" />
 					</If>
 					<If Condition="GetQuestById(67385).QuestI8AH == 2">
-						
+						<FlyTo Name="Wildfowl Nests" XYZ="-703.3646, 342.9771, 213.4279" />
+						<UseObject NpcId="2005742" XYZ="-703.3646, 342.9771, 213.4279" Radius="10" QuestId="67385" StepId="1" />
 					</If>
 					<If Condition="GetQuestById(67385).QuestI8AH == 3">
-						
+						<FlyTo Name="Wildfowl Nests" XYZ="-762.2034, 344.2283, 305.9586" />
+						<UseObject NpcId="2005743" XYZ="-762.2034, 344.2283, 305.9586" Radius="10" QuestId="67385" StepId="1" />
 					</If>
 					<If Condition="GetQuestById(67385).QuestI8AH == 4">
-						
+						<FlyTo Name="Wildfowl Nests" XYZ="-749.9047, 418.7228, 224.7806" />
+						<UseObject NpcId="2005744" XYZ="-749.9047, 418.7228, 224.7806" Radius="10" QuestId="67385" StepId="1" />
 					</If>
 				</If> -->
+
+				<!-- [TurnIn Quest] -->
+
+				<!-- <If Condition="GetQuestStep(67385) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+					</If> -->
 
 					<!-- Rewards
 
@@ -16135,12 +16269,14 @@
 
 					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
 
-					<TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="0" />
+					<TurnIn QuestId="67385" NpcId="1013514" ItemId="2001679" XYZ="-613.3059, 69.99999, 205.2795" RewardSlot="0" />
 
 					-->
 
-					<!-- <TurnIn QuestId="" NpcId="" XYZ="" /> -->
-			<!-- </If>
+					<!-- <FlyTo Name="Unmaneuvering Moogle" XYZ="-613.3059, 69.99999, 205.2795" />
+					<TurnIn QuestId="67385" NpcId="1013514" ItemId="2001679" XYZ="-613.3059, 69.99999, 205.2795" />
+				</If>
+			</If>
 		</If> -->
 		<!-- Sidequest: An Uneasy Feeling -->
 		<If Condition="not IsQuestCompleted(67402)">
@@ -16223,9 +16359,33 @@
 							<Travel To="400" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="Dragons" XYZ="-628.108, 81, 137.9627" />
-					<Grind grindRef="An_Uneasy_Feeling" while="HasQuest(67402) and GetQuestById(67402).QuestI8AH == 0" />
+					<FlyTo Name="Ancient Vouivre" XYZ="-713.8018, 343, 238.941" />
+					<TalkTo NpcId="1014310" XYZ="-713.8018, 343, 238.941" QuestId="67404" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67404) == 2">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+					</If>
+					<FlyTo Name="Mogkul" XYZ="-711.1772, 342.0005, 236.3164" />
+					<TalkTo NpcId="1014311" XYZ="-711.1772, 342.0005, 236.3164" QuestId="67404" StepId="2" />
 				</If> -->
+
+				<!-- [TurnIn Quest] -->
+
+				<!-- <If Condition="GetQuestStep(67404) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+							<Travel To="400" />
+						</If>
+					</If> -->
 
 					<!-- Rewards
 
@@ -16235,12 +16395,14 @@
 
 					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
 
-					<TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="0" />
+					<TurnIn QuestId="67404" NpcId="1012082" XYZ="381.7043, -69.41491, 691.5541" RewardSlot="0" />
 
 					-->
 
-					<!-- <TurnIn QuestId="" NpcId="" XYZ="" /> -->
-			<!-- </If>
+					<!-- <FlyTo Name="Mogloo" XYZ="381.7043, -69.41491, 691.5541" />
+					<TurnIn QuestId="67404" NpcId="1012082" XYZ="381.7043, -69.41491, 691.5541" />
+				</If>
+			</If>
 		</If> -->
 
 		<!-- [Complete Quest] -->
@@ -16248,22 +16410,902 @@
 		<!-- Sidequest: No Country for Young Moogles -->
 		<If Condition="not IsQuestCompleted(67381)">
 			<If Condition="HasQuest(67381)">
-				<LogMessage Message="No Country for Young Moogles quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67381) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Missing Moogles" XYZ="-204.6998, 42.95777, -81.80371" />
+					<While Condition="not IsTodoChecked(67381, 1, 0)">
+						<TalkTo NpcId="1013510" XYZ="-204.6998, 42.95777, -81.80371" QuestId="67381" StepId="1" />
+						<NoCombatMoveTo Name="Missing Moogles" XYZ="-156.0236, 44.21858, 35.56873" />
+						<TalkTo NpcId="1013509" XYZ="-156.0236, 44.21858, 35.56873" QuestId="67381" StepId="1" />
+						<NoCombatMoveTo Name="Missing Moogles" XYZ="-57.96906, 71.15404, -57.26715" />
+						<TalkTo NpcId="1013508" XYZ="-57.96906, 71.15404, -57.26715" QuestId="67381" StepId="1" />
+					</While>
+				</If>
+
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(67381) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Impatient Moogle" XYZ="-548.0278, 54.15157, 203.6621" />
+					<TurnIn QuestId="67381" NpcId="1013507" XYZ="-548.0278, 54.15157, 203.6621" />
+				</If>
 			</If>
 		</If>
+
+		<!-- [PickUp Quest] -->
+
+		<!-- Sidequest: The Sins of our Landlords -->
+		<If Condition="not IsQuestCompleted(67397)">
+			<If Condition="not HasQuest(67397)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+					<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+				</If>
+				<NoCombatMoveTo Name="Rummaging Moogle" XYZ="-98.64966, 81.8169, -213.5806" />
+				<If Condition="IsQuestAcceptQualified(67397)">
+					<PickupQuest NpcId="1013547" QuestId="67397" XYZ="-98.64966, 81.8169, -213.5806" />
+				</If>
+			</If>
+
+			<!-- [Complete Quest] -->
+
+			<If Condition="HasQuest(67397)">
+				<If Condition="GetQuestStep(67397) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Vouivres" XYZ="-92.24363, 81.83399, -220.3306" />
+					<Grind grindRef="The_Sins_of_our_Landlords" while="HasQuest(67397) and GetQuestStep(67397) == 1" />
+				</If>
+
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(67397) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+
+					<!-- Rewards
+
+					0: Gathering Materia IV
+					1: Perception Materia IV
+					2: GP Materia IV
+
+					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+					<TurnIn QuestId="67397" NpcId="1013547" ItemId="2001652" XYZ="-98.64966, 81.8169, -213.5806" RewardSlot="0" />
+
+					-->
+
+					<NoCombatMoveTo Name="Rummaging Moogle" XYZ="-98.64966, 81.8169, -213.5806" />
+					<TurnIn QuestId="67397" NpcId="1013547" ItemId="2001652" XYZ="-98.64966, 81.8169, -213.5806" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [PickUp Quest] -->
+
+		<!-- TO DO -->
+
+		<!-- REQUIRES FLYING TO COMPLETE! -->
+
+		<!-- TO DO -->			
+
+		<!-- Sidequest: The Mog Squad Assembles -->
+		<!-- <If Condition="not IsQuestCompleted(67386)">
+			<If Condition="not HasQuest(67386)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+					<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+				</If>
+				<NoCombatMoveTo Name="Mogzun" XYZ="-214.313, 81.84055, -233.4478" />
+				<If Condition="IsQuestAcceptQualified(67386)">
+					<PickupQuest NpcId="1013515" QuestId="67386" XYZ="-214.313, 81.84055, -233.4478" />
+				</If>
+			</If> -->
+
+			<!-- [Complete Quest] -->
+
+			<!-- <If Condition="HasQuest(67386)">
+				<If Condition="GetQuestStep(67386) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<While Condition="not IsTodoChecked(67386, 1, 0)">
+						<NoCombatMoveTo Name="Mogoot" XYZ="-214.313, 81.84055, -233.4478" />
+						<ClimbHill Name="Jump Over Ledge" Start="-228.7369, 81.84055, -232.5298" End="-231.5103, 80.86095, -241.3205" />
+						<NoCombatMoveTo Name="Mogoot" XYZ="-139.4827, 61.92442, -315.7549" />
+						<TalkTo NpcId="1013518" XYZ="-139.4827, 61.92442, -315.7549" QuestId="67386" StepId="1" />
+						<NoCombatMoveTo Name="Mogkon" XYZ="-46.25018, 61.92432, -274.5251" />
+						<TalkTo NpcId="1013516" XYZ="-46.25018, 61.92432, -274.5251" QuestId="67386" StepId="1" />
+					</While>
+				</If>
+			</If> -->
+
+			<!-- [TurnIn Quest] -->
+
+			<!-- <If Condition="HasQuest(67386)">
+				<If Condition="GetQuestStep(67386) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Mogzun" XYZ="-214.313, 81.84055, -233.4478" />
+					<TurnIn QuestId="67386" NpcId="1013515" XYZ="-214.313, 81.84055, -233.4478" />
+				</If>
+			</If>
+		</If> -->
+
+		<!-- [PickUp Quest] -->
+
+		<!-- Sidequest: Branching Out -->
+		<If Condition="not IsQuestCompleted(67387)">
+			<If Condition="not HasQuest(67387)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+					<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+				</If>
+				<NoCombatMoveTo Name="Mogzun" XYZ="-481.0712, 106.918, -113.0541" />
+				<If Condition="IsQuestAcceptQualified(67387)">
+					<PickupQuest NpcId="1013520" QuestId="67387" XYZ="-481.0712, 106.918, -113.0541" />
+				</If>
+			</If>
+
+			<!-- [Complete Quest] -->
+
+			<If Condition="HasQuest(67387)">
+				<If Condition="GetQuestStep(67387) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Gnarled Meliae" XYZ="-499.3397, 108.1548, -124.8035" />
+					<Grind grindRef="Branching_Out" while="HasQuest(67387) and GetQuestStep(67387) == 1" />
+				</If>
+
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(67387) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+
+					<!-- Rewards
+
+					0: Grade 4 Glamour Prism (Woodworking)
+					1: Grade 4 Glamour Prism (Smithing)
+					2: Grade 4 Glamour Prism (Armorcraft)
+					3: Grade 4 Glamour Prism (Goldsmithing)
+
+					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+					<TurnIn QuestId="67387" NpcId="1013520" ItemId="2001647" XYZ="-481.0712, 106.918, -113.0541" RewardSlot="0" />
+
+					-->
+
+					<NoCombatMoveTo Name="Mogzun" XYZ="-481.0712, 106.918, -113.0541" />
+					<TurnIn QuestId="67387" NpcId="1013520" ItemId="2001647" XYZ="-481.0712, 106.918, -113.0541" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [PickUp Quest] -->
+
+		<!-- Sidequest: What Learning Entails -->
+		<If Condition="not IsQuestCompleted(67388)">
+			<If Condition="not HasQuest(67388)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+					<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+				</If>
+				<NoCombatMoveTo Name="Mogkon" XYZ="-520.7751, 116.3302, -239.1241" />
+				<If Condition="IsQuestAcceptQualified(67388)">
+					<PickupQuest NpcId="1013521" QuestId="67388" XYZ="-520.7751, 116.3302, -239.1241" />
+				</If>
+			</If>
+
+			<!-- [Complete Quest] -->
+
+			<If Condition="HasQuest(67388)">
+				<If Condition="GetQuestStep(67388) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Mists Drakes" XYZ="-520.7751, 116.3302, -239.1241" />
+					<Grind grindRef="What_Learning_Entails" while="HasQuest(67388) and GetQuestStep(67388) == 1" />
+				</If>
+
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(67388) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+
+					<!-- Rewards
+
+					0: Grade 4 Glamour Prism (Leatherworking)
+					1: Grade 4 Glamour Prism (Clothcraft)
+					2: Grade 4 Glamour Prism (Alchemy)
+
+					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+					<TurnIn QuestId="67388" NpcId="1013521" ItemId="2001648" XYZ="-520.7751, 116.3302, -239.1241" RewardSlot="0" />
+
+					-->
+
+					<NoCombatMoveTo Name="Mogkon" XYZ="-520.7751, 116.3302, -239.1241" />
+					<TurnIn QuestId="67388" NpcId="1013521" ItemId="2001648" XYZ="-520.7751, 116.3302, -239.1241" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [PickUp Quests] -->
+
+		<!-- Sidequest: Seedy Business -->
+		<If Condition="not IsQuestCompleted(67395)">
+			<If Condition="not HasQuest(67395)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+					<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+				</If>
+				<NoCombatMoveTo Name="Meticulous Moogle" XYZ="-637.9645, 108.7327, -341.1155" />
+				<If Condition="IsQuestAcceptQualified(67395)">
+					<PickupQuest NpcId="1013546" QuestId="67395" XYZ="-637.9645, 108.7327, -341.1155" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: A Rocky Start -->
+		<If Condition="not IsQuestCompleted(67389)">
+			<If Condition="not HasQuest(67389)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+					<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+				</If>
+				<NoCombatMoveTo Name="Mogoot" XYZ="-708.4917, 90.86575, -436.3318" />
+				<If Condition="IsQuestAcceptQualified(67389)">
+					<PickupQuest NpcId="1013522" QuestId="67389" XYZ="-708.4917, 90.86575, -436.3318" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [Complete Quests] -->
+
+		<!-- Sidequest: A Rocky Start -->
+		<If Condition="not IsQuestCompleted(67389)">
+			<If Condition="HasQuest(67389)">
+				<If Condition="GetQuestStep(67389) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Limestone Golems" XYZ="-708.4917, 90.86575, -436.3318" />
+					<Grind grindRef="A_Rocky_Start" while="HasQuest(67389) and GetQuestStep(67389) == 1" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Seedy Business -->
+		<If Condition="not IsQuestCompleted(67395)">
+			<If Condition="HasQuest(67395)">
+				<If Condition="GetQuestStep(67395) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Whistleberry Seedlings" XYZ="-751.175, 90.84294, -430.3696" />
+					<UseObject NpcIds="2005757,2005755,2005756,2005758" QuestId="67395" StepId="1">
+						<HotSpots>
+							<HotSpot XYZ="-773.0679, 90.86743, -403.6164" Radius="10" />
+							<HotSpot XYZ="-809.5979, 90.86743, -431.754" Radius="10" />
+							<HotSpot XYZ="-795.2239, 90.86743, -458.8541" Radius="10" />
+							<HotSpot XYZ="-764.889, 90.86743, -460.4716" Radius="10" />
+						</HotSpots>
+					</UseObject>
+				</If>
+			</If>
+		</If>
+
+		<!-- [TurnIn Quests] -->
+
+		<!-- Sidequest: A Rocky Start -->
+		<If Condition="not IsQuestCompleted(67389)">
+			<If Condition="HasQuest(67389)">
+				<If Condition="GetQuestStep(67389) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+
+					<!-- Rewards
+
+					0: Raptor Blue Dye
+					1: Lime Green Dye
+					2: Ul Brown Dye
+					3: Lavender Purple Dye
+
+					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+					<TurnIn QuestId="67389" NpcId="1013522" ItemId="2001649" XYZ="-708.4917, 90.86575, -436.3318" RewardSlot="0" />
+
+					-->
+
+					<NoCombatMoveTo Name="Mogoot" XYZ="-708.4917, 90.86575, -436.3318" />
+					<TurnIn QuestId="67389" NpcId="1013522" ItemId="2001649" XYZ="-708.4917, 90.86575, -436.3318" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Seedy Business -->
+		<If Condition="not IsQuestCompleted(67395)">
+			<If Condition="HasQuest(67395)">
+				<If Condition="GetQuestStep(67395) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Meticulous Moogle" XYZ="-637.9645, 108.7327, -341.1155" />
+					<TurnIn QuestId="67395" NpcId="1013546" ItemId="2001650" XYZ="-637.9645, 108.7327, -341.1155" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [PickUp Quest] -->
+
+		<!-- TO DO -->
+
+		<!-- REQUIRES FLYING TO COMPLETE! -->
+
+		<!-- TO DO -->			
+
+		<!-- Sidequest: Walking the Walk -->
+		<!-- <If Condition="not IsQuestCompleted(67390)">
+			<If Condition="not HasQuest(67390)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+					<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+				</If>
+				<NoCombatMoveTo Name="Mogzun" XYZ="-309.4377, 83.02001, -140.0016" />
+				<If Condition="IsQuestAcceptQualified(67390)">
+					<PickupQuest NpcId="1013523" QuestId="67390" XYZ="-309.4377, 83.02001, -140.0016" />
+				</If>
+			</If> -->
+
+			<!-- [Complete Quest] -->
+
+			<!-- <If Condition="HasQuest(67390)">
+				<If Condition="GetQuestStep(67390) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<While Condition="not IsTodoChecked(67390, 1, 0)">
+						<MoveTo Name="Mogkon" XYZ="-173.3273, 61.9243, -257.9538" />
+						<TalkTo NpcId="1013527" XYZ="-173.3273, 61.9243, -257.9538" QuestId="67390" StepId="1" />
+						<NoCombatMoveTo Name="Mogzun" XYZ="-103.2274, 61.92442, -204.9439" />
+						<TalkTo NpcId="1013526" XYZ="-103.2274, 61.92442, -204.9439" QuestId="67390" StepId="1" />
+						<NoCombatMoveTo Name="Mogoot" XYZ="-61.32605, 61.92438, -302.5712" />
+						<TalkTo NpcId="1013528" XYZ="-61.32605, 61.92438, -302.5712" QuestId="67390" StepId="1" />
+					</While>
+				</If> -->
+
+				<!-- [TurnIn Quest] -->
+
+				<!-- <If Condition="GetQuestStep(67390) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If> -->
+
+					<!-- Rewards
+
+					0: Parry Materia IV
+					1: Skill Speed Materia IV
+					2: Spell Speed Materia IV
+
+					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+					<TurnIn QuestId="67390" NpcId="1013529" XYZ="-214.313, 81.84055, -233.4478" RewardSlot="0" />
+
+					-->
+
+					<!-- <NoCombatMoveTo Name="Mogzun" XYZ="-214.313, 81.84055, -233.4478" />
+					<TurnIn QuestId="67390" NpcId="1013529" XYZ="-214.313, 81.84055, -233.4478" />
+				</If>
+			</If>
+		</If> -->
+
+		<!-- [PickUp Quest] -->
+
+		<!-- Sidequest: Unwanted Attention -->
+		<If Condition="not IsQuestCompleted(67391)">
+			<If Condition="not HasQuest(67391)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+					<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+				</If>
+				<NoCombatMoveTo Name="Malingering Moogle" XYZ="-215.8389, 130.9513, -514.2138" />
+				<If Condition="IsQuestAcceptQualified(67391)">
+					<PickupQuest NpcId="1013535" QuestId="67391" XYZ="-215.8389, 130.9513, -514.2138" />
+				</If>
+			</If>
+
+			<!-- [Complete Quest] -->
+
+			<If Condition="HasQuest(67391)">
+				<If Condition="GetQuestStep(67391) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Dragonets" XYZ="-215.8389, 130.9513, -514.2138" />
+					<Grind grindRef="Unwanted_Attention" while="HasQuest(67391) and GetQuestStep(67391) == 1" />
+				</If>
+
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(67391) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Malingering Moogle" XYZ="-215.8389, 130.9513, -514.2138" />
+					<TurnIn QuestId="67391" NpcId="1013535" XYZ="-215.8389, 130.9513, -514.2138" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [Complete Quest] -->
+
 		<!-- Sidequest: Back to Baskets -->
 		<If Condition="not IsQuestCompleted(67383)">
 			<If Condition="HasQuest(67383)">
-				<LogMessage Message="Back to Baskets quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67383) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Mogson's Baskets" XYZ="-208.5323, 133.3037, -571.6465" />
+					<UseObject NpcIds="2005735,2005734,2005733" QuestId="67383" StepId="1">
+						<HotSpots>
+							<HotSpot XYZ="-214.3435, 134.4777, -577.3251" Radius="10" />
+							<HotSpot XYZ="-244.2817, 134.4777, -616.9985" Radius="10" />
+							<HotSpot XYZ="-149.3707, 138.4756, -641.3214" Radius="10" />
+						</HotSpots>
+					</UseObject>
+				</If>
 			</If>
 		</If>
+
+		<!-- [PickUp Quest] -->
+
+		<!-- Sidequest: Walking on Eggshells -->
+		<If Condition="not IsQuestCompleted(67392)">
+			<If Condition="not HasQuest(67392)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+					<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+				</If>
+				<NoCombatMoveTo Name="Remarking Moogle" XYZ="-227.6799, 134.4906, -593.4386" />
+				<If Condition="IsQuestAcceptQualified(67392)">
+					<PickupQuest NpcId="1013536" QuestId="67392" XYZ="-227.6799, 134.4906, -593.4386" />
+				</If>
+			</If>
+
+			<!-- [Complete Quest] -->
+
+			<If Condition="HasQuest(67392)">
+				<If Condition="GetQuestStep(67392) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<If Condition="GetQuestById(67392).QuestI8AH == 0">
+						<NoCombatMoveTo Name="Burrowing Wamourae" XYZ="-269.1968, 168.7354, -705.2934" />
+						<Grind grindRef="Walking_on_Eggshells" while="HasQuest(67392) and GetQuestById(67392).QuestI8AH == 0" />
+					</If>
+					<If Condition="GetQuestById(67392).QuestI8AH == 1">
+						<NoCombatMoveTo Name="Burrowing Wamourae" XYZ="-200.0727, 160.4906, -742.5918" />
+						<Grind grindRef="Walking_on_Eggshells2" while="HasQuest(67392) and GetQuestById(67392).QuestI8AH == 1" />
+					</If>
+					<If Condition="GetQuestById(67392).QuestI8AH == 2">
+						<NoCombatMoveTo Name="Burrowing Wamourae" XYZ="-137.6104, 160.9406, -792.0493" />
+						<Grind grindRef="Walking_on_Eggshells3" while="HasQuest(67392) and GetQuestById(67392).QuestI8AH == 2" />
+					</If>
+				</If>
+
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(67392) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<NoCombatMoveTo Name="Remarking Moogle" XYZ="-227.6799, 134.4906, -593.4386" />
+					<TurnIn QuestId="67392" NpcId="1013536" XYZ="-227.6799, 134.4906, -593.4386" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [PickUp Quest] -->
+
+		<!-- TO DO -->
+
+		<!-- REQUIRES FLYING TO PICKUP! -->
+
+		<!-- TO DO -->
+
+		<!-- Sidequest: It's Not a Bug, It's a Creature -->
+		<!-- <If Condition="not IsQuestCompleted(67393)">
+			<If Condition="not HasQuest(67393)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+					<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+				</If>
+				<FlyTo Name="Glimpsing Moogle" XYZ="-167.4678, 144.6952, -593.5607" />
+				<If Condition="IsQuestAcceptQualified(67393)">
+					<PickupQuest NpcId="1013537" QuestId="67393" XYZ="-167.4678, 144.6952, -593.5607" />
+				</If>
+			</If> -->
+
+			<!-- [Complete Quest] -->
+
+			<!-- <If Condition="HasQuest(67393)">
+				<If Condition="GetQuestStep(67393) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<If Condition="GetQuestById(67393).QuestI8AH == 0">
+						<FlyTo Name="Burrowing Wamouracampa" XYZ="-131.4023, 160.9406, -630.9926" />
+						<Grind grindRef="Its_Not_a_Bug_Its_a_Creature" while="HasQuest(67393) and GetQuestById(67393).QuestI8AH == 0" />
+					</If>
+					<If Condition="GetQuestById(67393).QuestI8AH == 1">
+						<FlyTo Name="Burrowing Wamouracampa" XYZ="-183.4651, 204.4906, -732.891" />
+						<Grind grindRef="Its_Not_a_Bug_Its_a_Creature2" while="HasQuest(67393) and GetQuestById(67393).QuestI8AH == 1" />
+					</If>
+					<If Condition="GetQuestById(67393).QuestI8AH == 2">
+						<FlyTo Name="Burrowing Wamouracampa" XYZ="-133.0267, 244.9688, -736.5363" />
+						<Grind grindRef="Its_Not_a_Bug_Its_a_Creature3" while="HasQuest(67393) and GetQuestById(67393).QuestI8AH == 2" />
+					</If>
+				</If> -->
+
+				<!-- [TurnIn Quest] -->
+
+				<!-- <If Condition="GetQuestStep(67393) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<FlyTo Name="Glimpsing Moogle" XYZ="-167.4678, 144.6952, -593.5607" />
+					<TurnIn QuestId="67393" NpcId="1013537" XYZ="-167.4678, 144.6952, -593.5607" />
+				</If>
+			</If>
+		</If> -->
+
+		<!-- [PickUp Quest] -->
+
+		<!-- TO DO -->
+
+		<!-- REQUIRES FLYING TO COMPLETE! -->
+
+		<!-- TO DO -->
+
+		<!-- Sidequest: A Frightening Field Trip -->
+		<!-- <If Condition="not IsQuestCompleted(67394)">
+			<If Condition="not HasQuest(67394)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+					<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+				</If>
+				<NoCombatMoveTo Name="Malingering Moogle" XYZ="-215.8389, 130.9513, -514.2138" />
+				<If Condition="IsQuestAcceptQualified(67394)">
+					<PickupQuest NpcId="1013535" QuestId="67394" XYZ="-215.8389, 130.9513, -514.2138" />
+				</If>
+			</If> -->
+
+			<!-- [Complete Quest] -->
+
+			<!-- <If Condition="HasQuest(67394)">
+				<If Condition="GetQuestStep(67394) == 1">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<While Condition="not IsTodoChecked(67394, 1, 0)">
+						<NoCombatMoveTo Name="Remarking Moogle" XYZ="-227.6799, 134.4906, -593.4386" />
+						<TalkTo NpcId="1013536" XYZ="-227.6799, 134.4906, -593.4386" QuestId="67394" StepId="1" />
+						<FlyTo Name="Glimpsing Moogle" XYZ="-167.4678, 144.6952, -593.5607" />
+						<TalkTo NpcId="1013537" XYZ="-167.4678, 144.6952, -593.5607" QuestId="67394" StepId="1" />
+						<FlyTo Name="Rummaging Moogle" XYZ="-311.2689, 206.4145, -643.7324" />
+						<TalkTo NpcId="1013540" XYZ="-311.2689, 206.4145, -643.7324" QuestId="67394" StepId="1" />
+						<FlyTo Name="Miming Moogle" XYZ="-286.244, 173.5168, -717.1893" />
+						<TalkTo NpcId="1013538" XYZ="-286.244, 173.5168, -717.1893" QuestId="67394" StepId="1" />
+						<FlyTo Name="Impetuous Moogle" XYZ="-200.5798, 226.1238, -782.1622" />
+						<TalkTo NpcId="1013539" XYZ="-200.5798, 226.1238, -782.1622" QuestId="67394" StepId="1" />
+					</While>
+				</If> -->
+
+				<!-- [TurnIn Quest] -->
+
+				<!-- <If Condition="GetQuestStep(67394) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<FlyTo Name="Malingering Moogle" XYZ="-215.8389, 130.9513, -514.2138" />
+					<TurnIn QuestId="67394" NpcId="1013535" XYZ="-215.8389, 130.9513, -514.2138" />
+				</If>
+			</If>
+		</If> -->
+
+		<!-- [TurnIn Quest] -->
+
+		<!-- TO DO -->
+
+		<!-- REQUIRES FLYING TO TURNIN! -->
+
+		<!-- TO DO -->
+
+		<!-- Sidequest: Back to Baskets -->
+		<!-- <If Condition="not IsQuestCompleted(67383)">
+			<If Condition="HasQuest(67383)">
+				<If Condition="GetQuestStep(67383) == 255">
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+							<TeleportTo Name="Zenith" AetheryteId="79" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
+						</If>
+						<ClimbHill Name="Stairs" Start="-563.9205, 59.18328, 191.5027" End="-564.145, 60.30325, 198.757" />
+					</If>
+					<FlyTo Name="Mogson" XYZ="-94.80432, -2.981276, 250.782" />
+					<TurnIn QuestId="67383" NpcId="1012091" ItemId="2001646" XYZ="-94.80432, -2.981276, 250.782" />
+				</If>
+			</If>
+		</If> -->
+
+		<If Condition="Core.Player.ClassLevel &lt; 56">
+									
+			<!-- TO DO -->
+
+			<!-- Add GrindArea for level 56 check.  -->
+
+			<!-- TO DO -->
+
+			<LogMessage Message="You are not level 56 yet!" />
+			<LogMessage Message="Grinding to level 56 will be supported in the future." />
+			<LogMessage Message="Please continue this profile when you are level 56+." />
+			<StopBot />
+		</If>
+
+		<!-- ######## -->
+		<!-- LEVEL 56 -->
+		<!-- ######## -->
+
+		<LogMessage Message="Checking level 56 quests..." />
+
+		<!-- [PickUp Quest] -->
+
 		<!-- Unrest in Ishgard -->
 		<If Condition="not IsQuestCompleted(67172)">
+			<If Condition="not HasQuest(67172)">
+				<If Condition="not IsOnMap(400)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+						<Travel To="400" />
+					</If>
+				</If>
+				<MoveTo Name="Estinien" XYZ="-753.7194, 123.5725, 212.5734" />
+				<If Condition="IsQuestAcceptQualified(67172)">
+					<PickupQuest NpcId="1014110" QuestId="67172" XYZ="-753.7194, 123.5725, 212.5734" />
+				</If>
+			</If>
+
+			<!-- [TurnIn Quest] -->
+
 			<If Condition="HasQuest(67172)">
-				<LogMessage Message="Unrest in Ishgard quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67172) == 255">
+					<If Condition="not IsOnMap(418)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+							<TeleportTo Name="Foundation" AetheryteId="70" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+							<Travel To="418" />
+						</If>
+					</If>
 
 					<!-- Rewards
 
@@ -16273,268 +17315,125 @@
 
 					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
 
-					<TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="0" />
+					<TurnIn QuestId="67172" NpcId="1012750" XYZ="-163.8972, 27.97913, -116.4111" RewardSlot="0" />
 
 					-->
 
-					<!-- <TurnIn QuestId="" NpcId="" XYZ="" /> -->
+					<MoveTo Name="Haurchefant" XYZ="-163.8972, 27.97913, -116.4111" />
+					<TurnIn QuestId="67172" NpcId="1012750" XYZ="-163.8972, 27.97913, -116.4111" />
+				</If>
 			</If>
 		</If>
 
-		<!-- Sidequest: Root Maneuvers -->
-
-		<If Condition="not IsQuestCompleted(67380)">
-			<If Condition="not HasQuest(67380)">
-				<LogMessage Message="Root Maneuvers quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67380)">
-				<LogMessage Message="Root Maneuvers quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-		</If>
-
-		<!-- Sidequest: The Mog Squad Assembles -->
-
-		<If Condition="not IsQuestCompleted(67386)">
-			<If Condition="not HasQuest(67386)">
-				<LogMessage Message="The Mog Squad Assembles quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67386)">
-				<LogMessage Message="The Mog Squad Assembles quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-		</If>
-
-		<!-- Sidequest: Branching Out -->
-
-		<If Condition="not IsQuestCompleted(67387)">
-			<If Condition="not HasQuest(67387)">
-				<LogMessage Message="Branching Out quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67387)">
-				<LogMessage Message="Branching Out quest is coming soon! Stay tuned!" />
-				<StopBot />
-
-					<!-- Rewards
-
-					0: Grade 4 Glamour Prism (Woodworking)
-					1: Grade 4 Glamour Prism (Smithing)
-					2: Grade 4 Glamour Prism (Armorcraft)
-					3: Grade 4 Glamour Prism (Goldsmithing)
-
-					If you want a specific reward from the above list, change the "Reward Slot" to the number you want:
-
-					-->
-
-					<!-- <TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="0" /> -->
-			</If>
-		</If>
-
-		<!-- Sidequest: What Learning Entails -->
-
-		<If Condition="not IsQuestCompleted(67388)">
-			<If Condition="not HasQuest(67388)">
-				<LogMessage Message="What Learning Entails quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67388)">
-				<LogMessage Message="What Learning Entails quest is coming soon! Stay tuned!" />
-				<StopBot />
-
-					<!-- Rewards
-
-					0: Grade 4 Glamour Prism (Leatherworking)
-					1: Grade 4 Glamour Prism (Clothcraft)
-					2: Grade 4 Glamour Prism (Alchemy)
-
-					If you want a specific reward from the above list, change the "Reward Slot" to the number you want:
-
-					-->
-
-					<!-- <TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="0" /> -->
-			</If>
-		</If>
-
-		<!-- Sidequest: A Rocky Start -->
-
-		<If Condition="not IsQuestCompleted(67389)">
-			<If Condition="not HasQuest(67389)">
-				<LogMessage Message="A Rocky Start quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67389)">
-				<LogMessage Message="A Rocky Start quest is coming soon! Stay tuned!" />
-				<StopBot />
-
-					<!-- Rewards
-
-					0: Raptor Blue Dye
-					1: Lime Green Dye
-					2: Ul Brown Dye
-					3: Lavender Purple Dye
-
-					If you want a specific reward from the above list, change the "Reward Slot" to the number you want:
-
-					-->
-
-					<!-- <TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="0" /> -->
-			</If>
-		</If>
-
-		<!-- Sidequest: Walking the Walk -->
-
-		<If Condition="not IsQuestCompleted(67390)">
-			<If Condition="not HasQuest(67390)">
-				<LogMessage Message="Walking the Walk quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67390)">
-				<LogMessage Message="Walking the Walk quest is coming soon! Stay tuned!" />
-				<StopBot />
-
-					<!-- Rewards
-
-					0: Parry Materia IV
-					1: Skill Speed Materia IV
-					2: Spell Speed Materia IV
-
-					If you want a specific reward from the above list, change the "Reward Slot" to the number you want:
-
-					-->
-
-					<!-- <TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="0" /> -->
-			</If>
-		</If>
-
-		<!-- Sidequest: Unwanted Attention -->
-
-		<If Condition="not IsQuestCompleted(67391)">
-			<If Condition="not HasQuest(67391)">
-				<LogMessage Message="Unwanted Attention quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67391)">
-				<LogMessage Message="Unwanted Attention quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-		</If>
-
-		<!-- Sidequest: Walking on Eggshells -->
-
-		<If Condition="not IsQuestCompleted(67392)">
-			<If Condition="not HasQuest(67392)">
-				<LogMessage Message="Walking on Eggshells quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67392)">
-				<LogMessage Message="Walking on Eggshells quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-		</If>
-
-		<!-- Sidequest: It's Not a Bug, It's a Creature -->
-
-		<If Condition="not IsQuestCompleted(67393)">
-			<If Condition="not HasQuest(67393)">
-				<LogMessage Message="It's Not a Bug, It's a Creature quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67393)">
-				<LogMessage Message="It's Not a Bug, It's a Creature quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-		</If>
-
-		<!-- Sidequest: A Frightening Field Trip -->
-
-		<If Condition="not IsQuestCompleted(67394)">
-			<If Condition="not HasQuest(67394)">
-				<LogMessage Message="A Frightening Field Trip quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67394)">
-				<LogMessage Message="A Frightening Field Trip quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-		</If>
-
-		<!-- Sidequest: Seedy Business -->
-
-		<If Condition="not IsQuestCompleted(67395)">
-			<If Condition="not HasQuest(67395)">
-				<LogMessage Message="Seedy Business quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67395)">
-				<LogMessage Message="Seedy Business quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-		</If>
-
-		<!-- Sidequest: Worried Sick -->
-
-		<If Condition="not IsQuestCompleted(67375)">
-			<If Condition="not HasQuest(67375)">
-				<LogMessage Message="Worried Sick quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67375)">
-				<LogMessage Message="Worried Sick quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-		</If>
-
-		<!-- Sidequest: Mallow in Sadness -->
-
-		<If Condition="not IsQuestCompleted(67396)">
-			<If Condition="not HasQuest(67396)">
-				<LogMessage Message="Mallow in Sadness quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67396)">
-				<LogMessage Message="Mallow in Sadness quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-		</If>
-
-		<!-- Sidequest: The Sins of our Landlords -->
-
-		<If Condition="not IsQuestCompleted(67397)">
-			<If Condition="not HasQuest(67397)">
-				<LogMessage Message="The Sins of our Landlords quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67397)">
-				<LogMessage Message="The Sins of our Landlords quest is coming soon! Stay tuned!" />
-				<StopBot />
-
-					<!-- Rewards
-
-					0: Gathering Materia IV
-					1: Perception Materia IV
-					2: GP Materia IV
-
-					If you want a specific reward from the above list, change the "Reward Slot" to the number you want:
-
-					-->
-
-					<!-- <TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="0" /> -->
-			</If>
-		</If>
+		<!-- [PickUp Quests] -->
 
 		<!-- He Who Would Not Be Denied -->
-
 		<If Condition="not IsQuestCompleted(67173)">
 			<If Condition="not HasQuest(67173)">
-				<LogMessage Message="He Who Would Not Be Denied quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="not IsOnMap(418)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+						<TeleportTo Name="Foundation" AetheryteId="70" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+						<Travel To="418" />
+					</If>
+				</If>
+				<MoveTo Name="Haurchefant" XYZ="-163.8972, 27.97913, -116.4111" />
+				<If Condition="IsQuestAcceptQualified(67173)">
+					<PickupQuest NpcId="1012750" QuestId="67173" XYZ="-163.8972, 27.97913, -116.4111" />
+				</If>
 			</If>
+		</If>
+		<!-- Sidequest: Better Bill Hunting -->
+		<If Condition="not IsQuestCompleted(67656)">
+			<If Condition="not HasQuest(67656)">
+				<If Condition="not IsOnMap(418)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+						<TeleportTo Name="Foundation" AetheryteId="70" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+						<Travel To="418" />
+					</If>
+				</If>
+				<MoveTo Name="Eustacia" XYZ="71.73267, 23.97913, 20.85907" />
+				<If Condition="IsQuestAcceptQualified(67656)">
+					<PickupQuest NpcId="1012226" QuestId="67656" XYZ="71.73267, 23.97913, 20.85907" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [Complete Quests] -->
+
+		<!-- Sidequest: Better Bill Hunting -->
+		<If Condition="not IsQuestCompleted(67656)">
+			<If Condition="HasQuest(67656)">
+				<If Condition="GetQuestStep(67656) == 1">
+					<If Condition="not IsOnMap(418)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+							<TeleportTo Name="Foundation" AetheryteId="70" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+							<Travel To="418" />
+						</If>
+					</If>
+					<MoveTo Name="Ardolain" XYZ="90.10449, 15.09468, 29.95337" />
+					<TalkTo NpcId="1012225" XYZ="90.10449, 15.09468, 29.95337" QuestId="67656" StepId="1" />
+				</If>
+
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(67656) == 255">
+					<If Condition="not IsOnMap(418)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+							<TeleportTo Name="Foundation" AetheryteId="70" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+							<Travel To="418" />
+						</If>
+					</If>
+					<MoveTo Name="Clan Hunt Board" XYZ="73.89941, 24.3075, 22.04926" />
+					<TurnIn QuestId="67656" NpcId="2005909" XYZ="73.89941, 24.3075, 22.04926" />
+				</If>
+			</If>
+		</If>
+		<!-- He Who Would Not Be Denied -->
+		<If Condition="not IsQuestCompleted(67173)">
 			<If Condition="HasQuest(67173)">
-				<LogMessage Message="He Who Would Not Be Denied quest is coming soon! Stay tuned!" />
-				<StopBot />
+				<If Condition="GetQuestStep(67173) == 1">
+					<If Condition="not IsOnMap(419) and not IsOnMap(433)">
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<Travel To="419" />
+					</If>
+					<If Condition="IsOnMap(419)">
+						<UseTransport Name="Fortemps Manor" InteractDistance="3.0" NpcId="1011217" XYZ="17.99036, 16.00967, -9.567444" />
+					</If>
+					<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
+				</If>
+
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(67173) == 255">
+					<If Condition="not IsOnMap(419) and not IsOnMap(433)">
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<Travel To="419" />
+					</If>
+					<If Condition="IsOnMap(419)">
+						<UseTransport Name="Fortemps Manor" InteractDistance="3.0" NpcId="1011217" XYZ="17.99036, 16.00967, -9.567444" />
+					</If>
 
 					<!-- Rewards
 
@@ -16543,19 +17442,105 @@
 					2: Monk Legs
 					3: Ninja Legs
 
+					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+					<TurnIn QuestId="67173" NpcId="1012753" XYZ="-2.578735, -7.450581E-09, 7.644714" RewardSlot="0" />
+
 					-->
 
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
+					<MoveTo Name="Lucia" XYZ="2.578735, -7.450581E-09, 7.644714" />
+					<TurnIn QuestId="67173" NpcId="1012753" XYZ="-2.578735, -7.450581E-09, 7.644714" />
+				</If>
+			</If>
+		</If>
+
+		<!-- [PickUp Quests] -->
+
+		<!-- Ill-weather Friends -->
+		<If Condition="not IsQuestCompleted(67174)">
+			<If Condition="not HasQuest(67174)">
+				<If Condition="not IsOnMap(419) and not IsOnMap(433)">
+					<If Condition="not IsOnMap(418)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+							<TeleportTo Name="Foundation" AetheryteId="70" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+							<Travel To="418" />
+						</If>
+					</If>
+					<Travel To="419" />
+				</If>
+				<If Condition="IsOnMap(419)">
+					<UseTransport Name="Fortemps Manor" InteractDistance="3.0" NpcId="1011217" XYZ="17.99036, 16.00967, -9.567444" />
+				</If>
+				<MoveTo Name="Alphinaud" XYZ="-2.02948, 7.450581E-09, 6.362976" />
+				<If Condition="IsQuestAcceptQualified(67174)">
+					<PickupQuest NpcId="1012751" QuestId="67174" XYZ="-2.02948, 7.450581E-09, 6.362976" />
+				</If>
+			</If>
+		</If>
+		<!-- Sidequest: Into the Mists -->
+		<If Condition="not IsQuestCompleted(67408)">
+			<If Condition="not HasQuest(67408)">
+				<LogMessage Message="Into the Mists quest is coming soon! Stay tuned!" />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(67408)">
+				<LogMessage Message="Into the Mists quest is coming soon! Stay tuned!" />
+				<StopBot />
+			</If>
+		</If>
+		<!-- Sidequest: Honoring the Past -->
+		<If Condition="not IsQuestCompleted(67410)">
+			<If Condition="not HasQuest(67410)">
+				<LogMessage Message="Honoring the Past quest is coming soon! Stay tuned!" />
+				<StopBot />
+			</If>
+			<If Condition="HasQuest(67410)">
+				<LogMessage Message="Honoring the Past quest is coming soon! Stay tuned!" />
+				<StopBot />
+
+					<!-- Rewards
+
+					0: Strength Materia IV
+					1: Dexterity Materia IV
+					2: Intelligence Materia IV
+					3: Mind Materia IV
+
+					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+					 RewardSlot="0" />
+
+					-->
+
+					<!-- <TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="" /> -->
+			</If>
+		</If>
+
+		<!-- [Complete Quests] -->
+
+		<!-- Ill-weather Friends -->
+		<If Condition="not IsQuestCompleted(67174)">
+			<If Condition="HasQuest(67174)">
+				<LogMessage Message="Ill-weather Friends quest is coming soon! Stay tuned!" />
+				<StopBot />
+
+					<!-- Rewards
+
+					0: Bard/Machinist Legs
+					1: White Mage/Scholoar/Astrologian Legs
+					2: Black Mage/Summoner Legs
+
+					-->
+
+					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
 						
 					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
-						
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar) or (Core.Me.CurrentJob == Enums.ClassJobType.Astrologian)">
+					
 					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Monk)">
-						
-					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Ninja)">
-						
+					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
+					
 					</If>
 					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
 			</If>
@@ -16765,19 +17750,6 @@
 					-->
 
 					<!-- <TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="0" /> -->
-			</If>
-		</If>
-
-		<!-- Sidequest: Into the Mists -->
-
-		<If Condition="not IsQuestCompleted(67408)">
-			<If Condition="not HasQuest(67408)">
-				<LogMessage Message="Into the Mists quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67408)">
-				<LogMessage Message="Into the Mists quest is coming soon! Stay tuned!" />
-				<StopBot />
 			</If>
 		</If>
 
@@ -17165,42 +18137,6 @@
 			</If>
 		</If>
 
-		<!-- Sidequest: Honoring the Past -->
-
-		<If Condition="not IsQuestCompleted(67410)">
-			<If Condition="not HasQuest(67410)">
-				<LogMessage Message="Honoring the Past quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67410)">
-				<LogMessage Message="Honoring the Past quest is coming soon! Stay tuned!" />
-				<StopBot />
-
-					<!-- Rewards
-
-					0: Strength Materia IV
-					1: Dexterity Materia IV
-					2: Intelligence Materia IV
-					3: Mind Materia IV
-
-					-->
-
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Dragoon) or (Core.Me.CurrentJob == Enums.ClassJobType.Monk) or (Core.Me.CurrentJob == Enums.ClassJobType.Warrior) or (Core.Me.CurrentJob == Enums.ClassJobType.Paladin) or (Core.Me.CurrentJob == Enums.ClassJobType.DarkKnight)">
-						
-					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Ninja) or (Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
-						
-					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
-						
-					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar) or (Core.Me.CurrentJob == Enums.ClassJobType.Astrologian)">
-						
-					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" RewardSlot="" /> -->
-			</If>
-		</If>
-
 		<!-- Sidequest: Crying over Spilled Food -->
 
 		<If Condition="not IsQuestCompleted(67435)">
@@ -17297,38 +18233,6 @@
 		<!-- IS THERE A FOLLOW-UP QUEST TO A WARM WELCOME? -->
 
 		<!-- TO DO -->
-
-		<!-- Ill-weather Friends -->
-
-		<If Condition="not IsQuestCompleted(67174)">
-			<If Condition="not HasQuest(67174)">
-				<LogMessage Message="Ill-weather Friends quest is coming soon! Stay tuned!" />
-				<StopBot />
-			</If>
-			<If Condition="HasQuest(67174)">
-				<LogMessage Message="Ill-weather Friends quest is coming soon! Stay tuned!" />
-				<StopBot />
-
-					<!-- Rewards
-
-					0: Bard/Machinist Legs
-					1: White Mage/Scholoar/Astrologian Legs
-					2: Black Mage/Summoner Legs
-
-					-->
-
-					<!-- <If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.Bard) or (Core.Me.CurrentJob == Enums.ClassJobType.Machinist)">
-						
-					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.WhiteMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Scholar) or (Core.Me.CurrentJob == Enums.ClassJobType.Astrologian)">
-					
-					</If>
-					<If Condition="(Core.Me.CurrentJob == Enums.ClassJobType.BlackMage) or (Core.Me.CurrentJob == Enums.ClassJobType.Summoner)">
-					
-					</If>
-					<TurnIn QuestId="" NpcId="" XYZ="" /> -->
-			</If>
-		</If>
 
 		<!-- The Spice of Life -->
 
@@ -20618,6 +21522,46 @@
 			<MinLevel>55</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
+		<GrindArea name="Just_Another_Bug_Hunt">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-113.4514, -13.73471, 423.0106" name="Expecting Damselfly" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4283" /> 
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Just_Another_Bug_Hunt2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-55.22462, -8.294361, 453.845" name="Expecting Damselfly" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4283" /> 
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Just_Another_Bug_Hunt3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-7.196342, -21.05265, 410.1738" name="Expecting Damselfly" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4283" /> 
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Wyvern_Let_Die">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="122.9087, 39.9952, 259.3929" name="Elder Wyverns" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3628" /> 
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
 		<GrindArea name="An_Immaculate_Home">
 			<Hotspots>
 				<Hotspot Radius="90" XYZ="-487.1138, 60.53247, 493.0037" name="Thoughtless Dragon" />
@@ -20704,6 +21648,116 @@
 			</Hotspots>
 			<TargetMobs>
 				<TargetMob Id="4291" /> 
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Sins_of_our_Landlords">
+			<Hotspots>
+				<Hotspot Radius="45" XYZ="-109.0612, 69.20767, -263.2312" name="Vouivres" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3624" />
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Branching_Out">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-525.6452, 109.303, -139.6937" name="Gnarled Meliae" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3668" />
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="What_Learning_Entails">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-562.5271, 116.0446, -253.753" name="Mists Drakes" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3622" />
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="A_Rocky_Start">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-744.8901, 90.77374, -426.6127" name="Limestone Golems" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3621" />
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Unwanted_Attention">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-199.1714, 130.4922, -507.1665" name="Dragonets" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3623" />
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Walking_on_Eggshells">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-269.1968, 168.7354, -705.2934" name="Burrowing Wamoura" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4287" />
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Walking_on_Eggshells2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-200.0727, 160.4906, -742.5918" name="Burrowing Wamoura" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4287" />
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Walking_on_Eggshells3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-137.6104, 160.9406, -792.0493" name="Burrowing Wamoura" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4287" />
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Its_Not_a_Bug_Its_a_Creature">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-131.4023, 160.9406, -630.9926" name="Burrowing Wamouracampa" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4288" />
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Its_Not_a_Bug_Its_a_Creature2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-183.4651, 204.4906, -732.891" name="Burrowing Wamouracampa" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4288" />
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Its_Not_a_Bug_Its_a_Creature3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-133.0267, 244.9688, -736.5363" name="urrowing Wamouracampa" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4288" />
 			</TargetMobs>
 			<MinLevel>55</MinLevel>
 			<MaxLevel>61</MaxLevel>
