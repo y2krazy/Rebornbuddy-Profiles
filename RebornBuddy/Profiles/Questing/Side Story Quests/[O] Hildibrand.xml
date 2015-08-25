@@ -393,9 +393,17 @@
 							<Travel To="145" />
 						</If>
 					</If>
-					<UseObject NpcId="2003004" XYZ="-206.4698, -37.6441, 187.3655" Radius="10" WaitTime="2000" QuestId="66743" StepId="10" />
-					<UseObject NpcId="2003005" XYZ="-220.8744, -37.85767, 166.0028" Radius="10" WaitTime="8000" QuestId="66743" StepId="10" />
-					<UseObject NpcId="2003006" XYZ="-208.5451, -37.9187, 151.873" Radius="10" WaitTime="12000" QuestId="66743" StepId="10" />
+					<While Condition="not IsTodoChecked(66743, 10, 0)">
+						<If Condition="GameObjectManager.GetObjectByNPCId(2003004).IsVisible">
+							<UseObject NpcId="2003004" XYZ="-206.4698, -37.6441, 187.3655" Radius="10" QuestId="66743" StepId="10" />
+						</If>
+						<If Condition="GameObjectManager.GetObjectByNPCId(2003005).IsVisible">
+							<UseObject NpcId="2003005" XYZ="-220.8744, -37.85767, 166.0028" Radius="10" QuestId="66743" StepId="10" />
+						</If>
+						<If Condition="GameObjectManager.GetObjectByNPCId(2003006).IsVisible">
+							<UseObject NpcId="2003006" XYZ="-208.5451, -37.9187, 151.873" Radius="10" QuestId="66743" StepId="10" />
+						</If>
+					</While>
 
 					<!-- DELETE (IF NO ISSUE) -->
 
