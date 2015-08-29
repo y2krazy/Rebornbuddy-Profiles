@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#########################################################
+# Profile: [O] Coneflower - The Dravanian Forelands     #
+#########################################################
+# Author: y2krazy                                       #
+#########################################################
+# Version: 1.0.0                                        #
+#########################################################
+# Required Level: 50                                    #
+#########################################################
+# Required Teleport Locations:                          #
+# 	Anyx Trine or Tailfeather                           #
+#########################################################
+# Required User Interaction:                            #
+# 	None                                                #
+#########################################################
+# Required Setup:                                       #
+# 	Fill out User Configuration below.                  #
+# 	Level 50+ Botanist                                  #
+# 	Set Botanist Gear Set at the bottom of the profile. #
+#########################################################
+# Item Drops:                                           #
+# 	Coneflower                                          #
+#########################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Coneflower to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] [BTN] Coneflower - The Dravanian Forelands</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<While Condition="not HasAtLeast(12638,&MatCount;)">
+
+			<RunCode Name="Botanist" />
+			<WaitTimer WaitTime="3" />
+			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="Core.Player.ClassLevel &lt; 56">
+					<LogMessage Message="You do not meet the minimum level requirement." />
+					<LogMessage Message="Please reach level 56 Botanist or higher." />
+					<StopBot />
+				</If>
+				<If Condition="Core.Player.ClassLevel &gt; 55">
+					<LogMessage Message="You need more Coneflower!" />
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+							<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+								<TeleportTo Name="Tailfeather" AetheryteId="76" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+							<Travel To="398" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Farming Area" XYZ="-530.593, -96.94361, 485.03686" />
+					<NoCombatMoveTo Name="Farming Area" XYZ="-548.0259, -85.81905, 423.4666" />
+					<Dismount />
+					<WaitTimer WaitTime="3" />
+					<RunCode Name="Stealth" />
+					<WaitTimer WaitTime="3" />
+					<RunCode Name="DisableMount" />
+					<Gather Loops="1">
+						<GatherObject>Lush Vegetation Patch</GatherObject>
+						<HotSpots>
+							<HotSpot Radius="90" XYZ="-548.0259, -85.81905, 423.4666" name="Lush Vegetation Patchs" />
+						</HotSpots>
+						<Slot>0</Slot> <!-- Coneflower -->
+						<GatheringSkillOrder>
+							<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+						</GatheringSkillOrder>
+					</Gather>
+					<RunCode Name="EnableMount" />
+					<WaitTimer WaitTime="3" />
+					<NoCombatMoveTo Name="Farming Area" XYZ="-566.7139, -97.0237, 544.4297" />
+					<Gather Loops="1">
+						<GatherObject>Lush Vegetation Patch</GatherObject>
+						<HotSpots>
+							<HotSpot Radius="90" XYZ="-566.7139, -97.0237, 544.4297" name="Lush Vegetation Patchs" />
+						</HotSpots>
+						<Slot>0</Slot> <!-- Coneflower -->
+						<GatheringSkillOrder>
+							<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+						</GatheringSkillOrder>
+					</Gather>
+					<NoCombatMoveTo Name="Farming Area" XYZ="-699.5511, -114.3527, 574.657" />
+					<Gather Loops="1">
+						<GatherObject>Lush Vegetation Patch</GatherObject>
+						<HotSpots>
+							<HotSpot Radius="90" XYZ="-705.5204, -114.4788, 579.652" name="Lush Vegetation Patchs" />
+							<HotSpot Radius="5" XYZ="-699.5511, -114.3527, 574.657" name="Safe Spot" />
+						</HotSpots>
+						<Slot>0</Slot> <!-- Coneflower -->
+						<GatheringSkillOrder>
+							<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+						</GatheringSkillOrder>
+					</Gather>
+				</If>
+			</If>
+
+		</While>
+
+		<If Condition="(ItemCount(12638) == &MatCount;) or (ItemCount(12638) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Coneflower!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+		</If>
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="Botanist">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 22");
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DisableMount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = false;
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="EnableMount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = true;
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Stealth">
+			<![CDATA[ SpellData data;
+				if (!Core.Me.HasAura(47) && Actionmanager.CurrentActions.TryGetValue(212, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(212, Core.Me);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
