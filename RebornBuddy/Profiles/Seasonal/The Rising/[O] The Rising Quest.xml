@@ -5,7 +5,7 @@
 #################################
 # Author: y2krazy               #
 #################################
-# Version: 1.0.0                #
+# Version: 1.0.1                #
 #################################
 # Required Level: 15            #
 #################################
@@ -14,7 +14,7 @@
 # 	Ul'dah - Steps of Nald      #
 #################################
 # Required User Interaction:    #
-# 	FATE: Recurring Bugs        #
+# 	None                        #
 #################################
 # Required Setup:               #
 # 	None                        #
@@ -61,16 +61,13 @@
 						</If>
 					</If>
 					<NoCombatMoveTo Name="FATE: Recurring Bugs" XYZ="29.04221, 21.41614, 87.69412" />
-					<LogMessage Message="FATE support is coming soon!" />
-					<LogMessage Message="Please complete the Recurring Bugs FATE manually!" />
-					<WaitWhile Condition="not IsTodoChecked(67670, 1, 0)" />
-					<!-- <While Condition="not IsTodoChecked(67670, 1, 0)">
-						<Fate MinLevel="8" MaxLevel="10">
+					<While Condition="not IsTodoChecked(67670, 1, 0)">
+						<Fate MinLevel="8" MaxLevel="10" Condition="not IsTodoChecked(67670, 1, 0)">
 							<FateIds>
-								<FateId>911</FateId> --> <!-- Recurring Bugs -->
-							<!-- </FateIds>
+								<FateId>911</FateId> <!-- Recurring Bugs -->
+							</FateIds>
 						</Fate>
-					</While> -->
+					</While>
 				</If>
 				<If Condition="GetQuestStep(67670) == 2">
 					<If Condition="not IsOnMap(130)">
@@ -149,6 +146,7 @@
 					</If>
 					<MoveTo Name="Wandering Minstrel" XYZ="-22.11035, 10.00113, -49.91229" />
 					<HandOver ItemIds="2001890,2001891" QuestId="67670" StepId="7" NpcId="1015714" XYZ="-22.11035, 10.00113, -49.91229" />
+					<WaitTimer WaitTime="15" />
 				</If>
 				<If Condition="GetQuestStep(67670) == 255">
 					<If Condition="not IsOnMap(130) and not IsOnMap(504)">
@@ -171,7 +169,7 @@
 					-->
 
 					<MoveTo Name="Naoki Yoshida" XYZ="-0.01531982, -1.995725, -45.5788" />
-					<TurnIn QuestId="67670" NpcId="1015691" XYZ="-0.01531982, -1.995725, -45.5788" />
+					<TurnInPlus QuestId="67670" NpcId="1015691" XYZ="-0.01531982, -1.995725, -45.5788" />
 				</If>
 			</If>
 		</If>
