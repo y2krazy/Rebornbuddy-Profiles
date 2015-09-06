@@ -127,7 +127,7 @@
 
 			<!-- Level 52-54 -->
 
-			<While Condition="Core.Player.ClassLevel &lt; 54">
+			<While Condition="Core.Player.ClassLevel &lt; 61">
 				<If Condition="not IsOnMap(398)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
 						<TeleportTo Name="Tailfeather" AetheryteId="76" />
@@ -142,6 +142,11 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Farming Area" XYZ="700.7754, -58.43658, -70.32034" />
+				<Dismount />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
 				<Gather Loops="1">
 					<GatherObject>Lush Vegetation Patch</GatherObject>
 					<HotSpots>
@@ -152,6 +157,8 @@
 						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
 					</GatheringSkillOrder>
 				</Gather>
+				<RunCode Name="EnableMount" />
+				<WaitTimer WaitTime="3" />
 				<NoCombatMoveTo Name="Farming Area" XYZ="764.4918, -37.45871, -196.7805" />
 				<Dismount />
 				<WaitTimer WaitTime="3" />
