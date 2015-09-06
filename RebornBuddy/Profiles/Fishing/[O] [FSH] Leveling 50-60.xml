@@ -5,14 +5,16 @@
 ############################################################
 # Author: y2krazy                                          #
 ############################################################
-# Version: 1.0.0                                           #
+# Version: 1.0.1                                           #
 ############################################################
 # Required Level: 50                                       #
 ############################################################
 # Required Teleport Locations:                             #
 # 	Anyx Trine or Tailfeather                              #
 # 	Camp Cloudtop                                          #
+# 	Costa del Sol or Wineport                              #
 # 	Falcon's Nest                                          #
+# 	Limsa Lominsa Lower Decks                              #
 # 	Moghome or Zenith                                      #
 ############################################################
 # Required User Interaction:                               #
@@ -33,6 +35,7 @@
 # 	Cloudfish                                              #
 # 	Dragon's Soul                                          #
 # 	Fanged Clam                                            #
+# 	Harbor Herring                                         #
 # 	Hedgemole Cricket                                      #
 # 	Icepick                                                #
 # 	Ice Faerie                                             #
@@ -40,6 +43,10 @@
 # 	Letter Puffer                                          #
 # 	Maiboi                                                 #
 # 	Marble Oscar                                           #
+# 	Mazlaya Marlin                                         #
+# 	Moraby Flounder                                        #
+# 	Ocean Cloud                                            #
+# 	Ogre Barracuda                                         #
 # 	Piece of Gloaming Coral                                #
 # 	Seema Patrician                                        #
 # 	Sky Faerie                                             #
@@ -75,7 +82,112 @@
 				<StopBot />
 			</If>
 
-			<!-- Level 50-52 -->
+			<!-- Level 50-51 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 51">
+
+				<!-- Bait: Pill Bug -->
+
+				<If Condition="not HasAtLeast(2587,198)">
+					<LogMessage Message="You need more Pill Bugs!" />
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<MoveTo Name="Syneyhil" XYZ="-246.6011, 16.2, 37.12512" />
+					<BuyItem ItemId="2587" ItemCount="198" InteractDistance="3.0" NpcId="1003254" XYZ="-246.6011, 16.2, 37.12512" />
+				</If>
+				<If Condition="not HasAtLeast(2586,1)">
+					<LogMessage Message="You need 1 Moth Pupa!" />
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<MoveTo Name="Syneyhil" XYZ="-246.6011, 16.2, 37.12512" />
+					<BuyItem ItemId="2586" ItemCount="1" InteractDistance="3.0" NpcId="1003254" XYZ="-246.6011, 16.2, 37.12512" />
+				</If>
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+							<TeleportTo Name="Wineport" AetheryteId="12" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+					<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+				</If>
+				<NoCombatMoveTo Name="Fishing Area" XYZ="240.1283, 132.3615, -216.0794" />
+				<While Condition="IsTimeBetween(0,8)">
+					<Fish Mooch="2" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Pill Bug" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+						<FishSpots>
+							<FishSpot XYZ="552.1243, 8.72472, 250.0447" Heading="1.569742" Sit="&Sit;" />
+							<FishSpot XYZ="556.7825, 8.76256, 214.2033" Heading="1.550891" Sit="&Sit;" />
+							<FishSpot XYZ="559.1631, 8.72472, 188.5373" Heading="1.567647" Sit="&Sit;" />
+							<FishSpot XYZ="557.9648, 8.72472, 160.7043" Heading="1.760331" Sit="&Sit;" />
+						</FishSpots>
+					</Fish>
+				</While>
+				<While Condition="IsTimeBetween(8,16)">
+					<Fish Mooch="2" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Pill Bug" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+						<FishSpots>
+							<FishSpot XYZ="546.9509, 8.739129, 131.8716" Heading="1.994036" Sit="&Sit;" />
+							<FishSpot XYZ="502.2998, 8.582629, 100.3938" Heading="3.297288" Sit="&Sit;" />
+							<FishSpot XYZ="478.1721, 8.482638, 91.35597" Heading="3.013475" Sit="&Sit;" />
+							<FishSpot XYZ="539.2007, 8.624787, 116.3648" Heading="2.092473" Sit="&Sit;" />
+						</FishSpots>
+					</Fish>
+				</While>
+				<While Condition="IsTimeBetween(16,24)">
+					<Fish Mooch="2" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Pill Bug" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+						<FishSpots>
+							<FishSpot XYZ="552.8428, 8.756388, 146.4023" Heading="1.823283" Sit="&Sit;" />
+							<FishSpot XYZ="559.2668, 8.72472, 174.8302" Heading="1.668178" Sit="&Sit;" />
+							<FishSpot XYZ="558.1118, 8.72472, 200.818" Heading="1.425228" Sit="&Sit;" />
+							<FishSpot XYZ="554.3885, 8.710461, 230.5738" Heading="1.125731" Sit="&Sit;" />
+						</FishSpots>
+					</Fish>
+				</While>
+				<If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+					<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="460.3798, 17.12659, 486.5948" />
+					<NPCRepair NpcID="1003261" />
+				</If>
+				<LogMessage Message="Swapping zones to not scare the fish..." />
+				<If Condition="not IsOnMap(135)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+						<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+						<Travel To="135" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Fishing Area" XYZ="208.9671, 14.0959, 667.5566" />
+				<While Condition="IsTimeBetween(0,2)">
+					<Fish Mooch="0" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Pill Bug" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+						<FishSpots>
+							<FishSpot XYZ="222.029, 7.999999, 693.4707" Heading="5.666548" />
+							<FishSpot XYZ="235.3489, 7.999999, 702.8577" Heading="5.683302" />
+							<FishSpot XYZ="252.6376, 4.403121, 713.2891" Heading="5.645009" />
+							<FishSpot XYZ="276.3648, 4.403121, 727.5505" Heading="0.9347146" />
+						</FishSpots>
+					</Fish>
+				</While>
+			</While>
+
+			<!-- Level 51-52 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 52">
 
