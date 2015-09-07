@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+####################################################
+# Profile: [O] [BTN] Flax - South Shroud           #
+####################################################
+# Author: y2krazy                                  #
+####################################################
+# Version: 1.0.1                                   #
+####################################################
+# Required Level: 31                               #
+####################################################
+# Required Teleport Locations:                     #
+# 	Camp Tranquil or Quarrymill                    #
+####################################################
+# Required User Interaction:                       #
+# 	This profile should be AFKable.                #
+####################################################
+# Required Setup:                                  #
+# 	Acquire Camp Tranquil or Quarrymill Aetheryte. #
+####################################################
+# Item Drops:                                      #
+# 	Flax                                           #
+####################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Flax to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] [BTN] Flax - South Shroud</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Flax -->
+
+		<If Condition="(ItemCount(5346) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 31">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 31 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 30">
+				<LogMessage Message="You need more Flax!" />
+				<If Condition="not IsOnMap(153)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+						<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+					</If>
+					<If Condition="Managers.WorldManager.HasAetheryteId(5)">
+						<TeleportTo Name="Quarrymill" AetheryteId="5" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(5)">
+						<Travel To="153" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-181.9901, 0.7185107, 393.3036" />
+				<Gather>
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-181.9901, 0.7185107, 393.3036" name="Lush Vegetation Patch" />
+						<HotSpot Radius="90" XYZ="-236.1356, 1.293108, 415.8862" name="Lush Vegetation Patch" />
+					</HotSpots>
+					<ItemNames>
+						<ItemName>Flax</ItemName>
+					</ItemNames>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Leaf Turn" ActionId="225" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+			</If>
+		</If>
+		<If Condition="(ItemCount(5346) == &MatCount;) or (ItemCount(5346) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Flax!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
+</Profile>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################
+# Profile: [O] Hippogryph Skin - Hippogryphs #
+##############################################
+# Author: y2krazy                            #
+##############################################
+# Version: 1.0.1                             #
+##############################################
+# Required Level: 45                         #
+##############################################
+# Required Teleport Locations:               #
+# 	Revenant's Toll                          #
+##############################################
+# Required User Interaction:                 #
+# 	This profile should be AFKable.          #
+##############################################
+# Required Setup:                            #
+# 	Acquire Revenant's Toll Aetheryte.       #
+# 	Set Home Point. (Optional)               #
+##############################################
+# Item Drops:                                #
+# 	Hippogryph Sinew                         #
+# 	Hippogryph Skin                          #
+##############################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Hippogryph Skin to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] Hippogryph Skin - Hippogryphs</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Hippogryph -->
+
+		<If Condition="(ItemCount(5316) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 45">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 45 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 44">
+				<LogMessage Message="You need more Hippogryph Skin!" />
+				<If Condition="not IsOnMap(156)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+						<Travel To="156" />
+					</If>
+				</If>
+				<Grind grindRef="Hippogryph_Skin" while="Core.Player.ClassLevel &lt; 61" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(5316) == &MatCount;) or (ItemCount(5316) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Hippogryph Skin!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Hippogryph_Skin">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="295.2708, 21.38366, -701.7964" name="Hippogryph" />
+				<Hotspot Radius="90" XYZ="345.4464, 20.85665, -728.3058" name="Hippogryph" />
+				<Hotspot Radius="90" XYZ="272.7102, 32.85501, -683.3179" name="Hippogryph" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="789" />
+			</TargetMobs>
+			<MinLevel>45</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+</Profile>

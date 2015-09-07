@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--	
+###################################################
+# Profile: [O] [MIN] Raw Amber - Eastern Thanalan #
+###################################################
+# Author: y2krazy                                 #
+###################################################
+# Version: 1.0.1                                  #
+###################################################
+# Required Level: 45                              #
+###################################################
+# Required Teleport Locations:                    #
+# 	Camp Drybone                                  #
+###################################################
+# Required User Interaction:                      #
+# 	This profile should be AFKable.               #
+###################################################
+# Required Setup:                                 #
+# 	Acquire Camp Drybone Aetheryte.               #
+###################################################
+# Item Drops:                                     #
+# 	Raw Amber                                     #
+###################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Raw Amber to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] [MIN] Raw Amber - Eastern Thanalan</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Raw Amber -->
+
+		<If Condition="(ItemCount(5143) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 45">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 45 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 44">
+				<LogMessage Message="You need more Raw Amber!" />
+				<If Condition="not IsOnMap(145)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+						<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+						<Travel To="145" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-481.7292, -12.35527, -120.4698" />
+			    <Gather while="(ItemCount(5143) &lt; &MatCount;)">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-481.7292, -12.35527, -120.4698" name="Mineral Deposit" />
+						<HotSpot Radius="90" XYZ="-423.6853, -17.36974, -108.7623" name="Mineral Deposit" />
+					</HotSpots>
+					<ItemNames>
+						<ItemName>Raw Amber</ItemName>
+					</ItemNames>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth II" ActionId="243" TimesToCast="1" />
+					</GatheringSkillOrder>
+			  	</Gather>
+			</If>
+		</If>
+		<If Condition="(ItemCount(5143) == &MatCount;) or (ItemCount(5143) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Raw Amber!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
+</Profile>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##################################################
+# Profile: [O] [LTW] Gigantoad Skin - Gigantoads #
+##################################################
+# Author: y2krazy                                #
+##################################################
+# Version: 1.0.1                                 #
+##################################################
+# Required Level: 30                             #
+##################################################
+# Required Teleport Locations:                   #
+# 	Wineport                                     #
+##################################################
+# Required User Interaction:                     #
+# 	This profile should be AFKable.              #
+##################################################
+# Required Setup:                                #
+# 	Acquire Wineport Aetheryte.                  #
+# 	Set Home Point (Optional)                    #
+##################################################
+# Item Drops:                                    #
+# 	Gigantoad Skin                               #
+##################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Gigantoad Skin to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] [LTW] Gigantoad Skin - Gigantoads</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Gigantoad -->
+
+		<If Condition="(ItemCount(5300) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 30">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 30 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 29">
+				<LogMessage Message="You need more Gigantoad Skin!" />
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+						<TeleportTo Name="Wineport" AetheryteId="12" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<Grind grindRef="Gigantoad_Skin" while="Core.Player.ClassLevel &lt; 61" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(5300) == &MatCount;) or (ItemCount(5300) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount; Gigantoad Skin!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Gigantoad_Skin">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-100.8755, 33.83202, 229.2088" name="Gigantoad" />
+				<Hotspot Radius="90" XYZ="-203.9383, 33.94427, 268.8198" name="Gigantoad" />
+				<Hotspot Radius="90" XYZ="-311.8678, 45.07476, 355.5991" name="Gigantoad" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="26" />
+			</TargetMobs>
+			<MinLevel>30</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+</Profile>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###############################################
+# Profile: [O] [BTN] Elm Log - Central Shroud #
+###############################################
+# Author: y2krazy                             #
+###############################################
+# Version: 1.0.1                              #
+###############################################
+# Required Level: 12                          #
+###############################################
+# Required Teleport Locations:                #
+# 	Bentbranch Meadows                        #
+###############################################
+# Required User Interaction:                  #
+# 	This profile should be AFKable.           #
+###############################################
+# Required Setup:                             #
+# 	Acquire Bentbranch Meadows Aetheryte.     #
+###############################################
+# Item Drops:                                 #
+# 	Elm Log                                   #
+###############################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Elm Logs to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] [BTN] Elm Log - Central Shroud</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Elm Log -->
+
+		<If Condition="(ItemCount(5385) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 12">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 12 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 11">
+				<LogMessage Message="You need more Elm Logs!" />
+				<If Condition="not IsOnMap(148)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+						<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+						<Travel To="148" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-32.29981, -6.881468, -72.56076" />
+				<Gather>
+					<GatherObject>Mature Tree</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-32.29981, -6.881468, -72.56076" name="Mature Tree" />
+						<HotSpot Radius="90" XYZ="-95.94104, -4.737857, -56.5529" name="Mature Tree" />
+					</HotSpots>
+					<ItemNames>
+						<ItemName>Elm Log</ItemName>
+					</ItemNames>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Leaf Turn" ActionId="225" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+			</If>
+		</If>
+		<If Condition="(ItemCount(5385) == &MatCount;) or (ItemCount(5385) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Elm Logs!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
+</Profile>

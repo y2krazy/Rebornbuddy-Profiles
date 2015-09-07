@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#########################################################
+# Profile: [O] [BTN] Desert Saffron - Southern Thanalan #
+#########################################################
+# Author: y2krazy                                       #
+#########################################################
+# Version: 1.0.1                                        #
+#########################################################
+# Required Level: 35                                    #
+#########################################################
+# Required Teleport Locations:                          #
+# 	Little Ala Mhigo                                    #
+#########################################################
+# Required User Interaction:                            #
+# 	This profile should be AFKable.                     #
+#########################################################
+# Required Setup:                                       #
+# 	Acquire Little Ala Mhigo Aetheryte.                 #
+#########################################################
+# Item Drops:                                           #
+# 	Desert Saffron                                      #
+#########################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Desert Saffron to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] [BTN] Desert Saffron - Southern Thanalan</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Desert Saffron -->
+
+		<If Condition="(ItemCount(4843) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 35">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 35 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 34">
+				<LogMessage Message="You need more Desert Saffron!" />
+				<If Condition="not IsOnMap(146)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+						<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+						<Travel To="146" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-48.27963, 1.83438, -618.204" />
+				<Gather while="(ItemCount(4843) &lt; &MatCount;)">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-48.22087, 2.052488, -635.324" name="Lush Vegetation Patch" />
+						<HotSpot Radius="90" XYZ="-38.67218, 2.225269, -669.5209" name="Lush Vegetation Patch" />
+					</HotSpots>
+					<ItemNames>
+						<ItemName>Desert Saffron</ItemName>
+					</ItemNames>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Leaf Turn" ActionId="225" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+			</If>
+		</If>
+		<If Condition="(ItemCount(4843) == &MatCount;) or (ItemCount(4843) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Desert Saffron!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
+</Profile>

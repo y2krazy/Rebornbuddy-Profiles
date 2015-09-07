@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+######################################################
+# Profile: [O] Snurble Tufts - Golden Fleece         #
+######################################################
+# Author: y2krazy (used with permission from Arvind) #
+######################################################
+# Version: 1.0.1                                     #
+######################################################
+# Required Level: 38                                 #
+######################################################
+# Required Teleport Locations:                       #
+# 	Camp Drybone                                     #
+######################################################
+# Required User Interaction:                         #
+# 	This profile should be AFKable.                  #
+######################################################
+# Required Setup:                                    #
+# 	Acquire Camp Drybone Aetheryte.                  #
+# 	Set Home Point. (Optional)                       #
+######################################################
+# Item Drops:                                        #
+# 	Snurble Tufts                                    #
+######################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Snurble Tufts to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] Snurble Tufts - Golden Fleece</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>100</KillRadius>
+	<Order>
+
+		<!-- Golden Fleece -->
+
+		<If Condition="(ItemCount(5349) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 38">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 38 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 37">
+				<LogMessage Message="You need more Snurble Tufts!" />
+				<If Condition="not IsOnMap(145)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+						<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+						<Travel To="145" />
+					</If>
+				</If>
+				<Grind grindRef="Snurble_Tufts" while="Core.Player.ClassLevel &lt; 61" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(5349) == &MatCount;) or (ItemCount(5349) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Snurble Tufts!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Snurble_Tufts">
+			<Hotspots>
+				<Hotspot Radius="250" XYZ="251.318, -16.42159, 172.1474" name="Golden Fleece" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="271" />
+			</TargetMobs>
+			<MinLevel>38</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+</Profile>

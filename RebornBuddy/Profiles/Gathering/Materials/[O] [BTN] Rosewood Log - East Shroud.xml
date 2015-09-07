@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#################################################
+# Profile: [O] [BTN] Rosewood Log - East Shroud #
+#################################################
+# Author: y2krazy                               #
+#################################################
+# Version: 1.0.0                                #
+#################################################
+# Required Level: 46                            #
+#################################################
+# Required Teleport Locations:                  #
+# 	Little Ala Mhigo                            #
+#################################################
+# Required User Interaction:                    #
+# 	This profile should be AFKable.             #
+#################################################
+# Required Setup:                               #
+# 	Acquire Little Ala Mhigo Aetheryte.         #
+#################################################
+# Item Drops:                                   #
+# 	Rosewood Log                                #
+#################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "20000"> <!-- Rosewood Logs to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] [BTN] Rosewood Log - East Shroud</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Rosewood Log -->
+
+		<If Condition="ItemCount(5393) &lt; &MatCount;">
+			<If Condition="Core.Player.ClassLevel &lt; 46">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 46 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 45">
+				<LogMessage Message="You need more Rosewood Logs!" />
+				<If Condition="not IsOnMap(152)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(4)">
+						<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+						<Travel To="152" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-189.6482, 3.025832, 122.088" />
+				<Gather while="(ItemCount(5393) &lt; &MatCount;)">
+					<GatherObject>Mature Tree</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="250" XYZ="-255.8077, 4.674677, 101.8108" name="Mature Trees" />
+					</HotSpots>
+					<ItemNames>
+						<ItemName>Rosewood Log</ItemName>
+					</ItemNames>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Leaf Turn" ActionId="225" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+			</If>
+		</If>
+		<If Condition="(ItemCount(5393) == &MatCount;) or (ItemCount(5393) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Rosewood Logs!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
+</Profile>

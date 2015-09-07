@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#################################################################
+# Profile: [O] [MIN] Mythrite Sand - Coerthas Western Highlands #
+#################################################################
+# Author: y2krazy                                               #
+#################################################################
+# Version: 1.0.0                                                #
+#################################################################
+# Required Level: 51                                            #
+#################################################################
+# Required Teleport Locations:                                  #
+# 	Falcon's Nest                                               #
+#################################################################
+# Required User Interaction:                                    #
+# 	This profile should be AFKable.                             #
+#################################################################
+# Required Setup:                                               #
+# 	Acquire Falcon's Nest Aetheryte.                            #
+#################################################################
+# Item Drops:                                                   #
+# 	Mythrite Sand                                               #
+#################################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Mythrite Sand to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] [MIN] Mythrite Sand - Coerthas Western Highlands</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Mythrite Sand -->
+
+		<If Condition="(ItemCount(12531) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 51">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 51 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 50">
+				<LogMessage Message="You need more Mythrite Sand!" />
+				<If Condition="not IsOnMap(397)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+						<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="397" /> -->
+						<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-184.3007, 92.15556, -423.6854" />
+				<Dismount />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<Gather while="(ItemCount(12531) &lt; &MatCount;)">
+					<GatherObject>Rocky Outcrop</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="250" XYZ="-208.735, 91, -460.9786" name="Rocky Outcrops" />
+						<HotSpot Radius="250" XYZ="-351.76, 92.47995, -491.2175" name="Rocky Outcrops" />
+						<HotSpot Radius="250" XYZ="-338.6138, 91.05424, -564.3069" name="Rocky Outcrops" />
+					</HotSpots>
+					<BlackSpots>
+						<BlackSpot Radius="10" XYZ="-333.2943, 89.56869, -421.2979" name="High Rocky Outcrop" />
+					</BlackSpots>
+					<ItemNames>
+						<ItemName>Mythrite Sand</ItemName>
+					</ItemNames>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth II" ActionId="242" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<RunCode Name="EnableMount" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(12531) == &MatCount;) or (ItemCount(12531) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Mythrite Sand!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<StopBot />
+		</If>
+
+	</Order>
+	<CodeChunks>
+		<CodeChunk Name="Stealth">
+			<![CDATA[ SpellData data;
+				if (!Core.Me.HasAura(47) && Actionmanager.CurrentActions.TryGetValue(229, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(229, Core.Me);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DisableMount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = false;
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="EnableMount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = true;
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
