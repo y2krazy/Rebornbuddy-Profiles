@@ -157,7 +157,7 @@
 					</If>
 					<If Condition="IsOnMap(398)">
 						<NoCombatMoveTo Name="Coerthas Central Highlands" XYZ="868.3534, -4.027575, 349.3807" />
-						<Travel To="397" />
+						<RunCode Name="RunIntoZone" />
 					</If>
 					<NoCombatMoveTo Name="Fishing Area" XYZ="-473.1809, 90.99203, -634.5757" />
 					<While Condition="IsTimeBetween(0,2)">
@@ -195,4 +195,13 @@
 		]]>
 		</CodeChunk>
 	</CodeChunks>
+	<CodeChunk Name="RunIntoZone">
+		<![CDATA[
+			await Buddy.Coroutines.Coroutine.Sleep(500);
+			ff14bot.Managers.MovementManager.MoveForwardStart();
+			await Buddy.Coroutines.Coroutine.Sleep(2000);
+			ff14bot.Managers.MovementManager.MoveForwardStop();
+			await Buddy.Coroutines.Coroutine.Sleep(500);
+	]]>
+	</CodeChunk>
 </Profile>
