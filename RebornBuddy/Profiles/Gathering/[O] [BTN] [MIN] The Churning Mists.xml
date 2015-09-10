@@ -1,0 +1,773 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+#################################################
+# Profile: [O] [BTN] [MIN] The Churning Mists   #
+#################################################
+# Author: y2krazy                               #
+#################################################
+# Version: 1.0.0                                #
+#################################################
+# Required Level: 60                            #
+#################################################
+# Required Teleport Locations:                  #
+# 	Zenith                                      #
+#################################################
+# Required User Interaction:                    #
+# 	None                                        #
+#################################################
+# Required Setup:                               #
+# 	Fill out User Configuration below.          #
+# 	Level 60 Botanist                           #
+# 	Level 60 Miner                              #
+# 	Set Gear Sets at the bottom of the profile. #
+#################################################
+# Item Drops:                                   #
+# 	Aurum Regis Ore (Coming Soon!)              #
+# 	Black Soil                                  #
+# 	Bright Fire Rock                            #
+# 	Cloud Mica                                  #
+# 	Dravanian Mistletoe                         #
+# 	Earth Cluster                               #
+# 	Earth Crystal                               #
+# 	Fire Cluster                                #
+# 	Fire Moraine                                #
+# 	Granular Clay                               #
+# 	Green Quartz                                #
+# 	Hardsilver Sand                             #
+# 	Peat Moss                                   #
+# 	Porcini                                     #
+# 	Radiant Fire Moraine                        #
+# 	Seventh Heaven (Coming Soon!)               #
+# 	Yellow Quartz                               #
+#################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!-- Downtime Gathering -->
+  <!ENTITY Downtime "Cloud Mica"> <!-- Set the item you want to gather during downtime. -->
+    <!-- OPTIONS: "Cloud Mica" "Earth Crystal" "Hardsilver Sand" -->
+
+  <!-- Unspoiled Node 1 (one will be gathered at a time) -->
+  <!ENTITY CollectMistletoe "10"> <!-- Dravanian Mistletoes (Collectable) to gather before stopping. -->
+    <!-- ^ or v -->
+  <!ENTITY DravanianMistletoe "0"> <!-- Dravanian Mistletoes to gather before stopping. -->
+  <!ENTITY CollectPorcini "10"> <!-- Porcinis (Collectable) to gather before stopping. -->
+    <!-- ^ or v -->
+  <!ENTITY Porcini "0"> <!-- Porcinis to gather before stopping. -->
+
+  <!-- Unspoiled Node 2 (one will be gathered at a time) -->
+  <!ENTITY GreenQuartz "10"> <!-- Green Quartz to gather before stopping. -->
+  <!ENTITY YellowQuartz "0"> <!-- Yellow Quartz to gather before stopping. -->
+
+  <!-- Ephemeral Node 1 (one will be gathered at a time) -->
+  <!ENTITY BrightFireRock "0"> <!-- Bright Fire Rocks (Hidden) to gather before stopping. -->
+  <!ENTITY FireCluster "0"> <!-- Fire Clusters (Non-Collectable) to gather before stopping. -->
+  <!ENTITY FireMoraine "10"> <!-- Fire Moraines to gather before stopping. -->
+  <!ENTITY RadiantFireMoraine "0"> <!-- Radiant Fire Moraines (Hidden) to gather before stopping. -->
+
+  <!-- Ephemeral Node 2 (one will be gathered at a time) -->
+  <!ENTITY BlackSoil "0"> <!-- Black Soils (Hidden) to gather before stopping. -->
+  <!ENTITY EarthCluster "0"> <!-- Earth Clusters (Non-Collectable) to gather before stopping. -->
+  <!ENTITY GranularClay "10"> <!-- Granular Clays to gather before stopping. -->
+  <!ENTITY PeatMoss "0"> <!-- Peat Mosses (Hidden) to gather before stopping. -->
+
+  <!-- Legendary Nodes (Coming Soon!) -->
+  <!ENTITY AurumRegisOre "0"> <!-- Aurum Regis Ores to gather before stopping. -->
+  <!ENTITY SeventhHeaven "0"> <!-- Seventh Heavens to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] [BTN] [MIN] The Churning Mists</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<RunCode Name="Botanist"/>
+
+		<If Condition="not IsOnMap(400)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+				<TeleportTo Name="Zenith" AetheryteId="79" />
+			</If>
+			<MoveTo XYZ="-574.8106, 48.80803, 310.9625"/>
+			<FlightPathTo XYZ="-463.0666, 160.2987, 266.5712" Radius="3.0" MountId="1" DismountAtDestination="false" />
+		</If>
+
+		<While Condition="True">
+			<If Condition="IsTimeBetween(0,1)">
+				<RunCode Name="Botanist"/>
+				<If Condition="not HasAtLeast(12943,&CollectMistletoe;)">
+					<LogMessage Message="You need more Collectable Dravanian Mistletoe..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<Collectables>
+							<Collectable Name="Dravanian Mistletoe" Value="550" />
+						</Collectables>
+						<GatherObjects>
+							<GatherObject>Unspoiled Mature Tree</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<GatherSpots>
+							<StealthApproachGatherSpot stealthLocation="221.1639, 218.9276, -654.8363" nodeLocation="222.5773, 218.4649, -658.0814" />
+							<StealthApproachGatherSpot stealthLocation="106.7898, 213.772, -801.8348" nodeLocation="106.7898, 213.772, -801.8348" />
+							<StealthApproachGatherSpot stealthLocation="169.6753, 219.6535, -592.4287" nodeLocation="177.8964, 220.273, -605.3091"	/>
+						</GatherSpots>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="173.6, 296.5012, -704.6605"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(12943,&DravanianMistletoe;)">
+					<LogMessage Message="You need more Dravanian Mistletoe..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<ItemNames>
+							<ItemName>Dravanian Mistletoe</ItemName>
+						</ItemNames>
+						<GatherObjects>
+							<GatherObject>Unspoiled Mature Tree</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<GatherSpots>
+							<StealthApproachGatherSpot stealthLocation="221.1639, 218.9276, -654.8363" nodeLocation="222.5773, 218.4649, -658.0814" />
+							<StealthApproachGatherSpot stealthLocation="106.7898, 213.772, -801.8348" nodeLocation="106.7898, 213.772, -801.8348" />
+							<StealthApproachGatherSpot stealthLocation="169.6753, 219.6535, -592.4287" nodeLocation="177.8964, 220.273, -605.3091"	/>
+						</GatherSpots>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="173.6, 296.5012, -704.6605"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(12899,&CollectPorcini;)">
+					<LogMessage Message="You need more Collectable Porcini..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<Collectables>
+							<Collectable Name="Porcini" Value="550" />
+						</Collectables>
+						<GatherObjects>
+							<GatherObject>Unspoiled Mature Tree</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<GatherSpots>
+							<StealthApproachGatherSpot stealthLocation="221.1639, 218.9276, -654.8363" nodeLocation="222.5773, 218.4649, -658.0814" />
+							<StealthApproachGatherSpot stealthLocation="106.7898, 213.772, -801.8348" nodeLocation="106.7898, 213.772, -801.8348" />
+							<StealthApproachGatherSpot stealthLocation="169.6753, 219.6535, -592.4287" nodeLocation="177.8964, 220.273, -605.3091"	/>
+						</GatherSpots>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="173.6, 296.5012, -704.6605"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(12899,&Porcini;)">
+					<LogMessage Message="You need more Porcini..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<ItemNames>
+							<ItemName>Porcini</ItemName>
+						</ItemNames>
+						<GatherObjects>
+							<GatherObject>Unspoiled Mature Tree</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<GatherSpots>
+							<StealthApproachGatherSpot stealthLocation="221.1639, 218.9276, -654.8363" nodeLocation="222.5773, 218.4649, -658.0814" />
+							<StealthApproachGatherSpot stealthLocation="106.7898, 213.772, -801.8348" nodeLocation="106.7898, 213.772, -801.8348" />
+							<StealthApproachGatherSpot stealthLocation="169.6753, 219.6535, -592.4287" nodeLocation="177.8964, 220.273, -605.3091"	/>
+						</GatherSpots>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="173.6, 296.5012, -704.6605"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+			</If>
+			<If Condition="IsTimeBetween(0,2)">
+				<RunCode Name="Miner"/>
+				<LogMessage Message="Gathering &Downtime; while we wait..." />
+				<GatherCollectable DiscoverUnknowns="True" DisableRotationOverride="True" SkipWindowDelay="1000" while="IsTimeBetween(0,2)">
+					<ItemNames>
+						<ItemName>Timeworn Dragonskin Map</ItemName>
+						<ItemName>&Downtime;</ItemName>
+					</ItemNames>
+					<GatherRotation>RegularNode</GatherRotation>
+					<HotSpots>
+						<HotSpot Radius="30" XYZ="312.769, -18.5121, -104.8184"/>
+						<HotSpot Radius="30" XYZ="306.9229, -18.48553, -222.3304"/>
+						<HotSpot Radius="50" XYZ="151.2813, -21.30007, -178.7466"/>
+					</HotSpots>
+				</GatherCollectable>
+			</If>
+			<If Condition="IsTimeBetween(2,3)">
+				<RunCode Name="Miner"/>
+				<If Condition="not HasAtLeast(5161,&GreenQuartz;)">
+					<LogMessage Message="You need more Green Quartz..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<Collectables>
+							<Collectable Name="Green Quartz" Value="550" />
+						</Collectables>
+						<GatherObjects>
+							<GatherObject>Unspoiled Rocky Outcrop</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="604.0788, 42.79291, 5.003693"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(5162,&YellowQuartz;)">
+					<LogMessage Message="You need more Yellow Quartz..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<Collectables>
+							<Collectable Name="Yellow Quartz" Value="550" />
+						</Collectables>
+						<GatherObjects>
+							<GatherObject>Unspoiled Rocky Outcrop</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="604.0788, 42.79291, 5.003693"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+			</If>
+			<If Condition="IsTimeBetween(2,5)">
+				<RunCode Name="Miner"/>   
+				<LogMessage Message="Gathering &Downtime; while we wait..." />
+				<GatherCollectable DiscoverUnknowns="True" DisableRotationOverride="True" SkipWindowDelay="1000" while="IsTimeBetween(2,5)">
+					<ItemNames>
+						<ItemName>Timeworn Dragonskin Map</ItemName>
+						<ItemName>&Downtime;</ItemName>
+					</ItemNames>
+					<GatherRotation>RegularNode</GatherRotation>
+					<HotSpots>
+						<HotSpot Radius="30" XYZ="312.769, -18.5121, -104.8184"/>
+						<HotSpot Radius="30" XYZ="306.9229, -18.48553, -222.3304"/>
+						<HotSpot Radius="50" XYZ="151.2813, -21.30007, -178.7466"/>
+					</HotSpots>
+				</GatherCollectable>
+			</If>
+			<If Condition="IsTimeBetween(5,6)">
+				<RunCode Name="Miner"/>
+
+				<!-- ADD LEGENDARY NODE -->
+				<!-- Aurum Regis Ore: The Churning Mists (11, 38) @ 5 AM -->
+				<!-- http://www.garlandtools.org/bell -->
+
+				<LogMessage Message="Aurum Regis Ore coming soon..." />
+			</If>
+			<If Condition="IsTimeBetween(5,12)">
+				<RunCode Name="Miner"/>
+				<If Condition="not IsOnMap(400)">
+					<TeleportTo Name="Zenith" AetheryteId="79" />
+					<MoveTo XYZ="-574.8106, 48.80803, 310.9625"/>
+					<FlightPathTo XYZ="-463.0666, 160.2987, 266.5712" Radius="3.0" MountId="1" DismountAtDestination="false" />
+				</If>
+				<LogMessage Message="Gathering &Downtime; while we wait..." />
+				<GatherCollectable DiscoverUnknowns="True" DisableRotationOverride="True" SkipWindowDelay="1000" while="IsTimeBetween(5,12)">
+					<ItemNames>
+						<ItemName>Timeworn Dragonskin Map</ItemName>
+						<ItemName>&Downtime;</ItemName>
+					</ItemNames>
+					<GatherRotation>RegularNode</GatherRotation>
+					<HotSpots>
+						<HotSpot Radius="30" XYZ="312.769, -18.5121, -104.8184"/>
+						<HotSpot Radius="30" XYZ="306.9229, -18.48553, -222.3304"/>
+						<HotSpot Radius="50" XYZ="151.2813, -21.30007, -178.7466"/>
+					</HotSpots>
+				</GatherCollectable>
+			</If>
+			<If Condition="IsTimeBetween(12,13)">
+				<RunCode Name="Botanist"/>
+				<If Condition="not HasAtLeast(12943,&CollectMistletoe;)">
+					<LogMessage Message="You need more Collectable Dravanian Mistletoe..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<ItemNames>
+							<ItemName>Dravanian Mistletoe</ItemName>
+						</ItemNames>
+						<GatherObjects>
+							<GatherObject>Unspoiled Mature Tree</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<GatherSpots>
+							<StealthApproachGatherSpot stealthLocation="221.1639, 218.9276, -654.8363" nodeLocation="222.5773, 218.4649, -658.0814" />
+							<StealthApproachGatherSpot stealthLocation="106.7898, 213.772, -801.8348" nodeLocation="106.7898, 213.772, -801.8348" />
+							<StealthApproachGatherSpot stealthLocation="169.6753, 219.6535, -592.4287" nodeLocation="177.8964, 220.273, -605.3091"	/>
+						</GatherSpots>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="173.6, 296.5012, -704.6605"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(12943,&DravanianMistletoe;)">
+					<LogMessage Message="You need more Dravanian Mistletoe..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<Collectables>
+							<Collectable Name="Dravanian Mistletoe" Value="550" />
+						</Collectables>
+						<GatherObjects>
+							<GatherObject>Unspoiled Mature Tree</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<GatherSpots>
+							<StealthApproachGatherSpot stealthLocation="221.1639, 218.9276, -654.8363" nodeLocation="222.5773, 218.4649, -658.0814" />
+							<StealthApproachGatherSpot stealthLocation="106.7898, 213.772, -801.8348" nodeLocation="106.7898, 213.772, -801.8348" />
+							<StealthApproachGatherSpot stealthLocation="169.6753, 219.6535, -592.4287" nodeLocation="177.8964, 220.273, -605.3091"	/>
+						</GatherSpots>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="173.6, 296.5012, -704.6605"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(12899,&CollectPorcini;)">
+					<LogMessage Message="You need more Collectable Porcini..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<ItemNames>
+							<ItemName>Porcini</ItemName>
+						</ItemNames>
+						<GatherObjects>
+							<GatherObject>Unspoiled Mature Tree</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<GatherSpots>
+							<StealthApproachGatherSpot stealthLocation="221.1639, 218.9276, -654.8363" nodeLocation="222.5773, 218.4649, -658.0814" />
+							<StealthApproachGatherSpot stealthLocation="106.7898, 213.772, -801.8348" nodeLocation="106.7898, 213.772, -801.8348" />
+							<StealthApproachGatherSpot stealthLocation="169.6753, 219.6535, -592.4287" nodeLocation="177.8964, 220.273, -605.3091"	/>
+						</GatherSpots>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="173.6, 296.5012, -704.6605"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(12899,&Porcini;)">
+					<LogMessage Message="You need more Porcini..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<Collectables>
+							<Collectable Name="Porcini" Value="550" />
+						</Collectables>
+						<GatherObjects>
+							<GatherObject>Unspoiled Mature Tree</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<GatherSpots>
+							<StealthApproachGatherSpot stealthLocation="221.1639, 218.9276, -654.8363" nodeLocation="222.5773, 218.4649, -658.0814" />
+							<StealthApproachGatherSpot stealthLocation="106.7898, 213.772, -801.8348" nodeLocation="106.7898, 213.772, -801.8348" />
+							<StealthApproachGatherSpot stealthLocation="169.6753, 219.6535, -592.4287" nodeLocation="177.8964, 220.273, -605.3091"	/>
+						</GatherSpots>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="173.6, 296.5012, -704.6605"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+			</If>
+			<If Condition="IsTimeBetween(12,14)">
+				<RunCode Name="Miner"/>
+				<If Condition="not HasAtLeast(12966,&BrightFireRock;)">
+					<LogMessage Message="You need more Bright Fire Rocks..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(12,14)">
+						<Collectables>
+							<Collectable Name="Bright Fire Rock" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Fire Cluster</ItemName>
+							<ItemName>Fire Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="325.2603, 7.357065, -152.7571"/>
+							<HotSpot Radius="30" XYZ="308.504, -12.87812, -102.3278"/>
+							<HotSpot Radius="30" XYZ="327.7567, -11.02172, -112.7835"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(5220,&RadiantFireMoraine;)">
+					<LogMessage Message="You need more Radiant Fire Moraines..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(12,14)">
+						<Collectables>
+							<Collectable Name="Radiant Fire Moraine" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Fire Cluster</ItemName>
+							<ItemName>Fire Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="325.2603, 7.357065, -152.7571"/>
+							<HotSpot Radius="30" XYZ="308.504, -12.87812, -102.3278"/>
+							<HotSpot Radius="30" XYZ="327.7567, -11.02172, -112.7835"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(5214,&FireMoraine;)">
+					<LogMessage Message="You need more Fire Moraines..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(12,14)">
+						<Collectables>
+							<Collectable Name="Fire Moraine" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Fire Cluster</ItemName>
+							<ItemName>Fire Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="325.2603, 7.357065, -152.7571"/>
+							<HotSpot Radius="30" XYZ="308.504, -12.87812, -102.3278"/>
+							<HotSpot Radius="30" XYZ="327.7567, -11.02172, -112.7835"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(14,&FireCluster;)">
+					<LogMessage Message="You need more Fire Clusters..." />
+					<GatherCollectable DiscoverUnknowns="True" DisableRotationOverride="True" SkipWindowDelay="1000" while="IsTimeBetween(12,14)">
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Fire Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>RegularNode</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="325.2603, 7.357065, -152.7571"/>
+							<HotSpot Radius="30" XYZ="308.504, -12.87812, -102.3278"/>
+							<HotSpot Radius="30" XYZ="327.7567, -11.02172, -112.7835"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+			</If>
+			<If Condition="IsTimeBetween(14,15)">
+				<RunCode Name="Miner"/>
+				<If Condition="not HasAtLeast(5161,&GreenQuartz;)">
+					<LogMessage Message="You need more Green Quartz..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<Collectables>
+							<Collectable Name="Green Quartz" Value="550" />
+						</Collectables>
+						<GatherObjects>
+							<GatherObject>Unspoiled Rocky Outcrop</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="604.0788, 42.79291, 5.003693"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(5162,&YellowQuartz;)">
+					<LogMessage Message="You need more Yellow Quartz..." />
+					<GatherCollectable Loops="1" DiscoverUnknowns="True" SkipWindowDelay="1000">
+						<Collectables>
+							<Collectable Name="Yellow Quartz" Value="550" />
+						</Collectables>
+						<GatherObjects>
+							<GatherObject>Unspoiled Rocky Outcrop</GatherObject>
+						</GatherObjects>
+						<GatherRotation>Unspoiled</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="150" XYZ="604.0788, 42.79291, 5.003693"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+			</If>
+			<If Condition="IsTimeBetween(14,16)">
+				<RunCode Name="Miner"/>
+				<If Condition="not HasAtLeast(12966,&BrightFireRock;)">
+					<LogMessage Message="You need more Bright Fire Rocks..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(14,16)">
+						<Collectables>
+							<Collectable Name="Bright Fire Rock" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Fire Cluster</ItemName>
+							<ItemName>Fire Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="325.2603, 7.357065, -152.7571"/>
+							<HotSpot Radius="30" XYZ="308.504, -12.87812, -102.3278"/>
+							<HotSpot Radius="30" XYZ="327.7567, -11.02172, -112.7835"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(5220,&RadiantFireMoraine;)">
+					<LogMessage Message="You need more Radiant Fire Moraines..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(14,16)">
+						<Collectables>
+							<Collectable Name="Radiant Fire Moraine" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Fire Cluster</ItemName>
+							<ItemName>Fire Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="325.2603, 7.357065, -152.7571"/>
+							<HotSpot Radius="30" XYZ="308.504, -12.87812, -102.3278"/>
+							<HotSpot Radius="30" XYZ="327.7567, -11.02172, -112.7835"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(5214,&FireMoraine;)">
+					<LogMessage Message="You need more Fire Moraines..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(14,16)">
+						<Collectables>
+							<Collectable Name="Fire Moraine" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Fire Cluster</ItemName>
+							<ItemName>Fire Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="325.2603, 7.357065, -152.7571"/>
+							<HotSpot Radius="30" XYZ="308.504, -12.87812, -102.3278"/>
+							<HotSpot Radius="30" XYZ="327.7567, -11.02172, -112.7835"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(14,&FireCluster;)">
+					<LogMessage Message="You need more Fire Clusters..." />
+					<GatherCollectable DiscoverUnknowns="True" DisableRotationOverride="True" SkipWindowDelay="1000" while="IsTimeBetween(14,16)">
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Fire Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>RegularNode</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="325.2603, 7.357065, -152.7571"/>
+							<HotSpot Radius="30" XYZ="308.504, -12.87812, -102.3278"/>
+							<HotSpot Radius="30" XYZ="327.7567, -11.02172, -112.7835"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+			</If>
+			<If Condition="IsTimeBetween(16,17)">
+				<RunCode Name="Botanist"/>
+				<If Condition="not HasAtLeast(12969,&PeatMoss;)">
+					<LogMessage Message="You need more Peat Mosses..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(16,17)">
+						<Collectables>
+							<Collectable Name="Peat Moss" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Earth Cluster</ItemName>
+							<ItemName>Earth Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="-124.3005, 6.079998, 382.4955"/>
+							<HotSpot Radius="30" XYZ="-81.69835, 6.854376, 429.5192"/>
+							<HotSpot Radius="30" XYZ="-2.943955, 4.82585, 373.1071"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(12970,&BlackSoil;)">
+					<LogMessage Message="You need more Black Soils..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(16,17)">
+						<Collectables>
+							<Collectable Name="Black Soil" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Earth Cluster</ItemName>
+							<ItemName>Earth Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="-124.3005, 6.079998, 382.4955"/>
+							<HotSpot Radius="30" XYZ="-81.69835, 6.854376, 429.5192"/>
+							<HotSpot Radius="30" XYZ="-2.943955, 4.82585, 373.1071"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(12968,&GranularClay;)">
+					<LogMessage Message="You need more Granular Clays..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(16,17)">
+						<Collectables>
+							<Collectable Name="Granular Clay" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Earth Cluster</ItemName>
+							<ItemName>Earth Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="-124.3005, 6.079998, 382.4955"/>
+							<HotSpot Radius="30" XYZ="-81.69835, 6.854376, 429.5192"/>
+							<HotSpot Radius="30" XYZ="-2.943955, 4.82585, 373.1071"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(17,&EarthCluster;)">
+					<LogMessage Message="You need more Earth Clusters..." />
+					<GatherCollectable DiscoverUnknowns="True" DisableRotationOverride="True" SkipWindowDelay="1000" while="IsTimeBetween(16,17)">
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Earth Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>RegularNode</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="-124.3005, 6.079998, 382.4955"/>
+							<HotSpot Radius="30" XYZ="-81.69835, 6.854376, 429.5192"/>
+							<HotSpot Radius="30" XYZ="-2.943955, 4.82585, 373.1071"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+			</If>
+			<If Condition="IsTimeBetween(17,18)">
+				<RunCode Name="Botanist"/>
+
+				<!-- ADD LEGENDARY NODE -->
+				<!-- Seventh Heaven: The Churning Mists (16, 36) @ 5 PM -->
+				<!-- http://www.garlandtools.org/bell -->
+
+				<LogMessage Message="Seventh Heaven coming soon..." />
+			</If>
+			<If Condition="IsTimeBetween(17,20)">
+				<RunCode Name="Botanist"/>
+				<If Condition="not HasAtLeast(12969,&PeatMoss;)">
+					<LogMessage Message="You need more Peat Mosses..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(17,20)">
+						<Collectables>
+							<Collectable Name="Peat Moss" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Earth Cluster</ItemName>
+							<ItemName>Earth Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="-124.3005, 6.079998, 382.4955"/>
+							<HotSpot Radius="30" XYZ="-81.69835, 6.854376, 429.5192"/>
+							<HotSpot Radius="30" XYZ="-2.943955, 4.82585, 373.1071"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(12970,&BlackSoil;)">
+					<LogMessage Message="You need more Black Soils..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(17,20)">
+						<Collectables>
+							<Collectable Name="Black Soil" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Earth Cluster</ItemName>
+							<ItemName>Earth Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="-124.3005, 6.079998, 382.4955"/>
+							<HotSpot Radius="30" XYZ="-81.69835, 6.854376, 429.5192"/>
+							<HotSpot Radius="30" XYZ="-2.943955, 4.82585, 373.1071"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(12968,&GranularClay;)">
+					<LogMessage Message="You need more Granular Clays..." />
+					<GatherCollectable DiscoverUnknowns="True" AlwaysGather="False" GatherStrategy="TouchAndGo" CordialType="Cordial" CordialTime="AfterGather" SkipWindowDelay="1000" while="IsTimeBetween(17,20)">
+						<Collectables>
+							<Collectable Name="Granular Clay" Value="550" />
+						</Collectables>
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Earth Cluster</ItemName>
+							<ItemName>Earth Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>DefaultCollect</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="-124.3005, 6.079998, 382.4955"/>
+							<HotSpot Radius="30" XYZ="-81.69835, 6.854376, 429.5192"/>
+							<HotSpot Radius="30" XYZ="-2.943955, 4.82585, 373.1071"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+				<If Condition="not HasAtLeast(17,&EarthCluster;)">
+					<LogMessage Message="You need more Earth Clusters..." />
+					<GatherCollectable DiscoverUnknowns="True" DisableRotationOverride="True" SkipWindowDelay="1000" while="IsTimeBetween(17,20)">
+						<ItemNames>
+							<ItemName>Timeworn Dragonskin Map</ItemName>
+							<ItemName>Earth Crystal</ItemName>
+						</ItemNames>
+						<GatherRotation>RegularNode</GatherRotation>
+						<HotSpots>
+							<HotSpot Radius="30" XYZ="-124.3005, 6.079998, 382.4955"/>
+							<HotSpot Radius="30" XYZ="-81.69835, 6.854376, 429.5192"/>
+							<HotSpot Radius="30" XYZ="-2.943955, 4.82585, 373.1071"/>
+						</HotSpots>
+					</GatherCollectable>
+				</If>
+			</If>
+			<If Condition="IsTimeBetween(20,24)">
+				<RunCode Name="Miner"/>
+				<LogMessage Message="Gathering &Downtime; while we wait..." />
+				<GatherCollectable DiscoverUnknowns="True" DisableRotationOverride="True" SkipWindowDelay="1000" while="IsTimeBetween(20,24)">
+					<ItemNames>
+						<ItemName>Timeworn Dragonskin Map</ItemName>
+						<ItemName>&Downtime;</ItemName>
+					</ItemNames>
+					<GatherRotation>RegularNode</GatherRotation>
+					<HotSpots>
+						<HotSpot Radius="30" XYZ="312.769, -18.5121, -104.8184"/>
+						<HotSpot Radius="30" XYZ="306.9229, -18.48553, -222.3304"/>
+						<HotSpot Radius="50" XYZ="151.2813, -21.30007, -178.7466"/>
+					</HotSpots>
+				</GatherCollectable>
+			</If>
+		</While>
+	</Order>
+	<CodeChunks>
+		<CodeChunk name="Miner">
+			<![CDATA[
+				ff14bot.Managers.ChatManager.SendChat("/gs change 21");
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				
+				if(!Core.Player.HasAura(222))
+				{
+					var result = true;
+
+					if (MovementManager.IsFlying)
+					{
+						result = await CommonTasks.Land();
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
+					}
+					
+					if (result && Core.Player.IsMounted)
+					{
+						Actionmanager.Dismount();
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
+					}
+					
+					ff14bot.Managers.Actionmanager.DoAction(238, Core.Player);
+					await Buddy.Coroutines.Coroutine.Sleep(2000);
+				}
+			]]>
+		</CodeChunk>
+		<CodeChunk name="Botanist">
+			<![CDATA[
+				ff14bot.Managers.ChatManager.SendChat("/gs change 22");
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				
+				if(!Core.Player.HasAura(221))
+				{
+					var result = true;
+
+					if (MovementManager.IsFlying)
+					{
+						result = await CommonTasks.Land();
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
+					}
+					
+					if (result && Core.Player.IsMounted)
+					{
+						Actionmanager.Dismount();
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
+					}
+					
+					ff14bot.Managers.Actionmanager.DoAction(221, Core.Player);
+					await Buddy.Coroutines.Coroutine.Sleep(2000);
+				}
+			]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
