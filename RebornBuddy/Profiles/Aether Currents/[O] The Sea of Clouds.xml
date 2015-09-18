@@ -5,7 +5,7 @@
 #####################################
 # Author: y2krazy                   #
 #####################################
-# Version: 1.0.1                    #
+# Version: 1.0.2                    #
 #####################################
 # Required Level: 57                #
 #####################################
@@ -190,6 +190,87 @@
 		<!-- ######## -->
 
 		<LogMessage Message="Checking level 57 quests..." />
+
+		<!-- Into the Blue -->
+
+		<If Condition="not IsQuestCompleted(67179)">
+			<If Condition="not HasQuest(67179)">
+				<If Condition="not IsOnMap(418)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+						<TeleportTo Name="Foundation" AetheryteId="70" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+						<Travel To="418" />
+					</If>
+				</If>
+				<MoveTo Name="Alphinaud" XYZ="-158.3735, 17, -54.27637" />
+				<If Condition="not IsQuestAcceptQualified(67179)">
+					<LogMessage Message="You are not eligible for the Into the Blue quest!" />
+					<LogMessage Message="Please complete quests up to Into the Blue and restart this profile." />
+					<StopBot/>
+				</If>
+				<If Condition="IsQuestAcceptQualified(67179)">
+					<PickupQuest NpcId="1013385" QuestId="67179" XYZ="-158.3735, 17, -54.27637" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67179)">
+				<If Condition="GetQuestStep(67179) == 1">
+					<If Condition="not IsOnMap(419)">
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<Travel To="419" />
+					</If>
+					<MoveTo Name="Cid" XYZ="147.5394, -12.63491, -26.19977" />
+					<TalkTo NpcId="1013077" XYZ="147.5394, -12.63491, -26.19977" QuestId="67179" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67179) == 2">
+					<If Condition="not IsOnMap(419)">
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<Travel To="419" />
+					</If>
+					<MoveTo Name="Wedge" XYZ="148.6075, -12.63491, -13.44324" />
+					<TalkToPlus NpcId="1013125" XYZ="148.6075, -12.63491, -13.44324" QuestId="67179" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(67179) == 255">
+					<If Condition="not IsOnMap(419)">
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<Travel To="419" />
+					</If>
+					<If Condition="IsOnMap(419)">
+						<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+						<LogMessage Message="Attuning to the Ok' Zundu Aetheryte..." />
+						<NoCombatMoveTo Name="Ok' Zundu Aetheryte" XYZ="-613.1533, -49.48505, -415.0302" />
+						<UseObject UseDistance="8.0" NpcId="73" XYZ="-613.1533, -49.48505, -415.0302" Radius="10" UseTimes="1" BlacklistAfter="True" />
+						<LogMessage Message="Setting Ok' Zundu as your Home Point..." />
+						<UseTransport NpcId="73" UseTimes="1" DialogOption="0" BlacklistAfter="True" InteractDistance="10" XYZ="-613.1533, -49.48505, -415.0302" Radius="10" WaitTime="5000" />
+					</If>
+					<NoCombatMoveTo Name="Alphinaud" XYZ="-805.5391, -57.82888, 157.6409" />
+					<TurnIn QuestId="67179" NpcId="1013085" XYZ="-805.5391, -57.82888, 157.6409" />
+				</If>
+			</If>
+		</If>
 
 		<If Condition="not IsOnMap(129)">
 			<If Condition="Managers.WorldManager.HasAetheryteId(8)">
