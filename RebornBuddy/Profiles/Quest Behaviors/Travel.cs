@@ -218,8 +218,11 @@ namespace ff14bot.NeoProfiles
 			SupportedNPC.Add(1011949);
 			SupportedNPC.Add(2005371);
 			SupportedNPC.Add(1011946);
+            SupportedNPC.Add(1011212);
+            SupportedNPC.Add(2005370); 
 
-			pathing a = new pathing();
+
+            pathing a = new pathing();
 			a.setStart(WorldManager.ZoneId.ToString());
 			a.setEnd(Destination);
 
@@ -350,19 +353,30 @@ namespace ff14bot.NeoProfiles
 		List<AreaInfo> returnlist = new List<AreaInfo>();
 		public pathing()
 		{
-			// expansion
+            // expansion
+            // areas.Add("", new AreaInfo() { x = , y = , z = , Name = "", Communicationlocalindex = -1 });
 
+            //---- Experimental-----
+            areas.Add("401_North-419", new AreaInfo() { x = -812.0089, y = -57.8775, z = 162.7679, Name = " Blue Window -->The Pillars", Communicationlocalindex = 1 });
+            areas.Add("419-401_North", new AreaInfo() { x = 147.3258, y = -12.63491, z = -12.40564, Name = "The Pillars --> Blue Window", Communicationlocalindex = 1 });
+            //---------
+            areas.Add("399-398", new AreaInfo() { x = 904.6548, y = 161.711, z = 189.163, Name = "The Dravanian Hinterlands --> The Dravanian Forelands", Communicationlocalindex = -1 });
+            areas.Add("398-399", new AreaInfo() { x = -795.4093, y = -122.2338, z = 577.756, Name = "The Dravanian Forelands --> The Dravanian Hinterlands", Communicationlocalindex = -1 });
+            areas.Add("399-478", new AreaInfo() { x = -227.6785, y = 106.5826, z = -628.679, Name = "The Dravanian Hinterlands --> Idyllshire", Communicationlocalindex = -1 });
+            areas.Add("478-399", new AreaInfo() { x = 144.5908, y = 207, z = 114.8838, Name = "Idyllshire --> The Dravanian Hinterlands", Communicationlocalindex = -1 });
+
+             
             areas.Add("155-418", new AreaInfo() { x = -163.8972, y = 304.1538, z = -333.0587, Name = "Coerthas Central Highlands --> Foundation", Communicationlocalindex = 1 });
 			areas.Add("418-155", new AreaInfo() { x = 4.592957, y = -2.52555, z = 149.4926, Name = " Foundation -->Coerthas Central Highlands ", Communicationlocalindex = 1 });
 			areas.Add("418-419", new AreaInfo() { x =-57.32227, y = 20.69349, z =-96.31832, Name = "Foundation --> The Pillars", Communicationlocalindex = -1 });
 			areas.Add("419-418", new AreaInfo() { x =-16.78843, y =-13.06285, z =-67.11987, Name = "The Pillars --> Foundation", Communicationlocalindex = -1 });
 			// areas.Add("418-397", new AreaInfo() { x = -163.4394, y = 2.15106, z = -5.508545, Name = " The Pillars--> Coerthas Western Highlands", Communicationlocalindex = -1 });
-			areas.Add("419-401", new AreaInfo() { x = 151.9916, y =-12.55534, z =-7.858459, Name = " The Pillars --> Camp Cloudtop", Communicationlocalindex = 1 });
-			areas.Add("398-399", new AreaInfo() { x = 798.7896, y = -122.5395, z = 577.9781, Name = " Dravanian Forelands --> The Dravanian Hinterlands", Communicationlocalindex = -1 });
+			areas.Add("419-401_South", new AreaInfo() { x = 151.9916, y =-12.55534, z =-7.858459, Name = " The Pillars --> Camp Cloudtop", Communicationlocalindex = 1 });
+			//areas.Add("398-399", new AreaInfo() { x = 798.7896, y = -122.5395, z = 577.9781, Name = " Dravanian Forelands --> The Dravanian Hinterlands", Communicationlocalindex = -1 });
 			areas.Add("398-400", new AreaInfo() { x = -692.5875, y = 5.001416, z = -838.3893, Name = "Dravanian Forelands --> Churning Mists", Communicationlocalindex = 1 });
 			areas.Add("400-398", new AreaInfo() { x = 201.5868, y =-68.68091, z = 709.3461, Name = "Churning Mists --> The Dravanian Forelands", Communicationlocalindex = 1 });
 
-			areas.Add("401-419", new AreaInfo() { x = -734.9813, y = -105.0583, z = 459.3728, Name = " Camp Cloudtop -->  The Pillars", Communicationlocalindex = 1 });
+			areas.Add("401_South-419", new AreaInfo() { x = -734.9813, y = -105.0583, z = 459.3728, Name = " Camp Cloudtop -->  The Pillars", Communicationlocalindex = 1 });
 			areas.Add("397-398", new AreaInfo() { x = -848.7283, y = 117.683, z =-655.5744, Name = " Coerthas Western Highlands --> The Dravanian Forelands", Communicationlocalindex = -1 });
 			areas.Add("398-397", new AreaInfo() { x = 870.7913, y = -3.649778, z = 350.4391, Name = "The Dravanian Forelands --> Coerthas Western Highlands", Communicationlocalindex = -1 });
 
@@ -518,11 +532,17 @@ namespace ff14bot.NeoProfiles
 			g.add_vertex("339", new Dictionary<String, int>() { { "135", 5 } });
 			g.add_vertex("212", new Dictionary<String, int>() { { "140", 5 } });
 			g.add_vertex("418", new Dictionary<String, int>() { { "155", 5 }, { "419", 5 } });
-			g.add_vertex("419", new Dictionary<String, int>() { { "418", 5 }, { "401" , 5 } });
-			g.add_vertex("401", new Dictionary<String, int>() { { "419", 5 } });
-			g.add_vertex("397", new Dictionary<String, int>() { { "398", 5 } });
-			g.add_vertex("398", new Dictionary<String, int>() { { "397", 5 }, { "400", 5 } });
-			g.add_vertex("400", new Dictionary<String, int>() { { "398", 5 } });
+			g.add_vertex("419", new Dictionary<String, int>() { { "418", 5 }, { "401_South" , 5 } });
+			g.add_vertex("401_South", new Dictionary<String, int>() { { "419", 5 } });
+            //---- experimental
+            g.add_vertex("419", new Dictionary<String, int>() { { "401_North", 5 } });
+            g.add_vertex("401_North", new Dictionary<String, int>() { { "419", 5 } });
+            g.add_vertex("478", new Dictionary<String, int>() { { "399", 5 } });
+            //---------
+            g.add_vertex("397", new Dictionary<String, int>() { { "398", 5 } });
+			g.add_vertex("398", new Dictionary<String, int>() { { "397", 5 }, { "400", 5 }, { "399", 5 } });
+            g.add_vertex("399", new Dictionary<String, int>() { { "398", 5 }, { "478", 5 } });
+            g.add_vertex("400", new Dictionary<String, int>() { { "398", 5 } });
 		}
 
 		public void setStart(String Start)
