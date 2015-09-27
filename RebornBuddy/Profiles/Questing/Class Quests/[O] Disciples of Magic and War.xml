@@ -32,7 +32,7 @@
 
 		<!-- Arcanist (10/32) -->
 
-		<If Condition="(Core.Me.CurrentJob == ClassJobType.Arcanist) or (Core.Me.CurrentJob == ClassJobType.Scholar) or (Core.Me.CurrentJob == ClassJobType.Summoner)">
+		<If Condition="(ClassName == ClassJobType.Arcanist) or (ClassName == ClassJobType.Scholar) or (ClassName == ClassJobType.Summoner)">
 
 			<LogMessage Message="Checking Arcanist class quests..." />
 
@@ -244,20 +244,10 @@
 									<HotSpot XYZ="-110.3807, 45.38188, -245.4525" Radius="90" />
 								</HotSpots>
 								<TargetMobs>
-									<TargetMob Id="1950" Weight="2000" />
-									<TargetMob Id="1949" Weight="1000" />
+									<TargetMob Id="1950" Weight="2000" /> <!-- Goblin Picaroon -->
+									<TargetMob Id="1949" Weight="1000" /> <!-- Goblin Trader -->
 								</TargetMobs>
 							</SimpleDuty>
-							<!-- Instance
-
-							Location:
-							Map ID: 134 (Raw Map ID: 285), Location: 
-
-							Enemies:
-							NPC ID: 1950 | Name: Goblin Picaroon
-							NPC ID: 1949 | Name: Goblin Trader
-
-							-->
 						</If>
 						<If Condition="GetQuestStep(65993) == 5">
 							<If Condition="not IsOnMap(134)">
@@ -425,26 +415,13 @@
 									<HotSpot XYZ="6.783015, 16.34722, 0.906988" Radius="90" />
 								</HotSpots>
 								<TargetMobs>
-									<TargetMob Id="1954" Weight="5000" />
-									<TargetMob Id="1951" Weight="4000" />
-									<TargetMob Id="1955" Weight="3000" />
-									<TargetMob Id="1952" Weight="2000" />
-									<TargetMob Id="1953" Weight="1000" />
+									<TargetMob Id="1954" Weight="5000" /> <!-- Morningstar Gunner -->
+									<TargetMob Id="1951" Weight="4000" /> <!-- Morningstar Boatswain -->
+									<TargetMob Id="1955" Weight="3000" /> <!-- Morningstar Gromet -->
+									<TargetMob Id="1952" Weight="2000" /> <!-- Morningstar Falmadair -->
+									<TargetMob Id="1953" Weight="1000" /> <!-- Morningstar Navigator -->
 								</TargetMobs>
 							</SimpleDuty>
-							<!-- Instance
-
-							Location:
-							Map ID: 0 (Raw Map ID: 286), Location: 
-
-							Enemies:
-							NPC ID: 1954 | Name: Morningstar Gunner
-							NPC ID: 1951 | Name: Morningstar Boatswain
-							NPC ID: 1955 | Name: Morningstar Gromet
-							NPC ID: 1952 | Name: Morningstar Falmadair
-							NPC ID: 1953 | Name: Morningstar Navigator
-
-							-->
 						</If>
 						<If Condition="GetQuestStep(65994) == 255">
 							<If Condition="not IsOnMap(129)">
@@ -577,24 +554,12 @@
 									<HotSpot XYZ="-10.20831, 67.4906, 416.0676" Radius="90" />
 								</HotSpots>
 								<TargetMobs>
-									<TargetMob Id="1958" Weight="4000" />
-									<TargetMob Id="1960" Weight="3000" />
-									<TargetMob Id="1956" Weight="2000" />
-									<TargetMob Id="1957" Weight="1000" />
-								</TargetMobs>
+									<TargetMob Id="1958" Weight="4000" /> --> <!-- Mamool Ja Mercenary -->
+									<!-- <TargetMob Id="1960" Weight="3000" /> --> <!-- Melancholy Mercenary -->
+									<!-- <TargetMob Id="1956" Weight="2000" /> --> <!-- Mindful Mercenary -->
+									<!-- <TargetMob Id="1957" Weight="1000" /> --> <!-- Menacing Mercenary -->
+								<!-- </TargetMobs>
 							</SimpleDuty> -->
-							<!-- Instance
-
-							Location:
-							Map ID: 135 (Raw Map ID: 287)
-
-							Enemies:
-							NPC ID: 1958 | Name: Mamool Ja Mercenary
-							NPC ID: 1960 | Name: Melancholy Mercenary
-							NPC ID: 1956 | Name: Mindful Mercenary
-							NPC ID: 1957 | Name: Menacing Mercenary 
-
-							-->
 						</If>
 						<If Condition="GetQuestStep(65995) == 255">
 							<If Condition="not IsOnMap(129)">
@@ -1236,7 +1201,7 @@
 
 			<!-- Scholar -->
 
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Scholar">
+			<If Condition="ClassName == ClassJobType.Scholar">
 
 				<LogMessage Message="Checking Scholar job quests..." />
 
@@ -1409,7 +1374,7 @@
 
 			<!-- Summoner -->
 
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Summoner">
+			<If Condition="ClassName == ClassJobType.Summoner">
 
 				<LogMessage Message="Checking Summoner job quests..." />
 
@@ -1584,7 +1549,7 @@
 
 		<!-- Archer (8/14) -->
 
-		<If Condition="(Core.Me.CurrentJob == ClassJobType.Archer) or (Core.Me.CurrentJob == ClassJobType.Bard)">
+		<If Condition="(ClassName == ClassJobType.Archer) or (ClassName == ClassJobType.Bard)">
 
 			<LogMessage Message="Checking Archer class quests..." />
 
@@ -2626,7 +2591,7 @@
 
 		<!-- Astrologian (0/13) -->
 
-		<If Condition="Core.Me.CurrentJob == ClassJobType.Astrologian">
+		<If Condition="ClassName == ClassJobType.Astrologian">
 
 			<LogMessage Message="Checking Astrologian class quests..." />
 
@@ -2829,7 +2794,7 @@
 
 		<!-- Conjurer (9/20) -->
 
-		<If Condition="Core.Me.CurrentJob == ClassJobType.Conjurer">
+		<If Condition="ClassName == ClassJobType.Conjurer">
 
 			<LogMessage Message="Checking Conjurer class quests..." />
 
@@ -3997,7 +3962,7 @@
 
 		<!-- Dark Knight (0/12) -->
 
-		<If Condition="Core.Me.CurrentJob == ClassJobType.DarkKnight">
+		<If Condition="ClassName == ClassJobType.DarkKnight">
 
 			<LogMessage Message="Checking Dark Knight class quests..." />
 
@@ -4185,7 +4150,7 @@
 
 		<!-- Gladiator (0/19) -->
 
-		<If Condition="Core.Me.CurrentJob == ClassJobType.Gladiator">
+		<If Condition="ClassName == ClassJobType.Gladiator">
 
 			<LogMessage Message="Checking Gladiator class quests..." />
 
@@ -4480,7 +4445,7 @@
 
 		<!-- Lancer (10/20) -->
 
-		<If Condition="(Core.Me.CurrentJob == ClassJobType.Lancer) or (Core.Me.CurrentJob == Enums.ClassJobType.Dragoon)">
+		<If Condition="(ClassName == ClassJobType.Lancer) or (ClassName == ClassJobType.Dragoon)">
 
 			<LogMessage Message="Checking Lancer class quests..." />
 
@@ -5555,7 +5520,7 @@
 
 		<!-- Machinist (0/16) -->
 
-		<If Condition="Core.Me.CurrentJob == ClassJobType.Machinist">
+		<If Condition="ClassName == ClassJobType.Machinist">
 
 			<LogMessage Message="Checking Machinist class quests..." />
 
@@ -5803,7 +5768,7 @@
 
 		<!-- Marauder (0/20) -->
 
-		<If Condition="Core.Me.CurrentJob == ClassJobType.Marauder">
+		<If Condition="ClassName == ClassJobType.Marauder">
 
 			<LogMessage Message="Checking Marauder class quests..." />
 
@@ -6113,7 +6078,7 @@
 
 		<!-- Pugilist (8/19) -->
 
-		<If Condition="Core.Me.CurrentJob == ClassJobType.Pugilist">
+		<If Condition="ClassName == ClassJobType.Pugilist">
 
 			<LogMessage Message="Checking Pugilist class quests..." />
 
@@ -7139,7 +7104,7 @@
 
 		<!-- Rogue (2/25) -->
 
-		<If Condition="Core.Me.CurrentJob == ClassJobType.Rogue">
+		<If Condition="ClassName == ClassJobType.Rogue">
 
 			<LogMessage Message="Checking Rogue class quests..." />
 
@@ -7368,8 +7333,21 @@
 			<If Condition="not IsQuestCompleted(65662)">
 				<If Condition="Core.Player.ClassLevel &gt; 9">
 					<If Condition="not HasQuest(65662)">
-						<LogMessage Message="Stray into the Shadows quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+							<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+						</If>
+						<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+						<If Condition="IsQuestAcceptQualified(65662)">
+							<PickupQuest NpcId="1009943" QuestId="65662" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65662)">
 						<LogMessage Message="Stray into the Shadows quest is coming soon! Stay tuned!" />
@@ -7701,7 +7679,7 @@
 
 		<!-- Thaumaturge (5/19) -->
 
-		<If Condition="Core.Me.CurrentJob == ClassJobType.Thaumaturge">
+		<If Condition="ClassName == ClassJobType.Thaumaturge">
 
 			<LogMessage Message="Checking Thaumaturge class quests..." />
 
