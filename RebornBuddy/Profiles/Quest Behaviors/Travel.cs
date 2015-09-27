@@ -354,18 +354,25 @@ namespace ff14bot.NeoProfiles
 		public pathing()
 		{
             // expansion
+            /*looks like The Dravanian Hinterlands is similar to The Sea of Clouds, with a split zone; East side is accessible by 397 (blocked for me, may unlock after a quest?), 398 and 478, where West side is accessible only through 478 --- meaning 478 has two exits, both to 399, but one for the East side and one for the West side
+            478 - 399W: < MoveTo Name = "The Dravanian Hinterlands West" XYZ = "74.39938, 205, 140.4551" >
+            399W-478: <MoveTo Name="Idyllshire" XYZ="-540.4974, 155.7123, -515.0025">
+            */
+
             // areas.Add("", new AreaInfo() { x = , y = , z = , Name = "", Communicationlocalindex = -1 });
 
             //---- Experimental-----
             areas.Add("401_North-419", new AreaInfo() { x = -812.0089, y = -57.8775, z = 162.7679, Name = " Blue Window -->The Pillars", Communicationlocalindex = 1 });
             areas.Add("419-401_North", new AreaInfo() { x = 147.3258, y = -12.63491, z = -12.40564, Name = "The Pillars --> Blue Window", Communicationlocalindex = 1 });
-            //---------
-            areas.Add("399-398", new AreaInfo() { x = 904.6548, y = 161.711, z = 189.163, Name = "The Dravanian Hinterlands --> The Dravanian Forelands", Communicationlocalindex = -1 });
-            areas.Add("398-399", new AreaInfo() { x = -795.4093, y = -122.2338, z = 577.756, Name = "The Dravanian Forelands --> The Dravanian Hinterlands", Communicationlocalindex = -1 });
-            areas.Add("399-478", new AreaInfo() { x = -227.6785, y = 106.5826, z = -628.679, Name = "The Dravanian Hinterlands --> Idyllshire", Communicationlocalindex = -1 });
-            areas.Add("478-399", new AreaInfo() { x = 144.5908, y = 207, z = 114.8838, Name = "Idyllshire --> The Dravanian Hinterlands", Communicationlocalindex = -1 });
 
-             
+            areas.Add("478-399_West", new AreaInfo() { x = 74.39938, y = 205, z = 140.4551, Name = " The Dravanian Hinterlands West", Communicationlocalindex = -1 });
+            areas.Add("399_West-478", new AreaInfo() { x = -540.4974, y = 155.7123, z = -515.0025, Name = "Idyllshire", Communicationlocalindex = -1 });
+
+            //---------
+            areas.Add("399_East-398", new AreaInfo() { x = 904.6548, y = 161.711, z = 189.163, Name = "The Dravanian Hinterlands-- > The Dravanian Forelands", Communicationlocalindex = -1 });
+            areas.Add("398-399_East", new AreaInfo() { x = -795.4093, y = -122.2338, z = 577.756, Name = "The Dravanian Forelands-- > The Dravanian Hinterlands", Communicationlocalindex = -1 });
+            
+            
             areas.Add("155-418", new AreaInfo() { x = -163.8972, y = 304.1538, z = -333.0587, Name = "Coerthas Central Highlands --> Foundation", Communicationlocalindex = 1 });
 			areas.Add("418-155", new AreaInfo() { x = 4.592957, y = -2.52555, z = 149.4926, Name = " Foundation -->Coerthas Central Highlands ", Communicationlocalindex = 1 });
 			areas.Add("418-419", new AreaInfo() { x =-57.32227, y = 20.69349, z =-96.31832, Name = "Foundation --> The Pillars", Communicationlocalindex = -1 });
@@ -537,11 +544,12 @@ namespace ff14bot.NeoProfiles
             //---- experimental
             g.add_vertex("419", new Dictionary<String, int>() { { "401_North", 5 } });
             g.add_vertex("401_North", new Dictionary<String, int>() { { "419", 5 } });
-            g.add_vertex("478", new Dictionary<String, int>() { { "399", 5 } });
             //---------
             g.add_vertex("397", new Dictionary<String, int>() { { "398", 5 } });
-			g.add_vertex("398", new Dictionary<String, int>() { { "397", 5 }, { "400", 5 }, { "399", 5 } });
-            g.add_vertex("399", new Dictionary<String, int>() { { "398", 5 }, { "478", 5 } });
+			g.add_vertex("398", new Dictionary<String, int>() { { "397", 5 }, { "400", 5 }, {"399_East", 5 } });
+            g.add_vertex("399_East", new Dictionary<String, int>() { { "398", 5 } });
+            g.add_vertex("399_West", new Dictionary<String, int>() { { "478", 5 } });
+            g.add_vertex("478", new Dictionary<String, int>() { { "399_West", 5 } });
             g.add_vertex("400", new Dictionary<String, int>() { { "398", 5 } });
 		}
 
