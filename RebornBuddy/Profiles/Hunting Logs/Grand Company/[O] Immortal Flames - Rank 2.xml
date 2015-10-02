@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#########################################
+# Profile: [O] Immortal Flames - Rank 2 #
+#########################################
+# Author: y2krazy                       #
+#########################################
+# Version: 1.0.0                        #
+#########################################
+# Required Level: 47                    #
+#########################################
+# Required Teleport Locations:          #
+# 	None                                #
+#########################################
+# Required User Interaction:            #
+# 	None                                #
+#########################################
+# Required Setup:                       #
+# 	None                                #
+#########################################
+# Rewards:                              #
+# 	None                                #
+#########################################
+-->
+<Profile>
+	<Name>[O] Immortal Flames - Rank 2</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<RunCode Name="Combat" />
+		<WaitTimer WaitTime="3" />
+
+		<If Condition="Core.Player.ClassLevel &lt; 47">
+			<LogMessage Message="You do not meet the minimum level requirement." />
+			<LogMessage Message="Please reach level 47 or higher." />
+			<StopBot />
+		</If>
+
+		<If Condition="not HuntGCRankCompleted(2)">
+
+			<!-- Entry 1 -->
+
+			<If Condition="not HuntGCEntryCompleted(0)">
+				<If Condition="not IsOnMap(146)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+						<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+							<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+						<Travel To="146" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Amalj'aa Halberdiers" XYZ="183.2934, 6.462846, 603.5359" />
+				<Grind grindRef="Entry_1" while="not HuntGCEntryCompleted(0)" />
+			</If>
+
+			<!-- Entry 2 -->
+
+			<If Condition="not HuntGCEntryCompleted(1)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+							<TeleportTo Name="Wineport" AetheryteId="12" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+					<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+				</If>
+				<NoCombatMoveTo Name="Kobold Missionaries" XYZ="360.4421, 33.36853, 243.5167" />
+				<Grind grindRef="Entry_2" while="not HuntGCEntryCompleted(1)" />
+			</If>
+
+			<!-- Entry 3 -->
+
+			<If Condition="not HuntGCEntryCompleted(2)">
+				<If Condition="not IsOnMap(139)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+						<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+						<Travel To="139" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Kobold Sidesmen" XYZ="341.9955, 6.022271, -39.15265" />
+				<Grind grindRef="Entry_3" while="not HuntGCEntryCompleted(2)" />
+			</If>
+
+			<!-- Entry 4 -->
+
+			<If Condition="not HuntGCEntryCompleted(3)">
+				<LogMessage Message="Skipping Entry 4: Sand Bats" />
+				<LogMessage Message="Please manually complete this entry in the Cutter's Cry duty." />
+			</If>
+
+			<!-- Entry 5 -->
+
+			<If Condition="not HuntGCEntryCompleted(4)">
+				<LogMessage Message="Skipping Entry 5: Sabotender Desertors" />
+				<LogMessage Message="Please manually complete this entry in the Cutter's Cry duty." />
+			</If>
+
+			<!-- Entry 6 -->
+
+			<If Condition="not HuntGCEntryCompleted(5)">
+				<LogMessage Message="Skipping Entry 6: Myrmidon Princess" />
+				<LogMessage Message="Please manually complete this entry in the Cutter's Cry duty." />
+			</If>
+
+			<!-- Entry 7 -->
+
+			<If Condition="not HuntGCEntryCompleted(6)">
+				<If Condition="not IsOnMap(180)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(16)">
+						<TeleportTo Name="Camp Overlook" AetheryteId="16" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(16)">
+						<Travel To="180" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Kobold Quarrymen" XYZ="-31.38481, 53.29208, -285.6136" />
+				<Grind grindRef="Entry_7" while="not HuntGCEntryCompleted(6)" />
+			</If>
+
+			<!-- Entry 8 -->
+
+			<If Condition="not HuntGCEntryCompleted(7)">
+				<If Condition="not IsOnMap(152)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(4)">
+						<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+						<Travel To="152" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Sylvan Screeches" XYZ="-18.85196, 17.78652, -1.659298" />
+				<Grind grindRef="Entry_8" while="not HuntGCEntryCompleted(7)" />
+			</If>
+
+			<!-- Entry 9 -->
+
+			<If Condition="not HuntGCEntryCompleted(8)">
+				<If Condition="not IsOnMap(138)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+						<TeleportTo Name="Aleport" AetheryteId="14" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+							<TeleportTo Name="Swiftperch" AetheryteId="13" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+						<Travel To="138" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Shelfspine Sahagins" XYZ="-101.3048, -25.22088, 54.37542" />
+				<Grind grindRef="Entry_9" while="not HuntGCEntryCompleted(8)" />
+			</If>
+
+			<!-- Entry 10 -->
+
+			<If Condition="not HuntGCEntryCompleted(9)">
+				<If Condition="not IsOnMap(146)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+						<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+							<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+						<Travel To="146" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Amalj'aa Archers" XYZ="-87.44495, 7.37224, 359.5429" />
+				<Grind grindRef="Entry_10" while="not HuntGCEntryCompleted(9)" />
+			</If>
+
+		</If>
+
+		<LogMessage Message="You've completed the Immortal Flames Rank 2 entries!" />
+		<LogMessage Message="Loading the Immortal Flames Rank 3 profile..." />
+		<LoadProfile Path="Profiles/y2krazy/Hunting Logs/[O] Immortal Flames - Rank 3.xml" />
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Entry_1">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="229.7854, 8.83861, 668.0713" name="Amalj'aa Halberdiers" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2155" /> <!-- Amalj'aa Halberdier -->
+			</TargetMobs>
+			<MinLevel>32</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="321.9001, 36.95308, 225.6724" name="Kobold Missionaries" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="373" /> <!-- Kobold Missionary -->
+			</TargetMobs>
+			<MinLevel>34</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="275.7445, 25.00736, -103.623" name="Kobold Sidesmen" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="376" /> <!-- Kobold Sidesman -->
+			</TargetMobs>
+			<MinLevel>34</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_7">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="30.30922, 48.29681, -357.3904" name="Kobold Quarrymen" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="562" /> <!-- Kobold Quarryman -->
+			</TargetMobs>
+			<MinLevel>44</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_8">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="45.99823, 14.76155, 3.383118" name="Sylvan Screeches" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="64" /> <!-- Sylvan Screech -->
+			</TargetMobs>
+			<MinLevel>43</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_9">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-162.2944, -38.83981, -42.92818" name="Shelfspine Sahagins" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="389" /> <!-- Shelfspine Sahagin -->
+			</TargetMobs>
+			<MinLevel>44</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_10">
+			<Hotspots>
+				<Hotspot Radius="180" XYZ="-52.63274, 11.50415, 193.3833" name="Amalj'aa Archers" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="249" /> <!-- Amalj'aa Archer -->
+			</TargetMobs>
+			<MinLevel>47</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>

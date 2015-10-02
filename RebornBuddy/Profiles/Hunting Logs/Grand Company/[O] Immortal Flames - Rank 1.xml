@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#########################################
+# Profile: [O] Immortal Flames - Rank 1 #
+#########################################
+# Author: y2krazy                       #
+#########################################
+# Version: 1.0.0                        #
+#########################################
+# Required Level: 30                    #
+#########################################
+# Required Teleport Locations:          #
+# 	None                                #
+#########################################
+# Required User Interaction:            #
+# 	None                                #
+#########################################
+# Required Setup:                       #
+# 	None                                #
+#########################################
+# Rewards:                              #
+# 	None                                #
+#########################################
+-->
+<Profile>
+	<Name>[O] Immortal Flames - Rank 1</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<RunCode Name="Combat" />
+		<WaitTimer WaitTime="3" />
+
+		<If Condition="Core.Player.ClassLevel &lt; 30">
+			<LogMessage Message="You do not meet the minimum level requirement." />
+			<LogMessage Message="Please reach level 30 or higher." />
+			<StopBot />
+		</If>
+
+		<If Condition="not HuntGCRankCompleted(1)">
+
+			<!-- Entry 1 -->
+
+			<If Condition="not HuntGCEntryCompleted(0)">
+				<If Condition="not IsOnMap(145)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+						<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+						<Travel To="145" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Amalj'aa Hunters" XYZ="-168.0747, -31.44637, 314.4869" />
+				<Grind grindRef="Entry_1" while="not HuntGCEntryCompleted(0)" />
+			</If>
+
+			<!-- Entry 2 -->
+
+			<If Condition="not HuntGCEntryCompleted(1)">
+				<LogMessage Message="Skipping Entry 2: Doctores" />
+				<LogMessage Message="Please manually complete this entry in the Halatali duty." />
+			</If>
+
+			<!-- Entry 3 -->
+
+			<If Condition="not HuntGCEntryCompleted(2)">
+				<LogMessage Message="Skipping Entry 3: Firemane" />
+				<LogMessage Message="Please manually complete this entry in the Halatali duty." />
+			</If>
+
+			<!-- Entry 4 -->
+
+			<If Condition="not HuntGCEntryCompleted(3)">
+				<LogMessage Message="Skipping Entry 4: Thunderclap Guivre" />
+				<LogMessage Message="Please manually complete this entry in the Halatali duty." />
+			</If>
+
+			<!-- Entry 5 -->
+
+			<If Condition="not HuntGCEntryCompleted(4)">
+				<If Condition="not IsOnMap(152)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(4)">
+						<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+						<Travel To="152" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Sylvan Soughs" XYZ="-165.5645, 11.40824, 1.371849" />
+				<Grind grindRef="Entry_5" while="not HuntGCEntryCompleted(4)" />
+			</If>
+
+			<!-- Entry 6 -->
+
+			<If Condition="not HuntGCEntryCompleted(5)">
+				<If Condition="not IsOnMap(139)">
+					<If Condition="not IsOnMap(138)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+							<TeleportTo Name="Aleport" AetheryteId="14" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+							<Travel To="138" />
+						</If>
+					</If>
+					<Travel To="139" />
+				</If>
+				<NoCombatMoveTo Name="Kobold Footmen" XYZ="-462.2217, 27.2155, 67.64117" />
+				<Grind grindRef="Entry_6" while="not HuntGCEntryCompleted(5)" />
+			</If>
+
+			<!-- Entry 7 -->
+
+			<If Condition="not HuntGCEntryCompleted(6)">
+				<If Condition="not IsOnMap(139)">
+					<If Condition="not IsOnMap(138)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+							<TeleportTo Name="Aleport" AetheryteId="14" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+							<Travel To="138" />
+						</If>
+					</If>
+					<Travel To="139" />
+				</If>
+				<NoCombatMoveTo Name="Kobold Pickmen" XYZ="-462.2217, 27.2155, 67.64117" />
+				<Grind grindRef="Entry_7" while="not HuntGCEntryCompleted(6)" />
+			</If>
+
+			<!-- Entry 8 -->
+
+			<If Condition="not HuntGCEntryCompleted(7)">
+				<If Condition="not IsOnMap(146)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+						<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+							<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+						<Travel To="146" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Amalj'aa Seers" XYZ="-65.70604, 17.20312, -279.76" />
+				<Grind grindRef="Entry_8" while="not HuntGCEntryCompleted(7)" />
+			</If>
+
+			<!-- Entry 9 -->
+
+			<If Condition="not HuntGCEntryCompleted(8)">
+				<If Condition="not IsOnMap(154)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+						<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+						<Travel To="154" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Ixali Lightwings" XYZ="61.7285, -38.23936, 268.6373" />
+				<Grind grindRef="Entry_9" while="not HuntGCEntryCompleted(8)" />
+			</If>
+
+			<!-- Entry 10 -->
+
+			<If Condition="not HuntGCEntryCompleted(9)">
+				<If Condition="not IsOnMap(155)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+						<Travel To="155" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Ixali Boundwing" XYZ="433.4565, 231.2814, 326.0107" />
+				<Grind grindRef="Entry_10" while="not HuntGCEntryCompleted(9)" />
+			</If>
+
+		</If>
+
+		<LogMessage Message="You've completed the Immortal Flames Rank 1 entries!" />
+		<LogMessage Message="Loading the Immortal Flames Rank 2 profile..." />
+		<LoadProfile Path="Profiles/y2krazy/Hunting Logs/[O] Immortal Flames - Rank 2.xml" />
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Entry_1">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-85.73637, -28.16244, 285.836" name="Amalj'aa Hunters" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="250" /> <!-- Amalj'aa Hunter -->
+			</TargetMobs>
+			<MinLevel>18</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_5">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-107.1957, 18.14067, 11.14248" name="Sylvan Soughs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="230" /> <!-- Sylvan Soughs -->
+			</TargetMobs>
+			<MinLevel>23</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_6">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-422.3268, 35.46342, 33.16998" name="Kobold Footmen" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="380" /> <!-- Kobold Footman -->
+			</TargetMobs>
+			<MinLevel>24</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_7">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-422.3268, 35.46342, 33.16998" name="Kobold Pickmen" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="370" /> <!-- Kobold Pickman -->
+			</TargetMobs>
+			<MinLevel>24</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_8">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-21.32169, 16.24611, -309.1377" name="Amalj'aa Seers" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="259" /> <!-- Amalj'aa Seer -->
+			</TargetMobs>
+			<MinLevel>26</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_9">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="63.54956, -39.40379, 335.6798" name="Ixali Lightwings" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="208" /> <!-- Ixali Lightwing -->
+			</TargetMobs>
+			<MinLevel>27</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Entry_10">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="531.9479, 235.1661, 305.795" name="Ixali Boundwing" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="662" /> <!-- Ixali Boundwing -->
+			</TargetMobs>
+			<MinLevel>30</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>
