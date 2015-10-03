@@ -30,7 +30,7 @@
 	<KillRadius>90</KillRadius>
 	<Order>
 
-		<!-- Arcanist (10/32) -->
+		<!-- Arcanist -->
 
 		<If Condition="(ClassName == ClassJobType.Arcanist) or (ClassName == ClassJobType.Scholar) or (ClassName == ClassJobType.Summoner)">
 
@@ -1547,7 +1547,7 @@
 
 		</If>
 
-		<!-- Archer (8/14) -->
+		<!-- Archer -->
 
 		<If Condition="(ClassName == ClassJobType.Archer) or (ClassName == ClassJobType.Bard)">
 
@@ -2589,7 +2589,7 @@
 
 		</If>
 
-		<!-- Astrologian (0/13) -->
+		<!-- Astrologian -->
 
 		<If Condition="ClassName == ClassJobType.Astrologian">
 
@@ -2792,7 +2792,7 @@
 
 		</If>
 
-		<!-- Conjurer (9/20) -->
+		<!-- Conjurer -->
 
 		<If Condition="ClassName == ClassJobType.Conjurer">
 
@@ -3960,7 +3960,7 @@
 
 		</If>
 
-		<!-- Dark Knight (0/12) -->
+		<!-- Dark Knight -->
 
 		<If Condition="ClassName == ClassJobType.DarkKnight">
 
@@ -4148,7 +4148,7 @@
 
 		</If>
 
-		<!-- Gladiator (0/19) -->
+		<!-- Gladiator -->
 
 		<If Condition="ClassName == ClassJobType.Gladiator">
 
@@ -4158,12 +4158,60 @@
 
 			<If Condition="not IsQuestCompleted(65822)">
 				<If Condition="not HasQuest(65822)">
-					<LogMessage Message="My First Gladius quest is coming soon! Stay tuned!" />
-					<StopBot />
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<Travel To="131" />
+					</If>
+					<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+					<If Condition="IsQuestAcceptQualified(65822)">
+						<PickupQuest NpcId="1001739" QuestId="65822" XYZ="-94.52972, 6.500001, 39.81079" />
+					</If>
 				</If>
 				<If Condition="HasQuest(65822)">
-					<LogMessage Message="My First Gladius quest is coming soon! Stay tuned!" />
-					<StopBot />
+					<If Condition="GetQuestStep(65822) == 1">
+						<If Condition="not IsOnMap(141)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+								<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+								<Travel To="141" />
+							</If>
+						</If>
+						<If Condition="GetQuestById(65822).QuestI8AH == 0">
+							<NoCombatMoveTo Name="Star Marmots" XYZ="-64.98568, -3.602963, 190.0947" />
+							<Grind grindRef="My_First_Gladius" while="not IsTodoChecked(65822, 1, 0)" />
+						</If>
+						<If Condition="GetQuestById(65822).QuestI8AH == 1">
+							<NoCombatMoveTo Name="Huge Hornets" XYZ="-64.98568, -3.602963, 190.0947" />
+							<Grind grindRef="My_First_Gladius2" while="not IsTodoChecked(65822, 1, 1)" />
+						</If>
+						<If Condition="GetQuestById(65822).QuestI8AH == 2">
+							<NoCombatMoveTo Name="Snapping Shrews" XYZ="-64.98568, -3.602963, 190.0947" />
+							<Grind grindRef="My_First_Gladius3" while="not IsTodoChecked(65822, 1, 2)" />
+						</If>
+					</If>
+					<If Condition="GetQuestStep(65822) == 255">
+						<If Condition="not IsOnMap(131)">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<Travel To="131" />
+						</If>
+						<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+						<TurnIn QuestId="65822" NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" />
+					</If>
 				</If>
 			</If>
 
@@ -4172,23 +4220,121 @@
 			<If Condition="not IsQuestCompleted(65792)">
 				<If Condition="Core.Player.ClassLevel &gt; 4">
 					<If Condition="not HasQuest(65792)">
-						<LogMessage Message="Kicking the Hornet's Nest quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(131)">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<Travel To="131" />
+						</If>
+						<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+						<If Condition="IsQuestAcceptQualified(65792)">
+							<PickupQuest NpcId="1001739" QuestId="65792" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65792)">
-						<LogMessage Message="Kicking the Hornet's Nest quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65792) == 1">
+							<If Condition="not IsOnMap(130) and not IsOnMap(131)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(131)">
+								<Travel To="130" />
+							</If>
+							<MoveTo Name="Marauders" XYZ="13.30538, 4, -142.9779"/>
+							<While Condition="not IsTodoChecked(65792, 1, 0)">
+								<EmoteNPC NpcId="1003992" Emote="me" XYZ="12.19196, 4.099995, -155.5353" Radius="10" UseTimes="1" QuestId="65792" StepId="1" />
+								<EmoteNPC NpcId="1003994" Emote="me" XYZ="15.97614, 8, -124.0711" Radius="10" UseTimes="1" QuestId="65792" StepId="1" />
+								<EmoteNPC NpcId="1003984" Emote="me" XYZ="45.0293, 4, -128.1606" Radius="10" UseTimes="1" QuestId="65792" StepId="1" />
+								<EmoteNPC NpcId="1003990" Emote="me" XYZ="77.25635, 4.099995, -138.6282" Radius="10" UseTimes="1" QuestId="65792" StepId="1" />
+							</While>
+						</If>
+						<If Condition="GetQuestStep(65792) == 2">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<MoveTo Name="Pfarmurl" XYZ="21.92719, 7.199997, -97.39838"/>
+							<EmoteNPC NpcId="1004222" Emote="me" XYZ="21.92719, 7.199997, -97.39838" Radius="10" QuestId="65792" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(65792) == 3">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<MoveTo Name="Momodi" XYZ="21.07263, 7.45, -78.78235"/>
+							<TalkTo NpcId="1001353" XYZ="21.07263, 7.45, -78.78235" QuestId="65792" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65792) == 4">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<TalkTo NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" QuestId="65792" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(65792) == 255">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<TurnIn QuestId="65792" NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 				</If>
 			</If>
-
+<StopBot/>
 			<!-- Ul'dah's Most Wanted -->
 
 			<If Condition="not IsQuestCompleted(65824)">
 				<If Condition="Core.Player.ClassLevel &gt; 9">
 					<If Condition="not HasQuest(65824)">
-						<LogMessage Message="Ul'dah's Most Wanted quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(131)">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<Travel To="131" />
+						</If>
+						<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+						<If Condition="IsQuestAcceptQualified(65824)">
+							<PickupQuest NpcId="1001739" QuestId="65824" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65824)">
 						<LogMessage Message="Ul'dah's Most Wanted quest is coming soon! Stay tuned!" />
@@ -4202,8 +4348,21 @@
 			<If Condition="not IsQuestCompleted(65798)">
 				<If Condition="Core.Player.ClassLevel &gt; 14">
 					<If Condition="not HasQuest(65798)">
-						<LogMessage Message="That Old Familiar Feeling quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(131)">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<Travel To="131" />
+						</If>
+						<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+						<If Condition="IsQuestAcceptQualified(65798)">
+							<PickupQuest NpcId="1001739" QuestId="65798" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65798)">
 						<LogMessage Message="That Old Familiar Feeling quest is coming soon! Stay tuned!" />
@@ -4217,8 +4376,21 @@
 			<If Condition="not IsQuestCompleted(65799)">
 				<If Condition="Core.Player.ClassLevel &gt; 19">
 					<If Condition="not HasQuest(65799)">
-						<LogMessage Message="The Face of Thal quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(131)">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<Travel To="131" />
+						</If>
+						<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+						<If Condition="IsQuestAcceptQualified(65799)">
+							<PickupQuest NpcId="1001739" QuestId="65799" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65799)">
 						<LogMessage Message="The Face of Thal quest is coming soon! Stay tuned!" />
@@ -4232,8 +4404,21 @@
 			<If Condition="not IsQuestCompleted(65800)">
 				<If Condition="Core.Player.ClassLevel &gt; 24">
 					<If Condition="not HasQuest(65800)">
-						<LogMessage Message="On Holy Ground quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(131)">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<Travel To="131" />
+						</If>
+						<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+						<If Condition="IsQuestAcceptQualified(65800)">
+							<PickupQuest NpcId="1001739" QuestId="65800" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65800)">
 						<LogMessage Message="On Holy Ground quest is coming soon! Stay tuned!" />
@@ -4247,8 +4432,21 @@
 			<If Condition="not IsQuestCompleted(65801)">
 				<If Condition="Core.Player.ClassLevel &gt; 29">
 					<If Condition="not HasQuest(65801)">
-						<LogMessage Message="The Rematch quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(131)">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<Travel To="131" />
+						</If>
+						<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+						<If Condition="IsQuestAcceptQualified(65801)">
+							<PickupQuest NpcId="1001739" QuestId="65801" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65801)">
 						<LogMessage Message="The Rematch quest is coming soon! Stay tuned!" />
@@ -4443,7 +4641,7 @@
 
 		</If>
 
-		<!-- Lancer (10/20) -->
+		<!-- Lancer -->
 
 		<If Condition="(ClassName == ClassJobType.Lancer) or (ClassName == ClassJobType.Dragoon)">
 
@@ -5518,7 +5716,7 @@
 
 		</If>
 
-		<!-- Machinist (0/16) -->
+		<!-- Machinist -->
 
 		<If Condition="ClassName == ClassJobType.Machinist">
 
@@ -5766,7 +5964,7 @@
 
 		</If>
 
-		<!-- Marauder (0/20) -->
+		<!-- Marauder -->
 
 		<If Condition="ClassName == ClassJobType.Marauder">
 
@@ -5776,12 +5974,52 @@
 
 			<If Condition="not IsQuestCompleted(65848)">
 				<If Condition="not HasQuest(65848)">
-					<LogMessage Message="My First Axe quest is coming soon! Stay tuned!" />
-					<StopBot />
+					<If Condition="not IsOnMap(128)">
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<Travel To="128" />
+					</If>
+					<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+					<If Condition="IsQuestAcceptQualified(65848)">
+						<PickupQuest NpcId="1000927" QuestId="65848" XYZ="-1.205505, 44.99989, -255.8786" />
+					</If>
 				</If>
 				<If Condition="HasQuest(65848)">
-					<LogMessage Message="My First Axe quest is coming soon! Stay tuned!" />
-					<StopBot />
+					<If Condition="GetQuestStep(65848) == 1">
+						<If Condition="not IsOnMap(134)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+								<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+								<Travel To="134" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Wharf Rats" XYZ="52.56732, 47.47655, 55.58683" />
+						<Grind grindRef="My_First_Axe" while="not IsTodoChecked(65848, 1, 0)" />
+						<Grind grindRef="My_First_Axe3" while="not IsTodoChecked(65848, 1, 2)" />
+						<Grind grindRef="My_First_Axe2" while="not IsTodoChecked(65848, 1, 1)" />
+					</If>
+					<If Condition="GetQuestStep(65848) == 255">
+						<If Condition="not IsOnMap(128)">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<Travel To="128" />
+						</If>
+						<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+						<TurnIn QuestId="65848" NpcId="1000927" XYZ="-1.205505, 44.99989, -255.8786" />
+					</If>
 				</If>
 			</If>
 
@@ -5790,12 +6028,203 @@
 			<If Condition="not IsQuestCompleted(65849)">
 				<If Condition="Core.Player.ClassLevel &gt; 4">
 					<If Condition="not HasQuest(65849)">
-						<LogMessage Message="Axe in the Stone quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(128)">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<Travel To="128" />
+						</If>
+						<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+						<If Condition="IsQuestAcceptQualified(65849)">
+							<PickupQuest NpcId="1000927" QuestId="65849" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65849)">
-						<LogMessage Message="Axe in the Stone quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65849) == 1">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<NoCombatMoveTo Name="Broenbhar" XYZ="1.480042, 30.47563, -242.2065" />
+							<TalkTo NpcId="1002680" XYZ="1.480042, 30.47563, -242.2065" QuestId="65849" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65849) == 2">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Rhotgeim" XYZ="-57.23663, 43.82968, 45.33447" />
+							<TalkTo NpcId="1002108" XYZ="-57.23663, 43.82968, 45.33447" QuestId="65849" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(65849) == 3">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Solid Rock" XYZ="-68.46729, 43.50342, 20.24866" />
+							<If Condition="GetQuestById(65849).QuestI8AL == 0">
+								<UseSpell SpellId="31" NpcId="2001480" XYZ="-68.46729, 43.50342, 20.24866" QuestId="65849" StepId="3" />
+							</If>
+							<If Condition="GetQuestById(65849).QuestI8AL == 1">
+								<UseSpell SpellId="31" NpcId="2001481" XYZ="-52.14008, 46.15845, 15.82355" QuestId="65849" StepId="3" />
+							</If>
+							<If Condition="GetQuestById(65849).QuestI8AL == 2">
+								<UseSpell SpellId="31" NpcId="2001482" XYZ="-73.80792, 43.25928, 4.623413" QuestId="65849" StepId="3" />
+							</If>
+						</If>
+						<If Condition="GetQuestStep(65849) == 4">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Rhotgeim" XYZ="-57.23663, 43.82968, 45.33447" />
+							<TalkTo NpcId="1002108" XYZ="-57.23663, 43.82968, 45.33447" QuestId="65849" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(65849) == 5">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Solid Rock" XYZ="-12.31409, 46.40259, 31.47937" />
+							<If Condition="GetQuestById(65849).QuestI8AL == 0">
+								<UseSpell SpellId="35" NpcId="2001483" XYZ="-12.31409, 46.40259, 31.47937" QuestId="65849" StepId="5" />
+							</If>
+							<If Condition="GetQuestById(65849).QuestI8AL == 1">
+								<UseSpell SpellId="35" NpcId="2001484" XYZ="-14.57245, 47.40979, 12.34448" QuestId="65849" StepId="5" />
+							</If>
+							<If Condition="GetQuestById(65849).QuestI8AL == 2">
+								<UseSpell SpellId="35" NpcId="2001485" XYZ="1.663208, 48.2948, 9.597839" QuestId="65849" StepId="5" />
+							</If>
+						</If>
+						<If Condition="GetQuestStep(65849) == 6">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Rhotgeim" XYZ="-57.23663, 43.82968, 45.33447" />
+							<TalkTo NpcId="1002108" XYZ="-57.23663, 43.82968, 45.33447" QuestId="65849" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(65849) == 7">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+							<TalkTo NpcId="1000927" XYZ="-1.205505, 44.99989, -255.8786" QuestId="65849" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(65849) == 8">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Solkwyb" XYZ="-5.233948, 31.4756, -256.9772" />
+							<TalkTo NpcId="1002679" XYZ="-5.233948, 31.4756, -256.9772" QuestId="65849" StepId="8" />
+						</If>
+						<If Condition="GetQuestStep(65849) == 9">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Megalocrab Nest" XYZ="130.8461, 35.99597, 28.51904" />
+							<UseObject NpcId="2000284" XYZ="130.8461, 35.99597, 28.51904" Radius="10" QuestId="65849" StepId="9" />
+						</If>
+						<If Condition="GetQuestStep(65849) == 10">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Sighard" XYZ="160.4721, 33.63541, 77.49911" />
+							<Dismount/>
+							<NoCombatMoveTo Name="Sighard" XYZ="158.1554, 33.74164, 87.90929" />
+							<LogMessage Message="Please manually complete the Axe in the Stone duty!" />
+							<LogMessage Message="Run this profile again once you finish the duty." />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Find a way to commence the duty without a NPC. -->
+
+							<!-- TO DO -->
+
+							<!-- <SimpleDuty XYZ="158.1554, 33.74164, 87.90929" QuestId="65849" StepId="10">
+								<HotSpots>
+									<HotSpot XYZ="155.6387, 34.26702, 95.90092" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="825" Weight="2000" /> --> <!-- Molting Megalocrab -->
+									<!-- <TargetMob Id="827" Weight="1000" /> --> <!-- Island Megalocrab -->
+								<!-- </TargetMobs>
+							</SimpleDuty> -->
+						</If>
+						<If Condition="GetQuestStep(65849) == 255">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+							<TurnIn QuestId="65849" NpcId="1000927" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -5805,12 +6234,78 @@
 			<If Condition="not IsQuestCompleted(65851)">
 				<If Condition="Core.Player.ClassLevel &gt; 9">
 					<If Condition="not HasQuest(65851)">
-						<LogMessage Message="Wake of Destruction quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(128)">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<Travel To="128" />
+						</If>
+						<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+						<If Condition="IsQuestAcceptQualified(65851)">
+							<PickupQuest NpcId="1000927" QuestId="65851" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65851)">
-						<LogMessage Message="Wake of Destruction quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65851) == 1">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Galagos" XYZ="410.5915, 75.36475, -329.3518" />
+							<Grind grindRef="Wake_of_Destruction" while="HasQuest(65851) and GetQuestStep(65851) == 1" />
+						</If>
+						<If Condition="GetQuestStep(65851) == 2">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+							<TalkTo NpcId="1000927" XYZ="-1.205505, 44.99989, -255.8786" QuestId="65851" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(65851) == 3">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Overturned Wain" XYZ="-88.60913, 43.56445, -303.0594" />
+							<UseObject NpcId="2000287" XYZ="-88.60913, 43.56445, -303.0594" Radius="10" QuestId="65851" StepId="3" />
+							<Grind grindRef="Wake_of_Destruction2" while="HasQuest(65851) and GetQuestStep(65851) == 3" />
+						</If>
+						<If Condition="GetQuestStep(65851) == 255">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+							<TurnIn QuestId="65851" NpcId="1000927" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -5820,12 +6315,127 @@
 			<If Condition="not IsQuestCompleted(65852)">
 				<If Condition="Core.Player.ClassLevel &gt; 14">
 					<If Condition="not HasQuest(65852)">
-						<LogMessage Message="Brutal Strength quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(128)">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<Travel To="128" />
+						</If>
+						<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+						<If Condition="IsQuestAcceptQualified(65852)">
+							<PickupQuest NpcId="1000927" QuestId="65852" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65852)">
-						<LogMessage Message="Brutal Strength quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65852) == 1">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Reynfred" XYZ="319.8444, -31.89865, 273.5179" />
+							<TalkTo NpcId="1002110" XYZ="319.8444, -31.89865, 273.5179" QuestId="65852" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65852) == 2">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Overturned Wain" XYZ="99.22937, -14.29773, 141.8632" />
+							<UseObject NpcId="2000288" XYZ="99.22937, -14.29773, 141.8632" Radius="10" QuestId="65852" StepId="2" />
+							<Grind grindRef="Brutal_Strength" while="HasQuest(65852) and GetQuestStep(65852) == 2" />
+						</If>
+						<If Condition="GetQuestStep(65852) == 3">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+							<TalkTo NpcId="1000927" XYZ="-1.205505, 44.99989, -255.8786" QuestId="65852" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65852) == 4">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Skapfghim" XYZ="-188.5426, 39.15859, -45.44426" />
+							<RunCode Name="AgelyssRiverJump" />
+							<TalkTo NpcId="1002111" XYZ="-206.8055, 41.75788, -39.62775" QuestId="65852" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(65852) == 5">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Unmovable Boulder" XYZ="-188.5426, 39.15859, -45.44426" />
+							<RunCode Name="AgelyssRiverJump" />
+							<UseSpell SpellId="39" NpcId="2001486" XYZ="-225.33, 42.19116, -35.20258" QuestId="65852" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(65852) == 6">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Skapfghim" XYZ="-188.5426, 39.15859, -45.44426" />
+							<RunCode Name="AgelyssRiverJump" />
+							<TalkTo NpcId="1002111" XYZ="-206.8055, 41.75788, -39.62775" QuestId="65852" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(65852) == 255">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+							<TurnIn QuestId="65852" NpcId="1000927" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -5835,12 +6445,167 @@
 			<If Condition="not IsQuestCompleted(65853)">
 				<If Condition="Core.Player.ClassLevel &gt; 19">
 					<If Condition="not HasQuest(65853)">
-						<LogMessage Message="The Mountain that Strides quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(128)">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<Travel To="128" />
+						</If>
+						<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+						<If Condition="IsQuestAcceptQualified(65853)">
+							<PickupQuest NpcId="1000927" QuestId="65853" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65853)">
-						<LogMessage Message="The Mountain that Strides quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65853) == 1">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Solkwyb" XYZ="-86.93073, 40.99999, -153.9178" />
+							<TalkTo NpcId="1002682" XYZ="-86.93073, 40.99999, -153.9178" QuestId="65853" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65853) == 2">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Neddard" XYZ="561.6693, 89.783, -81.52899" />
+							<TalkTo NpcId="1002112" XYZ="561.6693, 89.783, -81.52899" QuestId="65853" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(65853) == 3">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Solkwyb" XYZ="559.6245, 89.783, -80.1557" />
+							<TalkTo NpcId="1002683" XYZ="559.6245, 89.783, -80.1557" QuestId="65853" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65853) == 4">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Pfarstym" XYZ="312.4589, -24.48309, 212.848" />
+							<TalkTo NpcId="1002113" XYZ="312.4589, -24.48309, 212.848" QuestId="65853" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(65853) == 5">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>
+							</If>
+							<If Condition="GetQuestById(65853).QuestI8AH == 0">
+								<NoCombatMoveTo Name="Sighard's Waterskin" XYZ="348.3481, -18.60083, 168.3833" />
+								<UseObject NpcId="2000289" XYZ="348.3481, -18.60083, 168.3833" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65853" StepId="5" /> 
+								<Grind grindRef="The_Mountain_that_Strides" while="HasQuest(65853) and GetQuestById(65853).QuestI8AH == 0" />
+							</If>
+							<If Condition="GetQuestById(65853).QuestI8AH == 1">
+								<NoCombatMoveTo Name="Sighard's Satchel" XYZ="297.3831, -14.29773, 148.8517" />
+								<UseObject NpcId="2000290" XYZ="297.3831, -14.29773, 148.8517" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65853" StepId="5" /> 
+								<Grind grindRef="The_Mountain_that_Strides2" while="HasQuest(65853) and GetQuestById(65853).QuestI8AH == 1" />
+							</If>
+						</If>
+						<If Condition="GetQuestStep(65853) == 6">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Solkwyb" XYZ="299.1836, 0.713913, 86.10657" />
+							<HandOver ItemIds="2000525,2000526" QuestId="65853" StepId="6" NpcId="1002684" XYZ="299.1836, 0.713913, 86.10657" />
+							<LogMessage Message="Please manually complete The Mountain that Strides duty!" />
+							<LogMessage Message="Run this profile again once you finish the duty." />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- HandOver and SimpleDuty need to happen at the same time. -->
+
+							<!-- TO DO -->
+
+							<!-- <SimpleDuty InteractNpcId="1002684" XYZ="299.1836, 0.713913, 86.10657" QuestId="65853" StepId="6">
+								<HotSpots>
+									<HotSpot XYZ="296.9577, 0.8551753, 85.03024" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="834" Weight="2000" /> --> <!-- Scarred Jackal -->
+									<!-- <TargetMob Id="835" Weight="1000" /> --> <!-- Pack Jackal -->
+								<!-- </TargetMobs>
+							</SimpleDuty> -->
+						</If>
+						<If Condition="GetQuestStep(65853) == 7">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Neddard" XYZ="561.6693, 89.783, -81.52899" />
+							<TalkTo NpcId="1002112" XYZ="561.6693, 89.783, -81.52899" QuestId="65853" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(65853) == 255">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+							<TurnIn QuestId="65853" NpcId="1000927" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -5850,12 +6615,76 @@
 			<If Condition="not IsQuestCompleted(65854)">
 				<If Condition="Core.Player.ClassLevel &gt; 24">
 					<If Condition="not HasQuest(65854)">
-						<LogMessage Message="Bleeder of the Pack quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(128)">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<Travel To="128" />
+						</If>
+						<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+						<If Condition="IsQuestAcceptQualified(65854)">
+							<PickupQuest NpcId="1000927" QuestId="65854" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65854)">
-						<LogMessage Message="Bleeder of the Pack quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65854) == 1">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Solkwyb" XYZ="-86.93073, 40.99999, -153.9178" />
+							<TalkTo NpcId="1002682" XYZ="-86.93073, 40.99999, -153.9178" QuestId="65854" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65854) == 2">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Solkwyb" XYZ="-235.34, -0.2863688, 675.349" />
+							<SimpleDuty InteractNpcId="1002685" XYZ="-235.34, -0.2863688, 675.349" QuestId="65854" StepId="2">
+								<HotSpots>
+									<HotSpot XYZ="-235.34, -0.2863688, 675.349" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="967" Weight="5000" /> <!-- Moraby Hedgemole -->
+									<TargetMob Id="838" Weight="4000" /> <!-- Able-bodied Ambusher -->
+									<TargetMob Id="839" Weight="3000" /> <!-- Nameless Attacker -->
+									<TargetMob Id="1314" Weight="2000" /> <!-- Someone Familiar -->
+									<TargetMob Id="837" Weight="1000" /> <!-- Familiar Marauder -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(65854) == 255">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+							<TurnIn QuestId="65854" NpcId="1000927" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -5865,12 +6694,149 @@
 			<If Condition="not IsQuestCompleted(65855)">
 				<If Condition="Core.Player.ClassLevel &gt; 29">
 					<If Condition="not HasQuest(65855)">
-						<LogMessage Message="Bringing Down the Mountain quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(128)">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<Travel To="128" />
+						</If>
+						<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+						<If Condition="IsQuestAcceptQualified(65855)">
+							<PickupQuest NpcId="1000927" QuestId="65855" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65855)">
-						<LogMessage Message="Bringing Down the Mountain quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65855) == 1">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Sighard" XYZ="562.3406, 89.86035, -80.21674" />
+							<TalkTo NpcId="1002115" XYZ="562.3406, 89.86035, -80.21674" QuestId="65855" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65855) == 2">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<While Condition="not IsTodoChecked(65855, 2, 0)">
+								<NoCombatMoveTo Name="Solkwyb" XYZ="554.2838, 89.78309, -72.43463" />
+								<TalkTo NpcId="1002686" XYZ="554.2838, 89.78309, -72.43463" QuestId="65855" StepId="2" />
+							</While>
+							<While Condition="not IsTodoChecked(65855, 2, 1)">
+								<NoCombatMoveTo Name="Broenbhar" XYZ="554.4059, 89.783, -67.979" />
+								<TalkTo NpcId="1002713" XYZ="554.4059, 89.783, -67.979" QuestId="65855" StepId="2" />
+							</While>
+						</If>
+						<If Condition="GetQuestStep(65855) == 3">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Lavender Pot" XYZ="565.1482, 66.66663, -215.2591" />
+							<UseObject NpcId="2000296" XYZ="565.1482, 66.66663, -215.2591" Radius="10" QuestId="65855" StepId="3" />
+							<WaitTimer WaitTime="3" />
+						</If>
+						<If Condition="GetQuestStep(65855) == 4">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Fruit Barrel" XYZ="590.8141, 72.40405, -272.0837" />
+							<UseObject NpcId="2000297" XYZ="590.8141, 72.40405, -272.0837" Radius="10" QuestId="65855" StepId="4" />
+							<WaitTimer WaitTime="3" />
+						</If>
+						<If Condition="GetQuestStep(65855) == 5">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Splintered Crate" XYZ="566.8268, 85.52673, -320.8209" />
+							<UseObject NpcId="2000298" XYZ="566.8268, 85.52673, -320.8209" Radius="10" QuestId="65855" StepId="5" />
+							<WaitTimer WaitTime="3" />
+						</If>
+						<If Condition="GetQuestStep(65855) == 6">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Overturned Wain" XYZ="574.0901, 90.44019, -429.0684" />
+							<SimpleDuty InteractNpcId="2000299" XYZ="574.0901, 90.44019, -429.0684" QuestId="65855" StepId="6">
+								<HotSpots>
+									<HotSpot XYZ="570.3771, 94.71164, -468.037" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="968" Weight="2000" /> <!-- Red Jackal -->
+									<TargetMob Id="906" Weight="1000" /> <!-- Kujata -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(65855) == 7">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<While Condition="not IsTodoChecked(65855, 7, 2)">
+								<NoCombatMoveTo Name="Broenbhar" XYZ="566.4302, 86.2767, -364.9501" />
+								<TalkTo NpcId="1002715" XYZ="566.4302, 86.2767, -364.9501" QuestId="65855" StepId="7" />
+							</While>
+							<While Condition="not IsTodoChecked(65855, 7, 0)">
+								<NoCombatMoveTo Name="Wyrnzoen" XYZ="569.6345, 86.2532, -363.9429" />
+								<TalkTo NpcId="1002689" XYZ="569.6345, 86.2532, -363.9429" QuestId="65855" StepId="7" />
+							</While>
+							<While Condition="not IsTodoChecked(65855, 7, 1)">
+								<NoCombatMoveTo Name="Solkwyb" XYZ="572.5946, 86.36646, -365.3468" />
+								<TalkTo NpcId="1002714" XYZ="572.5946, 86.36646, -365.3468" QuestId="65855" StepId="7" />
+							</While>
+						</If>
+						<If Condition="GetQuestStep(65855) == 255">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+							<TurnIn QuestId="65855" NpcId="1000927" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -5882,14 +6848,86 @@
 			<!-- Pride and Duty (Will Take You from the Mountain) -->
 
 			<If Condition="not IsQuestCompleted(66585)">
+
+				<LogMessage Message="Unlocking your Warrior job!" />
+
 				<If Condition="Core.Player.ClassLevel &gt; 29">
 					<If Condition="not HasQuest(66585)">
-						<LogMessage Message="Pride and Duty (Will Take You from the Mountain) quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(128)">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<Travel To="128" />
+						</If>
+						<MoveTo Name="Wyrnzoen" XYZ="-1.205505, 44.99989, -255.8786" />
+						<If Condition="IsQuestAcceptQualified(66585)">
+							<PickupQuest NpcId="1000927" QuestId="66585" XYZ="-1.205505, 44.99989, -255.8786" />
+						</If>
 					</If>
 					<If Condition="HasQuest(66585)">
-						<LogMessage Message="Pride and Duty (Will Take You from the Mountain) quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(66585) == 1">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+									<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Solkwyb" XYZ="520.2562, 17.62488, 470.5118" />
+							<TalkTo NpcId="1006761" XYZ="520.2562, 17.62488, 470.5118" QuestId="66585" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(66585) == 2">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+									<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Fell Demon" XYZ="494.9568, 11.45066, 329.7626" />
+							<SimpleDuty InteractNpcId="1006763" XYZ="494.9568, 11.45066, 329.7626" QuestId="66585" StepId="2">
+								<HotSpots>
+									<HotSpot XYZ="494.9568, 11.45066, 329.7626" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="1939" Weight="4000" /> <!-- Crazed Sprite -->
+									<TargetMob Id="361" Weight="3000" /> <!-- Bloodshore Bell -->
+									<TargetMob Id="1936" Weight="2000" /> <!-- Crazed Archelon -->
+									<TargetMob Id="1937" Weight="1000" /> <!-- Crazed Notochelon -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(66585) == 3">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+									<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Solkwyb" XYZ="494.1635, 12.30589, 337.2701" />
+							<TalkTo NpcId="1006762" XYZ="494.1635, 12.30589, 337.2701" QuestId="66585" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(66585) == 255">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+									<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Curious Gorge" XYZ="460.6545, 8.309061, 74.47925" />
+							<TurnIn QuestId="66585" NpcId="1006746" XYZ="460.6545, 8.309061, 74.47925" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6076,7 +7114,7 @@
 
 		</If>
 
-		<!-- Pugilist (8/19) -->
+		<!-- Pugilist -->
 
 		<If Condition="ClassName == ClassJobType.Pugilist">
 
@@ -7102,7 +8140,7 @@
 
 		</If>
 
-		<!-- Rogue (2/25) -->
+		<!-- Rogue -->
 
 		<If Condition="ClassName == ClassJobType.Rogue">
 
@@ -7350,8 +8388,181 @@
 						</If>
 					</If>
 					<If Condition="HasQuest(65662)">
-						<LogMessage Message="Stray into the Shadows quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65662) == 1">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+								<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+							</If>
+							<MoveTo Name="V'kebbe" XYZ="-152.1172, -129.4397, 267.1091" />
+							<TalkTo NpcId="1010198" XYZ="-152.1172, -129.4397, 267.1091" QuestId="65662" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65662) == 2">
+							<If Condition="IsOnMap(129) and IsOnSubMap(1427)">
+								<UseTransport Name="Guild Exit" InteractDistance="3.0" NpcId="2004936" XYZ="-151.9036, -128.1606, 256.8551" />
+							</If>
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Fishmonger" XYZ="-50.8584, 40, 111.4061" />
+							<TalkTo NpcId="1010212" XYZ="-50.8584, 40, 111.4061" QuestId="65662" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(65662) == 3">
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="V'kebbe" XYZ="-42.22174, 42.24913, 115.8922" />
+							<TalkTo NpcId="1010211" XYZ="-42.22174, 42.24913, 115.8922" QuestId="65662" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65662) == 4">
+							<While Condition="not IsTodoChecked(65662, 4, 0)">
+								<If Condition="not IsOnMap(128)">
+									<If Condition="not IsOnMap(129)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+											<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+											<Travel To="129" />
+										</If>
+									</If>
+									<Travel To="128" />
+								</If>
+								<MoveTo Name="The Bismarck" XYZ="-73.46866, 42.04493, -149.6751" />
+								<RunCode Name="RogueHide" />
+								<MoveTo Name="Diving Dove" XYZ="-52.65894, 42.69984, -160.235" />
+							</While>
+							<While Condition="not IsTodoChecked(65662, 4, 2)">
+								<If Condition="not IsOnMap(129) and not IsOnMap(128)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<If Condition="IsOnMap(128)">
+									<Travel To="129" />
+								</If>
+								<MoveTo Name="East Hawkers' Alley" XYZ="-142.5273, 18, 24.58443" />
+								<RunCode Name="RogueHide" />
+								<MoveTo Name="Gerulf" XYZ="-151.0256, 18.2, 34.07727" />
+							</While>
+							<While Condition="not IsTodoChecked(65662, 4, 1)">
+								<If Condition="not IsOnMap(129) and not IsOnMap(128)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<If Condition="IsOnMap(128)">
+									<Travel To="129" />
+								</If>
+								<MoveTo Name="Lominsan Ferry Docks" XYZ="-183.9383, 4, 181.6412" />
+								<RunCode Name="RogueHide" />
+								<MoveTo Name="Rerenasu" XYZ="-192.0043, 0.9999907, 211.6884" />
+							</While>
+						</If>
+						<If Condition="GetQuestStep(65662) == 5">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<MoveTo Name="V'kebbe" XYZ="-161.12, 1.95, 239.3071" />
+							<TalkTo NpcId="1010213" XYZ="-161.12, 1.95, 239.3071" QuestId="65662" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(65662) == 6">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<MoveTo Name="V'kebbe" XYZ="-161.12, 1.95, 239.3071" />
+							<LogMessage Message="Please manually complete the Stray into the Shadows duty!" />
+							<LogMessage Message="Run this profile again once you finish the duty." />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Find a way to cast the Hide ability within the duty. -->
+
+							<!-- Find a way to interact with the quest objects. -->
+							<!-- <UseObject NpcId="2004733" XYZ="-219.3833, 4.9081, 272.2307" Radius="10" QuestId="65662" StepId="6" /> --> <!-- Stolen Firearms -->
+							<!-- <UseObject NpcId="2004926" XYZ="-193.6879, 9.428031, 71.95404" Radius="10" QuestId="65662" StepId="6" /> --> <!-- Hand Off -->
+
+							<!-- TO DO -->
+
+							<!-- <SimpleDuty InteractNpcId="1010213" XYZ="-161.12, 1.95, 239.3071" QuestId="65662" StepId="6">
+								<HotSpots>
+									<HotSpot XYZ="-162.5223, 1.996135, 223.7008" Radius="90" /> --> <!-- Start Hide for Stolen Firearms -->
+									<!-- <HotSpot XYZ="-219.3833, 4.9081, 272.2307" Radius="90" /> --> <!-- Stolen Firearms -->
+									<!-- <HotSpot XYZ="-184.1264, 1.999995, 207.9486" Radius="90" /> --> <!-- Start Hide for Hand Off -->
+									<!-- <HotSpot XYZ="" Radius="90" /> --> <!-- Hand Off -->
+								<!-- </HotSpots>
+								<TargetMobs>
+									<TargetMob Id="3131" Weight="3000" /> --> <!-- Hired Bow -->
+									<!-- <TargetMob Id="3132" Weight="2000" /> --> <!-- Hired Muscle -->
+									<!-- <TargetMob Id="3130" Weight="1000" /> --> <!-- Hired Axe -->
+								<!-- </TargetMobs>
+							</SimpleDuty> -->
+						</If>
+						<If Condition="GetQuestStep(65662) == 7">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<MoveTo Name="V'kebbe" XYZ="-161.12, 1.95, 239.3071" />
+							<TalkTo NpcId="1010213" XYZ="-161.12, 1.95, 239.3071" QuestId="65662" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(65662) == 255">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+								<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+							</If>
+							<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+							<TurnIn QuestId="65662" NpcId="1009943" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -7361,12 +8572,142 @@
 			<If Condition="not IsQuestCompleted(65680)">
 				<If Condition="Core.Player.ClassLevel &gt; 14">
 					<If Condition="not HasQuest(65680)">
-						<LogMessage Message="Stifled Screams quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+							<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+						</If>
+						<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+						<If Condition="IsQuestAcceptQualified(65680)">
+							<PickupQuest NpcId="1009943" QuestId="65680" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65680)">
-						<LogMessage Message="Stifled Screams quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65680) == 1">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+								<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+							</If>
+							<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+							<TalkTo NpcId="1009943" XYZ="-153.3685, -129.4397, 265.8884" QuestId="65680" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65680) == 2">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Swarsynt" XYZ="256.1227, 21.09796, 581.3839" />
+							<TalkTo NpcId="1010199" XYZ="256.1227, 21.09796, 581.3839" QuestId="65680" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(65680) == 3">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Jolly Merchant" XYZ="-131.6396, 0.503479, 729.9762" />
+							<UseObject NpcId="2004861" XYZ="-131.6396, 0.503479, 729.9762" Radius="10" QuestId="65680" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65680) == 4">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Jacke" XYZ="319.4476, -36.35382, 346.7612" />
+							<TalkTo NpcId="1010218" XYZ="319.4476, -36.35382, 346.7612" QuestId="65680" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(65680) == 5">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Jacke" XYZ="319.4476, -36.35382, 346.7612" />
+							<LogMessage Message="Please manually complete the Stifled Screams duty!" />
+							<LogMessage Message="Run this profile again once you finish the duty." />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Find a way to cast the Hide ability within the duty. -->
+
+							<!-- Find a way to interact with the quest objects. -->
+							<!-- <UseObject NpcId="2004819" XYZ="324.1761, -35.55294, 317.1326" Radius="10" QuestId="65680" StepId="5" /> --> <!-- Bindings -->
+							<!-- <UseObject NpcId="2004821" XYZ="323.9337, -31.34907, 265.4001" Radius="10" QuestId="65680" StepId="5" /> --> <!-- Bindings -->
+							<!-- <UseObject NpcId="2004824" XYZ="328.1146, -24.39923, 253.6506" Radius="10" QuestId="65680" StepId="5" /> --> <!-- Bindings -->
+							<!-- <UseObject NpcId="2004823" XYZ="328.9824, -24.24879, 254.0822" Radius="10" QuestId="65680" StepId="5" /> --> <!-- Bindings -->
+
+							<!-- TO DO -->
+
+							<!-- <SimpleDuty InteractNpcId="1010218" XYZ="319.4476, -36.35382, 346.7612" QuestId="65680" StepId="5">
+								<HotSpots>
+									<HotSpot XYZ="324.1761, -35.55294, 317.1326" Radius="90" /> --> <!-- Bindings -->
+									<!-- <HotSpot XYZ="323.9337, -31.34907, 265.4001" Radius="90" /> --> <!-- Bindings -->
+									<!-- <HotSpot XYZ="328.1146, -24.39923, 253.6506" Radius="90" /> --> <!-- Bindings -->
+									<!-- <HotSpot XYZ="328.9824, -24.24879, 254.0822" Radius="90" /> --> <!-- Bindings -->
+								<!-- </HotSpots>
+								<TargetMobs>
+									<TargetMob Id="3136" Weight="4000" /> --> <!-- Arrow-nocking Adventurer -->
+									<!-- <TargetMob Id="3134" Weight="3000" /> --> <!-- Axe-wielding Adventurer -->
+									<!-- <TargetMob Id="3135" Weight="2000" /> --> <!-- Yellowjacket Patrol -->
+									<!-- <TargetMob Id="3137" Weight="1000" /> --> <!-- Sword-brandishing Adventurer -->
+								<!-- </TargetMobs>
+							</SimpleDuty> -->
+						</If>
+						<If Condition="GetQuestStep(65680) == 255">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Jacke" XYZ="319.4476, -36.35382, 346.7612" />
+							<TurnIn QuestId="65680" NpcId="1010218" XYZ="319.4476, -36.35382, 346.7612" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -7376,12 +8717,67 @@
 			<If Condition="not IsQuestCompleted(65681)">
 				<If Condition="Core.Player.ClassLevel &gt; 14">
 					<If Condition="not HasQuest(65681)">
-						<LogMessage Message="Slave to the Code quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(138)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+								<TeleportTo Name="Aleport" AetheryteId="14" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+									<TeleportTo Name="Swiftperch" AetheryteId="13" />
+								</If>
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+								<Travel To="138" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Jacke" XYZ="319.4476, -36.35382, 346.7612" />
+						<If Condition="IsQuestAcceptQualified(65681)">
+							<PickupQuest NpcId="1010218" QuestId="65681" XYZ="319.4476, -36.35382, 346.7612" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65681)">
-						<LogMessage Message="Slave to the Code quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65681) == 1">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+									<TeleportTo Name="Swiftperch" AetheryteId="13" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(13)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+										<TeleportTo Name="Aleport" AetheryteId="14" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Beggarly Boy" XYZ="594.1709, 43.89398, 303.7614" />
+							<SimpleDuty InteractNpcId="1010228" XYZ="594.1709, 43.89398, 303.7614" QuestId="65681" StepId="1">
+								<HotSpots>
+									<HotSpot XYZ="591.4781, 41.49831, 310.9883" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="3142" Weight="4000" /> <!-- Game Fowl -->
+									<TargetMob Id="3140" Weight="3000" /> <!-- Jolly Merchant Barber -->
+									<TargetMob Id="3141" Weight="2000" /> <!-- Jolly Merchant Waister -->
+									<TargetMob Id="3139" Weight="1000" /> <!-- Jolly Merchant Lodesman -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(65681) == 255">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+								<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+							</If>
+							<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+							<TurnIn QuestId="65681" NpcId="1009943" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -7391,12 +8787,152 @@
 			<If Condition="not IsQuestCompleted(65682)">
 				<If Condition="Core.Player.ClassLevel &gt; 19">
 					<If Condition="not HasQuest(65682)">
-						<LogMessage Message="Grinners in the Mist quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+							<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+						</If>
+						<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+						<If Condition="IsQuestAcceptQualified(65682)">
+							<PickupQuest NpcId="1009943" QuestId="65682" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65682)">
-						<LogMessage Message="Grinners in the Mist quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65682) == 1">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Perimu Haurimu" XYZ="146.7155, 62.3279, 291.8287" />
+							<TalkTo NpcId="1010238" XYZ="146.7155, 62.3279, 291.8287" QuestId="65682" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65682) == 2">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="La Thagran Checkpoint" XYZ="161.5537, 69.5, 327.7686" />
+							<RunCode Name="RogueHide" />
+							<NoCombatMoveTo Name="Yellowjacket" XYZ="179.858, 69.5, 327.9315" />
+						</If>
+						<If Condition="GetQuestStep(65682) == 3">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Perimu Haurimu" XYZ="146.7155, 62.3279, 291.8287" />
+							<TalkTo NpcId="1010238" XYZ="146.7155, 62.3279, 291.8287" QuestId="65682" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65682) == 4">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Black Marketeer" XYZ="7.217468, 57.91382, -307.1183" />
+							<TalkTo NpcId="1010242" XYZ="7.217468, 57.91382, -307.1183" QuestId="65682" StepId="4" />
+							<Grind grindRef="Grinners_in_the_Mist" while="HasQuest(65682) and GetQuestStep(65682) == 4" />
+						</If>
+						<If Condition="GetQuestStep(65682) == 5">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Black Marketeer" XYZ="7.217468, 57.91382, -307.1183" />
+							<TalkTo NpcId="1010242" XYZ="7.217468, 57.91382, -307.1183" QuestId="65682" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(65682) == 6">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+								<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+							</If>
+							<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+							<TalkTo NpcId="1009943" XYZ="-153.3685, -129.4397, 265.8884" QuestId="65682" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(65682) == 7">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Jacke" XYZ="242.298, 8.000164, 668.2383" />
+							<SimpleDuty InteractNpcId="1010237" XYZ="242.298, 8.000164, 668.2383" QuestId="65682" StepId="7">
+								<HotSpots>
+									<HotSpot XYZ="0.2462107, 14.84725, -6.881947" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="3149" Weight="7000" /> <!-- The Growler -->
+									<TargetMob Id="3147" Weight="6000" /> <!-- Grinning Cur Stitcher -->
+									<TargetMob Id="3146" Weight="5000" /> <!-- Grinning Cur Cannonier -->
+									<TargetMob Id="3145" Weight="4000" /> <!-- Grinning Cur Carpenter -->
+									<TargetMob Id="3144" Weight="3000" /> <!-- Grinning Cur Cutter -->
+									<TargetMob Id="3143" Weight="2000" /> <!-- Grinning Cur Swab -->
+									<TargetMob Id="3148" Weight="1000" /> <!-- Grinning Cur Cap'n -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(65682) == 8">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Jacke" XYZ="242.298, 8.000164, 668.2383" />
+							<TalkTo NpcId="1010237" XYZ="242.298, 8.000164, 668.2383" QuestId="65682" StepId="8" />
+						</If>
+						<If Condition="GetQuestStep(65682) == 255">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+								<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+							</If>
+							<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+							<TurnIn QuestId="65682" NpcId="1009943" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -7406,12 +8942,123 @@
 			<If Condition="not IsQuestCompleted(65684)">
 				<If Condition="Core.Player.ClassLevel &gt; 24">
 					<If Condition="not HasQuest(65684)">
-						<LogMessage Message="Sweet Sorrows quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+							<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+						</If>
+						<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+						<If Condition="IsQuestAcceptQualified(65684)">
+							<PickupQuest NpcId="1009943" QuestId="65684" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65684)">
-						<LogMessage Message="Sweet Sorrows quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65684) == 1">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Black Marketeer" XYZ="508.2322, 95.95811, -449.8207" />
+							<Grind grindRef="Sweet_Sorrows" while="HasQuest(65684) and GetQuestStep(65684) == 1" />
+						</If>
+						<If Condition="GetQuestStep(65684) == 2">
+							<If Condition="not IsOnMap(135)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+									<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+									<Travel To="135" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Black Marketeer" XYZ="508.2322, 95.95811, -449.8207" />
+							<HandOver ItemId="2001510" QuestId="65684" StepId="2" NpcId="1010252" XYZ="508.2322, 95.95811, -449.8207" />
+						</If>
+						<If Condition="GetQuestStep(65684) == 3">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+								<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+							</If>
+							<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+							<TalkTo NpcId="1009943" XYZ="-153.3685, -129.4397, 265.8884" QuestId="65684" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65684) == 4">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+									<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="V'kebbe" XYZ="450.8278, 16.18121, 406.6987" />
+							<TalkTo NpcId="1010251" XYZ="450.8278, 16.18121, 406.6987" QuestId="65684" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(65684) == 5">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+									<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="V'kebbe" XYZ="450.8278, 16.18121, 406.6987" />
+							<SimpleDuty InteractNpcId="1010251" XYZ="450.8278, 16.18121, 406.6987" QuestId="65684" StepId="5">
+								<HotSpots>
+									<HotSpot XYZ="527.2176, 17.41504, 448.0733" Radius="90" /> <!-- Captain Jacke -->
+									<HotSpot XYZ="603.4983, 23.93624, 456.8563" Radius="90" /> <!-- Bodyguards -->
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="3152" Weight="3000" /> <!-- Security Mammet -->
+									<TargetMob Id="3150" Weight="2000" /> <!-- Sellsword -->
+									<TargetMob Id="3151" Weight="1000" /> <!-- Sellsword Captain -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(65684) == 6">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+									<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Jacke" XYZ="448.4778, 16.15483, 408.7739" />
+							<TalkTo NpcId="1010250" XYZ="448.4778, 16.15483, 408.7739" QuestId="65684" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(65684) == 255">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+								<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+							</If>
+							<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+							<TurnIn QuestId="65684" NpcId="1009943" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -7421,12 +9068,95 @@
 			<If Condition="not IsQuestCompleted(65690)">
 				<If Condition="Core.Player.ClassLevel &gt; 29">
 					<If Condition="not HasQuest(65690)">
-						<LogMessage Message="Market for Death quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+							<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+						</If>
+						<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+						<If Condition="IsQuestAcceptQualified(65690)">
+							<PickupQuest NpcId="1009943" QuestId="65690" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65690)">
-						<LogMessage Message="Market for Death quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65690) == 1">
+							<If Condition="not IsOnMap(139)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<Travel To="139" />
+							</If>
+							<NoCombatMoveTo Name="Black Marketeer" XYZ="-436.4631, -2.000525, 48.40558" />
+							<Grind grindRef="Market_for_Death" while="HasQuest(65690) and GetQuestStep(65690) == 1" />
+						</If>
+						<If Condition="GetQuestStep(65690) == 2">
+							<If Condition="not IsOnMap(139)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<Travel To="139" />
+							</If>
+							<NoCombatMoveTo Name="Black Marketeer" XYZ="-436.5454, -2.02948, 48.59985" />
+							<UseObject NpcId="2004916" XYZ="-436.5454, -2.02948, 48.59985" Radius="10" QuestId="65690" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(65690) == 3">
+							<If Condition="not IsOnMap(139)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<Travel To="139" />
+							</If>
+							<NoCombatMoveTo Name="Jacke" XYZ="-437.3694, -2.36918, 55.95483" />
+							<TalkTo NpcId="1010261" XYZ="-437.3694, -2.36918, 55.95483" QuestId="65690" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65690) == 4">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Milala" XYZ="-449.0883, 21.63458, -327.9316" />
+							<TalkTo NpcId="1010267" XYZ="-449.0883, 21.63458, -327.9316" QuestId="65690" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(65690) == 255">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+								<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+							</If>
+							<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+							<TurnIn QuestId="65690" NpcId="1009943" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -7436,12 +9166,103 @@
 			<If Condition="not IsQuestCompleted(65691)">
 				<If Condition="Core.Player.ClassLevel &gt; 29">
 					<If Condition="not HasQuest(65691)">
-						<LogMessage Message="Cloying Victory quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+							<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+						</If>
+						<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+						<If Condition="IsQuestAcceptQualified(65691)">
+							<PickupQuest NpcId="1009943" QuestId="65691" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65691)">
-						<LogMessage Message="Cloying Victory quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65691) == 1">
+							<If Condition="IsOnMap(129) and IsOnSubMap(1427)">
+								<UseTransport Name="Guild Exit" InteractDistance="3.0" NpcId="2004936" XYZ="-151.9036, -128.1606, 256.8551" />
+							</If>
+							<If Condition="not IsOnMap(128)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<Travel To="128" />
+							</If>
+							<MoveTo Name="Destination" XYZ="4.440308, 44.47998, 121.2938" />
+							<LogMessage Message="Please manually complete the Cloying Victory duty!" />
+							<LogMessage Message="Run this profile again once you finish the duty." />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Find a way to get around the Detonator targeting issue. -->
+
+							<!-- TO DO -->
+
+							<SimpleDuty InteractNpcId="2004863" XYZ="4.440308, 44.47998, 121.2938" QuestId="65691" StepId="1">
+								<HotSpots>
+									<HotSpot XYZ="20.49654, 39.99997, 32.90057" Radius="10" /> --> <!-- Detonator -->
+									<HotSpot XYZ="-13.95424, 44, -34.36329" Radius="10" /> --> <!-- Detonator -->
+									<HotSpot XYZ="-34.92212, 31.99998, 3.646077" Radius="10" /> --> <!-- Detonator -->
+									<HotSpot XYZ="-48.18961, 39.99999, 19.78975" Radius="90" /> --> <!-- Reformists -->
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="3160" Weight="9000" /> --> <!-- Detonator -->
+									<TargetMob Id="3154" Weight="8000" /> --> <!-- Bloody Executioner Leech -->
+									<TargetMob Id="3158" Weight="7000" /> --> <!-- Bloody Executioner Seamster -->
+									<TargetMob Id="3156" Weight="6000" /> --> <!-- Bloody Executioner Gunner -->
+									<TargetMob Id="3155" Weight="5000" /> --> <!-- Bloody Executioner Boatswain -->
+									<TargetMob Id="3153" Weight="4000" /> --> <!-- Bloody Executioner Deckhand -->
+									<TargetMob Id="3189" Weight="3000" /> --> <!-- Bloody Executioner Lodesman -->
+									<TargetMob Id="3157" Weight="2000" /> --> <!-- Bloody Executioner Steersman -->
+									<TargetMob Id="3159" Weight="1000" /> --> <!-- Aisibhir Badwind -->
+								</TargetMobs>
+							</SimpleDuty>
+							<!-- <SimpleDuty InteractNpcId="2004863" XYZ="4.440308, 44.47998, 121.2938" QuestId="65691" StepId="1">
+								<HotSpots>
+									<HotSpot XYZ="20.49654, 39.99997, 32.90057" Radius="10" /> --> <!-- Detonator -->
+									<!-- <HotSpot XYZ="-13.95424, 44, -34.36329" Radius="10" /> --> <!-- Detonator -->
+									<!-- <HotSpot XYZ="-34.92212, 31.99998, 3.646077" Radius="10" /> --> <!-- Detonator -->
+									<!-- <HotSpot XYZ="-48.18961, 39.99999, 19.78975" Radius="90" /> --> <!-- Reformists -->
+								<!-- </HotSpots>
+								<TargetMobs>
+									<TargetMob Id="3160" Weight="9000" /> --> <!-- Detonator -->
+									<!-- <TargetMob Id="3154" Weight="8000" /> --> <!-- Bloody Executioner Leech -->
+									<!-- <TargetMob Id="3158" Weight="7000" /> --> <!-- Bloody Executioner Seamster -->
+									<!-- <TargetMob Id="3156" Weight="6000" /> --> <!-- Bloody Executioner Gunner -->
+									<!-- <TargetMob Id="3155" Weight="5000" /> --> <!-- Bloody Executioner Boatswain -->
+									<!-- <TargetMob Id="3153" Weight="4000" /> --> <!-- Bloody Executioner Deckhand -->
+									<!-- <TargetMob Id="3189" Weight="3000" /> --> <!-- Bloody Executioner Lodesman -->
+									<!-- <TargetMob Id="3157" Weight="2000" /> --> <!-- Bloody Executioner Steersman -->
+									<!-- <TargetMob Id="3159" Weight="1000" /> --> <!-- Aisibhir Badwind -->
+								<!-- </TargetMobs>
+							</SimpleDuty> -->
+						</If>
+						<If Condition="GetQuestStep(65690) == 255">
+							<If Condition="not IsOnMap(129)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+									<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+									<Travel To="129" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+								<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+							</If>
+							<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+							<TurnIn QuestId="65690" NpcId="1009943" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -7453,10 +9274,26 @@
 			<!-- Peasants by Day, Ninjas by Night -->
 
 			<If Condition="not IsQuestCompleted(65748)">
+
+				<LogMessage Message="Unlocking your Ninja job!" />
+
 				<If Condition="Core.Player.ClassLevel &gt; 29">
 					<If Condition="not HasQuest(65748)">
-						<LogMessage Message="Peasants by Day, Ninjas by Night quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<If Condition="IsOnMap(129) and not IsOnSubMap(1427)">
+							<UseTransport Name="Rogues' Guild" InteractDistance="3.0" NpcId="1009944" XYZ="-152.6666, 2.856241, 243.183" />
+						</If>
+						<MoveTo Name="Jacke" XYZ="-153.3685, -129.4397, 265.8884" />
+						<If Condition="IsQuestAcceptQualified(65748)">
+							<PickupQuest NpcId="1009943" QuestId="65748" XYZ="-153.3685, -129.4397, 265.8884" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65748)">
 						<LogMessage Message="Peasants by Day, Ninjas by Night quest is coming soon! Stay tuned!" />
@@ -7677,7 +9514,7 @@
 
 		</If>
 
-		<!-- Thaumaturge (5/19) -->
+		<!-- Thaumaturge -->
 
 		<If Condition="ClassName == ClassJobType.Thaumaturge">
 
@@ -7687,12 +9524,56 @@
 
 			<If Condition="not IsQuestCompleted(65882)">
 				<If Condition="not HasQuest(65882)">
-					<LogMessage Message="My First Scepter quest is coming soon! Stay tuned!" />
-					<StopBot />
+					<If Condition="not HasQuest(65882)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
+						<If Condition="IsQuestAcceptQualified(65882)">
+							<PickupQuest NpcId="1001708" QuestId="65882" XYZ="-250.3548, 18, 80.88806" />
+						</If>
+					</If>
 				</If>
 				<If Condition="HasQuest(65882)">
-					<LogMessage Message="My First Scepter quest is coming soon! Stay tuned!" />
-					<StopBot />
+					<If Condition="GetQuestStep(65882) == 1">
+						<If Condition="not IsOnMap(141)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+								<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+								<Travel To="141" />
+							</If>
+						</If>
+						<If Condition="GetQuestById(65882).QuestI8AH == 0">
+							<NoCombatMoveTo Name="Star Marmots" XYZ="-64.98568, -3.602963, 190.0947" />
+							<Grind grindRef="My_First_Scepter" while="not IsTodoChecked(65882, 1, 0)" />
+						</If>
+						<If Condition="GetQuestById(65882).QuestI8AH == 1">
+							<NoCombatMoveTo Name="Huge Hornets" XYZ="-64.98568, -3.602963, 190.0947" />
+							<Grind grindRef="My_First_Scepter2" while="not IsTodoChecked(65882, 1, 1)" />
+						</If>
+						<If Condition="GetQuestById(65882).QuestI8AH == 2">
+							<NoCombatMoveTo Name="Snapping Shrews" XYZ="-64.98568, -3.602963, 190.0947" />
+							<Grind grindRef="My_First_Scepter3" while="not IsTodoChecked(65882, 1, 2)" />
+						</If>
+					</If>
+					<If Condition="GetQuestStep(65882) == 255">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
+						<TurnIn QuestId="65882" NpcId="1001708" ItemId="2001545" XYZ="-250.3548, 18, 80.88806" />
+					</If>
 				</If>
 			</If>
 
@@ -7701,12 +9582,81 @@
 			<If Condition="not IsQuestCompleted(65883)">
 				<If Condition="Core.Player.ClassLevel &gt; 4">
 					<If Condition="not HasQuest(65883)">
-						<LogMessage Message="The Threat of Intimacy quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
+						<If Condition="IsQuestAcceptQualified(65883)">
+							<PickupQuest NpcId="1001708" QuestId="65883" XYZ="-250.3548, 18, 80.88806" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65883)">
-						<LogMessage Message="The Threat of Intimacy quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65883) == 1">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<MoveTo Name="Cocobygo" XYZ="-240.4975, 18.7, 85.58777" />
+							<TalkTo NpcId="1001709" XYZ="-240.4975, 18.7, 85.58777" QuestId="65883" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65883) == 2">
+							<If Condition="not IsOnMap(140)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+									<TeleportTo Name="Horizon" AetheryteId="17" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+									<Travel To="140" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Destination" XYZ="-87.38843, 50.61414, 315.6023" />
+							<UseItem NpcId="2001468" ItemId="2000414" XYZ="-87.38843, 50.61414, 315.6023" Radius="10" QuestId="65883" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(65883) == 3">
+							<If Condition="not IsOnMap(140)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+									<TeleportTo Name="Horizon" AetheryteId="17" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+									<Travel To="140" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Destination" XYZ="-74.96759, 53.23865, 336.7819" />
+							<UseObject NpcId="2001469" XYZ="-74.96759, 53.23865, 336.7819" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65883" StepId="3" />
+							<WaitTimer WaitTime="3" />
+						</If>
+						<If Condition="GetQuestStep(65883) == 4">
+							<If Condition="not IsOnMap(140)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+									<TeleportTo Name="Horizon" AetheryteId="17" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+									<Travel To="140" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Fafafono" XYZ="-255.2377, 33.23877, 407.2786" />
+							<HandOver ItemId="2000415" QuestId="65883" StepId="4" NpcId="1002027" XYZ="-255.2377, 33.23877, 407.2786" />
+						</If>
+						<If Condition="GetQuestStep(65883) == 255">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<MoveTo Name="Cocobygo" XYZ="-240.4975, 18.7, 85.58777" />
+							<TurnIn QuestId="65883" NpcId="1001709" XYZ="-240.4975, 18.7, 85.58777" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -7716,12 +9666,93 @@
 			<If Condition="not IsQuestCompleted(65885)">
 				<If Condition="Core.Player.ClassLevel &gt; 9">
 					<If Condition="not HasQuest(65885)">
-						<LogMessage Message="The Threat of Paucity quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
+						<If Condition="IsQuestAcceptQualified(65885)">
+							<PickupQuest NpcId="1001708" QuestId="65885" XYZ="-250.3548, 18, 80.88806" />
+						</If>
 					</If>
 					<If Condition="HasQuest(65885)">
-						<LogMessage Message="The Threat of Paucity quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65885) == 1">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<MoveTo Name="Cocobani" XYZ="-240.2533, 18.8, 86.90002" />
+							<TalkTo NpcId="1001710" XYZ="-240.2533, 18.8, 86.90002" QuestId="65885" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65885) == 2">
+							<If Condition="not IsOnMap(141)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+									<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+									<Travel To="141" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Efts" XYZ="39.38721, -0.5063726, -186.9318" />
+							<Grind grindRef="The_Threat_of_Paucity" while="HasQuest(65885) and GetQuestStep(65885) == 2" />
+						</If>
+						<If Condition="GetQuestStep(65885) == 3">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<MoveTo Name="Cocobani" XYZ="-240.2533, 18.8, 86.90002" />
+							<TalkTo NpcId="1001710" XYZ="-240.2533, 18.8, 86.90002" QuestId="65885" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65885) == 4">
+							<If Condition="not IsOnMap(145)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+									<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+									<Travel To="145" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Armored War Transport" XYZ="-366.2928, -34.98901, 293.5682"/>
+							<UseObject NpcId="2001512" XYZ="-366.2928, -34.98901, 293.5682" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65885" StepId="4" />
+							<WaitTimer WaitTime="3" />
+						</If>
+						<If Condition="GetQuestStep(65885) == 5">
+							<If Condition="not IsOnMap(145)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+									<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+									<Travel To="145" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Armored War Transport" XYZ="-366.2928, -34.98901, 293.5682"/>
+							<UseObject NpcId="2001499" XYZ="-366.2928, -34.98901, 293.5682" Radius="10" QuestId="65885" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(65885) == 255">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<MoveTo Name="Cocobani" XYZ="-240.2533, 18.8, 86.90002" />
+							<TurnIn QuestId="65885" NpcId="1001710" ItemIds="2000418,2000419" XYZ="-240.2533, 18.8, 86.90002" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -7739,7 +9770,7 @@
 								<Travel To="130" />
 							</If>
 						</If>
-						<!-- <MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" /> -->
+						<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
 						<If Condition="IsQuestAcceptQualified(65886)">
 							<PickupQuest NpcId="1001708" QuestId="65886" XYZ="-250.3548, 18, 80.88806" />
 						</If>
@@ -7754,6 +9785,7 @@
 									<Travel To="130" />
 								</If>
 							</If>
+							<NoCombatMoveTo Name="Cocobezi" XYZ="-241.6266, 18.8, 83.32947" />
 							<TalkTo NpcId="1001711" XYZ="-241.6266, 18.8, 83.32947" QuestId="65886" StepId="1" />
 						</If>
 						<If Condition="GetQuestStep(65886) == 2">
@@ -7766,7 +9798,11 @@
 								</If>
 							</If>
 							<MoveTo Name="Furious Merchants" XYZ="-176.9284, 18, 62.36353"/>
-							<RunCode Name="TheThreatofSuperiority" />
+							<While Condition="not IsTodoChecked(65886, 2, 0)">
+								<EmoteNPC NpcId="1002300" Emote="cry" XYZ="-176.9284, 18, 62.36353" Radius="10" UseTimes="1" QuestId="65886" StepId="2" />
+								<EmoteNPC NpcId="1002301" Emote="cry" XYZ="-178.2102, 18, 61.41748" Radius="10" UseTimes="1" QuestId="65886" StepId="2" />
+								<EmoteNPC NpcId="1002302" Emote="cry" XYZ="-176.7148, 18, 64.34729" Radius="10" UseTimes="1" QuestId="65886" StepId="2" />
+							</While>
 						</If>
 						<If Condition="GetQuestStep(65886) == 3">
 							<If Condition="not IsOnMap(130)">
@@ -7777,6 +9813,7 @@
 									<Travel To="130" />
 								</If>
 							</If>
+							<MoveTo Name="Cocobezi" XYZ="-241.6266, 18.8, 83.32947"/>
 							<TalkTo NpcId="1001711" XYZ="-241.6266, 18.8, 83.32947" QuestId="65886" StepId="3" />
 						</If>
 						<If Condition="GetQuestStep(65886) == 4">
@@ -7802,27 +9839,14 @@
 
 							<!-- <SimpleDuty InteractNpcId="2001470" XYZ="-24.88751, -25.34528, 321.95" QuestId="65886" StepId="4">
 								<HotSpots>
-									<HotSpot XYZ="5.06094, -23.18834, 337.3456" Radius="90" />
-									<HotSpot XYZ="43.91488, -23.13155, 309.5742" Radius="90" />
-									<HotSpot XYZ="100.9384, -24.09399, 256.9772" Radius="90" />
-								</HotSpots>
+									<HotSpot XYZ="100.9384, -24.09399, 256.9772" Radius="10" /> --> <!-- Mormo's Urn -->
+								<!-- </HotSpots>
 								<TargetMobs>
-									<TargetMob Id="756" Weight="3000" />
-									<TargetMob Id="757" Weight="2000" />
-									<TargetMob Id="1306" Weight="1000" />
-								</TargetMobs>
+									<TargetMob Id="1306" Weight="3000" /> --> <!-- Diligence of the Alacran -->
+									<!-- <TargetMob Id="757" Weight="2000" /> --> <!-- Kindness Of The Alacran -->
+									<!--<TargetMob Id="756" Weight="1000" /> --> <!-- Temperance Of The Alacran -->
+								<!-- </TargetMobs>
 							</SimpleDuty> -->
-							<!-- Instance
-
-							Location:
-							Map ID: , Location: 
-
-							Enemies:
-							NPC ID: 756 | Name: Temperance Of The Alacran
-							NPC ID: 757 | Name: Kindness Of The Alacran
-							NPC ID: 1306 | Name: Diligence of the Alacran
-
-							-->
 						</If>
 						<If Condition="GetQuestStep(65886) == 255">
 							<If Condition="not IsOnMap(130)">
@@ -7833,6 +9857,7 @@
 									<Travel To="130" />
 								</If>
 							</If>
+							<MoveTo Name="Cocobezi" XYZ="-241.6266, 18.8, 83.32947"/>
 							<TurnIn QuestId="65886" NpcId="1001711" ItemId="2001545" XYZ="-241.6266, 18.8, 83.32947" />
 						</If>
 					</If>
@@ -7852,7 +9877,7 @@
 								<Travel To="130" />
 							</If>
 						</If>
-						<!-- <MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" /> -->
+						<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
 						<If Condition="IsQuestAcceptQualified(65887)">
 							<PickupQuest NpcId="1001708" QuestId="65887" XYZ="-250.3548, 18, 80.88806" />
 						</If>
@@ -7867,6 +9892,7 @@
 									<Travel To="130" />
 								</If>
 							</If>
+							<MoveTo Name="Cocoboha" XYZ="-241.5046, 19.57727, 84.64172" />
 							<TalkTo NpcId="1001712" XYZ="-241.5046, 19.57727, 84.64172" QuestId="65887" StepId="1" />
 						</If>
 						<If Condition="GetQuestStep(65887) == 2">
@@ -7878,6 +9904,7 @@
 									<Travel To="140" />
 								</If>
 							</If>
+							<NoCombatMoveTo Name="Cocobusi" XYZ="14.41974, 22.15717, 72.3125" />
 							<TalkTo NpcId="1002305" XYZ="14.41974, 22.15717, 72.3125" QuestId="65887" StepId="2" />
 						</If>
 						<If Condition="GetQuestStep(65887) == 3">
@@ -7891,9 +9918,13 @@
 							</If>
 							<NoCombatMoveTo Name="Coastline" XYZ="97.17191, 20.82853, 51.70921" />
 							<RunCode Name="TheThreatofPerplexity" />
-							<UseObject NpcId="1002324" XYZ="112.8099, 17.53689, 31.29626" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65887" StepId="3" />
-							<UseObject NpcId="1002322" XYZ="116.8993, 17.53689, 12.9549" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65887" StepId="3" />
-							<UseObject NpcId="1002323" XYZ="132.433, 21.10498, 9.018005" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="65887" StepId="3" />
+							<While Condition="not IsTodoChecked(65887, 3, 0)">
+								<TalkTo NpcId="1002324" XYZ="112.8099, 17.53689, 31.29626" UseTimes="1" QuestId="65887" StepId="3" />
+								<TalkTo NpcId="1002322" XYZ="116.8993, 17.53689, 12.9549" UseTimes="1" QuestId="65887" StepId="3" />
+								<TalkTo NpcId="1002323" XYZ="132.433, 21.10498, 9.018005" UseTimes="1" QuestId="65887" StepId="3" />
+							</While>
+							<NoCombatMoveTo Name="Edge of Water" XYZ="104.5747, 17.53689, 45.18474" />
+							<RunCode Name="TheThreatofPerplexity2" />
 						</If>
 						<If Condition="GetQuestStep(65887) == 4">
 							<If Condition="not IsOnMap(140)">
@@ -7904,8 +9935,7 @@
 									<Travel To="140" />
 								</If>
 							</If>
-							<NoCombatMoveTo Name="Edge of Water" XYZ="104.5747, 17.53689, 45.18474" />
-							<RunCode Name="TheThreatofPerplexity2" />
+							<NoCombatMoveTo Name="Cocobusi" XYZ="14.41974, 22.15717, 72.3125" />
 							<HandOver ItemId="2000420,2000421,2000433" QuestId="65887" StepId="4" NpcId="1002305" XYZ="14.41974, 22.15717, 72.3125" />
 						</If>
 						<If Condition="GetQuestStep(65887) == 5">
@@ -7919,25 +9949,18 @@
 							</If>
 							<NoCombatMoveTo Name="Coastline" XYZ="97.17191, 20.82853, 51.70921" />
 							<RunCode Name="TheThreatofPerplexity" />
+							<NoCombatMoveTo Name="Destination" XYZ="150.7134, 18.78381, -5.752686" />
 							<SimpleDuty InteractNpcId="2001472" XYZ="150.7134, 18.78381, -5.752686" QuestId="65887" StepId="5">
 								<HotSpots>
 									<HotSpot XYZ="150.9649, 18.73823, -5.603077" Radius="90" />
 								</HotSpots>
 								<TargetMobs>
-									<TargetMob Id="765" Weight="2000" />
-									<TargetMob Id="766" Weight="1000" />
+									<TargetMob Id="766" Weight="2000" /> <!-- Seemingly Ordinary Imp -->
+									<TargetMob Id="765" Weight="1000" /> <!-- Soulsucker Imp -->
 								</TargetMobs>
 							</SimpleDuty>
-							<!-- Instance
-
-							Location:
-							Map ID: , Location: 
-
-							Enemies:
-							NPC ID: 765 | Name: Soulsucker Imp
-							NPC ID: 766 | Name: Seemingly Ordinary Imp
-
-							-->
+							<NoCombatMoveTo Name="Edge of Water" XYZ="104.5747, 17.53689, 45.18474" />
+							<RunCode Name="TheThreatofPerplexity2" />
 						</If>
 						<If Condition="GetQuestStep(65887) == 6">
 							<If Condition="not IsOnMap(140)">
@@ -7948,8 +9971,7 @@
 									<Travel To="140" />
 								</If>
 							</If>
-							<NoCombatMoveTo Name="Edge of Water" XYZ="104.5747, 17.53689, 45.18474" />
-							<RunCode Name="TheThreatofPerplexity2" />
+							<NoCombatMoveTo Name="Cocobusi" XYZ="14.41974, 22.15717, 72.3125" />
 							<TalkTo NpcId="1002305" XYZ="14.41974, 22.15717, 72.3125" QuestId="65887" StepId="6" />
 						</If>
 						<If Condition="GetQuestStep(65887) == 7">
@@ -7961,6 +9983,7 @@
 									<Travel To="140" />
 								</If>
 							</If>
+							<NoCombatMoveTo Name="Shaded Outcropping" XYZ="96.23853, 16.9527, 188.8303" />
 							<UseObject NpcId="2001474" XYZ="96.23853, 16.9527, 188.8303" Radius="10" QuestId="65887" StepId="7" />
 						</If>
 						<If Condition="GetQuestStep(65887) == 8">
@@ -7972,6 +9995,7 @@
 									<Travel To="130" />
 								</If>
 							</If>
+							<MoveTo Name="Cocoboha" XYZ="-241.5046, 19.57727, 84.64172" />
 							<TalkTo NpcId="1001712" XYZ="-241.5046, 19.57727, 84.64172" QuestId="65887" StepId="8" />
 						</If>
 						<If Condition="GetQuestStep(65887) == 255">
@@ -7983,6 +10007,7 @@
 									<Travel To="130" />
 								</If>
 							</If>
+							<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
 							<TurnIn QuestId="65887" NpcId="1001708" XYZ="-250.3548, 18, 80.88806" />
 						</If>
 					</If>
@@ -8002,6 +10027,7 @@
 								<Travel To="130" />
 							</If>
 						</If>
+						<MoveTo Name="Cocobygo" XYZ="-240.4975, 18.7, 85.58777" />
 						<If Condition="IsQuestAcceptQualified(65888)">
 							<PickupQuest NpcId="1001709" QuestId="65888" XYZ="-240.4975, 18.7, 85.58777" />
 						</If>
@@ -8016,6 +10042,7 @@
 									<Travel To="130" />
 								</If>
 							</If>
+							<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
 							<TalkTo NpcId="1001708" XYZ="-250.3548, 18, 80.88806" QuestId="65888" StepId="1" />
 						</If>
 						<If Condition="GetQuestStep(65888) == 2">
@@ -8027,9 +10054,12 @@
 									<Travel To="145" />
 								</If>
 							</If>
-							<TalkTo NpcId="1002308" XYZ="-386.7094, -59.3, 166.3995" QuestId="65888" StepId="2" />
-							<TalkTo NpcId="1002309" XYZ="-374.2886, -57.07999, 144.1213" QuestId="65888" StepId="2" />
-							<TalkTo NpcId="1002307" XYZ="-396.6583, -48.15, 99.68713" QuestId="65888" StepId="2" />
+							<NoCombatMoveTo Name="Smirking Voidmath" XYZ="-374.2886, -57.07999, 144.1213" />
+							<While Condition="not IsTodoChecked(65888, 2, 0)">
+								<TalkTo NpcId="1002309" XYZ="-374.2886, -57.07999, 144.1213" QuestId="65888" StepId="2" />
+								<TalkTo NpcId="1002308" XYZ="-386.7094, -59.3, 166.3995" QuestId="65888" StepId="2" />
+								<TalkTo NpcId="1002307" XYZ="-396.6583, -48.15, 99.68713" QuestId="65888" StepId="2" />
+							</While>
 						</If>
 						<If Condition="GetQuestStep(65888) == 3">
 							<If Condition="not IsOnMap(130)">
@@ -8040,6 +10070,7 @@
 									<Travel To="130" />
 								</If>
 							</If>
+							<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
 							<HandOver ItemId="2000422" QuestId="65888" StepId="3" NpcId="1001708" XYZ="-250.3548, 18, 80.88806" />
 						</If>
 						<If Condition="GetQuestStep(65888) == 4">
@@ -8051,6 +10082,7 @@
 									<Travel To="130" />
 								</If>
 							</If>
+							<MoveTo Name="Cocobygo" XYZ="-240.4975, 18.7, 85.58777" />
 							<HandOver ItemId="2000425" QuestId="65888" StepId="4" NpcId="1001709" XYZ="-240.4975, 18.7, 85.58777" />
 						</If>
 						<If Condition="GetQuestStep(65888) == 5">
@@ -8068,22 +10100,11 @@
 									<HotSpot XYZ="189.0239, 3.180922, -334.4384" Radius="90" />
 								</HotSpots>
 								<TargetMobs>
-									<TargetMob Id="781" Weight="3000" />
-									<TargetMob Id="783" Weight="2000" />
-									<TargetMob Id="782" Weight="1000" />
+									<TargetMob Id="783" Weight="3000" /> <!-- Void Dross -->
+									<TargetMob Id="782" Weight="2000" /> <!-- Void Herald -->
+									<TargetMob Id="781" Weight="1000" /> <!-- Void Jumper -->
 								</TargetMobs>
 							</SimpleDutyPlus>
-							<!-- Instance
-
-							Location:
-							Map ID: 145, Location: 
-
-							Enemies:
-							NPC ID: 781 | Name: Void Jumper
-							NPC ID: 783 | Name: Void Dross
-							NPC ID: 782 | Name: Void Herald
-
-							-->
 						</If>
 						<If Condition="GetQuestStep(65888) == 255">
 							<If Condition="not IsOnMap(130)">
@@ -8094,6 +10115,7 @@
 									<Travel To="130" />
 								</If>
 							</If>
+							<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
 							<TurnIn QuestId="65888" NpcId="1001708" XYZ="-250.3548, 18, 80.88806" />
 						</If>
 					</If>
@@ -8113,7 +10135,7 @@
 								<Travel To="130" />
 							</If>
 						</If>
-						<NoCombatMoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
+						<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
 						<If Condition="IsQuestAcceptQualified(65889)">
 							<PickupQuest NpcId="1001708" QuestId="65889" XYZ="-250.3548, 18, 80.88806" />
 						</If>
@@ -8128,7 +10150,8 @@
 									<Travel To="140" />
 								</If>
 							</If>
-							<While Condition="not IsTodoChecked(65889, 1, 1)">
+							<NoCombatMoveTo Name="Vesper Bay Locals" XYZ="-408.2911, 23.16707, -350.9318" />
+							<While Condition="not IsTodoChecked(65889, 1, 0)">
 								<HandOver ItemId="2000426" QuestId="65889" StepId="1" NpcId="1004094" XYZ="-413.4738, 23.11401, -383.7186" />
 								<HandOver ItemId="2000426" QuestId="65889" StepId="1" NpcId="1004070" XYZ="-455.8633, 23.11401, -326.9246" />
 								<HandOver ItemId="2000426" QuestId="65889" StepId="1" NpcId="1004096" XYZ="-444.7548, 25, -324.2695" />
@@ -8143,6 +10166,7 @@
 									<Travel To="140" />
 								</If>
 							</If>
+							<NoCombatMoveTo Name="Cocobuki" XYZ="-436.7285, 23.77481, -350.8202" />
 							<TalkTo NpcId="1002316" XYZ="-436.7285, 23.77481, -350.8202" QuestId="65889" StepId="2" />
 						</If>
 						<If Condition="GetQuestStep(65889) == 3">
@@ -8154,6 +10178,7 @@
 									<Travel To="140" />
 								</If>
 							</If>
+							<NoCombatMoveTo Name="Maimed Marauder" XYZ="-392.3248, 23.55769, -546.9902" />
 							<TalkTo NpcId="1002315" XYZ="-392.3248, 23.55769, -546.9902" QuestId="65889" StepId="3" />
 							<Grind grindRef="Facing_Your_Demons" while="HasQuest(65889) and GetQuestStep(65889) == 3" />
 						</If>
@@ -8166,6 +10191,7 @@
 									<Travel To="140" />
 								</If>
 							</If>
+							<NoCombatMoveTo Name="Cocobuki" XYZ="-392.3248, 23.55769, -546.9902" />
 							<TalkTo NpcId="1002315" XYZ="-392.3248, 23.55769, -546.9902" QuestId="65889" StepId="4" />
 						</If>
 						<If Condition="GetQuestStep(65889) == 5">
@@ -8177,14 +10203,14 @@
 									<Travel To="140" />
 								</If>
 							</If>
-							<NoCombatMoveTo Name="Cocobuki" XYZ="-269.8558, 15.34657, -718.1354" />
+							<NoCombatMoveTo Name="Maimed Marauder" XYZ="-269.8558, 15.34657, -718.1354" />
 							<LogMessage Message="Please manually complete the Facing Your Demons duty!" />
 							<LogMessage Message="Run this profile again once you finish the duty." />
 							<StopBot />
 
 							<!-- TO DO -->
 
-							<!-- Does not properly use SelectString. -->
+							<!-- Does not properly commence the duty. -->
 
 							<!-- TO DO -->
 
@@ -8193,20 +10219,10 @@
 									<HotSpot XYZ="-203.04, 14.63993, -736.2756" Radius="90" />
 								</HotSpots>
 								<TargetMobs>
-									<TargetMob Id="1221" Weight="2000" />
-									<TargetMob Id="841" Weight="1000" />
-								</TargetMobs>
+									<TargetMob Id="841" Weight="1000" /> --> <!-- Void Warrior -->
+									<!-- <TargetMob Id="1221" Weight="2000" /> --> <!-- Mormo -->
+								<!-- </TargetMobs>
 							</SimpleDutyPlus> -->
-							<!-- Instance
-
-							Location:
-							Map ID: 140, Location: 
-
-							Enemies:
-							NPC ID: 841 | Name: Mormo
-							NPC ID: 1221 | Name: Void Warrior
-
-							-->
 						</If>
 						<If Condition="GetQuestStep(65889) == 255">
 							<If Condition="not IsOnMap(130)">
@@ -8217,6 +10233,7 @@
 									<Travel To="130" />
 								</If>
 							</If>
+							<MoveTo Name="Cocobuki" XYZ="-250.3548, 18, 80.88806" />
 							<TurnIn QuestId="65889" NpcId="1001708" XYZ="-250.3548, 18, 80.88806" />
 						</If>
 					</If>
@@ -8239,7 +10256,7 @@
 								<Travel To="130" />
 							</If>
 						</If>
-						<NoCombatMoveTo Name="Yayake" XYZ="-196.8872, 18.46, 59.95264" />
+						<MoveTo Name="Yayake" XYZ="-196.8872, 18.46, 59.95264" />
 						<If Condition="IsQuestAcceptQualified(66609)">
 							<PickupQuest NpcId="1002279" QuestId="66609" XYZ="-196.8872, 18.46, 59.95264" />
 						</If>
@@ -8254,6 +10271,7 @@
 									<Travel To="145" />
 								</If>
 							</If>
+							<NoCombatMoveTo Name="Planar Fissure" XYZ="-72.67877, -32.05927, -46.83002" />
 							<UseObject NpcId="2002533" XYZ="-72.67877, -32.05927, -46.83002" Radius="10" QuestId="66609" StepId="1" />
 							<Grind grindRef="Taking_the_Black" while="HasQuest(66609) and GetQuestStep(66609) == 1" />
 						</If>
@@ -8266,6 +10284,7 @@
 									<Travel To="145" />
 								</If>
 							</If>
+							<NoCombatMoveTo Name="Cocobuki" XYZ="-72.67877, -32.05927, -46.83002" />
 							<UseItem NpcId="2002429" ItemId="2000954" XYZ="-72.67877, -32.05927, -46.83002" Radius="10" QuestId="66609" StepId="2" />
 						</If>
 						<If Condition="GetQuestStep(66609) == 3">
@@ -8277,7 +10296,8 @@
 									<Travel To="130" />
 								</If>
 							</If>
-							<TalkTo NpcId="1002279" XYZ="-196.8872, 18.46, 59.95264" QuestId="66609" StepId="3" />
+							<MoveTo Name="Yayake" XYZ="-196.8872, 18.46, 59.95264" />
+							<ExtendedTalkTo NpcId="1002279" XYZ="-196.8872, 18.46, 59.95264" QuestId="66609" StepId="3" />
 						</If>
 						<If Condition="GetQuestStep(66609) == 255">
 							<If Condition="not IsOnMap(131)">
@@ -8291,6 +10311,7 @@
 								</If>
 								<Travel To="131" />
 							</If>
+							<MoveTo Name="Lalai" XYZ="87.5105, 18, 113.7255" />
 							<TurnIn QuestId="66609" NpcId="1006752" XYZ="87.5105, 18, 113.7255" />
 						</If>
 					</If>
@@ -8468,10 +10489,7 @@
 
 		</If>
 
-		<!-- <If Condition="IsQuestCompleted()">
-			<LogMessage Message="You've completed all of your Disciples of Magic and War class quests!" />
-			<StopBot />
-		</If> -->
+		<LogMessage Message="You've completed all of your available Disciples of Magic and/or War class quests!" />
 
 	</Order>
 	<GrindAreas>
@@ -8765,6 +10783,36 @@
 			<MinLevel>30</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
+		<GrindArea name="My_First_Gladius">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-120.001, 5.346663, 244.9141" name="Star Marmots" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="262" /> <!-- Star Marmot -->
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="My_First_Gladius2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-120.001, 5.346663, 244.9141" name="Huge Hornets" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="632" /> <!-- Huge Hornet -->
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="My_First_Gladius3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="47.62748, 2.513385, 317.5547" name="Snapping Shrews" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="318" /> <!-- Snapping Shrew -->
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
 		<GrindArea name="My_First_Spear">
 			<Hotspots>
 				<Hotspot Radius="90" XYZ="78.65437, 5.179691, -211.1119" name="Ground Squirrels" />
@@ -8844,6 +10892,86 @@
 				<TargetMob Id="3894" />
 			</TargetMobs>
 			<MinLevel>58</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="My_First_Axe">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="15.40125, 42.52365, 118.8592" name="Wharf Rats" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="417" /> <!-- Wharf Rat -->
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="My_First_Axe2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="53.59859, 52.37904, 208.1335" name="Lost Lambs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="392" /> <!-- Lost Lamb -->
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="My_First_Axe3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="96.12958, 47.24583, 166.6722" name="Little Ladybugs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="49" /> <!-- Little Ladybug -->
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Wake_of_Destruction">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="410.5915, 75.36475, -329.3518" name="Galagos" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="408" /> <!-- Galago -->
+			</TargetMobs>
+			<MinLevel>10</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Wake_of_Destruction2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-88.60913, 43.56445, -303.0594" name="Plainstriders" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="965" /> <!-- Plainstrider -->
+			</TargetMobs>
+			<MinLevel>10</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Brutal_Strength">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="99.22937, -14.29773, 141.8632" name="Patripatan" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="966" /> <!-- Patripatan -->
+			</TargetMobs>
+			<MinLevel>15</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Mountain_that_Strides">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="348.3481, -18.60083, 168.3833" name="Cattle Tyrants" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="1315" /> <!-- Cattle Tyrant -->
+			</TargetMobs>
+			<MinLevel>20</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Mountain_that_Strides2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="297.3831, -14.29773, 148.8517" name="Cattle Tyrants" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="1315" /> <!-- Cattle Tyrant -->
+			</TargetMobs>
+			<MinLevel>20</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="My_First_Hora">
@@ -9027,12 +11155,84 @@
 			<MinLevel>5</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
+		<GrindArea name="Grinners_in_the_Mist">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="7.217468, 57.91382, -307.1183" name="Qiqirn Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3184" /> <!-- Qiqirn Roostkeep -->
+				<TargetMob Id="3183" /> <!-- Qiqirn Plucker -->
+			</TargetMobs>
+			<MinLevel>20</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Sweet_Sorrows">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="508.2322, 95.95811, -449.8207" name="Kobold Doorman" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3185" /> <!-- Kobold Doorman -->
+			</TargetMobs>
+			<MinLevel>25</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Market_for_Death">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-436.4631, -2.000525, 48.40558" name="Bloody Executioner Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3154" Weight="2000" /> <!-- Bloody Executioner Leech -->
+				<TargetMob Id="3153" Weight="1000" /> <!-- Bloody Executioner Deckhand -->
+			</TargetMobs>
+			<MinLevel>30</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="My_First_Scepter">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-120.001, 5.346663, 244.9141" name="Star Marmots" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="262" /> <!-- Star Marmot -->
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="My_First_Scepter2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-120.001, 5.346663, 244.9141" name="Huge Hornets" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="632" /> <!-- Huge Hornet -->
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="My_First_Scepter3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="47.62748, 2.513385, 317.5547" name="Snapping Shrews" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="318" /> <!-- Snapping Shrew -->
+			</TargetMobs>
+			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Threat_of_Paucity">
+			<Hotspots>
+				<Hotspot Radius="180" XYZ="151.9343, -2, -219.2622" name="Efts" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="289" /> <!-- Eft -->
+			</TargetMobs>
+			<MinLevel>10</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
 		<GrindArea name="Facing_Your_Demons">
 			<Hotspots>
 				<Hotspot Radius="90" XYZ="-392.3248, 23.55769, -546.9902" name="Mormo's Missionary" />
 			</Hotspots>
 			<TargetMobs>
-				<TargetMob Id="1213" />
+				<TargetMob Id="1213" /> <!-- Mormo's Missionary -->
 			</TargetMobs>
 			<MinLevel>30</MinLevel>
 			<MaxLevel>61</MaxLevel>
@@ -9042,7 +11242,7 @@
 				<Hotspot Radius="90" XYZ="-72.67877, -32.05927, -46.83002" name="Deepvoid Souls" />
 			</Hotspots>
 			<TargetMobs>
-				<TargetMob Id="2038" />
+				<TargetMob Id="2038" /> <!-- Deepvoid Soul -->
 			</TargetMobs>
 			<MinLevel>30</MinLevel>
 			<MaxLevel>61</MaxLevel>
@@ -9140,26 +11340,27 @@
 				ff14bot.RemoteWindows.Talk.Next();
 		]]>
 		</CodeChunk> -->
-		<CodeChunk Name="TheThreatofSuperiority">
-			<![CDATA[ 
+		<CodeChunk Name="RogueHide">
+			<![CDATA[ SpellData data;
+				if (!Core.Me.HasAura(614) && Actionmanager.CurrentActions.TryGetValue(2245, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(2245, Core.Me);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="AgelyssRiverJump">
+			<![CDATA[
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1002301).Target();
+				ff14bot.Managers.MovementManager.SetFacing(4.470354f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.ChatManager.SendChat("/cry");
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1002300).Target();
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.ChatManager.SendChat("/cry");
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1002302).Target();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.ChatManager.SendChat("/cry");
-				await Buddy.Coroutines.Coroutine.Sleep(10000);
-				ff14bot.RemoteWindows.Talk.Next();
 		]]>
 		</CodeChunk>
 		<CodeChunk Name="TheThreatofPerplexity">
