@@ -4296,6 +4296,47 @@
 							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
 							<TalkTo NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" QuestId="65792" StepId="4" />
 						</If>
+						<If Condition="GetQuestStep(65792) == 5">
+							<If Condition="not IsOnMap(140)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+									<TeleportTo Name="Horizon" AetheryteId="17" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+									<Travel To="140" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Nervous Merchant" XYZ="201.5259, 52.03812, 149.4011" />
+							<TalkTo NpcId="1003985" XYZ="201.5259, 52.03812, 149.4011" QuestId="65792" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(65792) == 6">
+							<If Condition="not IsOnMap(140)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+									<TeleportTo Name="Horizon" AetheryteId="17" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+									<Travel To="140" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Caravan Sacks" XYZ="154.3755, 52.53674, 200.9155" />
+							<UseObject NpcIds="2001408,2001409" QuestId="65792" StepId="6">
+								<HotSpots>
+									<HotSpot XYZ="154.3755, 52.53674, 200.9155" Radius="10" />
+									<HotSpot XYZ="141.8325, 52.99451, 221.5457" Radius="10" />
+								</HotSpots>
+							</UseObject>
+						</If>
+						<If Condition="GetQuestStep(65792) == 7">
+							<If Condition="not IsOnMap(140)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+									<TeleportTo Name="Horizon" AetheryteId="17" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+									<Travel To="140" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Nervous Merchant" XYZ="201.5259, 52.03812, 149.4011" />
+							<HandOver ItemId="2000524" QuestId="65792" StepId="7" NpcId="1003985" XYZ="201.5259, 52.03812, 149.4011" />
+						</If>
 						<If Condition="GetQuestStep(65792) == 255">
 							<If Condition="not IsOnMap(131)">
 								<If Condition="not IsOnMap(130)">
@@ -4314,7 +4355,7 @@
 					</If>
 				</If>
 			</If>
-<StopBot/>
+
 			<!-- Ul'dah's Most Wanted -->
 
 			<If Condition="not IsQuestCompleted(65824)">
@@ -4337,8 +4378,102 @@
 						</If>
 					</If>
 					<If Condition="HasQuest(65824)">
-						<LogMessage Message="Ul'dah's Most Wanted quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65824) == 1">
+							<If Condition="not IsOnMap(141)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+									<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+									<Travel To="141" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Gutless Gladiator" XYZ="-139.4218, 4.019726, 205.0354" />
+							<TalkTo NpcId="1002296" XYZ="-139.4218, 4.019726, 205.0354" QuestId="65824" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65824) == 2">
+							<If Condition="not IsOnMap(141)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+									<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+									<Travel To="141" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Gutless Gladiator" XYZ="-139.4218, 4.019726, 205.0354" />
+							<TalkTo NpcId="1002296" XYZ="-139.4218, 4.019726, 205.0354" QuestId="65824" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(65824) == 3">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<TalkTo NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" QuestId="65824" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65824) == 4">
+							<If Condition="not IsOnMap(141)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+									<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+									<Travel To="141" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Destination" XYZ="27.20679, 12.98535, 51.83484" />
+							<LogMessage Message="Please manually complete the Ul'dah's Most Wanted duty!" />
+							<LogMessage Message="Run this profile again once you finish the duty." />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Figure out how to protect Bruce the Big from dying. -->
+
+							<!-- TO DO -->
+
+							<!-- <SimpleDuty InteractNpcId="2001756" XYZ="27.20679, 12.98535, 51.83484" GuardianNPCId="924" QuestId="65824" StepId="4">
+								<HotSpots>
+									<HotSpot XYZ="27.20679, 12.98535, 51.83484" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="923" Weight="2000" /> --> <!-- Duskwight Freelancer -->
+									<!-- <TargetMob Id="944" Weight="1000" /> --> <!-- Duskwight Freelancer Captain -->
+								<!-- </TargetMobs>
+							</SimpleDuty> -->
+						</If>
+						<If Condition="GetQuestStep(65824) == 5">
+							<If Condition="not IsOnMap(141)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+									<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+									<Travel To="141" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Bruce the Big" XYZ="24.91797, 13, 50.15637" />
+							<TalkTo NpcId="1003945" XYZ="24.91797, 13, 50.15637" QuestId="65824" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(65824) == 255">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<TurnIn QuestId="65824" NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -4365,8 +4500,84 @@
 						</If>
 					</If>
 					<If Condition="HasQuest(65798)">
-						<LogMessage Message="That Old Familiar Feeling quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65798) == 1">
+							<If Condition="not IsOnMap(145)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+									<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+									<Travel To="145" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Injured Gladiator" XYZ="-220.9354, -38.40747, 63.91992" />
+							<TalkTo NpcId="1004224" XYZ="-220.9354, -38.40747, 63.91992" QuestId="65798" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65798) == 2">
+							<If Condition="not IsOnMap(145)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+									<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+									<Travel To="145" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Injured Gladiator" XYZ="-220.9354, -38.40747, 63.91992" />
+							<TalkTo NpcId="1004224" XYZ="-220.9354, -38.40747, 63.91992" QuestId="65798" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(65798) == 3">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<ExtendedTalkTo NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" QuestId="65798" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65798) == 4">
+							<If Condition="not IsOnMap(130) and not IsOnMap(131)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(131)">
+								<Travel To="130" />
+							</If>
+							<MoveTo Name="Aldis" XYZ="24.12439, 7.199998, -102.7695"/>
+							<SimpleDuty InteractNpcId="1004091" XYZ="24.12439, 7.199998, -102.7695" GuardianNPCId="690" QuestId="65798" StepId="4">
+								<HotSpots>
+									<HotSpot XYZ="28.63875, 7.209999, -100.7327" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="1220" Weight="3000" /> <!-- Amalj'aa Ravager -->
+									<TargetMob Id="925" Weight="2000" /> <!-- Nameless Attacker -->
+									<TargetMob Id="943" Weight="1000" /> <!-- Stout Ambusher -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(65798) == 255">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<TurnIn QuestId="65798" NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -4393,8 +4604,114 @@
 						</If>
 					</If>
 					<If Condition="HasQuest(65799)">
-						<LogMessage Message="The Face of Thal quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65799) == 1">
+							<If Condition="not IsOnMap(141)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+									<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+									<Travel To="141" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Injured Gladiator" XYZ="-72.34308, -12.37296, -69.13867" />
+							<HandOver ItemId="2000402" QuestId="65799" StepId="1" NpcId="1004140" XYZ="-72.34308, -12.37296, -69.13867" />
+						</If>
+						<If Condition="GetQuestStep(65799) == 2">
+							<If Condition="not IsOnMap(141)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+									<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+									<Travel To="141" />
+								</If>
+							</If>
+							<While Condition="not IsTodoChecked(65799, 2, 0)">
+								<NoCombatMoveTo Name="Roundelph" XYZ="-93.33948, -11.36798, -41.39777" />
+								<TalkTo NpcId="1001462" XYZ="-93.33948, -11.36798, -41.39777" QuestId="65799" StepId="2" />
+								<TalkTo NpcId="1001438" XYZ="-30.83856, -1.033258, -145.6779" QuestId="65799" StepId="2" />
+							</While>
+							<While Condition="not IsTodoChecked(65799, 2, 1)">
+								<NoCombatMoveTo Name="Point of Ambush" XYZ="-115.7703, 0.01519775, -149.2485" />
+								<UseObject NpcId="2001434" XYZ="-115.7703, 0.01519775, -149.2485" Radius="10" QuestId="65799" StepId="2" />
+							</While>
+						</If>
+						<If Condition="GetQuestStep(65799) == 3">
+							<If Condition="not IsOnMap(141)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+									<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+									<Travel To="141" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Injured Gladiator" XYZ="-72.34308, -12.37296, -69.13867" />
+							<HandOver ItemId="2000403" QuestId="65799" StepId="3" NpcId="1004140" XYZ="-72.34308, -12.37296, -69.13867" />
+						</If>
+						<If Condition="GetQuestStep(65799) == 4">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<MoveTo Name="Wymond" XYZ="-68.77246, 4.041112, -126.5126" />
+							<HandOver ItemId="2000403" QuestId="65799" StepId="4" NpcId="1001285" XYZ="-68.77246, 4.041112, -126.5126" />
+						</If>
+						<If Condition="GetQuestStep(65799) == 5">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<TalkTo NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" QuestId="65799" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(65799) == 6">
+							<If Condition="not IsOnMap(140)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+									<TeleportTo Name="Horizon" AetheryteId="17" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+									<Travel To="140" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Mylla" XYZ="-241.1688, 32.47634, 398.9165" />
+							<SimpleDuty InteractNpcId="1004092" XYZ="-241.1688, 32.47634, 398.9165" GuardianNPCId="689" QuestId="65799" StepId="6">
+								<HotSpots>
+									<HotSpot XYZ="-241.1688, 32.47634, 398.9165" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="928" Weight="5000" /> <!-- Kindness of the Alacran -->
+									<TargetMob Id="1307" Weight="4000" /> <!-- Humility of the Alacran -->
+									<TargetMob Id="1306" Weight="3000" /> <!-- Diligence of the Alacran -->
+									<TargetMob Id="929" Weight="2000" /> <!-- Temperance of the Alacran -->
+									<TargetMob Id="1304" Weight="1000" /> <!-- Charity of the Alacran -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(65799) == 255">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<TurnIn QuestId="65799" NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -4421,8 +4738,94 @@
 						</If>
 					</If>
 					<If Condition="HasQuest(65800)">
-						<LogMessage Message="On Holy Ground quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65800) == 1">
+							<If Condition="not IsOnMap(140)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+									<TeleportTo Name="Horizon" AetheryteId="17" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+									<Travel To="140" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Veteran Gladiator" XYZ="62.974, 54.60642, 284.9011" />
+							<TalkTo NpcId="1004225" XYZ="62.974, 54.60642, 284.9011" QuestId="65800" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65800) == 2">
+							<If Condition="not IsOnMap(140)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+									<TeleportTo Name="Horizon" AetheryteId="17" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+									<Travel To="140" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Veteran Gladiator" XYZ="62.974, 54.60642, 284.9011" />
+							<TalkTo NpcId="1004225" XYZ="62.974, 54.60642, 284.9011" QuestId="65800" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(65800) == 3">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<TalkTo NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" QuestId="65800" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(65800) == 4">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Lulutsu" XYZ="-97.55096, 7.050001, 23.60565" />
+							<TalkTo NpcId="1002277" XYZ="-97.55096, 7.050001, 23.60565" QuestId="65800" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(65800) == 5">
+							<If Condition="not IsOnMap(145)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+									<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+									<Travel To="145" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Aldis" XYZ="-520.5005, -21.46029, 123.4607"/>
+							<SimpleDuty InteractNpcId="1004141" XYZ="-520.5005, -21.46029, 123.4607" QuestId="65800" StepId="5">
+								<HotSpots>
+									<HotSpot XYZ="-520.5005, -21.46029, 123.4607" Radius="10" /> <!-- Zana Lyehga -->
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="698" /> <!-- Zana Lyehga -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(65800) == 255">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<TurnIn QuestId="65800" NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -4449,8 +4852,111 @@
 						</If>
 					</If>
 					<If Condition="HasQuest(65801)">
-						<LogMessage Message="The Rematch quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(65801) == 1">
+							<If Condition="not IsOnMap(130) and not IsOnMap(131)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(131)">
+								<Travel To="130" />
+							</If>
+							<MoveTo Name="Wymond" XYZ="-68.77246, 4.041112, -126.5126" />
+							<TalkTo NpcId="1001285" XYZ="-68.77246, 4.041112, -126.5126" QuestId="65801" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(65801) == 2">
+							<If Condition="not IsOnMap(146)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+									<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+										<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+									<Travel To="146" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Wrinkled Bill of Sale" XYZ="116.0034, 6.966291, -563.3903" />
+							<While Condition="not IsTodoChecked(65801, 2, 0)">
+								<UseObject NpcId="2001435" XYZ="101.8234, 7.248047, -534.5693" Radius="10" UseTimes="1" QuestId="65801" StepId="2" />
+								<Grind grindRef="The_Rematch" while="not IsTodoChecked(65801, 2, 0)" />
+							</While>
+							<While Condition="not IsTodoChecked(65801, 2, 1)">
+								<UseObject NpcId="2001455" XYZ="28.0918, 6.973328, -611.2917" Radius="10" UseTimes="1" QuestId="65801" StepId="2" />
+								<Grind grindRef="The_Rematch2" while="not IsTodoChecked(65801, 2, 1)" />
+							</While>
+						</If>
+						<If Condition="GetQuestStep(65801) == 3">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<HandOver ItemIds="2000404,2000411" QuestId="65801" StepId="3" NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
+						<If Condition="GetQuestStep(65801) == 4">
+							<If Condition="not IsOnMap(145)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+									<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+									<Travel To="145" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Order of Nald'thal Priest" XYZ="-19.97406, -30.99998, -33.95135"/>
+							<LogMessage Message="Please manually complete The Rematch duty!" />
+							<LogMessage Message="Run this profile again once you finish the duty." />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- HandOver and SimpleDuty need to happen at the same time. -->
+
+							<!-- TO DO -->
+
+							<!-- <SimpleDuty InteractNpcId="1004142" XYZ="-19.97406, -30.99998, -33.95135" GuardianNPCId="689" QuestId="65801" StepId="4">
+								<HotSpots>
+									<HotSpot XYZ="25.42356, -6.015169, -16.08721" Radius="90" /> --> <!-- Gigirya the Guarded -->
+								<!-- </HotSpots>
+								<TargetMobs>
+									<TargetMob Id="928" Weight="8000" /> --> <!-- Kindness of the Alacran -->
+									<!-- <TargetMob Id="1307" Weight="7000" /> --> <!-- Humility of the Alacran -->
+									<!-- <TargetMob Id="1306" Weight="6000" /> --> <!-- Diligence of the Alacran -->
+									<!-- <TargetMob Id="708" Weight="5000" /> --> <!-- Gotwin Halehex -->
+									<!-- <TargetMob Id="709" Weight="4000" /> --> <!-- Void Slave -->
+									<!-- <TargetMob Id="1305" Weight="3000" /> --> <!-- Chastity of the Alacran -->
+									<!-- <TargetMob Id="929" Weight="2000" /> --> <!-- Temperance of the Alacran -->
+									<!-- <TargetMob Id="1301" Weight="1000" /> --> <!-- Gigirya the Guarded -->
+								<!-- </TargetMobs>
+							</SimpleDuty> -->
+						</If>
+						<If Condition="GetQuestStep(65801) == 255">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Mylla" XYZ="-94.52972, 6.500001, 39.81079" />
+							<TurnIn QuestId="65801" NpcId="1001739" XYZ="-94.52972, 6.500001, 39.81079" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -4462,14 +4968,108 @@
 			<!-- Paladin's Pledge -->
 
 			<If Condition="not IsQuestCompleted(66591)">
+
+				<LogMessage Message="Unlocking your Paladin job!" />
+
 				<If Condition="Core.Player.ClassLevel &gt; 29">
 					<If Condition="not HasQuest(66591)">
-						<LogMessage Message="Paladin's Pledge quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(131)">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<Travel To="131" />
+						</If>
+						<MoveTo Name="Lulutsu" XYZ="-97.55096, 7.050001, 23.60565" />
+						<If Condition="IsQuestAcceptQualified(66591)">
+							<PickupQuest NpcId="1002277" QuestId="66591" XYZ="-97.55096, 7.050001, 23.60565" />
+						</If>
 					</If>
 					<If Condition="HasQuest(66591)">
-						<LogMessage Message="Paladin's Pledge quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(66591) == 1">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Jenlyns" XYZ="-20.82861, 29.99996, -2.426208" />
+							<TalkTo NpcId="1006747" XYZ="-20.82861, 29.99996, -2.426208" QuestId="66591" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(66591) == 2">
+							<If Condition="not IsOnMap(146)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+									<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+										<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+									<Travel To="146" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Brazier" XYZ="-97.39838, 14.84698, -188.2201" />
+							<UseObject NpcId="2002344" XYZ="-97.39838, 14.84698, -188.2201" Radius="10" QuestId="66591" StepId="2" />
+							<Grind grindRef="Paladins_Pledge" while="HasQuest(66591) and GetQuestStep(66591) == 2" />
+						</If>
+						<If Condition="GetQuestStep(66591) == 3">
+							<If Condition="not IsOnMap(146)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+									<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+										<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+									<Travel To="146" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Brazier" XYZ="-97.39838, 14.84698, -188.2201" />
+							<UseItem UseDistance="2.5" NpcId="2002345" ItemId="2000821" XYZ="-97.39838, 14.84698, -188.2201" Radius="10" QuestId="66591" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(66591) == 4">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Jenlyns" XYZ="-20.82861, 29.99996, -2.426208" />
+							<HandOver ItemId="2000948" QuestId="66591" StepId="4" NpcId="1006747" XYZ="-20.82861, 29.99996, -2.426208" />
+						</If>
+						<If Condition="GetQuestStep(66591) == 255">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Jenlyns" XYZ="-20.82861, 29.99996, -2.426208" />
+							<TurnIn QuestId="66591" NpcId="1006747" ItemId="2000822" XYZ="-20.82861, 29.99996, -2.426208" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -10811,6 +11411,39 @@
 				<TargetMob Id="318" /> <!-- Snapping Shrew -->
 			</TargetMobs>
 			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Rematch">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="101.8234, 7.248047, -534.5693" name="Alacran Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="974" Weight="2000" /> <!-- Lawless Bowman -->
+				<TargetMob Id="929" Weight="1000" /> <!-- Temperance of the Alacran -->
+			</TargetMobs>
+			<MinLevel>30</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Rematch2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="28.0918, 6.973328, -611.2917" name="Alacran Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="1304" Weight="2000" /> <!-- Charity of the Alacran -->
+				<TargetMob Id="974" Weight="1000" /> <!-- Lawless Bowman -->
+			</TargetMobs>
+			<MinLevel>30</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Paladins_Pledge">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-97.39838, 14.84698, -188.2201" name="Wandering Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2019" Weight="2000" /> <!-- Wandering Mage -->
+				<TargetMob Id="2018" Weight="1000" /> <!-- Wandering Soldier -->
+			</TargetMobs>
+			<MinLevel>30</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="My_First_Spear">
