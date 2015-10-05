@@ -5249,7 +5249,7 @@
 
 			<!-- My First Spear -->
 
-			<If Condition="not IsQuestCompleted(65754)">
+			<!-- <If Condition="not IsQuestCompleted(65754)">
 				<If Condition="not HasQuest(65754)">
 					<If Condition="not IsOnMap(133)">
 						<If Condition="not IsOnMap(132)">
@@ -5298,7 +5298,7 @@
 						<TurnIn QuestId="65754" NpcId="1000254" XYZ="157.7019, 15.90038, -270.3442" />
 					</If>
 				</If>
-			</If>
+			</If> -->
 
 			<!-- Spear of the Fearless -->
 
@@ -5410,7 +5410,7 @@
 
 			<!-- Courage of Stone -->
 
-			<If Condition="not IsQuestCompleted(65679)">
+			<!-- <If Condition="not IsQuestCompleted(65679)">
 				<If Condition="Core.Player.ClassLevel &gt; 9">
 					<If Condition="not HasQuest(65679)">
 						<If Condition="not IsOnMap(133)">
@@ -5475,7 +5475,7 @@
 						</If>
 					</If>
 				</If>
-			</If>
+			</If> -->
 
 			<!-- A Dangerous Proposition -->
 
@@ -6007,22 +6007,11 @@
 									<HotSpot XYZ="492.5759, 164.502, 261.6535" Radius="90" />
 								</HotSpots>
 								<TargetMobs>
-									<TargetMob Id="3338" Weight="3000" />
-									<TargetMob Id="3326" Weight="2000" />
-									<TargetMob Id="3339" Weight="1000" />
+									<TargetMob Id="3338" Weight="3000" /> <!-- Horde Runner -->
+									<TargetMob Id="3326" Weight="2000" /> <!-- Horde Aevis -->
+									<TargetMob Id="3339" Weight="1000" /> <!-- Assault Wyvern -->
 								</TargetMobs>
 							</SimpleDuty>
-							<!-- Instance
-
-							Location:
-							Map ID: 397 (Raw Map ID: 470), Location: 
-
-							Enemies:
-							NPC ID: 3338 | Name: Horde Runner
-							NPC ID: 3326 | Name: Horde Aevis
-							NPC ID: 3339 | Name: Assault Wyvern
-
-							-->
 						</If>
 						<If Condition="GetQuestStep(67228) == 3">
 							<If Condition="not IsOnMap(397)">
@@ -6305,12 +6294,142 @@
 
 			<If Condition="not IsQuestCompleted(67231)">
 				<If Condition="not HasQuest(67231)">
-					<LogMessage Message="Dragoon's Fate quest is coming soon! Stay tuned!" />
-					<StopBot />
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Alberic" XYZ="217.8835, 222, 345.3269" />
+					<If Condition="IsQuestAcceptQualified(67231)">
+						<PickupQuest NpcId="1006748" QuestId="67231" XYZ="217.8835, 222, 345.3269" />
+					</If>
 				</If>
 				<If Condition="HasQuest(67231)">
-					<LogMessage Message="Dragoon's Fate quest is coming soon! Stay tuned!" />
-					<StopBot />
+					<If Condition="GetQuestStep(67231) == 1">
+						<If Condition="not IsOnMap(397)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+								<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+										
+								<!-- TO DO -->
+
+								<!-- Update Travel.cs with new zone information.  -->
+
+								<!-- TO DO -->
+
+								<!-- <Travel To="397" /> -->
+								<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+								<StopBot />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Alberic" XYZ="-272.2667, 124.213, -23.36157" />
+						<TalkTo NpcId="1013483" XYZ="-272.2667, 124.213, -23.36157" QuestId="67231" StepId="1" />
+					</If>
+					<If Condition="GetQuestStep(67231) == 2">
+						<If Condition="not IsOnMap(397)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+								<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+										
+								<!-- TO DO -->
+
+								<!-- Update Travel.cs with new zone information.  -->
+
+								<!-- TO DO -->
+
+								<!-- <Travel To="397" /> -->
+								<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+								<StopBot />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Trail of Carnage" XYZ="-360.1892, 101.9149, -178.79" />
+						<TalkTo NpcId="1013485" XYZ="-360.1892, 101.9149, -178.79" QuestId="67231" StepId="2" />
+					</If>
+					<If Condition="GetQuestStep(67231) == 3">
+						<If Condition="not IsOnMap(397)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+								<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+										
+								<!-- TO DO -->
+
+								<!-- Update Travel.cs with new zone information.  -->
+
+								<!-- TO DO -->
+
+								<!-- <Travel To="397" /> -->
+								<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+								<StopBot />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Trail of Carnage" XYZ="-429.099, 121.5991, -309.4988" />
+						<TalkTo NpcId="1013489" XYZ="-429.099, 121.5991, -309.4988" QuestId="67231" StepId="3" />
+					</If>
+					<If Condition="GetQuestStep(67231) == 4">
+						<If Condition="not IsOnMap(397)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+								<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+										
+								<!-- TO DO -->
+
+								<!-- Update Travel.cs with new zone information.  -->
+
+								<!-- TO DO -->
+
+								<!-- <Travel To="397" /> -->
+								<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+								<StopBot />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Heustienne" XYZ="-505.3026, 120.6116, -311.3909" />
+						<LogMessage Message="Please manually complete the Dragoon's Fate duty!" />
+						<LogMessage Message="Run this profile again once you finish the duty." />
+						<StopBot />
+
+						<!-- TO DO -->
+
+						<!-- Avoid Icicles and Graoully's Air Phase. -->
+
+						<!-- TO DO -->
+
+						<SimpleDuty InteractNpcId="1013494" XYZ="-505.3026, 120.6116, -311.3909" GuardianNPCId="4191" QuestId="67231" StepId="4">
+							<HotSpots>
+								<HotSpot XYZ="-505.3026, 120.6116, -311.3909" Radius="90" />
+							</HotSpots>
+							<TargetMobs>
+								<TargetMob Id="4190" Weight="3000" /> <!-- Graoully -->
+							</TargetMobs>
+						</SimpleDuty>
+					</If>
+					<If Condition="GetQuestStep(67231) == 255">
+						<If Condition="not IsOnMap(397)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+								<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+										
+								<!-- TO DO -->
+
+								<!-- Update Travel.cs with new zone information.  -->
+
+								<!-- TO DO -->
+
+								<!-- <Travel To="397" /> -->
+								<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+								<StopBot />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Heustienne" XYZ="-505.3026, 120.6116, -311.3909" />
+						<TurnIn QuestId="67231" NpcId="1013494" XYZ="-505.3026, 120.6116, -311.3909" />
+					</If>
 				</If>
 			</If>
 
@@ -6320,34 +6439,80 @@
 
 		<If Condition="ClassName == ClassJobType.Machinist">
 
-			<LogMessage Message="Checking Machinist class quests..." />
-
-			<!-- Savior of Skysteel -->
-
-			<If Condition="not IsQuestCompleted(67232)">
-				<If Condition="Core.Player.ClassLevel &gt; 49">
-					<If Condition="not HasQuest(67232)">
-						<LogMessage Message="Savior of Skysteel quest is coming soon! Stay tuned!" />
-						<StopBot />
-					</If>
-					<If Condition="HasQuest(67232)">
-						<LogMessage Message="Savior of Skysteel quest is coming soon! Stay tuned!" />
-						<StopBot />
-					</If>
-				</If>
-			</If>
+			<LogMessage Message="Checking Machinist job quests..." />
 
 			<!-- Master of Marksmanship -->
 
 			<If Condition="not IsQuestCompleted(67233)">
 				<If Condition="Core.Player.ClassLevel &gt; 29">
 					<If Condition="not HasQuest(67233)">
-						<LogMessage Message="Master of Marksmanship quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(180)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(16)">
+								<TeleportTo Name="Camp Overlook" AetheryteId="16" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(16)">
+								<Travel To="180" />
+							</If>
+						</If>
+						<MoveTo Name="Rostnsthal" XYZ="-97.33734, 62.55459, -175.3414" />
+						<If Condition="IsQuestAcceptQualified(67233)">
+							<PickupQuest NpcId="1014739" QuestId="67233" XYZ="-97.33734, 62.55459, -175.3414" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67233)">
-						<LogMessage Message="Master of Marksmanship quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67233) == 1">
+							<If Condition="not IsOnMap(180)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(16)">
+									<TeleportTo Name="Camp Overlook" AetheryteId="16" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(16)">
+									<Travel To="180" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Rostnsthal" XYZ="-230.3044, 63.88775, -257.4655" />
+							<LogMessage Message="Please manually complete the Master of Marksmanship duty!" />
+							<LogMessage Message="Run this profile again once you finish the duty." />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Figure out a way to do the HotSpots in order or ignore mobs not in the TargetMobs list. -->
+
+							<!-- TO DO -->
+
+							<!-- <SimpleDuty InteractNpcId="1014742" XYZ="-230.3044, 63.88775, -257.4655" QuestId="67233" StepId="1">
+								<HotSpots>
+									<HotSpot XYZ="-289.1783, 53.74615, -285.7306" Radius="10" /> --> <!-- Basalt Golem -->
+									<!-- <HotSpot XYZ="-310.4813, 52.57257, -286.0451" Radius="10" /> --> <!-- Basalt Golem -->
+									<!-- <HotSpot XYZ="-374.2021, 49.67759, -309.7478" Radius="10" /> --> <!-- Basalt Golem -->
+									<!-- <HotSpot XYZ="-357.643, 65.71293, -315.7843" Radius="10" /> --> <!-- Training Incendiary -->
+									<!-- <HotSpot XYZ="-360.136, 66.51916, -309.7901" Radius="10" /> --> <!-- Training Incendiary -->
+									<!-- <HotSpot XYZ="-361.9736, 65.35699, -310.9915" Radius="10" /> --> <!-- Training Incendiary -->
+									<!-- <HotSpot XYZ="-352.556, 44.77982, -435.1423" Radius="10" /> --> <!-- Docile Miacids -->
+									<!-- <HotSpot XYZ="-302.0219, 32.44505, -438.1323" Radius="10" /> --> <!-- Docile Tigers -->
+									<!-- <HotSpot XYZ="-291.607, 5.622564, -561.869" Radius="10" /> --> <!-- Rostnsthal the Reborn -->
+								<!-- </HotSpots>
+								<TargetMobs>
+									<TargetMob Id="4196" /> --> <!-- Docile Tiger -->
+									<!-- <TargetMob Id="4195" /> --> <!-- Docile Miacid -->
+									<!-- <TargetMob Id="4194" /> --> <!-- Training Incendiary -->
+									<!-- <TargetMob Id="4192" /> --> <!-- Rostnsthal the Reborn -->
+									<!-- <TargetMob Id="365" /> --> <!-- Basalt Golem -->
+								<!-- </TargetMobs>
+							</SimpleDuty> -->
+						</If>
+						<If Condition="GetQuestStep(67233) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TurnIn QuestId="67233" NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6357,12 +6522,155 @@
 			<If Condition="not IsQuestCompleted(67234)">
 				<If Condition="Core.Player.ClassLevel &gt; 34">
 					<If Condition="not HasQuest(67234)">
-						<LogMessage Message="Always the Last Place You Look quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67234)">
+							<PickupQuest NpcId="1014577" QuestId="67234" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67234)">
-						<LogMessage Message="Always the Last Place You Look quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67234) == 1">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+									<TeleportTo Name="Wineport" AetheryteId="12" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+										<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+								<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
+							</If>
+							<NoCombatMoveTo Name="Rostnsthal" XYZ="-205.829, 45.80396, 517.2045" />
+							<TalkTo NpcId="1014745" XYZ="-205.829, 45.80396, 517.2045" QuestId="67234" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67234) == 2">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+									<TeleportTo Name="Wineport" AetheryteId="12" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+										<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+								<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
+							</If>
+							<NoCombatMoveTo Name="Stephanivien" XYZ="-233.5089, 44.33062, 519.0966" />
+							<TalkTo NpcId="1014748" XYZ="-233.5089, 44.33062, 519.0966" QuestId="67234" StepId="2" />
+							<Grind grindRef="Always_the_Last_Place_You_Look" while="HasQuest(67234) and GetQuestStep(67234) == 2" />
+						</If>
+						<If Condition="GetQuestStep(67234) == 3">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+									<TeleportTo Name="Wineport" AetheryteId="12" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+										<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+								<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
+							</If>
+							<NoCombatMoveTo Name="Joye" XYZ="-234.0276, 44.33062, 539.8184" />
+							<TalkTo NpcId="1014749" XYZ="-234.0276, 44.33062, 539.8184" QuestId="67234" StepId="3" />
+							<Grind grindRef="Always_the_Last_Place_You_Look2" while="HasQuest(67234) and GetQuestStep(67234) == 3" />
+						</If>
+						<If Condition="GetQuestStep(67234) == 4">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+									<TeleportTo Name="Wineport" AetheryteId="12" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+										<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+								<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
+							</If>
+							<NoCombatMoveTo Name="Rostnsthal" XYZ="-205.829, 45.80396, 517.2045" />
+							<TalkTo NpcId="1014745" XYZ="-205.829, 45.80396, 517.2045" QuestId="67234" StepId="4" />
+							<Grind grindRef="Always_the_Last_Place_You_Look3" while="HasQuest(67234) and GetQuestStep(67234) == 4" />
+						</If>
+						<If Condition="GetQuestStep(67234) == 5">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+									<TeleportTo Name="Wineport" AetheryteId="12" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+										<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+								<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
+							</If>
+							<NoCombatMoveTo Name="Rostnsthal" XYZ="-205.829, 45.80396, 517.2045" />
+							<TalkTo NpcId="1014745" XYZ="-205.829, 45.80396, 517.2045" QuestId="67234" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(67234) == 6">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+									<TeleportTo Name="Wineport" AetheryteId="12" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+										<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+								<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
+							</If>
+							<NoCombatMoveTo Name="Stephanivien" XYZ="-233.5089, 44.33062, 519.0966" />
+							<HandOver ItemId="2001814" QuestId="67234" StepId="6" NpcId="1014748" XYZ="-233.5089, 44.33062, 519.0966" />
+						</If>
+						<If Condition="GetQuestStep(67234) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TurnIn QuestId="67234" NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6372,12 +6680,32 @@
 			<If Condition="not IsQuestCompleted(67235)">
 				<If Condition="Core.Player.ClassLevel &gt; 39">
 					<If Condition="not HasQuest(67235)">
-						<LogMessage Message="Rook Before You Reap quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67235)">
+							<PickupQuest NpcId="1014577" QuestId="67235" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67235)">
-						<LogMessage Message="Rook Before You Reap quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67235) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TurnIn QuestId="67235" NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6387,12 +6715,127 @@
 			<If Condition="not IsQuestCompleted(67236)">
 				<If Condition="Core.Player.ClassLevel &gt; 39">
 					<If Condition="not HasQuest(67236)">
-						<LogMessage Message="Securing the Locks quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67236)">
+							<PickupQuest NpcId="1014577" QuestId="67236" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67236)">
-						<LogMessage Message="Securing the Locks quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67236) == 1">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Rostnsthal" XYZ="-98.80219, 16.0083, 26.62695" />
+							<TalkTo NpcId="1014750" XYZ="-98.80219, 16.0083, 26.62695" QuestId="67236" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67236) == 2">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<If Condition="GetQuestById(67236).QuestI8AH == 0">
+								<MoveTo Name="Sharp-eyed Loiterer" XYZ="-155.5963, 16.97958, -38.37653" />
+								<UseSpell SpellId="2872" NpcId="1014752" XYZ="-155.5963, 16.97958, -38.37653" QuestId="67236" StepId="2" />
+							</If>
+							<If Condition="GetQuestById(67236).QuestI8AH == 1">
+								<MoveTo Name="Squinty-eyed Loiterer" XYZ="52.99451, 24.07172, -25.07062" />
+								<UseSpell SpellId="2872" NpcId="1014753" XYZ="52.99451, 24.07172, -25.07062" QuestId="67236" StepId="2" />
+							</If>
+							<If Condition="GetQuestById(67236).QuestI8AH == 2">
+								<MoveTo Name="Shifty-eyed Loiterer" XYZ="114.1832, -7.146736, 83.66516" />
+								<UseSpell SpellId="2872" NpcId="1014754" XYZ="114.1832, -7.146736, 83.66516" QuestId="67236" StepId="2" />
+							</If>
+						</If>
+						<If Condition="GetQuestStep(67236) == 3">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TalkTo NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" QuestId="67236" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(67236) == 4">
+							<If Condition="not IsOnMap(155)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+									<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+									<Travel To="155" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Stephanivien" XYZ="232.6543, 251.8195, 127.2145" />
+							<SimpleDuty InteractNpcId="1014760" XYZ="232.6543, 251.8195, 127.2145" QuestId="67236" StepId="4">
+								<HotSpots>
+									<HotSpot XYZ="274.8607, 262.3922, 88.12085" Radius="45" /> <!-- Big Bertha East -->
+									<HotSpot XYZ="191.7906, 264.413, 69.96252" Radius="45" /> <!-- Big Bertha West -->
+									<HotSpot XYZ="200.4177, 253.2123, 180.4543" Radius="45" /> <!-- Big Bertha South -->
+									<HotSpot XYZ="227.4021, 252.2051, 121.2458" Radius="90" /> <!-- Svara -->
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="4202" Weight="4000" /> <!-- Unstoppable Dragonfly -->
+									<TargetMob Id="4201" Weight="3000" /> <!-- Unstoppable Aevis -->
+									<TargetMob Id="4200" Weight="2000" /> <!-- Unstoppable Wyvern -->
+									<TargetMob Id="1440" Weight="1000" /> <!-- Svara -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(67236) == 5">
+							<If Condition="not IsOnMap(155)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+									<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+									<Travel To="155" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Stephanivien" XYZ="207.4464, 255.9751, 82.26135" />
+							<ExtendedTalkTo NpcId="1014762" XYZ="207.4464, 255.9751, 82.26135" QuestId="67236" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(67236) == 6">
+							<If Condition="not IsOnMap(155)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+									<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+									<Travel To="155" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Stephanivien" XYZ="207.4464, 255.9751, 82.26135" />
+							<TalkTo NpcId="1014762" XYZ="207.4464, 255.9751, 82.26135" QuestId="67236" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(67236) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TurnIn QuestId="67236" NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6402,12 +6845,32 @@
 			<If Condition="not IsQuestCompleted(67237)">
 				<If Condition="Core.Player.ClassLevel &gt; 44">
 					<If Condition="not HasQuest(67237)">
-						<LogMessage Message="A Suppressive Strategy quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67237)">
+							<PickupQuest NpcId="1014577" QuestId="67237" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67237)">
-						<LogMessage Message="A Suppressive Strategy quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67237) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TurnIn QuestId="67237" NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6417,12 +6880,106 @@
 			<If Condition="not IsQuestCompleted(67238)">
 				<If Condition="Core.Player.ClassLevel &gt; 44">
 					<If Condition="not HasQuest(67238)">
-						<LogMessage Message="Blood on the Sands quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67238)">
+							<PickupQuest NpcId="1014577" QuestId="67238" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67238)">
-						<LogMessage Message="Blood on the Sands quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67238) == 1">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<MoveTo Name="Joye" XYZ="-245.4414, -20.03492, -63.64539" />
+							<TalkTo NpcId="1014769" XYZ="-245.4414, -20.03492, -63.64539" QuestId="67238" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67238) == 2">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<MoveTo Name="Heavy Sack" XYZ="-246.357, -20.03516, -64.68304" />
+							<UseObject NpcId="2006262" XYZ="-246.357, -20.03516, -64.68304" Radius="10" QuestId="67238" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67238) == 3">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<MoveTo Name="Joye" XYZ="-16.28143, 16.00967, -6.668213" />
+							<HandOverPlus ItemId="2001815" QuestId="67238" StepId="3" NpcId="1014770" XYZ="-16.28143, 16.00967, -6.668213" />
+						</If>
+						<If Condition="GetQuestStep(67238) == 4">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+									<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+										<TeleportTo Name="Wineport" AetheryteId="12" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+								<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+							</If>
+							<NoCombatMoveTo Name="Stephanivien" XYZ="427.0542, 15.1703, 706.7216" />
+							<SimpleDuty InteractNpcId="1014772" XYZ="427.0542, 15.1703, 706.7216" QuestId="67238" StepId="4">
+								<HotSpots>
+									<HotSpot XYZ="427.0542, 15.1703, 706.7216" Radius="90" /> <!-- The Thing from the Deep -->
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="4207" Weight="3000" /> <!-- Peckish Bell -->
+									<TargetMob Id="4206" Weight="2000" /> <!-- Peckish Snipper -->
+									<TargetMob Id="4208" Weight="1000" /> <!-- The Thing from the Deep -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(67238) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TurnIn QuestId="67238" NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6432,12 +6989,102 @@
 			<If Condition="not IsQuestCompleted(67239)">
 				<If Condition="Core.Player.ClassLevel &gt; 49">
 					<If Condition="not HasQuest(67239)">
-						<LogMessage Message="Rage Against the Machinists quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67239)">
+							<PickupQuest NpcId="1014577" QuestId="67239" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67239)">
-						<LogMessage Message="Rage Against the Machinists quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67239) == 1">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Joye" XYZ="-155.6878, 16.97958, -38.4375" />
+							<TalkTo NpcId="1014775" XYZ="-155.6878, 16.97958, -38.4375" QuestId="67239" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67239) == 2">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Rostnsthal" XYZ="-138.7503, 23.24059, -83.87885" />
+							<TalkTo NpcId="1014776" XYZ="-138.7503, 23.24059, -83.87885" QuestId="67239" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67239) == 3">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<If Condition="GetQuestById(67239).QuestI8AH == 0">
+								<MoveTo Name="Sharp-eyed Loiterer" XYZ="-133.8369, 18.94346, -12.1004" />
+								<UseSpell SpellId="2872" NpcId="1014777" XYZ="-133.8369, 18.94346, -12.1004" QuestId="67239" StepId="3" />
+							</If>
+							<If Condition="GetQuestById(67239).QuestI8AH == 1">
+								<MoveTo Name="Shifty-eyed Loiterer" XYZ="-94.31604, 19.0083, -16.495" />
+								<UseSpell SpellId="2872" NpcId="1014779" XYZ="-94.31604, 19.0083, -16.495" QuestId="67239" StepId="3" />
+							</If>
+							<If Condition="GetQuestById(67239).QuestI8AH == 2">
+								<MoveTo Name="Squinty-eyed Loiterer" XYZ="-160.3571, 26.37823, -88.9754" />
+								<UseSpell SpellId="2872" NpcId="1014778" XYZ="-160.3571, 26.37823, -88.9754" QuestId="67239" StepId="3" />
+							</If>
+						</If>
+						<If Condition="GetQuestStep(67239) == 4">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TalkTo NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" QuestId="67239" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(67239) == 5">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Joye" XYZ="-151.5984, 16.97959, -22.7207" />
+							<TalkTo NpcId="1014782" XYZ="-151.5984, 16.97959, -22.7207" QuestId="67239" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(67239) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TurnIn QuestId="67239" NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6447,12 +7094,97 @@
 			<If Condition="not IsQuestCompleted(67240)">
 				<If Condition="Core.Player.ClassLevel &gt; 49">
 					<If Condition="not HasQuest(67240)">
-						<LogMessage Message="The Power of a Tourney quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67240)">
+							<PickupQuest NpcId="1014577" QuestId="67240" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67240)">
-						<LogMessage Message="The Power of a Tourney quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67240) == 1">
+							<If Condition="not IsOnMap(155)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+									<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+									<Travel To="155" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Stephanivien" XYZ="224.2924, 302, -276.8445" />
+							<TalkTo NpcId="1014784" XYZ="224.2924, 302, -276.8445" QuestId="67240" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67240) == 2">
+							<If Condition="not IsOnMap(155)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+									<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+									<Travel To="155" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Stephanivien" XYZ="224.2924, 302, -276.8445" />
+							<LogMessage Message="Please manually complete The Power of a Tourney duty!" />
+							<LogMessage Message="Run this profile again once you finish the duty." />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Find a way to interact with the quest objects. -->
+							<!-- <UseObject NpcId="2006369" XYZ="224.9279, 302.0623, -289.6067" Radius="10" QuestId="67240" StepId="2" /> --> <!-- Black Standard -->
+							<!-- <UseObject NpcId="2006370" XYZ="223.1152, 302.4795, -166.6133" Radius="10" QuestId="67240" StepId="2" /> --> <!-- Crimson Standard -->
+							<!-- <UseObject NpcId="2005848" XYZ="269.8252, 302.9373, -190.8752" Radius="10" QuestId="67240" StepId="2" /> --> <!-- Ambush Site -->
+							<!-- <UseObject NpcId="2006175" XYZ="215.0148, 311.9706, -233.4478" Radius="10" QuestId="67240" StepId="2" /> --> <!-- Signal Mortar -->
+							<!-- NPC I failed to obtain data on to Commence the Arena. -->
+
+							<!-- TO DO -->
+
+							<!-- <SimpleDuty InteractNpcId="1014784" XYZ="224.2924, 302, -276.8445" QuestId="67240" StepId="2">
+								<HotSpots>
+									<HotSpot XYZ="224.9279, 302.0623, -289.6067" Radius="90" /> --> <!-- Black Standard -->
+									<!-- <HotSpot XYZ="223.1152, 302.4795, -166.6133" Radius="10" /> --> <!-- Crimson Standard -->
+								<!-- </HotSpots>
+								<TargetMobs>
+									<TargetMob Id="4213" Weight="7000" /> --> <!-- House Durendaire Chirurgeon -->
+									<!-- <TargetMob Id="4217" Weight="6000" /> --> <!-- House Dzemael Archer -->
+									<!-- <TargetMob Id="4216" Weight="5000" /> --> <!-- House Dzemael Banneret -->
+									<!-- <TargetMob Id="4218" Weight="4000" /> --> <!-- House Dzemael Knight -->
+									<!-- <TargetMob Id="4219" Weight="3000" /> --> <!-- Hardheel Marcheterre -->
+									<!-- <TargetMob Id="4215" Weight="2000" /> --> <!-- Rochedalaix of the Van -->
+									<!-- <TargetMob Id="4211" Weight="1000" /> --> <!-- Crimson Standard -->
+								<!-- </TargetMobs>
+							</SimpleDuty> -->
+						</If>
+						<If Condition="GetQuestStep(67240) == 3">
+							<If Condition="not IsOnMap(155)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+									<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+									<Travel To="155" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Stephanivien" XYZ="222.0645, 302, -189.0135" />
+							<ExtendedTalkTo NpcId="1014788" XYZ="222.0645, 302, -189.0135" QuestId="67240" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(67240) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TurnIn QuestId="67240" NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6462,12 +7194,62 @@
 			<If Condition="not IsQuestCompleted(67241)">
 				<If Condition="Core.Player.ClassLevel &gt; 49">
 					<If Condition="not HasQuest(67241)">
-						<LogMessage Message="A Joye-less Celebration quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67241)">
+							<PickupQuest NpcId="1014577" QuestId="67241" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67241)">
-						<LogMessage Message="A Joye-less Celebration quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67241) == 1">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Rostnsthal" XYZ="-139.4827, 19.23666, -11.97839" />
+							<TalkTo NpcId="1014793" XYZ="-139.4827, 19.23666, -11.97839" QuestId="67241" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67241) == 2">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<MoveTo Name="Count Baurendouin De Haillenarte" XYZ="-18.26508, 16.00967, -7.553223" />
+							<TalkTo NpcId="1014795" XYZ="-18.26508, 16.00967, -7.553223" QuestId="67241" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67241) == 255">
+							<If Condition="not IsOnMap(418) and not IsOnMap(419)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<If Condition="IsOnMap(419)">
+								<Travel To="418" />
+							</If>
+							<MoveTo Name="Count Baurendouin De Haillenarte" XYZ="-152.8802, 17, -52.90308" />
+							<TurnIn QuestId="67241" NpcId="1014796" XYZ="-152.8802, 17, -52.90308" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6477,12 +7259,111 @@
 			<If Condition="not IsQuestCompleted(67242)">
 				<If Condition="Core.Player.ClassLevel &gt; 51">
 					<If Condition="not HasQuest(67242)">
-						<LogMessage Message="Pushing the Brume quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67242)">
+							<PickupQuest NpcId="1014577" QuestId="67242" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67242)">
-						<LogMessage Message="Pushing the Brume quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67242) == 1">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Imperial Crates" XYZ="-462.7909, -2.761902, -289.4179" />
+							<UseObject NpcIds="2006271,2006270,2006269" QuestId="67242" StepId="1">
+								<HotSpots>
+									<HotSpot XYZ="-462.7909, -2.761902, -289.4179" Radius="10" />
+									<HotSpot XYZ="-570.4891, -2.884033, -334.7678" Radius="10" />
+									<HotSpot XYZ="-661.3413, -1.693787, -367.8188" Radius="10" />
+								</HotSpots>
+							</UseObject>
+						</If>
+						<If Condition="GetQuestStep(67242) == 2">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<HandOver ItemId="2001816" QuestId="67242" StepId="2" NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
+						<If Condition="GetQuestStep(67242) == 3">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Bedraggled Commoner" XYZ="16.22028, -12.02089, 49.45447" />
+							<While Condition="not IsTodoChecked(67242, 3, 0)">
+								<TalkTo NpcId="1014801" XYZ="16.22028, -12.02089, 49.45447" QuestId="67242" StepId="3" />
+								<TalkTo NpcId="1014800" XYZ="58.18262, -12.02088, 79.81995" QuestId="67242" StepId="3" />
+								<TalkTo NpcId="1014799" XYZ="114.8851, -19.78706, 62.57715" QuestId="67242" StepId="3" />
+							</While>
+						</If>
+						<If Condition="GetQuestStep(67242) == 4">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TalkTo NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" QuestId="67242" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(67242) == 5">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+											
+									<!-- TO DO -->
+
+									<!-- Update Travel.cs with new zone information.  -->
+
+									<!-- TO DO -->
+
+									<!-- <Travel To="397" /> -->
+									<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+									<StopBot />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Joye" XYZ="483.9703, 212.5123, 726.8329" />
+							<UseObject NpcId="2006272" XYZ="483.9703, 212.5123, 726.8329" Radius="10" QuestId="67242" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(67242) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TurnIn QuestId="67242" NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6492,12 +7373,128 @@
 			<If Condition="not IsQuestCompleted(67243)">
 				<If Condition="Core.Player.ClassLevel &gt; 53">
 					<If Condition="not HasQuest(67243)">
-						<LogMessage Message="A Joye-ful Reunion quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67243)">
+							<PickupQuest NpcId="1014577" QuestId="67243" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67243)">
-						<LogMessage Message="A Joye-ful Reunion quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67243) == 1">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+											
+									<!-- TO DO -->
+
+									<!-- Update Travel.cs with new zone information.  -->
+
+									<!-- TO DO -->
+
+									<!-- <Travel To="397" /> -->
+									<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+									<StopBot />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Stephanivien" XYZ="482.9633, 212.5399, 724.7882" />
+							<TalkTo NpcId="1014805" XYZ="482.9633, 212.5399, 724.7882" QuestId="67243" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67243) == 2">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Manufactory Machinist" XYZ="114.3358, -19.78706, 61.81433" />
+							<TalkTo NpcId="1014809" XYZ="114.3358, -19.78706, 61.81433" QuestId="67243" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67243) == 3">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Weak-kneed Watch" XYZ="117.174, -22.01733, 32.79163" />
+							<UseSpell SpellId="2872" NpcId="1014810" XYZ="117.174, -22.01733, 32.79163" QuestId="67243" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(67243) == 4">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+											
+									<!-- TO DO -->
+
+									<!-- Update Travel.cs with new zone information.  -->
+
+									<!-- TO DO -->
+
+									<!-- <Travel To="397" /> -->
+									<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+									<StopBot />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Rostnsthal" XYZ="319.6917, 161.108, 147.4479" />
+							<SimpleDuty InteractNpcId="1014811" XYZ="319.6917, 161.108, 147.4479" QuestId="67243" StepId="4">
+								<HotSpots>
+									<HotSpot XYZ="342.5803, 161.108, 86.93054" Radius="90" /> <!-- Black Iron Bridge -->
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="4220" Weight="3000" /> <!-- Assault Aevis -->
+									<TargetMob Id="4221" Weight="2000" /> <!-- Assault Biast -->
+									<TargetMob Id="4222" Weight="1000" /> <!-- Assault Dragon -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(67243) == 5">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+											
+									<!-- TO DO -->
+
+									<!-- Update Travel.cs with new zone information.  -->
+
+									<!-- TO DO -->
+
+									<!-- <Travel To="397" /> -->
+									<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+									<StopBot />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Stephanivien" XYZ="397.0549, 161.1822, -98.10034" />
+							<TalkTo NpcId="1014816" XYZ="397.0549, 161.1822, -98.10034" QuestId="67243" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(67243) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TurnIn QuestId="67243" NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6507,12 +7504,32 @@
 			<If Condition="not IsQuestCompleted(67244)">
 				<If Condition="Core.Player.ClassLevel &gt; 55">
 					<If Condition="not HasQuest(67244)">
-						<LogMessage Message="Wheels of Justice quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67244)">
+							<PickupQuest NpcId="1014577" QuestId="67244" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67244)">
-						<LogMessage Message="Wheels of Justice quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67244) == 1">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+							<TalkTo NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" QuestId="67244" StepId="1" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -6522,8 +7539,18 @@
 			<If Condition="not IsQuestCompleted(67246)">
 				<If Condition="Core.Player.ClassLevel &gt; 57">
 					<If Condition="not HasQuest(67246)">
-						<LogMessage Message="Taking the Fall quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67246)">
+							<PickupQuest NpcId="1014577" QuestId="67246" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67246)">
 						<LogMessage Message="Taking the Fall quest is coming soon! Stay tuned!" />
@@ -6537,8 +7564,18 @@
 			<If Condition="not IsQuestCompleted(67247)">
 				<If Condition="Core.Player.ClassLevel &gt; 57">
 					<If Condition="not HasQuest(67247)">
-						<LogMessage Message="Rusted Steel quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67247)">
+							<PickupQuest NpcId="1014577" QuestId="67247" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67247)">
 						<LogMessage Message="Rusted Steel quest is coming soon! Stay tuned!" />
@@ -6552,8 +7589,18 @@
 			<If Condition="not IsQuestCompleted(67248)">
 				<If Condition="Core.Player.ClassLevel &gt; 59">
 					<If Condition="not HasQuest(67248)">
-						<LogMessage Message="Rise of the Machinists quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609" />
+						<If Condition="IsQuestAcceptQualified(67248)">
+							<PickupQuest NpcId="1014577" QuestId="67248" XYZ="-154.3146, 16.99999, -53.3609" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67248)">
 						<LogMessage Message="Rise of the Machinists quest is coming soon! Stay tuned!" />
@@ -11525,6 +12572,36 @@
 				<TargetMob Id="3894" />
 			</TargetMobs>
 			<MinLevel>58</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Always_the_Last_Place_You_Look">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-233.5089, 44.33062, 519.0966" name="Jungle Midge Clouds" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4113" /> <!-- Jungle Midge Cloud -->
+			</TargetMobs>
+			<MinLevel>35</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Always_the_Last_Place_You_Look2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-234.0276, 44.33062, 539.8184" name="Jungle Midge Clouds" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4113" /> <!-- Jungle Midge Cloud -->
+			</TargetMobs>
+			<MinLevel>35</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Always_the_Last_Place_You_Look3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-205.829, 45.80396, 517.2045" name="Jungle Goobbue" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4114" /> <!-- Jungle Goobbue -->
+			</TargetMobs>
+			<MinLevel>35</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="My_First_Axe">
