@@ -19,6 +19,7 @@ using ff14bot.RemoteWindows;
 using TreeSharp;
 using System.Windows.Media;
 using Action = TreeSharp.Action;
+using NeoGaia.ConnectionHandler;
 using System.IO;
 
 namespace ff14bot.NeoProfiles
@@ -192,7 +193,49 @@ namespace ff14bot.NeoProfiles
 			return false;
 		}
 
-		protected override void OnStart()
+
+        private string GetPathStart(Dictionary<string, AreaInfo> _areas)
+        {
+           
+            string special = WorldManager.ZoneId.ToString() + "_";
+            Vector3 location = new Vector3();
+            if (Extensions.HasKeyLike(_areas, special))
+            {
+                var possiblepositions = Extensions.GetKeysLike(_areas, special);
+                Logging.Write("found {0} possible Starting Locations", possiblepositions.Count());
+                foreach (string s in possiblepositions)
+                {
+                    Logging.Write("Possible  starting path is {0}", s);
+                    AreaInfo value = _areas[s];
+                    Logging.Write("Trying to Navigate to  X{0} Y{1} Z{2}", value.x, value.y, value.z);
+                    location = new Vector3((float)value.x, (float)value.y, (float)value.z);
+                    var target = new CanFullyNavigateTarget { Position = location };
+                    Logging.Write("Possible  target  is {0}", target.Position);
+
+                     var result =Navigator.NavigationProvider.CanFullyNavigateToAsync(new[] { target }).Result;
+                    //var result = Navigator.NavigationProvider.CanFullyNavigateToAsync(new[] { target }).Wait();
+                    //var result = task.WaitAndUnwrapException();
+                    
+                    var targetResult = result != null ? result.FirstOrDefault() : null;
+                    Logging.Write("Can Navigate  Result {0}", targetResult.CanNavigate);
+                    if (targetResult.CanNavigate == 1)
+                     {
+                        Logging.Write("Found my way {0}", s.Split(new Char[] { '-' }).FirstOrDefault());
+
+                        return s.Split(new Char[] {'-'}).FirstOrDefault();
+                    }
+                    Thread.Sleep(5000);
+                }
+                return "Notfound";
+            }
+            else
+            {
+                return WorldManager.ZoneId.ToString();
+            }
+        }
+
+
+        protected override void OnStart()
 		{
 			SupportedNPC.Add(1003583);
 			SupportedNPC.Add(1003597);
@@ -219,156 +262,217 @@ namespace ff14bot.NeoProfiles
 			SupportedNPC.Add(2005371);
 			SupportedNPC.Add(1011946);
             SupportedNPC.Add(1011212);
-            SupportedNPC.Add(2005370); 
+            SupportedNPC.Add(2005370);
+            SupportedNPC.Add(1012153);
+            SupportedNPC.Add(2005372);
+            SupportedNPC.Add(1003588);
+            SupportedNPC.Add(1003589);
+            SupportedNPC.Add(1003586);
+
+            
+
+
 
 
             pathing a = new pathing();
-			a.setStart(WorldManager.ZoneId.ToString());
-			a.setEnd(Destination);
 
-			a.Calculate();
-			wayhome = a.GetPath();
+            var start = GetPathStart(a.getAreas());
+            if (start == "")
+            {
+                Logging.Write("Could not find a path Stopping");
+                _done = true;
+            }
 
-			foreach (var item in wayhome)
-			{
-				Logging.Write(item);
-			}
+            a.setStart(start);
+            a.setEnd(Destination);
 
-			if (WorldManager.ZoneId.ToString() == Destination)
-			{
-				Logging.Write("We are already in the right Zone");
-				Logging.Write("Lets fix it:" + currentstep + "  " + wayhome.Count());
-				_done = true;
-			}
-		}
 
-		protected override void OnDone()
-		{
-			Navigator.PlayerMover.MoveStop();
-		}
+                   a.Calculate();
+                   wayhome = a.GetPath();
 
-		public bool ConditionCheck()
-		{
-			int found = 0;
-			var units = GameObjectManager.GameObjects;
-			foreach (var unit in units.OrderBy(r => r.Distance()))
-			{
-				if (found > 0) break;
-				foreach (var npcid in SupportedNPC)
-				{
-					// Logging.Write("name=" + name + " Gameobject=" + unit.EnglishName);
-					if (npcid == unit.NpcId && found == 0)
-					{
-						Present_NPC = npcid;
-						found++;
-					}
-				}
-			}
+                   foreach (var item in wayhome)
+                   {
+                       Logging.Write(item);
+                   }
 
-			if (found > 0) { return true; }			else { return false; }
-		}
-	}
+                   if (WorldManager.ZoneId.ToString() == Destination)
+                   {
+                       Logging.Write("We are already in the right Zone");
+                       Logging.Write("Lets fix it:" + currentstep + "  " + wayhome.Count());
+                       _done = true;
+                   }
+               }
 
-	//-------------------------------------------------
+               protected override void OnDone()
+               {
+                   Navigator.PlayerMover.MoveStop();
+               }
 
-    class Graph
-	{
-		Dictionary<String, Dictionary<String, int>> vertices = new Dictionary<String, Dictionary<String, int>>();
+               public bool ConditionCheck()
+               {
+                   int found = 0;
+                   var units = GameObjectManager.GameObjects;
+                   foreach (var unit in units.OrderBy(r => r.Distance()))
+                   {
+                       if (found > 0) break;
+                       foreach (var npcid in SupportedNPC)
+                       {
+                           // Logging.Write("name=" + name + " Gameobject=" + unit.EnglishName);
+                           if (npcid == unit.NpcId && found == 0)
+                           {
+                               Present_NPC = npcid;
+                               found++;
+                           }
+                       }
+                   }
 
-		public void add_vertex(String name, Dictionary<String, int> edges)
-		{
-			vertices[name] = edges;
-		}
+                   if (found > 0) { return true; }			else { return false; }
+               }
+           }
 
-		public List<String> shortest_path(String start, String finish)
-		{
-			var previous = new Dictionary<String, String>();
-			var distances = new Dictionary<String, int>();
-			var nodes = new List<String>();
 
-			List<String> path = null;
 
-			foreach (var vertex in vertices)
-			{
-				if (vertex.Key == start)
-				{
-					distances[vertex.Key] = 0;
-				}
-				else
-				{
-					distances[vertex.Key] = int.MaxValue;
-				}
+           //-------------------------------------------------
 
-				nodes.Add(vertex.Key);
-			}
+class Graph
+           {
+               Dictionary<String, Dictionary<String, int>> vertices = new Dictionary<String, Dictionary<String, int>>();
 
-			while (nodes.Count != 0)
-			{
-				nodes.Sort((x, y) => distances[x] - distances[y]);
+               public void add_vertex(String name, Dictionary<String, int> edges)
+               {
+                   vertices[name] = edges;
+               }
 
-				var smallest = nodes[0];
-				nodes.Remove(smallest);
+               public List<String> shortest_path(String start, String finish)
+               {
+                   var previous = new Dictionary<String, String>();
+                   var distances = new Dictionary<String, int>();
+                   var nodes = new List<String>();
 
-				if (smallest == finish)
-				{
-					path = new List<String>();
-					while (previous.ContainsKey(smallest))
-					{
-						path.Add(smallest);
-						smallest = previous[smallest];
-					}
+                   List<String> path = null;
 
-					break;
-				}
+                   foreach (var vertex in vertices)
+                   {
+                       if (vertex.Key == start)
+                       {
+                           distances[vertex.Key] = 0;
+                       }
+                       else
+                       {
+                           distances[vertex.Key] = int.MaxValue;
+                       }
 
-				if (distances[smallest] == int.MaxValue)
-				{
-					break;
-				}
+                       nodes.Add(vertex.Key);
+                   }
 
-				foreach (var neighbor in vertices[smallest])
-				{
-					var alt = distances[smallest] + neighbor.Value;
+                   while (nodes.Count != 0)
+                   {
+                       nodes.Sort((x, y) => distances[x] - distances[y]);
 
-					if (alt < distances[neighbor.Key])
-					{
-						distances[neighbor.Key] = alt;
-						previous[neighbor.Key] = smallest;
-					}
-				}
-			}
+                       var smallest = nodes[0];
+                       nodes.Remove(smallest);
 
-			return path;
-		}
-	}
+                       if (smallest == finish)
+                       {
+                           path = new List<String>();
+                           while (previous.ContainsKey(smallest))
+                           {
+                               path.Add(smallest);
+                               smallest = previous[smallest];
+                           }
 
-	class pathing
-	{
-		String[] myarray;
-		String start = "";
-		String end = "";
-		List<AreaInfo> pathlist = new List<AreaInfo>();
-		Graph g = new Graph();
-		Dictionary<string, AreaInfo> areas = new Dictionary<string, AreaInfo>();
-		List<AreaInfo> returnlist = new List<AreaInfo>();
-		public pathing()
-		{
-            // expansion
-            /*looks like The Dravanian Hinterlands is similar to The Sea of Clouds, with a split zone; East side is accessible by 397 (blocked for me, may unlock after a quest?), 398 and 478, where West side is accessible only through 478 --- meaning 478 has two exits, both to 399, but one for the East side and one for the West side
-            478 - 399W: < MoveTo Name = "The Dravanian Hinterlands West" XYZ = "74.39938, 205, 140.4551" >
-            399W-478: <MoveTo Name="Idyllshire" XYZ="-540.4974, 155.7123, -515.0025">
-            */
+                           break;
+                       }
 
-            // areas.Add("", new AreaInfo() { x = , y = , z = , Name = "", Communicationlocalindex = -1 });
+                       if (distances[smallest] == int.MaxValue)
+                       {
+                           break;
+                       }
 
-            //---- Experimental-----
-            areas.Add("401_North-419", new AreaInfo() { x = -812.0089, y = -57.8775, z = 162.7679, Name = " Blue Window -->The Pillars", Communicationlocalindex = 1 });
+                       foreach (var neighbor in vertices[smallest])
+                       {
+                           var alt = distances[smallest] + neighbor.Value;
+
+                   // Logging.Write(neighbor);
+                           if (alt < distances[neighbor.Key])
+                           {
+                               distances[neighbor.Key] = alt;
+                               previous[neighbor.Key] = smallest;
+                           }
+                       }
+                   }
+
+                   return path;
+               }
+           }
+
+           public static class Extensions
+           {
+               public static bool HasKeyLike<T>(this Dictionary<string, T> collection, string value)
+               {
+                   var keysLikeCount = collection.Keys.Count(x => x.Contains(value));
+                   return keysLikeCount > 0;
+               }
+
+               public static List<string> GetKeysLike<T>(this Dictionary<string, T> collection, string value)
+               {
+
+
+                   List<string> keyList = new List<string>(collection.Keys);
+
+
+                   List<string> _keys = collection.Keys.Select(x => x.ToString()).ToList();
+                   //   collection.Where(x => someValues.Contains(x.Value)).Select(x => x.Key);
+                   //   myDict.Keys.ToList();
+                   return keyList.Where(x => x.StartsWith(value)).ToList(); 
+               }
+
+
+
+           }
+
+           class pathing
+           {
+
+
+
+
+               String[] myarray;
+               String start = "";
+               String end = "";
+               List<AreaInfo> pathlist = new List<AreaInfo>();
+               Graph g = new Graph();
+               Dictionary<string, AreaInfo> areas = new Dictionary<string, AreaInfo>();
+               List<AreaInfo> returnlist = new List<AreaInfo>();
+
+
+
+               public pathing()
+               {
+                   // expansion
+                   /*looks like The Dravanian Hinterlands is similar to The Sea of Clouds, with a split zone; East side is accessible by 397 (blocked for me, may unlock after a quest?), 398 and 478, where West side is accessible only through 478 --- meaning 478 has two exits, both to 399, but one for the East side and one for the West side
+                   478 - 399W: < MoveTo Name = "The Dravanian Hinterlands West" XYZ = "74.39938, 205, 140.4551" >
+                   399W-478: <MoveTo Name="Idyllshire" XYZ="-540.4974, 155.7123, -515.0025">
+                   */
+
+                // areas.Add("", new AreaInfo() { x = , y = , z = , Name = "", Communicationlocalindex = -1 });
+
+                //---- Experimental-----
+                areas.Add("401_North-419", new AreaInfo() { x = -812.0089, y = -57.8775, z = 162.7679, Name = " Blue Window -->The Pillars", Communicationlocalindex = 1 });
             areas.Add("419-401_North", new AreaInfo() { x = 147.3258, y = -12.63491, z = -12.40564, Name = "The Pillars --> Blue Window", Communicationlocalindex = 1 });
 
             areas.Add("478-399_West", new AreaInfo() { x = 74.39938, y = 205, z = 140.4551, Name = " The Dravanian Hinterlands West", Communicationlocalindex = -1 });
             areas.Add("399_West-478", new AreaInfo() { x = -540.4974, y = 155.7123, z = -515.0025, Name = "Idyllshire", Communicationlocalindex = -1 });
 
             //---------
+
+         //   The Dravanian Hinterlands-- > Idyllshire: 399 - 478, < -227.6785, 106.5826, -628.679 >
+   //Idyllshire-- > The Dravanian Hinterlands: 478 - 399, < 144.5908, 207, 114.8838 >
+
+             areas.Add("419-402", new AreaInfo() { x = 168.4442, y = -14.34896, z = 49.57654, Name = "The Pillars -> Azys Lla", Communicationlocalindex = 1 });
+             areas.Add("402-419", new AreaInfo() { x =-877.0629 , y =-184.3138 , z =  -670.1103 , Name = "Azys Lla -> The Pillars", Communicationlocalindex = 1 });
+
+
             areas.Add("399_East-398", new AreaInfo() { x = 904.6548, y = 161.711, z = 189.163, Name = "The Dravanian Hinterlands-- > The Dravanian Forelands", Communicationlocalindex = -1 });
             areas.Add("398-399_East", new AreaInfo() { x = -795.4093, y = -122.2338, z = 577.756, Name = "The Dravanian Forelands-- > The Dravanian Hinterlands", Communicationlocalindex = -1 });
             
@@ -473,29 +577,51 @@ namespace ff14bot.NeoProfiles
 			areas.Add("129-134", new AreaInfo() { x = 63.212173, z = 0.221235, y = 19.999994, Name = "Limsa (Lower)-->Middle La Noscea", Communicationlocalindex = -1 });
 			areas.Add("129-140", new AreaInfo() { x = -359.895, y = 8, z = 41.566, Name = "Limsa (Lower)-->Western Thanalan", Communicationlocalindex = 1 });
 			areas.Add("129-138", new AreaInfo() { x = -191.834, y = 1, z = 210.829, Name = "Limsa (Lower)-->Western La Noscea", Communicationlocalindex = 1 });
-			areas.Add("129-137", new AreaInfo() { x = -190.834, y = 1, z = 210.829, Name = "Limsa (Lower)-->Eastern La Noscea", Communicationlocalindex = 2 });
+			areas.Add("129-137_East", new AreaInfo() { x = -190.834, y = 1, z = 210.829, Name = "Limsa (Lower)-->Eastern La Noscea", Communicationlocalindex = 2 });
 			areas.Add("134-129", new AreaInfo() { x = -43.422066, z = 153.802917, y = 35.445602, Name = "Middle La Noscea-->Limsa (Lower)", Communicationlocalindex = -1 });
 			areas.Add("134-135", new AreaInfo() { x = 203.290405, z = 285.331512, y = 65.182816, Name = "Middle La Noscea-->Lower La Noscea", Communicationlocalindex = -1 });
-			areas.Add("134-137", new AreaInfo() { x = -163.673187, z = -734.864807, y = 35.884563, Name = "Middle La Noscea-->Eastern La Noscea", Communicationlocalindex = -1 });
+			areas.Add("134-137_West", new AreaInfo() { x = -163.673187, z = -734.864807, y = 35.884563, Name = "Middle La Noscea-->Eastern La Noscea", Communicationlocalindex = -1 });
 			areas.Add("134-138", new AreaInfo() { x = -375.221436, z = -603.032593, y = 33.130100, Name = "Middle La Noscea-->Western La Noscea", Communicationlocalindex = -1 });
 			areas.Add("135-128", new AreaInfo() { x = -52.436810, z = 116.130196, y = 75.830246, Name = "Lower La Noscea-->Limsa (Upper)", Communicationlocalindex = -1 });
 			areas.Add("135-134", new AreaInfo() { x = 230.518661, z = -342.391663, y = 74.490341, Name = "Lower La Noscea-->Middle La Noscea", Communicationlocalindex = -1 });
-			areas.Add("135-137", new AreaInfo() { x = 694.988586, z = -387.720428, y = 79.927017, Name = "Lower La Noscea-->Eastern La Noscea", Communicationlocalindex = -1 });
+			areas.Add("135-137_East", new AreaInfo() { x = 694.988586, z = -387.720428, y = 79.927017, Name = "Lower La Noscea-->Eastern La Noscea", Communicationlocalindex = -1 });
 			areas.Add("135-339", new AreaInfo() { x = 598.555847, z = -108.400681, y = 61.519623, Name = "Lower La Noscea-->???", Communicationlocalindex = -1 });
-			areas.Add("137-129", new AreaInfo() { x = 606.901, y = 11.6, z = 391.991, Name = "Eastern La Noscea-->Limsa (Lower)", Communicationlocalindex = 1 });
-			areas.Add("137-134", new AreaInfo() { x = -113.323311, z = 47.165649, y = 70.324112, Name = "Eastern La Noscea-->Middle La Noscea", Communicationlocalindex = -1 });
-			areas.Add("137-135", new AreaInfo() { x = 246.811844, z = 837.507141, y = 56.341099, Name = "Eastern La Noscea-->Lower La Noscea", Communicationlocalindex = -1 });
-			areas.Add("137-139", new AreaInfo() { x = 78.965446, z = -119.879181, y = 80.393074, Name = "Eastern La Noscea-->Upper La Noscea", Communicationlocalindex = -1 });
+            // multi area test 21.74548, 34.07887, 223.4946
+            areas.Add("137_West-137_East", new AreaInfo() { x = 21.74548, y = 34.07887, z = 223.4946, Name = "Eastern La Noscea Costa Del Sol-->Eastern La Noscea Wineport", Communicationlocalindex = 1 });
+            areas.Add("137_East-137_West", new AreaInfo() { x = 345.3907, y = 32.77044, z = 91.39402, Name = "Eastern La Noscea Costa Del Sol-->Eastern La Noscea Wineport", Communicationlocalindex = 1 });
+
+            
+
+            areas.Add("139_East-139_West", new AreaInfo() { x = 221.7828, y = -0.9591975, z = 258.2541, Name = "Upper La Noscea East-->Upper La Noscea West", Communicationlocalindex = 1 });
+            areas.Add("139_West-139_East", new AreaInfo() { x = -340.5905, y = -1.024988, z = 111.8383, Name = "Upper La Noscea West-->Upper La Noscea East", Communicationlocalindex = 1 });
+
+
+            
+            //--------
+            areas.Add("137_East-129", new AreaInfo() { x = 606.901, y = 11.6, z = 391.991, Name = "Eastern La Noscea-->Limsa (Lower)", Communicationlocalindex = 1 });
+			areas.Add("137_West-134", new AreaInfo() { x = -113.323311, z = 47.165649, y = 70.324112, Name = "Eastern La Noscea-->Middle La Noscea", Communicationlocalindex = -1 });
+			areas.Add("137_East-135", new AreaInfo() { x = 246.811844, z = 837.507141, y = 56.341099, Name = "Eastern La Noscea-->Lower La Noscea", Communicationlocalindex = -1 });
+			areas.Add("137_West-139_East", new AreaInfo() { x = 78.965446, z = -119.879181, y = 80.393074, Name = "Eastern La Noscea-->Upper La Noscea", Communicationlocalindex = -1 });
 			areas.Add("138-129", new AreaInfo() { x = 318.314, y = -36, z = 351.376, Name = ">Western La Noscea-->Limsa (Lower)", Communicationlocalindex = 1 });
 			areas.Add("138-135", new AreaInfo() { x = 318.314, y = -36, z = 351.376, Name = ">Western La Noscea-->Lower La Noscea", Communicationlocalindex = 2 });
 			areas.Add("138-134", new AreaInfo() { x = 811.963623, z = 390.644775, y = 49.586365, Name = ">Western La Noscea-->Middle La Noscea", Communicationlocalindex = -1 });
-			areas.Add("138-139", new AreaInfo() { x = 410.657715, z = -10.786478, y = 30.619648, Name = ">Western La Noscea-->Upper La Noscea", Communicationlocalindex = -1 });
-			areas.Add("139-137", new AreaInfo() { x = 719.070007, z = 214.217957, y = 0.217405, Name = ">Upper La Noscea-->Eastern La Noscea", Communicationlocalindex = -1 });
-			areas.Add("139-138", new AreaInfo() { x = -476.706177, z = 287.913330, y = 1.921210, Name = "Upper La Noscea-->Western La Noscea", Communicationlocalindex = -1 });
-			areas.Add("139-180", new AreaInfo() { x = -341.941010, z = -18.610147, y = 48.610909, Name = ">Upper La Noscea-->Outer La Noscea", Communicationlocalindex = -1 });
-			areas.Add("180-139", new AreaInfo() { x = -324.825165, z = -81.512505, y = 50.272530, Name = ">Outer La Noscea-->Upper La Noscea-", Communicationlocalindex = -1 });
+			areas.Add("138-139_West", new AreaInfo() { x = 410.657715, z = -10.786478, y = 30.619648, Name = ">Western La Noscea-->Upper La Noscea", Communicationlocalindex = -1 });
+			areas.Add("139_East-137_West", new AreaInfo() { x = 719.070007, z = 214.217957, y = 0.217405, Name = ">Upper La Noscea-->Eastern La Noscea", Communicationlocalindex = -1 });
+			areas.Add("139_West-138", new AreaInfo() { x = -476.706177, z = 287.913330, y = 1.921210, Name = "Upper La Noscea-->Western La Noscea", Communicationlocalindex = -1 });
+			areas.Add("139_West-180", new AreaInfo() { x = -344.8658, y = 48.09458, z = -17.46293, Name = ">Upper La Noscea-->Outer La Noscea", Communicationlocalindex = -1 });
+            areas.Add("139_East-180", new AreaInfo() { x = 286.4225, y = 41.63181, z = -201.1194, Name = ">Upper La Noscea-->Outer La Noscea", Communicationlocalindex = -1 });
+
+     
+            areas.Add("180-139_West", new AreaInfo() { x = -320.6279, y = 51.65852, z = -75.99368, Name = ">Outer La Noscea-->Upper La Noscea-", Communicationlocalindex = -1 });
+            areas.Add("180-139_East", new AreaInfo() { x = 240.5355, y = 54.22388, z = -252.5956, Name = ">Outer La Noscea-->Upper La Noscea-", Communicationlocalindex = -1 });
 			areas.Add("339-135", new AreaInfo() { x = -9.653202, z = -169.488068, y = 48.346123, Name = ">???-->Lower La Noscea-", Communicationlocalindex = -1 });
 			areas.Add("212-140", new AreaInfo() { x = -15.132613182068, z = -0.0081899836659431, y = 0, Name = "Waking Sands-->Western Thanalan", Communicationlocalindex = -1 });
+
+
+
+
+
+
 
 			g.add_vertex("130", new Dictionary<String, int>() { { "131", 1 }, { "130_1", 1 }, { "140", 5 }, { "141", 5 }, { "178", 1 } });
 			g.add_vertex("130_1", new Dictionary<String, int>() { { "132", 3 }, { "128_3", 3 } }); //lift Oben
@@ -527,27 +653,36 @@ namespace ff14bot.NeoProfiles
 			g.add_vertex("154", new Dictionary<String, int>() { { "133", 5 }, { "148", 5 }, { "155", 5 } });
 			g.add_vertex("155", new Dictionary<String, int>() { { "154", 5 }, { "156", 5 }, { "418", 5 } });
 
-			g.add_vertex("177", new Dictionary<String, int>() { { "128", 1 } });
+          
 
-			g.add_vertex("129", new Dictionary<String, int>() { { "128", 1 }, { "134", 5 }, { "140", 3 }, { "138", 3 }, { "137", 3 } });
-			g.add_vertex("134", new Dictionary<String, int>() { { "129", 5 }, { "135", 5 }, { "137", 5 }, { "138", 5 } });
-			g.add_vertex("135", new Dictionary<String, int>() { { "128", 5 }, { "134", 5 }, { "137", 5 }, { "339", 5 } });
-			g.add_vertex("137", new Dictionary<String, int>() { { "129", 3 }, { "134", 5 }, { "135", 5 }, { "139", 5 } });
-			g.add_vertex("138", new Dictionary<String, int>() { { "129", 3 }, { "135", 3 }, { "134", 5 }, { "139", 5 } });
-			g.add_vertex("139", new Dictionary<String, int>() { { "137", 5 }, { "138", 5 }, { "180", 5 } });
-			g.add_vertex("180", new Dictionary<String, int>() { { "139", 5 } });
+            g.add_vertex("177", new Dictionary<String, int>() { { "128", 1 } });
+
+			g.add_vertex("129", new Dictionary<String, int>() { { "128", 1 }, { "134", 5 }, { "140", 3 }, { "138", 3 }, { "137_East", 3 } });
+			g.add_vertex("134", new Dictionary<String, int>() { { "129", 5 }, { "135", 5 }, { "137_West", 5 }, { "138", 5 } });
+			g.add_vertex("135", new Dictionary<String, int>() { { "128", 5 }, { "134", 5 }, { "137_West", 5 }, { "339", 5 } });
+            //----
+            g.add_vertex("137_East", new Dictionary<String, int>() { { "137_West", 1 }, { "129", 3 },{ "135", 5 } });
+            g.add_vertex("137_West", new Dictionary<String, int>() { { "137_East", 1 }, { "134", 5 }, { "139_East", 5 } });
+            //---
+           
+			g.add_vertex("138", new Dictionary<String, int>() { { "129", 3 }, { "135", 3 }, { "134", 5 }, { "139_West", 5 } });
+			g.add_vertex("139_East", new Dictionary<String, int>() { { "137_West", 5 },  { "180", 5 }, { "139_West", 1 } });
+            g.add_vertex("139_West", new Dictionary<String, int>() { { "138", 5 }, { "180", 5 }, { "139_East", 1 } });
+
+            g.add_vertex("180", new Dictionary<String, int>() { { "139_East", 5 } , { "139_West", 5 } });
+
 			g.add_vertex("339", new Dictionary<String, int>() { { "135", 5 } });
 			g.add_vertex("212", new Dictionary<String, int>() { { "140", 5 } });
 			g.add_vertex("418", new Dictionary<String, int>() { { "155", 5 }, { "419", 5 } });
-			g.add_vertex("419", new Dictionary<String, int>() { { "418", 5 }, { "401_South" , 5 } });
-			g.add_vertex("401_South", new Dictionary<String, int>() { { "419", 5 } });
-            //---- experimental
-            g.add_vertex("419", new Dictionary<String, int>() { { "401_North", 5 } });
+			g.add_vertex("401_South", new Dictionary<String, int>() { { "419", 5 }  });
             g.add_vertex("401_North", new Dictionary<String, int>() { { "419", 5 } });
+            //---- experimental
+            g.add_vertex("419", new Dictionary<String, int>() { { "401_North", 5 },{ "402", 5 }, { "418", 5 }, { "401_South", 5 } });
+            g.add_vertex("402", new Dictionary<String, int>() { { "419", 5 } });
             //---------
             g.add_vertex("397", new Dictionary<String, int>() { { "398", 5 } });
 			g.add_vertex("398", new Dictionary<String, int>() { { "397", 5 }, { "400", 5 }, {"399_East", 5 } });
-            g.add_vertex("399_East", new Dictionary<String, int>() { { "398", 5 } });
+            g.add_vertex("399-East", new Dictionary<String, int>() { { "398", 5 } });
             g.add_vertex("399_West", new Dictionary<String, int>() { { "478", 5 } });
             g.add_vertex("478", new Dictionary<String, int>() { { "399_West", 5 } });
             g.add_vertex("400", new Dictionary<String, int>() { { "398", 5 } });
@@ -562,8 +697,11 @@ namespace ff14bot.NeoProfiles
 		{
 			end = End;
 		}
-
-		public void Calculate()
+        public Dictionary<string, AreaInfo> getAreas()
+        {
+            return areas;
+        }
+        public void Calculate()
 		{
 			//start = WorldManager.ZoneId;
 			//Logging.Write("We are currently in Zone " + start);
@@ -571,8 +709,10 @@ namespace ff14bot.NeoProfiles
 			// Logging.Write("Our Destination= " + end);
 
 			List<String> mlist = new List<String>();
-			mlist = g.shortest_path(start, end);
-			var size = mlist.Count;
+            Logging.Write("STart {0} end {1}", start, end);
+            mlist = g.shortest_path(start, end);
+           
+            var size = mlist.Count;
 			if (size > 0)
 			{
 				mlist.Add(start);
@@ -593,7 +733,7 @@ namespace ff14bot.NeoProfiles
 				{
 					Logging.Write(test);
 					returnlist.Add(areas[test]);
-					//Console.WriteLine(areas[test]);
+				//	Console.WriteLine(areas[test]);
 				}
 				else
                 { Logging.Write("I did not find Coordinates for moving  {0}", test); }
