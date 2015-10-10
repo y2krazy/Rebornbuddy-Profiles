@@ -4960,8 +4960,103 @@
 						</If>
 					</If>
 					<If Condition="HasQuest(67598)">
-						<LogMessage Message="Original Sins quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67598) == 1">
+							<If Condition="not IsOnMap(398)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+									<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+										<TeleportTo Name="Tailfeather" AetheryteId="76" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									<Travel To="398" />
+								</If>
+							</If>
+							<MoveTo Name="Vidofnir" XYZ="-285.6337, 39.04305, 53.72693" />
+							<TalkTo NpcId="1011935" XYZ="-285.6337, 39.04305, 53.72693" QuestId="67598" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67598) == 2">
+							<If Condition="not IsOnMap(398)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+									<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+										<TeleportTo Name="Tailfeather" AetheryteId="76" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									<Travel To="398" />
+								</If>
+							</If>
+							<MoveTo Name="Sidurgu" XYZ="-282.1546, 39.04307, 46.03638" />
+							<TalkTo NpcId="1015044" XYZ="-282.1546, 39.04307, 46.03638" QuestId="67598" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67598) == 3">
+							<If Condition="not IsOnMap(398)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+									<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+										<TeleportTo Name="Tailfeather" AetheryteId="76" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									<Travel To="398" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Gron Ahlm" XYZ="-557.8241, -92.24078, 595.1781" />
+							<UseObject NpcId="2006344" XYZ="-557.8241, -92.24078, 595.1781" Radius="10" QuestId="67598" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(67598) == 4">
+							<If Condition="not IsOnMap(398)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+									<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+										<TeleportTo Name="Tailfeather" AetheryteId="76" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									<Travel To="398" />
+								</If>
+							</If>
+							<MoveTo Name="Vidofnir" XYZ="-285.6337, 39.04305, 53.72693" />
+							<HandOver ItemId="2001875" QuestId="67598" StepId="4" NpcId="1011935" XYZ="-285.6337, 39.04305, 53.72693" />
+						</If>
+						<If Condition="GetQuestStep(67598) == 5">
+							<If Condition="not IsOnMap(398)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+									<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+										<TeleportTo Name="Tailfeather" AetheryteId="76" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									<Travel To="398" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Dying Dragon" XYZ="-460.0137, -9.639713, -294.7891" />
+							<HandOver ItemId="2001875" QuestId="67598" StepId="5" NpcId="1015046" XYZ="-460.0137, -9.639713, -294.7891" />
+						</If>
+						<If Condition="GetQuestStep(67598) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Sidurgu" XYZ="104.2344, 14.99999, 40.78735" />
+							<TurnIn QuestId="67598" NpcId="1013969" XYZ="104.2344, 14.99999, 40.78735" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -4971,12 +5066,155 @@
 			<If Condition="not IsQuestCompleted(67599)">
 				<If Condition="Core.Player.ClassLevel &gt; 57">
 					<If Condition="not HasQuest(67599)">
-						<LogMessage Message="The Flame in the Abyss quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<MoveTo Name="Sidurgu" XYZ="104.2344, 14.99999, 40.78735" />
+						<If Condition="IsQuestAcceptQualified(67599)">
+							<PickupQuestPlus NpcId="1013969" QuestId="67599" XYZ="104.2344, 14.99999, 40.78735" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67599)">
-						<LogMessage Message="The Flame in the Abyss quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67599) == 1">
+							<If Condition="not IsOnMap(400)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+									<TeleportTo Name="Moghome" AetheryteId="78" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+										<TeleportTo Name="Zenith" AetheryteId="79" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+									<Travel To="400" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Moggie" XYZ="254.1389, -43.16044, 626.3981" />
+							<ExtendedTalkTo NpcId="1012076" XYZ="254.1389, -43.16044, 626.3981" QuestId="67599" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67599) == 2">
+							<If Condition="not IsOnMap(400)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+									<TeleportTo Name="Moghome" AetheryteId="78" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+										<TeleportTo Name="Zenith" AetheryteId="79" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+									<Travel To="400" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Tussock" XYZ="429.9839, -10.11676, 708.1864" />
+							<UseObject NpcIds="2006346,2006347,2006348,2006349" QuestId="67599" StepId="2">
+								<HotSpots>
+									<HotSpot XYZ="429.9839, -10.11676, 708.1864" Radius="10" />
+									<HotSpot XYZ="346.4866, 0.2593384, 565.6061" Radius="10" />
+									<HotSpot XYZ="312.1842, 17.86829, 718.8982" Radius="10" />
+									<HotSpot XYZ="204.7607, 4.745544, 736.3545" Radius="10" />
+								</HotSpots>
+							</UseObject>
+						</If>
+						<If Condition="GetQuestStep(67599) == 3">
+							<If Condition="not IsOnMap(400)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+									<TeleportTo Name="Moghome" AetheryteId="78" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+										<TeleportTo Name="Zenith" AetheryteId="79" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+									<Travel To="400" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Moggie" XYZ="254.1389, -43.16044, 626.3981" />
+							<HandOver ItemId="2001876" QuestId="67599" StepId="3" NpcId="1012076" XYZ="254.1389, -43.16044, 626.3981" />
+						</If>
+						<If Condition="GetQuestStep(67599) == 4">
+							<If Condition="not IsOnMap(400)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+									<TeleportTo Name="Moghome" AetheryteId="78" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+										<TeleportTo Name="Zenith" AetheryteId="79" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+									<Travel To="400" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Destination" XYZ="173.8459, -22.14087, 160.7843" />
+							<UseObject NpcId="2006350" XYZ="173.8459, -22.14087, 160.7843" Radius="10" QuestId="67599" StepId="4" />
+							<Grind grindRef="The_Flame_in_the_Abyss" while="HasQuest(67599) and GetQuestStep(67599) == 4" />
+						</If>
+						<If Condition="GetQuestStep(67599) == 5">
+							<If Condition="not IsOnMap(400)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+									<TeleportTo Name="Zenith" AetheryteId="79" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+										<TeleportTo Name="Moghome" AetheryteId="78" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									<Travel To="400" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Sidurgu" XYZ="-158.8007, -23.01701, 282.124" />
+							<SimpleDuty InteractNpcId="1015049" XYZ="-158.8007, -23.01701, 282.124" QuestId="67599" StepId="5">
+								<HotSpots>
+									<HotSpot XYZ="-158.8007, -23.01701, 282.124" Radius="90" /> <!-- Observatorium -->
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="4326" Weight="7000" /> <!-- Matted Moogle -->
+									<TargetMob Id="4328" Weight="6000" /> <!-- Melodramatic Moogle -->
+									<TargetMob Id="4327" Weight="5000" /> <!-- Mordacious Moogle -->
+									<TargetMob Id="4329" Weight="4000" /> <!-- Merry Moogle Moogle -->
+									<TargetMob Id="4330" Weight="3000" /> <!-- One-minded Moogle -->
+									<TargetMob Id="4325" Weight="2000" /> <!-- Malcontent Moogle -->
+									<TargetMob Id="4324" Weight="1000" /> <!-- Unmoving Moogle -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(67599) == 6">
+							<If Condition="not IsOnMap(400)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+									<TeleportTo Name="Moghome" AetheryteId="78" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+										<TeleportTo Name="Zenith" AetheryteId="79" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+									<Travel To="400" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Sidurgu" XYZ="-158.1903, -22.96755, 275.8373" />
+							<TalkTo NpcId="1015050" XYZ="-158.1903, -22.96755, 275.8373" QuestId="67599" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(67599) == 255">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<MoveTo Name="Sidurgu" XYZ="104.2344, 14.99999, 40.78735" />
+							<TurnIn QuestId="67599" NpcId="1013969" XYZ="104.2344, 14.99999, 40.78735" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -13521,6 +13759,16 @@
 				<TargetMob Id="4123" /> <!-- Dishonored Temple Knight -->
 			</TargetMobs>
 			<MinLevel>52</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Flame_in_the_Abyss">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="173.8459, -22.14087, 160.7843" name="Bedazzled Tulihands" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4312" /> <!-- Bedazzled Tulihand -->
+			</TargetMobs>
+			<MinLevel>58</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="My_First_Gladius">
