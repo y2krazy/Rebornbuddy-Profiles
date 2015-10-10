@@ -226,7 +226,7 @@ namespace ff14bot.NeoProfiles
                     }
                     Thread.Sleep(5000);
                 }
-                return "Notfound";
+                return "";
             }
             else
             {
@@ -279,15 +279,22 @@ namespace ff14bot.NeoProfiles
             var start = GetPathStart(a.getAreas());
             if (start == "")
             {
-                Logging.Write("Could not find a path Stopping");
+                Logging.Write("Could not find a path Stopping. Last try CurrentzoneId");
+                start = WorldManager.ZoneId.ToString();
                 _done = true;
             }
 
             a.setStart(start);
             a.setEnd(Destination);
+            if (WorldManager.ZoneId.ToString() == Destination)
+            {
+                Logging.Write("We are already in the right Zone");
+                Logging.Write("Lets fix it:" + currentstep + "  " + wayhome.Count());
+                _done = true;
+            }
 
 
-                   a.Calculate();
+            a.Calculate();
                    wayhome = a.GetPath();
 
                    foreach (var item in wayhome)
@@ -295,12 +302,7 @@ namespace ff14bot.NeoProfiles
                        Logging.Write(item);
                    }
 
-                   if (WorldManager.ZoneId.ToString() == Destination)
-                   {
-                       Logging.Write("We are already in the right Zone");
-                       Logging.Write("Lets fix it:" + currentstep + "  " + wayhome.Count());
-                       _done = true;
-                   }
+                   
                }
 
                protected override void OnDone()
@@ -492,22 +494,22 @@ class Graph
 			areas.Add("398-397", new AreaInfo() { x = 870.7913, y = -3.649778, z = 350.4391, Name = "The Dravanian Forelands --> Coerthas Western Highlands", Communicationlocalindex = -1 });
 
 			//ul dah lift unten nach komen
-            areas.Add("130-130_1", new AreaInfo() { x =-20.59343, y = 10, z = -44.79702, Name = "ul'dah- ul dah list lower", Communicationlocalindex = 1 });
+            areas.Add("130-130-1", new AreaInfo() { x =-20.59343, y = 10, z = -44.79702, Name = "ul'dah- ul dah list lower", Communicationlocalindex = 1 });
 
 			areas.Add("130-131", new AreaInfo() { x = -120.054825, z = -8.766253, y = 10.031486, Name = "ul'dah-Ul dah - Steps of Thal", Communicationlocalindex = -1 });
 			// lift oben nach Girandia
-            areas.Add("130_1-132", new AreaInfo() { x = -22.364, y = 83.199, z = -4.82, Name = "ul'dah-Ul dah - Girandia", Communicationlocalindex = 1 });
-			areas.Add("130_1-128_3", new AreaInfo() { x = -22.364, y = 83.199, z = -4.82, Name = "ul'dah lift -Limsa (Upper)", Communicationlocalindex = 2 });
+            areas.Add("130-1-132", new AreaInfo() { x = -22.364, y = 83.199, z = -4.82, Name = "ul'dah-Ul dah - Girandia", Communicationlocalindex = 1 });
+			areas.Add("130-1-128-3", new AreaInfo() { x = -22.364, y = 83.199, z = -4.82, Name = "ul'dah lift -Limsa (Upper)", Communicationlocalindex = 2 });
 
 			//Lift oben Koordinaten und fahre nachunten
-            areas.Add("130_2-130", new AreaInfo() { x = -24.62714, y = 81.8, z = -29.91334, Name = "Girandia-->ul'dah lift", Communicationlocalindex = 1 });
-			areas.Add("130_3-130_2", new AreaInfo() { x = -24.62714, y = 81.8, z = -29.91334, Name = "Girandia-->ul'dah lift", Communicationlocalindex = -1 });
+            areas.Add("130-2-130", new AreaInfo() { x = -24.62714, y = 81.8, z = -29.91334, Name = "Girandia-->ul'dah lift", Communicationlocalindex = 1 });
+			areas.Add("130-3-130-2", new AreaInfo() { x = -24.62714, y = 81.8, z = -29.91334, Name = "Girandia-->ul'dah lift", Communicationlocalindex = -1 });
 
-			areas.Add("128-128_1", new AreaInfo() { x = 8.763986, y = 40.0003, z = 15.04217, Name = "Limsa (Upper)-->Limsa", Communicationlocalindex = 1 });
-			areas.Add("128_1-132", new AreaInfo() { x = -23.511, y = 91.99, z = -3.719, Name = "Limsa (Upper)-->New Gridania", Communicationlocalindex = 2 });
-			areas.Add("128_1-130_3", new AreaInfo() { x = -23.511, y = 91.99, z = -3.719, Name = "Limsa (Upper)-->ul'dah lift", Communicationlocalindex = 1 });
-			areas.Add("128_2-128", new AreaInfo() { x = -8.450267, y = 91.5, z = -15.72492, Name = "Limsa (Upper)-->ul'dah lift", Communicationlocalindex = 1 });
-			areas.Add("128_3-128_2", new AreaInfo() { x = -9.610059, y = 91.49965, z = -16.58086, Name = "Limsa (Upper)-->Limsa", Communicationlocalindex = -1 });
+			areas.Add("128-128-1", new AreaInfo() { x = 8.763986, y = 40.0003, z = 15.04217, Name = "Limsa (Upper)-->Limsa", Communicationlocalindex = 1 });
+			areas.Add("128-1-132", new AreaInfo() { x = -23.511, y = 91.99, z = -3.719, Name = "Limsa (Upper)-->New Gridania", Communicationlocalindex = 2 });
+			areas.Add("128-1-130-3", new AreaInfo() { x = -23.511, y = 91.99, z = -3.719, Name = "Limsa (Upper)-->ul'dah lift", Communicationlocalindex = 1 });
+			areas.Add("128-2-128", new AreaInfo() { x = -8.450267, y = 91.5, z = -15.72492, Name = "Limsa (Upper)-->ul'dah lift", Communicationlocalindex = 1 });
+			areas.Add("128-3-128-2", new AreaInfo() { x = -9.610059, y = 91.49965, z = -16.58086, Name = "Limsa (Upper)-->Limsa", Communicationlocalindex = -1 });
 
 			areas.Add("130-140", new AreaInfo() { x = -180.163864, z = -14.053099, y = 14.000000, Name = "ul'dah-Ul dah - Western Thanalan", Communicationlocalindex = -1 });
 			areas.Add("130-141", new AreaInfo() { x = 43.772938, z = -163.789337, y = 3.999976, Name = "ul'dah-Ul dah -Central Thanalan", Communicationlocalindex = -1 });
@@ -540,9 +542,9 @@ class Graph
 			areas.Add("132-133", new AreaInfo() { x = 100.587738, z = 15.518513, y = 4.958726, Name = "Girandia-Old Gridania", Communicationlocalindex = -1 });
 			areas.Add("132-148", new AreaInfo() { x = 154.172577, z = 157.515976, y = -12.851933, Name = "Girandia-Central Shroud", Communicationlocalindex = -1 });
 			//Girandia Airplane
-            areas.Add("132-130_2", new AreaInfo() { x = 29.85914, y = -19, z = 103.573, Name = "Girandia-->ul'dah lift", Communicationlocalindex = 1 });
+            areas.Add("132-130-2", new AreaInfo() { x = 29.85914, y = -19, z = 103.573, Name = "Girandia-->ul'dah lift", Communicationlocalindex = 1 });
 
-			areas.Add("132-128_2", new AreaInfo() { x = 29.1025, y = -19.000, z = 102.408, Name = "Girandia-Limsa (Upper)", Communicationlocalindex = 2 });
+			areas.Add("132-128-2", new AreaInfo() { x = 29.1025, y = -19.000, z = 102.408, Name = "Girandia-Limsa (Upper)", Communicationlocalindex = 2 });
 			areas.Add("132-179", new AreaInfo() { x = 25.977, y = -8, z = 100.151, Name = "Girandia-Limsa Lominsa - Inn", Communicationlocalindex = 1 });
 			areas.Add("132-204", new AreaInfo() { x = 232, y = 1.90, z = 45.5, Name = "Girandia-Limsa Lominsa - Command", Communicationlocalindex = -1 });
 			areas.Add("204-132", new AreaInfo() { x = 0, y = 1, z = 9.8, Name = "Limsa Lominsa Command- New Gridania", Communicationlocalindex = -1 });
@@ -623,14 +625,14 @@ class Graph
 
 
 
-			g.add_vertex("130", new Dictionary<String, int>() { { "131", 1 }, { "130_1", 1 }, { "140", 5 }, { "141", 5 }, { "178", 1 } });
-			g.add_vertex("130_1", new Dictionary<String, int>() { { "132", 3 }, { "128_3", 3 } }); //lift Oben
-            g.add_vertex("130_2", new Dictionary<String, int>() { { "130", 1 } });//lift unten
-            g.add_vertex("130_3", new Dictionary<String, int>() { { "130_2", 1 } });//lift unte
-            g.add_vertex("128", new Dictionary<String, int>() { { "129", 1 }, { "128_1", 1 }, { "135", 5 }, { "177", 1 } });
-			g.add_vertex("128_1", new Dictionary<String, int>() { { "132", 3 }, { "130_3", 3 } }); //lift Oben
-            g.add_vertex("128_2", new Dictionary<String, int>() { { "128", 1 } });//lift unten
-            g.add_vertex("128_3", new Dictionary<String, int>() { { "128_2", 1 } });//lift unten
+			g.add_vertex("130", new Dictionary<String, int>() { { "131", 1 }, { "130-1", 1 }, { "140", 5 }, { "141", 5 }, { "178", 1 } });
+			g.add_vertex("130-1", new Dictionary<String, int>() { { "132", 3 }, { "128-3", 3 } }); //lift Oben
+            g.add_vertex("130-2", new Dictionary<String, int>() { { "130", 1 } });//lift unten
+            g.add_vertex("130-3", new Dictionary<String, int>() { { "130-2", 1 } });//lift unte
+            g.add_vertex("128", new Dictionary<String, int>() { { "129", 1 }, { "128-1", 1 }, { "135", 5 }, { "177", 1 } });
+			g.add_vertex("128-1", new Dictionary<String, int>() { { "132", 3 }, { "130-3", 3 } }); //lift Oben
+            g.add_vertex("128-2", new Dictionary<String, int>() { { "128", 1 } });//lift unten
+            g.add_vertex("128-3", new Dictionary<String, int>() { { "128-2", 1 } });//lift unten
 
             g.add_vertex("178", new Dictionary<String, int>() { { "130", 1 } });
 			g.add_vertex("131", new Dictionary<String, int>() { { "130", 1 }, { "141", 5 } });
@@ -641,7 +643,7 @@ class Graph
 			g.add_vertex("147", new Dictionary<String, int>() { { "141", 5 }, { "156", 5 } });
 			g.add_vertex("156", new Dictionary<String, int>() { { "147", 5 }, { "155", 5 }, { "351", 5 } });
 			g.add_vertex("341", new Dictionary<String, int>() { { "140", 5 } });
-			g.add_vertex("132", new Dictionary<String, int>() { { "133", 1 }, { "148", 5 }, { "130_2", 3 }, { "128_2", 3 }, { "179", 1 }, { "204", 1 } });
+			g.add_vertex("132", new Dictionary<String, int>() { { "133", 1 }, { "148", 5 }, { "130-2", 3 }, { "128-2", 3 }, { "179", 1 }, { "204", 1 } });
 			g.add_vertex("204", new Dictionary<String, int>() { { "132", 5 } });
 			g.add_vertex("179", new Dictionary<String, int>() { { "132", 1 } });
 			g.add_vertex("351", new Dictionary<String, int>() { { "156", 5 } });
@@ -682,7 +684,7 @@ class Graph
             //---------
             g.add_vertex("397", new Dictionary<String, int>() { { "398", 5 } });
 			g.add_vertex("398", new Dictionary<String, int>() { { "397", 5 }, { "400", 5 }, {"399_East", 5 } });
-            g.add_vertex("399-East", new Dictionary<String, int>() { { "398", 5 } });
+            g.add_vertex("399_East", new Dictionary<String, int>() { { "398", 5 } });
             g.add_vertex("399_West", new Dictionary<String, int>() { { "478", 5 } });
             g.add_vertex("478", new Dictionary<String, int>() { { "399_West", 5 } });
             g.add_vertex("400", new Dictionary<String, int>() { { "398", 5 } });
