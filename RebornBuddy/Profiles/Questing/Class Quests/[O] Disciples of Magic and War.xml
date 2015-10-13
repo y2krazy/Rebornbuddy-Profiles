@@ -12243,7 +12243,7 @@
 
 							<!-- TO DO -->
 
-							<Grind grindRef="Good_Vibrations" while="HasQuest(66601) and GetQuestStep(66601) == 4" />
+							<!-- <Grind grindRef="Good_Vibrations" while="HasQuest(66601) and GetQuestStep(66601) == 4" /> -->
 						</If>
 						<If Condition="GetQuestStep(66601) == 5">
 							<If Condition="not IsOnMap(135)">
@@ -12315,8 +12315,45 @@
 						</If>
 					</If>
 					<If Condition="HasQuest(66602)">
-						<LogMessage Message="Five Easy Pieces quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(66602) == 1">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="117.0387, -5.6613, -537.7056" />
+							<Dismount/>
+							<RunCode Name="WithdrawChocobo" />
+							<MoveTo Name="Widargelt" XYZ="108.0932, -5.079112, -534.8185" />
+							<SimpleDuty XYZ="108.0932, -5.079112, -534.8185" QuestId="66602" StepId="1">
+								<HotSpots>
+									<HotSpot XYZ="112.9144, -5.426363, -536.2955" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="1906" Weight="6000" /> <!-- Ala Mhigan Shaman -->
+									<TargetMob Id="1904" Weight="5000" /> <!-- Ala Mhigan Bowman -->
+									<TargetMob Id="1903" Weight="4000" /> <!-- Ala Mhigan Pikeman -->
+									<TargetMob Id="1905" Weight="3000" /> <!-- Ala Mhigan Axeman -->
+									<TargetMob Id="2204" Weight="2000" /> <!-- Spirit Pulse -->
+									<TargetMob Id="1416" Weight="1000" /> <!-- Widargelt the Watcher -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(66602) == 255">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="104.7227, -4.938011, -533.5317" />
+							<TurnIn QuestId="66602" NpcId="1007899" XYZ="104.7227, -4.938011, -533.5317" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -12326,12 +12363,121 @@
 			<If Condition="not IsQuestCompleted(67562)">
 				<If Condition="Core.Player.ClassLevel &gt; 49">
 					<If Condition="not HasQuest(67562)">
-						<LogMessage Message="The Legend Continues quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(131)">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<Travel To="131" />
+						</If>
+						<MoveTo Name="Erik" XYZ="-30.47229, 13.59992, 95.26196" />
+						<If Condition="IsQuestAcceptQualified(67562)">
+							<PickupQuest NpcId="1006749" QuestId="67562" XYZ="-30.47229, 13.59992, 95.26196" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67562)">
-						<LogMessage Message="The Legend Continues quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67562) == 1">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="15.85406, 28.62082, -682.765" />
+							<TalkTo NpcId="1013971" XYZ="15.85406, 28.62082, -682.765" QuestId="67562" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67562) == 2">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="95.87244, -4.4635, -533.5623" />
+							<TalkTo NpcId="1013976" XYZ="95.87244, -4.4635, -533.5623" QuestId="67562" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67562) == 3">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="D'zentsa" XYZ="207.5378, 18.12324, -608.7587" />
+							<TalkTo NpcId="1013977" XYZ="207.5378, 18.12324, -608.7587" QuestId="67562" StepId="3" />
+							<Grind grindRef="The_Legend_Continues" while="HasQuest(67562) and GetQuestStep(67562) == 3" />
+						</If>
+						<If Condition="GetQuestStep(67562) == 4">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="D'zentsa" XYZ="207.5378, 18.12324, -608.7587" />
+							<TalkTo NpcId="1013977" XYZ="207.5378, 18.12324, -608.7587" QuestId="67562" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(67562) == 5">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="O'tchakha" XYZ="205.9509, -22.99126, -449.2408" />
+							<TalkTo NpcId="1013978" XYZ="205.9509, -22.99126, -449.2408" QuestId="67562" StepId="5" />
+							<Grind grindRef="The_Legend_Continues2" while="HasQuest(67562) and GetQuestStep(67562) == 5" />
+						</If>
+						<If Condition="GetQuestStep(67562) == 6">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="O'tchakha" XYZ="205.9509, -22.99126, -449.2408" />
+							<TalkTo NpcId="1013978" XYZ="205.9509, -22.99126, -449.2408" QuestId="67562" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(67562) == 7">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="95.87244, -4.4635, -533.5623" />
+							<TalkTo NpcId="1014111" XYZ="95.87244, -4.4635, -533.5623" QuestId="67562" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(67562) == 255">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="15.85406, 28.62082, -682.765" />
+							<TurnIn QuestId="67562" NpcId="1013971" XYZ="15.85406, 28.62082, -682.765" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -12341,12 +12487,128 @@
 			<If Condition="not IsQuestCompleted(67563)">
 				<If Condition="Core.Player.ClassLevel &gt; 51">
 					<If Condition="not HasQuest(67563)">
-						<LogMessage Message="Let's Talk About Sects quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(156)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+								<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+								<Travel To="156" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Widargelt" XYZ="15.85406, 28.62082, -682.765" />
+						<If Condition="IsQuestAcceptQualified(67563)">
+							<PickupQuest NpcId="1013971" QuestId="67563" XYZ="15.85406, 28.62082, -682.765" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67563)">
-						<LogMessage Message="Let's Talk About Sects quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67563) == 1">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="-73.0755, 2.668869, -622.5223" />
+							<TalkTo NpcId="1013982" XYZ="-73.0755, 2.668869, -622.5223" QuestId="67563" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67563) == 2">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="-142.2294, 1.391692, -654.139" />
+							<TalkTo NpcId="1013984" XYZ="-142.2294, 1.391692, -654.139" QuestId="67563" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67563) == 3">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Enemy Monks" XYZ="-142.2294, 1.391692, -654.139" />
+							<Grind grindRef="Lets_Talk_about_Sects" while="HasQuest(67563) and GetQuestStep(67563) == 3" />
+						</If>
+						<If Condition="GetQuestStep(67563) == 4">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="-223.4073, 4.145869, -628.3207" />
+							<TalkTo NpcId="1013987" XYZ="-223.4073, 4.145869, -628.3207" QuestId="67563" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(67563) == 5">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Enemy Monks" XYZ="-223.4073, 4.145869, -628.3207" />
+							<Grind grindRef="Lets_Talk_about_Sects2" while="HasQuest(67563) and GetQuestStep(67563) == 5" />
+						</If>
+						<If Condition="GetQuestStep(67563) == 6">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="-253.8034, -5.454714, -542.8702" />
+							<TalkTo NpcId="1013990" XYZ="-253.8034, -5.454714, -542.8702" QuestId="67563" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(67563) == 7">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Enemy Monks" XYZ="-253.8034, -5.454714, -542.8702" />
+							<Grind grindRef="Lets_Talk_about_Sects3" while="HasQuest(67563) and GetQuestStep(67563) == 7" />
+						</If>
+						<If Condition="GetQuestStep(67563) == 8">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="-402.3652, -14.21307, -502.0676" />
+							<ExtendedTalkTo NpcId="1013994" XYZ="-402.3652, -14.21307, -502.0676" QuestId="67563" StepId="8" />
+						</If>
+						<If Condition="GetQuestStep(67563) == 255">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="15.85406, 28.62082, -682.765" />
+							<TurnIn QuestId="67563" NpcId="1013971" XYZ="15.85406, 28.62082, -682.765" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -12356,12 +12618,75 @@
 			<If Condition="not IsQuestCompleted(67564)">
 				<If Condition="Core.Player.ClassLevel &gt; 53">
 					<If Condition="not HasQuest(67564)">
-						<LogMessage Message="Against the Shadow quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(156)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+								<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+								<Travel To="156" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Widargelt" XYZ="15.85406, 28.62082, -682.765" />
+						<If Condition="IsQuestAcceptQualified(67564)">
+							<PickupQuest NpcId="1013971" QuestId="67564" XYZ="15.85406, 28.62082, -682.765" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67564)">
-						<LogMessage Message="Against the Shadow quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67564) == 1">
+							<If Condition="not IsOnMap(147)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+									<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(21)">
+										<TeleportTo Name="Camp Bluefog" AetheryteId="21" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(21)">
+									<Travel To="147" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="-78.29407, 68.34659, -157.3358" />
+							<SimpleDuty InteractNpcId="1013997" XYZ="-78.29407, 68.34659, -157.3358" QuestId="67564" StepId="1">
+								<HotSpots>
+									<HotSpot XYZ="-86.20497, 67.49268, -149.5923" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="2204" Weight="3000" /> <!-- Spirit Pulse -->
+									<TargetMob Id="4227" Weight="2000" /> <!-- D'zentsa of the Endless Night -->
+									<TargetMob Id="4226" Weight="1000" /> <!-- O'tchakha of the Endless Day -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(67564) == 2">
+							<If Condition="not IsOnMap(147)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+									<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(21)">
+										<TeleportTo Name="Camp Bluefog" AetheryteId="21" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(21)">
+									<Travel To="147" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="-78.29407, 68.34659, -157.3358" />
+							<TalkTo NpcId="1013997" XYZ="-78.29407, 68.34659, -157.3358" QuestId="67564" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67564) == 255">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="15.85406, 28.62082, -682.765" />
+							<TurnIn QuestId="67564" NpcId="1013971" XYZ="15.85406, 28.62082, -682.765" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -12371,38 +12696,239 @@
 			<If Condition="not IsQuestCompleted(67565)">
 				<If Condition="Core.Player.ClassLevel &gt; 55">
 					<If Condition="not HasQuest(67565)">
-						<LogMessage Message="Fight the Battle to Win quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(156)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+								<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+								<Travel To="156" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Widargelt" XYZ="15.85406, 28.62082, -682.765" />
+						<If Condition="IsQuestAcceptQualified(67565)">
+							<PickupQuest NpcId="1013971" QuestId="67565" XYZ="15.85406, 28.62082, -682.765" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67565)">
-						<LogMessage Message="Fight the Battle to Win quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67565) == 1">
+							<If Condition="not IsOnMap(154)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+									<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+									<Travel To="154" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="33.89026, -8.812927, 126.1768" />
+							<TalkTo NpcId="1013999" XYZ="33.89026, -8.812927, 126.1768" QuestId="67565" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67565) == 2">
+							<If Condition="not IsOnMap(154)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+									<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+									<Travel To="154" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Destination" XYZ="163.5309, -27.32892, 207.8431" />
+							<UseObject NpcId="2005966" XYZ="163.5309, -27.32892, 207.8431" Radius="10" QuestId="67565" StepId="2" />
+							<Grind grindRef="Fight_the_Battle_to_Win" while="HasQuest(67565) and GetQuestStep(67565) == 2" />
+						</If>
+						<If Condition="GetQuestStep(67565) == 3">
+							<If Condition="not IsOnMap(154)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+									<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+									<Travel To="154" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="404.8981, -5.458813, 72.3429" />
+							<TalkTo NpcId="1014001" XYZ="404.8981, -5.458813, 72.3429" QuestId="67565" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(67565) == 255">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="15.85406, 28.62082, -682.765" />
+							<TurnIn QuestId="67565" NpcId="1013971" XYZ="15.85406, 28.62082, -682.765" />
+						</If>
 					</If>
 				</If>
 			</If>
 
 			<!-- Stop the Senseless Killing -->
 
-			<If Condition="not IsQuestCompleted(67566)">
+			<!-- TO DO -->
+
+			<!-- REQUIRES FLYING TO COMPLETE! -->
+
+			<!-- TO DO -->
+
+			<LogMessage Message="Skipping the Stop the Senseless Killing quest until flight is supported..." />
+
+			<!-- <If Condition="not IsQuestCompleted(67566)">
 				<If Condition="Core.Player.ClassLevel &gt; 57">
 					<If Condition="not HasQuest(67566)">
-						<LogMessage Message="Stop the Senseless Killing quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(156)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+								<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+								<Travel To="156" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Widargelt" XYZ="15.85406, 28.62082, -682.765" />
+						<If Condition="IsQuestAcceptQualified(67566)">
+							<PickupQuest NpcId="1013971" QuestId="67566" XYZ="15.85406, 28.62082, -682.765" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67566)">
-						<LogMessage Message="Stop the Senseless Killing quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67566) == 1">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)"> -->
+
+									<!-- TO DO -->
+
+									<!-- Update Travel.cs with new zone information.  -->
+
+									<!-- TO DO -->
+
+									<!-- <Travel To="397" /> -->
+									<!-- <LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+									<StopBot />
+								</If>
+							</If>
+							<FlyTo Name="O'tchakha" XYZ="-631.22, 121.2451, -652.3995" />
+							<TalkTo NpcId="1014005" XYZ="-631.22, 121.2451, -652.3995" QuestId="67566" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67566) == 2">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)"> -->
+
+									<!-- TO DO -->
+
+									<!-- Update Travel.cs with new zone information.  -->
+
+									<!-- TO DO -->
+
+									<!-- <Travel To="397" /> -->
+									<!-- <LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+									<StopBot />
+								</If>
+							</If>
+							<FlyTo Name="Destination" XYZ="-556.9696, 116.6857, -794.0032" />
+							<UseObject NpcId="2005967" XYZ="-556.9696, 116.6857, -794.0032" Radius="10" QuestId="67566" StepId="2" />
+							<Grind grindRef="Stop_the_Senseless_Killing" while="HasQuest(67566) and GetQuestStep(67566) == 2" />
+						</If>
+						<If Condition="GetQuestStep(67566) == 3">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)"> -->
+
+									<!-- TO DO -->
+
+									<!-- Update Travel.cs with new zone information.  -->
+
+									<!-- TO DO -->
+
+									<!-- <Travel To="397" /> -->
+									<!-- <LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+									<StopBot />
+								</If>
+							</If>
+							<FlyTo Name="Widargelt" XYZ="-627.1917, 121.248, -648.5847" />
+							<TalkTo NpcId="1014006" XYZ="-627.1917, 121.248, -648.5847" QuestId="67566" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(67566) == 4">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)"> -->
+
+									<!-- TO DO -->
+
+									<!-- Update Travel.cs with new zone information.  -->
+
+									<!-- TO DO -->
+
+									<!-- <Travel To="397" /> -->
+									<!-- <LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+									<StopBot />
+								</If>
+							</If>
+							<FlyTo Name="O'tchakha" XYZ="-621.5153, 121.248, -649.134" />
+							<TalkTo NpcId="1014007" XYZ="-621.5153, 121.248, -649.134" QuestId="67566" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(67566) == 5">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)"> -->
+
+									<!-- TO DO -->
+
+									<!-- Update Travel.cs with new zone information.  -->
+
+									<!-- TO DO -->
+
+									<!-- <Travel To="397" /> -->
+									<!-- <LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+									<StopBot />
+								</If>
+							</If>
+							<FlyTo Name="O'tchakha" XYZ="-621.5153, 121.248, -649.134" />
+							<EmoteNPC NpcId="1014010" Emote="rally" XYZ="-621.5153, 121.248, -649.134" Radius="10" QuestId="67566" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(67566) == 255">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Widargelt" XYZ="15.85406, 28.62082, -682.765" />
+							<TurnIn QuestId="67566" NpcId="1013971" XYZ="15.85406, 28.62082, -682.765" />
+						</If>
 					</If>
 				</If>
-			</If>
+			</If> -->
 
 			<!-- Appetite for Destruction -->
 
 			<If Condition="not IsQuestCompleted(67567)">
 				<If Condition="Core.Player.ClassLevel &gt; 59">
 					<If Condition="not HasQuest(67567)">
-						<LogMessage Message="Appetite for Destruction quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(156)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+								<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+								<Travel To="156" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Widargelt" XYZ="15.85406, 28.62082, -682.765" />
+						<If Condition="IsQuestAcceptQualified(67567)">
+							<PickupQuest NpcId="1013971" QuestId="67567" XYZ="15.85406, 28.62082, -682.765" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67567)">
 						<LogMessage Message="Appetite for Destruction quest is coming soon! Stay tuned!" />
@@ -15636,6 +16162,76 @@
 			<MinLevel>45</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
+		<GrindArea name="The_Legend_Continues">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="207.5378, 18.12324, -608.7587" name="Silvertear Cobra" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4094" /> <!-- Silvertear Cobra -->
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Legend_Continues2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="205.9509, -22.99126, -449.2408" name="Lightning Sprites" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4093" /> <!-- Lightning Sprite -->
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Lets_Talk_about_Sects">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-142.2294, 1.391692, -654.139" name="Mysterious Assailants" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4422" /> <!-- Mysterious Assailant -->
+			</TargetMobs>
+			<MinLevel>52</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Lets_Talk_about_Sects2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-223.4073, 4.145869, -628.3207" name="Mysterious Assailants" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4422" /> <!-- Mysterious Assailant -->
+			</TargetMobs>
+			<MinLevel>52</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Lets_Talk_about_Sects3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-253.8034, -5.454714, -542.8702" name="Mysterious Assailants" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4422" /> <!-- Mysterious Assailant -->
+			</TargetMobs>
+			<MinLevel>52</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Fight_the_Battle_to_Win">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="163.5309, -27.32892, 207.8431" name="Mysterious Assailants" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4422" /> <!-- Mysterious Assailant -->
+			</TargetMobs>
+			<MinLevel>56</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Stop_the_Senseless_Killing">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-556.9696, 116.6857, -794.0032" name="Battle-scarred Vindthurses" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4095" /> <!-- Battle-scarred Vindthurs -->
+			</TargetMobs>
+			<MinLevel>58</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
 		<GrindArea name="Stabbers_in_Yer_Fambles">
 			<Hotspots>
 				<Hotspot Radius="90" XYZ="53.59859, 52.37904, 208.1335" name="Lost Lambs" />
@@ -15901,6 +16497,16 @@
 				await Buddy.Coroutines.Coroutine.Sleep(500);
 				ff14bot.Managers.MovementManager.MoveForwardStop();
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="WithdrawChocobo">
+			<![CDATA[ 
+				if(ff14bot.Objects.Chocobo.Summoned)
+				{
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
+					ff14bot.Objects.Chocobo.DismissChocobo();
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
+				}
 		]]>
 		</CodeChunk>
 		<CodeChunk Name="TheThreatofPerplexity">
