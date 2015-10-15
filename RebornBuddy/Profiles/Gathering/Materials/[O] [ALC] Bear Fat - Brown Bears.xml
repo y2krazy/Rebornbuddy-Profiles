@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+########################################
+# Profile: [O] Bear Fat - Brown Bears  #
+########################################
+# Author: y2krazy                      #
+########################################
+# Version: 1.0.0                       #
+########################################
+# Required Level: 52                   #
+########################################
+# Required Teleport Locations:         #
+# 	Anyx Trine or Tailfeather          #
+########################################
+# Required User Interaction:           #
+# 	None                               #
+########################################
+# Required Setup:                      #
+# 	Fill out User Configuration below. #
+# 	Level 52+ Combat Class             #
+########################################
+# Item Drops:                          #
+# 	Bear Fat                           #
+########################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Bear Fat to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] Bear Fat - Brown Bears</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Brown Bear -->
+
+		<If Condition="(ItemCount(12609) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 52">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 52 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 51">
+				<LogMessage Message="You need more Bear Fat!" />
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+						<TeleportTo Name="Tailfeather" AetheryteId="76" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+							<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+						<Travel To="398" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="330.9299, -39.82668, -377.2102" />
+				<Grind grindRef="Bear_Fat" while="(ItemCount(12609) != &MatCount;) or (ItemCount(12609) &lt; &MatCount;)" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(12609) == &MatCount;) or (ItemCount(12609) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Bear Fat!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+		</If>
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Bear_Fat">
+			<Hotspots>
+				<Hotspot Radius="250" XYZ="272.8126, -26.78541, -459.6332" name="Brown Bears" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3566" /> <!-- Brown Bear -->
+			</TargetMobs>
+			<MinLevel>52</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>

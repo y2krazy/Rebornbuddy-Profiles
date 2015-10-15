@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###############################################
+# Profile: [O] Okeanis Egg & Tail - Okeanises #
+###############################################
+# Author: y2krazy                             #
+###############################################
+# Version: 1.0.0                              #
+###############################################
+# Required Level: 59                          #
+###############################################
+# Required Teleport Locations:                #
+# 	Idyllshire                                #
+###############################################
+# Required User Interaction:                  #
+# 	None                                      #
+###############################################
+# Required Setup:                             #
+# 	Fill out User Configuration below.        #
+# 	Level 59+ Combat Class                    #
+###############################################
+# Item Drops:                                 #
+# 	Okeanis Egg                               #
+# 	Okeanis Tail                              #
+###############################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Okeanis Eggs to gather before stopping. -->
+  <!ENTITY Mat2Count "2000"> <!-- Okeanis Tails to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] Okeanis Egg &amp; Tail - Okeanises</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Okeanis -->
+
+		<If Condition="(ItemCount(12872) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 59">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 59 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 58">
+				<LogMessage Message="You need more Okeanis Eggs!" />
+				<If Condition="not IsOnMap(399)">
+					<If Condition="not IsOnMap(478)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(75)">
+							<TeleportTo Name="Idyllshire" AetheryteId="75" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(75)">
+							<Travel To="478" />
+						</If>
+					</If>
+					<Travel To="399_West" />
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-657.2515, 139.9153, 400.827" />
+				<Grind grindRef="Okeanis_Egg" while="(ItemCount(12872) &lt; &MatCount;)" />
+			</If>
+		</If>
+
+		<If Condition="(ItemCount(12875) &lt; &Mat2Count;)">
+			<If Condition="Core.Player.ClassLevel &lt; 59">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 59 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 58">
+				<LogMessage Message="You need more Okeanis Tails!" />
+				<If Condition="not IsOnMap(399)">
+					<If Condition="not IsOnMap(478)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(75)">
+							<TeleportTo Name="Idyllshire" AetheryteId="75" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(75)">
+							<Travel To="478" />
+						</If>
+					</If>
+					<Travel To="399_West" />
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-657.2515, 139.9153, 400.827" />
+				<Grind grindRef="Okeanis_Tail" while="(ItemCount(12875) &lt; &Mat2Count;)" />
+			</If>
+		</If>
+
+		<LogMessage Message="You've gathered &MatCount;+ Okeanis Eggs and &Mat2Count;+ Okeanis Tails!" />
+		<If Condition="not IsOnMap(129)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+				<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+				<Travel To="129" />
+			</If>
+		</If>
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Okeanis_Egg">
+			<Hotspots>
+				<Hotspot Radius="250" XYZ="-609.8914, 137.2401, 430.4222" name="Okeanises" />
+				<Hotspot Radius="250" XYZ="-468.549, 136.8297, 407.137" name="Okeanises" />
+				<Hotspot Radius="250" XYZ="-347.389, 136.8297, 530.4374" name="Okeanises" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3610" /> <!-- Okeanis -->
+			</TargetMobs>
+			<MinLevel>59</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Okeanis_Tail">
+			<Hotspots>
+				<Hotspot Radius="250" XYZ="-609.8914, 137.2401, 430.4222" name="Okeanises" />
+				<Hotspot Radius="250" XYZ="-468.549, 136.8297, 407.137" name="Okeanises" />
+				<Hotspot Radius="250" XYZ="-347.389, 136.8297, 530.4374" name="Okeanises" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3610" /> <!-- Okeanis -->
+			</TargetMobs>
+			<MinLevel>59</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>
