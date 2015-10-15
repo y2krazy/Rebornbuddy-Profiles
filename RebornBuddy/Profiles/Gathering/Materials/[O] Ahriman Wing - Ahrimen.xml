@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###################################################
+# Profile: [O] Ahriman Wing - Ahrimen             #
+###################################################
+# Author: y2krazy                                 #
+###################################################
+# Version: 1.0.0                                  #
+###################################################
+# Required Level: 49                              #
+###################################################
+# Required Teleport Locations:                    #
+# 	Camp Bluefog or The Ceruleum Processing Plant #
+###################################################
+# Required User Interaction:                      #
+# 	None                                          #
+###################################################
+# Required Setup:                                 #
+# 	Fill out User Configuration below.            #
+# 	Level 49+ Combat Class                        #
+###################################################
+# Item Drops:                                     #
+# 	Ahriman Wing                                  #
+###################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Ahriman Wings to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] Ahriman Wing - Ahrimen</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Ahriman -->
+
+		<If Condition="(ItemCount(5553) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 49">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 49 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 48">
+				<LogMessage Message="You need more Ahriman Wings!" />
+				<If Condition="not IsOnMap(147)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(22)">
+						<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(22)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(21)">
+							<TeleportTo Name="Camp Bluefog" AetheryteId="21" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(21)">
+						<Travel To="147" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="113.1292, 29.02187, 51.64742" />
+				<Grind grindRef="Ahriman_Wing" while="(ItemCount(5553) != &MatCount;) or (ItemCount(5553) &lt; &MatCount;)" />
+			</If>
+		</If>
+		<If Condition="(ItemCount(5553) == &MatCount;) or (ItemCount(5553) &gt; &MatCount;)">
+			<LogMessage Message="You've gathered &MatCount;+ Ahriman Wings!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+		</If>
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Ahriman_Wing">
+			<Hotspots>
+				<Hotspot Radius="250" XYZ="161.9588, 38.30384, -23.16524" name="Ahrimen" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="242" /> <!-- Ahriman -->
+			</TargetMobs>
+			<MinLevel>49</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>

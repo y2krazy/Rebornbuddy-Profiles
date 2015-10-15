@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################################
+# Profile: [O] [FSH] Emperor Fish - Coerthas Central Highlands #
+################################################################
+# Author: y2krazy                                              #
+################################################################
+# Version: 1.0.0                                               #
+################################################################
+# Required Level: 50                                           #
+################################################################
+# Required Teleport Locations:                                 #
+# 	Camp Dragonhead                                            #
+# 	Fallgourd Float                                            #
+################################################################
+# Required User Interaction:                                   #
+# 	None                                                       #
+################################################################
+# Required Setup:                                              #
+# 	Fill out User Configuration below.                         #
+# 	Level 50+ Fisher                                           #
+# 	Plugin: ExBuddy                                            #
+# 	Set Fisher Gear Set inside the CodeChunk below.            #
+################################################################
+# Rewards:                                                     #
+# 	Abalathian Smelt                                           #
+# 	Emperor Fish                                               #
+# 	Kissing Trout                                              #
+# 	Striped Goby                                               #
+################################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY FishCount "99"> <!-- Emperor Fish to catch before stopping. -->
+  <!ENTITY BaitCount "99"> <!-- Syrphid Baskets to maintain in your inventory. -->
+  <!ENTITY MinFish "15"> <!-- Minimum amount of fish to catch before changing spots. -->
+  <!ENTITY MaxFish "25"> <!-- Maximum amount of fish to catch before changing spots -->
+  <!ENTITY Sit "True"> <!-- Set this to "True" if you want to sit while fishing. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] [FSH] Emperor Fish - Coerthas Central Highlands</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<CodeChunks>
+		<CodeChunk Name="Fisher">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 23");
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+	<Order>
+
+		<!-- Emperor Fish -->
+		<!-- Bait: Syrphid Basket -->
+
+		<While Condition="not HasAtLeast(5025,&FishCount;)">
+
+			<RunCode Name="Fisher" />
+			<WaitTimer WaitTime="3" />
+			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+				<If Condition="Core.Player.ClassLevel &lt; 50">
+					<LogMessage Message="You do not meet the minimum level requirement." />
+					<LogMessage Message="Please reach level 50 Fisher or higher." />
+					<StopBot />
+				</If>
+				<If Condition="Core.Player.ClassLevel &gt; 49">
+					<LogMessage Message="You need more Emperor Fish..." />
+					<If Condition="not HasAtLeast(2597,&BaitCount;)">
+						<LogMessage Message="You need more Syrphid Baskets!" />
+						<If Condition="not IsOnMap(154)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+								<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+								<Travel To="154" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="10.6355, -44.73338, 220.2029" />
+						<BuyItem ItemId="2597" ItemCount="&BaitCount;" DialogOption="1" NpcId="1002376" XYZ="10.6355, -44.73338, 220.2029" />
+					</If>
+					<If Condition="not HasAtLeast(2595,1)">
+						<LogMessage Message="You need 1 Bass Ball!" />
+						<If Condition="not IsOnMap(154)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+								<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+								<Travel To="154" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="10.6355, -44.73338, 220.2029" />
+						<BuyItem ItemId="2595" ItemCount="1" DialogOption="1" NpcId="1002376" XYZ="10.6355, -44.73338, 220.2029" />
+					</If>
+					<If Condition="not IsOnMap(155)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+							<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+							<Travel To="155" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Fishing Area" XYZ="-288.0828, 248.4734, -8.632595" />
+					<While Condition="IsTimeBetween(0,8)">
+						<Fish Mooch="1" Bait="Syrphid Basket" MinFish="&MinFish;" MaxFish="&MaxFish;" Condition="IsTimeBetween(0,8)">
+							<FishSpots>
+								<FishSpot XYZ="-255.658, 249.5589, 9.888695" Heading="6.102521" Sit="&Sit;" />
+								<FishSpot XYZ="-267.843, 247.9906, 9.674209" Heading="0.07066441" Sit="&Sit;" />
+								<FishSpot XYZ="-277.9536, 245.2967, 6.353613" Heading="6.1486" Sit="&Sit;" />
+								<FishSpot XYZ="-286.5923, 243.2898, 9.132377" Heading="0.6032429" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<While Condition="IsTimeBetween(8,16)">
+						<Fish Mooch="1" Bait="Syrphid Basket" MinFish="&MinFish;" MaxFish="&MaxFish;" Condition="IsTimeBetween(8,16)">
+							<FishSpots>
+								<FishSpot XYZ="-293.2694, 242.3817, 18.43318" Heading="0.6388495" Sit="&Sit;" />
+								<FishSpot XYZ="-300.7739, 242.6047, 27.23546" Heading="1.350945" Sit="&Sit;" />
+								<FishSpot XYZ="-300.4437, 242.8953, 32.64283" Heading="1.843128" Sit="&Sit;" />
+								<FishSpot XYZ="-297.6491, 242.4012, 22.21903" Heading="1.026314" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<While Condition="IsTimeBetween(16,24)">
+						<Fish Mooch="1" Bait="Syrphid Basket" MinFish="&MinFish;" MaxFish="&MaxFish;" Condition="IsTimeBetween(16,24)">
+							<FishSpots>
+								<FishSpot XYZ="-291.6105, 243.2684, 13.05748" Heading="0.9592915" Sit="&Sit;" />
+								<FishSpot XYZ="-283.323, 243.3015, 6.507324" Heading="0.7791712" Sit="&Sit;" />
+								<FishSpot XYZ="-273.0527, 246.9019, 9.012673" Heading="5.813497" Sit="&Sit;" />
+								<FishSpot XYZ="-261.5233, 249.9369, 11.78468" Heading="6.129748" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<If Condition="IsOnMap(155)">
+						<NoCombatMoveTo Name="Mender" XYZ="-410.6966, 210.8949, -276.1425" />
+						<NPCRepair NpcID="1006800" DialogOption="4" />
+					</If>
+					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<If Condition="not IsOnMap(154)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+							<Travel To="154" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Fishing Area" XYZ="224.272, -26.5123, 164.2069" />
+					<While Condition="IsTimeBetween(0,1)">
+						<Fish Mooch="0" Bait="Syrphid Basket" ShuffleFishSpots="True" Condition="IsTimeBetween(0,1)">
+							<FishSpots>
+								<FishSpot XYZ="243.2958, -27.81804, 167.7405" Heading="0.4071736" />
+								<FishSpot XYZ="243.8042, -27.53619, 160.0208" Heading="1.820888" />
+								<FishSpot XYZ="255.3068, -26.65674, 166.3678" Heading="6.238786" />
+								<FishSpot XYZ="269.2221, -26.86873, 159.7821" Heading="4.477399" />
+							</FishSpots>
+						</Fish>
+					</While>
+				</If>
+			</If>
+
+		</While>
+
+		<LogMessage Message="You've caught &FishCount;+ Emperor Fish!" />
+		<If Condition="not IsOnMap(129)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+				<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+				<Travel To="129" />
+			</If>
+		</If>
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>

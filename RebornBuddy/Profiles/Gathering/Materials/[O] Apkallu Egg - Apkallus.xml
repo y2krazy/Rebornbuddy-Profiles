@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+########################################
+# Profile: [O] Apkallu Egg - Apkallus  #
+########################################
+# Author: y2krazy                      #
+########################################
+# Version: 1.0.0                       #
+########################################
+# Required Level: 30                   #
+########################################
+# Required Teleport Locations:         #
+# 	Costa del Sol                      #
+########################################
+# Required User Interaction:           #
+# 	None                               #
+########################################
+# Required Setup:                      #
+# 	Fill out User Configuration below. #
+# 	Level 30+ Combat Class             #
+########################################
+# Item Drops:                          #
+# 	Apkallu Down                       #
+# 	Apkallu Egg                        #
+########################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY MatCount "2000"> <!-- Apkallu Eggs to gather before stopping. -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] Apkallu Egg - Apkallus</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Apkallu -->
+
+		<If Condition="(ItemCount(4775) &lt; &MatCount;)">
+			<If Condition="Core.Player.ClassLevel &lt; 30">
+				<LogMessage Message="You do not meet the minimum level requirement." />
+				<LogMessage Message="Please reach level 30 or higher." />
+				<StopBot />
+			</If>
+			<If Condition="Core.Player.ClassLevel &gt; 29">
+				<LogMessage Message="You need more Apkallu Eggs!" />
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="313.5038, 35.2632, 658.4989" />
+				<Grind grindRef="Apkallu_Egg" while="(ItemCount(4775) &lt; &MatCount;)" />
+			</If>
+		</If>
+
+		<LogMessage Messag-e="You've gathered &MatCount;+ Apkallu Eggs!" />
+		<If Condition="not IsOnMap(129)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+				<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+				<Travel To="129" />
+			</If>
+		</If>
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Apkallu_Egg">
+			<Hotspots>
+				<Hotspot Radius="250" XYZ="363.5083, 25.95878, 708.3564" name="Apkallus" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="341" />
+			</TargetMobs>
+			<MinLevel>30</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>
