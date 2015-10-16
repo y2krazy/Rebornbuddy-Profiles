@@ -3780,7 +3780,7 @@
 
 		<!-- Conjurer -->
 
-		<If Condition="ClassName == ClassJobType.Conjurer">
+		<If Condition="(ClassName == ClassJobType.Conjurer) or (ClassName == ClassJobType.WhiteMage)">
 
 			<LogMessage Message="Checking Conjurer class quests..." />
 
@@ -6224,7 +6224,7 @@
 
 		<!-- Gladiator -->
 
-		<If Condition="ClassName == ClassJobType.Gladiator">
+		<If Condition="(ClassName == ClassJobType.Gladiator) or (ClassName == ClassJobType.Paladin)">
 
 			<LogMessage Message="Checking Gladiator class quests..." />
 
@@ -9867,7 +9867,7 @@
 
 		<!-- Marauder -->
 
-		<If Condition="ClassName == ClassJobType.Marauder">
+		<If Condition="(ClassName == ClassJobType.Marauder) or (ClassName == ClassJobType.Warrior)">
 
 			<LogMessage Message="Checking Marauder class quests..." />
 
@@ -10838,12 +10838,70 @@
 			<If Condition="not IsQuestCompleted(66586)">
 				<If Condition="Core.Player.ClassLevel &gt; 34">
 					<If Condition="not HasQuest(66586)">
-						<LogMessage Message="Embracing the Beast quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(137)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+								<Travel To="137" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Curious Gorge" XYZ="460.6545, 8.309061, 74.47925" />
+						<If Condition="IsQuestAcceptQualified(66586)">
+							<PickupQuest NpcId="1006746" QuestId="66586" XYZ="460.6545, 8.309061, 74.47925" />
+						</If>
 					</If>
 					<If Condition="HasQuest(66586)">
-						<LogMessage Message="Embracing the Beast quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(66586) == 1">
+							<If Condition="not IsOnMap(146)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+									<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+										<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+									<Travel To="146" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="U'goromuli" XYZ="-300.1908, 7.278503, 410.9406" />
+							<While Condition="not IsTodoChecked(66586, 1, 0)">
+								<TalkTo NpcId="1004962" XYZ="-300.1908, 7.278503, 410.9406" QuestId="66586" StepId="1" />
+								<TalkTo NpcId="1006735" XYZ="-316.1822, 8.844355, 433.8292" QuestId="66586" StepId="1" />
+								<TalkTo NpcId="1006288" XYZ="-361.41, 8.465333, 426.1385" QuestId="66586" StepId="1" />
+							</While>
+						</If>
+						<If Condition="GetQuestStep(66586) == 2">
+							<If Condition="not IsOnMap(146)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+									<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+										<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+									<Travel To="146" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Giant Sandworm" XYZ="158.8861, 4.253643, 831.1633" />
+							<Grind grindRef="Embracing_the_Beast" while="HasQuest(66586) and GetQuestStep(66586) == 2" />
+						</If>
+						<If Condition="GetQuestStep(66586) == 255">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+									<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Curious Gorge" XYZ="460.6545, 8.309061, 74.47925" />
+							<TurnIn QuestId="66586" NpcId="1006746" XYZ="460.6545, 8.309061, 74.47925" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -10853,8 +10911,18 @@
 			<If Condition="not IsQuestCompleted(66587)">
 				<If Condition="Core.Player.ClassLevel &gt; 39">
 					<If Condition="not HasQuest(66587)">
-						<LogMessage Message="Curious Gorge Goes to Wineport quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(137)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+								<Travel To="137" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Curious Gorge" XYZ="460.6545, 8.309061, 74.47925" />
+						<If Condition="IsQuestAcceptQualified(66587)">
+							<PickupQuest NpcId="1006746" QuestId="66587" XYZ="460.6545, 8.309061, 74.47925" />
+						</If>
 					</If>
 					<If Condition="HasQuest(66587)">
 						<LogMessage Message="Curious Gorge Goes to Wineport quest is coming soon! Stay tuned!" />
@@ -12941,7 +13009,7 @@
 
 		<!-- Rogue -->
 
-		<If Condition="ClassName == ClassJobType.Rogue">
+		<If Condition="(ClassName == ClassJobType.Ninja) or (ClassName == ClassJobType.Rogue)">
 
 			<LogMessage Message="Checking Rogue class quests..." />
 
@@ -14315,7 +14383,7 @@
 
 		<!-- Thaumaturge -->
 
-		<If Condition="ClassName == ClassJobType.Thaumaturge">
+		<If Condition="(ClassName == ClassJobType.BlackMage) or (ClassName == ClassJobType.Thaumaturge)">
 
 			<LogMessage Message="Checking Thaumaturge class quests..." />
 
@@ -15126,12 +15194,73 @@
 			<If Condition="not IsQuestCompleted(66610)">
 				<If Condition="Core.Player.ClassLevel &gt; 34">
 					<If Condition="not HasQuest(66610)">
-						<LogMessage Message="You'll Never Go Back quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(131)">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<Travel To="131" />
+						</If>
+						<MoveTo Name="Lalai" XYZ="87.5105, 18, 113.7255" />
+						<If Condition="IsQuestAcceptQualified(66610)">
+							<PickupQuest NpcId="1006752" QuestId="66610" XYZ="87.5105, 18, 113.7255" />
+						</If>
 					</If>
 					<If Condition="HasQuest(66610)">
-						<LogMessage Message="You'll Never Go Back quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(66610) == 1">
+							<If Condition="not IsOnMap(146)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+									<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+										<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+									<Travel To="146" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Planar Fissure" XYZ="-7.919495, 13.68732, 866.5444" />
+							<UseObject NpcId="2002534" XYZ="-7.919495, 13.68732, 866.5444" Radius="10" QuestId="66610" StepId="1" />
+							<Grind grindRef="Youll_Never_Go_Back" while="HasQuest(66610) and GetQuestStep(66610) == 1" />
+						</If>
+						<If Condition="GetQuestStep(66610) == 2">
+							<If Condition="not IsOnMap(146)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+									<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+										<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+									<Travel To="146" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Planar Fissure" XYZ="-7.919495, 13.68732, 866.5444" />
+							<UseItem NpcId="2002430" ItemId="2000809" QuestId="66610" StepId="2" XYZ="-7.919495, 13.68732, 866.5444" Radius="5"/>
+						</If>
+						<If Condition="GetQuestStep(66610) == 255">
+							<If Condition="not IsOnMap(131)">
+								<If Condition="not IsOnMap(130)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+										<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+										<Travel To="130" />
+									</If>
+								</If>
+								<Travel To="131" />
+							</If>
+							<MoveTo Name="Lalai" XYZ="87.5105, 18, 113.7255" />
+							<TurnIn QuestId="66610" NpcId="1006752" XYZ="87.5105, 18, 113.7255" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -15141,8 +15270,21 @@
 			<If Condition="not IsQuestCompleted(66611)">
 				<If Condition="Core.Player.ClassLevel &gt; 39">
 					<If Condition="not HasQuest(66611)">
-						<LogMessage Message="International Relations quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(131)">
+							<If Condition="not IsOnMap(130)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+									<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+									<Travel To="130" />
+								</If>
+							</If>
+							<Travel To="131" />
+						</If>
+						<MoveTo Name="Lalai" XYZ="87.5105, 18, 113.7255" />
+						<If Condition="IsQuestAcceptQualified(66611)">
+							<PickupQuest NpcId="1006752" QuestId="66611" XYZ="87.5105, 18, 113.7255" />
+						</If>
 					</If>
 					<If Condition="HasQuest(66611)">
 						<LogMessage Message="International Relations quest is coming soon! Stay tuned!" />
@@ -16001,6 +16143,16 @@
 			<MinLevel>20</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
+		<GrindArea name="Embracing_the_Beast">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="158.8861, 4.253643, 831.1633" name="Giant Sandworm" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2010" /> <!-- Giant Sandworm -->
+			</TargetMobs>
+			<MinLevel>35</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
 		<GrindArea name="My_First_Hora">
 			<Hotspots>
 				<Hotspot Radius="90" XYZ="-120.001, 5.346663, 244.9141" name="Star Marmots" />
@@ -16372,6 +16524,16 @@
 				<TargetMob Id="2038" /> <!-- Deepvoid Soul -->
 			</TargetMobs>
 			<MinLevel>30</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Youll_Never_Go_Back">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-7.919495, 13.68732, 866.5444" name="Deepvoid Scamps" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2039" /> <!-- Deepvoid Scamp -->
+			</TargetMobs>
+			<MinLevel>35</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
