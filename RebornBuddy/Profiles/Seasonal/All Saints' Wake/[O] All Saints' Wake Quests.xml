@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+########################################
+# Profile: [O] All Saints' Wake Quests #
+########################################
+# Author: y2krazy                      #
+########################################
+# Version: 1.0.0                       #
+########################################
+# Required Level: 20                   #
+########################################
+# Required Teleport Locations:         #
+# 	Bentbranch Meadows                 #
+# 	Fallgourd Float                    #
+# 	New Gridania                       #
+########################################
+# Required User Interaction:           #
+# 	None                               #
+########################################
+# Required Setup:                      #
+# 	None                               #
+########################################
+# Rewards:                             #
+# 	Minion: Pumpkin Butler             #
+# 	Mount: Witch's Broom               #
+# 	Witch's Armor                      #
+########################################
+-->
+<Profile>
+	<Name>[O] All Saints' Wake</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<LogMessage Message="Checking for completed quests..." />
+
+		<!-- Investigating the Inimical -->
+
+		<If Condition="not IsQuestCompleted(67685)">
+			<If Condition="not HasQuest(67685)">
+				<If Condition="not IsOnMap(133)">
+					<If Condition="not IsOnMap(132)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+							<TeleportTo Name="New Gridania" AetheryteId="2" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+							<Travel To="132" />
+						</If>
+					</If>
+					<Travel To="133" />
+				</If>
+				<MoveTo Name="Adventurers' Guild Investigator" XYZ="-41.30621, 7.19649, -138.4756" />
+				<If Condition="IsQuestAcceptQualified(67685)">
+					<PickupQuest NpcId="1015778" QuestId="67685" XYZ="-41.30621, 7.19649, -138.4756" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67685)">
+				<If Condition="GetQuestStep(67685) == 1">
+					<If Condition="not IsOnMap(133)">
+						<If Condition="not IsOnMap(132)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+								<TeleportTo Name="New Gridania" AetheryteId="2" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+								<Travel To="132" />
+							</If>
+						</If>
+						<Travel To="133" />
+					</If>
+					<While Condition="not IsTodoChecked(67685, 1, 0)">
+						<MoveTo Name="Uncanny Illusionist" XYZ="-31.6015, 6.797991, -126.0243" />
+						<TalkTo NpcId="1015780" XYZ="-31.6015, 6.797991, -126.0243" QuestId="67685" StepId="1" />
+						<TalkTo NpcId="1015779" XYZ="-47.40979, 6.874355, -123.2471" QuestId="67685" StepId="1" />
+						<TalkTo NpcId="1015781" XYZ="-66.17847, 7.069288, -126.1159" QuestId="67685" StepId="1" />
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67685) == 255">
+					<If Condition="not IsOnMap(133)">
+						<If Condition="not IsOnMap(132)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+								<TeleportTo Name="New Gridania" AetheryteId="2" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+								<Travel To="132" />
+							</If>
+						</If>
+						<Travel To="133" />
+					</If>
+					<MoveTo Name="Adventurers' Guild Investigator" XYZ="-41.30621, 7.19649, -138.4756" />
+					<TurnIn QuestId="67685" NpcId="1015778" XYZ="-41.30621, 7.19649, -138.4756" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Joining the Circus -->
+
+		<If Condition="not IsQuestCompleted(67686)">
+			<If Condition="not HasQuest(67686)">
+				<If Condition="not IsOnMap(133)">
+					<If Condition="not IsOnMap(132)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+							<TeleportTo Name="New Gridania" AetheryteId="2" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+							<Travel To="132" />
+						</If>
+					</If>
+					<Travel To="133" />
+				</If>
+				<MoveTo Name="Adventurers' Guild Investigator" XYZ="-41.30621, 7.19649, -138.4756" />
+				<If Condition="IsQuestAcceptQualified(67686)">
+					<PickupQuest NpcId="1015778" QuestId="67686" XYZ="-41.30621, 7.19649, -138.4756" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67686)">
+				<If Condition="GetQuestStep(67686) == 1">
+					<If Condition="not IsOnMap(154)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+							<Travel To="154" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Adventurers' Guild Investigator" XYZ="433.585, -5.924116, -105.4552" />
+					<TalkTo NpcId="1015782" XYZ="433.585, -5.924116, -105.4552" QuestId="67686" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67686) == 2">
+					<If Condition="not IsOnMap(154)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+							<Travel To="154" />
+						</If>
+					</If>
+					<While Condition="not IsTodoChecked(67686, 2, 0)">
+						<MoveTo Name="Hamlet Miller" XYZ="379.5985, -6.227163, -67.82642" />
+						<TalkTo NpcId="1015783" XYZ="379.5985, -6.227163, -67.82642" QuestId="67686" StepId="2" />
+						<TalkTo NpcId="1015785" XYZ="344.1367, -6.238653, -70.93927" QuestId="67686" StepId="2" />
+						<TalkTo NpcId="1015784" XYZ="338.5519, -6.084025, -107.683" QuestId="67686" StepId="2" />
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67686) == 3">
+					<If Condition="not IsOnMap(154)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+							<Travel To="154" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Adventurers' Guild Investigator" XYZ="433.585, -5.924116, -105.4552" />
+					<TalkTo NpcId="1015782" XYZ="433.585, -5.924116, -105.4552" QuestId="67686" StepId="3" />
+				</If>
+				<If Condition="GetQuestStep(67686) == 4">
+					<If Condition="not IsOnMap(154)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+							<Travel To="154" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Destination" XYZ="394.0946, -5.813782, -122.9114" />
+					<UseObject NpcId="2006591" XYZ="394.0946, -5.813782, -122.9114" Radius="10" QuestId="67686" StepId="4" />
+				</If>
+				<If Condition="GetQuestStep(67686) == 5">
+					<If Condition="not IsOnMap(154)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+							<Travel To="154" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Adventurers' Guild Investigator" XYZ="433.585, -5.924116, -105.4552" />
+					<TalkTo NpcId="1015782" XYZ="433.585, -5.924116, -105.4552" QuestId="67686" StepId="5" />
+				</If>
+				<If Condition="GetQuestStep(67686) == 6">
+					<If Condition="not IsOnMap(154)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+							<Travel To="154" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Adventurers' Guild Investigator" XYZ="433.585, -5.924116, -105.4552" />
+					<RunCode Name="JoiningtheCircus" />
+					<TalkTo NpcId="1015782" XYZ="433.585, -5.924116, -105.4552" QuestId="67686" StepId="6" />
+				</If>
+				<If Condition="GetQuestStep(67686) == 7">
+					<If Condition="not IsOnMap(154)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+							<Travel To="154" />
+						</If>
+					</If>
+					<While Condition="not IsTodoChecked(67686, 7, 0)">
+						<NoCombatMoveTo Name="Curious Ahriman" XYZ="379.5985, -6.227163, -67.82642" />
+						<HandOver ItemId="2001896" QuestId="67686" StepId="7" NpcId="1015801" XYZ="378.5, -6.843238, -130.8157" />
+						<HandOver ItemId="2001896" QuestId="67686" StepId="7" NpcId="1015803" XYZ="355.2758, -6.522285, -88.15143" />
+						<HandOver ItemId="2001896" QuestId="67686" StepId="7" NpcId="1015802" XYZ="308.5221, 2.157796, -78.38562" />
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67686) == 255">
+					<If Condition="not IsOnMap(154)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+							<Travel To="154" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Adventurers' Guild Investigator" XYZ="433.585, -5.924116, -105.4552" />
+					<TurnIn QuestId="67686" NpcId="1015782" XYZ="433.585, -5.924116, -105.4552" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Sweeping the Meadows -->
+
+		<If Condition="not IsQuestCompleted(67687)">
+			<If Condition="not HasQuest(67687)">
+				<If Condition="not IsOnMap(154)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+						<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+						<Travel To="154" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Adventurers' Guild Investigator" XYZ="433.585, -5.924116, -105.4552" />
+				<If Condition="IsQuestAcceptQualified(67687)">
+					<PickupQuest NpcId="1015782" QuestId="67687" XYZ="433.585, -5.924116, -105.4552" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67687)">
+				<If Condition="GetQuestStep(67687) == 1">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Adventurers' Guild Investigator" XYZ="26.0166, -1.389505, 45.63965" />
+					<TalkTo NpcId="1015799" XYZ="26.0166, -1.389505, 45.63965" QuestId="67687" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67687) == 2">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Pumpkin-headed Apparition" XYZ="3.341675, -8.003896, -19.05853" />
+					<TalkTo NpcId="1015800" XYZ="3.341675, -8.003896, -19.05853" QuestId="67687" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(67687) == 3">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Pumpkin-headed Apparition" XYZ="3.341675, -8.003896, -19.05853" />
+					<Dismount/>
+					<TalkTo NpcId="1015800" XYZ="3.341675, -8.003896, -19.05853" QuestId="67687" StepId="3" />
+					<NoCombatMoveTo Name="Unusual Imp" XYZ="-29.34314, 0.05321181, -27.11536" />
+					<If Condition="GetQuestById(67687).QuestI8AH == 0">
+						<NoCombatMoveTo Name="Unusual Imp" XYZ="-29.34314, 0.05321181, -27.11536" />
+						<RunCode Name="SweepingtheMeadows" />
+					</If>
+					<If Condition="GetQuestById(67687).QuestI8AH == 1">
+						<NoCombatMoveTo Name="Unusual Imp" XYZ="-81.55957, 0.9801967, -24.67383" />
+						<RunCode Name="SweepingtheMeadows2" />
+					</If>
+					<If Condition="GetQuestById(67687).QuestI8AH == 2">
+						<NoCombatMoveTo Name="Unusual Imp" XYZ="-72.09894, 0.3322814, 62.11938" />
+						<RunCode Name="SweepingtheMeadows3" />
+					</If>
+					<If Condition="GetQuestById(67687).QuestI8AH == 3">
+						<NoCombatMoveTo Name="Unusual Imp" XYZ="-39.2005, 1.04467, 101.5487" />
+						<RunCode Name="SweepingtheMeadows4" />
+					</If>
+					<If Condition="GetQuestById(67687).QuestI8AH == 4">
+						<NoCombatMoveTo Name="Unusual Imp" XYZ="61.02075, -6.847843, 87.11377" />
+						<RunCode Name="SweepingtheMeadows5" />
+					</If>
+					<If Condition="GetQuestById(67687).QuestI8AH == 5">
+						<NoCombatMoveTo Name="Unusual Imp" XYZ="44.47998, -5.874774, -20.73706" />
+						<RunCode Name="SweepingtheMeadows6" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(67687) == 4">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Adventurers' Guild Investigator" XYZ="26.0166, -1.389505, 45.63965" />
+					<Dismount/>
+					<TalkTo NpcId="1015799" XYZ="26.0166, -1.389505, 45.63965" QuestId="67687" StepId="4" />
+				</If>
+				<If Condition="GetQuestStep(67687) == 5">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Pumpkin-headed Apparition" XYZ="3.341675, -8.003896, -19.05853" />
+					<TalkTo NpcId="1015800" XYZ="3.341675, -8.003896, -19.05853" QuestId="67687" StepId="5" />
+				</If>
+				<If Condition="GetQuestStep(67687) == 6">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Campfire" XYZ="7.522644, -7.797424, 89.61609" />
+					<UseItem NpcId="2006593" ItemId="2001897" QuestId="67687" StepId="6" XYZ="7.522644, -7.797424, 89.61609" Radius="5"/>
+				</If>
+				<If Condition="GetQuestStep(67687) == 7">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Imposing Imp" XYZ="76.1272, -6, 63.64539" />
+					<UseItem NpcId="1015823" ItemId="2001898" QuestId="67687" StepId="7" XYZ="76.1272, -6, 63.64539" Radius="5"/>
+				</If>
+				<If Condition="GetQuestStep(67687) == 255">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Adventurers' Guild Investigator" XYZ="26.0166, -1.389505, 45.63965" />
+					<TurnIn QuestId="67687" NpcId="1015799" XYZ="26.0166, -1.389505, 45.63965" />
+				</If>
+			</If>
+		</If>
+
+		<LogMessage Message="You've completed the All Saints' Wake seasonal event!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="JoiningtheCircus">
+			<![CDATA[ 
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+				{
+					BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Head];
+					BagSlot EquipSlot2 = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Body];
+					BagSlot EquipSlot3 = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Hands];
+					BagSlot EquipSlot6 = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Feet];
+					if(slot.RawItemId == 13099)
+					{
+						slot.Move(EquipSlot);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
+					}
+					if(slot.RawItemId == 13100)
+					{
+						slot.Move(EquipSlot2);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
+					}
+					if(slot.RawItemId == 13101)
+					{
+						slot.Move(EquipSlot3);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
+					}
+					if(slot.RawItemId == 13102)
+					{
+						slot.Move(EquipSlot6);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
+					}
+				}
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SweepingtheMeadows">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(4930,new Vector3(-29.34314f,0.05321181f,-27.11536f));
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SweepingtheMeadows2">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(4930,new Vector3(-81.55957f,0.9801967f,-24.67383f));
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SweepingtheMeadows3">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(4930,new Vector3(-72.09894f,0.3322814f,62.11938f));
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SweepingtheMeadows4">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(4930,new Vector3(-39.2005f,1.04467f,101.5487f));
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SweepingtheMeadows5">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(4930,new Vector3(61.02075f,-6.847843f,87.11377f));
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SweepingtheMeadows6">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(4930,new Vector3(44.47998f,-5.874774f,-20.73706f));
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
