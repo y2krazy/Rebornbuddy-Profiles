@@ -7,7 +7,7 @@
 ###########################################################
 # Author: y2krazy                                         #
 ###########################################################
-# Version: 1.0.11                                         #
+# Version: 1.0.12                                         #
 ###########################################################
 # Required Level: 50                                      #
 ###########################################################
@@ -56,7 +56,7 @@
 
 		<BotSettings AutoEquip="1" />
 
-		<If Condition="(Core.Me.CurrentJob != Enums.ClassJobType.Bard) and (Core.Me.CurrentJob != Enums.ClassJobType.BlackMage) and (Core.Me.CurrentJob != Enums.ClassJobType.DarkKnight) and (Core.Me.CurrentJob != Enums.ClassJobType.Dragoon) and (Core.Me.CurrentJob != Enums.ClassJobType.Machinist) and (Core.Me.CurrentJob != Enums.ClassJobType.Monk) and (Core.Me.CurrentJob != Enums.ClassJobType.Ninja) and (Core.Me.CurrentJob != Enums.ClassJobType.Paladin) and (Core.Me.CurrentJob != Enums.ClassJobType.Scholar) and (Core.Me.CurrentJob != Enums.ClassJobType.Summoner) and (Core.Me.CurrentJob != Enums.ClassJobType.Warrior) and (Core.Me.CurrentJob != Enums.ClassJobType.WhiteMage)">
+		<If Condition="(ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.DarkKnight) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Machinist) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
 			<LogMessage Message="You do not have a job assigned on your character." />
 			<LogMessage Message="Ensure your Soul Crystal is equipped or that you've completed your level 30 job quest." />
 			<LogMessage Message="Please restart this profile after you are done." />
@@ -386,7 +386,7 @@
 							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
 						</If>
 						<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
-							<Travel To="139" />
+							<Travel To="139_East" />
 						</If>
 					</If>
 					<NoCombatMoveTo Name="Mud Pugils" XYZ="586.0926, -3.052768, 152.8452" />
@@ -398,7 +398,7 @@
 							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
 						</If>
 						<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
-							<Travel To="139" />
+							<Travel To="139_East" />
 						</If>
 					</If>
 					<NoCombatMoveTo Name="2002842" XYZ="286.366, -3.158691, 145.6168" />
@@ -410,7 +410,7 @@
 							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
 						</If>
 						<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
-							<Travel To="139" />
+							<Travel To="139_East" />
 						</If>
 					</If>
 					<NoCombatMoveTo Name="2002843" XYZ="298.4207, -3.128174, 166.9185" />
@@ -2030,11 +2030,9 @@
 			</If>
 		</If>
 
-		<If Condition="IsQuestCompleted(66729)">
-			<LogMessage Message="You've completed the A Realm Awoken questline!" />
-			<LogMessage Message="Loading the Through the Maelstrom profile..." />
-			<LoadProfile Path="Profiles/y2krazy/Questing/[O] Seventh Astral Era - Through the Maelstrom.xml" />
-		</If>
+		<LogMessage Message="You've completed the A Realm Awoken questline!" />
+		<LogMessage Message="Loading the Through the Maelstrom profile..." />
+		<LoadProfile Path="Profiles/y2krazy/Questing/[O] Seventh Astral Era - Through the Maelstrom.xml" />
 
 	</Order>
 	<GrindAreas>
