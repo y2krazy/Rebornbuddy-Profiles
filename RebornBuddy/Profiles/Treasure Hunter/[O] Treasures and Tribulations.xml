@@ -77,13 +77,16 @@
 					<TalkTo NpcId="1005527" XYZ="-68.41243, 45.32172, 180.6208" QuestId="66747" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(66747) == 2">
-					<If Condition="not IsOnMap(139)">
+					<If Condition="not IsOnMap(139) and not IsOnMap(137)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(15)">
 							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
 						</If>
 						<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
 							<Travel To="139_East" />
 						</If>
+					</If>
+					<If Condition="IsOnMap(137)">
+						<Travel To="139_East" />
 					</If>
 					<NoCombatMoveTo Name="Ealdwine" XYZ="623.9114, -3.002749, 164.178" />
 					<TalkTo NpcId="1005528" XYZ="623.9114, -3.002749, 164.178" QuestId="66747" StepId="2" />
