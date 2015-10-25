@@ -20,12 +20,12 @@
 # 	None                                  #
 ###########################################
 # Rewards:                                #
-# 	Decipher Action                       #
-# 	Dig Action                            #
+# 	Action: Decipher                      #
+# 	Action: Dig                           #
 ###########################################
 -->
 <Profile>
-	<Name>[O] Treasures and Tribulations</Name>
+	<Name>[O] Treasures and Tribulations Quest</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -103,8 +103,8 @@
 							<Travel To="139_East" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="2003139" XYZ="602.7211, -2.444126, 171.121" />
-					<UseObject NpcId="2003139" XYZ="602.7211, -2.444126, 171.121" Radius="10" WaitTime="6000" QuestId="66747" StepId="3" />
+					<NoCombatMoveTo Name="Shabby Casket" XYZ="602.7211, -2.444126, 171.121" />
+					<UseObject NpcId="2003139" XYZ="602.7211, -2.444126, 171.121" Radius="10" QuestId="66747" StepId="3" />
 					<Grind grindRef="Disturbances" while="HasQuest(66747) and GetQuestStep(66747) == 3" />
 				</If>
 				<If Condition="GetQuestStep(66747) == 4">
@@ -116,8 +116,8 @@
 							<Travel To="139_East" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="2003007" XYZ="602.7211, -2.444126, 171.121" />
-					<UseObject NpcId="2003007" XYZ="602.7211, -2.444126, 171.121" Radius="10" WaitTime="10000" QuestId="66747" StepId="4" />
+					<NoCombatMoveTo Name="Shabby Casket" XYZ="602.7211, -2.444126, 171.121" />
+					<UseObject NpcId="2003007" XYZ="602.7211, -2.444126, 171.121" Radius="10" QuestId="66747" StepId="4" />
 				</If>
 				<If Condition="GetQuestStep(66747) == 255">
 					<If Condition="not IsOnMap(139)">
@@ -134,10 +134,7 @@
 			</If>
 		</If>
 
-		<If Condition="IsQuestCompleted(66747)">
-			<LogMessage Message="You've unlocked your Decipher and Dig actions!" />
-        	<StopBot />
-		</If>
+		<LogMessage Message="You've unlocked your Decipher and Dig actions!" />
 
 	</Order>
 	<GrindAreas>
@@ -146,8 +143,8 @@
 				<Hotspot Radius="90" XYZ="602.7211, -2.444126, 171.121" name="Territorial Mobs" />
 			</Hotspots>
 			<TargetMobs>
-				<TargetMob Id="2375" />
-				<TargetMob Id="2376" />
+				<TargetMob Id="2375" Weight="2000" /> <!-- Territorial Raptor -->
+				<TargetMob Id="2376" Weight="1000" /> <!-- Territorial Pelican -->
 			</TargetMobs>
 			<MinLevel>36</MinLevel>
 			<MaxLevel>61</MaxLevel>
