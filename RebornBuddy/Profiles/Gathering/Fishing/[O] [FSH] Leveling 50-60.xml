@@ -1,67 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-############################################################
-# Profile: [O] [FSH] Leveling 50-60                        #
-############################################################
-# Author: y2krazy                                          #
-############################################################
-# Version: 1.0.1                                           #
-############################################################
-# Required Level: 50                                       #
-############################################################
-# Required Teleport Locations:                             #
-# 	Anyx Trine or Tailfeather                              #
-# 	Camp Bluefog or Ceruleum Processing Plant              #
-# 	Camp Cloudtop                                          #
-# 	Camp Dragonhead                                        #
-# 	Falcon's Nest                                          #
-# 	Moghome or Zenith                                      #
-############################################################
-# Required User Interaction:                               #
-# 	None                                                   #
-############################################################
-# Required Setup:                                          #
-# 	Fill out User Configuration below.                     #
-# 	Level 50+ Fisher                                       #
-# 	Set Fisher Gear Set at the bottom of the profile.      #
-############################################################
-# Item Drops:                                              #
-# 	Abalathian Smelt                                       #
-# 	Ammonite                                               #
-# 	Anomalocaris (Rare)                                    #
-# 	Blind Manta                                            #
-# 	Blue Medusa                                            #
-# 	Blueclaw Shrimp                                        #
-# 	Bubble Eye                                             #
-# 	Cloud Cutter                                           #
-# 	Cloud Jellyfish                                        #
-# 	Cloud Rider                                            #
-# 	Cloudfish                                              #
-# 	Dragon's Soul                                          #
-# 	Fanged Clam                                            #
-# 	Grip Killifish                                         #
-# 	Hedgemole Cricket                                      #
-# 	Icepick                                                #
-# 	Ice Faerie                                             #
-# 	Ignus Snail                                            #
-# 	Ilsabardian Bass                                       #
-# 	Lake Urchin                                            #
-# 	Letter Puffer                                          #
-# 	Maiboi                                                 #
-# 	Marble Oscar                                           #
-# 	Moraby Flounder                                        #
-# 	Ocean Cloud                                            #
-# 	Piece of Gloaming Coral                                #
-# 	Rift Sailor                                            #
-# 	Seema Patrician                                        #
-# 	Silverfish                                             #
-# 	Sky Faerie                                             #
-# 	Skyfish                                                #
-# 	Sludgesskipper                                         #
-# 	Sorcerer Fish                                          #
-# 	Warmwater Bichir                                       #
-# 	Whilom Catfish                                         #
-############################################################
+###############################################
+# Profile: [O] [FSH] Leveling 50-60           #
+###############################################
+# Author: y2krazy                             #
+###############################################
+# Version: 1.0.2                              #
+###############################################
+# Required Level: 50                          #
+###############################################
+# Required Teleport Locations:                #
+# 	Anyx Trine or Tailfeather                 #
+# 	Camp Bluefog or Ceruleum Processing Plant #
+# 	Camp Cloudtop                             #
+# 	Camp Dragonhead                           #
+# 	Falcon's Nest                             #
+# 	Moghome or Zenith                         #
+###############################################
+# Required User Interaction:                  #
+# 	None                                      #
+###############################################
+# Required Setup:                             #
+# 	Fill out User Configuration below.        #
+# 	Level 50+ Fisher                          #
+# 	Set Fisher Gear Set below.                #
+###############################################
+# Item Drops:                                 #
+# 	Tons of fish.                             #
+###############################################
 -->
 
 <!-- User Configuration -->
@@ -69,8 +35,6 @@
   <!ENTITY MinFish "15"> <!-- Minimum amount of fish to catch before changing spots. -->
   <!ENTITY MaxFish "25"> <!-- Maximum amount of fish to catch before changing spots -->
   <!ENTITY Sit "True"> <!-- Set this to "True" if you want to sit while fishing. -->
-  <!ENTITY ConfirmKey "Numpad0"> <!-- "Keybind" > "System" > "Confirm" -->
-  <!ENTITY MoveCursorRightKey "Numpad6"> <!-- "Keybind" > "System" > "Move Cursor Right" -->
 ]>
 <!-- End User Configuration -->
 
@@ -78,6 +42,13 @@
 	<Name>[O] [FSH] Leveling 50-60</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
+	<CodeChunks>
+		<CodeChunk Name="Fisher">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 23");
+		]]>
+		</CodeChunk>
+	</CodeChunks>
 	<Order>
 
 		<RunCode Name="Fisher" />
@@ -95,6 +66,7 @@
 			<While Condition="Core.Player.ClassLevel &lt; 51">
 
 				<!-- Bait: Hoverworm -->
+				<!-- Bait: Caddisfly Larva -->
 
 				<If Condition="not HasAtLeast(2605,198)">
 					<LogMessage Message="You need more Hoverworms!" />
@@ -132,7 +104,7 @@
 				</If>
 				<NoCombatMoveTo Name="Fishing Area" XYZ="-504.1518, 206.4129, -340.7338" />
 				<While Condition="IsTimeBetween(0,8)">
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Hoverworm" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+					<Fish Mooch="1" Bait="Hoverworm" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
 						<FishSpots>
 							<FishSpot XYZ="-435.6096, 199.8478, -362.3759" Heading="2.426933" Sit="&Sit;" />
 							<FishSpot XYZ="-452.6844, 201.5384, -371.8248" Heading="2.634278" Sit="&Sit;" />
@@ -142,7 +114,7 @@
 					</Fish>
 				</While>
 				<While Condition="IsTimeBetween(8,16)">
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Hoverworm" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+					<Fish Mooch="1" Bait="Hoverworm" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
 						<FishSpots>
 							<FishSpot XYZ="-515.7533, 188.7346, -419.608" Heading="1.907957" Sit="&Sit;" />
 							<FishSpot XYZ="-531.227, 186.9769, -441.592" Heading="2.287385" Sit="&Sit;" />
@@ -152,7 +124,7 @@
 					</Fish>
 				</While>
 				<While Condition="IsTimeBetween(16,24)">
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Hoverworm" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+					<Fish Mooch="1" Bait="Hoverworm" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
 						<FishSpots>
 							<FishSpot XYZ="-507.129, 191.2434, -406.606" Heading="2.247249" Sit="&Sit;" />
 							<FishSpot XYZ="-488.8316, 201.1533, -388.5203" Heading="2.88351" Sit="&Sit;" />
@@ -181,7 +153,7 @@
 				</If>
 				<NoCombatMoveTo Name="Fishing Area" XYZ="-57.58894, 47, 31.82536" />
 				<While Condition="IsTimeBetween(0,2)">
-					<Fish Mooch="0" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Caddisfly Larva" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+					<Fish Mooch="0" Bait="Caddisfly Larva" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
 						<FishSpots>
 							<FishSpot XYZ="-53.66522, 46.39545, 46.33521" Heading="0.450546" />
 							<FishSpot XYZ="-68.04536, 45.78524, 41.56672" Heading="0.1867733" />
@@ -260,7 +232,7 @@
 				</If>
 				<NoCombatMoveTo Name="Fishing Area" XYZ="240.1283, 132.3615, -216.0794" />
 				<While Condition="IsTimeBetween(0,8)">
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Caddisfly Larva" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+					<Fish Mooch="1" Bait="Caddisfly Larva" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
 						<FishSpots>
 							<FishSpot XYZ="278.2439, 131.9041, -282.3314" Heading="1.13587" Sit="&Sit;" />
 							<FishSpot XYZ="297.6398, 132.127, -251.028" Heading="2.372866" Sit="&Sit;" />
@@ -270,7 +242,7 @@
 					</Fish>
 				</While>
 				<While Condition="IsTimeBetween(8,16)">
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Caddisfly Larva" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+					<Fish Mooch="1" Bait="Caddisfly Larva" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
 						<FishSpots>
 							<FishSpot XYZ="243.2819, 131.963, -213.9078" Heading="1.170967" Sit="&Sit;" />
 							<FishSpot XYZ="229.3903, 131.9567, -177.168" Heading="2.107161" Sit="&Sit;" />
@@ -280,7 +252,7 @@
 					</Fish>
 				</While>
 				<While Condition="IsTimeBetween(16,24)">
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Caddisfly Larva" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+					<Fish Mooch="1" Bait="Caddisfly Larva" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
 						<FishSpots>
 							<FishSpot XYZ="251.1485, 132.1361, -238.0024" Heading="1.294536" Sit="&Sit;" />
 							<FishSpot XYZ="275.1787, 131.8854, -241.8127" Heading="5.468275" Sit="&Sit;" />
@@ -304,7 +276,7 @@
 				</If>
 				<NoCombatMoveTo Name="Fishing Area" XYZ="118.1731, -147.8377, 563.6696" />
 				<While Condition="IsTimeBetween(0,2)">
-					<Fish Mooch="0" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Caddisfly Larva" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+					<Fish Mooch="0" Bait="Caddisfly Larva" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
 						<FishSpots>
 							<FishSpot XYZ="132.5164, -147.8377, 569.1388" Heading="1.927127" />
 							<FishSpot XYZ="94.47315, -147.8377, 557.4776" Heading="5.121243" />
@@ -384,7 +356,7 @@
 				</If>
 				<While Condition="IsTimeBetween(0,8)">
 					<NoCombatMoveTo Name="Fishing Area" XYZ="-470.0987, 91.15258, -628.9971" />
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+					<Fish Mooch="1" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
 						<FishSpots>
 							<FishSpot XYZ="-470.6491, 90.21236, -649.035" Heading="3.864252" Sit="&Sit;" />
 							<FishSpot XYZ="-462.8308, 90.3721, -658.1711" Heading="4.161934" Sit="&Sit;" />
@@ -395,7 +367,7 @@
 				</While>
 				<While Condition="IsTimeBetween(8,16)">
 					<NoCombatMoveTo Name="Fishing Area" XYZ="-424.5894, 90.18301, -352.6159" />
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+					<Fish Mooch="1" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
 						<FishSpots>
 							<FishSpot XYZ="-424.0582, 90.22324, -350.5121" Heading="5.832089" Sit="&Sit;" />
 							<FishSpot XYZ="-418.9189, 90.09673, -343.4919" Heading="5.045197" Sit="&Sit;" />
@@ -406,7 +378,7 @@
 				</While>
 				<While Condition="IsTimeBetween(16,24)">
 					<NoCombatMoveTo Name="Fishing Area" XYZ="-14.95076, 91.47549, -539.5043" />
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+					<Fish Mooch="1" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
 						<FishSpots>
 							<FishSpot XYZ="-23.10283, 89.2998, -570.9393" Heading="5.590234" Sit="&Sit;" />
 							<FishSpot XYZ="-22.62144, 89.24813, -556.4178" Heading="4.547225" Sit="&Sit;" />
@@ -435,7 +407,7 @@
 				</If>
 				<NoCombatMoveTo Name="Fishing Area" XYZ="512.798, -51.16802, 41.8763" />
 				<While Condition="IsTimeBetween(0,2)">
-					<Fish Mooch="0" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Stonefly Nymph" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+					<Fish Mooch="0" Bait="Stonefly Nymph" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
 						<FishSpots>
 							<FishSpot XYZ="511.0655, -49.77491, 17.73067" Heading="3.888459" />
 							<FishSpot XYZ="509.7378, -50.18298, 30.5103" Heading="4.428409" />
@@ -488,7 +460,7 @@
 				</If>
 				<While Condition="IsTimeBetween(0,8)">
 				<NoCombatMoveTo Name="Fishing Area" XYZ="227.7961, -121.5544, 654.637" />
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+					<Fish Mooch="1" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
 						<FishSpots>
 							<FishSpot XYZ="220.554, -122.8197, 669.0383" Heading="5.973365" Sit="&Sit;" />
 							<FishSpot XYZ="236.8883, -124.5867, 666.1251" Heading="0.4504428" Sit="&Sit;" />
@@ -499,7 +471,7 @@
 				</While>
 				<While Condition="IsTimeBetween(8,16)">
 					<NoCombatMoveTo Name="Fishing Area" XYZ="283.5104, -112.8624, 561.3486" />
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+					<Fish Mooch="1" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
 						<FishSpots>
 							<FishSpot XYZ="309.6543, -118.7103, 575.8928" Heading="1.776196" Sit="&Sit;" />
 							<FishSpot XYZ="308.343, -118.9924, 588.7889" Heading="1.240032" Sit="&Sit;" />
@@ -510,7 +482,7 @@
 				</While>
 				<While Condition="IsTimeBetween(16,24)">
 					<NoCombatMoveTo Name="Fishing Area" XYZ="289.9423, -112.8478, 561.4112" />
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+					<Fish Mooch="1" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
 						<FishSpots>
 							<FishSpot XYZ="299.2642, -114.0714, 559.9581" Heading="1.975006" Sit="&Sit;" />
 							<FishSpot XYZ="295.5112, -117.3481, 549.1129" Heading="2.188635" Sit="&Sit;" />
@@ -539,7 +511,7 @@
 				</If>
 				<NoCombatMoveTo Name="Fishing Area" XYZ="389.6898, -35.24823, -454.1585" />
 				<While Condition="IsTimeBetween(0,2)">
-					<Fish Mooch="0" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Stonefly Nymph" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+					<Fish Mooch="0" Bait="Stonefly Nymph" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
 						<FishSpots>
 							<FishSpot XYZ="402.1413, -38.58605, -456.5269" Heading="1.516019" />
 							<FishSpot XYZ="403.3074, -37.31662, -467.7083" Heading="2.175753" />
@@ -597,7 +569,7 @@
 				</If>
 				<NoCombatMoveTo Name="Fishing Area" XYZ="200.2107, -84.98614, 194.7469" />
 				<While Condition="IsTimeBetween(0,8)">
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Purse Web Spider" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+					<Fish Mooch="1" Bait="Purse Web Spider" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
 						<FishSpots>
 							<FishSpot XYZ="205.7003, -87.39262, 180.8179" Heading="0.3494356" Sit="&Sit;" />
 							<FishSpot XYZ="213.7785, -87.82909, 199.0079" Heading="3.745785" Sit="&Sit;" />
@@ -607,7 +579,7 @@
 					</Fish>
 				</While>
 				<While Condition="IsTimeBetween(8,16)">
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Purse Web Spider" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+					<Fish Mooch="1" Bait="Purse Web Spider" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
 						<FishSpots>
 							<FishSpot XYZ="185.036, -88.87727, 190.7547" Heading="0.4891937" Sit="&Sit;" />
 							<FishSpot XYZ="153.296, -90.13683, 198.7332" Heading="0.7266009" Sit="&Sit;" />
@@ -617,7 +589,7 @@
 					</Fish>
 				</While>
 				<While Condition="IsTimeBetween(16,24)">
-					<Fish Mooch="1" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Purse Web Spider" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+					<Fish Mooch="1" Bait="Purse Web Spider" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
 						<FishSpots>
 							<FishSpot XYZ="171.243, -89.24915, 220.4682" Heading="4.784604" Sit="&Sit;" />
 							<FishSpot XYZ="188.2038, -88.38174, 203.1768" Heading="3.513305" Sit="&Sit;" />
@@ -650,7 +622,7 @@
 				</If>
 				<NoCombatMoveTo Name="Fishing Area" XYZ="49.03453, 101.6191, 87.81481" />
 				<While Condition="IsTimeBetween(0,2)">
-					<Fish Mooch="0" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Purse Web Spider" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+					<Fish Mooch="0" Bait="Purse Web Spider" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
 						<FishSpots>
 							<FishSpot XYZ="47.19806, 101.4079, 109.4343" Heading="1.802254" />
 							<FishSpot XYZ="48.75917, 100.8602, 93.13177" Heading="1.161368" />
@@ -665,108 +637,213 @@
 
 			<While Condition="Core.Player.ClassLevel &lt; 60">
 
-				<!-- Bait: Red Balloon -->
-				<!-- Bait: Purse Web Spider -->
+				<If Condition="not IsQuestCompleted(67622)">
 
-				<If Condition="not HasAtLeast(12708,198)">
-					<LogMessage Message="You need more Red Balloons!" />
-					<If Condition="not IsOnMap(401)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(72)">
-							<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+					<!-- Bait: Stonefly Nymph -->
+
+					<If Condition="not HasAtLeast(12704,198)">
+						<LogMessage Message="You need 198 Stonefly Nymph!" />
+						<If Condition="not IsOnMap(401)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+								<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+								<Travel To="401" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
-							<Travel To="401" />
+						<NoCombatMoveTo Name="Peddler of Wonders" XYZ="-650.1717, -123.7525, 524.3762" />
+						<BuyItem ItemId="12704" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1011947" XYZ="-650.1717, -123.7525, 524.3762" />
+					</If>
+					<If Condition="not HasAtLeast(12705,1)">
+						<LogMessage Message="You need 1 Purse Web Spider!" />
+						<If Condition="not IsOnMap(401)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+								<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+								<Travel To="401" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Peddler of Wonders" XYZ="-650.1717, -123.7525, 524.3762" />
+						<BuyItem ItemId="12705" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1011947" XYZ="-650.1717, -123.7525, 524.3762" />
+					</If>
+					<If Condition="not IsOnMap(478) and not IsOnMap(399)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(75)">
+							<TeleportTo Name="Idyllshire" AetheryteId="75" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(75)">
+							<Travel To="478" />
 						</If>
 					</If>
-					<NoCombatMoveTo Name="Peddler of Wonders" XYZ="-650.1717, -123.7525, 524.3762" />
-					<BuyItem ItemId="12708" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1011947" XYZ="-650.1717, -123.7525, 524.3762" />
+					<If Condition="IsOnMap(478)">
+						<Travel To="399_East" />
+					</If>
+					<NoCombatMoveTo Name="Fishing Area" XYZ="-132.6967, 100.6697, -174.4449" />
+					<While Condition="IsTimeBetween(0,8)">
+						<Fish Mooch="1" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+							<FishSpots>
+								<FishSpot XYZ="-150.2127, 100.5781, -165.148" Heading="4.761885" Sit="&Sit;" />
+								<FishSpot XYZ="-139.849, 100.5536, -131.9201" Heading="4.858229" Sit="&Sit;" />
+								<FishSpot XYZ="-107.8227, 100.5613, -113.613" Heading="5.377638" Sit="&Sit;" />
+								<FishSpot XYZ="-79.9915, 100.371, -105.9302" Heading="0.3280509" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<While Condition="IsTimeBetween(8,16)">
+						<Fish Mooch="1" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+							<FishSpots>
+								<FishSpot XYZ="-56.66175, 100.3939, -132.4922" Heading="0.231708" Sit="&Sit;" />
+								<FishSpot XYZ="-25.77501, 100.7706, -143.1776" Heading="6.015825" Sit="&Sit;" />
+								<FishSpot XYZ="-2.563813, 100.8151, -144.9184" Heading="5.915293" Sit="&Sit;" />
+								<FishSpot XYZ="-44.87856, 100.5354, -145.8865" Heading="1.270529" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<While Condition="IsTimeBetween(16,24)">
+						<Fish Mooch="1" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+							<FishSpots>
+								<FishSpot XYZ="-69.49921, 100.5481, -119.9857" Heading="1.144865" Sit="&Sit;" />
+								<FishSpot XYZ="-96.05309, 100.5018, -103.8853" Heading="6.079261" Sit="&Sit;" />
+								<FishSpot XYZ="-128.7163, 100.5612, -119.684" Heading="5.589172" Sit="&Sit;" />
+								<FishSpot XYZ="-138.2877, 100.5412, -153.9744" Heading="5.869821" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+								<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+							<Travel To="398" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(398)">
+						<NoCombatMoveTo Name="Traveling Mender" XYZ="479.3926, -51.1414, 24.64331" />
+						<NPCRepair NpcID="1011913" />
+					</If>
+					<NoCombatMoveTo Name="Fishing Area" XYZ="389.6898, -35.24823, -454.1585" />
+					<While Condition="IsTimeBetween(0,2)">
+						<Fish Mooch="0" Bait="Stonefly Nymph" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+							<FishSpots>
+								<FishSpot XYZ="402.1413, -38.58605, -456.5269" Heading="1.516019" />
+								<FishSpot XYZ="403.3074, -37.31662, -467.7083" Heading="2.175753" />
+								<FishSpot XYZ="401.0666, -34.58467, -483.6742" Heading="1.905572" />
+								<FishSpot XYZ="389.9444, -24.80533, -500.1925" Heading="1.725455" />
+							</FishSpots>
+						</Fish>
+					</While>
 				</If>
-				<If Condition="not HasAtLeast(12705,99)">
-					<LogMessage Message="You need more Purse Web Spiders!" />
-					<If Condition="not IsOnMap(401)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(72)">
-							<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+				<If Condition="IsQuestCompleted(67622)">
+
+					<!-- Bait: Red Balloon -->
+					<!-- Bait: Purse Web Spider -->
+
+					<If Condition="not HasAtLeast(12708,198)">
+						<LogMessage Message="You need more Red Balloons!" />
+						<If Condition="not IsOnMap(401)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+								<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+								<Travel To="401" />
+							</If>
 						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
-							<Travel To="401" />
+						<NoCombatMoveTo Name="Peddler of Wonders" XYZ="-650.1717, -123.7525, 524.3762" />
+						<BuyItem ItemId="12708" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1011947" XYZ="-650.1717, -123.7525, 524.3762" />
+					</If>
+					<If Condition="not HasAtLeast(12705,99)">
+						<LogMessage Message="You need more Purse Web Spiders!" />
+						<If Condition="not IsOnMap(401)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+								<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+								<Travel To="401" />
+							</If>
 						</If>
+						<NoCombatMoveTo Name="Peddler of Wonders" XYZ="-650.1717, -123.7525, 524.3762" />
+						<BuyItem ItemId="12705" ItemCount="99" DialogOption="1" InteractDistance="3.0" NpcId="1011947" XYZ="-650.1717, -123.7525, 524.3762" />
 					</If>
-					<NoCombatMoveTo Name="Peddler of Wonders" XYZ="-650.1717, -123.7525, 524.3762" />
-					<BuyItem ItemId="12705" ItemCount="99" DialogOption="1" InteractDistance="3.0" NpcId="1011947" XYZ="-650.1717, -123.7525, 524.3762" />
-				</If>
-				<If Condition="not IsOnMap(400)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-						<TeleportTo Name="Moghome" AetheryteId="78" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-							<TeleportTo Name="Zenith" AetheryteId="79" />
+					<If Condition="not IsOnMap(400)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+							<TeleportTo Name="Moghome" AetheryteId="78" />
 						</If>
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-						<Travel To="400" />
-					</If>
-				</If>
-				<NoCombatMoveTo Name="Fishing Area" XYZ="415.054, -34.741, 224.941" />
-				<While Condition="IsTimeBetween(0,8)">
-					<Fish Mooch="0" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Red Balloon" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
-						<FishSpots>
-							<FishSpot XYZ="383.1271, -32.22247, 224.4714" Heading="3.658631" Sit="&Sit;" />
-							<FishSpot XYZ="399.1938, -31.78651, 210.6297" Heading="4.255534" Sit="&Sit;" />
-							<FishSpot XYZ="409.6648, -27.11975, 190.1976" Heading="4.645092" Sit="&Sit;" />
-							<FishSpot XYZ="401.9158, -15.62117, 151.534" Heading="5.363472" Sit="&Sit;" />
-						</FishSpots>
-					</Fish>
-				</While>
-				<While Condition="IsTimeBetween(8,16)">
-					<Fish Mooch="0" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Red Balloon" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
-						<FishSpots>
-							<FishSpot XYZ="388.0283, -18.84589, 137.6511" Heading="5.614801" Sit="&Sit;" />
-							<FishSpot XYZ="301.8756, -32.13477, 148.893" Heading="1.402976" Sit="&Sit;" />
-							<FishSpot XYZ="304.6878, -26.67708, 163.0019" Heading="1.542298" Sit="&Sit;" />
-							<FishSpot XYZ="319.9989, -35.77306, 143.5513" Heading="0.2007916" Sit="&Sit;" />
-						</FishSpots>
-					</Fish>
-				</While>
-				<While Condition="IsTimeBetween(16,24)">
-					<Fish Mooch="0" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Red Balloon" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
-						<FishSpots>
-							<FishSpot XYZ="395.5926, -9.912615, 144.1238" Heading="5.124711" Sit="&Sit;" />
-							<FishSpot XYZ="408.392, -20.66908, 166.4381" Heading="4.978103" Sit="&Sit;" />
-							<FishSpot XYZ="404.1494, -28.8089, 200.6677" Heading="4.374915" Sit="&Sit;" />
-							<FishSpot XYZ="391.0198, -33.02426, 218.162" Heading="3.821994" Sit="&Sit;" />
-						</FishSpots>
-					</Fish>
-				</While>
-				<LogMessage Message="Swapping zones to not scare the fish..." />
-				<If Condition="not IsOnMap(398)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
-						<TeleportTo Name="Tailfeather" AetheryteId="76" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(77)">
-							<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+								<TeleportTo Name="Zenith" AetheryteId="79" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+							<Travel To="400" />
 						</If>
 					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
-						<Travel To="398" />
+					<NoCombatMoveTo Name="Fishing Area" XYZ="415.054, -34.741, 224.941" />
+					<While Condition="IsTimeBetween(0,8)">
+						<Fish Mooch="0" Bait="Red Balloon" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+							<FishSpots>
+								<FishSpot XYZ="383.1271, -32.22247, 224.4714" Heading="3.658631" Sit="&Sit;" />
+								<FishSpot XYZ="399.1938, -31.78651, 210.6297" Heading="4.255534" Sit="&Sit;" />
+								<FishSpot XYZ="409.6648, -27.11975, 190.1976" Heading="4.645092" Sit="&Sit;" />
+								<FishSpot XYZ="401.9158, -15.62117, 151.534" Heading="5.363472" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<While Condition="IsTimeBetween(8,16)">
+						<Fish Mooch="0" Bait="Red Balloon" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+							<FishSpots>
+								<FishSpot XYZ="388.0283, -18.84589, 137.6511" Heading="5.614801" Sit="&Sit;" />
+								<FishSpot XYZ="301.8756, -32.13477, 148.893" Heading="1.402976" Sit="&Sit;" />
+								<FishSpot XYZ="304.6878, -26.67708, 163.0019" Heading="1.542298" Sit="&Sit;" />
+								<FishSpot XYZ="319.9989, -35.77306, 143.5513" Heading="0.2007916" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<While Condition="IsTimeBetween(16,24)">
+						<Fish Mooch="0" Bait="Red Balloon" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+							<FishSpots>
+								<FishSpot XYZ="395.5926, -9.912615, 144.1238" Heading="5.124711" Sit="&Sit;" />
+								<FishSpot XYZ="408.392, -20.66908, 166.4381" Heading="4.978103" Sit="&Sit;" />
+								<FishSpot XYZ="404.1494, -28.8089, 200.6677" Heading="4.374915" Sit="&Sit;" />
+								<FishSpot XYZ="391.0198, -33.02426, 218.162" Heading="3.821994" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+								<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+							<Travel To="398" />
+						</If>
 					</If>
+					<If Condition="IsOnMap(398)">
+						<NoCombatMoveTo Name="Traveling Mender" XYZ="479.3926, -51.1414, 24.64331" />
+						<NPCRepair NpcID="1011913" />
+					</If>
+					<NoCombatMoveTo Name="Fishing Area" XYZ="494.2171, -48.32631, -95.97192" />
+					<While Condition="IsTimeBetween(0,2)">
+						<Fish Mooch="0" Bait="Purse Web Spider" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+							<FishSpots>
+								<FishSpot XYZ="501.2845, -46.86706, -103.2937" Heading="5.03247" />
+								<FishSpot XYZ="503.1552, -46.24928, -129.7628" Heading="4.263829" />
+								<FishSpot XYZ="497.208, -46.23687, -142.0822" Heading="2.272058" />
+								<FishSpot XYZ="489.0568, -47.75262, -114.1986" Heading="1.440586" />
+							</FishSpots>
+						</Fish>
+					</While>
 				</If>
-				<If Condition="IsOnMap(398)">
-					<NoCombatMoveTo Name="Traveling Mender" XYZ="479.3926, -51.1414, 24.64331" />
-					<NPCRepair NpcID="1011913" />
-				</If>
-				<NoCombatMoveTo Name="Fishing Area" XYZ="494.2171, -48.32631, -95.97192" />
-				<While Condition="IsTimeBetween(0,2)">
-					<Fish Mooch="0" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Purse Web Spider" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
-						<FishSpots>
-							<FishSpot XYZ="501.2845, -46.86706, -103.2937" Heading="5.03247" />
-							<FishSpot XYZ="503.1552, -46.24928, -129.7628" Heading="4.263829" />
-							<FishSpot XYZ="497.208, -46.23687, -142.0822" Heading="2.272058" />
-							<FishSpot XYZ="489.0568, -47.75262, -114.1986" Heading="1.440586" />
-						</FishSpots>
-					</Fish>
-				</While>
 			</While>
 
 		</If>
@@ -786,11 +863,4 @@
 	</Order>
 	<GrindAreas>
 	</GrindAreas>
-	<CodeChunks>
-		<CodeChunk Name="Fisher">
-			<![CDATA[ 
-				ff14bot.Managers.ChatManager.SendChat("/gs change 23");
-		]]>
-		</CodeChunk>
-	</CodeChunks>
 </Profile>
