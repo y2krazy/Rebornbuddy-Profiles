@@ -5,7 +5,7 @@
 ################################
 # Author: y2krazy              #
 ################################
-# Version: 1.0.0               #
+# Version: 1.0.1               #
 ################################
 # Required Level: 30-49        #
 ################################
@@ -50,7 +50,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Amalj'aa Hunters" XYZ="-168.0747, -31.44637, 314.4869" />
-				<Grind grindRef="MS_1_Entry_1" while="not HuntGCEntryCompleted(0)" />
+				<Grind grindRef="MS_1_Entry_1" while="not (HuntGCEntryCompleted(0) or HuntGCRankCompleted(1))" />
 			</If>
 
 			<!-- Entry 2 -->
@@ -86,7 +86,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Sylvan Groans" XYZ="-165.5645, 11.40824, 1.371849" />
-				<Grind grindRef="MS_1_Entry_5" while="not HuntGCEntryCompleted(4)" />
+				<Grind grindRef="MS_1_Entry_5" while="not (HuntGCEntryCompleted(4) or HuntGCRankCompleted(1))" />
 			</If>
 
 			<!-- Entry 6 -->
@@ -101,25 +101,25 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Sylvan Soughs" XYZ="-165.5645, 11.40824, 1.371849" />
-				<Grind grindRef="MS_1_Entry_6" while="not HuntGCEntryCompleted(5)" />
+				<Grind grindRef="MS_1_Entry_6" while="not (HuntGCEntryCompleted(5) or HuntGCRankCompleted(1))" />
 			</If>
 
 			<!-- Entry 7 -->
 
 			<If Condition="not HuntGCEntryCompleted(6)">
 				<If Condition="not IsOnMap(139)">
-					<If Condition="not IsOnMap(138)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(14)">
-							<TeleportTo Name="Aleport" AetheryteId="14" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
-							<Travel To="138" />
+					<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+						<TeleportTo Name="Aleport" AetheryteId="14" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+							<TeleportTo Name="Swiftperch" AetheryteId="13" />
 						</If>
 					</If>
-					<Travel To="139" />
+					<Travel To="139_West" />
 				</If>
 				<NoCombatMoveTo Name="Kobold Pickmen" XYZ="-462.2217, 27.2155, 67.64117" />
-				<Grind grindRef="MS_1_Entry_7" while="not HuntGCEntryCompleted(6)" />
+				<Grind grindRef="MS_1_Entry_7" while="not (HuntGCEntryCompleted(6) or HuntGCRankCompleted(1))" />
 			</If>
 
 			<!-- Entry 8 -->
@@ -139,7 +139,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Amalj'aa Bruisers" XYZ="-65.70604, 17.20312, -279.76" />
-				<Grind grindRef="MS_1_Entry_8" while="not HuntGCEntryCompleted(7)" />
+				<Grind grindRef="MS_1_Entry_8" while="not (HuntGCEntryCompleted(7) or HuntGCRankCompleted(1))" />
 			</If>
 
 			<!-- Entry 9 -->
@@ -154,7 +154,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Ixali Straightbeaks" XYZ="61.7285, -38.23936, 268.6373" />
-				<Grind grindRef="MS_1_Entry_9" while="not HuntGCEntryCompleted(8)" />
+				<Grind grindRef="MS_1_Entry_9" while="not (HuntGCEntryCompleted(8) or HuntGCRankCompleted(1))" />
 			</If>
 
 			<!-- Entry 10 -->
@@ -169,7 +169,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Ixali Wildtalons" XYZ="433.4565, 231.2814, 326.0107" />
-				<Grind grindRef="MS_1_Entry_10" while="not HuntGCEntryCompleted(9)" />
+				<Grind grindRef="MS_1_Entry_10" while="not (HuntGCEntryCompleted(9) or HuntGCRankCompleted(1))" />
 			</If>
 
 		</If>
@@ -209,7 +209,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Amalj'aa Divinators" XYZ="183.2934, 6.462846, 603.5359" />
-				<Grind grindRef="MS_2_Entry_1" while="not HuntGCEntryCompleted(0)" />
+				<Grind grindRef="MS_2_Entry_1" while="not (HuntGCEntryCompleted(0) or HuntGCRankCompleted(2))" />
 			</If>
 
 			<!-- Entry 2 -->
@@ -232,7 +232,7 @@
 					<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
 				</If>
 				<NoCombatMoveTo Name="Kobold Pitmen" XYZ="360.4421, 33.36853, 243.5167" />
-				<Grind grindRef="MS_2_Entry_2" while="not HuntGCEntryCompleted(1)" />
+				<Grind grindRef="MS_2_Entry_2" while="not (HuntGCEntryCompleted(1) or HuntGCRankCompleted(2))" />
 			</If>
 
 			<!-- Entry 3 -->
@@ -264,11 +264,11 @@
 						<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
 					</If>
 					<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
-						<Travel To="139" />
+						<Travel To="139_East" />
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Kobold Bedesmen" XYZ="341.9955, 6.022271, -39.15265" />
-				<Grind grindRef="MS_2_Entry_6" while="not HuntGCEntryCompleted(5)" />
+				<Grind grindRef="MS_2_Entry_6" while="not (HuntGCEntryCompleted(5) or HuntGCRankCompleted(2))" />
 			</If>
 
 			<!-- Entry 7 -->
@@ -283,7 +283,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Kobold Priests" XYZ="55.83952, 55.61008, -448.2537" />
-				<Grind grindRef="MS_2_Entry_7" while="not HuntGCEntryCompleted(6)" />
+				<Grind grindRef="MS_2_Entry_7" while="not (HuntGCEntryCompleted(6) or HuntGCRankCompleted(2))" />
 			</If>
 
 			<!-- Entry 8 -->
@@ -298,7 +298,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Sylvan Sighs" XYZ="-18.85196, 17.78652, -1.659298" />
-				<Grind grindRef="MS_2_Entry_8" while="not HuntGCEntryCompleted(7)" />
+				<Grind grindRef="MS_2_Entry_8" while="not (HuntGCEntryCompleted(7) or HuntGCRankCompleted(2))" />
 			</If>
 
 			<!-- Entry 9 -->
@@ -318,7 +318,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Shelfscale Sahagins" XYZ="-101.3048, -25.22088, 54.37542" />
-				<Grind grindRef="MS_2_Entry_9" while="not HuntGCEntryCompleted(8)" />
+				<Grind grindRef="MS_2_Entry_9" while="not (HuntGCEntryCompleted(8) or HuntGCRankCompleted(2))" />
 			</If>
 
 			<!-- Entry 10 -->
@@ -338,7 +338,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Amalj'aa Pugilists" XYZ="-87.44495, 7.37224, 359.5429" />
-				<Grind grindRef="MS_2_Entry_10" while="not HuntGCEntryCompleted(9)" />
+				<Grind grindRef="MS_2_Entry_10" while="not (HuntGCEntryCompleted(9) or HuntGCRankCompleted(2))" />
 			</If>
 
 		</If>
@@ -373,7 +373,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Ixali Boldwings" XYZ="15.44099, -13.71721, -22.23289" />
-				<Grind grindRef="MS_3_Entry_1" while="not HuntGCEntryCompleted(0)" />
+				<Grind grindRef="MS_3_Entry_1" while="not (HuntGCEntryCompleted(0) or HuntGCRankCompleted(3))" />
 			</If>
 
 			<!-- Entry 2 -->
@@ -388,7 +388,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Sylpheed Screeches" XYZ="311.5955, -15.48906, -130.7409" />
-				<Grind grindRef="MS_3_Entry_2" while="not HuntGCEntryCompleted(1)" />
+				<Grind grindRef="MS_3_Entry_2" while="not (HuntGCEntryCompleted(1) or HuntGCRankCompleted(3))" />
 			</If>
 
 			<!-- Entry 3 -->
@@ -403,7 +403,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="U'Ghamaro Bedesmen" XYZ="111.4399, 23.70747, -618.6485" />
-				<Grind grindRef="MS_3_Entry_3" while="not HuntGCEntryCompleted(2)" />
+				<Grind grindRef="MS_3_Entry_3" while="not (HuntGCEntryCompleted(2) or HuntGCRankCompleted(3))" />
 			</If>
 
 			<!-- Entry 4 -->
@@ -423,7 +423,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Trenchtooth Sahagins" XYZ="14.73123, -10.95773, -89.13138" />
-				<Grind grindRef="MS_3_Entry_4" while="not HuntGCEntryCompleted(3)" />
+				<Grind grindRef="MS_3_Entry_4" while="not (HuntGCEntryCompleted(3) or HuntGCRankCompleted(3))" />
 			</If>
 
 			<!-- Entry 5 -->
@@ -443,7 +443,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Sapsa Shelfclaws" XYZ="-244.8752, -42.51975, -307.953" />
-				<Grind grindRef="MS_3_Entry_5" while="not HuntGCEntryCompleted(4)" />
+				<Grind grindRef="MS_3_Entry_5" while="not (HuntGCEntryCompleted(4) or HuntGCRankCompleted(3))" />
 			</If>
 
 			<!-- Entry 6 -->
@@ -463,7 +463,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Zahar'ak Archers" XYZ="327.9548, 8.116199, -35.67156" />
-				<Grind grindRef="MS_3_Entry_6" while="not HuntGCEntryCompleted(5)" />
+				<Grind grindRef="MS_3_Entry_6" while="not (HuntGCEntryCompleted(5) or HuntGCRankCompleted(3))" />
 			</If>
 
 			<!-- Entry 7 -->
@@ -478,7 +478,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Natalan Fogcallers" XYZ="482.3545, 303.7265, -211.424" />
-				<Grind grindRef="MS_3_Entry_7" while="not HuntGCEntryCompleted(6)" />
+				<Grind grindRef="MS_3_Entry_7" while="not (HuntGCEntryCompleted(6) or HuntGCRankCompleted(3))" />
 			</If>
 
 			<!-- Entry 8 -->
@@ -493,7 +493,7 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Natalan Boldwings" XYZ="482.3545, 303.7265, -211.424" />
-				<Grind grindRef="MS_3_Entry_8" while="not HuntGCEntryCompleted(7)" />
+				<Grind grindRef="MS_3_Entry_8" while="not (HuntGCEntryCompleted(7) or HuntGCRankCompleted(3))" />
 			</If>
 
 			<!-- Entry 9 -->
