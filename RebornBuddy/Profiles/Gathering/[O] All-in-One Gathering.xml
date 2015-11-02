@@ -34,7 +34,6 @@
 
   <!ENTITY AlaMhiganMustard "0">
   <!ENTITY Chamomile "0">
-  <!ENTITY ChamomileSeeds "0">
   <!ENTITY Cinnamon "0">
   <!ENTITY Coneflower "0">
   <!ENTITY DesertSaffron "0">
@@ -64,6 +63,8 @@
   <!ENTITY EarthCrystalBTN "0">
   <!ENTITY LightningCrystalBTN "0">
   <!ENTITY WaterCrystalBTN "0">
+
+  <!ENTITY ChamomileSeeds "0"> <!-- Gathers Earth Shards when seeds are hidden. -->
 
   <!-- Combat -->
 
@@ -206,7 +207,7 @@
 		<If Condition="ItemCount(4835) &lt; &AlaMhiganMustard;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 23">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 23 Botanist or higher." />
@@ -244,7 +245,7 @@
 		<If Condition="ItemCount(5542) &lt; &Chamomile;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 24">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 24 Botanist or higher." />
@@ -281,55 +282,12 @@
 			</If>
 		</If>
 
-		<!-- Chamomile Seeds -->
-
-		<If Condition="ItemCount(7740) &lt; &ChamomileSeeds;">
-			<RunCode Name="Botanist" />
-			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
-				<If Condition="Core.Player.ClassLevel &lt; 24">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 24 Botanist or higher." />
-					<StopBot />
-				</If>
-				<If Condition="Core.Player.ClassLevel &gt; 23">
-					<LogMessage Message="You need more Chamomile Seeds..." />
-					<If Condition="not IsOnMap(139)">
-						<If Condition="not IsOnMap(138)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(14)">
-								<TeleportTo Name="Aleport" AetheryteId="14" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
-								<Travel To="138" />
-							</If>
-						</If>
-						<Travel To="139_West" />
-					</If>
-					<NoCombatMoveTo Name="Farming Area" XYZ="-357.8316, -1.374854, 168.1623" />
-					<Gather while="ItemCount(7740) &lt; &ChamomileSeeds;">
-						<GatherObject>Lush Vegetation Patch</GatherObject>
-						<HotSpots>
-							<HotSpot Radius="90" XYZ="-357.8316, -1.374854, 168.1623" name="Lush Vegetation Patches" />
-							<HotSpot Radius="90" XYZ="-431.1957, -2.45465, 136.5387" name="Lush Vegetation Patches" />
-						</HotSpots>
-						<ItemNames>
-							<ItemName>Chamomile Seeds</ItemName>
-							<ItemName>Earth Shard</ItemName>
-						</ItemNames>
-						<GatheringSkillOrder>
-							<GatheringSkill SpellName="Blessed Harvest II" TimesToCast="1" />
-						</GatheringSkillOrder>
-					</Gather>
-				</If>
-			</If>
-		</If>
-
 		<!-- Cinnamon -->
 
 		<If Condition="ItemCount(4828) &lt; &Cinnamon;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 4">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 4 Botanist or higher." />
@@ -368,7 +326,7 @@
 		<While Condition="ItemCount(12638) &lt; &Coneflower;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 56">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 56 Botanist or higher." />
@@ -440,7 +398,7 @@
 		<If Condition="ItemCount(4843) &lt; &DesertSaffron;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 35">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 35 Botanist or higher." />
@@ -479,7 +437,7 @@
 		<If Condition="ItemCount(5385) &lt; &ElmLog;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 12">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 12 Botanist or higher." />
@@ -518,7 +476,7 @@
 		<If Condition="ItemCount(5346) &lt; &Flax;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 31">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 31 Botanist or higher." />
@@ -560,7 +518,7 @@
 		<If Condition="ItemCount(5601) &lt; &Grade3CarbonizedMatterBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 50">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 50 Botanist or higher." />
@@ -598,7 +556,7 @@
 		<If Condition="ItemCount(4784) &lt; &HighlandParsley;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 15">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 15 Botanist or higher." />
@@ -636,7 +594,7 @@
 		<If Condition="ItemCount(6145) &lt; &NobleGrapes;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 22">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 22 Botanist or higher." />
@@ -678,7 +636,7 @@
 		<If Condition="ItemCount(4785) &lt; &Paprika;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 16">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 16 Botanist or higher." />
@@ -721,7 +679,7 @@
 		<If Condition="ItemCount(4812) &lt; &PixiePlums;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 21">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 21 Botanist or higher." />
@@ -763,7 +721,7 @@
 		<If Condition="ItemCount(5393) &lt; &RosewoodLog;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 46">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 46 Botanist or higher." />
@@ -801,7 +759,7 @@
 		<While Condition="ItemCount(12642) &lt; &Rue;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 58">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 58 Botanist or higher." />
@@ -890,7 +848,7 @@
 		<If Condition="ItemCount(4819) &lt; &StickyRice;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 25">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 25 Botanist or higher." />
@@ -932,7 +890,7 @@
 		<If Condition="ItemCount(4811) &lt; &SunLemon;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 17">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 17 Botanist or higher." />
@@ -970,7 +928,7 @@
 		<If Condition="ItemCount(5388) &lt; &WalnutLog;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 24">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 24 Botanist or higher." />
@@ -1014,7 +972,7 @@
 		<If Condition="ItemCount(5) &lt; &EarthShardBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Earth Shards..." />
 				<If Condition="not IsOnMap(154)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(7)">
@@ -1046,7 +1004,7 @@
 		<If Condition="ItemCount(2) &lt; &FireShardBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Fire Shards..." />
 				<If Condition="not IsOnMap(134)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(52)">
@@ -1078,7 +1036,7 @@
 		<If Condition="ItemCount(3) &lt; &IceShardBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Ice Shards..." />
 				<If Condition="not IsOnMap(148)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(3)">
@@ -1110,7 +1068,7 @@
 		<If Condition="ItemCount(6) &lt; &LightningShardBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Lightning Shards..." />
 				<If Condition="not IsOnMap(141)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(53)">
@@ -1142,7 +1100,7 @@
 		<If Condition="ItemCount(7) &lt; &WaterShardBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Water Shards..." />
 				<If Condition="not IsOnMap(140)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(17)">
@@ -1174,7 +1132,7 @@
 		<If Condition="ItemCount(4) &lt; &WindShardBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Wind Shards..." />
 				<If Condition="not IsOnMap(148)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(3)">
@@ -1206,7 +1164,7 @@
 		<If Condition="ItemCount(11) &lt; &EarthCrystalBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Earth Crystals..." />
 				<If Condition="not IsOnMap(154)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(7)">
@@ -1239,7 +1197,7 @@
 		<If Condition="ItemCount(8) &lt; &FireCrystalBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Fire Crystals..." />
 				<If Condition="not IsOnMap(134)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(52)">
@@ -1272,7 +1230,7 @@
 		<If Condition="ItemCount(9) &lt; &IceCrystalBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Ice Crystals..." />
 				<If Condition="not IsOnMap(153)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(5)">
@@ -1310,7 +1268,7 @@
 		<If Condition="ItemCount(12) &lt; &LightningCrystalBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Lightning Crystals..." />
 				<If Condition="not IsOnMap(141)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(53)">
@@ -1343,7 +1301,7 @@
 		<If Condition="ItemCount(13) &lt; &WaterCrystalBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Water Crystals..." />
 				<If Condition="not IsOnSubMap(206)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
@@ -1376,7 +1334,7 @@
 		<If Condition="ItemCount(10) &lt; &WindCrystalBTN;">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+			<If Condition="ClassName == ClassJobType.Botanist">
 				<LogMessage Message="You need more Wind Crystals..." />
 				<If Condition="not IsOnMap(148)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(3)">
@@ -1401,6 +1359,49 @@
 						<GatheringSkill SpellName="Blessed Harvest II" TimesToCast="1" />
 					</GatheringSkillOrder>
 				</Gather>
+			</If>
+		</If>
+
+		<!-- Chamomile Seeds -->
+
+		<If Condition="ItemCount(7740) &lt; &ChamomileSeeds;">
+			<RunCode Name="Botanist" />
+			<WaitTimer WaitTime="3" />
+			<If Condition="ClassName == ClassJobType.Botanist">
+				<If Condition="Core.Player.ClassLevel &lt; 24">
+					<LogMessage Message="You do not meet the minimum level requirement." />
+					<LogMessage Message="Please reach level 24 Botanist or higher." />
+					<StopBot />
+				</If>
+				<If Condition="Core.Player.ClassLevel &gt; 23">
+					<LogMessage Message="You need more Chamomile Seeds..." />
+					<If Condition="not IsOnMap(139)">
+						<If Condition="not IsOnMap(138)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+								<TeleportTo Name="Aleport" AetheryteId="14" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+								<Travel To="138" />
+							</If>
+						</If>
+						<Travel To="139_West" />
+					</If>
+					<NoCombatMoveTo Name="Farming Area" XYZ="-357.8316, -1.374854, 168.1623" />
+					<Gather while="ItemCount(7740) &lt; &ChamomileSeeds;">
+						<GatherObject>Lush Vegetation Patch</GatherObject>
+						<HotSpots>
+							<HotSpot Radius="90" XYZ="-357.8316, -1.374854, 168.1623" name="Lush Vegetation Patches" />
+							<HotSpot Radius="90" XYZ="-431.1957, -2.45465, 136.5387" name="Lush Vegetation Patches" />
+						</HotSpots>
+						<ItemNames>
+							<ItemName>Chamomile Seeds</ItemName>
+							<ItemName>Earth Shard</ItemName>
+						</ItemNames>
+						<GatheringSkillOrder>
+							<GatheringSkill SpellName="Blessed Harvest II" TimesToCast="1" />
+						</GatheringSkillOrder>
+					</Gather>
+				</If>
 			</If>
 		</If>
 
@@ -2146,7 +2147,7 @@
 		<While Condition="ItemCount(5025) &lt; &EmperorFish;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 50">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 50 Fisher or higher." />
@@ -2262,7 +2263,7 @@
 		<While Condition="ItemCount(4898) &lt; &FullmoonSardine;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 34">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 34 Fisher or higher." />
@@ -2401,7 +2402,7 @@
 		<While Condition="ItemCount(4984) &lt; &GoldenLoach;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 39">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 39 Fisher or higher." />
@@ -2533,7 +2534,7 @@
 		<While Condition="ItemCount(4893) &lt; &HamerheadShark;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 29">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 29 Fisher or higher." />
@@ -2675,7 +2676,7 @@
 		<While Condition="ItemCount(4893) &lt; &HamerheadShark2;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 29">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 29 Fisher or higher." />
@@ -2792,7 +2793,7 @@
 		<While Condition="ItemCount(4989) &lt; &IgnusSnail;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 41">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 41 Fisher or higher." />
@@ -2909,7 +2910,7 @@
 		<While Condition="ItemCount(12741) &lt; &PipiraPira;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 58">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 58 or higher." />
@@ -3043,7 +3044,7 @@
 		<While Condition="ItemCount(4905) &lt; &Raincaller;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 43">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 43 Fisher or higher." />
@@ -3191,7 +3192,7 @@
 		<While Condition="ItemCount(4884) &lt; &RazorClam;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 20">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 20 Fisher or higher." />
@@ -3312,7 +3313,7 @@
 		<While Condition="ItemCount(4884) &lt; &RothlytOyster;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 17">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 17 Fisher or higher." />
@@ -3434,7 +3435,7 @@
 		<While Condition="ItemCount(5025) &lt; &SilverShark;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 41">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 41 or higher." />
@@ -3560,7 +3561,7 @@
 		<While Condition="ItemCount(12729) &lt; &ThreelipCarp;">
 			<RunCode Name="Fisher" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
+			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 58">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 58 or higher." />
@@ -3700,7 +3701,7 @@
 		<If Condition="ItemCount(5524) &lt; &Alumen;">
 			<RunCode Name="Miner" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 19">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 19 Miner or higher." />
@@ -3738,7 +3739,7 @@
 		<If Condition="ItemCount(5525) &lt; &BlackAlumen;">
 			<RunCode Name="Miner" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 40">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 40 Miner or higher." />
@@ -3781,7 +3782,7 @@
 		<While Condition="ItemCount(12631) &lt; &DravanianSpringWater;">
 			<RunCode Name="Miner" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 54">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 54 Miner or higher." />
@@ -3868,7 +3869,7 @@
 		<If Condition="ItemCount(5601) &lt; &Grade3CarbonizedMatterMIN;">
 			<RunCode Name="Miner" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 50">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 50 Miner or higher." />
@@ -3906,7 +3907,7 @@
 		<If Condition="ItemCount(12531) &lt; &MythriteSand;">
 			<RunCode Name="Miner" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 51">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 51 Miner or higher." />
@@ -3964,7 +3965,7 @@
 		<If Condition="ItemCount(5143) &lt; &RawAmber;">
 			<RunCode Name="Miner" />
 			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 45">
 					<LogMessage Message="You do not meet the minimum level requirement." />
 					<LogMessage Message="Please reach level 45 Miner or higher." />
@@ -4023,7 +4024,7 @@
 			<If Condition="IsTimeBetween(1,4)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4065,7 +4066,7 @@
 				<If Condition="IsTimeBetween(4,7)">
 					<RunCode Name="Miner" />
 					<WaitTimer WaitTime="3" />
-					<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+					<If Condition="ClassName == ClassJobType.Miner">
 						<If Condition="not IsOnMap(398)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(77)">
 								<TeleportTo Name="Anyx Trine" AetheryteId="77" />
@@ -4121,7 +4122,7 @@
 			<If Condition="IsTimeBetween(5,8)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4162,7 +4163,7 @@
 			<If Condition="IsTimeBetween(9,12)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4204,7 +4205,7 @@
 				<If Condition="IsTimeBetween(12,15)">
 					<RunCode Name="Miner" />
 					<WaitTimer WaitTime="3" />
-					<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+					<If Condition="ClassName == ClassJobType.Miner">
 						<If Condition="not IsOnMap(400)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(78)">
 								<TeleportTo Name="Moghome" AetheryteId="78" />
@@ -4255,7 +4256,7 @@
 			<If Condition="IsTimeBetween(13,16)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4296,7 +4297,7 @@
 			<If Condition="IsTimeBetween(17,20)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4337,7 +4338,7 @@
 			<If Condition="IsTimeBetween(19,22)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(134)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(52)">
 							<TeleportTo Name="Summerford Farms" AetheryteId="52" />
@@ -4386,7 +4387,7 @@
 			<If Condition="IsTimeBetween(21,24)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4447,7 +4448,7 @@
 			<If Condition="IsTimeBetween(1,4)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4488,7 +4489,7 @@
 			<If Condition="IsTimeBetween(5,8)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4529,7 +4530,7 @@
 			<If Condition="IsTimeBetween(9,12)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4570,7 +4571,7 @@
 			<If Condition="IsTimeBetween(13,16)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4611,7 +4612,7 @@
 			<If Condition="IsTimeBetween(17,20)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4652,7 +4653,7 @@
 			<If Condition="IsTimeBetween(21,24)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4700,7 +4701,7 @@
 				<If Condition="IsTimeBetween(0,4)">
 					<RunCode Name="Botanist" />
 					<WaitTimer WaitTime="3" />
-					<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+					<If Condition="ClassName == ClassJobType.Botanist">
 						<If Condition="not IsOnMap(397)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(71)">
 								<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
@@ -4760,7 +4761,7 @@
 			<If Condition="IsTimeBetween(1,4)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4801,7 +4802,7 @@
 			<If Condition="IsTimeBetween(5,8)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4842,7 +4843,7 @@
 			<If Condition="IsTimeBetween(9,12)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4883,7 +4884,7 @@
 			<If Condition="IsTimeBetween(13,16)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4924,7 +4925,7 @@
 			<If Condition="IsTimeBetween(17,20)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4966,7 +4967,7 @@
 				<If Condition="IsTimeBetween(20,24)">
 					<RunCode Name="Botanist" />
 					<WaitTimer WaitTime="3" />
-					<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+					<If Condition="ClassName == ClassJobType.Botanist">
 						<If Condition="not IsOnMap(397)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(71)">
 								<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
@@ -5026,7 +5027,7 @@
 			<If Condition="IsTimeBetween(21,24)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5087,7 +5088,7 @@
 			<If Condition="IsTimeBetween(1,4)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5128,7 +5129,7 @@
 			<If Condition="IsTimeBetween(5,8)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5170,7 +5171,7 @@
 				<If Condition="IsTimeBetween(8,12)">
 					<RunCode Name="Botanist" />
 					<WaitTimer WaitTime="3" />
-					<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+					<If Condition="ClassName == ClassJobType.Botanist">
 						<If Condition="not IsOnMap(398)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(77)">
 								<TeleportTo Name="Anyx Trine" AetheryteId="77" />
@@ -5226,7 +5227,7 @@
 			<If Condition="IsTimeBetween(9,12)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5267,7 +5268,7 @@
 			<If Condition="IsTimeBetween(13,16)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5309,7 +5310,7 @@
 				<If Condition="IsTimeBetween(16,20)">
 					<RunCode Name="Botanist" />
 					<WaitTimer WaitTime="3" />
-					<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+					<If Condition="ClassName == ClassJobType.Botanist">
 						<If Condition="not IsOnMap(400)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(79)">
 								<TeleportTo Name="Zenith" AetheryteId="79" />
@@ -5365,7 +5366,7 @@
 			<If Condition="IsTimeBetween(17,20)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5406,7 +5407,7 @@
 			<If Condition="IsTimeBetween(21,24)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5467,7 +5468,7 @@
 			<If Condition="IsTimeBetween(1,4)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5508,7 +5509,7 @@
 			<If Condition="IsTimeBetween(5,8)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5549,7 +5550,7 @@
 			<If Condition="IsTimeBetween(9,12)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5590,7 +5591,7 @@
 			<If Condition="IsTimeBetween(13,16)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5632,7 +5633,7 @@
 				<If Condition="IsTimeBetween(16,20)">
 					<RunCode Name="Miner" />
 					<WaitTimer WaitTime="3" />
-					<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+					<If Condition="ClassName == ClassJobType.Miner">
 						<If Condition="not IsOnMap(401)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(72)">
 								<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
@@ -5683,7 +5684,7 @@
 			<If Condition="IsTimeBetween(17,20)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5728,7 +5729,7 @@
 				<If Condition="IsTimeBetween(20,24)">
 					<RunCode Name="Miner" />
 					<WaitTimer WaitTime="3" />
-					<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+					<If Condition="ClassName == ClassJobType.Miner">
 						<If Condition="not IsOnMap(397)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(71)">
 								<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
@@ -5788,7 +5789,7 @@
 			<If Condition="IsTimeBetween(21,24)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5849,7 +5850,7 @@
 			<If Condition="IsTimeBetween(1,4)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5890,7 +5891,7 @@
 			<If Condition="IsTimeBetween(5,8)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5917,7 +5918,7 @@
 			<If Condition="IsTimeBetween(5,8)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(140)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 							<TeleportTo Name="Horizon" AetheryteId="17" />
@@ -5958,7 +5959,7 @@
 			<If Condition="IsTimeBetween(9,12)">
 				<RunCode Name="Botanist" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Botanist">
+				<If Condition="ClassName == ClassJobType.Botanist">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5999,7 +6000,7 @@
 			<If Condition="IsTimeBetween(13,16)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -6040,7 +6041,7 @@
 			<If Condition="IsTimeBetween(17,21)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -6081,7 +6082,7 @@
 			<If Condition="IsTimeBetween(21,24)">
 				<RunCode Name="Miner" />
 				<WaitTimer WaitTime="3" />
-				<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+				<If Condition="ClassName == ClassJobType.Miner">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
