@@ -113,6 +113,7 @@
   <!ENTITY RothlytOyster "0"> <!-- Bait: Rat Tail -->
   <!ENTITY SilverShark "0"> <!-- Bait: Lugworm -->
   <!ENTITY ThreelipCarp "0"> <!-- Bait: Goblin Jig - Purchase Manually! -->
+  <!ENTITY TitanicSawfish "1"> <!-- Bait: Crab Ball - Weather Dependent! -->
 
   <!-- Mining -->
 
@@ -2194,6 +2195,8 @@
 						<Fish Mooch="1" Bait="Syrphid Basket" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
 							<Keepers>
 								<Keeper Name="Emperor Fish" />
+								<Keeper Name="Kissing Trout" />
+								<Keeper Name="Starbright" />
 							</Keepers>
 							<FishSpots>
 								<FishSpot XYZ="-255.658, 249.5589, 9.888695" Heading="6.102521" Sit="&Sit;" />
@@ -2207,6 +2210,8 @@
 						<Fish Mooch="1" Bait="Syrphid Basket" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
 							<Keepers>
 								<Keeper Name="Emperor Fish" />
+								<Keeper Name="Kissing Trout" />
+								<Keeper Name="Starbright" />
 							</Keepers>
 							<FishSpots>
 								<FishSpot XYZ="-293.2694, 242.3817, 18.43318" Heading="0.6388495" Sit="&Sit;" />
@@ -2220,6 +2225,8 @@
 						<Fish Mooch="1" Bait="Syrphid Basket" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
 							<Keepers>
 								<Keeper Name="Emperor Fish" />
+								<Keeper Name="Kissing Trout" />
+								<Keeper Name="Starbright" />
 							</Keepers>
 							<FishSpots>
 								<FishSpot XYZ="-291.6105, 243.2684, 13.05748" Heading="0.9592915" Sit="&Sit;" />
@@ -3489,7 +3496,6 @@
 					<While Condition="IsTimeBetween(0,8)">
 						<Fish Mooch="1" Bait="Lugworm" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
 							<Keepers>
-								<Keeper Name="Merlthor Goby" />
 								<Keeper Name="Silver Shark" />
 							</Keepers>
 							<FishSpots>
@@ -3503,7 +3509,6 @@
 					<While Condition="IsTimeBetween(8,16)">
 						<Fish Mooch="1" Bait="Lugworm" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
 							<Keepers>
-								<Keeper Name="Merlthor Goby" />
 								<Keeper Name="Silver Shark" />
 							</Keepers>
 							<FishSpots>
@@ -3516,7 +3521,6 @@
 					<While Condition="IsTimeBetween(16,24)">
 						<Fish Mooch="1" Bait="Lugworm" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
 							<Keepers>
-								<Keeper Name="Merlthor Goby" />
 								<Keeper Name="Silver Shark" />
 							</Keepers>
 							<FishSpots>
@@ -3685,6 +3689,148 @@
 								<FishSpot XYZ="-464.6139, 90.49382, -655.6116" Heading="3.961328" />
 								<FishSpot XYZ="-458.4462, 90.05778, -665.2849" Heading="4.0095" />
 								<FishSpot XYZ="-448.6599, 90.39497, -671.6024" Heading="3.666018" />
+							</FishSpots>
+						</Fish>
+					</While>
+				</If>
+			</If>
+		</While>
+
+		<!-- Titanic Sawfish -->
+		<!-- Bait: Crab Ball  -->
+
+		<While Condition="ItemCount(4924) &lt; &TitanicSawfish;">
+			<RunCode Name="Fisher" />
+			<WaitTimer WaitTime="3" />
+			<If Condition="ClassName == ClassJobType.Fisher">
+				<If Condition="Core.Player.ClassLevel &lt; 50">
+					<LogMessage Message="You do not meet the minimum level requirement." />
+					<LogMessage Message="Please reach level 50 Fisher or higher." />
+					<StopBot />
+				</If>
+				<If Condition="Core.Player.ClassLevel &gt; 49">
+					<LogMessage Message="You need more Titanic Sawfish..." />
+					<If Condition="not HasAtLeast(2593,198)">
+						<LogMessage Message="You need more Crab Balls!" />
+						<If Condition="not IsOnMap(140)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+								<TeleportTo Name="Horizon" AetheryteId="17" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+								<Travel To="140" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-466.4225, 23.47034, -379.8734" />
+						<BuyItem ItemId="2593" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1004038" XYZ="-466.4225, 23.47034, -379.8734" />
+					</If>
+					<If Condition="not HasAtLeast(2594,1)">
+						<LogMessage Message="You need 1 Butterworm!" />
+						<If Condition="not IsOnMap(140)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+								<TeleportTo Name="Horizon" AetheryteId="17" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+								<Travel To="140" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-466.4225, 23.47034, -379.8734" />
+						<BuyItem ItemId="2594" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1004038" XYZ="-466.4225, 23.47034, -379.8734" />
+					</If>
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<While Condition="IsTimeBetween(0,8)">
+						<LogMessage Message="Waiting 30 seconds for possible weather change..." />
+						<WaitTimer WaitTime="30" />
+						<If Condition="(Managers.WorldManager.CurrentWeatherId == 1) or (Managers.WorldManager.CurrentWeatherId == 2)">
+							<Fish Mooch="2" Bait="Crab Ball" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Patience="Patience" Condition="IsTimeBetween(0,8)">
+								<Keepers>
+									<Keeper Name="Pirate's Bane" />
+									<Keeper Name="Silver Shark" />
+									<Keeper Name="Titanic Sawfish" />
+								</Keepers>
+								<FishSpots>
+									<FishSpot XYZ="-527.6955, 50.22827, -702.8832" Heading="4.463608" Sit="&Sit;" />
+									<FishSpot XYZ="-532.7543, 50.62562, -718.4993" Heading="4.905524" Sit="&Sit;" />
+									<FishSpot XYZ="-534.9161, 55.56728, -728.6633" Heading="6.036497" Sit="&Sit;" />
+								</FishSpots>
+							</Fish>
+						</If>
+						<If Condition="(Managers.WorldManager.CurrentWeatherId != 1) or (Managers.WorldManager.CurrentWeatherId != 2)">
+							<LogMessage Message="Waiting until the weather changes..." />
+							<WaitWhile Condition="IsTimeBetween(0,8)" />
+						</If>
+					</While>
+					<While Condition="IsTimeBetween(8,16)">
+						<LogMessage Message="Waiting 30 seconds for possible weather change..." />
+						<WaitTimer WaitTime="30" />
+						<If Condition="(Managers.WorldManager.CurrentWeatherId == 1) or (Managers.WorldManager.CurrentWeatherId == 2)">
+							<Fish Mooch="2" Bait="Crab Ball" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Patience="Patience" Condition="IsTimeBetween(8,16)">
+								<Keepers>
+									<Keeper Name="Pirate's Bane" />
+									<Keeper Name="Silver Shark" />
+									<Keeper Name="Titanic Sawfish" />
+								</Keepers>
+								<FishSpots>
+									<FishSpot XYZ="-544.6031, 55.08995, -735.312" Heading="5.228059" Sit="&Sit;" />
+									<FishSpot XYZ="-577.9675, 53.32803, -738.14" Heading="4.988366" Sit="&Sit;" />
+									<FishSpot XYZ="-584.2756, 53.30873, -748.4681" Heading="5.047428" Sit="&Sit;" />
+								</FishSpots>
+							</Fish>
+						</If>
+						<If Condition="(Managers.WorldManager.CurrentWeatherId != 1) or (Managers.WorldManager.CurrentWeatherId != 2)">
+							<LogMessage Message="Waiting until the weather changes..." />
+							<WaitWhile Condition="IsTimeBetween(8,16)" />
+						</If>
+					</While>
+					<While Condition="IsTimeBetween(16,24)">
+						<LogMessage Message="Waiting 30 seconds for possible weather change..."/>
+						<WaitTimer WaitTime="30" />
+						<If Condition="(Managers.WorldManager.CurrentWeatherId == 1) or (Managers.WorldManager.CurrentWeatherId == 2)">
+							<Fish Mooch="2" Bait="Crab Ball" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Patience="Patience" Condition="IsTimeBetween(16,24)">
+								<Keepers>
+									<Keeper Name="Pirate's Bane" />
+									<Keeper Name="Silver Shark" />
+									<Keeper Name="Titanic Sawfish" />
+								</Keepers>
+								<FishSpots>
+									<FishSpot XYZ="-599.1049, 63.55748, -740.2671" Heading="0.8142395" Sit="&Sit;" />
+									<FishSpot XYZ="-615.1044, 62.95032, -732.8251" Heading="0.160789" Sit="&Sit;" />
+									<FishSpot XYZ="-634.379, 61.44657, -736.5915" Heading="5.880581" Sit="&Sit;" />
+									<FishSpot XYZ="-645.4948, 58.8576, -756.3717" Heading="5.158014" Sit="&Sit;" />
+								</FishSpots>
+							</Fish>
+						</If>
+						<If Condition="(Managers.WorldManager.CurrentWeatherId != 1) or (Managers.WorldManager.CurrentWeatherId != 2)">
+							<LogMessage Message="Waiting until the weather changes..." />
+							<WaitWhile Condition="IsTimeBetween(16,24)" />
+						</If>
+					</While>
+					<If Condition="IsOnMap(140)">
+						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-466.4225, 23.47034, -379.8734" />
+						<NPCRepair NpcID="1004038" DialogOption="3" />
+					</If>
+					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Fishing Area" XYZ="-84.78143, 18.80033, -6.896642" />
+					<While Condition="IsTimeBetween(0,2)">
+						<Fish Mooch="0" Bait="Crab Ball" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+							<FishSpots>
+								<FishSpot XYZ="-100.7754, 19.61446, -20.36347" Heading="3.885699" />
+								<FishSpot XYZ="-62.71826, 19.52363, -15.73167" Heading="2.249978" />
+								<FishSpot XYZ="-91.62029, 18.6036, 33.73547" Heading="0.000597477" />
 							</FishSpots>
 						</Fish>
 					</While>
