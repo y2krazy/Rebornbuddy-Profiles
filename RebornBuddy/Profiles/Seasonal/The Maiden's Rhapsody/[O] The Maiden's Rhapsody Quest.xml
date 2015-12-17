@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+############################################
+# Profile: [O] The Maiden's Rhapsody Quest #
+############################################
+# Author: y2krazy                          #
+############################################
+# Version: 1.0.0                           #
+############################################
+# Required Level: 30                       #
+############################################
+# Required Teleport Locations:             #
+# 	Limsa Lominsa Lower Decks              #
+############################################
+# Required User Interaction:               #
+# 	None                                   #
+############################################
+# Required Setup:                          #
+# 	None                                   #
+############################################
+# Rewards:                                 #
+# 	Amatsu Armor Set                       #
+############################################
+-->
+<Profile>
+	<Name>[O] The Maiden's Rhapsody Quest</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<LogMessage Message="Checking for completed quest..." />
+
+		<!-- A Journey to Remember -->
+
+		<If Condition="not IsQuestCompleted(67742)">
+			<If Condition="not HasQuest(67742)">
+				<If Condition="not IsOnMap(128)">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<Travel To="128" />
+				</If>
+				<MoveTo Name="Remumu" XYZ="18.26495, 40.21512, 0.1983643" />
+				<If Condition="IsQuestAcceptQualified(67742)">
+					<PickupQuest NpcId="1016143" QuestId="67742" XYZ="18.26495, 40.21512, 0.1983643" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67742)">
+				<If Condition="GetQuestStep(67742) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<NoCombatMoveTo Name="Remumu" XYZ="505.7296, 16.63227, 454.1847" />
+					<TalkTo NpcId="1016144" XYZ="505.7296, 16.63227, 454.1847" QuestId="67742" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67742) == 2">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<NoCombatMoveTo Name="FATE: Our Favorite Pastime" XYZ="528.6136, 8.874862, 557.9169" />
+					<While Condition="not IsTodoChecked(67742, 2, 0)">
+						<Fate MinLevel="29" MaxLevel="31" Condition="not IsTodoChecked(67742, 2, 0)">
+							<FateIds>
+								<FateId>932</FateId> <!-- Our Favorite Pastime -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67742) == 3">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<MoveTo Name="Iroha" XYZ="-4.867676, 20, -16.25085" />
+					<HandOver ItemId="2001928" QuestId="67742" StepId="3" NpcId="1016145" XYZ="-4.867676, 20, -16.25085" />
+				</If>
+				<If Condition="GetQuestStep(67742) == 4">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="FATE: The Way of the Samurai" XYZ="-475.3495, 65.23953, 69.01758" />
+					<While Condition="not IsTodoChecked(67742, 4, 0)">
+						<Fate MinLevel="30" MaxLevel="32" Condition="not IsTodoChecked(67742, 4, 0)">
+							<FateIds>
+								<FateId>933</FateId> <!-- The Way of the Samurai -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67742) == 5">
+					<If Condition="not IsOnMap(132)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+							<TeleportTo Name="New Gridania" AetheryteId="2" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+							<Travel To="132" />
+						</If>
+					</If>
+					<MoveTo Name="Iroha" XYZ="31.14368, -8, 96.87952" />
+					<HandOver ItemId="2001929" QuestId="67742" StepId="5" NpcId="1016146" XYZ="31.14368, -8, 96.87952" />
+				</If>
+				<If Condition="GetQuestStep(67742) == 6">
+					<If Condition="not IsOnMap(146)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+							<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(19)">
+								<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+							<Travel To="146" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="FATE: Serket Breaker" XYZ="42.625, -0.08352578, 758.6061" />
+					<While Condition="not IsTodoChecked(67742, 6, 0)">
+						<Fate MinLevel="31" MaxLevel="33" Condition="not IsTodoChecked(67742, 6, 0)">
+							<FateIds>
+								<FateId>934</FateId> <!-- Serket Breaker -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67742) == 7">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<MoveTo Name="Iroha" XYZ="24.00244, 7.199992, -89.98254" />
+					<HandOver ItemId="2001930" QuestId="67742" StepId="7" NpcId="1016147" XYZ="24.00244, 7.199992, -89.98254" />
+				</If>
+				<If Condition="GetQuestStep(67742) == 8">
+					<If Condition="not IsOnSubMap(239)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+							<Travel To="139_East" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="FATE: The Key to Amatsu Kyori" XYZ="266.1631, -3.067139, 60.77661" />
+					<RunCode Name="AJourneytoRemember" />
+					<While Condition="not IsTodoChecked(67742, 8, 0)">
+						<Fate MinLevel="32" MaxLevel="34" Condition="not IsTodoChecked(67742, 8, 0)">
+							<FateIds>
+								<FateId>935</FateId> <!-- The Key to Amatsu Kyori -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67742) == 9">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<MoveTo Name="Iroha" XYZ="-4.867676, 20, -16.25085" />
+					<HandOver ItemId="2001928" QuestId="67742" StepId="9" NpcId="1016145" XYZ="-4.867676, 20, -16.25085" />
+				</If>
+				<If Condition="GetQuestStep(67742) == 255">
+					<If Condition="not IsOnMap(128)">
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<Travel To="128" />
+					</If>
+
+					<!-- Rewards
+
+					Amatsu Armor Set
+
+					-->
+
+					<MoveTo Name="Remumu" XYZ="18.26495, 40.21512, 0.1983643" />
+					<TurnIn QuestId="67742" NpcId="1016143" XYZ="18.26495, 40.21512, 0.1983643" />
+				</If>
+			</If>
+		</If>
+
+		<LogMessage Message="You've completed The Maiden's Rhapsody seasonal event quest!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="AJourneytoRemember">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2006700).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
