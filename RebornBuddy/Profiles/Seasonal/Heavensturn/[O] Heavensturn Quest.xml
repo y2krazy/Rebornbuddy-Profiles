@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##########################################
+# Profile: [O] Heavensturn Quest         #
+##########################################
+# Author: y2krazy                        #
+##########################################
+# Version: 1.0.0                         #
+##########################################
+# Required Level: 15                     #
+##########################################
+# Required Teleport Locations:           #
+# 	Bentbranch Meadows                   #
+# 	New Gridania                         #
+##########################################
+# Required User Interaction:             #
+# 	FATE: Pounding Ride, Pounding Hearts #
+##########################################
+# Required Setup:                        #
+# 	None                                 #
+##########################################
+# Rewards:                               #
+# 	See No Helm                          #
+# 	Speak No Helm                        #
+# 	Hear No Helm                         #
+##########################################
+-->
+<Profile>
+	<Name>[O] Heavensturn Quest</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<LogMessage Message="Checking for completed quest..." />
+
+		<!-- Monkey about Town -->
+
+		<If Condition="not IsQuestCompleted(67753)">
+			<If Condition="not HasQuest(67753)">
+				<If Condition="not IsOnMap(133)">
+					<If Condition="not IsOnMap(132)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+							<TeleportTo Name="New Gridania" AetheryteId="2" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+							<Travel To="132" />
+						</If>
+					</If>
+					<Travel To="133" />
+				</If>
+				<MoveTo Name="Saru Bugyo" XYZ="-50.03442, 6.49999, -91.11163" />
+				<If Condition="IsQuestAcceptQualified(67753)">
+					<PickupQuest NpcId="1016387" QuestId="67753" XYZ="-50.03442, 6.49999, -91.11163" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67753)">
+				<If Condition="GetQuestStep(67753) == 1">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="FATE: Pounding Ride, Pounding Hearts" XYZ="185.0958, -33.06069, 380.7639" />
+					<LogMessage Message="Please manually complete the Pounding Rice, Pounding Hearts FATE at this location (when it appears)." />
+					<LogMessage Message="Alternatively, you could look for the FATE southest of the Zephyr Gate in Middle La Noscea, east of the Salt Strand in Lower La Noscea, south of Hyrstmill in the North Shroud, southeast of the Ul'dah Dispatch Yard in Central Thanalan or east of Camp Drybone in Eastern Thanalan." />
+					<StopBot />
+				</If>
+				<If Condition="GetQuestStep(67753) == 255">
+					<If Condition="not IsOnMap(133)">
+						<If Condition="not IsOnMap(132)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+								<TeleportTo Name="New Gridania" AetheryteId="2" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+								<Travel To="132" />
+							</If>
+						</If>
+						<Travel To="133" />
+					</If>
+
+					<!-- Rewards
+
+					See No Helm
+					Speak No Helm
+					Hear No Helm
+
+					-->
+
+					<MoveTo Name="Saru Bugyo" XYZ="-50.03442, 6.49999, -91.11163" />
+					<TurnIn QuestId="67753" NpcId="1016387" XYZ="-50.03442, 6.49999, -91.11163" />
+				</If>
+			</If>
+		</If>
+
+		<LogMessage Message="You've completed the Heavensturn seasonal event quest!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>
