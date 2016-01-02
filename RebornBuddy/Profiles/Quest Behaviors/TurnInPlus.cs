@@ -35,12 +35,24 @@ namespace ff14bot.NeoProfiles
 		protected override Composite CreateBehavior()
 		{
 			return new PrioritySelector(
+                new Decorator(ret => QuestId == 65539 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
 				new Decorator(ret => QuestId == 65964 && SelectYesno.IsOpen,
 					new Action(r =>
 					{
 						SelectYesno.ClickYes();
 					})
 				),
+                new Decorator(ret => QuestId == 66133 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
                 new Decorator(ret => QuestId == 66740 && SelectString.IsOpen,
                     new Action(r =>
                     {
