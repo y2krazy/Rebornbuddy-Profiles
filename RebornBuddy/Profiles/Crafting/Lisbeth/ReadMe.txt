@@ -3,7 +3,7 @@ Quantities Calculated for:
 1-50 ALC
 1-50 ARM
 1-50 BSM
-1-50 CRP
+1-50 CRP (Done!)
 1-50 CUL
 1-50 GSM
 1-60 LTW (Done!)
