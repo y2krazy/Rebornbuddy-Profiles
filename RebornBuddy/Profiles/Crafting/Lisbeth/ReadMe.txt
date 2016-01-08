@@ -16,7 +16,7 @@ You MUST have the following cross-classed for the quantities provided to work pr
 Careful Synthesis II
 Manipulation
 Hasty Touch
-Byregot's Brow
+Byregot's Blessing
 Steady Hand II
 Ingenuity II
 Innovation
