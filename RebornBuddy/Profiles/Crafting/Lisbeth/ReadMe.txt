@@ -1,14 +1,29 @@
-Quantities Calculated for:
+1-60 ALC (Needs testing!)
+1-60 ARM (Needs testing!)
+1-60 BSM (Needs testing!)
+1-60 CRP (Needs testing!)
+1-60 CUL (Needs testing!)
+1-60 GSM (Needs testing!)
+1-60 LTW (Done, but needs adjustment.)
+1-60 WVR (Needs testing!)
 
-1-50 ALC
-1-50 ARM
-1-50 BSM
-1-50 CRP (Done!)
-1-50 CUL
-1-50 GSM
-1-60 LTW (Done!)
-1-50 WVR
+############################
+# IMPORTANT NOTE FOR 50-60 #
+############################
 
-For 1-50 above, please set 50-60 quantities manually until I can do them myself.
+You MUST have the following cross-classed for the quantities provided to work properly. If you cannot cross-class them all, you may need to craft more than the quantities these import orders are set to.
 
-SUGGESTION: Craft 100 stackables at a time until you reach the target level.
+Careful Synthesis II
+Manipulation
+Hasty Touch
+Byregot's Brow
+Steady Hand II
+Ingenuity II
+Innovation
+Tricks of the Trade
+Comfort Zone
+
+Optional:
+
+Waste Not II
+Reclaim
