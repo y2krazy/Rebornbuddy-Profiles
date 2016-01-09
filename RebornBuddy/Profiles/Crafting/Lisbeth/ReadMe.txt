@@ -16,8 +16,6 @@ NEEDS REFINEMENT:
 # IMPORTANT NOTES FOR 50-60 #
 #############################
 
-Suggested Stats: 450+ Craftsmanship, 425+ Control
-
 You MUST have the following cross-classed for the quantities provided to be accurate. If you cannot cross-class them all, you will likely need to craft more than the quantities these import orders are set to.
 
 Careful Synthesis II
