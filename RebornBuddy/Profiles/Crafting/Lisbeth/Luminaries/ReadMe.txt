@@ -1,4 +1,6 @@
-IMPORTANT NOTE: Please check your achievements in-game before starting these orders. Adjust the quantities so that you don't craft more than you need.
+IMPORTANT NOTE: Please check your achievements in-game before starting these orders. Adjust the quantities so that you don't craft more than you need!
+
+Reward & Achievement Links:
 
 ALC Reward: http://ffxiv.gamerescape.com/wiki/Alembic_of_the_Luminary
 Achievement: http://ffxiv.gamerescape.com/wiki/An_Alchemist%27s_Life_for_Me
