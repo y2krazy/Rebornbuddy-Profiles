@@ -1,17 +1,24 @@
-1-60 ALC (Needs testing!)
-1-60 ARM (Needs testing!)
-1-60 BSM (Needs testing!)
-1-60 CRP (Needs testing!)
-1-60 CUL (Needs testing!)
-1-60 GSM (Needs testing!)
-1-60 LTW (Done, but needs adjustment.)
-1-60 WVR (Needs testing!)
+NEEDS TESTING:
 
-############################
-# IMPORTANT NOTE FOR 50-60 #
-############################
+50-60 ALC
+50-60 ARM
+50-60 BSM
+50-60 CRP
+50-60 CUL
+50-60 GSM
+50-60 WVR
 
-You MUST have the following cross-classed for the quantities provided to work properly. If you cannot cross-class them all, you may need to craft more than the quantities these import orders are set to.
+NEEDS REFINEMENT:
+
+50-60 LTW
+
+#############################
+# IMPORTANT NOTES FOR 50-60 #
+#############################
+
+Suggested Stats: 450+ Craftsmanship, 425+ Control
+
+You MUST have the following cross-classed for the quantities provided to be accurate. If you cannot cross-class them all, you will likely need to craft more than the quantities these import orders are set to.
 
 Careful Synthesis II
 Manipulation
