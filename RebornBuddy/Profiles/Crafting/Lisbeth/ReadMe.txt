@@ -2,13 +2,13 @@ NEEDS TESTING:
 
 50-60 ARM
 50-60 BSM
-50-60 CRP
 50-60 CUL
 50-60 GSM
 50-60 WVR
 
 NEEDS REFINEMENT:
 
+50-60 CRP
 50-60 LTW
 
 #############################
