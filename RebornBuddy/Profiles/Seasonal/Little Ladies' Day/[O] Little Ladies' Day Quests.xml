@@ -86,6 +86,11 @@
 			</If>
 		</If>
 
+		<If Condition="&Certificates; == 0">
+			<LogMessage Message="Please set the amount of Certificates you would like to obtain!" />
+			<StopBot/>
+		</If>
+
 		<!-- Sugar, Spice, and Everything Rice -->
 
 		<LogMessage Message="Checking for &Certificates; Certificate(s) of Collaboration..." />
@@ -103,9 +108,10 @@
 						</If>
 					</If>
 					<MoveTo Name="Royal Servant" XYZ="-30.07556, 8, -103.8071" />
-					<If Condition="IsQuestAcceptQualified(67758)">
+					<RunCode Name="Pickup67758" />
+					<!-- <If Condition="IsQuestAcceptQualified(67758)">
 						<PickupQuest NpcId="1016361" QuestId="67758" XYZ="-30.07556, 8, -103.8071" />
-					</If>
+					</If> -->
 				</If>
 				<If Condition="HasQuest(67758)">
 					<If Condition="GetQuestStep(67758) == 1">
@@ -177,11 +183,11 @@
 						</If>
 					</If>
 					<If Condition="&SlightServant; == 0 and &StoutServant; == 0">
-						<LogMessage Message="Please choose a NPC to cast your vote with..." />
+						<LogMessage Message="Please choose a NPC to cast your vote with!" />
 						<StopBot/>
 					</If>
 					<If Condition="&SlightServant; != 0 and &StoutServant; != 0">
-						<LogMessage Message="Please choose only 1 NPC to cast your vote with..." />
+						<LogMessage Message="Please choose only 1 NPC to cast your vote with!" />
 						<StopBot/>
 					</If>
 					<If Condition="&SlightServant; != 0 and &StoutServant; == 0">
@@ -202,5 +208,28 @@
 	<GrindAreas>
 	</GrindAreas>
 	<CodeChunks>
+		<CodeChunk Name="Pickup67758">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1016361).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
+					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.JournalAccept.IsOpen)
+					ff14bot.RemoteWindows.JournalAccept.Accept();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk>
 	</CodeChunks>
 </Profile>
