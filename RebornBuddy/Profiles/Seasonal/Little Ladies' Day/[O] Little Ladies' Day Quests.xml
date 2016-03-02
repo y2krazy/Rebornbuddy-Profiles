@@ -38,7 +38,7 @@
 
   <!-- NOTE: Rewards are the same regardless of who your vote is cast with. -->
 
-  <!ENTITY Certificates "0"> <!-- Certificates to earn before stopping. -->
+  <!ENTITY Certificates "22"> <!-- Certificates to earn before stopping. -->
 
   <!ENTITY SlightServant "0"> <!-- Cast your vote with the Slight Servant? -->
   <!ENTITY StoutServant "0"> <!-- Cast your vote with the Stout Servant? -->
@@ -97,8 +97,23 @@
 
 			<LogMessage Message="Checking for &Certificates; Certificate(s) of Collaboration..." />
 
-			<If Condition="not IsQuestCompleted(67758)">
-				<If Condition="not HasQuest(67758)">
+			<If Condition="not HasQuest(67758)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<MoveTo Name="Royal Servant" XYZ="-30.07556, 8, -103.8071" />
+				<RunCode Name="Pickup67758" />
+				<!-- <If Condition="IsQuestAcceptQualified(67758)">
+					<PickupQuest NpcId="1016361" QuestId="67758" XYZ="-30.07556, 8, -103.8071" />
+				</If> -->
+			</If>
+			<If Condition="HasQuest(67758)">
+				<If Condition="GetQuestStep(67758) == 1">
 					<If Condition="not IsOnMap(130)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
 							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
@@ -107,49 +122,32 @@
 							<Travel To="130" />
 						</If>
 					</If>
-					<MoveTo Name="Royal Servant" XYZ="-30.07556, 8, -103.8071" />
-					<RunCode Name="Pickup67758" />
-					<!-- <If Condition="IsQuestAcceptQualified(67758)">
-						<PickupQuest NpcId="1016361" QuestId="67758" XYZ="-30.07556, 8, -103.8071" />
-					</If> -->
+					<MoveTo Name="Ul'dahn Citizen" XYZ="30.89954, 4.099995, -153.0938" />
+					<If Condition="GetQuestById(67758).QuestI8AH == 0">
+						<HandOver ItemId="2001936" QuestId="67758" StepId="1" NpcId="1016407" XYZ="30.89954, 4.099995, -153.0938" />
+					</If>
+					<If Condition="GetQuestById(67758).QuestI8AH == 1">
+						<HandOver ItemId="2001936" QuestId="67758" StepId="1" NpcId="1016404" XYZ="47.56238, 4.099995, -147.6006" />
+					</If>
 				</If>
-				<If Condition="HasQuest(67758)">
-					<If Condition="GetQuestStep(67758) == 1">
-						<If Condition="not IsOnMap(130)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-								<Travel To="130" />
-							</If>
+				<If Condition="GetQuestStep(67758) == 255">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
 						</If>
-						<MoveTo Name="Ul'dahn Citizen" XYZ="30.89954, 4.099995, -153.0938" />
-						<If Condition="GetQuestById(67758).QuestI8AH == 0">
-							<HandOver ItemId="2001936" QuestId="67758" StepId="1" NpcId="1016407" XYZ="30.89954, 4.099995, -153.0938" />
-						</If>
-						<If Condition="GetQuestById(67758).QuestI8AH == 1">
-							<HandOver ItemId="2001936" QuestId="67758" StepId="1" NpcId="1016404" XYZ="47.56238, 4.099995, -147.6006" />
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
 						</If>
 					</If>
-					<If Condition="GetQuestStep(67758) == 255">
-						<If Condition="not IsOnMap(130)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-								<Travel To="130" />
-							</If>
-						</If>
 
-						<!-- Rewards
+					<!-- Rewards
 
-						Certificate of Collaboration
+					Certificate of Collaboration
 
-						-->
+					-->
 
-						<MoveTo Name="Royal Servant" XYZ="-30.07556, 8, -103.8071" />
-						<TurnIn QuestId="67758" NpcId="1016361" XYZ="-30.07556, 8, -103.8071" />
-					</If>
+					<MoveTo Name="Royal Servant" XYZ="-30.07556, 8, -103.8071" />
+					<TurnIn QuestId="67758" NpcId="1016361" XYZ="-30.07556, 8, -103.8071" />
 				</If>
 			</If>
 
@@ -182,6 +180,14 @@
 							<Travel To="130" />
 						</If>
 					</If>
+
+					<!-- Rewards
+
+					Lady's Suikan (Female), or
+					Lord's Suikan (Male)
+
+					-->
+
 					<If Condition="&SlightServant; == 0 and &StoutServant; == 0">
 						<LogMessage Message="Please choose a NPC to cast your vote with!" />
 						<StopBot/>
