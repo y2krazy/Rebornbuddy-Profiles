@@ -5,7 +5,7 @@
 ##########################################
 # Author: y2krazy                        #
 ##########################################
-# Version: 1.0.0                         #
+# Version: 1.0.1                         #
 ##########################################
 # Required Level: 15                     #
 ##########################################
@@ -51,7 +51,7 @@
 	<KillRadius>90</KillRadius>
 	<Order>
 
-		<LogMessage Message="Checking for completed quests..." />
+		<ExLog Color="#66FF66" Name="y2k's LLD 2016" Message="Checking for completed quests..." />
 
 		<!-- Aligning the Stars -->
 
@@ -86,16 +86,16 @@
 			</If>
 		</If>
 
-		<If Condition="&Certificates; == 0">
-			<LogMessage Message="Please set the amount of Certificates you would like to obtain!" />
-			<StopBot/>
-		</If>
-
 		<!-- Sugar, Spice, and Everything Rice -->
 
 		<While Condition="not HasAtLeast(13741,&Certificates;)">
 
-			<LogMessage Message="Checking for &Certificates; Certificate(s) of Collaboration..." />
+			<If Condition="&Certificates; == 0">
+				<ExLog Color="#FF0000" Name="y2k's LLD 2016" Message="Please set the amount of Certificates you would like to obtain!" />
+				<StopBot/>
+			</If>
+
+			<ExLog Color="#66FF66" Name="y2k's LLD 2016" Message="Checking for &Certificates; Certificate(s) of Collaboration..." />
 
 			<If Condition="not HasQuest(67758)">
 				<If Condition="not IsOnMap(130)">
@@ -172,6 +172,32 @@
 				</If>
 			</If>
 			<If Condition="HasQuest(67759)">
+				<If Condition="GetQuestStep(67759) == 1">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<If Condition="&SlightServant; == 0 and &StoutServant; == 0">
+						<ExLog Color="#FF0000" Name="y2k's LLD 2016" Message="Please choose a NPC to cast your vote with!" />
+						<StopBot/>
+					</If>
+					<If Condition="&SlightServant; != 0 and &StoutServant; != 0">
+						<ExLog Color="#FF0000" Name="y2k's LLD 2016" Message="Please choose only 1 NPC to cast your vote with!" />
+						<StopBot/>
+					</If>
+					<If Condition="&SlightServant; != 0 and &StoutServant; == 0">
+						<MoveTo Name="Slight Servant" XYZ="-4.806641, 7.992439, -99.71777" />
+						<HandOver ItemId="13741" NpcId="1016412" XYZ="-4.806641, 7.992439, -99.71777" />
+					</If>
+					<If Condition="&SlightServant; == 0 and &StoutServant; != 0">
+						<MoveTo Name="Stout Servant" XYZ="-6.33252, 7.996815, -99.3515" />
+						<HandOver ItemId="13741" NpcId="1016413" XYZ="-6.33252, 7.996815, -99.3515" />
+					</If>
+				</If>
 				<If Condition="GetQuestStep(67759) == 255">
 					<If Condition="not IsOnMap(130)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
@@ -189,27 +215,13 @@
 
 					-->
 
-					<If Condition="&SlightServant; == 0 and &StoutServant; == 0">
-						<LogMessage Message="Please choose a NPC to cast your vote with!" />
-						<StopBot/>
-					</If>
-					<If Condition="&SlightServant; != 0 and &StoutServant; != 0">
-						<LogMessage Message="Please choose only 1 NPC to cast your vote with!" />
-						<StopBot/>
-					</If>
-					<If Condition="&SlightServant; != 0 and &StoutServant; == 0">
-						<MoveTo Name="Slight Servant" XYZ="-4.806641, 7.992439, -99.71777" />
-						<TurnIn QuestId="67759" NpcId="1016412" ItemId="13741" XYZ="-4.806641, 7.992439, -99.71777" />
-					</If>
-					<If Condition="&SlightServant; == 0 and &StoutServant; != 0">
-						<MoveTo Name="Stout Servant" XYZ="-6.33252, 7.996815, -99.3515" />
-						<TurnIn QuestId="67759" NpcId="1016413" ItemId="13741" XYZ="-6.33252, 7.996815, -99.3515" />
-					</If>
+					<MoveTo Name="Royal Seneschal" XYZ="-28.06134, 8, -104.6006" />
+					<TurnIn QuestId="67759" NpcId="1016356" XYZ="-28.06134, 8, -104.6006" />
 				</If>
 			</If>
 		</If>
 
-		<LogMessage Message="You've completed the Little Ladies' Day seasonal event quests!" />
+		<ExLog Color="#66FF66" Name="y2k's LLD 2016" Message="You've completed the Little Ladies' Day seasonal event quests!" />
 
 	</Order>
 	<GrindAreas>
