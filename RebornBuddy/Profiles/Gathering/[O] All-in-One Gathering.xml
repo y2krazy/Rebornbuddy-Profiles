@@ -5,7 +5,7 @@
 ########################################
 # Author: y2krazy                      #
 ########################################
-# Version: 1.0.1                       #
+# Version: 1.0.2                       #
 ########################################
 # Required Level: 4-60                 #
 ########################################
@@ -64,7 +64,26 @@
   <!ENTITY LightningCrystalBTN "0">
   <!ENTITY WaterCrystalBTN "0">
 
-  <!ENTITY ChamomileSeeds "0"> <!-- Gathers Earth Shards when seeds are hidden. -->
+  <!ENTITY AlaMhiganMustardSeeds "0"> <!-- Gathers Fire Shards when no seeds are found. -->
+  <!ENTITY BlackPepperSeeds "0"> <!-- Gathers Lightning Shards when no seeds are found. -->
+  <!ENTITY BloodCurrantSeeds "0"> <!-- Gathers Ice Shards when no seeds are found. -->
+  <!ENTITY ChamomileSeeds "0"> <!-- Gathers Earth Shards when no seeds are found. -->
+  <!-- !ENTITY CoerthanCarrotSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY DzemaelTomatoSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY HoneyLemonSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY LaNosceanLettuceSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY LavenderSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY LowlandGrapeSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY MandrakeSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY MidlandBasilSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY MidlandCabbageSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY MillioncornSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY OliveSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY PaprikaSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY PixiePlumSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY RolanberrySeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY SesameSeeds "0" --> <!-- Coming Soon!™ -->
+  <!-- !ENTITY WizardEggplantSeeds "0" --> <!-- Coming Soon!™ -->
 
   <!-- Combat -->
 
@@ -102,6 +121,7 @@
   <!ENTITY Sit "True"> <!-- Set this to "True" if you want to sit while fishing. -->
 
   <!ENTITY EmperorFish "0"> <!-- Bait: Syrphid Basket -->
+  <!ENTITY CoerthanCrab "0"> <!-- Bait: Syrphid Basket -->
   <!ENTITY FullmoonSardine "0"> <!-- Bait: Spoon Worm -->
   <!ENTITY GoldenLoach "0"> <!-- Bait: Honey Worm -->
   <!ENTITY HamerheadShark "0"> <!-- Bait: Steel Jig --> <!-- Western La Noscea -->
@@ -110,6 +130,7 @@
   <!ENTITY PipiraPira "0"> <!-- Bait: Goblin Jig - Purchase Manually! -->
   <!ENTITY Raincaller "0"> <!-- Bait: Stem Borer -->
   <!ENTITY RazorClam "0"> <!-- Bait: Rat Tail -->
+  <!ENTITY RockMussel "0"> <!-- Bait: Goblin Jig - Purchase Manually! -->
   <!ENTITY RothlytOyster "0"> <!-- Bait: Rat Tail -->
   <!ENTITY SilverShark "0"> <!-- Bait: Lugworm -->
   <!ENTITY ThreelipCarp "0"> <!-- Bait: Goblin Jig - Purchase Manually! -->
@@ -134,6 +155,11 @@
   <!ENTITY EarthCluster "0">
   <!ENTITY LightningCluster "0">
   <!ENTITY WaterCluster "0">
+
+  <!-- ExLog Colors -->
+
+  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+  <!ENTITY ExLogAck "#FF0000"> <!-- Warnings -->
 ]>
 <!-- End User Configuration -->
 
@@ -210,12 +236,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 23">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 23 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 23 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 22">
-					<LogMessage Message="You need more Ala Mhigan Mustard..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Ala Mhigan Mustard..." />
 					<If Condition="not IsOnMap(145)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(18)">
 							<TeleportTo Name="Camp Drybone" AetheryteId="18" />
@@ -248,12 +274,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 24">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 24 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 24 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 23">
-					<LogMessage Message="You need more Chamomile..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Chamomile..." />
 					<If Condition="not IsOnMap(139)">
 						<If Condition="not IsOnMap(138)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(14)">
@@ -290,12 +316,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 4">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 4 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 4 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 3">
-					<LogMessage Message="You need more Cinnamon..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Cinnamon..." />
 					<If Condition="not IsOnMap(154)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
 							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
@@ -329,12 +355,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 56">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 56 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 56 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 55">
-					<LogMessage Message="You need more Coneflower..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Coneflower..." />
 					<If Condition="not IsOnMap(398)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(77)">
 							<TeleportTo Name="Anyx Trine" AetheryteId="77" />
@@ -401,12 +427,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 35">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 35 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 35 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 34">
-					<LogMessage Message="You need more Desert Saffron..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Desert Saffron..." />
 					<If Condition="not IsOnMap(146)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(19)">
 							<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
@@ -440,12 +466,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 12">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 12 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 12 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 11">
-					<LogMessage Message="You need more Elm Logs..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Elm Logs..." />
 					<If Condition="not IsOnMap(148)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
 							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
@@ -479,12 +505,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 31">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 31 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 31 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 30">
-					<LogMessage Message="You need more Flax..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Flax..." />
 					<If Condition="not IsOnMap(153)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
 							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
@@ -521,12 +547,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 50">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 50 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 50 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 49">
-					<LogMessage Message="You need more Grade 3 Carbonized Matter..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Grade 3 Carbonized Matter..." />
 					<If Condition="not IsOnMap(141)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(53)">
 							<TeleportTo Name="Black Brush Station" AetheryteId="53" />
@@ -559,12 +585,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 15">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 15 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 15 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 14">
-					<LogMessage Message="You need more Highland Parsley..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Highland Parsley..." />
 					<If Condition="not IsOnMap(135)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(10)">
 							<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
@@ -597,12 +623,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 22">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 22 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 22 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 21">
-					<LogMessage Message="You need more Noble Grapes..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Noble Grapes..." />
 					<If Condition="not IsOnMap(139)">
 						<If Condition="not IsOnMap(138)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(14)">
@@ -639,12 +665,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 16">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 16 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 16 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 15">
-					<LogMessage Message="You need more Paprika..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Paprika..." />
 					<If Condition="not IsOnMap(138)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(13)">
 							<TeleportTo Name="Swiftperch" AetheryteId="13" />
@@ -682,12 +708,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 21">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 21 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 21 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 20">
-					<LogMessage Message="You need more Pixie Plums..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Pixie Plums..." />
 					<If Condition="not IsOnMap(139)">
 						<If Condition="not IsOnMap(138)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(14)">
@@ -724,12 +750,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 46">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 46 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 46 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 45">
-					<LogMessage Message="You need more Rosewood Logs..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Rosewood Logs..." />
 					<If Condition="not IsOnMap(152)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(4)">
 							<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
@@ -762,12 +788,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 58">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 58 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 58 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 57">
-					<LogMessage Message="You need more Rue!" />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Rue!" />
 					<If Condition="not IsOnMap(397)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
 							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
@@ -851,12 +877,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 25">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 25 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 25 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 24">
-					<LogMessage Message="You need more Sticky Rice..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Sticky Rice..." />
 					<If Condition="not IsOnMap(139)">
 						<If Condition="not IsOnMap(138)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(14)">
@@ -893,12 +919,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 17">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 17 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 17 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 16">
-					<LogMessage Message="You need more Sun Lemons..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Sun Lemons..." />
 					<If Condition="not IsOnMap(135)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(10)">
 							<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
@@ -931,12 +957,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 24">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 24 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 24 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 23">
-					<LogMessage Message="You need more Walnut Logs..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Walnut Logs..." />
 					<If Condition="not IsOnMap(153)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(5)">
 							<TeleportTo Name="Quarrymill" AetheryteId="5" />
@@ -974,7 +1000,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Earth Shards..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Earth Shards..." />
 				<If Condition="not IsOnMap(154)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(7)">
 						<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
@@ -1006,7 +1032,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Fire Shards..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Fire Shards..." />
 				<If Condition="not IsOnMap(134)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(52)">
 						<TeleportTo Name="Summerford Farms" AetheryteId="52" />
@@ -1038,7 +1064,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Ice Shards..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Ice Shards..." />
 				<If Condition="not IsOnMap(148)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(3)">
 						<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
@@ -1070,7 +1096,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Lightning Shards..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Lightning Shards..." />
 				<If Condition="not IsOnMap(141)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(53)">
 						<TeleportTo Name="Black Brush Station" AetheryteId="53" />
@@ -1102,7 +1128,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Water Shards..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Water Shards..." />
 				<If Condition="not IsOnMap(140)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 						<TeleportTo Name="Horizon" AetheryteId="17" />
@@ -1134,7 +1160,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Wind Shards..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Wind Shards..." />
 				<If Condition="not IsOnMap(148)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(3)">
 						<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
@@ -1166,7 +1192,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Earth Crystals..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Earth Crystals..." />
 				<If Condition="not IsOnMap(154)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(7)">
 						<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
@@ -1199,7 +1225,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Fire Crystals..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Fire Crystals..." />
 				<If Condition="not IsOnMap(134)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(52)">
 						<TeleportTo Name="Summerford Farms" AetheryteId="52" />
@@ -1232,7 +1258,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Ice Crystals..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Ice Crystals..." />
 				<If Condition="not IsOnMap(153)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(5)">
 						<TeleportTo Name="Quarrymill" AetheryteId="5" />
@@ -1270,7 +1296,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Lightning Crystals..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Lightning Crystals..." />
 				<If Condition="not IsOnMap(141)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(53)">
 						<TeleportTo Name="Black Brush Station" AetheryteId="53" />
@@ -1303,7 +1329,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Water Crystals..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Water Crystals..." />
 				<If Condition="not IsOnSubMap(206)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
 						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
@@ -1336,7 +1362,7 @@
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
-				<LogMessage Message="You need more Wind Crystals..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Wind Crystals..." />
 				<If Condition="not IsOnMap(148)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(3)">
 						<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
@@ -1363,19 +1389,142 @@
 			</If>
 		</If>
 
-		<!-- Chamomile Seeds -->
+		<!-- Ala Mhigan Mustard Seeds "0" -->
+
+		<If Condition="not HasAtLeast(7738,&AlaMhiganMustardSeeds;)">
+			<RunCode Name="Botanist" />
+			<WaitTimer WaitTime="3" />
+			<If Condition="ClassName == ClassJobType.Botanist">
+				<If Condition="Core.Player.ClassLevel &lt; 25">
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 25 Botanist or higher!" />
+					<StopBot />
+				</If>
+				<If Condition="Core.Player.ClassLevel &gt; 24">
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Ala Mhigan Mustard Seeds..." />
+					<If Condition="not IsOnMap(145)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+							<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+							<Travel To="145" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Farming Area" XYZ="-332.5353, -42.3961, 35.8915" />
+					<Gather while="not HasAtLeast(7738,&AlaMhiganMustardSeeds;)">
+						<GatherObject>Lush Vegetation Patch</GatherObject>
+						<HotSpots>
+							<HotSpot Radius="90" XYZ="-335.145, -31.50059, -22.2334" name="Lush Vegetation Patches" />
+							<HotSpot Radius="90" XYZ="-337.2345, -28.59863, -50.21656" name="Lush Vegetation Patches" />
+						</HotSpots>
+						<ItemNames>
+							<ItemName>Ala Mhigan Mustard Seeds</ItemName>
+							<ItemName>Fire Shard</ItemName>
+						</ItemNames>
+						<GatheringSkillOrder>
+							<GatheringSkill SpellName="Blessed Harvest II" TimesToCast="1" />
+						</GatheringSkillOrder>
+					</Gather>
+				</If>
+			</If>
+		</If>
+
+		<!-- Black Pepper Seeds "0" -->
+
+		<If Condition="not HasAtLeast(7737,&BlackPepperSeeds;)">
+			<RunCode Name="Botanist" />
+			<WaitTimer WaitTime="3" />
+			<If Condition="ClassName == ClassJobType.Botanist">
+				<If Condition="Core.Player.ClassLevel &lt; 15">
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 15 Botanist or higher!" />
+					<StopBot />
+				</If>
+				<If Condition="Core.Player.ClassLevel &gt; 14">
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Black Pepper Seeds..." />
+					<If Condition="not IsOnMap(141)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+							<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+							<Travel To="141" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Farming Area" XYZ="188.0804, -2.167089, -89.01173" />
+					<Gather while="not HasAtLeast(7737,&BlackPepperSeeds;)">
+						<GatherObject>Lush Vegetation Patch</GatherObject>
+						<HotSpots>
+							<HotSpot Radius="90" XYZ="198.298, -3.175221, -44.48304" name="Lush Vegetation Patches" />
+							<HotSpot Radius="90" XYZ="161.1153, 11.50991, -44.12688" name="Lush Vegetation Patches" />
+						</HotSpots>
+						<ItemNames>
+							<ItemName>Black Pepper Seeds</ItemName>
+							<ItemName>Lightning Shard</ItemName>
+						</ItemNames>
+						<GatheringSkillOrder>
+							<GatheringSkill SpellName="Blessed Harvest II" TimesToCast="1" />
+						</GatheringSkillOrder>
+					</Gather>
+				</If>
+			</If>
+		</If>
+
+		<!-- Blood Currant Seeds "0" -->
+
+		<If Condition="not HasAtLeast(7730,&BloodCurrantSeeds;)">
+			<RunCode Name="Botanist" />
+			<WaitTimer WaitTime="3" />
+			<If Condition="ClassName == ClassJobType.Botanist">
+				<If Condition="Core.Player.ClassLevel &lt; 40">
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 40 Botanist or higher!" />
+					<StopBot />
+				</If>
+				<If Condition="Core.Player.ClassLevel &gt; 39">
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Blood Currant Seeds..." />
+					<If Condition="not IsOnMap(153)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(6)">
+							<TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+						</If>
+						<If Condition="Managers.WorldManager.HasAetheryteId(5)">
+							<TeleportTo Name="Quarrymill" AetheryteId="5" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(5)">
+							<Travel To="153" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Farming Area" XYZ="-53.61382, 0.8825479, 357.4561" />
+					<Gather while="not HasAtLeast(7730,&BloodCurrantSeeds;)">
+						<GatherObject>Lush Vegetation Patch</GatherObject>
+						<HotSpots>
+							<HotSpot Radius="90" XYZ="-20.5742, -0.7045142, 384.4041" name="Lush Vegetation Patches" />
+							<HotSpot Radius="90" XYZ="-9.231849, -0.4900926, 336.9059" name="Lush Vegetation Patches" />
+						</HotSpots>
+						<ItemNames>
+							<ItemName>Blood Currant Seeds</ItemName>
+							<ItemName>Ice Shard</ItemName>
+						</ItemNames>
+						<GatheringSkillOrder>
+							<GatheringSkill SpellName="Blessed Harvest II" TimesToCast="1" />
+						</GatheringSkillOrder>
+					</Gather>
+				</If>
+			</If>
+		</If>
+
+		<!-- Chamomile Seeds "0" -->
 
 		<If Condition="not HasAtLeast(7740,&ChamomileSeeds;)">
 			<RunCode Name="Botanist" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Botanist">
 				<If Condition="Core.Player.ClassLevel &lt; 24">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 24 Botanist or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 24 Botanist or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 23">
-					<LogMessage Message="You need more Chamomile Seeds..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Chamomile Seeds..." />
 					<If Condition="not IsOnMap(139)">
 						<If Condition="not IsOnMap(138)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(14)">
@@ -1416,12 +1565,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 49">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 49 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 49 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 48">
-				<LogMessage Message="You need more Ahriman Wings..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Ahriman Wings..." />
 				<If Condition="not IsOnMap(147)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(22)">
 						<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
@@ -1446,12 +1595,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 15">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 15 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 15 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 14">
-				<LogMessage Message="You need more Aldgoat Skin..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Aldgoat Skin..." />
 				<If Condition="not IsOnMap(145)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(18)">
 						<TeleportTo Name="Camp Drybone" AetheryteId="18" />
@@ -1471,12 +1620,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 30">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 30 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 30 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 29">
-				<LogMessage Message="You need more Apkallu Eggs..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Apkallu Eggs..." />
 				<If Condition="not IsOnMap(137)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
 						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
@@ -1504,12 +1653,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 52">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 52 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 52 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 51">
-				<LogMessage Message="You need more Bear Fat..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Bear Fat..." />
 				<If Condition="not IsOnMap(398)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
 						<TeleportTo Name="Tailfeather" AetheryteId="76" />
@@ -1534,12 +1683,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 58">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 58 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 58 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 57">
-				<LogMessage Message="You need more Bear Fat..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Bear Fat..." />
 				<If Condition="not IsOnMap(399)">
 					<If Condition="not IsOnMap(478)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(75)">
@@ -1562,12 +1711,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 18">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 18 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 18 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 17">
-				<LogMessage Message="You need more Boar Hide..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Boar Hide..." />
 				<If Condition="not IsOnMap(152)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(4)">
 						<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
@@ -1587,12 +1736,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 45">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 45 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 45 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 44">
-				<LogMessage Message="You need more Boar Hide..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Boar Hide..." />
 				<If Condition="not IsOnMap(153)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(5)">
 						<TeleportTo Name="Quarrymill" AetheryteId="5" />
@@ -1615,12 +1764,12 @@
 
 		<If Condition="not HasAtLeast(12630,&DragonBlood;)">
 			<If Condition="Core.Player.ClassLevel &lt; 56">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 56 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 56 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 55">
-				<LogMessage Message="You need more Dragon Blood..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Dragon Blood..." />
 				<If Condition="not IsOnMap(398)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(77)">
 						<TeleportTo Name="Anyx Trine" AetheryteId="77" />
@@ -1645,12 +1794,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 47">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 47 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 47 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 46">
-				<LogMessage Message="You need more Eft Tails..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Eft Tails..." />
 				<If Condition="not IsOnMap(155)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
@@ -1670,12 +1819,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 35">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 35 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 35 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 34">
-				<LogMessage Message="You need more Fleece..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Fleece..." />
 				<If Condition="not IsOnMap(155)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
@@ -1695,12 +1844,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 50">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 50 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 50 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 49">
-				<LogMessage Message="You need more Garlean Steel Joints..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Garlean Steel Joints..." />
 				<If Condition="not IsOnMap(147)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(22)">
 						<TeleportTo Name="Ceruleum Processing Plant" AetheryteId="22" />
@@ -1725,12 +1874,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 45">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 45 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 45 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 44">
-				<LogMessage Message="You need more Gigantoad Skin..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Gigantoad Skin..." />
 				<If Condition="not IsOnMap(152)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(4)">
 						<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
@@ -1750,12 +1899,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 30">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 30 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 30 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 29">
-				<LogMessage Message="You need more Gigantoad Skin..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Gigantoad Skin..." />
 				<If Condition="not IsOnMap(137)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(12)">
 						<TeleportTo Name="Wineport" AetheryteId="12" />
@@ -1783,12 +1932,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 45">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 45 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 45 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 44">
-				<LogMessage Message="You need more Hippogryph Skin..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Hippogryph Skin..." />
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -1808,12 +1957,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 12">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 12 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 12 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 11">
-				<LogMessage Message="You need more Megalocrab Legs..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Megalocrab Legs..." />
 				<If Condition="not IsOnMap(135)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(10)">
 						<TeleportTo Name="The Moraby Drydocks" AetheryteId="10" />
@@ -1833,12 +1982,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 12">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 12 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 12 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 11">
-				<LogMessage Message="You need more Megalocrab Legs..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Megalocrab Legs..." />
 				<If Condition="not IsOnMap(134)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(52)">
 						<TeleportTo Name="Summerford Farms" AetheryteId="52" />
@@ -1858,12 +2007,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 59">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 59 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 59 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 58">
-				<LogMessage Message="You need more Okeanis Eggs..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Okeanis Eggs..." />
 				<If Condition="not IsOnMap(399)">
 					<If Condition="not IsOnMap(478)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(75)">
@@ -1886,12 +2035,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 59">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 59 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 59 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 58">
-				<LogMessage Message="You need more Okeanis Tails..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Okeanis Tails..." />
 				<If Condition="not IsOnMap(399)">
 					<If Condition="not IsOnMap(478)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(75)">
@@ -1914,12 +2063,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 48">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 48 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 48 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 47">
-				<LogMessage Message="You need more Peiste Skin..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Peiste Skin..." />
 				<If Condition="not IsOnMap(147)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(21)">
 						<TeleportTo Name="Camp Bluefog" AetheryteId="21" />
@@ -1944,12 +2093,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 25">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 25 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 25 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 24">
-				<LogMessage Message="You need more Peiste Skin..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Peiste Skin..." />
 				<If Condition="not IsOnMap(146)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(19)">
 						<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
@@ -1974,12 +2123,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 30">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 30 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 30 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 29">
-				<LogMessage Message="You need more Raptor Skin..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Raptor Skin..." />
 				<If Condition="not IsOnMap(137)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(12)">
 						<TeleportTo Name="Wineport" AetheryteId="12" />
@@ -2007,12 +2156,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 30">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 30 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 30 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 29">
-				<LogMessage Message="You need more Raptor Skin..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Raptor Skin..." />
 				<If Condition="not IsOnMap(148)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(3)">
 						<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
@@ -2032,12 +2181,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 32">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 32 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 32 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 31">
-				<LogMessage Message="You need more Raptor Skin..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Raptor Skin..." />
 				<If Condition="not IsOnMap(180)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(16)">
 						<TeleportTo Name="Camp Overlook" AetheryteId="16" />
@@ -2057,12 +2206,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 38">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 38 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 38 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 37">
-				<LogMessage Message="You need more Snurble Tufts..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Snurble Tufts..." />
 				<If Condition="not IsOnMap(145)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(18)">
 						<TeleportTo Name="Camp Drybone" AetheryteId="18" />
@@ -2082,12 +2231,12 @@
 			<RunCode Name="Combat" />
 			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 55">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 55 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 55 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 54">
-				<LogMessage Message="You need more Wyvern Wings..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Wyvern Wings..." />
 				<If Condition="not IsOnMap(400)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
 						<TeleportTo Name="Moghome" AetheryteId="78" />
@@ -2110,12 +2259,12 @@
 
 		<If Condition="not HasAtLeast(12888,&YakMilk;)">
 			<If Condition="Core.Player.ClassLevel &lt; 50">
-				<LogMessage Message="You do not meet the minimum level requirement." />
-				<LogMessage Message="Please reach level 50 or higher." />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 50 or higher!" />
 				<StopBot />
 			</If>
 			<If Condition="Core.Player.ClassLevel &gt; 49">
-				<LogMessage Message="You need more Yak Milk..." />
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Yak Milk..." />
 				<If Condition="not IsOnMap(397)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(71)">
 						<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
@@ -2150,14 +2299,14 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 50">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 50 Fisher or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 50 Fisher or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 49">
-					<LogMessage Message="You need more Emperor Fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Emperor Fish..." />
 					<If Condition="not HasAtLeast(2597,198)">
-						<LogMessage Message="You need more Syrphid Baskets!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Syrphid Baskets!" />
 						<If Condition="not IsOnMap(154)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(7)">
 								<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
@@ -2168,19 +2317,6 @@
 						</If>
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="10.6355, -44.73338, 220.2029" />
 						<BuyItem ItemId="2597" ItemCount="198" DialogOption="1" NpcId="1002376" XYZ="10.6355, -44.73338, 220.2029" />
-					</If>
-					<If Condition="not HasAtLeast(2595,1)">
-						<LogMessage Message="You need 1 Bass Ball!" />
-						<If Condition="not IsOnMap(154)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(7)">
-								<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
-								<Travel To="154" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="10.6355, -44.73338, 220.2029" />
-						<BuyItem ItemId="2595" ItemCount="1" DialogOption="1" NpcId="1002376" XYZ="10.6355, -44.73338, 220.2029" />
 					</If>
 					<If Condition="not IsOnMap(155)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(23)">
@@ -2240,7 +2376,7 @@
 						<NoCombatMoveTo Name="Mender" XYZ="-410.6966, 210.8949, -276.1425" />
 						<NPCRepair NpcID="1006800" DialogOption="4" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(154)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
 							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
@@ -2264,6 +2400,121 @@
 			</If>
 		</While>
 
+		<!-- Coerthan Crab -->
+		<!-- Bait: Syrphid Basket -->
+
+		<While Condition="not HasAtLeast(12718,&CoerthanCrab;)">
+			<RunCode Name="Fisher" />
+			<WaitTimer WaitTime="3" />
+			<If Condition="ClassName == ClassJobType.Fisher">
+				<If Condition="Core.Player.ClassLevel &lt; 52">
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 52 Fisher or higher!" />
+					<StopBot />
+				</If>
+				<If Condition="Core.Player.ClassLevel &gt; 51">
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Coerthan Crabs..." />
+					<If Condition="not HasAtLeast(2597,198)">
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Syrphid Baskets!" />
+						<If Condition="not IsOnMap(154)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+								<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+								<Travel To="154" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="10.6355, -44.73338, 220.2029" />
+						<BuyItem ItemId="2597" ItemCount="198" DialogOption="1" NpcId="1002376" XYZ="10.6355, -44.73338, 220.2029" />
+					</If>
+					<If Condition="not IsOnMap(397)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Fishing Area" XYZ="497.9344, 144.2772, 227.8259" />
+					<While Condition="IsTimeBetween(0,8)">
+						<Fish Mooch="1" Bait="Syrphid Basket" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Stealth="True" Condition="IsTimeBetween(0,8)">
+							<Keepers>
+								<Keeper Name="Coerthan Crab" />
+							</Keepers>
+							<FishSpots>
+								<FishSpot XYZ="494.6786, 143.5709, 241.5536" Heading="0.814786" Sit="&Sit;" />
+								<FishSpot XYZ="497.8435, 142.8067, 238.4556" Heading="0.4273236" Sit="&Sit;" />
+								<FishSpot XYZ="504.3681, 142.3905, 238.1131" Heading="5.426645" Sit="&Sit;" />
+								<FishSpot XYZ="505.0235, 142.795, 242.7929" Heading="5.709388" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<While Condition="IsTimeBetween(8,16)">
+						<Fish Mooch="1" Bait="Syrphid Basket" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Stealth="True" Condition="IsTimeBetween(8,16)">
+							<Keepers>
+								<Keeper Name="Coerthan Crab" />
+							</Keepers>
+							<FishSpots>
+								<FishSpot XYZ="509.1427, 142.4108, 244.1567" Heading="5.556497" Sit="&Sit;" />
+								<FishSpot XYZ="512.7587, 142.467, 248.1104" Heading="5.131332" Sit="&Sit;" />
+								<FishSpot XYZ="512.642, 142.6324, 250.7236" Heading="4.572129" Sit="&Sit;" />
+								<FishSpot XYZ="510.9495, 142.4042, 246.2013" Heading="5.355433" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<While Condition="IsTimeBetween(16,24)">
+						<Fish Mooch="1" Bait="Syrphid Basket" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Stealth="True" Condition="IsTimeBetween(16,24)">
+							<Keepers>
+								<Keeper Name="Coerthan Crab" />
+							</Keepers>
+							<FishSpots>
+								<FishSpot XYZ="506.9219, 142.7196, 243.6748" Heading="5.998415" Sit="&Sit;" />
+								<FishSpot XYZ="504.8217, 142.3385, 240.7614" Heading="4.854875" Sit="&Sit;" />
+								<FishSpot XYZ="500.5023, 142.6063, 237.7203" Heading="0.201129" Sit="&Sit;" />
+								<FishSpot XYZ="495.8283, 143.3425, 240.1386" Heading="0.8524857" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
+					<If Condition="not IsOnMap(154)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(7)">
+							<TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+							<Travel To="154" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(154)">
+						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="10.6355, -44.73338, 220.2029" />
+						<NPCRepair NpcID="1002376" DialogOption="2" />
+					</If>
+					<NoCombatMoveTo Name="Fishing Area" XYZ="224.272, -26.5123, 164.2069" />
+					<While Condition="IsTimeBetween(0,2)">
+						<Fish Mooch="0" Bait="Syrphid Basket" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+							<Keepers>
+								<Keeper Name="River Crab" />
+							</Keepers>
+							<FishSpots>
+								<FishSpot XYZ="243.2958, -27.81804, 167.7405" Heading="0.4071736" />
+								<FishSpot XYZ="243.8042, -27.53619, 160.0208" Heading="1.820888" />
+								<FishSpot XYZ="255.3068, -26.65674, 166.3678" Heading="6.238786" />
+								<FishSpot XYZ="269.2221, -26.86873, 159.7821" Heading="4.477399" />
+							</FishSpots>
+						</Fish>
+					</While>
+				</If>
+			</If>
+		</While>
+
 		<!-- Fullmoon Sardine -->
 		<!-- Bait: Spoon Worm -->
 
@@ -2272,14 +2523,14 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 34">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 34 Fisher or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 34 Fisher or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 33">
-					<LogMessage Message="You need more Fullmoon Sardines..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Fullmoon Sardines..." />
 					<If Condition="not HasAtLeast(2596,198)">
-						<LogMessage Message="You need more Spoon Worms!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Spoon Worms!" />
 						<If Condition="not IsOnMap(137)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
 								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
@@ -2298,27 +2549,6 @@
 						</If>
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="460.3798, 17.12659, 486.5948" />
 						<BuyItem ItemId="2596" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1003261" XYZ="460.3798, 17.12659, 486.5948" />
-					</If>
-					<If Condition="not HasAtLeast(2597,1)">
-						<LogMessage Message="You need 1 Syrphid Basket!" />
-						<If Condition="not IsOnMap(137)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
-								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
-								<If Condition="Managers.WorldManager.HasAetheryteId(12)">
-									<TeleportTo Name="Wineport" AetheryteId="12" />
-								</If>
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
-								<Travel To="137" />
-							</If>
-						</If>
-						<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
-							<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
-						</If>
-						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="460.3798, 17.12659, 486.5948" />
-						<BuyItem ItemId="2597" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1003261" XYZ="460.3798, 17.12659, 486.5948" />
 					</If>
 					<If Condition="not IsOnMap(137)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
@@ -2379,7 +2609,7 @@
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="460.3798, 17.12659, 486.5948" />
 						<NPCRepair NpcID="1003261" DialogOption="4" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(134)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(52)">
 							<TeleportTo Name="Summerford Farms" AetheryteId="52" />
@@ -2411,14 +2641,14 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 39">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 39 Fisher or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 39 Fisher or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 38">
-					<LogMessage Message="You need more Golden Loaches..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Golden Loaches..." />
 					<If Condition="not HasAtLeast(2599,198)">
-						<LogMessage Message="You need more Honey Worms!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Honey Worms!" />
 						<If Condition="not IsOnMap(146)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(20)">
 								<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
@@ -2434,24 +2664,6 @@
 						</If>
 						<NoCombatMoveTo Name="Syneyhil" XYZ="-278.7976, 8, 378.8662" />
 						<BuyItem ItemId="2599" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1004430" XYZ="-278.7976, 8, 378.8662" />
-					</If>
-					<If Condition="not HasAtLeast(2600,1)">
-						<LogMessage Message="You need 1 Sand Leech!" />
-						<If Condition="not IsOnMap(146)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(20)">
-								<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
-								<If Condition="Managers.WorldManager.HasAetheryteId(19)">
-									<TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
-								</If>
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(19)">
-								<Travel To="146" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-278.7976, 8, 378.8662" />
-						<BuyItem ItemId="2600" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1004430" XYZ="-278.7976, 8, 378.8662" />
 					</If>
 					<If Condition="not IsOnMap(146)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(20)">
@@ -2511,7 +2723,7 @@
 						<NoCombatMoveTo Name="Mender" XYZ="-278.7976, 8, 378.8662" />
 						<NPCRepair NpcID="1004430" DialogOption="3" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(140)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 							<TeleportTo Name="Horizon" AetheryteId="17" />
@@ -2543,14 +2755,14 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 29">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 29 Fisher or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 29 Fisher or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 28">
-					<LogMessage Message="You need more Hammerhead Sharks..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Hammerhead Sharks..." />
 					<If Condition="not HasAtLeast(2616,20)">
-						<LogMessage Message="You need more Steel Jigs!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Steel Jigs!" />
 						<If Condition="not IsOnMap(137)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
 								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
@@ -2570,27 +2782,6 @@
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="460.3798, 17.12659, 486.5948" />
 						<BuyItem ItemId="2616" ItemCount="10" DialogOption="1" InteractDistance="3.0" NpcId="1003261" XYZ="460.3798, 17.12659, 486.5948" />
 					</If>
-					<If Condition="not HasAtLeast(2596,1)">
-						<LogMessage Message="You need 1 Spoon Worm!" />
-						<If Condition="not IsOnMap(137)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
-								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
-								<If Condition="Managers.WorldManager.HasAetheryteId(12)">
-									<TeleportTo Name="Wineport" AetheryteId="12" />
-								</If>
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
-								<Travel To="137" />
-							</If>
-						</If>
-						<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
-							<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
-						</If>
-						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="460.3798, 17.12659, 486.5948" />
-						<BuyItem ItemId="2596" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1003261" XYZ="460.3798, 17.12659, 486.5948" />
-					</If>
 					<If Condition="not IsOnMap(138)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(14)">
 							<TeleportTo Name="Aleport" AetheryteId="14" />
@@ -2606,12 +2797,8 @@
 					</If>
 					<NoCombatMoveTo Name="Fishing Area" XYZ="-104.5108, -25.25087, 50.80928" />
 					<Dismount />
-					<WaitTimer WaitTime="3" />
-					<RunCode Name="FisherStealth" />
-					<WaitTimer WaitTime="3" />
-					<RunCode Name="DisableMount" />
 					<While Condition="IsTimeBetween(0,8)">
-						<Fish Mooch="0" Bait="Steel Jig" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+						<Fish Mooch="0" Bait="Steel Jig" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Stealth="True" Condition="IsTimeBetween(0,8)">
 							<Keepers>
 								<Keeper Name="Hammerhead Shark" />
 							</Keepers>
@@ -2623,7 +2810,7 @@
 						</Fish>
 					</While>
 					<While Condition="IsTimeBetween(8,16)">
-						<Fish Mooch="0" Bait="Steel Jig" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+						<Fish Mooch="0" Bait="Steel Jig" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Stealth="True" Condition="IsTimeBetween(8,16)">
 							<Keepers>
 								<Keeper Name="Hammerhead Shark" />
 							</Keepers>
@@ -2635,7 +2822,7 @@
 						</Fish>
 					</While>
 					<While Condition="IsTimeBetween(16,24)">
-						<Fish Mooch="0" Bait="Steel Jig" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+						<Fish Mooch="0" Bait="Steel Jig" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Stealth="True" Condition="IsTimeBetween(16,24)">
 							<Keepers>
 								<Keeper Name="Hammerhead Shark" />
 							</Keepers>
@@ -2653,7 +2840,7 @@
 						<NoCombatMoveTo Name="Mender" XYZ="240.2533, -24.99897, 231.4336" />
 						<NPCRepair NpcID="1003264" DialogOption="2" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(135)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(10)">
 							<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
@@ -2685,14 +2872,14 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 29">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 29 Fisher or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 29 Fisher or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 28">
-					<LogMessage Message="You need more Hammerhead Sharks..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Hammerhead Sharks..." />
 					<If Condition="not HasAtLeast(2616,20)">
-						<LogMessage Message="You need more Steel Jigs!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Steel Jigs!" />
 						<If Condition="not IsOnMap(137)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
 								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
@@ -2703,19 +2890,6 @@
 						</If>
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="460.3798, 17.12659, 486.5948" />
 						<BuyItem ItemId="2616" ItemCount="20" DialogOption="1" InteractDistance="3.0" NpcId="1003261" XYZ="460.3798, 17.12659, 486.5948" />
-					</If>
-					<If Condition="not HasAtLeast(2596,1)">
-						<LogMessage Message="You need 1 Spoon Worm!" />
-						<If Condition="not IsOnMap(137)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
-								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
-								<Travel To="137" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="460.3798, 17.12659, 486.5948" />
-						<BuyItem ItemId="2596" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1003261" XYZ="460.3798, 17.12659, 486.5948" />
 					</If>
 					<If Condition="not IsOnMap(140)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
@@ -2770,7 +2944,7 @@
 						<NoCombatMoveTo Name="Mender" XYZ="-316.64, 33.27094, 391.9889" />
 						<NPCRepair NpcID="1004421" DialogOption="4" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(135)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(10)">
 							<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
@@ -2802,14 +2976,14 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 41">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 41 Fisher or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 41 Fisher or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 40">
-					<LogMessage Message="You need more Ignus Snails..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Ignus Snails..." />
 					<If Condition="not HasAtLeast(2601,198)">
-						<LogMessage Message="You need more Stem Borers!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Stem Borers!" />
 						<If Condition="not IsOnMap(155)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
@@ -2820,19 +2994,6 @@
 						</If>
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="242.4506, 302.265, -252.7047" />
 						<BuyItem ItemId="2601" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1006798" XYZ="242.4506, 302.265, -252.7047" />
-					</If>
-					<If Condition="not HasAtLeast(2599,1)">
-						<LogMessage Message="You need 1 Honey Worm!" />
-						<If Condition="not IsOnMap(155)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-								<Travel To="155" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="242.4506, 302.265, -252.7047" />
-						<BuyItem ItemId="2599" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1006798" XYZ="242.4506, 302.265, -252.7047" />
 					</If>
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
@@ -2887,7 +3048,7 @@
 						<NoCombatMoveTo Name="Mender" XYZ="18.32605, 28.99997, -727.657" />
 						<NPCRepair NpcID="1006899" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(148)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
 							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
@@ -2919,34 +3080,16 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 58">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 58 or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 58 or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 57">
-					<LogMessage Message="You need more Pipira Piras..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Pipira Piras..." />
 					<If Condition="not HasAtLeast(12706,1)">
-						<LogMessage Message="You need more Goblin Jigs!" />
-						<LogMessage Message="Please purchase some and restart this profile." />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Goblin Jigs!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please purchase some and restart this profile!" />
 						<StopBot />
-					</If>
-					<If Condition="not HasAtLeast(12704,1)">
-						<LogMessage Message="You need 1 Stonefly Nymph!" />
-						<If Condition="not IsOnMap(398)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(76)">
-								<TeleportTo Name="Tailfeather" AetheryteId="76" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
-								<If Condition="Managers.WorldManager.HasAetheryteId(77)">
-									<TeleportTo Name="Anyx Trine" AetheryteId="77" />
-								</If>
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
-								<Travel To="398" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Traveling Merchant" XYZ="475.9136, -51.1414, 45.97534" />
-						<BuyItem ItemId="12704" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1011912" XYZ="475.9136, -51.1414, 45.97534" />
 					</If>
 					<If Condition="not IsOnMap(398)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
@@ -3008,7 +3151,7 @@
 						<NoCombatMoveTo Name="Traveling Mender" XYZ="479.3926, -51.1414, 24.64331" />
 						<NPCRepair NpcID="1011913" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(397) and not IsOnMap(398)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
 							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
@@ -3027,7 +3170,7 @@
 						</If>
 					</If>
 					<If Condition="IsOnMap(398)">
-						<NoCombatMoveTo Name="Coerthas Central Highlands" XYZ="868.3534, -4.027575, 349.3807" />
+						<NoCombatMoveTo Name="Coerthas Western Highlands" XYZ="868.3534, -4.027575, 349.3807" />
 						<RunCode Name="MoveForwardStart" />
 					</If>
 					<NoCombatMoveTo Name="Fishing Area" XYZ="-473.1809, 90.99203, -634.5757" />
@@ -3053,14 +3196,14 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 43">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 43 Fisher or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 43 Fisher or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 42">
-					<LogMessage Message="You need more Raincallers..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Raincallers..." />
 					<If Condition="not HasAtLeast(2601,198)">
-						<LogMessage Message="You need more Stem Borers!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Stem Borers!" />
 						<If Condition="not IsOnMap(155)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
@@ -3071,19 +3214,6 @@
 						</If>
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="242.4506, 302.265, -252.7047" />
 						<BuyItem ItemId="2601" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1006798" XYZ="242.4506, 302.265, -252.7047" />
-					</If>
-					<If Condition="not HasAtLeast(2599,1)">
-						<LogMessage Message="You need 1 Honey Worm!" />
-						<If Condition="not IsOnMap(155)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
-								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
-								<Travel To="155" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="242.4506, 302.265, -252.7047" />
-						<BuyItem ItemId="2599" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1006798" XYZ="242.4506, 302.265, -252.7047" />
 					</If>
 					<If Condition="not IsOnMap(132) and not IsOnMap(133)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
@@ -3097,7 +3227,7 @@
 						<Travel To="132" />
 					</If>
 					<While Condition="IsTimeBetween(0,8)">
-						<LogMessage Message="Waiting 30 seconds for possible weather change..." />
+						<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting 30 seconds for possible weather change..." />
 						<WaitTimer WaitTime="30" />
 						<If Condition="Managers.WorldManager.CurrentWeatherId == 7">
 							<Fish Mooch="0" Bait="Stem Borer" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
@@ -3114,12 +3244,12 @@
 						</If>
 						<If Condition="Managers.WorldManager.CurrentWeatherId != 7">
 							<MoveTo Name="Waiting Area" XYZ="24.82642, -8, 93.18677" />
-							<LogMessage Message="Waiting until the weather changes..." />
+							<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting until the weather changes..." />
 							<WaitWhile Condition="IsTimeBetween(0,8)" />
 						</If>
 					</While>
 					<While Condition="IsTimeBetween(8,16)">
-						<LogMessage Message="Waiting 30 seconds for possible weather change..." />
+						<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting 30 seconds for possible weather change..." />
 						<WaitTimer WaitTime="30" />
 						<If Condition="Managers.WorldManager.CurrentWeatherId == 7">
 							<Fish Mooch="0" Bait="Stem Borer" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
@@ -3136,12 +3266,12 @@
 						</If>
 						<If Condition="Managers.WorldManager.CurrentWeatherId != 7">
 							<MoveTo Name="Waiting Area" XYZ="24.82642, -8, 93.18677" />
-							<LogMessage Message="Waiting until the weather changes..." />
+							<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting until the weather changes..." />
 							<WaitWhile Condition="IsTimeBetween(8,16)" />
 						</If>
 					</While>
 					<While Condition="IsTimeBetween(16,24)">
-						<LogMessage Message="Waiting 30 seconds for possible weather change..."/>
+						<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting 30 seconds for possible weather change..."/>
 						<WaitTimer WaitTime="30" />
 						<If Condition="Managers.WorldManager.CurrentWeatherId == 7">
 							<Fish Mooch="0" Bait="Stem Borer" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
@@ -3158,7 +3288,7 @@
 						</If>
 						<If Condition="Managers.WorldManager.CurrentWeatherId != 7">
 							<MoveTo Name="Waiting Area" XYZ="24.82642, -8, 93.18677" />
-							<LogMessage Message="Waiting until the weather changes..." />
+							<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting until the weather changes..." />
 							<WaitWhile Condition="IsTimeBetween(16,24)" />
 						</If>
 					</While>
@@ -3166,7 +3296,7 @@
 						<MoveTo Name="Mender" XYZ="24.82642, -8, 93.18677" />
 						<NPCRepair NpcID="1000394" Threshold="25" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(133)">
 						<If Condition="not IsOnMap(132)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
@@ -3201,14 +3331,14 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 20">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 20 Fisher or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 20 Fisher or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 19">
-					<LogMessage Message="You need more Razor Clams..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Razor Clams..." />
 					<If Condition="not HasAtLeast(2591,198)">
-						<LogMessage Message="You need more Rat Tails!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Rat Tails!" />
 						<If Condition="not IsOnMap(140)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 								<TeleportTo Name="Horizon" AetheryteId="17" />
@@ -3219,19 +3349,6 @@
 						</If>
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-306.508, 18.74717, -147.1123" />
 						<BuyItem ItemId="2591" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1004422" XYZ="-306.508, 18.74717, -147.1123" />
-					</If>
-					<If Condition="not HasAtLeast(2589,1)">
-						<LogMessage Message="You need 1 Goby Ball!" />
-						<If Condition="not IsOnMap(140)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
-								<TeleportTo Name="Horizon" AetheryteId="17" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
-								<Travel To="140" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-306.508, 18.74717, -147.1123" />
-						<BuyItem ItemId="2589" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1004422" XYZ="-306.508, 18.74717, -147.1123" />
 					</If>
 					<If Condition="not IsOnMap(140)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
@@ -3285,7 +3402,7 @@
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-306.508, 18.74717, -147.1123" />
 						<NPCRepair NpcID="1004422" DialogOption="4" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(138)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(14)">
 							<TeleportTo Name="Aleport" AetheryteId="14" />
@@ -3314,6 +3431,122 @@
 			</If>
 		</While>
 
+		<!-- Rock Mussel -->
+		<!-- Bait: Goblin Jig -->
+
+		<While Condition="not HasAtLeast(12733,&RockMussel;)">
+			<RunCode Name="Fisher" />
+			<WaitTimer WaitTime="3" />
+			<If Condition="ClassName == ClassJobType.Fisher">
+				<If Condition="Core.Player.ClassLevel &lt; 55">
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 55 or higher!" />
+					<StopBot />
+				</If>
+				<If Condition="Core.Player.ClassLevel &gt; 54">
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Rock Mussels..." />
+					<If Condition="not HasAtLeast(12706,1)">
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Goblin Jigs!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please purchase some and restart this profile!" />
+						<StopBot />
+					</If>
+					<If Condition="not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+								<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+							<Travel To="398" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Fishing Area" XYZ="169.9771, -84.40897, 184.5061" />
+					<While Condition="IsTimeBetween(0,8)">
+						<Fish Mooch="0" Bait="Goblin Jig" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Snagging="True" Condition="IsTimeBetween(0,8)">
+							<Keepers>
+								<Keeper Name="Rock Mussel" />
+							</Keepers>
+							<FishSpots>
+								<FishSpot XYZ="184.7461, -88.74199, 190.6995" Heading="0.3608489" Sit="&Sit;" />
+								<FishSpot XYZ="164.6446, -86.55266, 195.9857" Heading="6.226959" Sit="&Sit;" />
+								<FishSpot XYZ="149.4027, -86.96107, 203.3817" Heading="0.9302332" Sit="&Sit;" />
+								<FishSpot XYZ="159.8685, -90.93567, 230.6445" Heading="3.88752" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<While Condition="IsTimeBetween(8,16)">
+						<Fish Mooch="0" Bait="Goblin Jig" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Snagging="True" Condition="IsTimeBetween(8,16)">
+							<Keepers>
+								<Keeper Name="Rock Mussel" />
+							</Keepers>
+							<FishSpots>
+								<FishSpot XYZ="171.4898, -89.10948, 217.9599" Heading="4.318966" Sit="&Sit;" />
+								<FishSpot XYZ="185.8358, -88.49143, 204.2456" Heading="3.960824" Sit="&Sit;" />
+								<FishSpot XYZ="195.1524, -88.80106, 202.9684" Heading="3.194611" Sit="&Sit;" />
+								<FishSpot XYZ="179.025, -89.3704, 211.5615" Heading="4.27289" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<While Condition="IsTimeBetween(16,24)">
+						<Fish Mooch="0" Bait="Goblin Jig" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Snagging="True" Condition="IsTimeBetween(16,24)">
+							<Keepers>
+								<Keeper Name="Rock Mussel" />
+							</Keepers>
+							<FishSpots>
+								<FishSpot XYZ="167.4826, -90.7557, 225.0351" Heading="3.313656" Sit="&Sit;" />
+								<FishSpot XYZ="142.3275, -88.96795, 212.6139" Heading="0.7940989" Sit="&Sit;" />
+								<FishSpot XYZ="156.5614, -90.40214, 197.183" Heading="0.4945986" Sit="&Sit;" />
+								<FishSpot XYZ="171.4837, -89.11923, 195.3064" Heading="1.175279" Sit="&Sit;" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<If Condition="IsOnMap(398)">
+						<NoCombatMoveTo Name="Traveling Mender" XYZ="479.3926, -51.1414, 24.64331" />
+						<NPCRepair NpcID="1011913" />
+					</If>
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
+					<If Condition="not IsOnMap(397) and not IsOnMap(398)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<If Condition="IsOnMap(398)">
+						<NoCombatMoveTo Name="Coerthas Western Highlands" XYZ="868.3534, -4.027575, 349.3807" />
+						<RunCode Name="MoveForwardStart" />
+					</If>
+					<NoCombatMoveTo Name="Fishing Area" XYZ="-473.1809, 90.99203, -634.5757" />
+					<While Condition="IsTimeBetween(0,2)">
+						<Fish Mooch="0" Bait="Goblin Jig" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+							<Keepers>
+								<Keeper Name="Lake Urchin" />
+							</Keepers>
+							<FishSpots>
+								<FishSpot XYZ="-471.5414, 90.22385, -648.1004" Heading="3.88593" />
+								<FishSpot XYZ="-464.6139, 90.49382, -655.6116" Heading="3.961328" />
+								<FishSpot XYZ="-458.4462, 90.05778, -665.2849" Heading="4.0095" />
+								<FishSpot XYZ="-448.6599, 90.39497, -671.6024" Heading="3.666018" />
+							</FishSpots>
+						</Fish>
+					</While>
+				</If>
+			</If>
+		</While>
+
 		<!-- Rothlyt Oyster -->
 		<!-- Bait: Rat Tail -->
 
@@ -3322,14 +3555,14 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 17">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 17 Fisher or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 17 Fisher or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 16">
-					<LogMessage Message="You need more Rothlyt Oysters..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Rothlyt Oysters..." />
 					<If Condition="not HasAtLeast(2591,198)">
-						<LogMessage Message="You need more Rat Tails!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Rat Tails!" />
 						<If Condition="not IsOnMap(140)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 								<TeleportTo Name="Horizon" AetheryteId="17" />
@@ -3340,19 +3573,6 @@
 						</If>
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-306.508, 18.74717, -147.1123" />
 						<BuyItem ItemId="2591" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1004422" XYZ="-306.508, 18.74717, -147.1123" />
-					</If>
-					<If Condition="not HasAtLeast(2589,1)">
-						<LogMessage Message="You need 1 Goby Ball!" />
-						<If Condition="not IsOnMap(140)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
-								<TeleportTo Name="Horizon" AetheryteId="17" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
-								<Travel To="140" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-306.508, 18.74717, -147.1123" />
-						<BuyItem ItemId="2589" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1004422" XYZ="-306.508, 18.74717, -147.1123" />
 					</If>
 					<If Condition="not IsOnMap(140)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
@@ -3407,7 +3627,7 @@
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-316.64, 33.27094, 391.9889" />
 						<NPCRepair NpcID="1004421" DialogOption="4" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(138)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(14)">
 							<TeleportTo Name="Aleport" AetheryteId="14" />
@@ -3444,14 +3664,14 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 41">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 41 or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 41 or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 40">
-					<LogMessage Message="You need more Silver Sharks..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Silver Sharks..." />
 					<If Condition="not HasAtLeast(2585,198)">
-						<LogMessage Message="You need more Lugworms!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Lugworms!" />
 						<If Condition="not IsOnMap(129)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
 								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
@@ -3462,19 +3682,6 @@
 						</If>
 						<NoCombatMoveTo Name="Syneyhil" XYZ="-246.6011, 16.2, 37.12512" />
 						<BuyItem ItemId="2585" ItemCount="198" InteractDistance="3.0" NpcId="1003254" XYZ="-246.6011, 16.2, 37.12512" />
-					</If>
-					<If Condition="not HasAtLeast(2586,1)">
-						<LogMessage Message="You need 1 Moth Pupa!" />
-						<If Condition="not IsOnMap(129)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-								<Travel To="129" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Syneyhil" XYZ="-246.6011, 16.2, 37.12512" />
-						<BuyItem ItemId="2586" ItemCount="1" InteractDistance="3.0" NpcId="1003254" XYZ="-246.6011, 16.2, 37.12512" />
 					</If>
 					<If Condition="not IsOnMap(137)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
@@ -3535,7 +3742,7 @@
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="460.3798, 17.12659, 486.5948" />
 						<NPCRepair NpcID="1003261" DialogOption="4" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(134)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(52)">
 							<TeleportTo Name="Summerford Farms" AetheryteId="52" />
@@ -3567,34 +3774,16 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 58">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 58 or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 58 or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 57">
-					<LogMessage Message="You need more Three-lip Carps..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Three-lip Carps..." />
 					<If Condition="not HasAtLeast(12706,1)">
-						<LogMessage Message="You need more Goblin Jigs!" />
-						<LogMessage Message="Please purchase some and restart this profile." />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Goblin Jigs!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please purchase some and restart this profile!" />
 						<StopBot />
-					</If>
-					<If Condition="not HasAtLeast(12704,1)">
-						<LogMessage Message="You need 1 Stonefly Nymph!" />
-						<If Condition="not IsOnMap(398)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(76)">
-								<TeleportTo Name="Tailfeather" AetheryteId="76" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
-								<If Condition="Managers.WorldManager.HasAetheryteId(77)">
-									<TeleportTo Name="Anyx Trine" AetheryteId="77" />
-								</If>
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
-								<Travel To="398" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Traveling Merchant" XYZ="475.9136, -51.1414, 45.97534" />
-						<BuyItem ItemId="12704" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1011912" XYZ="475.9136, -51.1414, 45.97534" />
 					</If>
 					<If Condition="not IsOnMap(398)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
@@ -3659,7 +3848,7 @@
 						<NoCombatMoveTo Name="Traveling Mender" XYZ="479.3926, -51.1414, 24.64331" />
 						<NPCRepair NpcID="1011913" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(397) and not IsOnMap(398)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
 							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
@@ -3704,14 +3893,14 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Fisher">
 				<If Condition="Core.Player.ClassLevel &lt; 50">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 50 Fisher or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 50 Fisher or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 49">
-					<LogMessage Message="You need more Titanic Sawfish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Titanic Sawfish..." />
 					<If Condition="not HasAtLeast(2593,198)">
-						<LogMessage Message="You need more Crab Balls!" />
+						<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Ack! You need more Crab Balls!" />
 						<If Condition="not IsOnMap(140)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 								<TeleportTo Name="Horizon" AetheryteId="17" />
@@ -3723,19 +3912,6 @@
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-466.4225, 23.47034, -379.8734" />
 						<BuyItem ItemId="2593" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1004038" XYZ="-466.4225, 23.47034, -379.8734" />
 					</If>
-					<If Condition="not HasAtLeast(2594,1)">
-						<LogMessage Message="You need 1 Butterworm!" />
-						<If Condition="not IsOnMap(140)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
-								<TeleportTo Name="Horizon" AetheryteId="17" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
-								<Travel To="140" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-466.4225, 23.47034, -379.8734" />
-						<BuyItem ItemId="2594" ItemCount="1" DialogOption="1" InteractDistance="3.0" NpcId="1004038" XYZ="-466.4225, 23.47034, -379.8734" />
-					</If>
 					<If Condition="not IsOnMap(140)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
 							<TeleportTo Name="Horizon" AetheryteId="17" />
@@ -3745,7 +3921,7 @@
 						</If>
 					</If>
 					<While Condition="IsTimeBetween(0,8)">
-						<LogMessage Message="Waiting 30 seconds for possible weather change..." />
+						<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting 30 seconds for possible weather change..." />
 						<WaitTimer WaitTime="30" />
 						<If Condition="(Managers.WorldManager.CurrentWeatherId == 1) or (Managers.WorldManager.CurrentWeatherId == 2)">
 							<Fish Mooch="2" Bait="Crab Ball" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Patience="Patience" Condition="IsTimeBetween(0,8)">
@@ -3762,12 +3938,12 @@
 							</Fish>
 						</If>
 						<If Condition="(Managers.WorldManager.CurrentWeatherId != 1) or (Managers.WorldManager.CurrentWeatherId != 2)">
-							<LogMessage Message="Waiting until the weather changes..." />
+							<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting until the weather changes..." />
 							<WaitWhile Condition="IsTimeBetween(0,8)" />
 						</If>
 					</While>
 					<While Condition="IsTimeBetween(8,16)">
-						<LogMessage Message="Waiting 30 seconds for possible weather change..." />
+						<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting 30 seconds for possible weather change..." />
 						<WaitTimer WaitTime="30" />
 						<If Condition="(Managers.WorldManager.CurrentWeatherId == 1) or (Managers.WorldManager.CurrentWeatherId == 2)">
 							<Fish Mooch="2" Bait="Crab Ball" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Patience="Patience" Condition="IsTimeBetween(8,16)">
@@ -3784,12 +3960,12 @@
 							</Fish>
 						</If>
 						<If Condition="(Managers.WorldManager.CurrentWeatherId != 1) or (Managers.WorldManager.CurrentWeatherId != 2)">
-							<LogMessage Message="Waiting until the weather changes..." />
+							<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting until the weather changes..." />
 							<WaitWhile Condition="IsTimeBetween(8,16)" />
 						</If>
 					</While>
 					<While Condition="IsTimeBetween(16,24)">
-						<LogMessage Message="Waiting 30 seconds for possible weather change..."/>
+						<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting 30 seconds for possible weather change..."/>
 						<WaitTimer WaitTime="30" />
 						<If Condition="(Managers.WorldManager.CurrentWeatherId == 1) or (Managers.WorldManager.CurrentWeatherId == 2)">
 							<Fish Mooch="2" Bait="Crab Ball" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Patience="Patience" Condition="IsTimeBetween(16,24)">
@@ -3807,7 +3983,7 @@
 							</Fish>
 						</If>
 						<If Condition="(Managers.WorldManager.CurrentWeatherId != 1) or (Managers.WorldManager.CurrentWeatherId != 2)">
-							<LogMessage Message="Waiting until the weather changes..." />
+							<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting until the weather changes..." />
 							<WaitWhile Condition="IsTimeBetween(16,24)" />
 						</If>
 					</While>
@@ -3815,7 +3991,7 @@
 						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-466.4225, 23.47034, -379.8734" />
 						<NPCRepair NpcID="1004038" DialogOption="3" />
 					</If>
-					<LogMessage Message="Swapping zones to not scare the fish..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Swapping zones to not scare the fish..." />
 					<If Condition="not IsOnMap(129)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
 							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
@@ -3849,12 +4025,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 19">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 19 Miner or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 19 Miner or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 18">
-					<LogMessage Message="You need more Alumen..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Alumen..." />
 					<If Condition="not IsOnMap(145)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(18)">
 							<TeleportTo Name="Camp Drybone" AetheryteId="18" />
@@ -3887,12 +4063,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 40">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 40 Miner or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 40 Miner or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 39">
-					<LogMessage Message="You need more Black Alumen..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Black Alumen..." />
 					<If Condition="not IsOnMap(153)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(5)">
 							<TeleportTo Name="Quarrymill" AetheryteId="5" />
@@ -3930,12 +4106,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 54">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 54 Miner or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 54 Miner or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 53">
-					<LogMessage Message="You need more Dravanian Spring Water..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Dravanian Spring Water..." />
 					<If Condition="not IsOnMap(398)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(77)">
 							<TeleportTo Name="Anyx Trine" AetheryteId="77" />
@@ -4017,12 +4193,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 50">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 50 Miner or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 50 Miner or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 49">
-					<LogMessage Message="You need more Grade 3 Carbonized Matter..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Grade 3 Carbonized Matter..." />
 					<If Condition="not IsOnMap(152)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(4)">
 							<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
@@ -4055,12 +4231,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 51">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 51 Miner or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 51 Miner or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 50">
-					<LogMessage Message="You need more Mythrite Sand..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Mythrite Sand..." />
 					<If Condition="not IsOnMap(397)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
 							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
@@ -4113,12 +4289,12 @@
 			<WaitTimer WaitTime="3" />
 			<If Condition="ClassName == ClassJobType.Miner">
 				<If Condition="Core.Player.ClassLevel &lt; 45">
-					<LogMessage Message="You do not meet the minimum level requirement." />
-					<LogMessage Message="Please reach level 45 Miner or higher." />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
+					<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 45 Miner or higher!" />
 					<StopBot />
 				</If>
 				<If Condition="Core.Player.ClassLevel &gt; 44">
-					<LogMessage Message="You need more Raw Amber..." />
+					<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Raw Amber..." />
 					<If Condition="not IsOnMap(145)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(18)">
 							<TeleportTo Name="Camp Drybone" AetheryteId="18" />
@@ -4152,9 +4328,9 @@
 		<!-- Fire Cluster -->
 
 		<While Condition="not HasAtLeast(14,&FireCluster;)">
-			<LogMessage Message="You need more Fire Clusters..." />
+			<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Fire Clusters..." />
 			<If Condition="IsTimeBetween(0,1)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4195,7 +4371,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(1,4)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4252,7 +4428,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(4,5)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4293,7 +4469,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(5,9)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4334,7 +4510,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(9,12)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4386,7 +4562,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(12,13)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4427,7 +4603,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(13,17)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4468,7 +4644,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(17,19)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4517,7 +4693,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(19,21)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4558,7 +4734,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(21,24)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4576,9 +4752,9 @@
 		<!-- Ice Cluster -->
 
 		<While Condition="not HasAtLeast(15,&IceCluster;)">
-			<LogMessage Message="You need more Ice Clusters..." />
+			<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Ice Clusters..." />
 			<If Condition="IsTimeBetween(0,1)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4619,7 +4795,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(1,5)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4660,7 +4836,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(5,9)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4701,7 +4877,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(9,13)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4742,7 +4918,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(13,17)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4783,7 +4959,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(17,21)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4824,7 +5000,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(21,24)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4842,7 +5018,7 @@
 		<!-- Wind Cluster -->
 
 		<While Condition="not HasAtLeast(16,&WindCluster;)">
-			<LogMessage Message="You need more Wind Clusters..." />
+			<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Wind Clusters..." />
 			<If Condition="Core.Player.ClassLevel &gt; 59">
 				<If Condition="IsTimeBetween(0,4)">
 					<RunCode Name="Botanist" />
@@ -4891,7 +5067,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(0,1)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4932,7 +5108,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(1,5)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -4973,7 +5149,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(5,9)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5014,7 +5190,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(9,13)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5055,7 +5231,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(13,17)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5096,7 +5272,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(17,20)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5157,7 +5333,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(20,21)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5198,7 +5374,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(21,24)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5216,9 +5392,9 @@
 		<!-- Earth Cluster -->
 
 		<While Condition="not HasAtLeast(17,&EarthCluster;)">
-			<LogMessage Message="You need more Earth Clusters..." />
+			<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Earth Clusters..." />
 			<If Condition="IsTimeBetween(0,1)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5259,7 +5435,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(1,5)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5300,7 +5476,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(5,8)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5357,7 +5533,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(8,9)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5398,7 +5574,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(9,13)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5439,7 +5615,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(13,16)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5496,7 +5672,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(16,17)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5537,7 +5713,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(17,21)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5578,7 +5754,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(21,24)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5596,9 +5772,9 @@
 		<!-- Lightning Cluster -->
 
 		<While Condition="not HasAtLeast(18,&LightningCluster;)">
-			<LogMessage Message="You need more Lightning Clusters..." />
+			<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Lightning Clusters..." />
 			<If Condition="IsTimeBetween(0,1)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5639,7 +5815,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(1,5)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5680,7 +5856,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(5,9)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5721,7 +5897,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(9,13)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5762,7 +5938,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(13,16)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5814,7 +5990,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(16,17)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5855,7 +6031,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(17,20)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5919,7 +6095,7 @@
 				</If>
 			</If> -->
 			<If Condition="IsTimeBetween(20,21)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5960,7 +6136,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(21,24)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -5978,9 +6154,9 @@
 		<!-- Water Cluster -->
 
 		<While Condition="not HasAtLeast(19,&WaterCluster;)">
-			<LogMessage Message="You need more Water Clusters..." />
+			<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You need more Water Clusters..." />
 			<If Condition="IsTimeBetween(0,1)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -6021,7 +6197,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(1,5)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -6089,7 +6265,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(5,9)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -6130,7 +6306,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(9,13)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -6171,7 +6347,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(13,17)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -6212,7 +6388,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(17,21)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -6253,7 +6429,7 @@
 				</If>
 			</If>
 			<If Condition="IsTimeBetween(21,24)">
-				<LogMessage Message="Waiting in Revenant's Toll..."/>
+				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Waiting in Revenant's Toll..."/>
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -6268,7 +6444,7 @@
 			</If>
 		</While>
 
-		<LogMessage Message="You've gathered all your materials!" />
+		<ExLog Color="&ExLog;" Name="y2k's AIO" Message="You've gathered all your materials!" />
 		<If Condition="not IsOnMap(129)">
 			<If Condition="Managers.WorldManager.HasAetheryteId(8)">
 				<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
