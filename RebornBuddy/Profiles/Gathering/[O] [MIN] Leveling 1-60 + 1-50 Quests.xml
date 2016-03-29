@@ -6,7 +6,7 @@
 # Author: y2krazy                                #
 #         (kagepande for 1-50 data)              #
 ##################################################
-# Version: 1.0.2                                 #
+# Version: 1.0.3                                 #
 ##################################################
 # Required Level: 1                              #
 ##################################################
@@ -1244,52 +1244,63 @@
 
 			<!-- Level 58-60 -->
 
-			<While Condition="Core.Player.ClassLevel &lt; 60">
-				<If Condition="not IsOnMap(401)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(72)">
-						<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
-						<Travel To="401" />
-					</If>
-				</If>
-				<NoCombatMoveTo Name="Farming Area" XYZ="522.3037, -112.0796, 437.1943" />
-				<Gather Loops="1">
-					<GatherObject>Mineral Deposit</GatherObject>
-					<BlackSpots>
-						<Blackspot Radius="5" XYZ="541.492065,-112.0796,452.578735" />
-					</BlackSpots>
-					<HotSpots>
-						<HotSpot Radius="90" XYZ="522.3037, -112.0796, 437.1943" name="Mineral Deposits" />
-					</HotSpots>
-					<Slot>1</Slot> <!-- Aurum Regis Sand -->
-					<GatheringSkillOrder>
-						<GatheringSkill SpellName="Solid Reason" TimesToCast="1" />
-					</GatheringSkillOrder>
-				</Gather>
-				<NoCombatMoveTo Name="Farming Area" XYZ="726.6589, -97.36623, 460.0826" />
-				<Gather Loops="1">
-					<GatherObject>Mineral Deposit</GatherObject>
-					<HotSpots>
-						<HotSpot Radius="90" XYZ="726.6589, -97.36623, 460.0826" name="Mineral Deposits" />
-					</HotSpots>
-					<Slot>1</Slot> <!-- Aurum Regis Sand -->
-					<GatheringSkillOrder>
-						<GatheringSkill SpellName="Solid Reason" TimesToCast="1" />
-					</GatheringSkillOrder>
-				</Gather>
-				<NoCombatMoveTo Name="Farming Area" XYZ="662.6068, -124.1799, 332.0651" />
-				<Gather Loops="1">
-					<GatherObject>Mineral Deposit</GatherObject>
-					<HotSpots>
-						<HotSpot Radius="90" XYZ="662.6068, -124.1799, 332.0651" name="Mineral Deposits" />
-					</HotSpots>
-					<Slot>1</Slot> <!-- Aurum Regis Sand -->
-					<GatheringSkillOrder>
-						<GatheringSkill SpellName="Solid Reason" TimesToCast="1" />
-					</GatheringSkillOrder>
-				</Gather>
-			</While>
+      <While Condition="Core.Player.ClassLevel &lt; 60">
+        <If Condition="not IsOnMap(398)">
+          <If Condition="Managers.WorldManager.HasAetheryteId(77)">
+            <TeleportTo Name="Anyx Trine" AetheryteId="77" />
+          </If>
+          <If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+            <If Condition="Managers.WorldManager.HasAetheryteId(76)">
+              <TeleportTo Name="Tailfeather" AetheryteId="76" />
+            </If>
+          </If>
+          <If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+            <Travel To="398" />
+          </If>
+        </If>
+        <NoCombatMoveTo Name="Farming Area" XYZ="-295.0072, -55.02479, 314.6609" />
+        <ExGather Loops="1" DiscoverUnknowns="True">
+          <GatherObject>Mineral Deposit</GatherObject>
+          <HotSpots>
+            <HotSpot Radius="90" XYZ="-295.0072, -55.02479, 314.6609" name="Mineral Deposits" />
+          </HotSpots>
+          <ItemNames>
+            <ItemName>Eventide Jade</ItemName>
+            <ItemName>Raw Opal</ItemName>
+          </ItemNames>
+          <GatheringSkillOrder>
+            <GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+          </GatheringSkillOrder>
+        </Gather>
+        <NoCombatMoveTo Name="Farming Area" XYZ="-133.6192, -46.14014, 212.3715" />
+        <ExGather Loops="1" DiscoverUnknowns="True">
+          <GatherObject>Mineral Deposit</GatherObject>
+          <HotSpots>
+            <HotSpot Radius="90" XYZ="-133.6192, -46.14014, 212.3715" name="Mineral Deposits" />
+          </HotSpots>
+          <ItemNames>
+            <ItemName>Eventide Jade</ItemName>
+            <ItemName>Raw Opal</ItemName>
+          </ItemNames>
+          <GatheringSkillOrder>
+            <GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+          </GatheringSkillOrder>
+        </Gather>
+        <NoCombatMoveTo Name="Farming Area" XYZ="-154.2216, -71.83118, 398.8262" />
+        <ExGather Loops="1" DiscoverUnknowns="True">
+          <GatherObject>Mineral Deposit</GatherObject>
+          <HotSpots>
+            <HotSpot Radius="90" XYZ="-154.2216, -71.83118, 398.8262" name="Mineral Deposits" />
+          </HotSpots>
+          <ItemNames>
+            <ItemName>Eventide Jade</ItemName>
+            <ItemName>Raw Opal</ItemName>
+          </ItemNames>
+          <GatheringSkillOrder>
+            <GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+          </GatheringSkillOrder>
+        </Gather>
+      </While>
 
 		</If>
 
