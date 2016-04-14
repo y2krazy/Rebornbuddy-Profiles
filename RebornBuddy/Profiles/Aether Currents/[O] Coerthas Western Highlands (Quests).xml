@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+####################################################
+# Profile: [O] Coerthas Western Highlands (Quests) #
+####################################################
+# Author: y2krazy                                  #
+####################################################
+# Version: 1.0.0                                   #
+####################################################
+# Required Level: 51                               #
+####################################################
+# Required Teleport Locations:                     #
+# 	Falcon's Nest                                  #
+####################################################
+# Required User Interaction:                       #
+# 	The Dusk Vigil Duty                            #
+####################################################
+# Required Setup:                                  #
+# 	None                                           #
+####################################################
+# Rewards:                                         #
+# 	Flying in Coerthas Western Highlands.          #
+####################################################
+-->
+<Profile>
+	<Name>[O] Coerthas Western Highlands (Quests)</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Coerthas Western Highlands -->
+
+		<If Condition="not IsOnMap(397)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+				<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+						
+				<!-- TO DO -->
+
+				<!-- Update Travel.cs with new zone information.  -->
+
+				<!-- TO DO -->
+
+				<!-- <Travel To="397" /> -->
+				<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+				<StopBot />
+			</If>
+		</If>
+
+		<!-- ######## -->
+		<!-- LEVEL 50 -->
+		<!-- ######## -->
+
+		<LogMessage Message="Checking level 50 quest..." />
+
+		<!-- Sidequest: Bridge Over Frozen Water -->
+
+		<If Condition="not IsQuestCompleted(67280)">
+			<If Condition="not HasQuest(67280)">
+				<If Condition="not IsOnMap(397)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+						<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="397" /> -->
+						<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Ingaret" XYZ="493.1563, 200.2377, 663.0197" />
+				<If Condition="not IsQuestAcceptQualified(67280)">
+					<LogMessage Message="You are not eligible for the Bridge Over Frozen Water quest." />
+					<LogMessage Message="Skipping for now..." />
+				</If>
+				<If Condition="IsQuestAcceptQualified(67280)">
+					<PickupQuest NpcId="1011240" QuestId="67280" XYZ="493.1563, 200.2377, 663.0197" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67280)">
+				<If Condition="GetQuestStep(67280) == 1">
+					<If Condition="not IsOnMap(397)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Upland Mylodons" XYZ="458.0518, 161.7498, -262.45" />
+					<Grind grindRef="Bridge_Over_Frozen_Water" while="HasQuest(67280) and GetQuestStep(67280) == 1" />
+				</If>
+				<If Condition="GetQuestStep(67280) == 255">
+					<If Condition="not IsOnMap(397)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<NoCombatMoveTo Name="Ingaret" XYZ="493.1563, 200.2377, 663.0197" />
+					<TurnIn QuestId="67280" NpcId="1011240" XYZ="493.1563, 200.2377, 663.0197" />
+				</If>
+			</If>
+		</If>
+
+		<!-- ######## -->
+		<!-- LEVEL 51 -->
+		<!-- ######## -->
+
+		<LogMessage Message="Checking level 51 quests..." />
+
+		<!-- Sidequest: Baby Steps -->
+
+		<If Condition="not IsQuestCompleted(67296)">
+			<If Condition="not HasQuest(67296)">
+				<If Condition="not IsOnMap(397)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+						<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="397" /> -->
+						<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Jantellot" XYZ="-288.8686, 127.0664, 13.19904" />
+				<If Condition="not IsQuestAcceptQualified(67296)">
+					<LogMessage Message="You are not eligible for the Baby Steps quest." />
+					<LogMessage Message="Skipping for now..." />
+				</If>
+				<If Condition="IsQuestAcceptQualified(67296)">
+					<PickupQuest NpcId="1011907" QuestId="67296" XYZ="-288.8686, 127.0664, 13.19904" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67296)">
+				<If Condition="GetQuestStep(67296) == 1">
+					<If Condition="not IsOnMap(397)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Rheums" XYZ="-383.8947, 116.7741, -102.1182" />
+					<Grind grindRef="Baby_Steps" while="HasQuest(67296) and GetQuestStep(67296) == 1" />
+				</If>
+				<If Condition="GetQuestStep(67296) == 255">
+					<If Condition="not IsOnMap(397)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<NoCombatMoveTo Name="Jantellot" XYZ="-288.8686, 127.0664, 13.19904" />
+					<TurnIn QuestId="67296" NpcId="1011907" XYZ="-288.8686, 127.0664, 13.19904" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Sidequest: For All the Nights to Come -->
+
+		<If Condition="not IsQuestCompleted(67647)">
+			<If Condition="not HasQuest(67647)">
+				<If Condition="not IsOnMap(397)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+						<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="397" /> -->
+						<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Wealdtheow" XYZ="-279.5605, 127.0813, 13.59576" />
+				<If Condition="not IsQuestAcceptQualified(67647)">
+					<LogMessage Message="You are not eligible for the For All the Nights to Come quest." />
+					<LogMessage Message="Skipping for now..." />
+				</If>
+				<If Condition="IsQuestAcceptQualified(67647)">
+					<PickupQuest NpcId="1011911" QuestId="67647" XYZ="-279.5605, 127.0813, 13.59576" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67647)">
+				<If Condition="GetQuestStep(67647) == 1">
+					<If Condition="not IsOnMap(397)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Nadinie" XYZ="-87.81573, 87.189, -735.0424" />
+					<TalkTo NpcId="1013746" XYZ="-87.81573, 87.189, -735.0424" QuestId="67647" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67647) == 2">
+					<LogMessage Message="Please complete The Dusk Vigil manually!" />
+					<LogMessage Message="Please restart this profile after you are done." />
+					<LogMessage Message="Skipping this quest for now..." />
+				</If>
+				<If Condition="GetQuestStep(67647) == 255">
+					<If Condition="not IsOnMap(397)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<NoCombatMoveTo Name="Wealdtheow" XYZ="-279.5605, 127.0813, 13.59576" />
+					<TurnIn QuestId="67647" NpcId="1011911" ItemId="2001883" XYZ="-279.5605, 127.0813, 13.59576" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Sidequest: Protecting What's Important -->
+
+		<If Condition="not IsQuestCompleted(67295)">
+			<If Condition="not HasQuest(67295)">
+				<If Condition="not IsOnMap(397)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+						<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="397" /> -->
+						<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Luciae" XYZ="-298.2681, 126.6705, -1.419189" />
+				<If Condition="not IsQuestAcceptQualified(67295)">
+					<LogMessage Message="You are not eligible for the Protecting What's Important quest." />
+					<LogMessage Message="Skipping for now..." />
+				</If>
+				<If Condition="IsQuestAcceptQualified(67295)">
+					<PickupQuest NpcId="1011910" QuestId="67295" XYZ="-298.2681, 126.6705, -1.419189" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67295)">
+				<If Condition="GetQuestStep(67295) == 1">
+					<If Condition="not IsOnMap(397)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Polar Bears" XYZ="-142.4411, 110.1172, -37.57337" />
+					<Grind grindRef="Protecting_Whats_Important" while="HasQuest(67295) and GetQuestStep(67295) == 1" />
+				</If>
+				<If Condition="GetQuestStep(67295) == 255">
+					<If Condition="not IsOnMap(397)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					0: Bacon Bread (Parry)
+					1: Haddock Dip (Perception)
+					2: Triple Cream Coffee (Piety)
+
+					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+					<TurnIn QuestId="67295" NpcId="1011910" XYZ="-298.2681, 126.6705, -1.419189" RewardSlot="0" />
+
+					-->
+
+					<NoCombatMoveTo Name="Luciae" XYZ="-298.2681, 126.6705, -1.419189" />
+					<TurnIn QuestId="67295" NpcId="1011910" XYZ="-298.2681, 126.6705, -1.419189" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Purple Flame, Purple Flame -->
+
+		<If Condition="not IsQuestCompleted(67144)">
+			<If Condition="not HasQuest(67144)">
+				<If Condition="not IsOnMap(397)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+						<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="397" /> -->
+						<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Estinien" XYZ="-307.5457, 126.6344, -3.280701" />
+				<If Condition="not IsQuestAcceptQualified(67144)">
+					<LogMessage Message="You are not eligible for the Purple Flame, Purple Flame quest." />
+					<LogMessage Message="Skipping for now..." />
+				</If>
+				<If Condition="IsQuestAcceptQualified(67144)">
+					<PickupQuest NpcId="1012764" QuestId="67144" XYZ="-307.5457, 126.6344, -3.280701" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67144)">
+				<If Condition="GetQuestStep(67144) == 1">
+					<If Condition="not IsOnMap(397)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Wooly Yaks" XYZ="-334.8885, 93.59946, -194.6472" />
+					<Grind grindRef="Purple_Flame_Purple_Flame" while="HasQuest(67144) and GetQuestStep(67144) == 1" />
+				</If>
+				<If Condition="GetQuestStep(67144) == 255">
+					<If Condition="not IsOnMap(397)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+							<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									
+							<!-- TO DO -->
+
+							<!-- Update Travel.cs with new zone information.  -->
+
+							<!-- TO DO -->
+
+							<!-- <Travel To="397" /> -->
+							<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+							<StopBot />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<NoCombatMoveTo Name="Estinien" XYZ="-631.9219, 142.1073, -322.7131" />
+					<TurnIn QuestId="67144" NpcId="1012670" ItemId="2001584" XYZ="-631.9219, 142.1073, -322.7131" />
+				</If>
+			</If>
+		</If>
+
+		<LogMessage Message="You've attuned to the Aether Currents through questing in Coerthas Western Highlands!" />
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Bridge_Over_Frozen_Water">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="412.0077, 162.327, -176.6836" name="Upland Mylodons" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3474" />
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Baby_Steps">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-396.3525, 118.1586, -141.6539" name="Rheums" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3482" />
+			</TargetMobs>
+			<MinLevel>51</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Protecting_Whats_Important">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-73.46559, 103.3808, -52.77872" name="Polar Bears" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3485" />
+			</TargetMobs>
+			<MinLevel>51</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Purple_Flame_Purple_Flame">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-334.3916, 80.6248, -299.0159" name="Wooly Yaks" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3479" />
+			</TargetMobs>
+			<MinLevel>51</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>
