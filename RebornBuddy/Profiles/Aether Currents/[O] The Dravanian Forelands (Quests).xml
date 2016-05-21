@@ -5,7 +5,7 @@
 #################################################
 # Author: y2krazy                               #
 #################################################
-# Version: 1.0.0                                #
+# Version: 1.0.1                                #
 #################################################
 # Required Level: 53                            #
 #################################################
@@ -572,6 +572,17 @@
 		<LogMessage Message="You've attuned to the Aether Currents through questing in The Dravanian Forelands!" />
 
 	</Order>
+	<CodeChunks>
+		<CodeChunk Name="MoveForwardStart">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
 	<GrindAreas>
 		<GrindArea name="Chocobos_Last_Stand">
 			<Hotspots>
@@ -596,6 +607,4 @@
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
-	<CodeChunks>
-	</CodeChunks>
 </Profile>

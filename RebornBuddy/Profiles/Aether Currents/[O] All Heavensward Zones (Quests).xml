@@ -5,7 +5,7 @@
 ###############################################
 # Author: y2krazy                             #
 ###############################################
-# Version: 1.0.1                              #
+# Version: 1.0.2                              #
 ###############################################
 # Required Level: 59                          #
 ###############################################
@@ -3369,6 +3369,17 @@
 		<LogMessage Message="You've attuned to all the Aether Currents through questing!" />
 
 	</Order>
+	<CodeChunks>
+		<CodeChunk Name="MoveForwardStart">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
 	<GrindAreas>
 		<GrindArea name="Bridge_Over_Frozen_Water">
 			<Hotspots>
@@ -3540,6 +3551,4 @@
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
-	<CodeChunks>
-	</CodeChunks>
 </Profile>
