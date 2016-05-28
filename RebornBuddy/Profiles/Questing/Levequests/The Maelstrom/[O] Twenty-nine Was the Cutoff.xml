@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###########################################
+# Profile: [O] Twenty-nine Was the Cutoff #
+###########################################
+# Author: y2krazy                         #
+###########################################
+# Version: 1.0.0                          #
+###########################################
+# Required Level: 30                      #
+###########################################
+# Required Teleport Locations:            #
+# 	Costa del Sol or Wineport             #
+###########################################
+# Required User Interaction:              #
+# 	None                                  #
+###########################################
+# Required Setup:                         #
+# 	Join The Maelstrom Grand Company      #
+###########################################
+# Rewards:                                #
+# 	Grand Company Seals                   #
+###########################################
+-->
+<Profile>
+	<Name>[O] Twenty-nine Was the Cutoff</Name>
+	<BehaviorDirectory>../../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- <If Condition="not IsQuestCompleted(66060)">
+			<LogMessage Message="You haven't completed The Ultimate Weapon quest yet!" />
+			<LogMessage Message="Please restart this profile after you have done so." />
+			<StopBot/>
+		</If> -->
+
+		<!-- Twenty-nine Was the Cutoff -->
+
+		<If Condition="not IsOnMap(137)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+				<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+					<TeleportTo Name="Wineport" AetheryteId="12" />
+				</If>
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+				<Travel To="137" />
+			</If>
+		</If>
+		<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+			<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+		</If>
+		<NoCombatMoveTo Name="C'lafumyn" XYZ="605.5846, 23.93624, 458.2131" />
+		<PickupLeve LeveId="821" LeveType="Maelstrom" NpcId="1004736" XYZ="605.5846, 23.93624, 458.2131" />
+		<NoCombatMoveTo Name="Eastern La Noscea" XYZ="397.039, 28.78931, 307.951" />
+		<Dismount/>
+		<RunCode Name="WithdrawChocobo" />
+		<RunCode Name="InitiateLevequest" />
+		<Grind grindRef="Twenty_nine_Was_the_Cutoff" while="not RaptureAtkUnitManager.GetWindowByName(&quot;SelectYesnoCount&quot;)" />
+		<RunCode Name="SelectYes" />
+		<WaitTimer WaitTime="3" />
+		<RunCode Name="TwentynineWastheCutoff" />
+
+		<LogMessage Message="You've completed the Twenty-nine Was the Cutoff Levequest!" />
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Twenty_nine_Was_the_Cutoff">
+			<Hotspots>
+				<Hotspot Radius="250" XYZ="397.039, 28.78931, 307.951" name="Levequest Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="113" Weight="4000" /> <!-- Earth Sprite -->
+				<TargetMob Id="1120" Weight="3000" /> <!-- Void Flame -->
+				<TargetMob Id="1073" Weight="2000" /> <!-- Void Mine -->
+				<TargetMob Id="1154" Weight="1000" /> <!-- 426th Order Mendicant Zi Gu -->
+			</TargetMobs>
+			<MinLevel>30</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="WithdrawChocobo">
+			<![CDATA[ 
+				if(ff14bot.Objects.Chocobo.Summoned)
+				{
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
+					ff14bot.Objects.Chocobo.DismissChocobo();
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
+				}
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="InitiateLevequest">
+			<![CDATA[ 
+				RaptureAtkUnitManager.GetWindowByName("_ToDoList").SendAction(4, 3, 5, 3, 0, 3, 0, 4, 0x3C);
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				RaptureAtkUnitManager.GetWindowByName("Journal").SendAction(2, 3, 4, 4, 821);
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				RaptureAtkUnitManager.GetWindowByName("GuildLeveDifficulty").SendAction(2, 3, 0, 3, 4);
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="SelectYes">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				RaptureAtkUnitManager.GetWindowByName("SelectYesnoCount").SendAction(1, 3, 0);
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TwentynineWastheCutoff">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1004736).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.SelectString.IsOpen)
+					ff14bot.RemoteWindows.SelectString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
