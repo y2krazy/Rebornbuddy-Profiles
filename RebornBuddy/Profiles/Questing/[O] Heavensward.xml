@@ -39623,9 +39623,14 @@
 	<CodeChunks>
 		<CodeChunk Name="TravelToFalconsNest">
 			<![CDATA[ 
+				if (Chocobo.Summoned) await Chocobo.DismissChocobo();
 				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1011195).Interact();
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
+				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
+					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.Talk.DialogOpen)
+					ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
 				if (ff14bot.RemoteWindows.SelectString.IsOpen)
 					ff14bot.RemoteWindows.SelectString.ClickSlot(0);
