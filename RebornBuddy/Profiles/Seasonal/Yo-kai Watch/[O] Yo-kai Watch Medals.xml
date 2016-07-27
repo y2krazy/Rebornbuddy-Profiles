@@ -5,12 +5,13 @@
 #########################################
 # Author: y2krazy                       #
 #########################################
-# Version: 1.0.0a                       #
+# Version: 1.0.0b                       #
 #########################################
 # Required Level: 15                    #
 #########################################
 # Required Teleport Locations:          #
 # 	Bentbranch Meadows                  #
+#   Moraby Drydocks                     #
 #########################################
 # Required User Interaction:            #
 # 	None                                # 
@@ -45,13 +46,17 @@
 	<!-- ONLY SET ONE ZONE TO "1"! -->
 
   	<!ENTITY MedalsCentralShroud "0"> <!-- Farm Medals in Central Shroud. -->
+  	<!ENTITY MedalsLowerLaNoscea "0"> <!-- Farm Medals in Lower La Noscea. -->
+  	<!ENTITY MedalsCentralThanalan "0"> <!-- Farm Medals in Central Thanalan. -->
+  	<!ENTITY MedalsEastShroud "0"> <!-- Farm Medals in East Shroud. -->
 
   <!-- Legendary Medals Required for: -->
   <!-- First Weapon: 7 -->
   <!-- Second Weapon: 9 -->
   <!-- Third Weapon: 11 -->
-  <!-- Weapons 4-13: 15 each -->
-  <!-- All Weapons: 177 total -->
+  <!-- Weapons 4-10: 15 each -->
+  <!-- Weapons 11-13: 30 each -->
+  <!-- All Weapons: 222 total -->
 
   <!ENTITY JibanyanMedals "0"> <!-- Legendary Jibanyan Medals (WAR) to obtain before stopping. -->
 
@@ -59,6 +64,32 @@
 	<!-- ONLY SET ONE ZONE TO "1"! -->
 
   	<!ENTITY JibanyanShroud "0"> <!-- Farm Medals in Central Shroud. -->
+  	<!ENTITY JibanyanLaNoscea "0"> <!-- Farm Medals in Lower La Noscea. -->
+  	<!ENTITY JibanyanThanalan "0"> <!-- Farm Medals in Central Thanalan. -->
+
+  <!ENTITY KomasanMedals "0"> <!-- Legendary Komasan Medals (WHM) to obtain before stopping. -->
+
+  	<!-- True = "1" | False = "0" -->
+	<!-- ONLY SET ONE ZONE TO "1"! -->
+
+  	<!ENTITY KomasanShroud "0"> <!-- Farm Medals in East Shroud. -->
+
+  <!ENTITY ShogunyanMedals "0"> <!-- Legendary Shogunyan Medals (PLD) to obtain before stopping. -->
+
+  	<!-- True = "1" | False = "0" -->
+	<!-- ONLY SET ONE ZONE TO "1"! -->
+
+  	<!ENTITY ShogunyanLaNoscea "0"> <!-- Farm Medals in Lower La Noscea. -->
+  	<!ENTITY ShogunyanThanalan "0"> <!-- Farm Medals in Central Thanalan. -->
+  	<!ENTITY ShogunyanShroud "0"> <!-- Farm Medals in East Shroud. -->
+
+  <!ENTITY KomajiroMedals "0"> <!-- Legendary Komajiro Medals (SCH) to obtain before stopping. -->
+
+  	<!-- True = "1" | False = "0" -->
+	<!-- ONLY SET ONE ZONE TO "1"! -->
+
+  	<!ENTITY KomajiroThanalan "0"> <!-- Farm Medals in Central Thanalan. -->
+  	<!ENTITY KomajiroShroud "0"> <!-- Farm Medals in East Shroud. -->
 
   <!ENTITY VenoctMedals "0"> <!-- Legendary Venoct Medals (DRG) to obtain before stopping. -->
 
@@ -73,6 +104,7 @@
 	<!-- ONLY SET ONE ZONE TO "1"! -->
 
   	<!ENTITY KyubiShroud "0"> <!-- Farm Medals in Central Shroud. -->
+  	<!ENTITY KyubiLaNoscea "0"> <!-- Farm Medals in Lower La Noscea. -->
 
   <!-- ExLog Colors -->
 
@@ -108,6 +140,7 @@
 						</If>
 					</If>
 					<WaitTimer WaitTime="3" />
+					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
 					<RunCode Name="EquipYoKaiWatch" />
 					<WaitTimer WaitTime="3" />
 					<While Condition="not HasAtLeast(15167,&Medals;)">
@@ -145,6 +178,138 @@
 				</If>
 			</If>
 
+			<!-- Farm Yo-kai Medals in Lower La Noscea. -->
+
+			<If Condition="&MedalsLowerLaNoscea; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Lower La Noscea..." />
+				<If Condition="not HasAtLeast(15167,&Medals;)">
+					<If Condition="not IsOnMap(135)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(10)">
+							<TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+							<Travel To="135" />
+						</If>
+					</If>
+					<WaitTimer WaitTime="3" />
+					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+					<RunCode Name="EquipYoKaiWatch" />
+					<WaitTimer WaitTime="3" />
+					<While Condition="not HasAtLeast(15167,&Medals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15167,&Medals;)">
+							<FateIds>
+								<FateId>667</FateId> <!--  -->
+								<FateId>666</FateId> <!--  -->
+								<FateId>333</FateId> <!--  -->
+								<FateId>265</FateId> <!--  -->
+								<FateId>264</FateId> <!--  -->
+								<FateId>262</FateId> <!--  -->
+								<FateId>261</FateId> <!--  -->
+								<FateId>260</FateId> <!--  -->
+								<FateId>257</FateId> <!--  -->
+								<FateId>251</FateId> <!--  -->
+								<FateId>250</FateId> <!--  -->
+								<FateId>249</FateId> <!--  -->
+								<FateId>246</FateId> <!--  -->
+								<FateId>245</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+			<!-- Farm Yo-kai Medals in Central Thanalan. -->
+
+			<If Condition="&MedalsCentralThanalan; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Central Thanalan..." />
+				<If Condition="not HasAtLeast(15167,&Medals;)">
+					<If Condition="not IsOnMap(141)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+							<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+							<Travel To="141" />
+						</If>
+					</If>
+					<WaitTimer WaitTime="3" />
+					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+					<RunCode Name="EquipYoKaiWatch" />
+					<WaitTimer WaitTime="3" />
+					<While Condition="not HasAtLeast(15167,&Medals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15167,&Medals;)">
+							<FateIds>
+								<FateId>661</FateId> <!--  -->
+								<FateId>660</FateId> <!--  -->
+								<FateId>393</FateId> <!--  -->
+								<FateId>389</FateId> <!--  -->
+								<FateId>385</FateId> <!--  -->
+								<FateId>383</FateId> <!--  -->
+								<FateId>381</FateId> <!--  -->
+								<FateId>379</FateId> <!--  -->
+								<FateId>378</FateId> <!--  -->
+								<FateId>377</FateId> <!--  -->
+								<FateId>376</FateId> <!--  -->
+								<FateId>375</FateId> <!--  -->
+								<FateId>374</FateId> <!--  -->
+								<FateId>373</FateId> <!--  -->
+								<FateId>370</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+			<!-- Farm Yo-kai Medals in East Shroud. -->
+
+			<If Condition="&MedalsEastShroud; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in East Shroud..." />
+				<If Condition="not HasAtLeast(15167,&Medals;)">
+                    <If Condition="not IsOnMap(152)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(4)">
+                            <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+                        </If>
+                        <If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+                            <Travel To="152" />
+                        </If>
+                    </If>
+					<WaitTimer WaitTime="3" />
+					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+					<RunCode Name="EquipYoKaiWatch" />
+					<WaitTimer WaitTime="3" />
+					<While Condition="not HasAtLeast(15167,&Medals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15167,&Medals;)">
+							<FateIds>
+								<FateId>692</FateId> <!--  -->
+								<FateId>691</FateId> <!--  -->
+								<FateId>680</FateId> <!--  -->
+								<FateId>622</FateId> <!--  -->
+								<FateId>620</FateId> <!--  -->
+								<FateId>619</FateId> <!--  -->
+								<FateId>618</FateId> <!--  -->
+								<FateId>616</FateId> <!--  -->
+								<FateId>615</FateId> <!--  -->
+								<FateId>612</FateId> <!--  -->
+								<FateId>611</FateId> <!--  -->
+								<FateId>610</FateId> <!--  -->
+								<FateId>609</FateId> <!--  -->
+								<FateId>608</FateId> <!--  -->
+								<FateId>607</FateId> <!--  -->
+								<FateId>218</FateId> <!--  -->
+								<FateId>217</FateId> <!--  -->
+								<FateId>214</FateId> <!--  -->
+								<FateId>213</FateId> <!--  -->
+								<FateId>212</FateId> <!--  -->
+								<FateId>152</FateId> <!--  -->
+								<FateId>150</FateId> <!--  -->
+								<FateId>149</FateId> <!--  -->
+								<FateId>144</FateId> <!--  -->
+								<FateId>143</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
 		</If>
 
 		<!-- Legendary Jibanyan Medals -->
@@ -165,10 +330,6 @@
 							<Travel To="148" />
 						</If>
 					</If>
-					<WaitTimer WaitTime="3" />
-					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
-					<RunCode Name="EquipYoKaiWatch" />
-					<WaitTimer WaitTime="3" />
 					<While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
 						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15168,&JibanyanMedals;)">
 							<FateIds>
@@ -204,6 +365,351 @@
 				</If>
 			</If>
 
+			<!-- Farm Legendary Jibanyan Medals in Lower La Noscea. -->
+
+			<If Condition="&JibanyanLaNoscea; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Lower La Noscea..." />
+				<If Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+							<FateIds>
+								<FateId>667</FateId> <!--  -->
+								<FateId>666</FateId> <!--  -->
+								<FateId>333</FateId> <!--  -->
+								<FateId>265</FateId> <!--  -->
+								<FateId>264</FateId> <!--  -->
+								<FateId>262</FateId> <!--  -->
+								<FateId>261</FateId> <!--  -->
+								<FateId>260</FateId> <!--  -->
+								<FateId>257</FateId> <!--  -->
+								<FateId>251</FateId> <!--  -->
+								<FateId>250</FateId> <!--  -->
+								<FateId>249</FateId> <!--  -->
+								<FateId>246</FateId> <!--  -->
+								<FateId>245</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+			<!-- Farm Legendary Jibanyan Medals in Central Thanalan. -->
+
+			<If Condition="&JibanyanThanalan; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Central Thanalan..." />
+				<If Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+					<If Condition="not IsOnMap(141)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+							<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+							<Travel To="141" />
+						</If>
+					</If>
+					<While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+							<FateIds>
+								<FateId>661</FateId> <!--  -->
+								<FateId>660</FateId> <!--  -->
+								<FateId>393</FateId> <!--  -->
+								<FateId>389</FateId> <!--  -->
+								<FateId>385</FateId> <!--  -->
+								<FateId>383</FateId> <!--  -->
+								<FateId>381</FateId> <!--  -->
+								<FateId>379</FateId> <!--  -->
+								<FateId>378</FateId> <!--  -->
+								<FateId>377</FateId> <!--  -->
+								<FateId>376</FateId> <!--  -->
+								<FateId>375</FateId> <!--  -->
+								<FateId>374</FateId> <!--  -->
+								<FateId>373</FateId> <!--  -->
+								<FateId>370</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+		</If>
+
+		<!-- Legendary Komasan Medals -->
+
+		<If Condition="&KomasanMedals; &gt; 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &KomasanMedals; Legendary Komasan Medal(s)..." />
+
+			<!-- Farm Legendary Komasan Medals in East Shroud. -->
+
+			<If Condition="&KomasanShroud; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komasan Medal(s) in East Shroud..." />
+				<If Condition="not HasAtLeast(15169,&KomasanMedals;)">
+                    <If Condition="not IsOnMap(152)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(4)">
+                            <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+                        </If>
+                        <If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+                            <Travel To="152" />
+                        </If>
+                    </If>
+					<While Condition="not HasAtLeast(15169,&KomasanMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15169,&KomasanMedals;)">
+							<FateIds>
+								<FateId>692</FateId> <!--  -->
+								<FateId>691</FateId> <!--  -->
+								<FateId>680</FateId> <!--  -->
+								<FateId>622</FateId> <!--  -->
+								<FateId>620</FateId> <!--  -->
+								<FateId>619</FateId> <!--  -->
+								<FateId>618</FateId> <!--  -->
+								<FateId>616</FateId> <!--  -->
+								<FateId>615</FateId> <!--  -->
+								<FateId>612</FateId> <!--  -->
+								<FateId>611</FateId> <!--  -->
+								<FateId>610</FateId> <!--  -->
+								<FateId>609</FateId> <!--  -->
+								<FateId>608</FateId> <!--  -->
+								<FateId>607</FateId> <!--  -->
+								<FateId>218</FateId> <!--  -->
+								<FateId>217</FateId> <!--  -->
+								<FateId>214</FateId> <!--  -->
+								<FateId>213</FateId> <!--  -->
+								<FateId>212</FateId> <!--  -->
+								<FateId>152</FateId> <!--  -->
+								<FateId>150</FateId> <!--  -->
+								<FateId>149</FateId> <!--  -->
+								<FateId>144</FateId> <!--  -->
+								<FateId>143</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+		</If>
+
+		<!-- Legendary Shogunyan Medals -->
+
+		<If Condition="&ShogunyanMedals; &gt; 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &ShogunyanMedals; Legendary Shogunyan Medal(s)..." />
+
+			<!-- Farm Legendary Shogunyan Medals in Lower La Noscea. -->
+
+			<If Condition="&ShogunyanLaNoscea; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in Lower La Noscea..." />
+				<If Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+							<FateIds>
+								<FateId>667</FateId> <!--  -->
+								<FateId>666</FateId> <!--  -->
+								<FateId>333</FateId> <!--  -->
+								<FateId>265</FateId> <!--  -->
+								<FateId>264</FateId> <!--  -->
+								<FateId>262</FateId> <!--  -->
+								<FateId>261</FateId> <!--  -->
+								<FateId>260</FateId> <!--  -->
+								<FateId>257</FateId> <!--  -->
+								<FateId>251</FateId> <!--  -->
+								<FateId>250</FateId> <!--  -->
+								<FateId>249</FateId> <!--  -->
+								<FateId>246</FateId> <!--  -->
+								<FateId>245</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+			<!-- Farm Legendary Shogunyan Medals in Central Thanalan. -->
+
+			<If Condition="&ShogunyanThanalan; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in Central Thanalan..." />
+				<If Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+					<If Condition="not IsOnMap(141)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+							<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+							<Travel To="141" />
+						</If>
+					</If>
+					<While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+							<FateIds>
+								<FateId>661</FateId> <!--  -->
+								<FateId>660</FateId> <!--  -->
+								<FateId>393</FateId> <!--  -->
+								<FateId>389</FateId> <!--  -->
+								<FateId>385</FateId> <!--  -->
+								<FateId>383</FateId> <!--  -->
+								<FateId>381</FateId> <!--  -->
+								<FateId>379</FateId> <!--  -->
+								<FateId>378</FateId> <!--  -->
+								<FateId>377</FateId> <!--  -->
+								<FateId>376</FateId> <!--  -->
+								<FateId>375</FateId> <!--  -->
+								<FateId>374</FateId> <!--  -->
+								<FateId>373</FateId> <!--  -->
+								<FateId>370</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+			<!-- Farm Legendary Shogunyan Medals in East Shroud. -->
+
+			<If Condition="&ShogunyanShroud; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in East Shroud..." />
+				<If Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+                    <If Condition="not IsOnMap(152)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(4)">
+                            <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+                        </If>
+                        <If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+                            <Travel To="152" />
+                        </If>
+                    </If>
+					<While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+							<FateIds>
+								<FateId>692</FateId> <!--  -->
+								<FateId>691</FateId> <!--  -->
+								<FateId>680</FateId> <!--  -->
+								<FateId>622</FateId> <!--  -->
+								<FateId>620</FateId> <!--  -->
+								<FateId>619</FateId> <!--  -->
+								<FateId>618</FateId> <!--  -->
+								<FateId>616</FateId> <!--  -->
+								<FateId>615</FateId> <!--  -->
+								<FateId>612</FateId> <!--  -->
+								<FateId>611</FateId> <!--  -->
+								<FateId>610</FateId> <!--  -->
+								<FateId>609</FateId> <!--  -->
+								<FateId>608</FateId> <!--  -->
+								<FateId>607</FateId> <!--  -->
+								<FateId>218</FateId> <!--  -->
+								<FateId>217</FateId> <!--  -->
+								<FateId>214</FateId> <!--  -->
+								<FateId>213</FateId> <!--  -->
+								<FateId>212</FateId> <!--  -->
+								<FateId>152</FateId> <!--  -->
+								<FateId>150</FateId> <!--  -->
+								<FateId>149</FateId> <!--  -->
+								<FateId>144</FateId> <!--  -->
+								<FateId>143</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+		</If>
+
+		<!-- Legendary Komajiro Medals -->
+
+		<If Condition="&KomajiroMedals; &gt; 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &KomajiroMedals; Legendary Komajiro Medal(s)..." />
+
+			<!-- Farm Legendary Komajiro Medals in Central Thanalan. -->
+
+			<If Condition="&KomajiroThanalan; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komajiro Medal(s) in Central Thanalan..." />
+				<If Condition="not HasAtLeast(15173,&KomajiroMedals;)">
+					<If Condition="not IsOnMap(141)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(53)">
+							<TeleportTo Name="Black Brush Station" AetheryteId="53" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+							<Travel To="141" />
+						</If>
+					</If>
+					<While Condition="not HasAtLeast(15173,&KomajiroMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15173,&KomajiroMedals;)">
+							<FateIds>
+								<FateId>661</FateId> <!--  -->
+								<FateId>660</FateId> <!--  -->
+								<FateId>393</FateId> <!--  -->
+								<FateId>389</FateId> <!--  -->
+								<FateId>385</FateId> <!--  -->
+								<FateId>383</FateId> <!--  -->
+								<FateId>381</FateId> <!--  -->
+								<FateId>379</FateId> <!--  -->
+								<FateId>378</FateId> <!--  -->
+								<FateId>377</FateId> <!--  -->
+								<FateId>376</FateId> <!--  -->
+								<FateId>375</FateId> <!--  -->
+								<FateId>374</FateId> <!--  -->
+								<FateId>373</FateId> <!--  -->
+								<FateId>370</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+			<!-- Farm Legendary Komajiro Medals in East Shroud. -->
+
+			<If Condition="&KomajiroShroud; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komajiro Medal(s) in East Shroud..." />
+				<If Condition="not HasAtLeast(15173,&KomajiroMedals;)">
+                    <If Condition="not IsOnMap(152)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(4)">
+                            <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+                        </If>
+                        <If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+                            <Travel To="152" />
+                        </If>
+                    </If>
+					<While Condition="not HasAtLeast(15173,&KomajiroMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15173,&KomajiroMedals;)">
+							<FateIds>
+								<FateId>692</FateId> <!--  -->
+								<FateId>691</FateId> <!--  -->
+								<FateId>680</FateId> <!--  -->
+								<FateId>622</FateId> <!--  -->
+								<FateId>620</FateId> <!--  -->
+								<FateId>619</FateId> <!--  -->
+								<FateId>618</FateId> <!--  -->
+								<FateId>616</FateId> <!--  -->
+								<FateId>615</FateId> <!--  -->
+								<FateId>612</FateId> <!--  -->
+								<FateId>611</FateId> <!--  -->
+								<FateId>610</FateId> <!--  -->
+								<FateId>609</FateId> <!--  -->
+								<FateId>608</FateId> <!--  -->
+								<FateId>607</FateId> <!--  -->
+								<FateId>218</FateId> <!--  -->
+								<FateId>217</FateId> <!--  -->
+								<FateId>214</FateId> <!--  -->
+								<FateId>213</FateId> <!--  -->
+								<FateId>212</FateId> <!--  -->
+								<FateId>152</FateId> <!--  -->
+								<FateId>150</FateId> <!--  -->
+								<FateId>149</FateId> <!--  -->
+								<FateId>144</FateId> <!--  -->
+								<FateId>143</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
 		</If>
 
 		<!-- Legendary Venoct Medals -->
@@ -224,10 +730,6 @@
 							<Travel To="148" />
 						</If>
 					</If>
-					<WaitTimer WaitTime="3" />
-					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
-					<RunCode Name="EquipYoKaiWatch" />
-					<WaitTimer WaitTime="3" />
 					<While Condition="not HasAtLeast(15176,&VenoctMedals;)">
 						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15176,&VenoctMedals;)">
 							<FateIds>
@@ -283,10 +785,6 @@
 							<Travel To="148" />
 						</If>
 					</If>
-					<WaitTimer WaitTime="3" />
-					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
-					<RunCode Name="EquipYoKaiWatch" />
-					<WaitTimer WaitTime="3" />
 					<While Condition="not HasAtLeast(15172,&KyubiMedals;)">
 						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15172,&KyubiMedals;)">
 							<FateIds>
@@ -322,6 +820,42 @@
 				</If>
 			</If>
 
+			<!-- Farm Legendary Kyubi Medals in Lower La Noscea. -->
+
+			<If Condition="&KyubiLaNoscea; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Lower La Noscea..." />
+				<If Condition="not HasAtLeast(15172,&KyubiMedals;)">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<While Condition="not HasAtLeast(15172,&KyubiMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15172,&KyubiMedals;)">
+							<FateIds>
+								<FateId>667</FateId> <!--  -->
+								<FateId>666</FateId> <!--  -->
+								<FateId>333</FateId> <!--  -->
+								<FateId>265</FateId> <!--  -->
+								<FateId>264</FateId> <!--  -->
+								<FateId>262</FateId> <!--  -->
+								<FateId>261</FateId> <!--  -->
+								<FateId>260</FateId> <!--  -->
+								<FateId>257</FateId> <!--  -->
+								<FateId>251</FateId> <!--  -->
+								<FateId>250</FateId> <!--  -->
+								<FateId>249</FateId> <!--  -->
+								<FateId>246</FateId> <!--  -->
+								<FateId>245</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
 		</If>
 
 		<If Condition="HasAtLeast(15167,&Medals;) and &Medals; != 0">
@@ -329,6 +863,9 @@
 		</If>
 		<If Condition="HasAtLeast(15168,&JibanyanMedals;) and &JibanyanMedals; != 0">
 			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &JibanyanMedals; Legendary Jibanyan Medal(s)!" />
+		</If>
+		<If Condition="HasAtLeast(15177,&ShogunyanMedals;) and &ShogunyanMedals; != 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &ShogunyanMedals; Legendary Shogunyan Medal(s)!" />
 		</If>
 		<If Condition="HasAtLeast(15176,&VenoctMedals;) and &VenoctMedals; != 0">
 			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &VenoctMedals; Legendary Venoct Medal(s)!" />
