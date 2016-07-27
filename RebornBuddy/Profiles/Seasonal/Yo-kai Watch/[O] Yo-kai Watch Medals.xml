@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#########################################
+# Profile: [O] Yo-kai Watch Medals      #
+#########################################
+# Author: y2krazy                       #
+#########################################
+# Version: 1.0.0                        #
+#########################################
+# Required Level: 15                    #
+#########################################
+# Required Teleport Locations:          #
+# 	Bentbranch Meadows                  #
+#########################################
+# Required User Interaction:            #
+# 	None                                # 
+#########################################
+# Required Setup:                       #
+# 	Fill out User Configuration below.  #
+#########################################
+# Rewards:                              #
+# 	Yo-kai Legendary Medals             #
+# 	Yo-kai Medals                       #
+# 	13 Yo-kai Minions (Medals)          #
+# 	13 Yo-kai Weapon (Legendary Medals) #
+# 	Whisper-go Mount                    #
+# 	Whisper A-go-go Mount               #
+#########################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- Medals Required for: -->
+  <!-- First Minion: 1 ("free" - obtained from the quest) -->
+  <!-- Minions 2-4: 3 each -->
+  <!-- Minions 5-7: 5 each -->
+  <!-- Minions 8-10: 7 each -->
+  <!-- Minion 11-13: 9 each -->
+  <!-- Minions 2-13: 72 total -->
+
+  <!ENTITY Medals "0"> <!-- Yo-kai Medals to obtain before stopping. -->
+
+  	<!-- True = "1" | False = "0" -->
+	<!-- ONLY SET ONE ZONE TO "1"! -->
+
+  	<!ENTITY MedalsCentralShroud "0"> <!-- Farm Medals in Central Shroud. -->
+
+  <!-- Legendary Medals Required for: -->
+  <!-- First Weapon: 7 -->
+  <!-- Second Weapon: 9 -->
+  <!-- Third Weapon: 11 -->
+  <!-- Weapons 4-13: 15 each -->
+  <!-- All Weapons: 177 total -->
+
+  <!ENTITY JibanyanMedals "0"> <!-- Legendary Jibanyan Medals (WAR) to obtain before stopping. -->
+
+  	<!-- True = "1" | False = "0" -->
+	<!-- ONLY SET ONE ZONE TO "1"! -->
+
+  	<!ENTITY JibanyanShroud "0"> <!-- Farm Medals in Central Shroud. -->
+
+  <!ENTITY VenoctMedals "0"> <!-- Legendary Venoct Medals (DRG) to obtain before stopping. -->
+
+  	<!-- True = "1" | False = "0" -->
+	<!-- ONLY SET ONE ZONE TO "1"! -->
+
+  	<!ENTITY VenoctShroud "0"> <!-- Farm Medals in Central Shroud. -->
+
+  <!ENTITY KyubiMedals "0"> <!-- Legendary Kyubi Medals (NIN) to obtain before stopping. -->
+
+  	<!-- True = "1" | False = "0" -->
+	<!-- ONLY SET ONE ZONE TO "1"! -->
+
+  	<!ENTITY KyubiShroud "0"> <!-- Farm Medals in Central Shroud. -->
+
+  <!-- ExLog Colors -->
+
+  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+  <!ENTITY ExLogAck "#FF0000"> <!-- Warnings -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] Yo-kai Watch Medals</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Yo-kai Medals -->
+
+		<If Condition="&Medals; == 0">
+			<ExLog Color="&ExLogAck;" Name="Yo-kai Watch" Message="If you're farming Yo-kai Medals, please set the amount of Medals you would like to obtain!" />
+		</If>
+		<If Condition="&Medals; &gt; 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &Medals; Yo-Kai Medal(s)..." />
+
+			<!-- Farm Yo-kai Medals in Central Shroud. -->
+
+			<If Condition="&MedalsCentralShroud; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Central Shroud..." />
+				<If Condition="not HasAtLeast(15167,&Medals;)">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<WaitTimer WaitTime="3" />
+					<RunCode Name="EquipYoKaiWatch" />
+					<WaitTimer WaitTime="3" />
+					<While Condition="not HasAtLeast(15167,&Medals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15167,&Medals;)">
+							<FateIds>
+								<FateId>933</FateId> <!--  -->
+								<FateId>673</FateId> <!--  -->
+								<FateId>672</FateId> <!--  -->
+								<FateId>604</FateId> <!--  -->
+								<FateId>603</FateId> <!--  -->
+								<FateId>602</FateId> <!--  -->
+								<FateId>601</FateId> <!--  -->
+								<FateId>600</FateId> <!--  -->
+								<FateId>209</FateId> <!--  -->
+								<FateId>208</FateId> <!--  -->
+								<FateId>142</FateId> <!--  -->
+								<FateId>141</FateId> <!--  -->
+								<FateId>140</FateId> <!--  -->
+								<FateId>139</FateId> <!--  -->
+								<FateId>137</FateId> <!--  -->
+								<FateId>136</FateId> <!--  -->
+								<FateId>131</FateId> <!--  -->
+								<FateId>128</FateId> <!--  -->
+								<FateId>127</FateId> <!--  -->
+								<FateId>126</FateId> <!--  -->
+								<!-- <FateId>125</FateId> --> <!-- No viable path? -->
+								<FateId>124</FateId> <!--  -->
+								<FateId>123</FateId> <!--  -->
+								<FateId>122</FateId> <!--  -->
+								<FateId>121</FateId> <!--  -->
+								<FateId>120</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+		</If>
+
+		<!-- Legendary Jibanyan Medals -->
+
+		<If Condition="&JibanyanMedals; &gt; 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &JibanyanMedals; Legendary Jibanyan Medal(s)..." />
+
+			<!-- Farm Legendary Jibanyan Medals in Central Shroud. -->
+
+			<If Condition="&JibanyanShroud; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Central Shroud..." />
+				<If Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<WaitTimer WaitTime="3" />
+					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+					<RunCode Name="EquipYoKaiWatch" />
+					<WaitTimer WaitTime="3" />
+					<While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+							<FateIds>
+								<FateId>933</FateId> <!--  -->
+								<FateId>673</FateId> <!--  -->
+								<FateId>672</FateId> <!--  -->
+								<FateId>604</FateId> <!--  -->
+								<FateId>603</FateId> <!--  -->
+								<FateId>602</FateId> <!--  -->
+								<FateId>601</FateId> <!--  -->
+								<FateId>600</FateId> <!--  -->
+								<FateId>209</FateId> <!--  -->
+								<FateId>208</FateId> <!--  -->
+								<FateId>142</FateId> <!--  -->
+								<FateId>141</FateId> <!--  -->
+								<FateId>140</FateId> <!--  -->
+								<FateId>139</FateId> <!--  -->
+								<FateId>137</FateId> <!--  -->
+								<FateId>136</FateId> <!--  -->
+								<FateId>131</FateId> <!--  -->
+								<FateId>128</FateId> <!--  -->
+								<FateId>127</FateId> <!--  -->
+								<FateId>126</FateId> <!--  -->
+								<!-- <FateId>125</FateId> --> <!-- No viable path? -->
+								<FateId>124</FateId> <!--  -->
+								<FateId>123</FateId> <!--  -->
+								<FateId>122</FateId> <!--  -->
+								<FateId>121</FateId> <!--  -->
+								<FateId>120</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+		</If>
+
+		<!-- Legendary Venoct Medals -->
+
+		<If Condition="&VenoctMedals; &gt; 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &VenoctMedals; Legendary Venoct Medal(s)..." />
+
+			<!-- Farm Legendary Venoct Medals in Central Shroud. -->
+
+			<If Condition="&VenoctShroud; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Venoct Medal(s) in Central Shroud..." />
+				<If Condition="not HasAtLeast(15176,&VenoctMedals;)">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<WaitTimer WaitTime="3" />
+					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+					<RunCode Name="EquipYoKaiWatch" />
+					<WaitTimer WaitTime="3" />
+					<While Condition="not HasAtLeast(15176,&VenoctMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15176,&VenoctMedals;)">
+							<FateIds>
+								<FateId>933</FateId> <!--  -->
+								<FateId>673</FateId> <!--  -->
+								<FateId>672</FateId> <!--  -->
+								<FateId>604</FateId> <!--  -->
+								<FateId>603</FateId> <!--  -->
+								<FateId>602</FateId> <!--  -->
+								<FateId>601</FateId> <!--  -->
+								<FateId>600</FateId> <!--  -->
+								<FateId>209</FateId> <!--  -->
+								<FateId>208</FateId> <!--  -->
+								<FateId>142</FateId> <!--  -->
+								<FateId>141</FateId> <!--  -->
+								<FateId>140</FateId> <!--  -->
+								<FateId>139</FateId> <!--  -->
+								<FateId>137</FateId> <!--  -->
+								<FateId>136</FateId> <!--  -->
+								<FateId>131</FateId> <!--  -->
+								<FateId>128</FateId> <!--  -->
+								<FateId>127</FateId> <!--  -->
+								<FateId>126</FateId> <!--  -->
+								<!-- <FateId>125</FateId> --> <!-- No viable path? -->
+								<FateId>124</FateId> <!--  -->
+								<FateId>123</FateId> <!--  -->
+								<FateId>122</FateId> <!--  -->
+								<FateId>121</FateId> <!--  -->
+								<FateId>120</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+		</If>
+
+		<!-- Legendary Kyubi Medals -->
+
+		<If Condition="&KyubiMedals; &gt; 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &KyubiMedals; Legendary Kyubi Medal(s)..." />
+
+			<!-- Farm Legendary Kyubi Medals in Central Shroud. -->
+
+			<If Condition="&KyubiShroud; == 1">
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Central Shroud..." />
+				<If Condition="not HasAtLeast(15172,&KyubiMedals;)">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<WaitTimer WaitTime="3" />
+					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+					<RunCode Name="EquipYoKaiWatch" />
+					<WaitTimer WaitTime="3" />
+					<While Condition="not HasAtLeast(15172,&KyubiMedals;)">
+						<Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15172,&KyubiMedals;)">
+							<FateIds>
+								<FateId>933</FateId> <!--  -->
+								<FateId>673</FateId> <!--  -->
+								<FateId>672</FateId> <!--  -->
+								<FateId>604</FateId> <!--  -->
+								<FateId>603</FateId> <!--  -->
+								<FateId>602</FateId> <!--  -->
+								<FateId>601</FateId> <!--  -->
+								<FateId>600</FateId> <!--  -->
+								<FateId>209</FateId> <!--  -->
+								<FateId>208</FateId> <!--  -->
+								<FateId>142</FateId> <!--  -->
+								<FateId>141</FateId> <!--  -->
+								<FateId>140</FateId> <!--  -->
+								<FateId>139</FateId> <!--  -->
+								<FateId>137</FateId> <!--  -->
+								<FateId>136</FateId> <!--  -->
+								<FateId>131</FateId> <!--  -->
+								<FateId>128</FateId> <!--  -->
+								<FateId>127</FateId> <!--  -->
+								<FateId>126</FateId> <!--  -->
+								<!-- <FateId>125</FateId> --> <!-- No viable path? -->
+								<FateId>124</FateId> <!--  -->
+								<FateId>123</FateId> <!--  -->
+								<FateId>122</FateId> <!--  -->
+								<FateId>121</FateId> <!--  -->
+								<FateId>120</FateId> <!--  -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+			</If>
+
+		</If>
+
+		<If Condition="HasAtLeast(15167,&Medals;) and &Medals; != 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &Medals; Yo-Kai Medal(s)!" />
+		</If>
+		<If Condition="HasAtLeast(15168,&JibanyanMedals;) and &JibanyanMedals; != 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &JibanyanMedals; Legendary Jibanyan Medal(s)!" />
+		</If>
+		<If Condition="HasAtLeast(15176,&VenoctMedals;) and &VenoctMedals; != 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &VenoctMedals; Legendary Venoct Medal(s)!" />
+		</If>
+		<If Condition="HasAtLeast(15172,&KyubiMedals;) and &KyubiMedals; != 0">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &KyubiMedals; Legendary Kyubi Medal(s)!" />
+		</If>
+
+		<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="If you need more Medals, please adjust the quantity in the user configuration within the profile!" />
+		<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Stopping the bot. Nothing left for me to to!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="EquipYoKaiWatch">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Bracelet];
+				
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+				{
+					if(slot.RawItemId == 15222)
+					{
+						slot.Move(EquipSlot);
+					}
+				}
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
