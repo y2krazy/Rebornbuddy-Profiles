@@ -6,7 +6,7 @@
 # Author: y2krazy                        #
 #         Kataera (Minion Summon Code)   #
 ##########################################
-# Version: 1.0.1                         #
+# Version: 1.0.1a                        #
 ##########################################
 # Required Level: 15                     #
 ##########################################
@@ -53,7 +53,7 @@
   <!-- Minion 11-13: 9 each -->
   <!-- Minions 2-13: 72 total -->
 
-  <!ENTITY Medals "0"> <!-- Yo-kai Medals to obtain before stopping. -->
+  <!ENTITY Medals "72"> <!-- Yo-kai Medals to obtain before stopping. -->
 
     <!-- True = "1" | False = "0" -->
     <!-- ONLY SET ONE ZONE TO "1"! -->
@@ -62,7 +62,7 @@
     <!ENTITY MedalsMiddleLaNoscea "0"> <!-- Farm Medals in Middle La Noscea. -->
     <!ENTITY MedalsOuterLaNoscea "0"> <!-- Farm Medals in Outer La Noscea. -->
     <!ENTITY MedalsUpperLaNoscea "0"> <!-- Farm Medals in Upper La Noscea. -->
-    <!ENTITY MedalsWesternLaNoscea "0"> <!-- Farm Medals in Western La Noscea. -->
+    <!ENTITY MedalsWesternLaNoscea "1"> <!-- Farm Medals in Western La Noscea. -->
 
     <!ENTITY MedalsEastShroud "0"> <!-- Farm Medals in East Shroud. -->
     <!ENTITY MedalsCentralShroud "0"> <!-- Farm Medals in Central Shroud. -->
@@ -100,7 +100,7 @@
     <!ENTITY HovernyanShroud "0"> <!-- Farm Medals in South Shroud. -->
     <!ENTITY HovernyanThanalan "0"> <!-- Farm Medals in Eastern Thanalan. -->
 
-  <!ENTITY JibanyanMedals "0"> <!-- Legendary Jibanyan Medals (WAR) to obtain before stopping. -->
+  <!ENTITY JibanyanMedals "7"> <!-- Legendary Jibanyan Medals (WAR) to obtain before stopping. -->
 
     <!-- True = "1" | False = "0" -->
     <!-- ONLY SET ONE ZONE TO "1"! -->
@@ -1100,17 +1100,12 @@
             <If Condition="&HovernyanThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Hovernyan Medal(s) in Eastern Thanalan..." />
                 <If Condition="not HasAtLeast(15178,&HovernyanMedals;)">
-                    <If Condition="not IsOnMap(138)">
-                        <If Condition="Managers.WorldManager.HasAetheryteId(14)">
-                            <TeleportTo Name="Aleport" AetheryteId="14" />
+                    <If Condition="not IsOnMap(145)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(18)">
+                            <TeleportTo Name="Camp Drybone" AetheryteId="18" />
                         </If>
-                        <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
-                            <If Condition="Managers.WorldManager.HasAetheryteId(13)">
-                                <TeleportTo Name="Swiftperch" AetheryteId="13" />
-                            </If>
-                        </If>
-                        <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
-                            <Travel To="138" />
+                        <If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+                            <Travel To="145" />
                         </If>
                     </If>
                     <Dismount/>
@@ -1121,31 +1116,28 @@
                     <While Condition="not HasAtLeast(15178,&HovernyanMedals;)">
                         <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15178,&HovernyanMedals;)">
                             <FateIds>
-                                <FateId>650</FateId> <!--  -->
-                                <FateId>578</FateId> <!--  -->
-                                <!-- <FateId>577</FateId> --> <!-- No viable path?! -->
-                                <FateId>576</FateId> <!--  -->
-                                <FateId>575</FateId> <!--  -->
-                                <FateId>574</FateId> <!--  -->
-                                <FateId>572</FateId> <!--  -->
-                                <FateId>571</FateId> <!--  -->
-                                <FateId>570</FateId> <!--  -->
-                                <FateId>569</FateId> <!--  -->
-                                <FateId>568</FateId> <!--  -->
-                                <FateId>336</FateId> <!--  -->
-                                <FateId>312</FateId> <!--  -->
-                                <FateId>310</FateId> <!--  -->
-                                <FateId>309</FateId> <!--  -->
-                                <FateId>308</FateId> <!--  -->
-                                <FateId>306</FateId> <!--  -->
-                                <FateId>304</FateId> <!--  -->
-                                <FateId>303</FateId> <!--  -->
-                                <FateId>298</FateId> <!--  -->
-                                <FateId>297</FateId> <!--  -->
-                                <FateId>295</FateId> <!--  -->
-                                <FateId>291</FateId> <!--  -->
-                                <FateId>290</FateId> <!--  -->
-                                <FateId>289</FateId> <!--  -->
+                                <FateId>652</FateId> <!--  -->
+                                <FateId>543</FateId> <!--  -->
+                                <FateId>542</FateId> <!--  -->
+                                <FateId>541</FateId> <!--  -->
+                                <FateId>540</FateId> <!--  -->
+                                <FateId>413</FateId> <!--  -->
+                                <FateId>412</FateId> <!--  -->
+                                <FateId>409</FateId> <!--  -->
+                                <FateId>407</FateId> <!--  -->
+                                <FateId>406</FateId> <!--  -->
+                                <FateId>402</FateId> <!--  -->
+                                <FateId>401</FateId> <!--  -->
+                                <FateId>400</FateId> <!--  -->
+                                <FateId>398</FateId> <!--  -->
+                                <FateId>397</FateId> <!--  -->
+                                <FateId>395</FateId> <!--  -->
+                                <FateId>394</FateId> <!--  -->
+                                <FateId>195</FateId> <!--  -->
+                                <FateId>194</FateId> <!--  -->
+                                <FateId>193</FateId> <!--  -->
+                                <FateId>192</FateId> <!--  -->
+                                <FateId>191</FateId> <!--  -->
                             </FateIds>
                         </Fate>
                     </While>
@@ -1164,12 +1156,12 @@
             <If Condition="&JibanyanLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Lower La Noscea..." />
                 <If Condition="not HasAtLeast(15168,&JibanyanMedals;)">
-                    <If Condition="not IsOnMap(148)">
-                        <If Condition="Managers.WorldManager.HasAetheryteId(3)">
-                            <TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+                    <If Condition="not IsOnMap(135)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(10)">
+                            <TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
                         </If>
-                        <If Condition="not Managers.WorldManager.HasAetheryteId(3)">
-                            <Travel To="148" />
+                        <If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+                            <Travel To="135" />
                         </If>
                     </If>
                     <Dismount/>
@@ -1574,17 +1566,12 @@
             <If Condition="&KomasanThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komasan Medal(s) in Eastern Thanalan..." />
                 <If Condition="not HasAtLeast(15169,&KomasanMedals;)">
-                    <If Condition="not IsOnMap(138)">
-                        <If Condition="Managers.WorldManager.HasAetheryteId(14)">
-                            <TeleportTo Name="Aleport" AetheryteId="14" />
+                    <If Condition="not IsOnMap(145)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(18)">
+                            <TeleportTo Name="Camp Drybone" AetheryteId="18" />
                         </If>
-                        <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
-                            <If Condition="Managers.WorldManager.HasAetheryteId(13)">
-                                <TeleportTo Name="Swiftperch" AetheryteId="13" />
-                            </If>
-                        </If>
-                        <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
-                            <Travel To="138" />
+                        <If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+                            <Travel To="145" />
                         </If>
                     </If>
                     <Dismount/>
@@ -1595,31 +1582,28 @@
                     <While Condition="not HasAtLeast(15169,&KomasanMedals;)">
                         <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15169,&KomasanMedals;)">
                             <FateIds>
-                                <FateId>650</FateId> <!--  -->
-                                <FateId>578</FateId> <!--  -->
-                                <!-- <FateId>577</FateId> --> <!-- No viable path?! -->
-                                <FateId>576</FateId> <!--  -->
-                                <FateId>575</FateId> <!--  -->
-                                <FateId>574</FateId> <!--  -->
-                                <FateId>572</FateId> <!--  -->
-                                <FateId>571</FateId> <!--  -->
-                                <FateId>570</FateId> <!--  -->
-                                <FateId>569</FateId> <!--  -->
-                                <FateId>568</FateId> <!--  -->
-                                <FateId>336</FateId> <!--  -->
-                                <FateId>312</FateId> <!--  -->
-                                <FateId>310</FateId> <!--  -->
-                                <FateId>309</FateId> <!--  -->
-                                <FateId>308</FateId> <!--  -->
-                                <FateId>306</FateId> <!--  -->
-                                <FateId>304</FateId> <!--  -->
-                                <FateId>303</FateId> <!--  -->
-                                <FateId>298</FateId> <!--  -->
-                                <FateId>297</FateId> <!--  -->
-                                <FateId>295</FateId> <!--  -->
-                                <FateId>291</FateId> <!--  -->
-                                <FateId>290</FateId> <!--  -->
-                                <FateId>289</FateId> <!--  -->
+                                <FateId>652</FateId> <!--  -->
+                                <FateId>543</FateId> <!--  -->
+                                <FateId>542</FateId> <!--  -->
+                                <FateId>541</FateId> <!--  -->
+                                <FateId>540</FateId> <!--  -->
+                                <FateId>413</FateId> <!--  -->
+                                <FateId>412</FateId> <!--  -->
+                                <FateId>409</FateId> <!--  -->
+                                <FateId>407</FateId> <!--  -->
+                                <FateId>406</FateId> <!--  -->
+                                <FateId>402</FateId> <!--  -->
+                                <FateId>401</FateId> <!--  -->
+                                <FateId>400</FateId> <!--  -->
+                                <FateId>398</FateId> <!--  -->
+                                <FateId>397</FateId> <!--  -->
+                                <FateId>395</FateId> <!--  -->
+                                <FateId>394</FateId> <!--  -->
+                                <FateId>195</FateId> <!--  -->
+                                <FateId>194</FateId> <!--  -->
+                                <FateId>193</FateId> <!--  -->
+                                <FateId>192</FateId> <!--  -->
+                                <FateId>191</FateId> <!--  -->
                             </FateIds>
                         </Fate>
                     </While>
@@ -1638,12 +1622,12 @@
             <If Condition="&KyubiLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Lower La Noscea..." />
                 <If Condition="not HasAtLeast(15172,&KyubiMedals;)">
-                    <If Condition="not IsOnMap(148)">
-                        <If Condition="Managers.WorldManager.HasAetheryteId(3)">
-                            <TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+                    <If Condition="not IsOnMap(135)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(10)">
+                            <TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
                         </If>
-                        <If Condition="not Managers.WorldManager.HasAetheryteId(3)">
-                            <Travel To="148" />
+                        <If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+                            <Travel To="135" />
                         </If>
                     </If>
                     <Dismount/>
@@ -1882,17 +1866,12 @@
             <If Condition="&ManjimuttThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Manjimutt Medal(s) in Eastern Thanalan..." />
                 <If Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
-                    <If Condition="not IsOnMap(138)">
-                        <If Condition="Managers.WorldManager.HasAetheryteId(14)">
-                            <TeleportTo Name="Aleport" AetheryteId="14" />
+                    <If Condition="not IsOnMap(145)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(18)">
+                            <TeleportTo Name="Camp Drybone" AetheryteId="18" />
                         </If>
-                        <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
-                            <If Condition="Managers.WorldManager.HasAetheryteId(13)">
-                                <TeleportTo Name="Swiftperch" AetheryteId="13" />
-                            </If>
-                        </If>
-                        <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
-                            <Travel To="138" />
+                        <If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+                            <Travel To="145" />
                         </If>
                     </If>
                     <Dismount/>
@@ -1903,31 +1882,28 @@
                     <While Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
                         <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
                             <FateIds>
-                                <FateId>650</FateId> <!--  -->
-                                <FateId>578</FateId> <!--  -->
-                                <!-- <FateId>577</FateId> --> <!-- No viable path?! -->
-                                <FateId>576</FateId> <!--  -->
-                                <FateId>575</FateId> <!--  -->
-                                <FateId>574</FateId> <!--  -->
-                                <FateId>572</FateId> <!--  -->
-                                <FateId>571</FateId> <!--  -->
-                                <FateId>570</FateId> <!--  -->
-                                <FateId>569</FateId> <!--  -->
-                                <FateId>568</FateId> <!--  -->
-                                <FateId>336</FateId> <!--  -->
-                                <FateId>312</FateId> <!--  -->
-                                <FateId>310</FateId> <!--  -->
-                                <FateId>309</FateId> <!--  -->
-                                <FateId>308</FateId> <!--  -->
-                                <FateId>306</FateId> <!--  -->
-                                <FateId>304</FateId> <!--  -->
-                                <FateId>303</FateId> <!--  -->
-                                <FateId>298</FateId> <!--  -->
-                                <FateId>297</FateId> <!--  -->
-                                <FateId>295</FateId> <!--  -->
-                                <FateId>291</FateId> <!--  -->
-                                <FateId>290</FateId> <!--  -->
-                                <FateId>289</FateId> <!--  -->
+                                <FateId>652</FateId> <!--  -->
+                                <FateId>543</FateId> <!--  -->
+                                <FateId>542</FateId> <!--  -->
+                                <FateId>541</FateId> <!--  -->
+                                <FateId>540</FateId> <!--  -->
+                                <FateId>413</FateId> <!--  -->
+                                <FateId>412</FateId> <!--  -->
+                                <FateId>409</FateId> <!--  -->
+                                <FateId>407</FateId> <!--  -->
+                                <FateId>406</FateId> <!--  -->
+                                <FateId>402</FateId> <!--  -->
+                                <FateId>401</FateId> <!--  -->
+                                <FateId>400</FateId> <!--  -->
+                                <FateId>398</FateId> <!--  -->
+                                <FateId>397</FateId> <!--  -->
+                                <FateId>395</FateId> <!--  -->
+                                <FateId>394</FateId> <!--  -->
+                                <FateId>195</FateId> <!--  -->
+                                <FateId>194</FateId> <!--  -->
+                                <FateId>193</FateId> <!--  -->
+                                <FateId>192</FateId> <!--  -->
+                                <FateId>191</FateId> <!--  -->
                             </FateIds>
                         </Fate>
                     </While>
@@ -2264,12 +2240,12 @@
             <If Condition="&ShogunyanLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in Lower La Noscea..." />
                 <If Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
-                    <If Condition="not IsOnMap(148)">
-                        <If Condition="Managers.WorldManager.HasAetheryteId(3)">
-                            <TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+                    <If Condition="not IsOnMap(135)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(10)">
+                            <TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
                         </If>
-                        <If Condition="not Managers.WorldManager.HasAetheryteId(3)">
-                            <Travel To="148" />
+                        <If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+                            <Travel To="135" />
                         </If>
                     </If>
                     <Dismount/>
