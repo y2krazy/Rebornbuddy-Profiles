@@ -7,7 +7,7 @@
 #          Kataera (Minion Summon Code)  #
 #          Harath (Default Zones)        #
 ##########################################
-# Version: 1.0.1d                        #
+# Version: 1.0.1e                        #
 ##########################################
 # Required Level: 15                     #
 ##########################################
@@ -83,7 +83,7 @@
   <!-- Weapons 11-13: 30 each -->
   <!-- All Weapons: 222 total -->
 
-    <!ENTITY BlizzariaMedals "0"> <!-- Legendary Blizzaria Medals (BLM) to obtain before stopping. -->
+  <!ENTITY BlizzariaMedals "0"> <!-- Legendary Blizzaria Medals (BLM) to obtain before stopping. -->
 
     <!-- True = "1" | False = "0" -->
     <!-- ONLY SET ONE ZONE TO "1"! -->
@@ -211,6 +211,11 @@
     <BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
     <KillRadius>90</KillRadius>
     <Order>
+
+        <If Condition="&Medals; == 0 and &BlizzariaMedals; == 0 and &HovernyanMedals; == 0 and &JibanyanMedals; == 0 and &KomajiroMedals; == 0 and &KomasanMedals; == 0 and &KyubiMedals; == 0 and &ManjimuttMedals; == 0 and &NokoMedals; == 0 and &RobonyanFtypeMedals; == 0 and &ShogunyanMedals; == 0 and &USApyonMedals; == 0 and &VenoctMedals; == 0 and &WhisperMedals; == 0">
+            <ExLog Color="&ExLogAck;" Name="Yo-kai Watch" Message="You have not selected anything to farm! Derp!" />
+            <StopBot/>
+        </If>
 
         <!-- Yo-kai Medals -->
 
@@ -460,7 +465,7 @@
                             <!-- <FateId>604</FateId> --> <!-- No viable path?! -->
                             <FateId>603</FateId> <!--  -->
                             <FateId>602</FateId> <!--  -->
-                            <FateId>601</FateId> <!--  -->
+                            <!-- <FateId>601</FateId> --> <!-- Gathering -->
                             <FateId>600</FateId> <!--  -->
                             <!-- <FateId>209</FateId> --> <!-- No viable path?! -->
                             <FateId>208</FateId> <!--  -->
@@ -838,13 +843,13 @@
                         <Travel To="134" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
-                <RunCode Name="SummonBlizzaria" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
+                    <RunCode Name="SummonBlizzaria" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <!-- <FateId>938</FateId> --> <!-- Gathering -->
                             <FateId>688</FateId> <!--  -->
@@ -881,13 +886,13 @@
                         <Travel To="180" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
-                <RunCode Name="SummonBlizzaria" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
+                    <RunCode Name="SummonBlizzaria" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>700</FateId> <!--  -->
                             <FateId>599</FateId> <!--  -->
@@ -921,13 +926,13 @@
                         <Travel To="154" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
-                <RunCode Name="SummonBlizzaria" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
+                    <RunCode Name="SummonBlizzaria" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>677</FateId> <!--  -->
                             <FateId>676</FateId> <!--  -->
@@ -980,13 +985,13 @@
                         <Travel To="138" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
-                <RunCode Name="SummonHovernyan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15178,&HovernyanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15178,&HovernyanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
+                    <RunCode Name="SummonHovernyan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>650</FateId> <!--  -->
                             <FateId>578</FateId> <!--  -->
@@ -1035,13 +1040,13 @@
                         <Travel To="153" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
-                <RunCode Name="SummonHovernyan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15178,&HovernyanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15178,&HovernyanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
+                    <RunCode Name="SummonHovernyan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>682</FateId> <!--  -->
                             <FateId>628</FateId> <!--  -->
@@ -1081,13 +1086,13 @@
                         <Travel To="145" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
-                <RunCode Name="SummonHovernyan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15178,&HovernyanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15178,&HovernyanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
+                    <RunCode Name="SummonHovernyan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>652</FateId> <!--  -->
                             <FateId>543</FateId> <!--  -->
@@ -1139,13 +1144,13 @@
                         <Travel To="135" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
-                <RunCode Name="SummonJibanyan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
+                    <RunCode Name="SummonJibanyan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>667</FateId> <!--  -->
                             <FateId>666</FateId> <!--  -->
@@ -1178,13 +1183,13 @@
                         <Travel To="148" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
-                <RunCode Name="SummonJibanyan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
+                    <RunCode Name="SummonJibanyan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>933</FateId> <!--  -->
                             <FateId>673</FateId> <!--  -->
@@ -1192,7 +1197,7 @@
                             <!-- <FateId>604</FateId> --> <!-- No viable path?! -->
                             <FateId>603</FateId> <!--  -->
                             <FateId>602</FateId> <!--  -->
-                            <FateId>601</FateId> <!--  -->
+                            <!-- <FateId>601</FateId> --> <!-- Gathering -->
                             <FateId>600</FateId> <!--  -->
                             <!-- <FateId>209</FateId> --> <!-- No viable path?! -->
                             <FateId>208</FateId> <!--  -->
@@ -1229,13 +1234,13 @@
                         <Travel To="141" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
-                <RunCode Name="SummonJibanyan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15168,&JibanyanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
+                    <RunCode Name="SummonJibanyan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>661</FateId> <!--  -->
                             <FateId>660</FateId> <!--  -->
@@ -1285,13 +1290,13 @@
                         <Travel To="138" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
-                <RunCode Name="SummonKomajiro" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15173,&KomajiroMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15173,&KomajiroMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
+                    <RunCode Name="SummonKomajiro" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>650</FateId> <!--  -->
                             <FateId>578</FateId> <!--  -->
@@ -1335,13 +1340,13 @@
                         <Travel To="152" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
-                <RunCode Name="SummonKomajiro" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15173,&KomajiroMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15173,&KomajiroMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
+                    <RunCode Name="SummonKomajiro" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>692</FateId> <!--  -->
                             <FateId>691</FateId> <!--  -->
@@ -1385,13 +1390,13 @@
                         <Travel To="141" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
-                <RunCode Name="SummonKomajiro" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15173,&KomajiroMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15173,&KomajiroMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
+                    <RunCode Name="SummonKomajiro" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>661</FateId> <!--  -->
                             <FateId>660</FateId> <!--  -->
@@ -1441,13 +1446,13 @@
                         <Travel To="138" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
-                <RunCode Name="SummonKomasan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15169,&KomasanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15169,&KomasanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
+                    <RunCode Name="SummonKomasan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>650</FateId> <!--  -->
                             <FateId>578</FateId> <!--  -->
@@ -1491,13 +1496,13 @@
                         <Travel To="152" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
-                <RunCode Name="SummonKomasan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15169,&KomasanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15169,&KomasanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
+                    <RunCode Name="SummonKomasan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>692</FateId> <!--  -->
                             <FateId>691</FateId> <!--  -->
@@ -1541,13 +1546,13 @@
                         <Travel To="145" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
-                <RunCode Name="SummonKomasan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15169,&KomasanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15169,&KomasanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
+                    <RunCode Name="SummonKomasan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>652</FateId> <!--  -->
                             <FateId>543</FateId> <!--  -->
@@ -1599,13 +1604,13 @@
                         <Travel To="135" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
-                <RunCode Name="SummonKyubi" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15172,&KyubiMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15172,&KyubiMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
+                    <RunCode Name="SummonKyubi" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>667</FateId> <!--  -->
                             <FateId>666</FateId> <!--  -->
@@ -1638,13 +1643,13 @@
                         <Travel To="148" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
-                <RunCode Name="SummonKyubi" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15172,&KyubiMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15172,&KyubiMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
+                    <RunCode Name="SummonKyubi" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>933</FateId> <!--  -->
                             <FateId>673</FateId> <!--  -->
@@ -1652,7 +1657,7 @@
                             <!-- <FateId>604</FateId> --> <!-- No viable path?! -->
                             <FateId>603</FateId> <!--  -->
                             <FateId>602</FateId> <!--  -->
-                            <FateId>601</FateId> <!--  -->
+                            <!-- <FateId>601</FateId> --> <!-- Gathering -->
                             <FateId>600</FateId> <!--  -->
                             <!-- <FateId>209</FateId> --> <!-- No viable path?! -->
                             <FateId>208</FateId> <!--  -->
@@ -1689,13 +1694,13 @@
                         <Travel To="140" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
-                <RunCode Name="SummonKyubi" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15172,&KyubiMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15172,&KyubiMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
+                    <RunCode Name="SummonKyubi" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>684</FateId> <!--  -->
                             <FateId>367</FateId> <!--  -->
@@ -1744,13 +1749,13 @@
                         <Travel To="139_East" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
-                <RunCode Name="SummonManjimutt" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
+                    <RunCode Name="SummonManjimutt" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>935</FateId> <!--  -->
                             <FateId>671</FateId> <!--  -->
@@ -1791,13 +1796,13 @@
                         <Travel To="153" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
-                <RunCode Name="SummonManjimutt" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
+                    <RunCode Name="SummonManjimutt" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>682</FateId> <!--  -->
                             <FateId>628</FateId> <!--  -->
@@ -1837,13 +1842,13 @@
                         <Travel To="145" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
-                <RunCode Name="SummonManjimutt" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
+                    <RunCode Name="SummonManjimutt" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>652</FateId> <!--  -->
                             <FateId>543</FateId> <!--  -->
@@ -1895,13 +1900,13 @@
                         <Travel To="180" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
-                <RunCode Name="SummonNoko" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15175,&NokoMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15175,&NokoMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
+                    <RunCode Name="SummonNoko" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>700</FateId> <!--  -->
                             <FateId>599</FateId> <!--  -->
@@ -1935,13 +1940,13 @@
                         <Travel To="154" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
-                <RunCode Name="SummonNoko" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15175,&NokoMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15175,&NokoMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
+                    <RunCode Name="SummonNoko" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>677</FateId> <!--  -->
                             <FateId>676</FateId> <!--  -->
@@ -1983,13 +1988,13 @@
                         <Travel To="146" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
-                <RunCode Name="SummonNoko" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15175,&NokoMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15175,&NokoMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
+                    <RunCode Name="SummonNoko" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>934</FateId> <!--  -->
                             <FateId>686</FateId> <!--  -->
@@ -2051,13 +2056,13 @@
                         <Travel To="139_East" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
-                <RunCode Name="SummonRobonyanFtype" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
+                    <RunCode Name="SummonRobonyanFtype" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>935</FateId> <!--  -->
                             <FateId>671</FateId> <!--  -->
@@ -2093,13 +2098,13 @@
                         <Travel To="154" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
-                <RunCode Name="SummonRobonyanFtype" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
+                    <RunCode Name="SummonRobonyanFtype" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>677</FateId> <!--  -->
                             <FateId>676</FateId> <!--  -->
@@ -2141,13 +2146,13 @@
                         <Travel To="146" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
-                <RunCode Name="SummonRobonyanFtype" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
+                    <RunCode Name="SummonRobonyanFtype" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>934</FateId> <!--  -->
                             <FateId>686</FateId> <!--  -->
@@ -2209,13 +2214,13 @@
                         <Travel To="135" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
-                <RunCode Name="SummonShogunyan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
+                    <RunCode Name="SummonShogunyan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>667</FateId> <!--  -->
                             <FateId>666</FateId> <!--  -->
@@ -2248,13 +2253,13 @@
                         <Travel To="152" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
-                <RunCode Name="SummonShogunyan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
+                    <RunCode Name="SummonShogunyan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>692</FateId> <!--  -->
                             <FateId>691</FateId> <!--  -->
@@ -2298,13 +2303,13 @@
                         <Travel To="141" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
-                <RunCode Name="SummonShogunyan" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
+                    <RunCode Name="SummonShogunyan" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>661</FateId> <!--  -->
                             <FateId>660</FateId> <!--  -->
@@ -2349,13 +2354,13 @@
                         <Travel To="134" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
-                <RunCode Name="SummonUSApyon" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15180,&USApyonMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15180,&USApyonMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
+                    <RunCode Name="SummonUSApyon" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <!-- <FateId>938</FateId> --> <!-- Gathering -->
                             <FateId>688</FateId> <!--  -->
@@ -2392,13 +2397,13 @@
                         <Travel To="180" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
-                <RunCode Name="SummonUSApyon" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15180,&USApyonMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15180,&USApyonMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
+                    <RunCode Name="SummonUSApyon" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>700</FateId> <!--  -->
                             <FateId>599</FateId> <!--  -->
@@ -2432,13 +2437,13 @@
                         <Travel To="140" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
-                <RunCode Name="SummonUSApyon" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15180,&USApyonMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15180,&USApyonMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
+                    <RunCode Name="SummonUSApyon" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>684</FateId> <!--  -->
                             <FateId>367</FateId> <!--  -->
@@ -2487,13 +2492,13 @@
                         <Travel To="134" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
-                <RunCode Name="SummonVenoct" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15176,&VenoctMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15176,&VenoctMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
+                    <RunCode Name="SummonVenoct" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <!-- <FateId>938</FateId> --> <!-- Gathering -->
                             <FateId>688</FateId> <!--  -->
@@ -2530,13 +2535,13 @@
                         <Travel To="148" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
-                <RunCode Name="SummonVenoct" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15176,&VenoctMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15176,&VenoctMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
+                    <RunCode Name="SummonVenoct" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>933</FateId> <!--  -->
                             <FateId>673</FateId> <!--  -->
@@ -2544,7 +2549,7 @@
                             <!-- <FateId>604</FateId> --> <!-- No viable path?! -->
                             <FateId>603</FateId> <!--  -->
                             <FateId>602</FateId> <!--  -->
-                            <FateId>601</FateId> <!--  -->
+                            <!-- <FateId>601</FateId> --> <!-- Gathering -->
                             <FateId>600</FateId> <!--  -->
                             <!-- <FateId>209</FateId> --> <!-- No viable path?! -->
                             <FateId>208</FateId> <!--  -->
@@ -2581,13 +2586,13 @@
                         <Travel To="140" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
-                <RunCode Name="SummonVenoct" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15176,&VenoctMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15176,&VenoctMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
+                    <RunCode Name="SummonVenoct" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>684</FateId> <!--  -->
                             <FateId>367</FateId> <!--  -->
@@ -2636,13 +2641,13 @@
                         <Travel To="139_East" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
-                <RunCode Name="SummonWhisper" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15170,&WhisperMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15170,&WhisperMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
+                    <RunCode Name="SummonWhisper" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>935</FateId> <!--  -->
                             <FateId>671</FateId> <!--  -->
@@ -2683,13 +2688,13 @@
                         <Travel To="153" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
-                <RunCode Name="SummonWhisper" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15170,&WhisperMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15170,&WhisperMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
+                    <RunCode Name="SummonWhisper" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>682</FateId> <!--  -->
                             <FateId>628</FateId> <!--  -->
@@ -2734,13 +2739,13 @@
                         <Travel To="146" />
                     </If>
                 </If>
-                <Dismount/>
-                <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
-                <RunCode Name="SummonWhisper" />
-                <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15170,&WhisperMedals;)">
-                    <Fate MinLevel="1" MaxLevel="50" Condition="not HasAtLeast(15170,&WhisperMedals;)">
+                    <Dismount/>
+                    <WaitTimer WaitTime="3" />
+                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
+                    <RunCode Name="SummonWhisper" />
+                    <WaitTimer WaitTime="3" />
+                    <Fate MinLevel="1" MaxLevel="50">
                         <FateIds>
                             <FateId>934</FateId> <!--  -->
                             <FateId>686</FateId> <!--  -->
