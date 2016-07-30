@@ -5,7 +5,7 @@
 ########################################
 # Author: y2krazy                      #
 ########################################
-# Version: 1.0.3a                      #
+# Version: 1.0.3                       #
 ########################################
 # Required Level: 4-60                 #
 ########################################
@@ -141,11 +141,6 @@
   <!-- !ENTITY BookofSkywindI "0" --> <!-- Coming Soon!™ -->
   <!-- !ENTITY BookofSkywindII "0" --> <!-- Coming Soon!™ -->
 
-  <!-- WARNING: Rank Farming Overrides All Other Settings -->
-  <!-- True = "1" | False = "0" -->
-
-  <!ENTITY RankBSkogsFru "0"> <!-- Skogs Fru (Rank B Elite Mark) - Middle La Noscea -->
-
   <!-- Fishing -->
 
   <!ENTITY MinFish "15"> <!-- Minimum amount of fish to catch before changing spots. -->
@@ -249,35 +244,6 @@
 		</CodeChunk>
 	</CodeChunks>
 	<Order>
-
-		<!-- ############ -->
-		<!-- RANK FARMING -->
-		<!-- ############ -->
-
-		<!-- Skogs Fru -->
-
-		<If Condition="&RankBSkogsFru; == 1">
-			<RunCode Name="Combat" />
-			<WaitTimer WaitTime="3" />
-			<If Condition="Core.Player.ClassLevel &lt; 50">
-				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
-				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 50 or higher!" />
-				<StopBot />
-			</If>
-			<If Condition="Core.Player.ClassLevel &gt; 49">
-				<ExLog Color="&ExLog;" Name="y2k's AIO" Message="Farming Skogs Fru..." />
-				<If Condition="not IsOnMap(134)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(52)">
-						<TeleportTo Name="Summerford Farms" AetheryteId="52" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
-						<Travel To="134" />
-					</If>
-				</If>
-				<NoCombatMoveTo Name="Farming Area" XYZ="131.4099, 54.05849, -16.6596" />
-				<Grind grindRef="Skogs_Fru" />
-			</If>
-		</If>
 
 		<!-- ############### -->
 		<!-- UNSPOILED (ARR) -->
@@ -4523,8 +4489,6 @@
 		<!-- Yak Milk -->
 
 		<If Condition="not HasAtLeast(12888,&YakMilk;)">
-			<RunCode Name="Combat" />
-			<WaitTimer WaitTime="3" />
 			<If Condition="Core.Player.ClassLevel &lt; 50">
 				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="You do not meet the minimum level requirement!" />
 				<ExLog Color="&ExLogAck;" Name="y2k's AIO" Message="Please reach level 50 or higher!" />
@@ -6920,23 +6884,6 @@
 			</Hotspots>
 			<TargetMobs>
 				<TargetMob Id="3479" /> <!-- Wooly Yak -->
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="Skogs_Fru">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="131.4099, 54.05849, -16.6596" name="Skogs Fru" />
-				<Hotspot Radius="90" XYZ="109.4443, 47.04142, 151.7641" name="Skogs Fru" />
-				<Hotspot Radius="90" XYZ="-92.53932, 43.88375, -32.75803" name="Skogs Fru" />
-				<Hotspot Radius="90" XYZ="-31.95263, 50.72972, -314.74" name="Skogs Fru" />
-				<Hotspot Radius="90" XYZ="-231.9992, 26.64921, -478.9117" name="Skogs Fru" />
-				<Hotspot Radius="90" XYZ="-281.1025, 27.85069, -550.8316" name="Skogs Fru" />
-				<Hotspot Radius="90" XYZ="-163.8839, 32.485, -601.5843" name="Skogs Fru" />
-				<Hotspot Radius="90" XYZ="-239.389, 33.22005, -675.6953" name="Skogs Fru" />
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="2928" /> <!-- Skogs Fru -->
 			</TargetMobs>
 			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
