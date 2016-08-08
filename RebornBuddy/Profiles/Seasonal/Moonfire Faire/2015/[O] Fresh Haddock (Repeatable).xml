@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#######################################################
+# Profile: [O] Fresh Haddock (Repeatable)             #
+#######################################################
+# Author: y2krazy                                     #
+#######################################################
+# Version: 1.0.2                                      #
+#######################################################
+# Required Level: 5                                   #
+#######################################################
+# Required Teleport Locations:                        #
+# 	Costa del Sol                                     #
+#######################################################
+# Required User Interaction:                          #
+# 	PickUp Quest (Bugged)                             #
+# 	TurnIn Quest (Bugged)                             #
+#######################################################
+# Required Setup:                                     #
+# 	ExMatt's Fish tag.                                #
+# 	Fill out User Configuration below.                #
+# 	Level 5+ Fisher                                   #
+# 	Set class Gear Sets at the bottom of the profile. #
+#######################################################
+# Rewards:                                            #
+# 	Faire Token                                       #
+#######################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY TokenCount "107"> <!-- Faire Tokens to earn before stopping. -->
+  <!ENTITY BaitCount "99"> <!-- Lugworms to maintain in your inventory to catch Fresh Haddocks. -->
+  <!ENTITY ConfirmKey "Numpad0"> <!-- Fishing: "Keybind" > "System" > "Confirm" -->
+  <!ENTITY MoveCursorRightKey "Numpad6"> <!-- Fishing: "Keybind" > "System" > "Move Cursor Right" -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] Fresh Haddock (Repeatable)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<LogMessage Message="Checking for &TokenCount; Faire Tokens..." />
+
+		<While Condition="not HasAtLeast(10333,&TokenCount;)">
+
+			<!-- What's in the Dish -->
+
+			<If Condition="not HasQuest(67662)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<RunCode Name="Fisher" />
+				<NoCombatMoveTo Name="Espan" XYZ="460.0747, 13.26007, 309.285" />
+				<If Condition="IsQuestAcceptQualified(67662)">
+					<PickupQuest NpcId="1015614" QuestId="67662" XYZ="460.0747, 13.26007, 309.285" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67662)">
+				<If Condition="GetQuestStep(67662) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="not HasAtLeast(2585,&BaitCount;)">
+						<LogMessage Message="You need more Lugworms!" />
+						<NoCombatMoveTo Name="Festive Fisher" XYZ="462.8823, 12.73574, 328.4198" />
+						<BuyItem ItemId="2585" ItemCount="&BaitCount;" InteractDistance="3.0" NpcId="1015615" XYZ="462.8823, 12.73574, 328.4198" />
+					</If>
+					<If Condition="IsOnMap(137) and not IsOnSubMap(1452)">
+						<UseTransport Name="Rhotano privateer" InteractDistance="3.0" NpcId="1003585" XYZ="607.8126, 11.62379, 391.8668" />
+					</If>
+					<If Condition="IsOnMap(137) and IsOnSubMap(1452)">
+						<Fish Mooch="0" ConfirmKey="&ConfirmKey;" MoveCursorRightKey="&MoveCursorRightKey;" Bait="Lugworm" Shuffle="True" Condition="not HasAtLeast(2001889,1)">
+							<FishSpots>
+								<FishSpot XYZ="878.1394, 20.74091, 133.8562" Heading="3.977538" />
+								<FishSpot XYZ="889.2092, 20.74123, 142.9867" Heading="0.8862116" />
+								<FishSpot XYZ="872.6266, 20.74028, 140.3154" Heading="3.994294" />
+								<FishSpot XYZ="883.5912, 20.74005, 149.4295" Heading="0.8568888" />
+								<FishSpot XYZ="865.7617, 22.23998, 167.683" Heading="6.264618" />
+								<FishSpot XYZ="896.2814, 19.24, 130.6822" Heading="1.627627" />
+								<FishSpot XYZ="857.8608, 22.23998, 161.0017" Heading="4.867657" />
+								<FishSpot XYZ="886.9316, 19.24, 125.2088" Heading="3.541904" />
+							</FishSpots>
+						</Fish>
+						<UseTransport Name="Costa del Sol" InteractDistance="3.0" NpcId="1005414" XYZ="886.9916, 21.40931, 134.2335" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(67662) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and IsOnSubMap(1452)">
+						<UseTransport Name="Costa del Sol" InteractDistance="3.0" NpcId="1005414" XYZ="886.9916, 21.40931, 134.2335" />
+					</If>
+					<RunCode Name="Fisher" />
+
+					<!-- Rewards
+
+					Faire Token
+
+					-->
+
+					<NoCombatMoveTo Name="Espan" XYZ="460.0747, 13.26007, 309.285" />
+					<RunCode Name="TurnIn67662" />
+					<WaitWhile Condition="QuestLogManager.HasQuest(67662)"/>
+				</If>
+			</If>
+
+		</While>
+
+		<LogMessage Message="You have &TokenCount;+ Faire Tokens in your inventory!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="Fisher">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 23");
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TurnIn67662">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1015614).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+				{
+					if(slot.RawItemId == 2001889)
+					{
+						slot.Handover();
+					}
+				}
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.Request.IsOpen)
+					ff14bot.RemoteWindows.Request.HandOver();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>

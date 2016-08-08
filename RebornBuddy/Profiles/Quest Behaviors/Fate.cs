@@ -29,7 +29,7 @@ namespace ff14bot.NeoProfiles
 
         private readonly int Distance = 2;
 
-        private readonly bool Hunting = true;
+        private readonly bool Hunting = false;
 
         private bool _done;
 

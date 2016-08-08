@@ -716,7 +716,7 @@
 							<TalkTo InteractDistance="3.0" NpcId="1007747" XYZ="-41.03156, -6.904075, -161.1811" QuestId="66717" StepId="3" />
 						<!-- </If> -->
 					</While>
-					<While Condition="not IsTodoChecked(66717, 3, 2)">
+					<While Condition="not IsTodoChecked(66717, 3, 1)">
 						<UseObject NpcIds="2002844,2002846,2002845" QuestId="66717" StepId="3">
 							<HotSpots>
 								<HotSpot XYZ="-26.16925, -7.583801, -147.0513" Radius="10" />
@@ -903,198 +903,9 @@
 			</If>
 		</If>
 
-		<!-- Simply the Hest (Gridania) -->
-
-		<If Condition="IsQuestCompleted(65575)">
-
-			<!-- Leves of Bentbranch -->
-
-			<If Condition="not IsQuestCompleted(65756)">
-				<If Condition="not HasQuest(65756)">
-					<LogMessage Message="Please manually complete Leves of Bentbranch!" />
-					<LogMessage Message="Run this profile again once you finish Leves of Bentbranch." />
-					<StopBot />
-				</If>
-				<If Condition="HasQuest(65756)">
-					<LogMessage Message="Please manually complete Leves of Bentbranch!" />
-					<LogMessage Message="Run this profile again once you finish Leves of Bentbranch." />
-					<StopBot />
-				</If>
-			</If>
-
-			<!-- Simply the Hest -->
-
-			<If Condition="not IsQuestCompleted(65596)">
-				<If Condition="not HasQuest(65596)">
-					<LogMessage Message="Please manually complete Simply the Hest!" />
-					<LogMessage Message="Run this profile again once you finish Simply the Hest." />
-					<StopBot />
-				</If>
-				<If Condition="HasQuest(65596)">
-					<LogMessage Message="Please manually complete Simply the Hest!" />
-					<LogMessage Message="Run this profile again once you finish Simply the Hest." />
-					<StopBot />
-				</If>
-			</If>
-
-		</If>
-
-		<!-- Simply the Hest (Limsa Lominsa) -->
-
-		<If Condition="IsQuestCompleted(65643)">
-
-			<!-- Leves of Swiftperch -->
-
-			<If Condition="not IsQuestCompleted(66229)">
-				<If Condition="not HasQuest(66229)">
-					<LogMessage Message="Please manually complete Leves of Swiftperch!" />
-					<LogMessage Message="Run this profile again once you finish Leves of Swiftperch." />
-					<StopBot />
-				</If>
-				<If Condition="HasQuest(66229)">
-					<LogMessage Message="Please manually complete Leves of Swiftperch!" />
-					<LogMessage Message="Run this profile again once you finish Leves of Swiftperch." />
-					<StopBot />
-				</If>
-			</If>
-
-			<!-- Simply the Hest -->
-
-			<If Condition="not IsQuestCompleted(65595)">
-				<If Condition="not HasQuest(65595)">
-					<LogMessage Message="Please manually complete Simply the Hest!" />
-					<LogMessage Message="Run this profile again once you finish Simply the Hest." />
-					<StopBot />
-				</If>
-				<If Condition="HasQuest(65595)">
-					<LogMessage Message="Please manually complete Simply the Hest!" />
-					<LogMessage Message="Run this profile again once you finish Simply the Hest." />
-					<StopBot />
-				</If>
-			</If>
-
-
-		</If>
-
-		<!-- Simply the Hest (Ul'dah) -->
-
-		<If Condition="IsQuestCompleted(66130)">
-
-			<!-- Leves of Horizon -->
-
-			<If Condition="not IsQuestCompleted(66223)">
-				<If Condition="not HasQuest(66223)">
-					<If Condition="not IsOnMap(130)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
-							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
-							<Travel To="130" />
-						</If>
-					</If>
-					<MoveTo Name="Eustace" XYZ="42.00806, 8.009979, -107.5914" />
-					<If Condition="IsQuestAcceptQualified(66223)">
-						<PickupQuest NpcId="1001794" QuestId="66223" XYZ="42.00806, 8.009979, -107.5914" />
-					</If>
-				</If>
-				<If Condition="HasQuest(66223)">
-					<If Condition="GetQuestStep(66223) == 1">
-						<If Condition="not IsOnMap(140)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
-								<TeleportTo Name="Horizon" AetheryteId="17" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
-								<Travel To="140" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Totonowa" XYZ="85.16052, 46, -245.8381" />
-						<PickupLeve LeveId="566" LeveType="Battlecraft" NpcId="1001796" XYZ="85.16052, 46, -245.8381" />
-					</If>
-					<If Condition="GetQuestStep(66223) == 2">
-						<If Condition="not IsOnMap(140)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
-								<TeleportTo Name="Horizon" AetheryteId="17" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
-								<Travel To="140" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="What Peistes Crave Leve" XYZ="-146.158, 15.46816, -261.4188" />
-						<Dismount/>
-						<RunCode Name="WhatPeistesCraveLeve" />
-						<Grind grindRef="Leves_of_Horizon" while="not RaptureAtkUnitManager.GetWindowByName(&quot;SelectYesnoCount&quot;)" />
-
-						<!-- TO DO -->
-
-						<!-- Remove CodeChunk upon further testing? -->
-
-						<!-- TO DO -->
-
-						<!-- <RunCode Name="SelectYes" /> -->
-						<CompleteLeve NpcId="1001796" />
-					</If>
-					<If Condition="GetQuestStep(66223) == 255">
-						<If Condition="not IsOnMap(140)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
-								<TeleportTo Name="Horizon" AetheryteId="17" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
-								<Travel To="140" />
-							</If>
-						</If>
-
-						<!-- TO DO -->
-
-						<!-- Remove CodeChunk upon further testing? -->
-
-						<!-- TO DO -->
-
-						<!-- <RunCode Name="JournalDecline" /> -->
-						<NoCombatMoveTo Name="Totonowa" XYZ="85.16052, 46, -245.8381" />
-						<RunCode Name="LevesofHorizon" />
-					</If>
-				</If>
-			</If>
-
-			<!-- Simply the Hest -->
-
-			<If Condition="not IsQuestCompleted(65594)">
-				<If Condition="not HasQuest(65594)">
-					<If Condition="not IsOnMap(140)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
-							<TeleportTo Name="Horizon" AetheryteId="17" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
-							<Travel To="140" />
-						</If>
-					</If>
-					<NoCombatMoveTo Name="Totonowa" XYZ="85.16052, 46, -245.8381" />
-					<If Condition="IsQuestAcceptQualified(65594)">
-						<PickupQuest NpcId="1001796" QuestId="65594" XYZ="85.16052, 46, -245.8381" />
-					</If>
-				</If>
-				<If Condition="HasQuest(65594)">
-					<If Condition="GetQuestStep(65594) == 255">
-						<If Condition="not IsOnMap(140)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(17)">
-								<TeleportTo Name="Horizon" AetheryteId="17" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
-								<Travel To="140" />
-							</If>
-						</If>
-						<NoCombatMoveTo Name="Lost Rabbit" XYZ="88.27344, 46, -239.4598" />
-						<TurnIn QuestId="65594" NpcId="1004743" XYZ="88.27344, 46, -239.4598" />
-					</If>
-				</If>
-			</If>
-
-		</If>
-
-		<!-- Hest of the Best -->
-
-		<If Condition="not IsQuestCompleted(66720)">
-			<If Condition="not HasQuest(66720)">
+		<!-- Welcome to Morbol Country -->
+		<If Condition="not IsQuestCompleted(67097)">
+			<If Condition="not HasQuest(67097)">
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -1104,19 +915,13 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
-				<If Condition="IsQuestAcceptQualified(66720)">
-					<PickupQuest NpcId="1006530" QuestId="66720" XYZ="21.92719, 20.74698, -682.063" />
+				<If Condition="IsQuestAcceptQualified(67097)">
+					<PickupQuest NpcId="1006530" QuestId="67097" XYZ="21.92719, 20.74698, -682.063" />
 				</If>
 			</If>
-			<If Condition="HasQuest(66720)">
-				<If Condition="GetQuestStep(66720) == 1">
-					<If Condition="IsQuestCompleted(65756) or IsQuestCompleted(66223) or IsQuestCompleted(66229)">
-						<LogMessage Message="Please complete Hero on the Halfshell manually!" />
-						<LogMessage Message="Please restart this profile after you are done." />
-						<StopBot />
-					</If>
-				</If>
-				<If Condition="GetQuestStep(66720) == 255">
+			<If Condition="HasQuest(67097)">
+				<Grind grindRef="67097" while="GetQuestStep(67097) == 1" />
+				<If Condition="GetQuestStep(67097) == 255">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -1125,29 +930,15 @@
 							<Travel To="156" />
 						</If>
 					</If>
-
-					<!-- Rewards
-
-					0: Vitality Bracelets
-					1: Strength Bracelets (Accuracy)
-					2: Strength Bracelets (Critical Hit Rate)
-
-					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
-
-					<TurnIn QuestId="66720" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="0" />
-
-					-->
-
 					<NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
-					<TurnIn QuestId="66720" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
+					<TurnIn QuestId="67097" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
 				</If>
 			</If>
 		</If>
-
-		<!-- Pass the Smell Hest -->
-
-		<If Condition="not IsQuestCompleted(66721)">
-			<If Condition="not HasQuest(66721)">
+		
+		
+		<If Condition="not IsQuestCompleted(67098)">
+			<If Condition="not HasQuest(67098)">
 				<If Condition="not IsOnMap(156)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 						<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -1157,17 +948,13 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
-				<If Condition="IsQuestAcceptQualified(66721)">
-					<PickupQuest NpcId="1006530" QuestId="66721" XYZ="21.92719, 20.74698, -682.063" />
+				<If Condition="IsQuestAcceptQualified(67098)">
+					<PickupQuest NpcId="1006530" QuestId="67098" XYZ="21.92719, 20.74698, -682.063" />
 				</If>
 			</If>
-			<If Condition="HasQuest(66721)">
-				<If Condition="GetQuestStep(66721) == 1">
-					<LogMessage Message="Please complete More than a Feeler manually!" />
-					<LogMessage Message="Please restart this profile after you are done." />
-					<StopBot />
-				</If>
-				<If Condition="GetQuestStep(66721) == 255">
+			<If Condition="HasQuest(67098)">
+				<Grind grindRef="67098" while="GetQuestStep(67098) == 1" />
+				<If Condition="GetQuestStep(67098) == 255">
 					<If Condition="not IsOnMap(156)">
 						<If Condition="Managers.WorldManager.HasAetheryteId(24)">
 							<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
@@ -1176,21 +963,8 @@
 							<Travel To="156" />
 						</If>
 					</If>
-
-					<!-- Rewards
-
-					0: Dexterity Bracelets
-					1: Mind/Piety Bracelets
-					2: Intelligence Bracelets
-
-					If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
-
-					<TurnIn QuestId="66721" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" RewardSlot="0" />
-
-					-->
-
 					<NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
-					<TurnIn QuestId="66721" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
+					<TurnIn QuestId="67098" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
 				</If>
 			</If>
 		</If>
@@ -1349,20 +1123,20 @@
 						</If>
 					</If>
 					<NoCombatMoveTo Name="2002854" XYZ="-227.5273, 226.0013, 482.9938" />
-					<!-- <If Condition="GetQuestById(66723).QuestI8AH == 0"> -->
+					<If Condition="GetQuestById(66723).QuestI8AH == 0">
 						<UseObject NpcId="2002854" XYZ="-227.5273, 226.0013, 482.9938" Radius="10" QuestId="66723" StepId="3" />
-					<!-- </If> -->
-					<!-- <If Condition="GetQuestById(66723).QuestI8AH == 1"> -->
+					</If>
+					<If Condition="GetQuestById(66723).QuestI8AH == 1">
 						<UseObject NpcId="2002856" XYZ="-359.7314, 229.6024, 418.9668" Radius="10" QuestId="66723" StepId="3" />
 						<Grind grindRef="The_Things_We_Do_For_Tea" while="HasQuest(66713) and (GetQuestById(66723).QuestI8AH == 1)" />
-					<!-- </If> -->
-					<!-- <If Condition="GetQuestById(66723).QuestI8AH == 2"> -->
+					</If>
+					<If Condition="GetQuestById(66723).QuestI8AH == 2">
 						<UseObject NpcId="2002855" XYZ="-458.2437, 232.349, 442.3132" Radius="10" QuestId="66723" StepId="3" />
-					<!-- </If> -->
-					<!-- <If Condition="GetQuestById(66723).QuestI8AH == 3"> -->
+					</If>
+					<If Condition="GetQuestById(66723).QuestI8AH == 3">
 						<UseObject NpcId="2002857" XYZ="-547.9973, 237.1099, 395.8953" Radius="10" QuestId="66723" StepId="3" />
 						<Grind grindRef="The_Things_We_Do_For_Tea2" while="HasQuest(66713) and (GetQuestById(66723).QuestI8AH == 3)" />
-					<!-- </If> -->
+					</If>
 				</If>
 				<If Condition="GetQuestStep(66723) == 255">
 					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -1488,7 +1262,7 @@
 						<Travel To="133" />
 					</If>
 					<If Condition="IsOnMap(133)">
-						<UseTransport Name="Lotus Stand" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736" />
+						<UseTransport Name="Lotus Stand" QuestId="66725" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736" />
 					</If>
 					<MoveTo Name="Kan-E-Senna" XYZ="4.898132, -1.92944, -0.1983643" />
 					<TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" QuestId="66725" StepId="1" />
@@ -1604,7 +1378,7 @@
 					<NoCombatMoveTo Name="Kuplo Kopp" XYZ="-542.9313, 11.20175, 62.24158" />
 					<Dismount/>
 					<RunCode Name="DisableMount" />
-					<NoCombatMoveTo Name="Kuplo Kopp" XYZ="-550.0482, 10.72236, 65.16396" />
+					<MoveTo Name="Kuplo Kopp" XYZ="-550.0482, 10.72236, 65.16396" />
 					<WaitTimer WaitTime="2" />
 
 					<!-- TO DO -->
@@ -1614,7 +1388,7 @@
 					<!-- TO DO -->
 
 					<!-- <Grind grindRef="You_Have_Selected_Regicide" while="HasQuest(66726) and GetQuestStep(66726) == 4" /> -->
-					<NoCombatMoveTo Name="Kuplo Kopp" XYZ="-387.5481, 0.1001635, 69.79528" />
+					<MoveTo Name="Kuplo Kopp" XYZ="-387.5481, 0.1001635, 69.79528" />
 					<WaitTimer WaitTime="2" />
 
 					<!-- TO DO -->
@@ -1624,7 +1398,7 @@
 					<!-- TO DO -->
 
 					<!-- <Grind grindRef="You_Have_Selected_Regicide2" while="HasQuest(66726) and GetQuestStep(66726) == 4" /> -->
-					<NoCombatMoveTo Name="Kuplo Kopp" XYZ="-356.2295, 4.868959, 62.71615" />
+					<MoveTo Name="Kuplo Kopp" XYZ="-356.2295, 4.868959, 62.71615" />
 					<WaitTimer WaitTime="2" />
 
 					<!-- TO DO -->
@@ -1634,7 +1408,7 @@
 					<!-- TO DO -->
 
 					<!-- <Grind grindRef="You_Have_Selected_Regicide3" while="HasQuest(66726) and GetQuestStep(66726) == 4" /> -->
-					<NoCombatMoveTo Name="Kuplo Kopp" XYZ="-323.0839, 8.56884, 70.18418" />
+					<MoveTo Name="Kuplo Kopp" XYZ="-323.0839, 8.56884, 70.18418" />
 					<WaitTimer WaitTime="2" />
 
 					<!-- TO DO -->
@@ -1644,7 +1418,7 @@
 					<!-- TO DO -->
 
 					<!-- <Grind grindRef="You_Have_Selected_Regicide4" while="HasQuest(66726) and GetQuestStep(66726) == 4" /> -->
-					<NoCombatMoveTo Name="Kuplo Kopp" XYZ="-241.7146, 11.89279, 20.12896" />
+					<MoveTo Name="Kuplo Kopp" XYZ="-241.7146, 11.89279, 20.12896" />
 					<WaitTimer WaitTime="2" />
 
 					<!-- TO DO -->
@@ -1760,7 +1534,7 @@
 						<Travel To="133" />
 					</If>
 					<If Condition="IsOnMap(133)">
-						<UseTransport Name="Lotus Stand" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736" />
+						<UseTransport Name="Lotus Stand" QuestId="66727" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736" />
 					</If>
 					<MoveTo Name="Kan-E-Senna" XYZ="4.898132, -1.92944, -0.1983643" />
 					<TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" QuestId="66727" StepId="1" />
@@ -1841,6 +1615,7 @@
 					</If>
 					<MoveTo Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955" />
 					<TalkTo InteractDistance="3.0" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" QuestId="66728" StepId="1" />
+					<WaitTimer WaitTime="2" />
 				</If>
 				<If Condition="GetQuestStep(66728) == 2">
 					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -2184,6 +1959,26 @@
 			<TargetMobs>
 				<TargetMob Id="695" />
 				<TargetMob Id="697" />
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="67097">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-363.5114, -17.14841, -401.2214" name="Morbol" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="237" />
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="67098">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="479.877, -2.450189, -784.8846" name="Hapalit" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="793" />
 			</TargetMobs>
 			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
