@@ -1,0 +1,1184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#################################################
+# Profile: [O] Moonfire Faire Quests            #
+#################################################
+# Author: y2krazy                               #
+#################################################
+# Version: 1.0.0                                #
+#################################################
+# Required Level: 30                            #
+#################################################
+# Required Teleport Locations:                  #
+#  Costa del Sol                                #
+#################################################
+# Required User Interaction:                    #
+#  None                                         #
+#################################################
+# Required Setup:                               #
+#  Uncheck Skip CutScenes in Order Bot Settings #
+#  Disable Auto-Equip in Agil                   #
+#################################################
+# Rewards:                                      #
+#  Fair Vouchers                                #
+#  Legacy Warrior Mail                          #
+#################################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- ExLog Colors -->
+
+  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+  <!ENTITY ExLogAck "#FF0000"> <!-- Warnings -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] Moonfire Faire Quests (v1.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Checking for quest completion..." />
+
+		<!-- Heroes of Tomorrow -->
+
+		<If Condition="not IsQuestCompleted(67672)">
+			<If Condition="not HasQuest(67672)">
+				<If Condition="not IsOnMap(128)">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<Travel To="128" />
+				</If>
+				<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Picking up the Heroes of Tomorrow quest!" />
+				<MoveTo Name="Mayaru Moyaru" XYZ="14.32819, 45.66599, 131.3649" />
+				<If Condition="IsQuestAcceptQualified(67672)">
+					<PickupQuest NpcId="1017297" QuestId="67672" XYZ="14.32819, 45.66599, 131.3649" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67672)">
+				<If Condition="GetQuestStep(67672) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Haermaga..." />
+					<NoCombatMoveTo Name="Haermaga" XYZ="554.7112, 14.59159, 373.0067" />
+					<TalkTo NpcId="1017201" XYZ="554.7112, 14.59159, 373.0067" QuestId="67672" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67672) == 2">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Waiting for Haermaga to arrive..." />
+					<NoCombatMoveTo Name="Destination" XYZ="470.2678, 10.72699, 125.5054" />
+					<UseObject NpcId="2007133" XYZ="470.2678, 10.72699, 125.5054" Radius="10" QuestId="67672" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(67672) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Turning in the Heroes of Tomorrow quest!" />
+					<NoCombatMoveTo Name="Haermaga" XYZ="554.7112, 14.59159, 373.0067" />
+					<TurnIn QuestId="67672" NpcId="1017201" XYZ="554.7112, 14.59159, 373.0067" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Dashing and Burning -->
+
+		<If Condition="not IsQuestCompleted(67673)">
+			<If Condition="not HasQuest(67673)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+							<TeleportTo Name="Wineport" AetheryteId="12" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+					<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+				</If>
+				<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Picking up the Dashing and Burning quest!" />
+				<NoCombatMoveTo Name="J'nangho" XYZ="557.2747, 14.59159, 375.6619" />
+				<If Condition="IsQuestAcceptQualified(67673)">
+					<PickupQuest NpcId="1017211" QuestId="67673" XYZ="557.2747, 14.59159, 375.6619" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67673)">
+				<If Condition="GetQuestStep(67673) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Wunthyll..." />
+					<NoCombatMoveTo Name="Wunthyll" XYZ="418.2954, 28.53505, 314.1068" />
+					<TalkTo NpcId="1017215" XYZ="418.2954, 28.53505, 314.1068" QuestId="67673" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67673) == 2">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Wunthyll..." />
+					<NoCombatMoveTo Name="Wunthyll" XYZ="418.2954, 28.53505, 314.1068" />
+					<RunCode Name="DashingandBurning" />
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Using Saturate on the Smoldering Dummy..." />
+					<NoCombatMoveTo Name="Smoldering Dummy" XYZ="321.4617, 30.56384, 567.2847" />
+					<RunCode Name="DashingandBurning2" />
+				</If>
+				<If Condition="GetQuestStep(67673) == 3">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Wunthyll..." />
+					<NoCombatMoveTo Name="Wunthyll" XYZ="418.2954, 28.53505, 314.1068" />
+					<RunCode Name="DashingandBurning" />
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Using Saturate on the Burning Dummies..." />
+					<NoCombatMoveTo Name="Burning Dummies" XYZ="347.5242, 33.6156, 285.2979" />
+					<RunCode Name="DashingandBurning3" />
+				</If>
+				<If Condition="GetQuestStep(67673) == 4">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Wunthyll..." />
+					<NoCombatMoveTo Name="Wunthyll" XYZ="418.2954, 28.53505, 314.1068" />
+					<RunCode Name="DashingandBurning" />
+					<If Condition="GetQuestById(67673).QuestI8AH == 0">
+						<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Using Saturate on the Blazing Dummies..." />
+						<NoCombatMoveTo Name="Blazing Dummies" XYZ="358.6328, 34.07336, 140.0625" />
+						<RunCode Name="DashingandBurning4" />
+					</If>
+					<If Condition="GetQuestById(67673).QuestI8AH == 1">
+						<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Using Saturate on the Blazing Dummies..." />
+						<NoCombatMoveTo Name="Blazing Dummies" XYZ="354.0245, 34.25647, 138.4146" />
+						<RunCode Name="DashingandBurning5" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(67673) == 5">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Red Ranger..." />
+					<NoCombatMoveTo Name="Red Ranger" XYZ="356.3439, 34.19497, 139.7573" />
+					<TalkTo NpcId="1017218" XYZ="356.3439, 34.19497, 139.7573" QuestId="67673" StepId="5" />
+					<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
+				</If>
+				<If Condition="GetQuestStep(67673) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+
+					<!-- Rewards
+
+					Faire Voucher
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Turning in the Dashing and Burning quest!" />
+					<NoCombatMoveTo Name="Haermaga" XYZ="554.7112, 14.59159, 373.0067" />
+					<TurnIn QuestId="67673" NpcId="1017201" XYZ="554.7112, 14.59159, 373.0067" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Hot 'n Cold -->
+
+		<If Condition="not IsQuestCompleted(67674)">
+			<If Condition="not HasQuest(67674)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+							<TeleportTo Name="Wineport" AetheryteId="12" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+					<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+				</If>
+				<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Picking up the Hot 'n Cold quest!" />
+				<NoCombatMoveTo Name="J'nangho" XYZ="557.2747, 14.59159, 375.6619" />
+				<If Condition="IsQuestAcceptQualified(67674)">
+					<PickupQuest NpcId="1017211" QuestId="67674" XYZ="557.2747, 14.59159, 375.6619" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67674)">
+				<If Condition="GetQuestStep(67674) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<If Condition="not HasAtLeast(15425,3)">
+						<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Buying 3 Rolanberry Shaved Ice..." />
+						<NoCombatMoveTo Name="The Iceman" XYZ="506.7368, 9.724941, 383.4438" />
+						<BuyItem ItemId="15425" ItemCount="3" DialogOption="0" NpcId="1017646" XYZ="506.7368, 9.724941, 383.4438" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Delivering the Rolanberry Shaved Ice..." />
+					<NoCombatMoveTo Name="Black Ranger" XYZ="299.5193, 31.12375, 488.5175" />
+					<HandOver ItemId="15425" QuestId="67674" StepId="1" NpcId="1017219" XYZ="299.5193, 31.12375, 488.5175" />
+				</If>
+				<If Condition="GetQuestStep(67674) == 2">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<If Condition="not HasAtLeast(15425,3)">
+						<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Buying 3 Rolanberry Shaved Ice..." />
+						<NoCombatMoveTo Name="The Iceman" XYZ="506.7368, 9.724941, 383.4438" />
+						<BuyItem ItemId="15425" ItemCount="3" DialogOption="0" NpcId="1017646" XYZ="506.7368, 9.724941, 383.4438" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Delivering the Rolanberry Shaved Ice..." />
+					<If Condition="GetQuestById(67674).QuestI8CH == 1"> <!-- QuestI8C = 16 -->
+						<NoCombatMoveTo Name="Black Ranger" XYZ="222.9495, 47.39863, 448.9052" />
+						<HandOver ItemId="15425" QuestId="67674" StepId="2" NpcId="1017223" XYZ="222.9495, 47.39863, 448.9052" />
+					</If>
+					<If Condition="GetQuestById(67674).QuestI8CH == 3"> <!-- QuestI8C = 48 -->
+						<NoCombatMoveTo Name="Black Ranger" XYZ="227.4357, 49.28759, 417.9293" />
+						<HandOver ItemId="15425" QuestId="67674" StepId="2" NpcId="1017226" XYZ="227.4357, 49.28759, 417.9293" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(67674) == 3">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<If Condition="not HasAtLeast(15425,2)">
+						<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Buying 2 Rolanberry Shaved Ice..." />
+						<NoCombatMoveTo Name="The Iceman" XYZ="506.7368, 9.724941, 383.4438" />
+						<BuyItem ItemId="15425" ItemCount="2" DialogOption="0" NpcId="1017646" XYZ="506.7368, 9.724941, 383.4438" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Delivering the Rolanberry Shaved Ice..." />
+					<If Condition="GetQuestById(67674).QuestI8CH == 1"> <!-- QuestI8C = 16 -->
+						<NoCombatMoveTo Name="Black Ranger" XYZ="246.3263, 42.68752, 465.5068" />
+						<HandOver ItemId="15425" QuestId="67674" StepId="3" NpcId="1017221" XYZ="246.3263, 42.68752, 465.5068" />
+					</If>
+					<If Condition="GetQuestById(67674).QuestI8CH == 2"> <!-- QuestI8C = 32 -->
+						<NoCombatMoveTo Name="Black Ranger" XYZ="283.2532, 41.77009, 416.5559" />
+						<HandOver ItemId="15425" QuestId="67674" StepId="3" NpcId="1017224" XYZ="283.2532, 41.77009, 416.5559" />
+					</If>
+					<If Condition="GetQuestById(67674).QuestI8CH == 3"> <!-- QuestI8C = 48 -->
+						<NoCombatMoveTo Name="Black Ranger" XYZ="286.8542, 36.85039, 442.6489" />
+						<HandOver ItemId="15425" QuestId="67674" StepId="3" NpcId="1017227" XYZ="286.8542, 36.85039, 442.6489" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(67674) == 4">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<If Condition="not HasAtLeast(15425,1)">
+						<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Buying 1 Rolanberry Shaved Ice..." />
+						<NoCombatMoveTo Name="The Iceman" XYZ="506.7368, 9.724941, 383.4438" />
+						<BuyItem ItemId="15425" ItemCount="1" DialogOption="0" NpcId="1017646" XYZ="506.7368, 9.724941, 383.4438" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Delivering the Rolanberry Shaved Ice..." />
+					<If Condition="GetQuestById(67674).QuestI8CH == 2"> <!-- QuestI8C = 32 -->
+						<NoCombatMoveTo Name="Black Ranger" XYZ="274.2198, 38.61515, 499.3209" />
+						<HandOver ItemId="15425" QuestId="67674" StepId="4" NpcId="1017225" XYZ="274.2198, 38.61515, 499.3209" />
+					</If>
+					<If Condition="GetQuestById(67674).QuestI8CH == 3"> <!-- QuestI8C = 48 -->
+						<NoCombatMoveTo Name="Black Ranger" XYZ="241.6266, 40.80514, 443.2898" />
+						<HandOver ItemId="15425" QuestId="67674" StepId="4" NpcId="1017228" XYZ="241.6266, 40.80514, 443.2898" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(67674) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+
+					<!-- Rewards
+
+					Faire Voucher
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Turning in the Hot 'n Cold quest!" />
+					<NoCombatMoveTo Name="Haermaga" XYZ="554.7112, 14.59159, 373.0067" />
+					<TurnIn QuestId="67674" NpcId="1017201" XYZ="554.7112, 14.59159, 373.0067" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Who Let the Bombs Out -->
+
+		<If Condition="not IsQuestCompleted(67675)">
+			<If Condition="not HasQuest(67675)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+							<TeleportTo Name="Wineport" AetheryteId="12" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+					<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+				</If>
+				<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Picking up the Who Let the Bombs Out quest!" />
+				<NoCombatMoveTo Name="J'nangho" XYZ="557.2747, 14.59159, 375.6619" />
+				<If Condition="IsQuestAcceptQualified(67675)">
+					<PickupQuest NpcId="1017211" QuestId="67675" XYZ="557.2747, 14.59159, 375.6619" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67675)">
+				<If Condition="GetQuestStep(67675) == 1">
+					<If Condition="Core.Player.ClassLevel &gt; 49">
+						<If Condition="(ClassName == ClassJobType.Arcanist) or (ClassName == ClassJobType.Scholar) or (ClassName == ClassJobType.Summoner)">
+							<If Condition="not HasAtLeast(2142,1)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<MoveTo Name="Faezghim" XYZ="-236.4996, 16.2, 37.06409" />
+								<BuyItem ItemId="2142" ItemCount="1" NpcId="1001205" XYZ="-236.4996, 16.2, 37.06409" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipACN" />
+						</If>
+						<If Condition="(ClassName == ClassJobType.Archer) or (ClassName == ClassJobType.Bard)">
+							<If Condition="not HasAtLeast(1889,1)">
+								<If Condition="not IsOnMap(133)">
+									<If Condition="not IsOnMap(132)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+											<TeleportTo Name="New Gridania" AetheryteId="2" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+											<Travel To="132" />
+										</If>
+									</If>
+									<Travel To="133" />
+								</If>
+								<NoCombatMoveTo Name="Geraint" XYZ="170.3059, 15.69995, -73.16705" />
+								<BuyItem ItemId="1889" ItemCount="1" NpcId="1000217" XYZ="170.3059, 15.69995, -73.16705" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipARC" />
+						</If>
+						<If Condition="(ClassName == ClassJobType.Astrologian)">
+							<If Condition="not HasAtLeast(10524,1)">
+								<If Condition="not IsOnMap(419)">
+									<If Condition="not IsOnMap(418)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+											<TeleportTo Name="Foundation" AetheryteId="70" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+											<Travel To="418" />
+										</If>
+									</If>
+									<Travel To="419" />
+								</If>
+								<NoCombatMoveTo Name="Alyne" XYZ="194.4457, -5.399962, -54.45947" />
+								<BuyItem ItemId="10524" ItemCount="1" NpcId="1012171" XYZ="194.4457, -5.399962, -54.45947" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipAST" />
+						</If>
+						<If Condition="(ClassName == ClassJobType.Conjurer) or (ClassName == ClassJobType.WhiteMage)">
+							<If Condition="not HasAtLeast(1995,1)">
+								<If Condition="not IsOnMap(133)">
+									<If Condition="not IsOnMap(132)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+											<TeleportTo Name="New Gridania" AetheryteId="2" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+											<Travel To="132" />
+										</If>
+									</If>
+									<Travel To="133" />
+								</If>
+								<NoCombatMoveTo Name="Geraint" XYZ="170.3059, 15.69995, -73.16705" />
+								<BuyItem ItemId="1995" ItemCount="1" NpcId="1000217" XYZ="170.3059, 15.69995, -73.16705" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipCNJ" />
+						</If>
+						<If Condition="(ClassName == ClassJobType.DarkKnight)">
+							<If Condition="not HasAtLeast(10400,1)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<NoCombatMoveTo Name="Adaillie" XYZ="92.48486, 15.09468, 26.07764" />
+								<BuyItem ItemId="10400" ItemCount="1" DialogOption="0" NpcId="1011194" XYZ="92.48486, 15.09468, 26.07764" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipDRK" />
+						</If>
+						<If Condition="(ClassName == ClassJobType.Gladiator) or (ClassName == ClassJobType.Paladin)">
+							<If Condition="not HasAtLeast(1601,1)">
+								<If Condition="not IsOnMap(131)">
+									<If Condition="not IsOnMap(130)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+											<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+											<Travel To="130" />
+										</If>
+									</If>
+									<Travel To="131" />
+								</If>
+								<NoCombatMoveTo Name="Jealous Juggernaut" XYZ="135.027, 4.009992, -9.597961" />
+								<BuyItem ItemId="1601" ItemCount="1" NpcId="1001970" XYZ="135.027, 4.009992, -9.597961" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipGLD" />
+						</If>
+						<If Condition="(ClassName == ClassJobType.Lancer) or (ClassName == ClassJobType.Dragoon)">
+							<If Condition="not HasAtLeast(1819,1)">
+								<If Condition="not IsOnMap(133)">
+									<If Condition="not IsOnMap(132)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+											<TeleportTo Name="New Gridania" AetheryteId="2" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+											<Travel To="132" />
+										</If>
+									</If>
+									<Travel To="133" />
+								</If>
+								<NoCombatMoveTo Name="Geraint" XYZ="170.3059, 15.69995, -73.16705" />
+								<BuyItem ItemId="1819" ItemCount="1" NpcId="1000217" XYZ="170.3059, 15.69995, -73.16705" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipLNC" />
+						</If>
+						<If Condition="(ClassName == ClassJobType.Machinist)">
+							<If Condition="not HasAtLeast(10462,1)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<NoCombatMoveTo Name="Aelmer" XYZ="-153.1243, 16.99999, -42.4964" />
+								<BuyItem ItemId="10462" ItemCount="1" NpcId="1012172" XYZ="-153.1243, 16.99999, -42.4964" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipMCH" />
+						</If>
+						<If Condition="(ClassName == ClassJobType.Marauder) or (ClassName == ClassJobType.Warrior)">
+							<If Condition="not HasAtLeast(1749,1)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<MoveTo Name="Faezghim" XYZ="-236.4996, 16.2, 37.06409" />
+								<BuyItem ItemId="1749" ItemCount="1" NpcId="1001205" XYZ="-236.4996, 16.2, 37.06409" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipMRD" />
+						</If>
+						<If Condition="(ClassName == ClassJobType.Pugilist) or (ClassName == ClassJobType.Monk)">
+							<If Condition="not HasAtLeast(1680,1)">
+								<If Condition="not IsOnMap(131)">
+									<If Condition="not IsOnMap(130)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+											<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+											<Travel To="130" />
+										</If>
+									</If>
+									<Travel To="131" />
+								</If>
+								<NoCombatMoveTo Name="Jealous Juggernaut" XYZ="135.027, 4.009992, -9.597961" />
+								<BuyItem ItemId="1680" ItemCount="1" NpcId="1001970" XYZ="135.027, 4.009992, -9.597961" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipPGL" />
+						</If>
+						<If Condition="(ClassName == ClassJobType.Rogue) or (ClassName == ClassJobType.Ninja)">
+							<If Condition="not HasAtLeast(7952,1)">
+								<If Condition="not IsOnMap(129)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+										<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+										<Travel To="129" />
+									</If>
+								</If>
+								<MoveTo Name="Faezghim" XYZ="-236.4996, 16.2, 37.06409" />
+								<BuyItem ItemId="7952" ItemCount="1" NpcId="1001205" XYZ="-236.4996, 16.2, 37.06409" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipROG" />
+						</If>
+						<If Condition="(ClassName == ClassJobType.Thaumaturge) or (ClassName == ClassJobType.BlackMage)">
+							<If Condition="not HasAtLeast(2055,1)">
+								<If Condition="not IsOnMap(131)">
+									<If Condition="not IsOnMap(130)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+											<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+											<Travel To="130" />
+										</If>
+									</If>
+									<Travel To="131" />
+								</If>
+								<NoCombatMoveTo Name="Jealous Juggernaut" XYZ="135.027, 4.009992, -9.597961" />
+								<BuyItem ItemId="2055" ItemCount="1" NpcId="1001970" XYZ="135.027, 4.009992, -9.597961" />
+							</If>
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="EquipTHM" />
+						</If>
+						<If Condition="InventoryManager.FreeSlots &lt; 12">
+							<ExLog Color="&ExLogAck;" Name="Moonfire Faire" Message="You do not have enough free space to continue!" />
+							<ExLog Color="&ExLogAck;" Name="Moonfire Faire" Message="Please free up at least 12 slots in your inventory." />
+           					<StopBot/>
+						</If>
+						<If Condition="InventoryManager.FreeSlots >= 12">
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="WhoLettheBombsOut" />
+						</If>
+					</If>
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Weakening Bygone Bombards..." />
+					<NoCombatMoveTo Name="Bygone Bombards" XYZ="339.0071, 39.00272, 169.6996" />
+					<UseItem NpcId="4964" ItemId="2001973" XYZ="339.0071, 39.00272, 169.6996" UseHealthPercent="40" InCombatOnly="True" Radius="30" QuestId="67675" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67675) == 2">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Releasing the bound Bombards..." />
+					<NoCombatMoveTo Name="Destination" XYZ="491.4778, 39.32251, 181.2924" />
+					<UseItem NpcId="2007166" ItemId="2001974" QuestId="67675" StepId="2" PostCombatDelay="2" XYZ="491.4778, 39.32251, 181.2924" Radius="5"/>
+				</If>
+				<If Condition="GetQuestStep(67675) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+
+					<!-- Rewards
+
+					Faire Voucher
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Turning in the Who Let the Bombs Out quest!" />
+					<NoCombatMoveTo Name="Haermaga" XYZ="554.7112, 14.59159, 373.0067" />
+					<TurnIn QuestId="67675" NpcId="1017201" XYZ="554.7112, 14.59159, 373.0067" />
+				</If>
+			</If>
+		</If>
+
+		<!-- A Battle Royal -->
+
+		<If Condition="not IsQuestCompleted(67676)">
+			<If Condition="not HasQuest(67676)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+							<TeleportTo Name="Wineport" AetheryteId="12" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+					<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+				</If>
+				<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Picking up the A Battle Royal quest!" />
+				<NoCombatMoveTo Name="Haermaga" XYZ="554.7112, 14.59159, 373.0067" />
+				<If Condition="IsQuestAcceptQualified(67676)">
+					<PickupQuest NpcId="1017201" QuestId="67676" XYZ="554.7112, 14.59159, 373.0067" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67676)">
+				<If Condition="GetQuestStep(67676) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Rendezvousing with the Go Go Posing Rangers..." />
+					<NoCombatMoveTo Name="Destination" XYZ="473.1975, 10.02515, 120.7446" />
+					<UseObject NpcId="2007134" XYZ="473.1975, 10.02515, 120.7446" Radius="10" QuestId="67676" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67676) == 2">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Completing FATEs in Costa del Sol..." />
+					<NoCombatMoveTo Name="FATEs" XYZ="539.5331, 8.681709, 604.6292" />
+					<While Condition="not IsTodoChecked(67676, 2, 0)">
+						<Fate MinLevel="29" MaxLevel="31" Condition="not IsTodoChecked(67676, 2, 0)">
+							<FateIds>
+								<FateId>945</FateId> <!-- In Deep Water -->
+								<FateId>946</FateId> <!-- Trial by Fire -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67676) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+
+					<!-- Rewards
+
+					Legacy Warrior Mail
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Turning in the A Battle Royal quest!" />
+					<NoCombatMoveTo Name="Yellow Ranger" XYZ="473.7468, 9.983821, 120.1038" />
+					<TurnIn QuestId="67676" NpcId="1017304" XYZ="473.7468, 9.983821, 120.1038" />
+				</If>
+			</If>
+		</If>
+
+		<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="You've completed the Moonfire Faire seasonal event quest!" />
+		<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="If you would like to farm Vouchers, please enable Agil or re-equip your gear before doing so!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="DashingandBurning">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1017215).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DashingandBurning2">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2007136).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(6143,new Vector3(321.4617f,30.56384f,567.2847f));
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DashingandBurning3">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2007137).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(6143,new Vector3(347.5242f,33.6156f,285.2979f));
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DashingandBurning4">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2007141).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(6143,new Vector3(358.6328f,34.07336f,140.0625f));
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DashingandBurning5">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2007140).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(6143,new Vector3(354.0245f,34.25647f,138.4146f));
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+		]]>
+		</CodeChunk>
+        <CodeChunk Name="EquipACN">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 2142)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipARC">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 1889)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipAST">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 10524)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipCNJ">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 1995)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipDRK">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 10400)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipGLD">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 1601)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipLNC">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 1819)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipMCH">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 10462)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipMRD">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 1749)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipPGL">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 1680)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipROG">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 7952)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipTHM">
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+                
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                    if(slot.RawItemId == 2055)
+                    {
+                        slot.Move(EquipSlot);
+                    }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+        ]]>
+        </CodeChunk>
+		<CodeChunk Name="WhoLettheBombsOut">
+			<![CDATA[ 
+				foreach (var item in InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems).FilledSlots)
+				{
+					if (InventoryManager.FreeSlots > 0)
+					{
+						foreach (var slot in InventoryManager.GetBagsByInventoryBagId(
+															InventoryBagId.Bag1, InventoryBagId.Bag2,
+															InventoryBagId.Bag3, InventoryBagId.Bag4)
+															.Where(x => x.FreeSlots > 0).SelectMany(x => x).Where(x => !x.IsFilled))
+						{
+							item.Move(slot);
+							break;
+						}
+					}
+				}
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
