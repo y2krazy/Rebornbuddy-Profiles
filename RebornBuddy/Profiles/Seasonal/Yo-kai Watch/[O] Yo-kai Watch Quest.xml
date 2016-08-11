@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###########################################
+# Profile: [O] Yo-kai Watch Quest         #
+###########################################
+# Author: y2krazy                         #
+###########################################
+# Version: 1.0.0                          #
+###########################################
+# Required Level: 15                      #
+###########################################
+# Required Teleport Locations:            #
+# 	Bentbranch Meadows                    #
+# 	The Golden Saucer                     #
+# 	Ul'dah - Steps of Nald                #
+###########################################
+# Required User Interaction:              #
+# 	Summon Minion(s) for Legendary Medals #
+###########################################
+# Required Setup:                         #
+# 	The Gridanian Envoy Completed, or     #
+# 	The Lominsan Envoy Completed, or      #
+# 	The Ul'dahn Envoy Completed           #
+###########################################
+# Rewards:                                #
+# 	Yo-Kai Medal                          #
+# 	Yo-kai Medalliumns                    #
+# 	Yo-kai Watch                          #
+###########################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- ExLog Colors -->
+
+  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] Yo-kai Watch Quest</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking for quest completion..." />
+
+		<!-- A Complete Game-changer -->
+
+		<If Condition="not IsQuestCompleted(67677)">
+			<If Condition="not HasQuest(67677)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Picking up the A Complete Game-changer quest!" />
+				<MoveTo Name="Poor-heeled Youth" XYZ="-98.46649, 4, -104.9974" />
+				<If Condition="IsQuestAcceptQualified(67677)">
+					<PickupQuest NpcId="1017234" QuestId="67677" XYZ="-98.46649, 4, -104.9974" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67677)">
+				<If Condition="GetQuestStep(67677) == 1">
+					<If Condition="not IsOnMap(144)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(62)">
+							<TeleportTo Name="The Golden Saucer" AetheryteId="62" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(62)">
+							<Travel To="144" />
+						</If>
+					</If>
+					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Talking to the Wandering Executive..." />
+					<MoveTo Name="Wandering Executive" XYZ="-42.40485, 3.814697E-06, 40.51257" />
+					<RunCode Name="WanderingExecutive" />
+				</If>
+				<If Condition="GetQuestStep(67677) == 2">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Gathering information in Bentbranch Meadows..." />
+					<NoCombatMoveTo Name="Giah Molkoh" XYZ="-2.548279, -1.219153, 39.96338" />
+					<While Condition="not IsTodoChecked(67677, 2, 0)">
+						<TalkTo NpcId="1000734" XYZ="-2.548279, -1.219153, 39.96338" QuestId="67677" StepId="2" />
+						<TalkTo NpcId="1000470" XYZ="-59.00665, -0.01083579, 26.41333" QuestId="67677" StepId="2" />
+						<TalkTo NpcId="1000474" XYZ="-39.32251, -4.373491E-06, 62.02783" QuestId="67677" StepId="2" />
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67677) == 3">
+					<If Condition="not IsOnMap(148)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+							<Travel To="148" />
+						</If>
+					</If>
+					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Investigating the area near the Guardian Tree..." />
+					<MoveTo Name="Ancient Stone Vessel" XYZ="-317.5861, 22.93427, 185.2292" />
+					<RunCode Name="AncientStoneVessel" />
+				</If>
+				<If Condition="GetQuestStep(67677) == 255">
+					<If Condition="not IsOnMap(144)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(62)">
+							<TeleportTo Name="The Golden Saucer" AetheryteId="62" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(62)">
+							<Travel To="144" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Yo-kai Medal
+					Yo-kai Medallium
+					Yo-kai Watch
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Turning in the A Complete Game-changer quest!" />
+					<MoveTo Name="Wandering Executive" XYZ="-42.40485, 3.814697E-06, 40.51257" />
+					<TurnIn QuestId="67677" ItemId="2001948" NpcId="1017235" XYZ="-42.40485, 3.814697E-06, 40.51257" />
+				</If>
+			</If>
+		</If>
+
+		<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've completed the Yo-kai Watch seasonal event quest!" />
+
+		<If Condition="IsQuestCompleted(67677)">
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Let's go farm some Yo-kai Medals!" />
+			<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Loading the Yo-kai Watch Medals profile..." />
+			<LoadProfile Path="Profiles/y2krazy/Seasonal/Yo-kai Watch/[O] Yo-kai Watch Medals.xml" />
+		</If>
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="WanderingExecutive">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1017235).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="AncientStoneVessel">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2007169).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Buddy.Coroutines.Coroutine.Sleep(75000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(15000);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>

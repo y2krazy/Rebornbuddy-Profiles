@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#######################################################
+# Profile: [O] Battered Fish (Repeatable)             #
+#######################################################
+# Author: y2krazy                                     #
+#######################################################
+# Version: 1.0.1                                      #
+#######################################################
+# Required Level: 30                                  #
+#######################################################
+# Required Teleport Locations:                        #
+# 	Costa del Sol                                     #
+#######################################################
+# Required User Interaction:                          #
+# 	PickUp Quest (Bugged)                             #
+# 	TurnIn Quest (Bugged)                             #
+#######################################################
+# Required Setup:                                     #
+# 	Fill out User Configuration below.                #
+# 	Level 30+ Any Non-Combat Class                    #
+# 	Level 18+ Botanist                                #
+# 	Level 11+ Culinarian                              #
+# 	Set class Gear Sets at the bottom of the profile. #
+#######################################################
+# Rewards:                                            #
+# 	Faire Token                                       #
+#######################################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+  <!ENTITY TokenCount "1"> <!-- Faire Tokens to earn before stopping. -->
+  <!ENTITY BatteredFish "1"> <!-- Battered Fish materials to gather before stopping. -->
+  <!ENTITY CinderfootOlives "4"> <!-- Multiply Battered Fish * 4 for items to purchase (if needed). -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] Battered Fish (Repeatable)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<LogMessage Message="Checking for &TokenCount; Faire Tokens..." />
+
+		<While Condition="not HasAtLeast(10333,&TokenCount;)">
+
+			<!-- A Matter of Taste -->
+
+			<If Condition="not HasQuest(67661)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="C'zibho Tia" XYZ="460.0137, 13.22949, 314.6257" />
+				<If Condition="IsQuestAcceptQualified(67661)">
+					<PickupQuest NpcId="1015613" QuestId="67661" XYZ="460.0137, 13.22949, 314.6257" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67661)">
+				<If Condition="GetQuestStep(67661) == 255">
+					<If Condition="not HasAtLeast(10332,&BatteredFish;)">
+
+						<!-- Fire Shard -->
+								
+						<If Condition="not HasAtLeast(2,&BatteredFish;)">
+							<If Condition="not IsOnMap(134)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+									<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+									<Travel To="134" />
+								</If>
+							</If>
+							<If Condition="Core.Player.ClassLevel &lt; 35">
+								<RunCode Name="Botanist" />
+								<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+								<Gather while="not HasAtLeast(2,&BatteredFish;)">
+									<GatherObject>Lush Vegetation Patch</GatherObject>
+									<HotSpots>
+										<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+									</HotSpots>
+									<ItemNames>
+										<ItemName>Fire Shard</ItemName>
+									</ItemNames>
+									<GatheringSkillOrder>
+										<GatheringSkill SpellName="Blessed Harvest" TimesToCast="1" />
+									</GatheringSkillOrder>
+								</Gather>
+							</If>
+							<If Condition="Core.Player.ClassLevel &gt; 34">
+								<RunCode Name="Botanist" />
+								<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+								<Gather while="not HasAtLeast(2,&BatteredFish;)">
+									<GatherObject>Lush Vegetation Patch</GatherObject>
+									<HotSpots>
+										<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+									</HotSpots>
+									<ItemNames>
+										<ItemName>Fire Shard</ItemName>
+									</ItemNames>
+									<GatheringSkillOrder>
+										<GatheringSkill SpellName="Blessed Harvest II" TimesToCast="1" />
+									</GatheringSkillOrder>
+								</Gather>
+							</If>
+						</If>
+
+						<!-- Water Shard -->
+								
+						<If Condition="not HasAtLeast(7,&BatteredFish;)">
+							<If Condition="not IsOnMap(140) and not IsOnMap(212)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+									<TeleportTo Name="Horizon" AetheryteId="17" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+									<Travel To="140" />
+								</If>
+							</If>
+							<If Condition="Core.Player.ClassLevel &lt; 35">
+								<RunCode Name="Botanist" />
+								<NoCombatMoveTo Name="Farming Area" XYZ="155.1757, 49.41785, -122.2227" />
+								<Gather while="not HasAtLeast(7,&BatteredFish;)">
+									<GatherObject>Lush Vegetation Patch</GatherObject>
+									<HotSpots>
+										<HotSpot Radius="90" XYZ="155.1757, 49.41785, -122.2227" name="Lush Vegetation Patch" />
+									</HotSpots>
+									<ItemNames>
+										<ItemName>Water Shard</ItemName>
+									</ItemNames>
+									<GatheringSkillOrder>
+										<GatheringSkill SpellName="Blessed Harvest" TimesToCast="1" />
+									</GatheringSkillOrder>
+								</Gather>
+							</If>
+							<If Condition="Core.Player.ClassLevel &gt; 34">
+								<RunCode Name="Botanist" />
+								<NoCombatMoveTo Name="Farming Area" XYZ="155.1757, 49.41785, -122.2227" />
+								<Gather while="not HasAtLeast(7,&BatteredFish;)">
+									<GatherObject>Lush Vegetation Patch</GatherObject>
+									<HotSpots>
+										<HotSpot Radius="90" XYZ="155.1757, 49.41785, -122.2227" name="Lush Vegetation Patch" />
+									</HotSpots>
+									<ItemNames>
+										<ItemName>Water Shard</ItemName>
+									</ItemNames>
+									<GatheringSkillOrder>
+										<GatheringSkill SpellName="Blessed Harvest II" TimesToCast="1" />
+									</GatheringSkillOrder>
+								</Gather>
+							</If>
+						</If>
+
+						<!-- Haddock -->
+
+						<If Condition="not HasAtLeast(12990,&BatteredFish;)">
+							<If Condition="not IsOnMap(137)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+									<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+									<Travel To="137" />
+								</If>
+							</If>
+							<BuyItem ItemId="12990" ItemCount="&BatteredFish;" NpcId="1015615" XYZ="462.8823, 12.73574, 328.4198" />
+						</If>
+
+						<!-- Popoto -->
+
+						<If Condition="not HasAtLeast(4787,&BatteredFish;)">
+							<If Condition="Core.Player.ClassLevel &lt; 18">
+								<LogMessage Message="You do not meet the minimum level requirement." />
+								<LogMessage Message="Please reach level 18 Botanist or higher." />
+								<LogMessage Message="Alternatively, you can purchase Popoto from the Market Board." />
+								<StopBot />
+							</If>
+							<If Condition="Core.Player.ClassLevel &gt; 17">
+								<If Condition="Core.Player.ClassLevel &lt; 35">
+									<If Condition="not IsOnMap(145)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+											<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+											<Travel To="145" />
+										</If>
+									</If>
+									<RunCode Name="Botanist" />
+									<NoCombatMoveTo Name="Farming Area" XYZ="-248.0157, -31.05733, 277.7605" />
+									<Gather while="not HasAtLeast(4787,&BatteredFish;)">
+										<GatherObject>Lush Vegetation Patch</GatherObject>
+										<HotSpots>
+											<HotSpot Radius="90" XYZ="-248.0157, -31.05733, 277.7605" name="Lush Vegetation Patch" />
+										</HotSpots>
+										<ItemNames>
+											<ItemName>Popoto</ItemName>
+											<ItemName>Fire Shard</ItemName>
+										</ItemNames>
+										<GatheringSkillOrder>
+											<GatheringSkill SpellName="Blessed Harvest" TimesToCast="1" />
+										</GatheringSkillOrder>
+									</Gather>
+								</If>
+								<If Condition="Core.Player.ClassLevel &gt; 34">
+									<If Condition="not IsOnMap(145)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+											<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+											<Travel To="145" />
+										</If>
+									</If>
+									<RunCode Name="Botanist" />
+									<NoCombatMoveTo Name="Farming Area" XYZ="-248.0157, -31.05733, 277.7605" />
+									<Gather while="not HasAtLeast(4787,&BatteredFish;)">
+										<GatherObject>Lush Vegetation Patch</GatherObject>
+										<HotSpots>
+											<HotSpot Radius="90" XYZ="-248.0157, -31.05733, 277.7605" name="Lush Vegetation Patch" />
+										</HotSpots>
+										<ItemNames>
+											<ItemName>Popoto</ItemName>
+											<ItemName>Fire Shard</ItemName>
+										</ItemNames>
+										<GatheringSkillOrder>
+											<GatheringSkill SpellName="Blessed Harvest II" TimesToCast="1" />
+										</GatheringSkillOrder>
+									</Gather>
+								</If>
+							</If>
+						</If>
+
+						<!-- Olive Oil -->
+
+						<If Condition="not HasAtLeast(4857,&BatteredFish;)">
+							<If Condition="not IsQuestCompleted(66910)">
+								<RunCode Name="Culinarian" />
+								<If Condition="Core.Player.ClassLevel &lt; 11">
+									<LogMessage Message="You do not meet the minimum level requirement." />
+									<LogMessage Message="Please reach level 11 Culinarian or higher." />
+									<LogMessage Message="Alternatively, you can purchase Olive Oil from the Market Board." />
+									<StopBot />
+								</If>
+								<If Condition="Core.Player.ClassLevel &gt; 10">
+
+									<!-- Fire Shard -->
+								
+									<If Condition="not HasAtLeast(2,&BatteredFish;)">
+										<If Condition="not IsOnMap(134)">
+											<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+												<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+											</If>
+											<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+												<Travel To="134" />
+											</If>
+										</If>
+										<If Condition="Core.Player.ClassLevel &lt; 35">
+											<RunCode Name="Botanist" />
+											<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+											<Gather while="not HasAtLeast(2,&BatteredFish;)">
+												<GatherObject>Lush Vegetation Patch</GatherObject>
+												<HotSpots>
+													<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+												</HotSpots>
+												<ItemNames>
+													<ItemName>Fire Shard</ItemName>
+												</ItemNames>
+												<GatheringSkillOrder>
+													<GatheringSkill SpellName="Blessed Harvest" TimesToCast="1" />
+												</GatheringSkillOrder>
+											</Gather>
+										</If>
+										<If Condition="Core.Player.ClassLevel &gt; 34">
+											<RunCode Name="Botanist" />
+											<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+											<Gather while="not HasAtLeast(2,&BatteredFish;)">
+												<GatherObject>Lush Vegetation Patch</GatherObject>
+												<HotSpots>
+													<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+												</HotSpots>
+												<ItemNames>
+													<ItemName>Fire Shard</ItemName>
+												</ItemNames>
+												<GatheringSkillOrder>
+													<GatheringSkill SpellName="Blessed Harvest II" TimesToCast="1" />
+												</GatheringSkillOrder>
+											</Gather>
+										</If>
+									</If>
+							
+									<!-- Cinderfoot Olive -->
+								
+									<If Condition="not HasAtLeast(4804,&CinderfootOlives;)">
+										<If Condition="not IsOnMap(128)">
+											<If Condition="not IsOnMap(129)">
+												<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+													<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+												</If>
+												<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+													<Travel To="129" />
+												</If>
+											</If>
+											<Travel To="128" />
+										</If>
+										<BuyItem ItemId="4804" ItemCount="&CinderfootOlives;" NpcId="1003249" XYZ="-62.91296, 42.29975, -164.7517" />
+									</If>
+									<Dismount/>
+									<RunCode Name="Culinarian" />
+									<While Condition="True">
+										<Synthesize RecipeId="924" HQMats="-2"/>
+										<While Condition="CraftingManager.IsCrafting">
+											<CraftAction Name="Careful Synthesis" ActionId="100063" />
+										</While>
+									</While>
+									<RunCode Name="CloseCraftingLog" />
+								</If>
+							</If>
+							<If Condition="IsQuestCompleted(66910)">
+								<If Condition="not HasAtLeast(4857,&BatteredFish;)">
+									<If Condition="not IsOnMap(138)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+											<TeleportTo Name="Aleport" AetheryteId="14" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+											<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+												<TeleportTo Name="Swiftperch" AetheryteId="13" />
+											</If>
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+											<Travel To="138" />
+										</If>
+									</If>
+									<NoCombatMoveTo Name="Sahagin Vendor" XYZ="-225.0859, -40.48583, 46.9519" />
+									<BuyItem ItemId="4857" ItemCount="&BatteredFish;" DialogOption="0" NpcId="1008907" XYZ="-225.0859, -40.48583, 46.9519" />
+								</If>
+							</If>
+						</If>
+
+						<!-- Table Salt -->
+
+						<If Condition="not HasAtLeast(4847,&BatteredFish;)">
+							<If Condition="not IsQuestCompleted(66910)">
+
+								<!-- Fire Shard -->
+						
+								<If Condition="not HasAtLeast(2,&BatteredFish;)">
+									<If Condition="not IsOnMap(134)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+											<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+											<Travel To="134" />
+										</If>
+									</If>
+									<RunCode Name="Botanist" />
+									<If Condition="Core.Player.ClassLevel &gt; 34">
+										<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+										<Gather while="not HasAtLeast(2,&BatteredFish;)">
+											<GatherObject>Lush Vegetation Patch</GatherObject>
+											<HotSpots>
+												<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+											</HotSpots>
+											<ItemNames>
+												<ItemName>Fire Shard</ItemName>
+											</ItemNames>
+											<GatheringSkillOrder>
+												<GatheringSkill SpellName="Blessed Harvest II" TimesToCast="1" />
+											</GatheringSkillOrder>
+										</Gather>
+									</If>
+									<NoCombatMoveTo Name="Farming Area" XYZ="40.98051, 52.17653, -114.0182" />
+									<Gather while="not HasAtLeast(2,&BatteredFish;)">
+										<GatherObject>Lush Vegetation Patch</GatherObject>
+										<HotSpots>
+											<HotSpot Radius="90" XYZ="40.98051, 52.17653, -114.0182" name="Lush Vegetation Patch" />
+										</HotSpots>
+										<ItemNames>
+											<ItemName>Fire Shard</ItemName>
+										</ItemNames>
+										<GatheringSkillOrder>
+											<GatheringSkill SpellName="Blessed Harvest" TimesToCast="1" />
+										</GatheringSkillOrder>
+									</Gather>
+								</If>
+							
+								<!-- Distilled Water -->
+							
+								<If Condition="not HasAtLeast(5487,&BatteredFish;)">
+									<If Condition="not IsOnMap(128)">
+										<If Condition="not IsOnMap(129)">
+											<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+												<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+											</If>
+											<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+												<Travel To="129" />
+											</If>
+										</If>
+										<Travel To="128" />
+									</If>
+									<BuyItem ItemId="5487" ItemCount="&BatteredFish;" NpcId="1003249" XYZ="-62.91296, 42.29975, -164.7517" />
+								</If>
+								
+								<!-- Rock Salt -->
+							
+								<If Condition="not HasAtLeast(5518,&BatteredFish;)">
+									<If Condition="not IsOnMap(128)">
+										<If Condition="not IsOnMap(129)">
+											<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+												<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+											</If>
+											<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+												<Travel To="129" />
+											</If>
+										</If>
+										<Travel To="128" />
+									</If>
+									<BuyItem ItemId="5518" ItemCount="&BatteredFish;" NpcId="1003249" XYZ="-62.91296, 42.29975, -164.7517" />
+								</If>
+								<Dismount/>
+								<RunCode Name="Culinarian" />
+								<While Condition="True">
+									<Synthesize RecipeId="924" HQMats="-2"/>
+									<While Condition="CraftingManager.IsCrafting">
+										<CraftAction Name="Careful Synthesis" ActionId="100063" />
+									</While>
+								</While>
+								<RunCode Name="CloseCraftingLog" />
+							</If>
+							<If Condition="IsQuestCompleted(66910)">
+								<If Condition="not HasAtLeast(4847,&BatteredFish;)">
+									<If Condition="not IsOnMap(138)">
+										<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+											<TeleportTo Name="Aleport" AetheryteId="14" />
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+											<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+												<TeleportTo Name="Swiftperch" AetheryteId="13" />
+											</If>
+										</If>
+										<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+											<Travel To="138" />
+										</If>
+									</If>
+									<NoCombatMoveTo Name="Sahagin Vendor" XYZ="-225.0859, -40.48583, 46.9519" />
+									<BuyItem ItemId="4847" ItemCount="&BatteredFish;" DialogOption="0" NpcId="1008907" XYZ="-225.0859, -40.48583, 46.9519" />
+								</If>
+							</If>
+						</If>
+						<Dismount/>
+						<RunCode Name="Culinarian" />
+						<While Condition="not HasAtLeast(10332,&BatteredFish;)">
+							<Synthesize RecipeId="2790" HQMats="-2,-2,-2,-2"/>
+							<While Condition="CraftingManager.IsCrafting">
+								<CraftAction Name="Basic Synthesis" ActionId="100105"/>
+							</While>
+						</While>
+						<RunCode Name="CloseCraftingLog" />
+						<WaitTimer WaitTime="3" />
+					</If>
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<RunCode Name="NonCombatLvl30Plus" />
+					<WaitTimer WaitTime="3" />
+
+					<!-- Rewards
+
+					Faire Token
+
+					-->
+
+					<NoCombatMoveTo Name="C'zibho Tia" XYZ="460.0137, 13.22949, 314.6257" />
+					<RunCode Name="TurnIn67661" />
+					<WaitWhile Condition="QuestLogManager.HasQuest(67661)"/>
+				</If>
+			</If>
+
+		</While>
+
+		<LogMessage Message="You have &TokenCount;+ Faire Tokens in your inventory!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="Botanist">
+			<![CDATA[
+				ff14bot.Managers.ChatManager.SendChat("/gs change 22");
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Culinarian">
+			<![CDATA[
+				ff14bot.Managers.ChatManager.SendChat("/gs change 20");
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="CloseCraftingLog">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.CraftingLog.IsOpen)
+					ff14bot.RemoteWindows.CraftingLog.Close();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="NonCombatLvl30Plus">
+			<![CDATA[
+				ff14bot.Managers.ChatManager.SendChat("/gs change 21");
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TurnIn67661">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1015613).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+				{
+					if(slot.RawItemId == 10332)
+					{
+						slot.Handover();
+					}
+				}
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.Request.IsOpen)
+					ff14bot.RemoteWindows.Request.HandOver();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
