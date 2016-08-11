@@ -6,7 +6,7 @@
 # Author: y2krazy                                #
 #         (kagepande for 1-50 data)              #
 ##################################################
-# Version: 1.0.2                                 #
+# Version: 1.0.3                                 #
 ##################################################
 # Required Level: 1                              #
 ##################################################
@@ -564,22 +564,25 @@
 <!--Start Grind to Level 31-->
     <If Condition="Core.Player.ClassLevel &lt; 31">
       <LogMessage Message="Starting the Grind to Level 31."/>
-      <If Condition="not IsOnMap(153)">
-        <TeleportTo Name="Quarrymill" AetheryteId="5" />
+      <If Condition="not IsOnMap(154)">
+        <TeleportTo Name="Fallgourd Float" AetheryteId="7" />
       </If>
+      <RunCode Name="Dismount" />
+      <WaitTimer WaitTime="3" />
+      <RunCode Name="Stealth" />
+      <WaitTimer WaitTime="3" />
+      <RunCode Name="DisableMount" />
       <Gather while="Core.Player.ClassLevel &lt; 31">
-        <GatherObject>Mature Tree</GatherObject>
+        <GatherObject>Lush Vegetation Patch</GatherObject>
         <HotSpots>
-          <HotSpot Radius="95" XYZ="236.8793, 18.35917, -143.385"/>
+          <HotSpot Radius="95" XYZ="96.47213, -33.04591, 242.6844"/>
         </HotSpots>
-        <BlackSpots>
-          <BlackSpot Radius="15" XYZ="169.6019, 14.53054, -116.2004"/>
-        </BlackSpots>
-        <Slot>0</Slot>
+        <Slot>2</Slot>
         <GatheringSkillOrder>
           <GatheringSkill SpellName="Field Mastery II" TimesToCast="1" />
         </GatheringSkillOrder>
       </Gather>
+      <RunCode Name="EnableMount" />
     </If>
     <If Condition="Core.Player.ClassLevel == 31">
       <LogMessage Message="Congrats on Level 31, moving on."/>
@@ -925,42 +928,41 @@
         </If>
         <TalkTo InteractDistance="2.0" NpcId="1000776" XYZ="118.2649, 285.9804, 140.2907"/>
       </If>
-      <If Condition="not IsTimeBetween(9,11) and not NqHasAtLeast(5395,3)">
-        <LogMessage Message="Waiting until 9am for node"/>
-        <WaitWhile Condition ="not IsTimeBetween(9,11)" />
-      </If>
-        <If Condition="GetQuestStep(65549) == 3">
-          <If Condition="not NqHasAtLeast(5395,3)">
-            <If Condition="IsTimeBetween(9,11)">
-              <If Condition="not IsOnMap(155)">
-                <TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
-              </If>
-              <Gather Loops="1">
-                <GatherObject>Unspoiled Mature Tree</GatherObject>
-                <HotSpots>
-                  <Hotspot Radius="700" XYZ="354.2818, 303.052, -348.1232"/>
-                </HotSpots>
-                <Slot>5</Slot>
-                <GatheringSkillOrder>
-                  <GatheringSkill SpellName="Field Mastery III" TimesToCast="1" />
-                </GatheringSkillOrder>
-              </Gather>
+      <If Condition="GetQuestStep(65549) == 3">
+        <If Condition="not HasAtLeast(5395,3)">
+          <If Condition="not IsTimeBetween(9,11)">
+            <LogMessage Message="Waiting until 9am for node"/>
+            <WaitWhile Condition="not IsTimeBetween(9,11)" />
+          </If>
+          <If Condition="IsTimeBetween(9,11)">
+            <If Condition="not IsOnMap(155)">
+              <TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
             </If>
+            <Gather Loops="1">
+              <GatherObject>Unspoiled Mature Tree</GatherObject>
+              <HotSpots>
+                <Hotspot Radius="700" XYZ="354.2818, 303.052, -348.1232"/>
+              </HotSpots>
+              <Slot>5</Slot>
+              <GatheringSkillOrder>
+                <GatheringSkill SpellName="Field Mastery III" TimesToCast="1" />
+              </GatheringSkillOrder>
+            </Gather>
           </If>
         </If>
-      <If Condition="GetQuestStep(65549) == 3">
-        <If Condition="NqHasAtLeast(5395,3)">
+        <If Condition="HasAtLeast(5395,3)">
           <If Condition="not IsOnMap(155)">
             <TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
           </If>
+          <HandOver ItemId="5395" QuestId="65549" StepId="4" NpcId="1000776" InteractDistance="1.0" XYZ="118.2649, 285.9804, 140.2907"/>
         </If>
-        <TurnIn ItemId="5395" QuestId="65549" StepId="3" NpcId="1000776" InteractDistance="1.0" XYZ="118.2649, 285.9804, 140.2907"/>
       </If>
       <If Condition="GetQuestStep(65549) == 4">
         <If Condition="not IsOnMap(155)">
           <TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
         </If>
         <TalkTo InteractDistance="2.0" NpcId="1000777" XYZ="7.677456, 207.2478, 434.1476"/>
+        <WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
       </If>
       <If Condition="GetQuestStep(65549) == 255">
         <If Condition="not IsOnMap(133)">
