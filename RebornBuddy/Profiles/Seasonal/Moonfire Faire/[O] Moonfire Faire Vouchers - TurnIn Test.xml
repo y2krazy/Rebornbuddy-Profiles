@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#################################################
+# Profile: [O] Moonfire Faire Vouchers          #
+#################################################
+# Author: y2krazy                               #
+#################################################
+# Version: 1.0.1                                #
+#################################################
+# Required Level: 30                            #
+#################################################
+# Required Teleport Locations:                  #
+#  Costa del Sol                                #
+#################################################
+# Required User Interaction:                    #
+#  None                                         #
+#################################################
+# Required Setup:                               #
+#  Uncheck Skip CutScenes in Order Bot Settings #
+#################################################
+# Rewards:                                      #
+#  3 Emotes                                     #
+#  Fair Vouchers                                #
+#  Firefly Lamp (Outdoor Furnishing)            #
+#  Legacy Warrior Armor                         #
+#  Moonfire Faire Orchestrion Roll              #
+#  8 Types of Fireworks                         #
+#################################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- Vouchers Required for: -->
+  <!-- Armor: 3 each (4 Pieces Total) -->
+  <!-- Emotes: 5 each (3 Emotes Total) -->
+  <!-- Firefly Lamp: 10 -->
+  <!-- Moonfire Faire Orchestrion Roll: 10 -->
+  <!-- Fireworks: 1 each (10 per Voucher) -->
+
+  <!ENTITY Vouchers "0"> <!-- Moonfire Faire Vouchers to obtain before stopping. -->
+
+  <!-- ExLog Colors -->
+
+  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+  <!ENTITY ExLogAck "#FF0000"> <!-- Warnings -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] Moonfire Faire Vouchers (v1.0.1)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="&Vouchers; == 0">
+            <ExLog Color="&ExLogAck;" Name="Moonfire Faire" Message="You have not selected anything to farm! Derp!" />
+            <StopBot/>
+        </If>
+
+        <!-- Moonfire Faire Vouchers -->
+
+        <If Condition="&Vouchers; == 1 and HasAtLeast(15424,&Vouchers;)">
+            <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="You've already obtained &Vouchers; Moonfire Faire Voucher!" />
+        </If>
+
+        <If Condition="&Vouchers; &gt; 1 and HasAtLeast(15424,&Vouchers;)">
+            <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="You've already obtained &Vouchers; Moonfire Faire Vouchers!" />
+        </If>
+
+        <While Condition="&Vouchers; &gt; 0 and not HasAtLeast(15424,&Vouchers;)">
+
+			<!-- Dashing and Burning -->
+
+			<If Condition="not HasQuest(67673)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+							<TeleportTo Name="Wineport" AetheryteId="12" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+					<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+				</If>
+				<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Picking up the Dashing and Burning quest!" />
+				<NoCombatMoveTo Name="J'nangho" XYZ="557.2747, 14.59159, 375.6619" />
+				<If Condition="IsQuestAcceptQualified(67673)">
+					<PickupQuest NpcId="1017211" QuestId="67673" XYZ="557.2747, 14.59159, 375.6619" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67673)">
+				<If Condition="GetQuestStep(67673) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Wunthyll..." />
+					<NoCombatMoveTo Name="Wunthyll" XYZ="418.2954, 28.53505, 314.1068" />
+					<TalkTo NpcId="1017215" XYZ="418.2954, 28.53505, 314.1068" />
+				</If>
+				<If Condition="GetQuestStep(67673) == 2">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Wunthyll..." />
+					<NoCombatMoveTo Name="Wunthyll" XYZ="418.2954, 28.53505, 314.1068" />
+					<RunCode Name="DashingandBurning" />
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Using Saturate on the Smoldering Dummy..." />
+					<NoCombatMoveTo Name="Smoldering Dummy" XYZ="321.4617, 30.56384, 567.2847" />
+					<RunCode Name="DashingandBurning2" />
+				</If>
+				<If Condition="GetQuestStep(67673) == 3">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Wunthyll..." />
+					<NoCombatMoveTo Name="Wunthyll" XYZ="418.2954, 28.53505, 314.1068" />
+					<RunCode Name="DashingandBurning" />
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Using Saturate on the Burning Dummies..." />
+					<NoCombatMoveTo Name="Burning Dummies" XYZ="347.5242, 33.6156, 285.2979" />
+					<RunCode Name="DashingandBurning3" />
+				</If>
+				<If Condition="GetQuestStep(67673) == 4">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Wunthyll..." />
+					<NoCombatMoveTo Name="Wunthyll" XYZ="418.2954, 28.53505, 314.1068" />
+					<RunCode Name="DashingandBurning" />
+					<If Condition="GetQuestById(67673).QuestI8AH == 0">
+						<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Using Saturate on the Blazing Dummies..." />
+						<NoCombatMoveTo Name="Blazing Dummies" XYZ="358.6328, 34.07336, 140.0625" />
+						<RunCode Name="DashingandBurning4" />
+					</If>
+					<If Condition="GetQuestById(67673).QuestI8AH == 1">
+						<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Using Saturate on the Blazing Dummies..." />
+						<NoCombatMoveTo Name="Blazing Dummies" XYZ="354.0245, 34.25647, 138.4146" />
+						<RunCode Name="DashingandBurning5" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(67673) == 5">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Red Ranger..." />
+					<NoCombatMoveTo Name="Red Ranger" XYZ="356.3439, 34.19497, 139.7573" />
+					<BotSettings BlockSkippingCutscenes="1"/>
+					<TalkTo NpcId="1017218" XYZ="356.3439, 34.19497, 139.7573" />
+					<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
+					<BotSettings BlockSkippingCutscenes="0"/>
+				</If>
+				<If Condition="GetQuestStep(67673) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+								<TeleportTo Name="Wineport" AetheryteId="12" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
+					</If>
+
+					<!-- Rewards
+
+					Faire Voucher
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Turning in the Dashing and Burning quest!" />
+					<NoCombatMoveTo Name="Haermaga" XYZ="554.7112, 14.59159, 373.0067" />
+					<!-- <RunCode Name="TurnIn67673" /> -->
+					<TurnIn QuestId="67675" NpcId="1017201" XYZ="554.7112, 14.59159, 373.0067" />
+					<WaitWhile Condition="QuestLogManager.HasQuest(67673)"/>
+				</If>
+			</If>
+
+		</While>
+
+        <If Condition="HasAtLeast(15424,&Vouchers;) and &Vouchers; == 1">
+            <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="You've obtained &Vouchers; Moonfire Faire Voucher!" />
+        </If>
+
+        <If Condition="HasAtLeast(15424,&Vouchers;) and &Vouchers; &gt; 1">
+            <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="You've obtained &Vouchers; Moonfire Faire Vouchers!" />
+        </If>
+
+        <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="If you need more Vouchers, please adjust the quantity in the user configuration within the profile!" />
+        <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Stopping the bot. Nothing left for me to to!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="DashingandBurning">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1017215).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DashingandBurning2">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2007136).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(6143,new Vector3(321.4617f,30.56384f,567.2847f));
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DashingandBurning3">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2007137).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(6143,new Vector3(347.5242f,33.6156f,285.2979f));
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DashingandBurning4">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2007141).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(6143,new Vector3(358.6328f,34.07336f,140.0625f));
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DashingandBurning5">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(2007140).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(6143,new Vector3(354.0245f,34.25647f,138.4146f));
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TurnIn67673">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1017201).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
