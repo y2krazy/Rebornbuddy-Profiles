@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#################################
+# Profile: [O] The Rising Quest #
+#################################
+# Author: y2krazy               #
+#################################
+# Version: 1.0.1                #
+#################################
+# Required Level: 15            #
+#################################
+# Required Teleport Locations:  #
+# 	Horizon                     #
+# 	Ul'dah - Steps of Nald      #
+#################################
+# Required User Interaction:    #
+# 	None                        #
+#################################
+# Required Setup:               #
+# 	None                        #
+#################################
+# Rewards:                      #
+# 	Mini-Game: Concentration    #
+# 	Minion: Wind-up Iceheart    #
+# 	Minion: Wind-up Yugiri      #
+#################################
+-->
+<Profile>
+	<Name>[O] The Rising Quest</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<LogMessage Message="Checking for completed quest..." />
+
+		<!-- A World Away -->
+
+		<If Condition="not IsQuestCompleted(67670)">
+			<If Condition="not HasQuest(67670)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<MoveTo Name="Nonora" XYZ="-22.65973, 10, -47.98962" />
+				<If Condition="IsQuestAcceptQualified(67670)">
+					<PickupQuestPlus NpcId="1015713" QuestId="67670" XYZ="-22.65973, 10, -47.98962" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67670)">
+				<If Condition="GetQuestStep(67670) == 1">
+					<If Condition="not IsOnMap(140)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(17)">
+							<TeleportTo Name="Horizon" AetheryteId="17" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+							<Travel To="140" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="FATE: Recurring Bugs" XYZ="29.04221, 21.41614, 87.69412" />
+					<While Condition="not IsTodoChecked(67670, 1, 0)">
+						<Fate MinLevel="8" MaxLevel="10" Condition="not IsTodoChecked(67670, 1, 0)">
+							<FateIds>
+								<FateId>911</FateId> <!-- Recurring Bugs -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67670) == 2">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<MoveTo Name="Nonora" XYZ="-22.65973, 10, -47.98962" />
+					<TalkTo NpcId="1015713" XYZ="-22.65973, 10, -47.98962" QuestId="67670" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(67670) == 3">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<MoveTo Name="Wandering Composer" XYZ="-21.22534, 9, -87.08331" />
+					<HandOver ItemId="2001890" QuestId="67670" StepId="3" NpcId="1015715" XYZ="-21.22534, 9, -87.08331" />
+				</If>
+				<If Condition="GetQuestStep(67670) == 4">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<MoveTo Name="Wandering Translator" XYZ="-231.281, 17.99992, 103.502" />
+					<HandOver ItemId="2001890" QuestId="67670" StepId="4" NpcId="1015716" XYZ="-231.281, 17.99992, 103.502" />
+				</If>
+				<If Condition="GetQuestStep(67670) == 5">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<MoveTo Name="Wandering Author" XYZ="23.14789, 6.999996, -80.00305" />
+					<HandOver ItemId="2001890" QuestId="67670" StepId="5" NpcId="1015717" XYZ="23.14789, 6.999996, -80.00305" />
+				</If>
+				<If Condition="GetQuestStep(67670) == 6">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<Travel To="131" />
+					</If>
+					<MoveTo Name="Wandering Engineer" XYZ="-18.9975, 14, 80.58289" />
+					<HandOver ItemId="2001890" QuestId="67670" StepId="6" NpcId="1015718" XYZ="-18.9975, 14, 80.58289" />
+				</If>
+				<If Condition="GetQuestStep(67670) == 7">
+					<If Condition="not IsOnMap(130) and not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<Travel To="130" />
+					</If>
+					<MoveTo Name="Wandering Minstrel" XYZ="-22.11035, 10.00113, -49.91229" />
+					<HandOver ItemIds="2001890,2001891" QuestId="67670" StepId="7" NpcId="1015714" XYZ="-22.11035, 10.00113, -49.91229" />
+					<WaitTimer WaitTime="15" />
+				</If>
+				<If Condition="GetQuestStep(67670) == 255">
+					<If Condition="not IsOnMap(130) and not IsOnMap(504)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<UseTransport Name="Wandering Minstrel" InteractDistance="3.0" NpcId="1015714" XYZ="-22.11035, 10.00113, -49.91229" />
+					</If>
+
+					<!-- Rewards
+
+					Wind-up Iceheart
+					Wind-up Yugiri
+
+					-->
+
+					<MoveTo Name="Naoki Yoshida" XYZ="-0.01531982, -1.995725, -45.5788" />
+					<TurnInPlus QuestId="67670" NpcId="1015691" XYZ="-0.01531982, -1.995725, -45.5788" />
+				</If>
+			</If>
+		</If>
+
+		<LogMessage Message="You've completed the The Rising seasonal event quest!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>
