@@ -6,7 +6,7 @@
 # Author: y2krazy                                #
 #         (kagepande for 1-50 data)              #
 ##################################################
-# Version: 1.0.3                                 #
+# Version: 1.0.3a                                #
 ##################################################
 # Required Level: 1                              #
 ##################################################
@@ -440,18 +440,21 @@
     <If Condition="not IsQuestCompleted(65543)">
       <If Condition="not HasQuest(65543)">
         <LogMessage Message="Picking up Level 20 - Dressed to Harvest."/>
-        <If Condition="not IsOnMap(133)">
-          <TeleportTo Name="New Gridania" AetheryteId="2" />
-        </If>
-        <If Condition="IsOnMap(132)">
-          <MoveTo Name="Old Gridania" Distance="0" XYZ="13.86192, 1.113221, -16.00772"/>
-        </If>
-        <If Condition="IsOnMap(133)">
+					<If Condition="not IsOnMap(133)">
+						<If Condition="not IsOnMap(132)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+								<TeleportTo Name="New Gridania" AetheryteId="2" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+								<Travel To="133" />
+							</If>
+						</If>
+						<Travel To="133" />
+					</If>
           <MoveTo Name="Fufucha" Distance="1" UseMesh="True" XYZ="-232.9017, 6.263501, -169.7613"/>
           <If Condition="IsQuestAcceptQualified(65543)">
             <PickupQuest NpcId="1000815" QuestId="65543" XYZ="-232.9017, 6.263501, -169.7613"/>
           </If>
-        </If>
       </If>
       <If Condition="not NqHasAtLeast(5599,99)">
         <If Condition="not IsOnMap(138)">
