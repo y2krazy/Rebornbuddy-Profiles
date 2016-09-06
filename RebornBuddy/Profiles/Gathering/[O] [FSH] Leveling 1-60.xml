@@ -6,7 +6,7 @@
 # Author: y2krazy                             #
 #         (kagamihiragi17 for 1-50 data)      #
 ###############################################
-# Version: 1.0.4                              #
+# Version: 1.0.4a                             #
 ###############################################
 # Required Level: 1                           #
 ###############################################
@@ -50,9 +50,28 @@
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<CodeChunks>
+		<CodeChunk Name="DisableMount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = false;
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Dismount">
+			<![CDATA[ ff14bot.Managers.Actionmanager.Dismount();
+				]]>
+		</CodeChunk>
+		<CodeChunk Name="EnableMount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = true;
+		]]>
+		</CodeChunk>
 		<CodeChunk Name="Fisher">
 			<![CDATA[ 
 				ff14bot.Managers.ChatManager.SendChat("/gs change 23");
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Stealth">
+			<![CDATA[ SpellData data;
+				if (!Core.Me.HasAura(47) && Actionmanager.CurrentActions.TryGetValue(298, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(298, Core.Me);
 		]]>
 		</CodeChunk>
 	</CodeChunks>
@@ -423,6 +442,11 @@
 					<Travel To="139_West" />
 				</If>
 				<NoCombatMoveTo Name="Fishing Area" XYZ="-306.4203, -2.504511, 154.4057" />
+				<RunCode Name="Dismount" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
 				<While Condition="IsTimeBetween(0,8)">
 					<Fish Mooch="1" Bait="Chocobo Fly" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
 						<FishSpots>
@@ -449,6 +473,7 @@
 						</FishSpots>
 					</Fish>
 				</While>
+				<RunCode Name="EnableMount" />
 				<If Condition="IsOnMap(139)">
 					<NoCombatMoveTo Name="Junkmonger" XYZ="-329.6712, -2.533815, 136.2782" />
 					<NPCRepair NpcID="1003267" DialogOption="4" />
@@ -503,6 +528,11 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Fishing Area" XYZ="515.3536, -3.4, 159.4224" />
+				<RunCode Name="Dismount" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
 				<While Condition="IsTimeBetween(0,8)">
 					<Fish Mooch="1" Bait="Chocobo Fly" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
 						<FishSpots>
@@ -530,6 +560,7 @@
 						</FishSpots>
 					</Fish>
 				</While>
+				<RunCode Name="EnableMount" />
 				<If Condition="IsOnMap(139)">
 					<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="427.2678, 4.098778, 115.2819" />
 					<NPCRepair NpcID="1003268" DialogOption="2" />
@@ -592,6 +623,11 @@
 					</If>
 				</If>
 				<NoCombatMoveTo Name="Fishing Area" XYZ="515.3536, -3.4, 159.4224" Heading="1.662571" />
+				<RunCode Name="Dismount" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
 				<While Condition="IsTimeBetween(0,8)">
 					<Fish Mooch="1" Bait="Silver Spoon Lure" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
 						<FishSpots>
@@ -619,6 +655,7 @@
 						</FishSpots>
 					</Fish>
 				</While>
+				<RunCode Name="EnableMount" />
 				<If Condition="IsOnMap(139)">
 					<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="427.2678, 4.098778, 115.2819" />
 					<NPCRepair NpcID="1003268" DialogOption="2" />
