@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##################################
+# Profile: [O] The Rising Quests #
+##################################
+# Author: y2krazy                #
+##################################
+# Version: 1.0.0                 #
+##################################
+# Required Level: 15             #
+##################################
+# Required Teleport Locations:   #
+#  Limsa Lominsa Lower Decks     #
+#  New Gridania                  #
+#  Ul'dah - Steps of Nald        #
+##################################
+# Required User Interaction:     #
+#  None                          #
+##################################
+# Required Setup:                #
+#  None                          #
+##################################
+# Rewards:                       #
+#  Heavensward Orchestrion Roll  #
+#  Meteor Shower Fireworks (3)   #
+#  Minion: Wind-up Krile         #
+#  Minion: Wind-up Y'shtola      #
+##################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- NOTE: Meteor Showers can be purchased for 19 Gil each from the Rising Vendor. -->
+
+  <!-- ExLog Colors -->
+
+  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] The Rising Quests (v1.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<ExLog Color="&ExLog;" Name="The Rising" Message="Checking for quest completion..." />
+
+		<!-- A Play in Three Acts -->
+
+		<If Condition="not IsQuestCompleted(67865)">
+			<If Condition="not HasQuest(67865)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<ExLog Color="&ExLog;" Name="The Rising" Message="Picking up the A Play in Three Acts quest!" />
+				<MoveTo Name="Crystal Caravan Leader" XYZ="-47.19617, 8, -100.6028" />
+				<If Condition="IsQuestAcceptQualified(67865)">
+					<PickupQuest NpcId="1017488" QuestId="67865" XYZ="-47.19617, 8, -100.6028" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67865)">
+				<If Condition="GetQuestStep(67865) == 1">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Talking to Momodi..." />
+					<MoveTo Name="Momodi" XYZ="21.07263, 7.45, -78.78235" />
+					<TalkTo NpcId="1001353" XYZ="21.07263, 7.45, -78.78235" QuestId="67865" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67865) == 2">
+					<If Condition="not IsOnMap(128)">
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<Travel To="128" />
+					</If>
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Talking to Baderon..." />
+					<MoveTo Name="Baderon" XYZ="20.27917, 40.19993, -6.118958" />
+					<TalkTo NpcId="1000972" XYZ="20.27917, 40.19993, -6.118958" QuestId="67865" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(67865) == 3">
+					<If Condition="not IsOnMap(132)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+							<TeleportTo Name="New Gridania" AetheryteId="2" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+							<Travel To="132" />
+						</If>
+					</If>
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Talking to Mother Miounne..." />
+					<MoveTo Name="Mother Miounne" XYZ="23.81927, -8, 115.9227" />
+					<TalkTo NpcId="1000100" XYZ="23.81927, -8, 115.9227" QuestId="67865" StepId="3" />
+				</If>
+				<If Condition="GetQuestStep(67865) == 255">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Heavensward Orchestrion Roll
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Turning in the A Play in Three Acts quest!" />
+					<MoveTo Name="Crystal Caravan Leader" XYZ="-47.19617, 8, -100.6028" />
+					<TurnIn QuestId="67865" NpcId="1017488" XYZ="-47.19617, 8, -100.6028" />
+				</If>
+			</If>
+		</If>
+
+		<!-- The Show Must Go On -->
+
+		<If Condition="not IsQuestCompleted(67866)">
+			<If Condition="not HasQuest(67866)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<ExLog Color="&ExLog;" Name="The Rising" Message="Picking up The Show Must Go On quest!" />
+				<MoveTo Name="Crystal Caravan Leader" XYZ="-47.19617, 8, -100.6028" />
+				<If Condition="IsQuestAcceptQualified(67866)">
+					<PickupQuest NpcId="1017488" QuestId="67866" XYZ="-47.19617, 8, -100.6028" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67866)">
+				<If Condition="GetQuestStep(67866) == 1">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Talking to Crystal Caravan Carpenter..." />
+					<MoveTo Name="Crystal Caravan Carpenter" XYZ="-22.41559, 4.099995, -153.4905" />
+					<RunCode Name="TheShowMustGoOn" />
+				</If>
+				<If Condition="GetQuestStep(67866) == 255">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					3 Meteor Showers
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Turning in The Show Must Go On quest!" />
+					<MoveTo Name="Crystal Caravan Leader" XYZ="-47.19617, 8, -100.6028" />
+					<TurnIn QuestId="67866" NpcId="1017488" XYZ="-47.19617, 8, -100.6028" />
+				</If>
+			</If>
+		</If>
+
+		<!-- The Show Must Go On -->
+
+		<If Condition="not IsQuestCompleted(67867)">
+			<If Condition="not HasQuest(67867)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<ExLog Color="&ExLog;" Name="The Rising" Message="Picking up the After the Curtain Falls quest!" />
+				<MoveTo Name="Crystal Caravan Leader" XYZ="-47.19617, 8, -100.6028" />
+				<If Condition="IsQuestAcceptQualified(67867)">
+					<PickupQuest NpcId="1017488" QuestId="67867" XYZ="-47.19617, 8, -100.6028" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67867)">
+				<If Condition="GetQuestStep(67867) == 1">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Waiting for the playwright..." />
+					<MoveTo Name="Destination" XYZ="-21.10333, 9.994568, -50.15643" />
+					<UseObject NpcId="2007230" XYZ="-21.10333, 9.994568, -50.15643" Radius="10" QuestId="67867" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67867) == 255">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Wind-up Krile
+					Wind-up Y'shtola
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Turning in the After the Curtain Falls quest!" />
+					<MoveTo Name="Crystal Caravan Leader" XYZ="-47.19617, 8, -100.6028" />
+					<TurnIn QuestId="67867" NpcId="1017488" XYZ="-47.19617, 8, -100.6028" />
+				</If>
+			</If>
+		</If>
+
+		<ExLog Color="&ExLog;" Name="The Rising" Message="You've completed the The Rising seasonal event quests!" />
+        <ExLog Color="&ExLog;" Name="The Rising" Message="Stopping the bot. Nothing left for me to to!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="TheShowMustGoOn">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1017521).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(18000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(12000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				if (ff14bot.RemoteWindows.SelectString.IsOpen)
+					ff14bot.RemoteWindows.SelectString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(9000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectString.IsOpen)
+					ff14bot.RemoteWindows.SelectString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(13000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(8000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectString.IsOpen)
+					ff14bot.RemoteWindows.SelectString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(21000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(24000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(17000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(18000);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
