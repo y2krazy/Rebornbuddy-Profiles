@@ -7,7 +7,7 @@
 #         kagepande (1-50 Data)                  #
 #         birduvprey (Zone Check Edits)          #
 ##################################################
-# Version: 1.0.4                                 #
+# Version: 1.0.4a                                #
 ##################################################
 # Required Level: 1                              #
 ##################################################
@@ -39,18 +39,55 @@
 ##################################################
 -->
 <Profile>
-	<Name>[O] [BTN] Leveling 1-60 + 1-50 Quests (v1.0.4)</Name>
+	<Name>[O] [BTN] Leveling 1-60 + 1-50 Quests (v1.0.4a)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<CodeChunks>
+
+		<!-- Modify Gear Set -->
+
 		<CodeChunk Name="Botanist">
 			<![CDATA[ 
 				ff14bot.Managers.ChatManager.SendChat("/gs change 22");
 		]]>
 		</CodeChunk>
+
+		<!-- End Modify Gear Set -->
+
+		<CodeChunk Name="BTNWeapon">
+			<![CDATA[ 
+				BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+				
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+				{
+					if(slot.RawItemId == 2545)
+					{
+						slot.Move(EquipSlot);
+					}
+				}
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="BTNWeapon2">
+			<![CDATA[ 
+				BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+				
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+				{
+					if(slot.RawItemId == 2558)
+					{
+						slot.Move(EquipSlot);
+					}
+				}
+		    ]]>
+		</CodeChunk>
 		<CodeChunk Name="DisableMount">
 			<![CDATA[
 				ff14bot.Settings.CharacterSettings.Instance.UseMount = false;
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Dismount">
+			<![CDATA[
+				ff14bot.Managers.Actionmanager.Dismount();
 		]]>
 		</CodeChunk>
 		<CodeChunk Name="EnableMount">
@@ -59,42 +96,20 @@
 		]]>
 		</CodeChunk>
 		<CodeChunk Name="Stealth">
-			<![CDATA[ SpellData data;
+			<![CDATA[
+				SpellData data;
 				if (!Core.Me.HasAura(47) && Actionmanager.CurrentActions.TryGetValue(212, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(212, Core.Me);
 		]]>
 		</CodeChunk>
-		<CodeChunk Name="Dismount">
-			<![CDATA[ ff14bot.Managers.Actionmanager.Dismount();
-				]]>
-		</CodeChunk>
-		<CodeChunk Name="BTNWeapon">
-			<![CDATA[ 
-					BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
-					
-					foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-					{
-						if(slot.RawItemId == 2545)
-						{
-							slot.Move(EquipSlot);
-						}
-					}
-		    ]]>
-		</CodeChunk>
-		<CodeChunk Name="BTNWeapon2">
-			<![CDATA[ 
-					BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
-					
-					foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-					{
-						if(slot.RawItemId == 2558)
-						{
-							slot.Move(EquipSlot);
-						}
-					}
-		    ]]>
+		<CodeChunk Name="Triangulate">
+			<![CDATA[ SpellData data;
+			if (!Core.Me.HasAura(217) && Actionmanager.CurrentActions.TryGetValue(210, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(210, Core.Me);
+    	]]>
 		</CodeChunk>
 	</CodeChunks>
 	<Order>
+
+		<RunCode Name="Triangulate" />
 
 		<LogMessage Message="The Journey Begins! Remember to Check up on me!"/>
 		<!--Unlocking Botany-->
