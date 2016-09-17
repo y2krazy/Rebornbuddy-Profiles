@@ -52,7 +52,7 @@ namespace ff14bot.NeoProfiles
         //private int timeout = 100;
         uint LastFateId = 0;
 		DateTime saveNow = DateTime.Now;
-		private bool Hunting = true;
+		private bool Hunting = false;
 		public override bool IsDone { get { return _done; } }
         //some Statistics
         FateData currentfate = null;
