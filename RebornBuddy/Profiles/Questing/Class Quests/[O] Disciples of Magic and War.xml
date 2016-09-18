@@ -4550,12 +4550,120 @@
 			<If Condition="not IsQuestCompleted(67560)">
 				<If Condition="Core.Player.ClassLevel &gt; 57">
 					<If Condition="not HasQuest(67560)">
-						<LogMessage Message="Trumped quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(419)">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<Travel To="419" />
+						</If>
+						<NoCombatMoveTo XYZ="202.3804, -5.399966, -58.9151" />
+						<If Condition="IsQuestAcceptQualified(67560)">
+							 <PickupQuest NpcId="1012222" QuestId="67560" XYZ="202.3804, -5.399966, -58.91511"/>
+						</If>
 					</If>
 					<If Condition="HasQuest(67560)">
-						<LogMessage Message="Trumped quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67560) == 1">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo AetheryteId="71" Name="397"/>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									<Travel To="397" />
+								</If>
+							</If>
+							<NoCombatMoveTo XYZ="707.9423, 204.3249, -252.491"/>
+							<TalkTo NpcId="1015181" XYZ="707.9423, 204.3249, -252.491"/>
+						</If>
+						<If Condition="GetQuestStep(67560) == 2">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo AetheryteId="71" Name="397"/>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									<Travel To="397" />
+								</If>
+							</If>
+							<MoveTo XYZ="668.7402, 207.6031, -273.3209"/>
+							<UseSpell Distance="29" SpellId="3595" NpcId="1015190" XYZ="679.1942, 207.2133, -273.8232" />
+						</If>
+						<If Condition="GetQuestStep(67560) == 3">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo AetheryteId="71" Name="397"/>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									<Travel To="397" />
+								</If>
+							</If>
+							<MoveTo XYZ="668.7402, 207.6031, -273.3209"/>
+							<UseSpell Distance="29" SpellId="3595" NpcId="1015191" XYZ="651.7891, 207.9226, -268.2994" />
+						</If>
+						<If Condition="GetQuestStep(67560) == 4">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo AetheryteId="71" Name="397"/>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									<Travel To="397" />
+								</If>
+							</If>
+							<MoveTo XYZ="668.7402, 207.6031, -273.3209"/>
+							<UseSpell Distance="29" SpellId="3595" NpcId="1015192" XYZ="652.8267, 209.0998, -282.7039" />
+						</If>
+						<If Condition="GetQuestStep(67560) == 5">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo AetheryteId="71" Name="397"/>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									<Travel To="397" />
+								</If>
+							</If>
+							<MoveTo XYZ="614.313, 210.8644, -301.2894"/>
+							<UseObject NpcId="2006415" QuestId="67560" UseTimes="1" BlacklistAfter="True" XYZ="614.313, 210.8644, -301.2894" Radius="5"/>
+						</If>
+						<If Condition="GetQuestStep(67560) == 6">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo AetheryteId="71" Name="397"/>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									<Travel To="397" />
+								</If>
+							</If>
+							<TalkTo NpcId="1015197" XYZ="614.2518, 210.6775, -300.1908"/>
+						</If>
+						<If Condition="GetQuestStep(67560) == 7">
+							<If Condition="not IsOnMap(397)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+									<TeleportTo AetheryteId="71" Name="397"/>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+									<Travel To="397" />
+								</If>
+							</If>
+							<NoCombatMoveTo XYZ="707.9423, 204.3249, -252.491"/>
+							<TalkTo NpcId="1015181" XYZ="707.9423, 204.3249, -252.491"/>
+						</If>
+						<If Condition="GetQuestStep(67560) == 255">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<TurnIn QuestId="67560" NpcId="1012222" XYZ="202.3804, -5.399966, -58.9151"/>
+						</If>
 					</If>
 				</If>
 			</If>
