@@ -3585,7 +3585,7 @@
 
 			<If Condition="not IsQuestCompleted(67549)">
 				<If Condition="Core.Player.ClassLevel &gt; 29">
-					<If Condition="not HasQuest(67549)">
+					<If Condition="not HasQuest(67549) and IsQuestCompleted(67548)">
 						<If Condition="not IsOnMap(153)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(5)">
 								<TeleportTo AetheryteId="5" Name="153"/>
@@ -3609,9 +3609,9 @@
 							<UseObject NpcId="2005963" QuestId="67549" StepId="1" UseTimes="1" XYZ="47.08233, 19.44008, 217.8223" Radius="5"/>
 							<UseObject NpcId="2005964" QuestId="67549" StepId="1" UseTimes="1" XYZ="56.6401, 12.52661, 280.3434" Radius="5"/>
 							<NoCombatMoveTo XYZ="24.67467, 2.152851, 318.3112" />
-							<RunCode Name="67549" />
+							<UseSpell Condition="ObjectExistsWithId(3861) and not Managers.QuestLogManager.InCutscene" SpellId="3594" NpcId="3861" XYZ="24.67467, 2.152851, 318.3112" />
 							<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
-							<WaitTimer WaitTime="3"/>
+							<WaitTimer WaitTime="10"/>
 						</While>
 						<If Condition="GetQuestStep(67549) == 255">
 							<If Condition="not IsOnMap(419)">
@@ -3635,7 +3635,7 @@
 
 			<If Condition="not IsQuestCompleted(67550)">
 				<If Condition="Core.Player.ClassLevel &gt; 34">
-					<If Condition="not HasQuest(67550)">
+					<If Condition="not HasQuest(67550) and IsQuestCompleted(67549)">
 						<If Condition="not IsOnMap(419)">
 							<If Condition="not IsOnMap(418)">
 								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -3706,7 +3706,9 @@
 									<Travel To="146" />
 								</If>
 							</If>
+							<BotSettings BlockSkippingCutscenes="1"/>
 							<TalkTo NpcId="1014941" QuestId="67550" StepId="5" XYZ="-61.72278, 23.15056, -408.713"/>
+							<BotSettings BlockSkippingCutscenes="0"/>
 						</If>
 						<If Condition="GetQuestStep(67550) == 255">
 							<If Condition="not IsOnMap(419)">
@@ -3730,7 +3732,7 @@
 
 			<If Condition="not IsQuestCompleted(67551)">
 				<If Condition="Core.Player.ClassLevel &gt; 39">
-					<If Condition="not HasQuest(67551)">
+					<If Condition="not HasQuest(67551) and IsQuestCompleted(67550)">
 						<If Condition="not IsOnMap(419)">
 							<If Condition="not IsOnMap(418)">
 								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -3770,7 +3772,7 @@
 
 			<If Condition="not IsQuestCompleted(67552)">
 				<If Condition="Core.Player.ClassLevel &gt; 39">
-					<If Condition="not HasQuest(67552)">
+					<If Condition="not HasQuest(67552) and IsQuestCompleted(67551)">
 						<If Condition="not IsOnMap(419)">
 							<If Condition="not IsOnMap(418)">
 								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -3898,7 +3900,7 @@
 
 			<If Condition="not IsQuestCompleted(67553)">
 				<If Condition="Core.Player.ClassLevel &gt; 44">
-					<If Condition="not HasQuest(67553)">
+					<If Condition="not HasQuest(67553) and IsQuestCompleted(67552)">
 						<If Condition="not IsOnMap(419)">
 							<If Condition="not IsOnMap(418)">
 								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -3972,6 +3974,7 @@
 								</If>
 							</If>
 							<UseObject NpcId="2006318" QuestId="67553" UseTimes="1" BlacklistAfter="True" XYZ="-147.2649, 43.32031, -186.6331" Radius="5"/>
+							<WaitWhile Condition="GetQuestStep(67553) == 4" />
 						</If>
 						<If Condition="GetQuestStep(67553) == 255">
 							<If Condition="not IsOnMap(419)">
@@ -3995,7 +3998,7 @@
 
 			<If Condition="not IsQuestCompleted(67554)">
 				<If Condition="Core.Player.ClassLevel &gt; 49">
-					<If Condition="not HasQuest(67554)">
+					<If Condition="not HasQuest(67554) and IsQuestCompleted(67553)">
 						<If Condition="not IsOnMap(419)">
 							<If Condition="not IsOnMap(418)">
 								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -4035,7 +4038,7 @@
 
 			<If Condition="not IsQuestCompleted(67555)">
 				<If Condition="Core.Player.ClassLevel &gt; 49">
-					<If Condition="not HasQuest(67555)">
+					<If Condition="not HasQuest(67555) and IsQuestCompleted(67554)">
 						<If Condition="not IsOnMap(419)">
 							<If Condition="not IsOnMap(418)">
 								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -4080,8 +4083,7 @@
 							<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
 							<WaitTimer WaitTime="120" />
 							<NoCombatMoveTo XYZ="231.2123, 323.5409, -449.8175"/>
-							<RunCode Name="67555" />
-							<WaitTimer WaitTime="120" />
+							<UseSpell Condition="ObjectExistsWithId(3861)" SpellId="3594" NpcId="3861" XYZ="231.2123, 323.5409, -449.8175" />
 							<UseObject NpcId="2005632" QuestId="67555" UseTimes="1" BlacklistAfter="True" XYZ="265.4835, 359.1, -680.9374" Radius="5"/>
 							<WaitWhile Condition="GetQuestStep(67555) == 2" />
 						</If>
@@ -4094,7 +4096,9 @@
 									<Travel To="155" />
 								</If>
 							</If>
+							<BotSettings BlockSkippingCutscenes="1"/>
 							<TalkTo NpcId="1014960" XYZ="262.8367, 359.1351, -688.3192"/>
+							<BotSettings BlockSkippingCutscenes="0"/>
 						</If>
 						<If Condition="GetQuestStep(67555) == 4">
 							<If Condition="not IsOnMap(155)">
@@ -4126,7 +4130,7 @@
 
 			<If Condition="not IsQuestCompleted(67556)">
 				<If Condition="Core.Player.ClassLevel &gt; 49">
-					<If Condition="not HasQuest(67556)">
+					<If Condition="not HasQuest(67556) and IsQuestCompleted(67555)">
 						<If Condition="not IsOnMap(155)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
 								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
@@ -4231,7 +4235,7 @@
 
 			<If Condition="not IsQuestCompleted(67557)">
 				<If Condition="Core.Player.ClassLevel &gt; 51">
-					<If Condition="not HasQuest(67557)">
+					<If Condition="not HasQuest(67557) and IsQuestCompleted(67556)">
 						<If Condition="not IsOnMap(419)">
 							<If Condition="not IsOnMap(418)">
 								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -4280,8 +4284,9 @@
 									<Travel To="397" />
 								</If>
 							</If>
-							<RunCode Name="67557" />
-							<WaitWhile Condition="GetQuestStep(67557) == 3" />
+							<While Condition="GetQuestStep(67557) == 3">
+								<UseSpell Distance="29" SpellId="3595" NpcId="1015146" XYZ="487.1747, 200.2377, 656.2751" />
+							</While>
 						</If>
 						<If Condition="GetQuestStep(67557) == 4">
 							<If Condition="not IsOnMap(397)">
@@ -4304,7 +4309,7 @@
 									<Travel To="397" />
 								</If>
 							</If>
-							<RunCode Name="67557-2" />
+							<UseSpell Distance="29" SpellId="3595" NpcId="1015147" XYZ="500.1144, 161.6116, -320.0275" />
 							<WaitWhile Condition="GetQuestStep(67557) == 5" />
 						</If>
 						<If Condition="GetQuestStep(67557) == 6">
@@ -4316,6 +4321,7 @@
 									<Travel To="397" />
 								</If>
 							</If>
+							<NoCombatMoveTo XYZ="446.9824, 217.9514, 753.994"/>
 							<TalkTo NpcId="1015142" XYZ="446.9824, 217.9514, 753.994"/>
 						</If>
 						<If Condition="GetQuestStep(67557) == 7">
@@ -4327,6 +4333,7 @@
 									<Travel To="397" />
 								</If>
 							</If>
+							<NoCombatMoveTo XYZ="533.5927, 228.3378, 720.2715"/>
 							<TalkTo NpcId="1015149" XYZ="533.5927, 228.3378, 720.2715"/>
 						</If>
 						<If Condition="GetQuestStep(67557) == 8">
@@ -4338,7 +4345,10 @@
 									<Travel To="397" />
 								</If>
 							</If>
+							<BotSettings BlockSkippingCutscenes="1"/>
 							<TalkTo NpcId="1015151" XYZ="541.2526, 228.8513, 742.5497"/>
+							<WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
+							<BotSettings BlockSkippingCutscenes="0"/>
 						</If>
 						<If Condition="GetQuestStep(67557) == 255">
 							<If Condition="not IsOnMap(419)">
@@ -4362,7 +4372,7 @@
 
 			<If Condition="not IsQuestCompleted(67558)">
 				<If Condition="Core.Player.ClassLevel &gt; 53">
-					<If Condition="not HasQuest(67558)">
+					<If Condition="not HasQuest(67558) and IsQuestCompleted(67557)">
 						<If Condition="not IsOnMap(419)">
 							<If Condition="not IsOnMap(418)">
 								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -4389,6 +4399,7 @@
 									<Travel To="397" />
 								</If>
 							</If>
+							<NoCombatMoveTo XYZ="-266.0106, 126.4074, -0.04577637" />
 							<TalkTo NpcId="1015168" XYZ="-266.0106, 126.4074, -0.04577637"/>
 						</If>
 						<If Condition="GetQuestStep(67558) == 2">
@@ -4401,8 +4412,9 @@
 								</If>
 							</If>
 							<NoCombatMoveTo XYZ="-306.9003, 126.3925, -9.212003"/>
-							<RunCode Name="67558" />
-							<WaitWhile Condition="GetQuestStep(67558) == 2" />
+							<UseSpell Distance="29" SpellId="3595" NpcId="1015169" XYZ="-311.4214, 126.836, 3.494263" />
+							<UseSpell Distance="29" SpellId="3595" NpcId="1015170" XYZ="-296.8643, 125.8753, -14.38934" />
+							<UseSpell Distance="29" SpellId="3595" NpcId="1015171" XYZ="-320.0275, 126.5204, -14.02307" />
 						</If>
 						<If Condition="GetQuestStep(67558) == 3">
 							<If Condition="not IsOnMap(397)">
@@ -4425,7 +4437,7 @@
 								</If>
 							</If>
 							<NoCombatMoveTo XYZ="-310.0786, 125.0202, -25.19269"/>
-							<RunCode Name="67558-2" />
+							<UseSpell Distance="29" SpellId="3595" NpcId="1015178" XYZ="-310.0786, 125.0202, -25.19269" />
 							<WaitWhile Condition="GetQuestStep(67558) == 4" />
 						</If>
 						<If Condition="GetQuestStep(67558) == 255">
@@ -4450,7 +4462,7 @@
 
 			<If Condition="not IsQuestCompleted(67559)">
 				<If Condition="Core.Player.ClassLevel &gt; 55">
-					<If Condition="not HasQuest(67559)">
+					<If Condition="not HasQuest(67559) and IsQuestCompleted(67558)">
 						<If Condition="not IsOnMap(419)">
 							<If Condition="not IsOnMap(418)">
 								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -4489,11 +4501,11 @@
 								</If>
 							</If>
 							<NoCombatMoveTo XYZ="560.9979, -51.27571, 62.974"/>
-							<UseSpell Distance="20" SpellId="3595" NpcId="1015092" XYZ="560.9979, -51.27571, 62.974" />
+							<UseSpell Distance="29" SpellId="3595" NpcId="1015092" XYZ="560.9979, -51.27571, 62.974" />
 							<NoCombatMoveTo XYZ="472.0377, -51.14139, 8.590759"/>
-							<UseSpell Distance="20" SpellId="3595" NpcId="1015094" XYZ="472.0377, -51.14139, 8.590759" />
+							<UseSpell Distance="29" SpellId="3595" NpcId="1015094" XYZ="472.0377, -51.14139, 8.590759" />
 							<NoCombatMoveTo XYZ="465.568, -51.19559, 98.10022"/>
-							<UseSpell Distance="20" SpellId="3595" NpcId="1015093" XYZ="465.568, -51.19559, 98.10022" />
+							<UseSpell Distance="29" SpellId="3595" NpcId="1015093" XYZ="465.568, -51.19559, 98.10022" />
 							<WaitWhile Condition="GetQuestStep(67559) == 2" />
 						</If>
 						<If Condition="GetQuestStep(67559) == 3">
@@ -4549,7 +4561,7 @@
 
 			<If Condition="not IsQuestCompleted(67560)">
 				<If Condition="Core.Player.ClassLevel &gt; 57">
-					<If Condition="not HasQuest(67560)">
+					<If Condition="not HasQuest(67560) and IsQuestCompleted(67559)">
 						<If Condition="not IsOnMap(419)">
 							<If Condition="not IsOnMap(418)">
 								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -4576,6 +4588,8 @@
 									<Travel To="397" />
 								</If>
 							</If>
+							<NoCombatMoveTo XYZ="666.7734, 172.6415, -57.93854"/>
+							<UseTransport NpcId="1015185" InteractDistance="3.5" XYZ="666.7734, 172.6415, -57.93854"/>
 							<NoCombatMoveTo XYZ="707.9423, 204.3249, -252.491"/>
 							<TalkTo NpcId="1015181" XYZ="707.9423, 204.3249, -252.491"/>
 						</If>
@@ -4589,7 +4603,7 @@
 								</If>
 							</If>
 							<MoveTo XYZ="668.7402, 207.6031, -273.3209"/>
-							<UseSpell Distance="29" SpellId="3595" NpcId="1015190" XYZ="679.1942, 207.2133, -273.8232" />
+							<UseSpell QuestId="67560" StepId="2" Distance="29" SpellId="3595" NpcId="1015190" XYZ="679.1942, 207.2133, -273.8232" />
 						</If>
 						<If Condition="GetQuestStep(67560) == 3">
 							<If Condition="not IsOnMap(397)">
@@ -4601,7 +4615,7 @@
 								</If>
 							</If>
 							<MoveTo XYZ="668.7402, 207.6031, -273.3209"/>
-							<UseSpell Distance="29" SpellId="3595" NpcId="1015191" XYZ="651.7891, 207.9226, -268.2994" />
+							<UseSpell QuestId="67560" StepId="3" Distance="29" SpellId="3595" NpcId="1015191" XYZ="651.7891, 207.9226, -268.2994" />
 						</If>
 						<If Condition="GetQuestStep(67560) == 4">
 							<If Condition="not IsOnMap(397)">
@@ -4613,7 +4627,7 @@
 								</If>
 							</If>
 							<MoveTo XYZ="668.7402, 207.6031, -273.3209"/>
-							<UseSpell Distance="29" SpellId="3595" NpcId="1015192" XYZ="652.8267, 209.0998, -282.7039" />
+							<UseSpell QuestId="67560" StepId="4" Distance="29" SpellId="3595" NpcId="1015192" XYZ="652.8267, 209.0998, -282.7039" />
 						</If>
 						<If Condition="GetQuestStep(67560) == 5">
 							<If Condition="not IsOnMap(397)">
@@ -4626,6 +4640,7 @@
 							</If>
 							<MoveTo XYZ="614.313, 210.8644, -301.2894"/>
 							<UseObject NpcId="2006415" QuestId="67560" UseTimes="1" BlacklistAfter="True" XYZ="614.313, 210.8644, -301.2894" Radius="5"/>
+							<WaitWhile Condition="GetQuestStep(67560) == 5"/>
 						</If>
 						<If Condition="GetQuestStep(67560) == 6">
 							<If Condition="not IsOnMap(397)">
@@ -4672,7 +4687,7 @@
 
 			<If Condition="not IsQuestCompleted(67561)">
 				<If Condition="Core.Player.ClassLevel &gt; 59">
-					<If Condition="not HasQuest(67561)">
+					<If Condition="not HasQuest(67561) and IsQuestCompleted(67560)">
 						<If Condition="not IsOnMap(419)">
 							<If Condition="not IsOnMap(418)">
 								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
@@ -4702,6 +4717,7 @@
 								</If>
 								<Travel To="399_West" />
 							</If>
+							<NoCombatMoveTo XYZ="-359.4263, 141.554, -215.3201" />
 							<TalkTo NpcId="1015108" XYZ="-359.4263, 141.554, -215.3201"/>
 						</If>
 						<If Condition="GetQuestStep(67561) == 2">
@@ -4716,7 +4732,10 @@
 								</If>
 								<Travel To="399_West" />
 							</If>
+							<NoCombatMoveTo XYZ="-447.6539, 159.354, 147.631" />
+							<BotSettings BlockSkippingCutscenes="1"/>
 							<TalkTo NpcId="1015111" XYZ="-447.6539, 159.354, 147.631"/>
+							<BotSettings BlockSkippingCutscenes="0"/>
 						</If>
 						<If Condition="GetQuestStep(67561) == 3">
 							<If Condition="not IsOnMap(399)">
@@ -17693,96 +17712,6 @@
 				ff14bot.Managers.MovementManager.Jump();
 				await Buddy.Coroutines.Coroutine.Sleep(3000);
 				ff14bot.Managers.MovementManager.MoveForwardStop();
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="67549">
-			<![CDATA[ 
-				var tank=ff14bot.Managers.GameObjectManager.GetObjectByNPCId(3861);
-				if (tank != null) {
-					while (ff14bot.NeoProfiles.ConditionParser.ObjectExistsWithId(4424)) {
-						ff14bot.Managers.Actionmanager.DoAction(3594, tank); // benefic healing the tank
-						await Buddy.Coroutines.Coroutine.Sleep(3000);
-						}
-				}
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="67555">
-			<![CDATA[ 
-				var tank=ff14bot.Managers.GameObjectManager.GetObjectByNPCId(3861);
-				if (tank != null) {
-					while (tank.CurrentHealthPercent < 90) {
-						ff14bot.Managers.Actionmanager.DoAction(3594, tank); // benefic healing the tank
-						await Buddy.Coroutines.Coroutine.Sleep(3000);
-						}
-				}
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="67557">
-			<![CDATA[ 
-				var tank=ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1015146);
-				if (tank != null) {
-						ff14bot.Managers.Actionmanager.DoAction(3595, tank); // aspected benefic healing the tank
-						await Coroutine.Wait(8000, () => ff14bot.RemoteWindows.Talk.DialogOpen);
-						ff14bot.RemoteWindows.Talk.Next();
-						await Buddy.Coroutines.Coroutine.Sleep(500);
-						ff14bot.RemoteWindows.Talk.Next();
-						await Buddy.Coroutines.Coroutine.Sleep(500);
-						ff14bot.RemoteWindows.Talk.Next();
-				}
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="67557-2">
-			<![CDATA[ 
-				var tank=ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1015147);
-				if (tank != null) {
-						ff14bot.Managers.Actionmanager.DoAction(3595, tank); // aspected benefic healing the tank
-						await Coroutine.Wait(8000, () => ff14bot.RemoteWindows.Talk.DialogOpen);
-						ff14bot.RemoteWindows.Talk.Next();
-						await Buddy.Coroutines.Coroutine.Sleep(500);
-						ff14bot.RemoteWindows.Talk.Next();
-						await Buddy.Coroutines.Coroutine.Sleep(500);
-						ff14bot.RemoteWindows.Talk.Next();
-				}
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="67558">
-			<![CDATA[ 
-				var tank=ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1015169);
-				if (tank != null) {
-						ff14bot.Managers.Actionmanager.DoAction(3595, tank); // aspected benefic healing the tank
-						await Coroutine.Wait(8000, () => ff14bot.RemoteWindows.Talk.DialogOpen);
-						ff14bot.RemoteWindows.Talk.Next();
-						await Buddy.Coroutines.Coroutine.Sleep(6000);
-				}
-				tank=ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1015170);
-				if (tank != null) {
-						ff14bot.Managers.Actionmanager.DoAction(3595, tank); // aspected benefic healing the tank
-						await Coroutine.Wait(8000, () => ff14bot.RemoteWindows.Talk.DialogOpen);
-						ff14bot.RemoteWindows.Talk.Next();
-						await Buddy.Coroutines.Coroutine.Sleep(6000);
-				}
-				tank=ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1015171);
-				if (tank != null) {
-						ff14bot.Managers.Actionmanager.DoAction(3595, tank); // aspected benefic healing the tank
-						await Coroutine.Wait(8000, () => ff14bot.RemoteWindows.Talk.DialogOpen);
-						ff14bot.RemoteWindows.Talk.Next();
-						await Buddy.Coroutines.Coroutine.Sleep(6000);
-				}
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-		]]>
-		</CodeChunk>
-		<CodeChunk Name="67558-2">
-			<![CDATA[ 
-				var tank=ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1015178);
-				if (tank != null) {
-						ff14bot.Managers.Actionmanager.DoAction(3595, tank); // aspected benefic healing the tank
-						await Buddy.Coroutines.Coroutine.Sleep(4000);
-				}
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
 		]]>
 		</CodeChunk>
 	</CodeChunks>
