@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#####################################
+# Profile: [O] The Sea of Clouds    #
+#####################################
+# Author: y2krazy                   #
+#####################################
+# Version: 1.0.2                    #
+#####################################
+# Required Level: 57                #
+#####################################
+# Required Teleport Locations:      #
+# 	Camp Cloudtop                   #
+#####################################
+# Required User Interaction:        #
+# 	The Limitless Blue (Hard) Trial #
+#####################################
+# Required Setup:                   #
+# 	None                            #
+#####################################
+# Rewards:                          #
+# 	Flying in The Sea of Clouds.    #
+#####################################
+-->
+<Profile>
+	<Name>[O] The Sea of Clouds</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- The Sea of Clouds -->
+
+		<If Condition="not IsOnMap(401)">
+			<If Condition="not IsOnMap(401)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+					<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+					<Travel To="401" />
+				</If>
+			</If>
+		</If>
+
+		<!-- ######## -->
+		<!-- LEVEL 50 -->
+		<!-- ######## -->
+
+		<LogMessage Message="Checking level 50 quest..." />
+
+		<!-- Sidequest: Clipped Wings -->
+
+		<If Condition="not IsQuestCompleted(67284)">
+			<If Condition="not HasQuest(67284)">
+				<If Condition="not IsOnMap(401)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+						<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+						<Travel To="401" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Laniaitte" XYZ="-277.6379, -184.5974, 741.6038" />
+				<If Condition="IsQuestAcceptQualified(67284)">
+					<PickupQuest NpcId="1011952" QuestId="67284" XYZ="-277.6379, -184.5974, 741.6038" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67284)">
+				<If Condition="GetQuestStep(67284) == 1">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+							<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+							<Travel To="401" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Gaelicats" XYZ="-481.1719, -165.427, 608.4476" />
+					<Grind grindRef="Clipped_Wings" while="HasQuest(67284) and GetQuestStep(67284) == 1" />
+				</If>
+				<If Condition="GetQuestStep(67284) == 2">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+							<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+							<Travel To="401" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Gaelicats" XYZ="-481.1719, -165.427, 608.4476" />
+					<Grind grindRef="Clipped_Wings" while="HasQuest(67284) and GetQuestStep(67284) == 2" />
+				</If>
+				<If Condition="GetQuestStep(67284) == 255">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+							<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+							<Travel To="401" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<NoCombatMoveTo Name="Laniaitte" XYZ="-277.6379, -184.5974, 741.6038" />
+					<TurnIn QuestId="67284" NpcId="1011952" ItemId="2001599" XYZ="-277.6379, -184.5974, 741.6038" />
+				</If>
+			</If>
+		</If>
+
+		<!-- ######## -->
+		<!-- LEVEL 56 -->
+		<!-- ######## -->
+
+		<LogMessage Message="Checking level 56 quest..." />
+
+		<!-- Sidequest: Search and Rescue -->
+
+		<If Condition="not IsQuestCompleted(67437)">
+			<If Condition="not HasQuest(67437)">
+				<If Condition="not IsOnMap(401)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+						<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+						<Travel To="401" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Laniaitte" XYZ="-277.6379, -184.5974, 741.6038" />
+				<If Condition="IsQuestAcceptQualified(67437)">
+					<PickupQuest NpcId="1011952" QuestId="67437" XYZ="-277.6379, -184.5974, 741.6038" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67437)">
+				<If Condition="GetQuestStep(67437) == 1">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+							<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+							<Travel To="401" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Rose Knights" XYZ="113.1832, -85.53931, 443.5387" />
+					<Grind grindRef="Search_and_Rescue" while="HasQuest(67437) and GetQuestStep(67437) == 1" />
+				</If>
+				<If Condition="GetQuestStep(67437) == 2">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+							<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+							<Travel To="401" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Rose Knight" XYZ="106.5842, -84.5135, 433.4325" />
+					<While Condition="not IsTodoChecked(67437, 2, 0)">
+						<TalkTo NpcId="1013555" XYZ="106.5842, -84.5135, 433.4325" QuestId="67437" StepId="2" />
+						<TalkTo NpcId="1013554" XYZ="121.1108, -85.32551, 430.4722" QuestId="67437" StepId="2" />
+						<TalkTo NpcId="1013556" XYZ="120.2869, -85.90457, 439.8412" QuestId="67437" StepId="2" />
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67437) == 255">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+							<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+							<Travel To="401" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<NoCombatMoveTo Name="Laniaitte" XYZ="-277.6379, -184.5974, 741.6038" />
+					<TurnIn QuestId="67437" NpcId="1011952" XYZ="-277.6379, -184.5974, 741.6038" />
+				</If>
+			</If>
+		</If>
+
+		<!-- ######## -->
+		<!-- LEVEL 57 -->
+		<!-- ######## -->
+
+		<LogMessage Message="Checking level 57 quests..." />
+
+		<!-- Into the Blue -->
+
+		<If Condition="not IsQuestCompleted(67179)">
+			<If Condition="not HasQuest(67179)">
+				<If Condition="not IsOnMap(418)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+						<TeleportTo Name="Foundation" AetheryteId="70" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+						<Travel To="418" />
+					</If>
+				</If>
+				<MoveTo Name="Alphinaud" XYZ="-158.3735, 17, -54.27637" />
+				<If Condition="not IsQuestAcceptQualified(67179)">
+					<LogMessage Message="You are not eligible for the Into the Blue quest!" />
+					<LogMessage Message="Please complete quests up to Into the Blue and restart this profile." />
+					<StopBot/>
+				</If>
+				<If Condition="IsQuestAcceptQualified(67179)">
+					<PickupQuest NpcId="1013385" QuestId="67179" XYZ="-158.3735, 17, -54.27637" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67179)">
+				<If Condition="GetQuestStep(67179) == 1">
+					<If Condition="not IsOnMap(419)">
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<Travel To="419" />
+					</If>
+					<MoveTo Name="Cid" XYZ="147.5394, -12.63491, -26.19977" />
+					<TalkTo NpcId="1013077" XYZ="147.5394, -12.63491, -26.19977" QuestId="67179" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67179) == 2">
+					<If Condition="not IsOnMap(419)">
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<Travel To="419" />
+					</If>
+					<MoveTo Name="Wedge" XYZ="148.6075, -12.63491, -13.44324" />
+					<TalkToPlus NpcId="1013125" XYZ="148.6075, -12.63491, -13.44324" QuestId="67179" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(67179) == 255">
+					<If Condition="not IsOnMap(419)">
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<Travel To="419" />
+					</If>
+					<If Condition="IsOnMap(419)">
+						<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+						<LogMessage Message="Attuning to the Ok' Zundu Aetheryte..." />
+						<NoCombatMoveTo Name="Ok' Zundu Aetheryte" XYZ="-613.1533, -49.48505, -415.0302" />
+						<UseObject UseDistance="8.0" NpcId="73" XYZ="-613.1533, -49.48505, -415.0302" Radius="10" UseTimes="1" BlacklistAfter="True" />
+						<LogMessage Message="Setting Ok' Zundu as your Home Point..." />
+						<UseTransport NpcId="73" UseTimes="1" DialogOption="0" BlacklistAfter="True" InteractDistance="10" XYZ="-613.1533, -49.48505, -415.0302" Radius="10" WaitTime="5000" />
+					</If>
+					<NoCombatMoveTo Name="Alphinaud" XYZ="-805.5391, -57.82888, 157.6409" />
+					<TurnIn QuestId="67179" NpcId="1013085" XYZ="-805.5391, -57.82888, 157.6409" />
+				</If>
+			</If>
+		</If>
+
+		<If Condition="not IsOnMap(129)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+				<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+				<Travel To="129" />
+			</If>
+		</If>
+
+		<!-- Sidequest: Sleepless in Ok' Zundu -->
+
+		<If Condition="not IsQuestCompleted(67445)">
+			<If Condition="not HasQuest(67445)">
+				<If Condition="not IsOnMap(401)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+						<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+						<If Condition="not IsOnMap(419)">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<Travel To="419" />
+						</If>
+						<If Condition="IsOnMap(419)">
+							<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+						</If>
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Ganu Vali" XYZ="-647.0283, -51.05719, -417.7463" />
+				<If Condition="IsQuestAcceptQualified(67445)">
+					<PickupQuest NpcId="1012069" QuestId="67445" XYZ="-647.0283, -51.05719, -417.7463" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67445)">
+				<If Condition="GetQuestStep(67445) == 1">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+							<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<If Condition="IsOnMap(419)">
+								<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+							</If>
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Gurglegrass" XYZ="204.8523, 12.74121, -596.2158" />
+					<UseObject NpcIds="2005824,2005825,2005826" QuestId="67445" StepId="1">
+						<HotSpots>
+							<HotSpot XYZ="204.8523, 12.74121, -596.2158" Radius="10" />
+							<HotSpot XYZ="244.3427, 38.34583, -564.3549" Radius="10" />
+							<HotSpot XYZ="224.9332, 12.86334, -653.3456" Radius="10" />
+						</HotSpots>
+					</UseObject>
+				</If>
+				<If Condition="GetQuestStep(67445) == 255">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+							<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<If Condition="IsOnMap(419)">
+								<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+							</If>
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<NoCombatMoveTo Name="Ganu Vali" XYZ="-647.0283, -51.05719, -417.7463" />
+					<TurnIn QuestId="67445" NpcId="1012069" ItemId="2001670" XYZ="-647.0283, -51.05719, -417.7463" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Sidequest: Flying the Nest -->
+
+		<If Condition="not IsQuestCompleted(67446)">
+			<If Condition="not HasQuest(67446)">
+				<If Condition="not IsOnMap(401)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+						<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+						<If Condition="not IsOnMap(419)">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<Travel To="419" />
+						</If>
+						<If Condition="IsOnMap(419)">
+							<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+						</If>
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Guna Vanu" XYZ="-597.0398, -51.05185, -387.0451" />
+				<If Condition="IsQuestAcceptQualified(67446)">
+					<PickupQuest NpcId="1012068" QuestId="67446" XYZ="-597.0398, -51.05185, -387.0451" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67446)">
+				<If Condition="GetQuestStep(67446) == 1">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+							<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<If Condition="IsOnMap(419)">
+								<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+							</If>
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Hinu Vali" XYZ="-568.3833, -50.60525, -449.1188" />
+					<While Condition="not IsTodoChecked(67446, 1, 0)">
+						<TalkTo NpcId="1012071" XYZ="-568.3833, -50.60525, -449.1188" QuestId="67446" StepId="1" />
+						<TalkTo NpcId="1012072" XYZ="-568.5969, -50.64948, -452.1096" QuestId="67446" StepId="1" />
+						<TalkTo NpcId="1012069" XYZ="-647.0283, -51.05719, -417.7463" QuestId="67446" StepId="1" />
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67446) == 255">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+							<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<If Condition="IsOnMap(419)">
+								<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+							</If>
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<NoCombatMoveTo Name="Gunu Vanu" XYZ="-373.4341, -55.21164, -630.0908" />
+					<Dismount/>
+					<RunCode Name="FlyingtheNest" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Bolt, Chain, and Island -->
+
+		<If Condition="not IsQuestCompleted(67183)">
+			<If Condition="not HasQuest(67183)">
+				<If Condition="not IsOnMap(401)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+						<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+						<If Condition="not IsOnMap(419)">
+							<If Condition="not IsOnMap(418)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+									<TeleportTo Name="Foundation" AetheryteId="70" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+									<Travel To="418" />
+								</If>
+							</If>
+							<Travel To="419" />
+						</If>
+						<If Condition="IsOnMap(419)">
+							<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+						</If>
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Alphinaud" XYZ="-583.032, -52.12611, -447.4403" />
+				<If Condition="IsQuestAcceptQualified(67183)">
+					<PickupQuest NpcId="1014570" QuestId="67183" XYZ="-583.032, -52.12611, -447.4403" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67183)">
+				<If Condition="GetQuestStep(67183) == 1">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+							<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<If Condition="IsOnMap(419)">
+								<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+							</If>
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Sonu Vanu" XYZ="-542.7787, -37.11544, -386.7094" />
+					<TalkTo NpcId="1012064" XYZ="-542.7787, -37.11544, -386.7094" QuestId="67183" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67183) == 2">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+							<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<If Condition="IsOnMap(419)">
+								<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+							</If>
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Cid" XYZ="-155.6268, -14.15378, -541.558" />
+					<TalkTo NpcId="1013386" XYZ="-155.6268, -14.15378, -541.558" QuestId="67183" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(67183) == 3">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+							<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<If Condition="IsOnMap(419)">
+								<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+							</If>
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Wedge" XYZ="-154.345, -14.73062, -537.5601" />
+					<TalkToPlus NpcId="1013387" XYZ="-154.345, -14.73062, -537.5601" QuestId="67183" StepId="3" />
+				</If>
+				<If Condition="GetQuestStep(67183) == 4">
+					<LogMessage Message="Please complete The Limitless Blue (Hard) manually!" />
+					<LogMessage Message="Please restart this profile after you are done." />
+					<StopBot />
+				</If>
+				<If Condition="GetQuestStep(67183) == 255">
+					<If Condition="not IsOnMap(401)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+							<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+							<If Condition="not IsOnMap(419)">
+								<If Condition="not IsOnMap(418)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+										<TeleportTo Name="Foundation" AetheryteId="70" />
+									</If>
+									<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+										<Travel To="418" />
+									</If>
+								</If>
+								<Travel To="419" />
+							</If>
+							<If Condition="IsOnMap(419)">
+								<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+							</If>
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Aether Current
+
+					-->
+
+					<NoCombatMoveTo Name="Alphinaud" XYZ="-156.6644, -14.15376, -543.0228" />
+					<TurnIn QuestId="67183" NpcId="1014575" XYZ="-156.6644, -14.15376, -543.0228" />
+				</If>
+			</If>
+		</If>
+
+		<If Condition="not IsOnMap(129)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+				<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+				<Travel To="129" />
+			</If>
+		</If>
+		<If Condition="not IsOnMap(401)">
+			<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+				<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+				<Travel To="401" />
+			</If>
+		</If>
+
+		<!-- Aether Current #1 -->
+
+		<NoCombatMoveTo Name="Aether Current #1" XYZ="-595.0256, -166.2471, 582.4215" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006225).IsVisible">
+			<UseObject NpcId="2006225" XYZ="-595.0256, -166.2471, 582.4215" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<!-- Aether Current #2 -->
+
+		<NoCombatMoveTo Name="Aether Current #2" XYZ="-505.5772, -217.5784, 329.8542" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006227).IsVisible">
+			<UseObject NpcId="2006227" XYZ="-505.5772, -217.5784, 329.8542" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<!-- Aether Current #3 -->
+
+		<NoCombatMoveTo Name="Aether Current #3" XYZ="163.8138, -176.8911, 753.5175" />
+		<NoCombatMoveTo Name="Aether Current #3" XYZ="157.946, -177.2946, 785.1223" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006228).IsVisible">
+			<UseObject NpcId="2006228" XYZ="157.946, -177.2946, 785.1223" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<!-- Aether Current #4 -->
+
+		<NoCombatMoveTo Name="Aether Current #4" XYZ="484.7333, -142.4735, 689.1127" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006226).IsVisible">
+			<UseObject NpcId="2006226" XYZ="484.7333, -142.4735, 689.1127" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<!-- Aether Current #5 -->
+
+		<NoCombatMoveTo Name="Aether Current #5" XYZ="601.2562, -65.53652, -101.5156" />
+		<MoveTo Name="Aether Current #5" XYZ="616.0219, -65.53754, -111.5892" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006234).IsVisible">
+			<UseObject NpcId="2006234" XYZ="616.0219, -65.53754, -111.5892" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<!-- Aether Current #6 -->
+
+		<NoCombatMoveTo Name="Aether Current #6" XYZ="231.2809, -82.1394, 261.0055" />
+		<If Condition="GameObjectManager.GetObjectByNPCId(2006233).IsVisible">
+			<UseObject NpcId="2006233" XYZ="231.2809, -82.1394, 261.0055" Radius="10" UseTimes="1" BlacklistAfter="True" />
+		</If>
+
+		<If Condition="not IsQuestCompleted(67179)">
+			<LogMessage Message="Into the Blue quest is required to continue!" />
+			<LogMessage Message="Please restart this profile after you have completed it." />
+			<StopBot />
+		</If>
+		<If Condition="IsQuestCompleted(67179)">
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+			<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+				<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+			</If>
+			<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+				<If Condition="not IsOnMap(419)">
+					<If Condition="not IsOnMap(418)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+							<TeleportTo Name="Foundation" AetheryteId="70" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+							<Travel To="418" />
+						</If>
+					</If>
+					<Travel To="419" />
+				</If>
+				<If Condition="IsOnMap(419)">
+					<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+				</If>
+			</If>
+
+			<!-- Aether Current #7 -->
+
+			<NoCombatMoveTo Name="Aether Current #7" XYZ="-631.1589, -59.06775, -159.6247" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006229).IsVisible">
+				<UseObject NpcId="2006229" XYZ="-631.1589, -59.06775, -159.6247" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #8 -->
+
+			<NoCombatMoveTo Name="Aether Current #8" XYZ="180.4379, 29.98401, -471.1223" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006230).IsVisible">
+				<UseObject NpcId="2006230" XYZ="180.4379, 29.98401, -471.1223" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #9 -->
+
+			<NoCombatMoveTo Name="Aether Current #9" XYZ="486.1676, 113.0846, -185.7176" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006231).IsVisible">
+				<UseObject NpcId="2006231" XYZ="486.1676, 113.0846, -185.7176" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #10 -->
+
+			<NoCombatMoveTo Name="Aether Current #10" XYZ="64.07251, 150.4692, -139.8795" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006232).IsVisible">
+				<UseObject NpcId="2006232" XYZ="64.07251, 150.4692, -139.8795" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+		</If>
+
+		<LogMessage Message="You've attuned to the Aether Currents in The Sea of Clouds!" />
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Clipped_Wings">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-481.1719, -165.427, 608.4476" name="Gaelicats" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="3494" />
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Search_and_Rescue">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="113.1832, -85.53931, 443.5387" name="Gundu Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4058" Weight="2000" /> <!-- Pu'sanuwa Gundu -->
+				<TargetMob Id="4057" Weight="1000" /> <!-- Lan'puii Gundu -->
+			</TargetMobs>
+			<MinLevel>56</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="FlyingtheNest">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.ChatManager.SendChat("Wake up!");
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>

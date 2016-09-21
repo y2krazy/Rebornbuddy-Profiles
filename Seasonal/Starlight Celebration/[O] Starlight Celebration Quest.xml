@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+############################################
+# Profile: [O] Starlight Celebration Quest #
+############################################
+# Author: y2krazy                          #
+############################################
+# Version: 1.0.0                           #
+############################################
+# Required Level: 15                       #
+############################################
+# Required Teleport Locations:             #
+# 	Limsa Lominsa Lower Decks              #
+# 	New Gridania                           #
+# 	Ul'dah - Steps of Nald                 #
+############################################
+# Required User Interaction:               #
+# 	Crafting/Purchasing 1 Iron Clapper     #
+############################################
+# Required Setup:                          #
+# 	None                                   #
+############################################
+# Rewards:                                 #
+# 	Reindeer Armor Set                     #
+############################################
+-->
+<Profile>
+	<Name>[O] Starlight Celebration Quest</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<LogMessage Message="Checking for completed quest..." />
+
+		<!-- For Whom the Starlight Bell Tolls -->
+
+		<If Condition="not IsQuestCompleted(67760)">
+			<If Condition="not HasQuest(67760)">
+				<If Condition="not IsOnMap(128)">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<Travel To="128" />
+				</If>
+				<MoveTo Name="Collys" XYZ="-10.75769, 40.05587, 79.66736" />
+				<If Condition="IsQuestAcceptQualified(67760)">
+					<PickupQuest NpcId="1016287" QuestId="67760" XYZ="-10.75769, 40.05587, 79.66736" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67760)">
+				<If Condition="GetQuestStep(67760) == 1">
+					<If Condition="not IsOnMap(128)">
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<Travel To="128" />
+					</If>
+					<MoveTo Name="Baenfaeld" XYZ="18.38708, 44.91203, 125.2612" />
+					<TalkTo NpcId="1016271" XYZ="18.38708, 44.91203, 125.2612" QuestId="67760" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67760) == 2">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<MoveTo Name="Hervey" XYZ="-14.4198, 8, -101.4879" />
+					<TalkTo NpcId="1016272" XYZ="-14.4198, 8, -101.4879" QuestId="67760" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(67760) == 3">
+					<If Condition="not HasAtLeast(13726,1)">
+						<LogMessage Message="Please obtain an Iron Clapper by crafting one or buying one from the Market Board." />
+						<StopBot/>
+					</If>
+					<If Condition="HasAtLeast(13726,1)">
+						<If Condition="not IsOnMap(130)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+								<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+								<Travel To="130" />
+							</If>
+						</If>
+						<MoveTo Name="Hervey" XYZ="-14.4198, 8, -101.4879" />
+						<HandOver ItemId="13726" QuestId="67760" StepId="3" NpcId="1016272" XYZ="-14.4198, 8, -101.4879" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(67760) == 4">
+					<If Condition="not IsOnMap(133)">
+						<If Condition="not IsOnMap(132)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
+								<TeleportTo Name="New Gridania" AetheryteId="2" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
+								<Travel To="132" />
+							</If>
+						</If>
+						<Travel To="133" />
+					</If>
+					<MoveTo Name="Cahernaut" XYZ="-57.3587, 6.853251, -123.1251" />
+					<HandOver ItemId="2001932" QuestId="67760" StepId="4" NpcId="1016273" XYZ="-57.3587, 6.853251, -123.1251" />
+				</If>
+				<If Condition="GetQuestStep(67760) == 5">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<MoveTo Name="Baenfaeld" XYZ="-154.7418, 18.2, 22.72058" />
+					<HandOver ItemId="2001933" QuestId="67760" StepId="5" NpcId="1016371" XYZ="-154.7418, 18.2, 22.72058" />
+				</If>
+				<If Condition="GetQuestStep(67760) == 6">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<MoveTo Name="Hervey" XYZ="-340.2915, 12.89976, 10.66602" />
+					<TalkTo NpcId="1016367" XYZ="-340.2915, 12.89976, 10.66602" QuestId="67760" StepId="6" />
+				</If>
+				<If Condition="GetQuestStep(67760) == 7">
+					<If Condition="not IsOnMap(128)">
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<Travel To="128" />
+					</If>
+					<MoveTo Name="Starlight Bell" XYZ="17.01373, 45.63965, 129.3507" />
+					<UseObject NpcId="2006750" XYZ="17.01373, 45.63965, 129.3507" Radius="10" QuestId="67760" StepId="7" />
+				</If>
+				<If Condition="GetQuestStep(67760) == 255">
+					<If Condition="not IsOnMap(128)">
+						<If Condition="not IsOnMap(129)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+								<Travel To="129" />
+							</If>
+						</If>
+						<Travel To="128" />
+					</If>
+
+					<!-- Rewards
+
+					Reindeer Armor Set
+
+					-->
+
+					<MoveTo Name="Baenfaeld" XYZ="8.529724, 44.5, 121.7517" />
+					<TurnIn QuestId="67760" NpcId="1016373" XYZ="8.529724, 44.5, 121.7517" />
+				</If>
+			</If>
+		</If>
+
+		<LogMessage Message="You've completed the Starlight Celebration seasonal event quest!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>

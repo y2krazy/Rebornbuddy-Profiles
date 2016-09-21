@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--	
+###################################################################
+# Profile: [O] Aethernet - Foundation                             #
+###################################################################
+# Author: y2krazy                                                 #
+###################################################################
+# Version: 1.0.0                                                  #
+###################################################################
+# Required Level: 50                                              #
+###################################################################
+# Required Teleport Locations:                                    #
+# 	Foundation                                                    #
+###################################################################
+# Required User Interaction:                                      #
+# 	None.                                                         #
+###################################################################
+# Required Setup:                                                 #
+# 	Coming to Ishgard quest completed.                            #
+###################################################################
+# Rewards:                                                        #
+# 	Access to all Foundation Aethernet Shards                     #
+# 	Access to the Gates of Judgement (Coerthas Central Highlands) #
+###################################################################
+-->
+<Profile>
+	<Name>[O] Aethernet - Foundation</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Required Quest Check -->
+
+		<If Condition="not IsQuestCompleted(67116)">
+			<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
+			<LogMessage Message="Please complete Coming to Ishgard and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsQuestCompleted(67116) or IsQuestCompleted(66082) or IsQuestCompleted(66064)">
+
+			<!-- Foundation Aethernet -->
+
+			<If Condition="not IsOnMap(418)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+					<TeleportTo Name="Foundation" AetheryteId="70" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+							
+					<!-- TO DO -->
+
+					<!-- Update Travel.cs with new zone information.  -->
+
+					<!-- TO DO -->
+
+					<!-- <Travel To="418" /> -->
+					<LogMessage Message="Please manually move to Foundation and restart the profile." />
+					<StopBot />
+				</If>
+			</If>
+
+			<!-- The Brume -->
+
+			<UseObject UseDistance="3.0" NpcId="82" XYZ="49.42395, -11.15442, 66.69714" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- The Forgotten Knight -->
+
+			<UseObject UseDistance="3.0" NpcId="80" XYZ="45.79224, 24.55164, 0.9917603" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Skysteel Manufactory -->
+
+			<UseObject UseDistance="3.0" NpcId="81" XYZ="-111.4366, 16.12872, -27.05432" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<If Condition="not IsOnMap(419)">
+				<If Condition="not IsOnMap(418)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+						<TeleportTo Name="Foundation" AetheryteId="70" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="418" /> -->
+						<LogMessage Message="Please manually move to Foundation and restart the profile." />
+						<StopBot />
+					</If>
+				</If>
+				<Travel To="419" />
+			</If>
+
+			<!-- The Jeweled Crozier -->
+
+			<UseObject UseDistance="3.0" NpcId="84" XYZ="-134.6914, -11.79523, -15.39642" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Saint Reymanaud Cathedral -->
+
+			<UseObject UseDistance="3.0" NpcId="85" XYZ="-77.95837, 10.60498, -126.5432" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- The Last Vigil -->
+
+			<UseObject UseDistance="3.0" NpcId="87" XYZ="0.01519775, 16.52545, -32.51703" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- The Tribunal -->
+
+			<UseObject UseDistance="3.0" NpcId="86" XYZ="78.01941, 11.00171, -126.5126" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Athenaeum Astrologicum -->
+
+			<UseObject UseDistance="3.0" NpcId="83" XYZ="133.379, -8.86554, -64.77466" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<LogMessage Message="You have unlocked all of the Foundation Aethernet Shards!" />
+			<StopBot />
+
+		</If>
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>

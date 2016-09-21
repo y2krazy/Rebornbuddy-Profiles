@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##########################################################
+# Profile: [O] Aethernet - Ul'dah                        #
+##########################################################
+# Author: y2krazy                                        #
+##########################################################
+# Version: 1.0.1                                         #
+##########################################################
+# Required Level: 15                                     #
+##########################################################
+# Required Teleport Locations:                           #
+# 	Ul'dah - Steps of Nald                               #
+##########################################################
+# Required User Interaction:                             #
+# 	None.                                                #
+##########################################################
+# Required Setup:                                        #
+# 	The Gridanian Envoy quest completed, or              #
+# 	The Lominsan Envoy quest completed, or               #
+# 	The Ul'dahn Envoy quest completed.                   #
+##########################################################
+# Rewards:                                               #
+# 	Access to all Ul'dah Aethernet Shards                #
+# 	Access to the Gate of Nald (Western Thanalan)        #
+# 	Access to the Gate of Thal (Central Thanalan)        #
+# 	Access to the Gate of the Sultana (Western Thanalan) #
+##########################################################
+-->
+<Profile>
+	<Name>[O] Aethernet - Ul'dah</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Required Quest Check -->
+
+		<If Condition="IsQuestCompleted(65575)">
+
+			<If Condition="not IsQuestCompleted(66043)">
+				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
+				<LogMessage Message="Please complete The Gridanian Envoy and restart the profile." />
+				<StopBot />
+			</If>
+
+		</If>
+
+		<If Condition="IsQuestCompleted(65643)">
+
+			<If Condition="not IsQuestCompleted(66082)">
+				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
+				<LogMessage Message="Please complete The Lominsan Envoy and restart the profile." />
+				<StopBot />
+			</If>
+
+		</If>
+
+		<If Condition="IsQuestCompleted(66130)">
+
+			<If Condition="not IsQuestCompleted(66064)">
+				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
+				<LogMessage Message="Please complete The Ul'dahn Envoy and restart the profile." />
+				<StopBot />
+			</If>
+
+		</If>
+
+		<!-- Ul'dah Aethernet -->
+
+		<If Condition="IsQuestCompleted(66043) or IsQuestCompleted(66082) or IsQuestCompleted(66064)">
+
+			<If Condition="not IsOnMap(130)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+					<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+					<Travel To="130" />
+				</If>
+			</If>
+
+			<!-- Thaumaturges' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="34" XYZ="-154.8333, 14.63336, 73.07532" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Adventurers' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="33" XYZ="64.22522, 4.53186, -115.3124" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<If Condition="not IsOnMap(131)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<Travel To="131" />
+			</If>
+
+			<!-- Gladiators' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="35" XYZ="-53.84918, 10.69653, 12.22241" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Goldsmiths' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="50" XYZ="-19.33325, 14.60284, 72.03784" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Miners' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="36" XYZ="33.49353, 13.22949, 113.2067" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Weavers' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="47" XYZ="89.64673, 12.92438, 58.27417" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Chamber of Rule -->
+
+			<UseObject UseDistance="3.0" NpcId="51" XYZ="6.637634, 30.65527, -24.82648" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<!-- Alchemists' Guild -->
+
+			<UseObject UseDistance="3.0" NpcId="37" XYZ="-98.25293, 42.34375, 88.45642" Radius="10" UseTimes="1" BlacklistAfter="True" />
+
+			<LogMessage Message="You have unlocked all of the Ul'dah Aethernet Shards!" />
+			<StopBot />
+
+		</If>
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>

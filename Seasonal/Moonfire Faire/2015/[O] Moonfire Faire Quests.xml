@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#######################################
+# Profile: [O] Moonfire Faire Quests  #
+#######################################
+# Author: y2krazy                     #
+#######################################
+# Version: 1.0.0                      #
+#######################################
+# Required Level: 30                  #
+#######################################
+# Required Teleport Locations:        #
+# 	Costa del Sol                     #
+# 	Limsa Lominsa Lower Decks         #
+#######################################
+# Required User Interaction:          #
+# 	None                              #
+#######################################
+# Required Setup:                     #
+# 	None                              #
+#######################################
+# Rewards:                            #
+# 	Southern Seas Swimsuit (Female)   #
+# 	Southern Seas Vest (Male)         #
+#######################################
+-->
+<Profile>
+	<Name>[O] Moonfire Faire Quests</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<LogMessage Message="Checking for completed quests..." />
+
+		<!-- Reigniting the Festivities -->
+
+		<If Condition="not IsQuestCompleted(67660)">
+			<If Condition="not HasQuest(67660)">
+				<If Condition="not IsOnMap(128)">
+					<If Condition="not IsOnMap(129)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+							<Travel To="129" />
+						</If>
+					</If>
+					<Travel To="128" />
+				</If>
+				<MoveTo Name="Haermaga" XYZ="11.70367, 44.5, 119.5543" />
+				<If Condition="IsQuestAcceptQualified(67660)">
+					<PickupQuest NpcId="1015616" QuestId="67660" XYZ="11.70367, 44.5, 119.5543" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67660)">
+				<If Condition="GetQuestStep(67660) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Storm Tracer x30
+					Flame Tracer x30
+					Serpent Tracer x30
+
+					-->
+
+					<NoCombatMoveTo Name="P'obyano" XYZ="462.7299, 13.19904, 311.9097" />
+					<TurnIn QuestId="67660" NpcId="1015611" XYZ="462.7299, 13.19904, 311.9097" />
+				</If>
+			</If>
+		</If>
+
+		<!-- An Adventurer's Life for Me -->
+
+		<If Condition="not IsQuestCompleted(67663)">
+			<If Condition="not HasQuest(67663)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+						<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="P'obyano" XYZ="462.7299, 13.19904, 311.9097" />
+				<If Condition="IsQuestAcceptQualified(67663)">
+					<PickupQuest NpcId="1015611" QuestId="67663" XYZ="462.7299, 13.19904, 311.9097" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67663)">
+				<If Condition="GetQuestStep(67663) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="P'obyano" XYZ="462.7299, 13.19904, 311.9097" />
+					<HandOver ItemId="10333" QuestId="67663" StepId="1" NpcId="1015611" XYZ="462.7299, 13.19904, 311.9097" />
+				</If>
+				<If Condition="GetQuestStep(67663) == 255">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Southern Seas Swimsuit, or
+					Southern Seas Vest
+
+					-->
+
+					<NoCombatMoveTo Name="Wunthyll" XYZ="545.4946, 8.911804, 142.6871" />
+					<TurnIn QuestId="67663" NpcId="1015630" XYZ="545.4946, 8.911804, 142.6871" />
+					<LogMessage Message="You've completed the Moonfire Faire seasonal event quests!" />
+				</If>
+			</If>
+		</If>
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>

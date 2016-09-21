@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+########################################
+# Profile: [O] All Heavensward Zones   #
+########################################
+# Author: y2krazy                      #
+########################################
+# Version: 1.0.1                       #
+########################################
+# Required Level: 59                   #
+########################################
+# Required Teleport Locations:         #
+# 	Anyx Trine or Tailfeather          #
+# 	Camp Cloudtop                      #
+# 	Falcon's Nest                      #
+# 	Helix                              #
+# 	Idyllshire                         #
+# 	Moghome or Zenith                  #
+########################################
+# Required User Interaction:           #
+# 	The Dusk Vigil Duty                #
+# 	The Limitless Blue (Hard) Trial    #
+########################################
+# Required Setup:                      #
+# 	Fill out User Configuration below. #
+########################################
+# Rewards:                             #
+# 	Flying in all Heavensward zones.   #
+########################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- Set the zone(s) below to "1" if you would like to obtain the Currents for that zone. -->
+
+  <!ENTITY CoerthasWesternHighlands "0">
+  <!ENTITY TheDravanianForelands "0">
+  <!ENTITY TheChurningMists "0">
+  <!ENTITY TheSeaofClouds "0">
+  <!ENTITY TheDravanianHinterlands "0">
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] All Heavensward Zones</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<If Condition="&CoerthasWesternHighlands; != 0">
+
+			<!-- Coerthas Western Highlands -->
+
+			<If Condition="not IsOnMap(397)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+					<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+							
+					<!-- TO DO -->
+
+					<!-- Update Travel.cs with new zone information.  -->
+
+					<!-- TO DO -->
+
+					<!-- <Travel To="397" /> -->
+					<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+					<StopBot />
+				</If>
+			</If>
+
+			<!-- Aether Current #1 -->
+
+			<NoCombatMoveTo Name="Aether Current #1" XYZ="402.0293, 191.5159, 561.4252" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2005536).IsVisible">
+				<UseObject NpcId="2005536" XYZ="402.0293, 191.5159, 561.4252" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #2 -->
+
+			<NoCombatMoveTo Name="Aether Current #2" XYZ="148.0887, 186.9993, 232.166" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006193).IsVisible">
+				<UseObject NpcId="2006193" XYZ="148.0887, 186.9993, 232.166" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #3 -->
+
+			<NoCombatMoveTo Name="Aether Current #3" XYZ="371.4198, 165.484, 116.1669" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006192).IsVisible">
+				<UseObject NpcId="2006192" XYZ="371.4198, 165.484, 116.1669" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #4 -->
+
+			<NoCombatMoveTo Name="Aether Current #4" XYZ="616.0673, 118.2029, 179.1151" />
+			<Dismount/>
+			<RunCode Name="CWHAetherCurrent4" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006186).IsVisible">
+				<UseObject NpcId="2006186" XYZ="608.9417, 88.09033, 186.1143" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+			<RunCode Name="CWHAetherCurrent4Complete" />
+
+			<!-- Aether Current #5 -->
+
+			<NoCombatMoveTo Name="Aether Current #5" XYZ="435.6338, 171.2269, -554.9074" />
+			<Dismount/>
+			<RunCode Name="CWHAetherCurrent5" />
+			<MoveTo Name="Aether Current #5" XYZ="436.0315, 170.1193, -545.9077" UseMesh="False" />
+			<MoveTo Name="Aether Current #5" XYZ="445.1338, 171.2269, -545.1742" UseMesh="False" />
+			<MoveTo Name="Aether Current #5" XYZ="443.9939, 171.2269, -533.9135" UseMesh="False" />
+			<MoveTo Name="Aether Current #5" XYZ="450.0945, 171.2269, -536.9135" UseMesh="False" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006187).IsVisible">
+				<UseObject NpcId="2006187" XYZ="451.5297, 171.2214, -535.6985" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+			<RunCode Name="CWHAetherCurrent5Complete" />
+
+			<!-- Aether Current #6 -->
+
+			<NoCombatMoveTo Name="Current #6" XYZ="47.74548, 196.5819, -677.9431" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006190).IsVisible">
+				<UseObject NpcId="2006190" XYZ="47.74548, 196.5819, -677.9431" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #7 -->
+
+			<NoCombatMoveTo Name="Aether Current #7" XYZ="84.76379, 87.14417, -699.1531" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006188).IsVisible">
+				<UseObject NpcId="2006188" XYZ="84.76379, 87.14417, -699.1531" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #8 -->
+
+			<NoCombatMoveTo Name="Aether Current #8" XYZ="-438.9563, 110.2463, -740.0473" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006189).IsVisible">
+				<UseObject NpcId="2006189" XYZ="-438.9563, 110.2463, -740.0473" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #9 -->
+
+			<NoCombatMoveTo Name="Aether Current #9" XYZ="-548.4756, 118.947, -164.9303" />
+			<MoveTo Name="Aether Current #9" XYZ="-593.918, 119.5117, -170.432" />
+			<NoCombatMoveTo Name="Aether Current #9" XYZ="-574.8524, 122.2301, -183.6965" UseMesh="False" />
+			<Dismount/>
+			<NoCombatMoveTo Name="Aether Current #9" XYZ="-572.2292, 124.4429, -187.6903" UseMesh="False" />
+			<NoCombatMoveTo Name="Aether Current #9" XYZ="-565.8091, 126.5838, -190.6416" UseMesh="False" />
+			<RunCode Name="CWHAetherCurrent9" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006191).IsVisible">
+				<UseObject NpcId="2006191" XYZ="-575.2194, 133.9589, -196.0022" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+			<RunCode Name="CWHAetherCurrent9Complete" />
+
+			<!-- Aether Current #10 -->
+
+			<NoCombatMoveTo Name="Aether Current #10" XYZ="-77.09031, 139.0108, 598.4722" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006194).IsVisible">
+				<UseObject NpcId="2006194" XYZ="-76.52399, 141.8325, 600.7935" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<LogMessage Message="You've attuned to the Aether Currents in Coerthas Western Highlands!" />
+
+		</If>
+
+		<If Condition="&TheDravanianForelands; != 0">
+
+			<!-- The Dravanian Forelands -->
+
+			<If Condition="not IsOnMap(398)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+					<TeleportTo Name="Tailfeather" AetheryteId="76" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+						<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+					</If>
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+					<Travel To="398" />
+				</If>
+			</If>
+
+			<!-- Aether Current #1 -->
+
+			<NoCombatMoveTo Name="Aether Current #1" XYZ="765.0111, -15.82361, 289.082" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006195).IsVisible">
+				<UseObject NpcId="2006195" XYZ="765.0111, -15.82361, 289.082" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #2 -->
+
+			<NoCombatMoveTo Name="Aether Current #2" XYZ="707.7285, -41.12317, -14.57245" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006197).IsVisible">
+				<UseObject NpcId="2006197" XYZ="707.7285, -41.12317, -14.57245" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #3 -->
+
+			<NoCombatMoveTo Name="Aether Current #3" XYZ="76.65692, -25.72983, -417.761" />
+			<MoveTo Name="Aether Current #3" XYZ="115.9782, -16.71083, -398.2819" UseMesh="False" />
+			<MoveTo Name="Aether Current #3" XYZ="117.967, -21.74892, -377.5195" UseMesh="False" />
+			<MoveTo Name="Aether Current #3" XYZ="142.2351, -21.13799, -378.1878" UseMesh="False" />
+			<MoveTo Name="Aether Current #3" XYZ="154.3332, -19.00925, -397.6129" UseMesh="False" />
+			<MoveTo Name="Aether Current #3" XYZ="148.4066, -17.88634, -416.458" UseMesh="False" />
+			<MoveTo Name="Aether Current #3" XYZ="148.9155, -7.533844, -428.7457" UseMesh="False" />
+			<MoveTo Name="Aether Current #3" XYZ="152.4397, -3.649111, -449.4069" UseMesh="False" />
+			<MoveTo Name="Aether Current #3" XYZ="152.0423, -4.217939, -451.875" UseMesh="False" />
+			<RunCode Name="DFAetherCurrent3" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006204).IsVisible">
+				<UseObject NpcId="2006204" XYZ="167.2235, -4.226807, -479.4537" Radius="10" UseTimes="1" BlacklistAfter="True" UseMesh="False" />
+			</If>
+			<RunCode Name="DFAetherCurrent3Complete" />
+
+			<!-- Aether Current #4 -->
+
+			<NoCombatMoveTo Name="Aether Current #4" XYZ="156.5426, -64.44354, -4.897316" />
+			<MoveTo Name="Aether Current #4" XYZ="183.0981, -59.54949, 7.375731" />
+			<MoveTo Name="Aether Current #4" XYZ="191.2421, -52.33182, 6.759422" UseMesh="False" />
+			<MoveTo Name="Aether Current #4" XYZ="196.3268, -46.45365, 12.70039" UseMesh="False" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006198).IsVisible">
+				<UseObject NpcId="2006198" XYZ="207.9957, -36.54541, 3.494263" Radius="10" UseTimes="1" BlacklistAfter="True" UseMesh="False" />
+			</If>
+
+			<!-- Aether Current #5 -->
+
+			<NoCombatMoveTo Name="Aether Current #5" XYZ="384.8783, -41.703, 74.26563" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006196).IsVisible">
+				<UseObject NpcId="2006196" XYZ="384.8783, -41.703, 74.26563" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #6 -->
+
+			<NoCombatMoveTo Name="Aether Current #6" XYZ="244.0432, -109.7196, 821.3792" />
+			<MoveTo Name="Aether Current #6" XYZ="262.5958, -110.4613, 825.6273" />
+			<Dismount/>
+			<RunCode Name="DFAetherCurrent6" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006199).IsVisible">
+				<UseObject NpcId="2006199" XYZ="256.8245, -104.6006, 834.3175" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+			<RunCode Name="DFAetherCurrent6Complete" />
+
+			<!-- Aether Current #7 -->
+
+			<NoCombatMoveTo Name="Aether Current #7" XYZ="-143.6942, -83.66528, 611.139" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006200).IsVisible">
+				<UseObject NpcId="2006200" XYZ="-143.6942, -83.66528, 611.139" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #8 -->
+
+			<NoCombatMoveTo Name="Aether Current #8" XYZ="-662.623, -102.9221, 680.7201" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006203).IsVisible">
+				<UseObject NpcId="2006203" XYZ="-662.623, -102.9221, 680.7201" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #9 -->
+
+			<NoCombatMoveTo Name="Aether Current #9" XYZ="18.6618, -25.86407, -103.8682" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006201).IsVisible">
+				<UseObject NpcId="2006201" XYZ="18.6618, -25.86407, -103.8682" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #10 -->
+
+			<NoCombatMoveTo Name="Aether Current #10" XYZ="-395.7946, 201.364, -194.1964" />
+			<MoveTo Name="Aether Current #10" XYZ="-485.9394, 223.2814, -174.9546" />
+			<MoveTo Name="Aether Current #10" XYZ="-468.1923, 223.1197, -144.5773" />
+			<MoveTo Name="Aether Current #10" XYZ="-487.9378, 223.8956, -135.4238" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006202).IsVisible">
+				<UseObject NpcId="2006202" XYZ="-487.9378, 223.8956, -135.4238" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<LogMessage Message="You've attuned to the Aether Currents in The Dravanian Forelands!" />
+
+		</If>
+
+		<If Condition="&TheChurningMists; != 0">
+
+			<!-- The Churning Mists -->
+
+			<If Condition="not IsOnMap(400)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(78)">
+					<TeleportTo Name="Moghome" AetheryteId="78" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
+						<TeleportTo Name="Zenith" AetheryteId="79" />
+					</If>
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
+					<Travel To="400" />
+				</If>
+			</If>
+
+			<!-- Aether Current #1 -->
+
+			<NoCombatMoveTo Name="Aether Current #1" XYZ="421.1894, -43.04549, 661.7982" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006216).IsVisible">
+				<UseObject NpcId="2006216" XYZ="421.1894, -43.04549, 661.7982" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #2 -->
+
+			<NoCombatMoveTo Name="Aether Current #2" XYZ="718.4099, 34.92786, 177.1725" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006223).IsVisible">
+				<UseObject NpcId="2006223" XYZ="718.4099, 34.92786, 177.1725" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #3 -->
+
+			<NoCombatMoveTo Name="Aether Current #3" XYZ="595.2894, -11.89169, -344.529" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006222).IsVisible">
+				<UseObject NpcId="2006222" XYZ="601.8004, -9.475891, -336.3242" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #4 -->
+
+			<NoCombatMoveTo Name="Aether Current #4" XYZ="52.90295, -33.76825, -147.8447" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006215).IsVisible">
+				<UseObject NpcId="2006215" XYZ="52.90295, -33.76825, -147.8447" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #5 -->
+
+			<NoCombatMoveTo Name="Aether Current #5" XYZ="-115.0683, 36.3927, 173.9985" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006217).IsVisible">
+				<UseObject NpcId="2006217" XYZ="-115.0683, 36.3927, 173.9985" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #6 -->
+
+			<NoCombatMoveTo Name="Aether Current #6" XYZ="-242.5117, 40.93994, 275.7457" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006219).IsVisible">
+				<UseObject NpcId="2006219" XYZ="-242.5117, 40.93994, 275.7457" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #7 -->
+
+			<NoCombatMoveTo Name="Aether Current #7" XYZ="-775.2651, 123.7354, 243.7018" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006218).IsVisible">
+				<UseObject NpcId="2006218" XYZ="-775.2651, 123.7354, 243.7018" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #8 -->
+
+			<NoCombatMoveTo Name="Aether Current #8" XYZ="-44.84625, 81.80359, -110.6737" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006221).IsVisible">
+				<UseObject NpcId="2006221" XYZ="-44.84625, 81.80359, -110.6737" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #9 -->
+
+			<NoCombatMoveTo Name="Aether Current #9" XYZ="-314.1375, 81.58997, -90.22668" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006220).IsVisible">
+				<UseObject NpcId="2006220" XYZ="-314.1375, 81.58997, -90.22668" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #10 -->
+
+			<NoCombatMoveTo Name="Aether Current #10" XYZ="-210.7119, 160.4791, -726.4973" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006224).IsVisible">
+				<UseObject NpcId="2006224" XYZ="-210.7119, 160.4791, -726.4973" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<LogMessage Message="You've attuned to the Aether Currents in Churning Mists!" />
+
+		</If>
+
+		<If Condition="&TheSeaofClouds; != 0">
+
+			<!-- The Sea of Clouds -->
+
+			<If Condition="not IsOnMap(401)">
+				<If Condition="not IsOnMap(401)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(72)">
+						<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
+						<Travel To="401" />
+					</If>
+				</If>
+			</If>
+
+			<!-- Aether Current #1 -->
+
+			<NoCombatMoveTo Name="Aether Current #1" XYZ="-595.0256, -166.2471, 582.4215" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006225).IsVisible">
+				<UseObject NpcId="2006225" XYZ="-595.0256, -166.2471, 582.4215" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #2 -->
+
+			<NoCombatMoveTo Name="Aether Current #2" XYZ="-505.5772, -217.5784, 329.8542" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006227).IsVisible">
+				<UseObject NpcId="2006227" XYZ="-505.5772, -217.5784, 329.8542" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #3 -->
+
+			<NoCombatMoveTo Name="Aether Current #3" XYZ="163.8138, -176.8911, 753.5175" />
+			<NoCombatMoveTo Name="Aether Current #3" XYZ="157.946, -177.2946, 785.1223" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006228).IsVisible">
+				<UseObject NpcId="2006228" XYZ="157.946, -177.2946, 785.1223" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #4 -->
+
+			<NoCombatMoveTo Name="Aether Current #4" XYZ="484.7333, -142.4735, 689.1127" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006226).IsVisible">
+				<UseObject NpcId="2006226" XYZ="484.7333, -142.4735, 689.1127" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #5 -->
+
+			<NoCombatMoveTo Name="Aether Current #5" XYZ="601.2562, -65.53652, -101.5156" />
+			<MoveTo Name="Aether Current #5" XYZ="616.0219, -65.53754, -111.5892" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006234).IsVisible">
+				<UseObject NpcId="2006234" XYZ="616.0219, -65.53754, -111.5892" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #6 -->
+
+			<NoCombatMoveTo Name="Aether Current #6" XYZ="231.2809, -82.1394, 261.0055" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006233).IsVisible">
+				<UseObject NpcId="2006233" XYZ="231.2809, -82.1394, 261.0055" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<If Condition="not IsQuestCompleted(67179)">
+				<LogMessage Message="Into the Blue quest is required to continue!" />
+				<LogMessage Message="Please restart this profile after you have completed it." />
+				<StopBot />
+			</If>
+			<If Condition="IsQuestCompleted(67179)">
+				<If Condition="not IsOnMap(129)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+						<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+						<Travel To="129" />
+					</If>
+				</If>
+				<If Condition="Managers.WorldManager.HasAetheryteId(73)">
+					<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+					<If Condition="not IsOnMap(419)">
+						<If Condition="not IsOnMap(418)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
+								<TeleportTo Name="Foundation" AetheryteId="70" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
+								<Travel To="418" />
+							</If>
+						</If>
+						<Travel To="419" />
+					</If>
+					<If Condition="IsOnMap(419)">
+						<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+					</If>
+				</If>
+
+				<!-- Aether Current #7 -->
+
+				<NoCombatMoveTo Name="Aether Current #7" XYZ="-631.1589, -59.06775, -159.6247" />
+				<If Condition="GameObjectManager.GetObjectByNPCId(2006229).IsVisible">
+					<UseObject NpcId="2006229" XYZ="-631.1589, -59.06775, -159.6247" Radius="10" UseTimes="1" BlacklistAfter="True" />
+				</If>
+
+				<!-- Aether Current #8 -->
+
+				<NoCombatMoveTo Name="Aether Current #8" XYZ="180.4379, 29.98401, -471.1223" />
+				<If Condition="GameObjectManager.GetObjectByNPCId(2006230).IsVisible">
+					<UseObject NpcId="2006230" XYZ="180.4379, 29.98401, -471.1223" Radius="10" UseTimes="1" BlacklistAfter="True" />
+				</If>
+
+				<!-- Aether Current #9 -->
+
+				<NoCombatMoveTo Name="Aether Current #9" XYZ="486.1676, 113.0846, -185.7176" />
+				<If Condition="GameObjectManager.GetObjectByNPCId(2006231).IsVisible">
+					<UseObject NpcId="2006231" XYZ="486.1676, 113.0846, -185.7176" Radius="10" UseTimes="1" BlacklistAfter="True" />
+				</If>
+
+				<!-- Aether Current #10 -->
+
+				<NoCombatMoveTo Name="Aether Current #10" XYZ="64.07251, 150.4692, -139.8795" />
+				<If Condition="GameObjectManager.GetObjectByNPCId(2006232).IsVisible">
+					<UseObject NpcId="2006232" XYZ="64.07251, 150.4692, -139.8795" Radius="10" UseTimes="1" BlacklistAfter="True" />
+				</If>
+			</If>
+
+			<LogMessage Message="You've attuned to the Aether Currents in The Sea of Clouds!" />
+
+		</If>
+
+		<If Condition="&TheDravanianHinterlands; != 0">
+
+			<!-- The Dravanian Hinterlands -->
+
+			<If Condition="not IsOnMap(399)">
+				<If Condition="not IsOnMap(478)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(75)">
+						<TeleportTo Name="Idyllshire" AetheryteId="75" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(75)">
+						<Travel To="478" />
+					</If>
+				</If>
+				<Travel To="399_East" />
+			</If>
+
+			<!-- Aether Current #1 -->
+
+			<NoCombatMoveTo Name="Aether Current #1" XYZ="-236.3775, 123.3081, -218.494" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006208).IsVisible">
+				<UseObject NpcId="2006208" XYZ="-236.3775, 123.3081, -218.494" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #2 -->
+
+			<NoCombatMoveTo Name="Aether Current #2" XYZ="34.43958, 52.68933, 33.21875" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006207).IsVisible">
+				<UseObject NpcId="2006207" XYZ="34.43958, 52.68933, 33.21875" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #3 -->
+
+			<NoCombatMoveTo Name="Aether Current #3" XYZ="675.5931, 135.7594, 197.8026" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006205).IsVisible">
+				<UseObject NpcId="2006205" XYZ="675.5931, 135.7594, 197.8026" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #4 -->
+
+			<NoCombatMoveTo Name="Aether Current #4" XYZ="744.625, 136.6445, -50.37012" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006206).IsVisible">
+				<UseObject NpcId="2006206" XYZ="744.625, 136.6445, -50.37012" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<If Condition="not IsQuestCompleted(67194)">
+				<LogMessage Message="Leaving Idyllshire quest is required to continue!" />
+				<LogMessage Message="Please restart this profile after you have completed it." />
+				<StopBot />
+			</If>
+			<If Condition="IsQuestCompleted(67194)">
+				<If Condition="not IsOnMap(129)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+						<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+						<Travel To="129" />
+					</If>
+				</If>
+				<If Condition="not IsOnMap(478)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(75)">
+						<TeleportTo Name="Idyllshire" AetheryteId="75" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(75)">
+						<Travel To="478" />
+					</If>
+				</If>
+				<Travel To="399_West" />
+			</If>
+
+			<!-- Aether Current #5 -->
+
+			<NoCombatMoveTo Name="Aether Current #5" XYZ="-570.7943, 147.0817, 67.3075" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006210).IsVisible">
+				<UseObject NpcId="2006210" XYZ="-570.7943, 147.0817, 67.3075" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #6 -->
+
+			<NoCombatMoveTo Name="Aether Current #6" XYZ="-827.1763, 163.8361, -35.56885" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006209).IsVisible">
+				<UseObject NpcId="2006209" XYZ="-827.1763, 163.8361, -35.56885" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #7 -->
+
+			<NoCombatMoveTo Name="Aether Current #7" XYZ="-854.5815, 200.824, 531.0597" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006211).IsVisible">
+				<UseObject NpcId="2006211" XYZ="-854.5815, 200.824, 531.0597" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #8 -->
+
+			<NoCombatMoveTo Name="Aether Current #8" XYZ="-175.8602, 201.4343, 460.7156" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006214).IsVisible">
+				<UseObject NpcId="2006214" XYZ="-175.8602, 201.4343, 460.7156" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #9 -->
+
+			<NoCombatMoveTo Name="Aether Current #9" XYZ="36.01656, 202.5402, 788.1865" />
+			<MoveTo Name="Aether Current #9" XYZ="-85.28278, 202.533, 766.7506" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006212).IsVisible">
+				<UseObject NpcId="2006212" XYZ="-85.28278, 202.533, 766.7506" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<!-- Aether Current #10 -->
+
+			<NoCombatMoveTo Name="Aether Current #10" XYZ="203.1945, 215.8291, 563.1115" />
+			<RunCode Name="DHAetherCurrent10" />
+			<NoCombatMoveTo Name="Aether Current #10" XYZ="164.8019, 201.6172, 485.4865" />
+			<RunCode Name="DHAetherCurrent10_2" />
+			<NoCombatMoveTo Name="Aether Current #10" XYZ="239.1545, 101.9149, 210.7118" />
+			<If Condition="GameObjectManager.GetObjectByNPCId(2006213).IsVisible">
+				<UseObject NpcId="2006213" XYZ="239.1545, 101.9149, 210.7118" Radius="10" UseTimes="1" BlacklistAfter="True" />
+			</If>
+
+			<LogMessage Message="You've attuned to the Aether Currents in The Dravanian Hinterlands!" />
+
+		</If>
+
+		<LogMessage Message="You've attuned to all the Aether Currents!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="CWHAetherCurrent4">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.SetFacing(0.1015592f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="CWHAetherCurrent4Complete">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.SetFacing(4.176881f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="CWHAetherCurrent5">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.SetFacing(0.007050514f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="CWHAetherCurrent5Complete">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.SetFacing(5.600707f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="CWHAetherCurrent9">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.SetFacing(4.38366f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="CWHAetherCurrent9Complete">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.SetFacing(6.179805f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="MoveForwardStart">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DFAetherCurrent3">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.MovementManager.SetFacing(3.281041f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DFAetherCurrent3Complete">
+			<![CDATA[
+				ff14bot.Managers.MovementManager.SetFacing(0.9940317f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DFAetherCurrent6">
+			<![CDATA[
+				ff14bot.Managers.MovementManager.SetFacing(5.973166f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				await Buddy.Coroutines.Coroutine.Sleep(350);
+				ff14bot.Managers.MovementManager.Jump();
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DFAetherCurrent6Complete">
+			<![CDATA[
+				ff14bot.Managers.MovementManager.SetFacing(3.280805f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DHAetherCurrent10">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.MovementManager.SetFacing(4.153834f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="DHAetherCurrent10_2">
+			<![CDATA[
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.MovementManager.SetFacing(3.179941f);
+				ff14bot.Managers.MovementManager.MoveForwardStart();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.Managers.MovementManager.MoveForwardStop();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>

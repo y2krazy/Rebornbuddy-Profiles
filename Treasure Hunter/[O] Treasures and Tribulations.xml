@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--	
+###########################################
+# Profile: [O] Treasures and Tribulations #
+###########################################
+# Author: y2krazy                         #
+###########################################
+# Version: 1.0.1                          #
+###########################################
+# Required Level: 36                      #
+###########################################
+# Required Teleport Locations:            #
+# 	Camp Bronze Lake                      #
+# 	Costa del Sol or Wineport             #
+###########################################
+# Required User Interaction:              #
+# 	None                                  #
+###########################################
+# Required Setup:                         #
+# 	None                                  #
+###########################################
+# Rewards:                                #
+# 	Action: Decipher                      #
+# 	Action: Dig                           #
+###########################################
+-->
+<Profile>
+	<Name>[O] Treasures and Tribulations Quest</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<!-- Treasures and Tribulations -->
+
+		<If Condition="not IsQuestCompleted(66747)">
+			<If Condition="not HasQuest(66747)">
+				<If Condition="not IsOnMap(137)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+						<TeleportTo Name="Wineport" AetheryteId="12" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+							<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+						<Travel To="137" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+					<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
+				</If>
+				<NoCombatMoveTo Name="H'loonh" XYZ="-18.07682, 70.43877, -16.13299" />
+				<If Condition="IsQuestAcceptQualified(66747)">
+					<PickupQuest NpcId="1005526" QuestId="66747" XYZ="-18.07682, 70.43877, -16.13299" />
+				</If>
+			</If>
+			<If Condition="HasQuest(66747)">
+				<If Condition="GetQuestStep(66747) == 1">
+					<If Condition="not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(12)">
+							<TeleportTo Name="Wineport" AetheryteId="12" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(12)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+							</If>
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+							<Travel To="137" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
+					</If>
+					<NoCombatMoveTo Name="Diligent Digger" XYZ="-68.41243, 45.32172, 180.6208" />
+					<TalkTo NpcId="1005527" XYZ="-68.41243, 45.32172, 180.6208" QuestId="66747" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(66747) == 2">
+					<If Condition="not IsOnMap(139) and not IsOnMap(137)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+							<Travel To="139_East" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+						<UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
+					</If>
+					<If Condition="IsOnMap(137)">
+						<Travel To="139_East" />
+					</If>
+					<NoCombatMoveTo Name="Ealdwine" XYZ="623.9114, -3.002749, 164.178" />
+					<TalkTo NpcId="1005528" XYZ="623.9114, -3.002749, 164.178" QuestId="66747" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(66747) == 3">
+					<If Condition="not IsOnMap(139)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+							<Travel To="139_East" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Shabby Casket" XYZ="602.7211, -2.444126, 171.121" />
+					<UseObject NpcId="2003139" XYZ="602.7211, -2.444126, 171.121" Radius="10" QuestId="66747" StepId="3" />
+					<Grind grindRef="Disturbances" while="HasQuest(66747) and GetQuestStep(66747) == 3" />
+				</If>
+				<If Condition="GetQuestStep(66747) == 4">
+					<If Condition="not IsOnMap(139)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+							<Travel To="139_East" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Shabby Casket" XYZ="602.7211, -2.444126, 171.121" />
+					<UseObject NpcId="2003007" XYZ="602.7211, -2.444126, 171.121" Radius="10" QuestId="66747" StepId="4" />
+				</If>
+				<If Condition="GetQuestStep(66747) == 255">
+					<If Condition="not IsOnMap(139)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+							<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+							<Travel To="139_East" />
+						</If>
+					</If>
+					<NoCombatMoveTo Name="Ealdwine" XYZ="623.9114, -3.002749, 164.178" />
+					<TurnIn QuestId="66747" NpcId="1005528" ItemIds="2001130,2001149" XYZ="623.9114, -3.002749, 164.178" />
+				</If>
+			</If>
+		</If>
+
+		<LogMessage Message="You've unlocked your Decipher and Dig actions!" />
+
+	</Order>
+	<GrindAreas>
+		<GrindArea name="Disturbances">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="602.7211, -2.444126, 171.121" name="Territorial Mobs" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2375" Weight="2000" /> <!-- Territorial Raptor -->
+				<TargetMob Id="2376" Weight="1000" /> <!-- Territorial Pelican -->
+			</TargetMobs>
+			<MinLevel>36</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+	<CodeChunks>
+	</CodeChunks>
+</Profile>
