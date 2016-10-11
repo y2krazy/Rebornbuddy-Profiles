@@ -1,29 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using Buddy.Coroutines;
 using Clio.Utilities;
 using Clio.XmlEngine;
 using ff14bot.Behavior;
+using ff14bot.BotBases;
 using ff14bot.Enums;
 using ff14bot.Helpers;
-using ff14bot.Navigation;
 using ff14bot.Managers;
-using ff14bot.NeoProfiles;
+using ff14bot.Navigation;
 using ff14bot.Objects;
 using ff14bot.RemoteWindows;
-using TreeSharp;
-using System.Windows.Media;
-using Action = TreeSharp.Action;
-using System.IO;
-using ff14bot;
-using ff14bot.BotBases;
-using Buddy.Coroutines;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using TreeSharp;
+using Action = TreeSharp.Action;
 
 namespace ff14bot.NeoProfiles
 {
@@ -31,10 +24,9 @@ namespace ff14bot.NeoProfiles
     public class FateTag : ProfileBehavior
     {
         private bool _done;
-        private int _min;
-        private int _max;
-        private int _timeout;
-        uint localindex = 0;
+        private int _min, _max, _timeout;
+        private uint localindex = 0;
+
         [XmlAttribute("MaxLevel")]
         public string MaxLevel { get; set; }
 
@@ -44,30 +36,38 @@ namespace ff14bot.NeoProfiles
         [XmlAttribute("Timeout")]
         [DefaultValue("600")]
         public string timeout { get; set; }
-        BattleCharacter npc;
+
+        private BattleCharacter npc;
         private FatebotSettings fatebotInstance = FatebotSettings.Instance;
 
         //private int timeout = 100;
-        uint LastFateId = 0;
-        DateTime saveNow = DateTime.Now;
+        private uint LastFateId = 0;
+
+        private DateTime saveNow = DateTime.Now;
         private bool Hunting = false;
         public override bool IsDone { get { return _done; } }
+
         //some Statistics
-        FateData currentfate = null;
-        private int FatesDone = 0;
-        private int MobsHunted = 0;
-        private int Died = 0;
+        private FateData currentfate;
+
+        private int FatesDone;
+        private int MobsHunted;
+        private int Died;
+
         //----------------------
         public bool IsCompleted = false;
 
         //Fate class variables
         public static Vector3 Position = new Vector3(0f, 0f, 0f);
-        uint fateid = 0;
-        string FateName = "";
-        string FateStatus = "";
+
+        private uint fateid = 0;
+        private string FateName = "";
+        private string FateStatus = "";
         private ITargetingProvider tempProvider;
+
         //-------
         public static int currentstep = 0;  //currentstep 1 we are in a fate / currentstep 0 we are not in a fate
+
         private static readonly Stopwatch ClusterTimer = Stopwatch.StartNew();
         private int Distance = 2;
 
@@ -87,10 +87,10 @@ namespace ff14bot.NeoProfiles
 
             #region sync        //level Sync
 
-                 new Decorator(r => currentfate != null && (FateManager.WithinFate && currentfate.MaxLevel < Core.Player.ClassLevel) && !Core.Me.IsLevelSynced,
+                 new Decorator(r => currentfate != null && FateManager.WithinFate && currentfate.MaxLevel < Core.Player.ClassLevel && !Core.Me.IsLevelSynced,
                   new ActionRunCoroutine(async r =>
                   {
-                      Logging.Write("Applying Level Sync");
+                      Logging.Write("Applying Level Sync.");
 
                       ToDoList.LevelSync();
 
@@ -105,9 +105,8 @@ namespace ff14bot.NeoProfiles
             #region Movment
 
                   new Decorator(ret => currentstep == 1 && Vector3.Distance(Core.Player.Location, Position) > (currentfate.Radius - 10),
-                         CommonBehaviors.MoveAndStop(ret => Position, Distance, stopInRange: true, destinationName: "Moving to Fates")
+                         CommonBehaviors.MoveAndStop(ret => Position, Distance, stopInRange: true, destinationName: "Moving to Fates.")
 
-                  //new Action(r => { Logging.Write("Inside Moving"); })
                   ),
 
             #region Handin
@@ -116,8 +115,8 @@ namespace ff14bot.NeoProfiles
                      new Sequence(
                           new Action(r =>
                          {
-                             Poi.Clear("Handing in items");
-                             Logging.Write("Handin  Fate");
+                             Poi.Clear("Handing in items.");
+                             Logging.Write("Hand-in Fate");
                              var npc = GameObjectManager
                                     .GetObjectsOfType<BattleCharacter>()
                                     .Where(
@@ -128,7 +127,7 @@ namespace ff14bot.NeoProfiles
                                      select g.Key;
                              if (q.LastOrDefault() == null)
                              {
-                                 Logging.Write("Could not find handin NPC something is wrong");
+                                 Logging.Write("Could not find handin NPC. Something is wrong.");
                                  return;
                              }
                              tempProvider = CombatTargeting.Instance.Provider;
@@ -136,7 +135,7 @@ namespace ff14bot.NeoProfiles
                              MoveTo(q.LastOrDefault().Location);
                              GameObjectManager.GetObjectByNPCId(q.LastOrDefault().NpcId).Interact();
                              Talk.Next();
-                             InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.KeyItems).FilledSlots.LastOrDefault().Handover();
+                             InventoryManager.GetBagByInventoryBagId(InventoryBagId.KeyItems).FilledSlots.LastOrDefault().Handover();
                              Request.HandOver();
                              CombatTargeting.Instance.Provider = tempProvider;
                          }),
@@ -152,7 +151,7 @@ namespace ff14bot.NeoProfiles
                             new Action(r =>
                             {
                                 GameObjectManager.GetObjectByNPCId(npc.NpcId).Interact();
-                                InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.KeyItems).FilledSlots.LastOrDefault().Handover();
+                                InventoryManager.GetBagByInventoryBagId(InventoryBagId.KeyItems).FilledSlots.LastOrDefault().Handover();
                                 Request.HandOver();
                             })),
 
@@ -162,14 +161,14 @@ namespace ff14bot.NeoProfiles
 
             #endregion Movment
 
-            #region escord
+            #region escort
 
                   new Decorator(r => currentfate != null && fateid != 0 && Poi.Current.Type != PoiType.Kill,
                   new ActionRunCoroutine(async r => MoveToFocusedFate())
 
                 ),
 
-            #endregion escord
+            #endregion escort
 
                   new Decorator(ret => currentfate == null && currentstep == 0,
                   new Sequence(
@@ -183,11 +182,6 @@ namespace ff14bot.NeoProfiles
                   }
                             )
             )),
-
-                     /*
-                                       new Decorator(ret => currentfate == null && currentstep == 0,
-                                       new Action(r => GoHunting())
-                                       ),*/
                      new ActionAlwaysSucceed()
             );
         }
@@ -202,7 +196,7 @@ namespace ff14bot.NeoProfiles
             {
                 if (ClusterTimer.ElapsedMilliseconds > 5000)
                 {
-                    Logging.Write("Moving using cluster logic");
+                    Logging.Write("Moving using cluster logic.");
 
                     var x = 0.0f;
                     var y = 0.0f;
@@ -229,23 +223,18 @@ namespace ff14bot.NeoProfiles
             }
             else
             {
-                Logging.Write("Try to find something to Kill");
-
-                Poi.Current = new Poi(getFateTargets() as GameObject, PoiType.Kill);
+                Poi.Current = new Poi(getFateTargets(), PoiType.Kill);
             }
         }
 
         private void GoFate()
         {
-            Logging.Write("Debug Fate");
             if (currentfate != null)
             {
-                Logging.Write(currentfate);
-                Logging.Write("We found a fate.");
+                Logging.Write("Fate Details: {0}", currentfate);
                 Position = currentfate.Location;
                 fateid = currentfate.Id;
                 currentstep = 1;
-                //handleFates(currentfate).Wait();
             }
         }
 
@@ -253,14 +242,13 @@ namespace ff14bot.NeoProfiles
         {
             if (currentfate == null)
             {
-                //if hunting is enabled start killing any mobs around
                 if (Hunting)
                 {
-                    Logging.Write("Let's pass some time with hunting");
+                    Logging.Write("Let's pass some time with hunting!");
                     var target = getNormalTargets();
                     if (target != null)
                     {
-                        Poi.Current = new Poi(target as GameObject, PoiType.Kill);
+                        Poi.Current = new Poi(target, PoiType.Kill);
                         MobsHunted++;
                     }
                     if (Poi.Current != null)
@@ -268,10 +256,11 @@ namespace ff14bot.NeoProfiles
                 }
             }
         }
+
         private void SetLastFate()
         {
             LastFateId = currentfate.Id;
-            Logging.Write("Setting last Fate to {0}", currentfate.Name);
+            Logging.Write("Setting last Fate to {0}.", currentfate.Name);
         }
 
         private void UpdateFateData()
@@ -298,11 +287,12 @@ namespace ff14bot.NeoProfiles
                 }
                 if (found == 0)
                 {
-                    SetLastFate();
+                    if (currentfate != null)
+                        SetLastFate();
                     currentstep = 0;
                     fateid = 0;
                     currentfate = null;
-                    Logging.Write(" Fate no longer active");
+                    Logging.Write("Fate no longer active.");
                 }
             }
         }
@@ -313,9 +303,9 @@ namespace ff14bot.NeoProfiles
             { Died++; }
         }
 
-        private async Task<bool> EscordFate()
+        private async Task<bool> EscortFate()
         {
-            Logging.Write("ESCORD");
+            Logging.Write("ESCORT");
 
             if (currentfate.Icon == FateIconType.ProtectNPC ||
                     currentfate.Icon == FateIconType.ProtectNPC2)
@@ -328,7 +318,7 @@ namespace ff14bot.NeoProfiles
                 if (npc != null && npc.IsValid && (npc.IsBehind || npc.IsFlanking) &&
                     Core.Me.Distance(npc) > 7)
                 {
-                    Logging.Write("Moving using escort fate logic");
+                    Logging.Write("Moving using escort fate logic.");
                     Navigator.Stop();
 
                     Func<bool> isInFront = () => !npc.IsBehind;
@@ -347,7 +337,7 @@ namespace ff14bot.NeoProfiles
                     await Coroutine.Sleep(700);
                     MovementManager.MoveForwardStop();
 
-                    Logging.Write("Reached destination, moving stopped");
+                    Logging.Write("Reached destination, moving stopped.");
                 }
                 else
                 {
@@ -359,9 +349,7 @@ namespace ff14bot.NeoProfiles
             }
             else
             {
-                Logging.Write("Try to find something to Kill");
-
-                Poi.Current = new Poi(getFateTargets() as GameObject, PoiType.Kill);
+                Poi.Current = new Poi(getFateTargets(), PoiType.Kill);
             }
 
             return true;
@@ -371,49 +359,38 @@ namespace ff14bot.NeoProfiles
         {
             Logging.Write("TREE: Decorator1, Action 1");
             _done = true;
-            Logging.Write("Timeout we are done for now");
-            Logging.Write("Moving to the nearest Aetheryte");
+            Logging.Write("Timeout we are done for now.");
+            Logging.Write("Moving to the nearest Aetheryte.");
             var destination = WorldManager.AetheryteIdsForZone(WorldManager.ZoneId)
                 .Select(a => a.Item2)
                 .OrderBy(a => Core.Me.Distance(a))
                 .FirstOrDefault();
             Navigator.MoveToPointWithin(destination, 30);
             Logging.Write("--------------------------------------");
-            Logging.Write("I did int this session {0} Fates", FatesDone);
-            Logging.Write("I hunted and killed {0} mobs", MobsHunted);
-            Logging.Write("I could not avoid to Die {0}times.", Died);
+            Logging.Write("I did {0} Fates this session.", FatesDone);
+            Logging.Write("I hunted and killed {0} mobs.", MobsHunted);
+            Logging.Write("I died {0} times.", Died);
             Logging.Write("--------------------------------------");
-        }
-
-        private void CheckKeyItems()
-        {
-            foreach (var bagslot in InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.KeyItems).FilledSlots)
-            {
-            }
         }
 
         public static GameObject getFateTargets()
         {
             var _target = GameObjectManager.GameObjects.Where(unit => (unit as BattleCharacter) != null && unit.CanAttack && unit.IsTargetable && unit.IsVisible
                                                                          && (unit as BattleCharacter).FateId != 0 && !(unit as BattleCharacter).IsDead).OrderBy(unit => unit.Distance(Core.Player.Location)).Take(1);
-            Logging.Write("Searching  Fate Targets");
+            Logging.Write("Analyzing Fate Targets.");
             var targetArray = _target as GameObject[] ?? _target.ToArray();
             if (targetArray.Length > 0) { return targetArray[0]; } else { return null; }
         }
 
         public GameObject getNormalTargets()
         {
-            Random random = new Random();
-            // ORG var _target = GameObjectManager.GameObjects.Where(unit => (unit as BattleCharacter) != null && unit.CanAttack && unit.IsTargetable && unit.IsVisible
-            //                                 && (unit as BattleCharacter).FateId == 0 && !(unit as BattleCharacter).IsDead).OrderByDescending(unit => unit.Distance(Core.Player.Location)).Take(3);
             var _target = GameObjectManager.GameObjects.Where(unit => (unit as BattleCharacter) != null && unit.CanAttack && unit.IsTargetable && unit.IsVisible
                                                                     && (unit as BattleCharacter).FateId == 0 && !(unit as BattleCharacter).IsDead).OrderBy(unit => unit.Distance(Core.Player.Location)).Take(3);
             var targetArray = _target as GameObject[] ?? _target.ToArray();
-            if (targetArray.Length > 0 && targetArray[0].MaxHealth > (Core.Me.CurrentHealth) * 3) { return null; }// avoid too hard mobs
-            if (targetArray.Length > 0 && targetArray[0].NpcId == 541) { return null; } //tbd Better Blacklisting
-                                                                                        //if (targetArray.Length > 0) { return targetArray[0]; }else { return null; }
-                                                                                        // if (targetArray.Length > 0) { return targetArray[random.Next(targetArray.Length)]; } else { return null; } // pick a random targert
-            if (targetArray.Length > 0) { return targetArray[0]; } else { return null; } // pick a random targert
+            if (targetArray.Length > 0 && targetArray[0].MaxHealth > Core.Me.CurrentHealth * 3) { return null; }
+            if (targetArray.Length > 0 && targetArray[0].NpcId == 541) { return null; }
+            if (targetArray.Length > 0) { return targetArray[0]; }
+            return null;  // pick a random target
         }
 
         public List<FateData> MyFilter(List<FateData> List)
@@ -421,13 +398,13 @@ namespace ff14bot.NeoProfiles
             List<FateData> ReturnList = new List<FateData>();
             foreach (FateData f in List)
             {
-                if (f.Icon.ToString() == "Boss" && f.Progress > 85 || f.Id == 498 || fatebotInstance.BlackListedFates.Contains(f.Name))
-                    Logging.Write("Skipping Boss  Fate {0} which Progress is greater than 85% or the fate is blacklisted.", f.Name);
+                if (f.Icon.ToString() == "Boss" && f.Progress > 85 || fatebotInstance.BlackListedFates.Contains(f.Name))
+                    Logging.Write("Skipping Fate {0}. Progress is greater than 85% or the fate is blacklisted.", f.Name);
                 else
                 {
                     ReturnList.Add(f);
 
-                    Logging.Write("Adding Fate {0}, Distance is {1}", f.Name, Core.Me.Distance(f.Location));
+                    Logging.Write("Adding Fate: {0}. Distance is {1}.", f.Name, Core.Me.Distance(f.Location));
                 }
             }
             return ReturnList;
@@ -439,10 +416,8 @@ namespace ff14bot.NeoProfiles
             var FateList = MyFilter(FateCandidates);
             currentfate = FateList.OrderBy(fate => Core.Me.Distance(fate.Location)).FirstOrDefault(fate => fate.Level < _max && fate.Level > _min);
             if (currentfate == null) { return false; }
-            else
-            {
-                return true;
-            }
+
+            return true;
         }
 
         // check all fates and return the FateData wiht the given Id or null
@@ -452,76 +427,8 @@ namespace ff14bot.NeoProfiles
             var fateArray = _fate as FateData[] ?? _fate.ToArray();
             if (fateArray.Length > 0)
             { return fateArray[0]; }
-            else { return null; }
-        }
 
-        public async Task<bool> handleFates(FateData Cfate)
-        {
-            if (Cfate == null) return false;
-            //Spring Forward, Fall Back
-            Logging.Write("Inside  Special fate handling");
-            if (Cfate.Id == 643)
-            {
-                ///   643 / Dark - Devices-- - The - Plea
-                /// 644/Dark-Devices---The-Bait
-                /// 645 Dark Devices -The Switch
-                /// 646  Dark Devices -The End
-            }
-
-            if (Cfate.Id == 472)
-            {
-                Logging.Write("Detected ");
-                Vector3 area = new Vector3("533.3546, 349.5753, -749.764");
-                await MoveTo(area);
-                string desc = "Fate Spring Forward, Fall Back. Enable Special handling";
-                Vector3 Location = new Vector3("511.9184, 348.1009, -696.8484");
-                uint FateId = 472;
-                uint ItemId = 2001051;
-                uint NPcId = 1715;
-
-                //Do all in a while loop
-                while (IsFateActive(Cfate.Id) != null && !Core.Me.IsDead)
-                {
-                    //Target and kill Fate Mobs
-
-                    var target = getFateTargets();
-                    if (target == null)
-                    {
-                        Logging.Write("Did not find a Target.");
-                        break;
-                    }
-
-                    // check if we have at least 5 items
-                    if (CheckItemCount(ItemId) > 5)
-                    {
-                        await MoveTo(Location);
-                    }
-                    foreach (ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
-                    {
-                        if (slot.RawItemId == (uint)ItemId)
-                        {
-                            GameObjectManager.GetObjectByNPCId(NPcId).Interact();
-                            await Coroutine.Yield();
-                            Talk.Next();
-                            await Coroutine.Yield();
-
-                            slot.Handover();
-                            Request.HandOver();
-                        }
-                    }
-                }
-            }
-            return true;
-        }
-
-        private uint CheckItemCount(uint item)
-        {
-            foreach (ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
-            {
-                if (slot.RawItemId == (uint)item)
-                    return slot.Count;
-            }
-            return 0;
+            return null;
         }
 
         public static async Task<bool> MoveTo(Vector3 location)
@@ -555,13 +462,14 @@ namespace ff14bot.NeoProfiles
         }
 
         private ITargetingProvider CachedProvider;
+
         protected override void OnStart()
         {
             _min = Convert.ToInt32(MinLevel);
             _max = Convert.ToInt32(MaxLevel);
             _timeout = Convert.ToInt32(timeout);
             currentstep = 0;
-            Logging.Write("Doing fates and hunt in between");
+            Logging.Write("Doing fates and hunt in between.");
             Logging.Write("Stats: MinFate level={0} MaxFatelvl={1}", _min, _max);
             // MaxLevel = "34";
             // MinLevel = "25";
@@ -586,7 +494,9 @@ namespace ff14bot.NeoProfiles
         {
             1201
         };
+
         private BattleCharacter[] _aggroedBattleCharacters;
+
         /// <summary> Gets the objects by weight. </summary>
         /// <remarks> Nesox, 2013-06-29. </remarks>
         /// <returns> The objects by weight. </returns>
@@ -632,16 +542,11 @@ namespace ff14bot.NeoProfiles
             if (!unit.IsFate)
                 return false;
 
-            // if (FateBot.CurrentFate == null || !FateBot.CurrentFate.IsValid)
-            //   return false;
-
             if (!unit.CanAttack)
                 return false;
 
             if (Vector3.Distance(unit.Location, FateTag.Position) > 50)
                 return false;
-            //  if (!FateBot.CurrentFate.HotSpot.WithinHotSpot2D(unit.Location))
-            //
 
             return !incombat;
         }
@@ -650,26 +555,10 @@ namespace ff14bot.NeoProfiles
         /// <remarks> Nesox, 2013-06-29. </remarks>
         /// <param name="unit"> The unit. </param>
         /// <returns> The score for unit. </returns>
-		private double AdjustWeightForFates(BattleCharacter unit)
-        {
-            List<uint> Bosses = new List<uint>();
-            //------------Add preferred Mobs here---------------------
-            Bosses.Add(1440); // Savarnas Fall
-                              //---------------------------------
-            foreach (uint mob in Bosses)
-                if (unit.NpcId == mob && unit.CurrentHealthPercent < 80)
-                {
-                    Logging.Write("Adjusting the Weight for {0}", mob);
-                    return 20000;
-                }
-            return 0;
-        }
 
         private double GetScoreForUnit(BattleCharacter unit)
         {
             double weight = 200 - (2 * unit.Distance());
-
-            //weight += AdjustWeightForFates (unit);
 
             weight += unit.MaxHealth; // asuming that bosses have huge health this should make us target a boss
 
