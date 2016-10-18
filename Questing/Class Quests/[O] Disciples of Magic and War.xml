@@ -17999,6 +17999,39 @@
 			<MinLevel>35</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
+		<GrindArea name="pirates">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-235.458, -37.52221, 549.3752" name="Pirates" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4102" Weight="2000" /> <!-- Serpent Reaver Blueeye -->
+				<TargetMob Id="4101" Weight="1000" /> <!-- Serpent Reaver Bluetail -->
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="pirates1">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-235.458, -37.52221, 549.3752" name="Pirates" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4104" Weight="2000" /> <!-- Reaver Coeurl  -->
+				<TargetMob Id="4103" Weight="1000" /> <!-- Serpent Reaver Bluefin -->
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Slap_and_Chop">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="352.8289, 24.48975, -137.3322" name="Slap_and_Chop" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4105" Weight="2000" /> <!-- Fugleman  -->
+				<TargetMob Id="4106" Weight="1000" /> <!-- Prelate -->
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
 	</GrindAreas>
 	<CodeChunks>
 		<CodeChunk Name="GrimoireFandango">
@@ -18152,6 +18185,29 @@
 				ff14bot.Managers.MovementManager.Jump();
 				await Buddy.Coroutines.Coroutine.Sleep(3000);
 				ff14bot.Managers.MovementManager.MoveForwardStop();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Curious_Gorge_Slap">
+		    <![CDATA[
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1014284).Target();
+				ff14bot.Managers.ChatManager.SendChat("/slap");
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(200);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(200);
+				ff14bot.RemoteWindows.Talk.Next();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Curious_Gorge_Slap1">
+		    <![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1013316).Target();
+				ff14bot.Managers.ChatManager.SendChat("/slap");
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(200);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(200);
+				ff14bot.RemoteWindows.Talk.Next();
 		]]>
 		</CodeChunk>
 	</CodeChunks>
