@@ -12000,46 +12000,246 @@
 			</If>
 
 			<!-- Better Axe Around -->
-
+			
 			<If Condition="not IsQuestCompleted(66121)">
 				<If Condition="Core.Player.ClassLevel &gt; 49">
 					<If Condition="not HasQuest(66121)">
-						<LogMessage Message="Better Axe Around quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(137)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(11)">
+								<TeleportTo Name="Costa del Sol" AetheryteId="11" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(11)">
+								<Travel To="137" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Curious Gorge" XYZ="460.6545, 8.309061, 74.47925" />
+						<If Condition="IsQuestAcceptQualified(66121)">
+							<PickupQuest NpcId="1006746" QuestId="66121" XYZ="460.6545, 8.309061, 74.47925" />
+						</If>
 					</If>
 					<If Condition="HasQuest(66121)">
-						<LogMessage Message="Better Axe Around quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(66121) == 1">
+							<If Condition="not IsOnMap(139)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+									<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+									<Travel To="139" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />							
+							<TalkTo QuestId="66121" StepId="1" NpcId="1013279" XYZ="441.7028, 8.670496, 18.81433" />
+						</If>
+						<If Condition="GetQuestStep(66121) == 2">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>							
+							<While Condition="not IsTodoChecked(66121, 2, 0)">		
+								<NoCombatMoveTo Name="Clifton" XYZ="444.9987, -4.355554, -446.006" />							
+								<TalkTo QuestId="66121" StepId="2" NpcId="1007067" XYZ="444.9987, -4.355554, -446.006" />
+								<TalkTo QuestId="66121" StepId="2" NpcId="1004349" XYZ="444.9987, -4.487237, -453.0251" />
+								<NoCombatMoveTo Name="Klynthota" XYZ="449.3323, -12.43682, -387.5639" />	
+								<TalkTo QuestId="66121" StepId="2" NpcId="1006550" XYZ="449.3323, -12.43682, -387.5639" />								
+							</While>
+						</If>
+						<If Condition="GetQuestStep(66121) == 3">
+							<If Condition="not IsOnMap(156)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(24)">
+									<TeleportTo Name="Revenant's Toll" AetheryteId="24" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(24)">
+									<Travel To="156" />
+								</If>
+							</If>
+						<While Condition="not IsTodoChecked(66121, 3, 0)">
+							<NoCombatMoveTo Name="Dig Site" XYZ="429.2489, -23.79039, -302.1562" />	
+							<If Condition="GameObjectManager.GetObjectByNPCId(2006051).IsVisible">
+								<UseObject NpcId="2006051" XYZ="429.9839, -23.94141, -300.9232" Radius="10" UseTimes="1" BlacklistAfter="True" />
+							</If>
+							<If Condition="GameObjectManager.GetObjectByNPCId(2005571).IsVisible">
+								<UseObject NpcId="2005571" XYZ="442.8015, -19.51636, -291.4321" Radius="10" UseTimes="1" BlacklistAfter="True" />
+							</If>
+							<If Condition="GameObjectManager.GetObjectByNPCId(2006052).IsVisible">
+								<UseObject NpcId="2006052" XYZ="434.5922, -23.05646, -280.2014" Radius="10" UseTimes="1" BlacklistAfter="True" />
+							</If>
+						</While>						
+						</If>
+						<If Condition="GetQuestStep(66121) == 255">
+							<If Condition="not IsOnMap(139)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+									<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+									<Travel To="139" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />	
+							<TurnIn QuestId="66121" NpcId="1013279" ItemId="2001662" XYZ="441.7028, 8.670496, 18.81433" />	
+						</If>
 					</If>
 				</If>
 			</If>
-
-			<!-- Duty and the Beast -->
-
+			
+			<!-- Duty And The Beast --> 
+			
 			<If Condition="not IsQuestCompleted(66122)">
 				<If Condition="Core.Player.ClassLevel &gt; 51">
 					<If Condition="not HasQuest(66122)">
-						<LogMessage Message="Duty and the Beast quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(139)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+								<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+								<Travel To="139" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />
+						<If Condition="IsQuestAcceptQualified(66122)">
+							<PickupQuest NpcId="1013279" QuestId="66122" />
+						</If>
 					</If>
 					<If Condition="HasQuest(66122)">
-						<LogMessage Message="Duty and the Beast quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(66122) == 1">
+							<If Condition="not IsOnMap(155)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+									<TeleportTo Name="Camp Bronze Lake" AetheryteId="23" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+									<Travel To="155" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Broken Mountain" XYZ="531.3344, 348.4968, -737.4227" />
+							<LogMessage Message="Please manually complete the Duty and the Beast!" />
+							<LogMessage Message="Run this profile again once you finish the duty." />
+							<StopBot />
+							<!--
+							<SimpleDuty InteractNpcId="1014199" XYZ="531.3344, 348.4968, -737.4227" QuestId="66122" StepId="1">
+								<HotSpots>
+									<HotSpot XYZ="537.9774, 348.9204, -746.598" Radius="90" /> 
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="1391" />							
+								</TargetMobs>
+							</SimpleDuty> 
+							-->
+						</If>
+						<If Condition="GetQuestStep(66122) == 255">
+							<If Condition="not IsOnMap(139)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+									<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+									<Travel To="139" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />
+							<TurnIn QuestId="66122" NpcId="1013279" ItemId="2001662" XYZ="441.7028, 8.670496, 18.81433" />
+						</If>
 					</If>
 				</If>
 			</If>
-
+			
 			<!-- The Bear Necessity -->
 
 			<If Condition="not IsQuestCompleted(66124)">
 				<If Condition="Core.Player.ClassLevel &gt; 53">
 					<If Condition="not HasQuest(66124)">
-						<LogMessage Message="The Bear Necessity quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(139)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+								<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+								<Travel To="139" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />
+						<If Condition="IsQuestAcceptQualified(66124)">
+							<PickupQuest NpcId="1013279" QuestId="66124" />
+						</If>
 					</If>
 					<If Condition="HasQuest(66124)">
-						<LogMessage Message="The Bear Necessity quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(66124) == 1">
+							<If Condition="not IsOnMap(398)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+									<TeleportTo Name="Tailfeather" AetheryteId="76" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+										<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+									<Travel To="398" />
+								</If>
+							</If>
+							<While Condition="GetQuestStep(66124) == 1">	
+								<NoCombatMoveTo Name="Remaclon" XYZ="497.8256, -49.79028, 11.82568" />
+								<TalkTo QuestId="66124" StepId="1" NpcId="1011919" XYZ="497.8256, -49.79028, 11.82568" />
+								<NoCombatMoveTo Name="Priorfaix" XYZ="453.3607, -51.1414, 58.57935" />
+								<TalkTo QuestId="66124" StepId="1" NpcId="1011921" XYZ="453.3607, -51.1414, 58.57935" />
+								<NoCombatMoveTo Name="Louisonet" XYZ="519.8595, -51.07198, 88.24292" />
+								<TalkTo QuestId="66124" StepId="1" NpcId="1011920" XYZ="519.8595, -51.07198, 88.24292" />
+							</While>
+						</If>
+						<If Condition="GetQuestStep(66124) == 2">
+							<If Condition="not IsOnMap(398)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+									<TeleportTo Name="Tailfeather" AetheryteId="76" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+										<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+									<Travel To="398" />
+								</If>
+							</If>
+							<While Condition="GetQuestStep(66124) == 2">
+								<NoCombatMoveTo Name="Whilom Salmon" XYZ="447.074, -47.71503, -283.6805" />
+								<If Condition="GameObjectManager.GetObjectByNPCId(2005574).IsVisible">
+									<UseObject NpcId="2005574" XYZ="447.074, -47.71503, -283.6805" Radius="10" UseTimes="1" BlacklistAfter="True" />
+								</If>
+							</While>
+						</If>	
+						<If Condition="GetQuestStep(66124) == 3">
+							<If Condition="not IsOnMap(398)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+									<TeleportTo Name="Tailfeather" AetheryteId="76" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+										<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+									<Travel To="398" />
+								</If>
+							</If>						
+							<While Condition="GetQuestStep(66124) == 3">
+								<NoCombatMoveTo Name="Destination " XYZ="441.947, -21.53052, -545.037" />
+								<If Condition="GameObjectManager.GetObjectByNPCId(2005573).IsVisible">
+									<UseItem ItemId="2001590" QuestId="66124" StepId="3" NpcId="2005573" XYZ="441.947, -21.53052, -545.037" />
+								</If>								
+							</While>
+						</If>	
+						<If Condition="GetQuestStep(66124) == 255">
+							<If Condition="not IsOnMap(139)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+									<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+									<Travel To="139" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />
+							<TurnIn QuestId="66124" NpcId="1013279" ItemId="2001662" XYZ="441.7028, 8.670496, 18.81433" />
+						</If>						
 					</If>
 				</If>
 			</If>
@@ -12049,12 +12249,99 @@
 			<If Condition="not IsQuestCompleted(66132)">
 				<If Condition="Core.Player.ClassLevel &gt; 55">
 					<If Condition="not HasQuest(66132)">
-						<LogMessage Message="Pirates of Shallow Water quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(139)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+								<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+								<Travel To="139" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />
+						<If Condition="IsQuestAcceptQualified(66132)">
+							<PickupQuest NpcId="1013279" QuestId="66132" />
+						</If>
 					</If>
 					<If Condition="HasQuest(66132)">
-						<LogMessage Message="Pirates of Shallow Water quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(66132) == 1">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Storm Captain" XYZ="304.1886, -36.40591, 332.6923" />
+							<TalkTo QuestId="66132" StepId="1" NpcId="1013282" XYZ="304.1886, -36.40591, 332.6923" />
+						</If>
+						<If Condition="GetQuestStep(66132) == 2">
+							<If Condition="IsOnMap(138) and not (IsOnSubMap(461) or IsOnSubMap(173) or IsOnSubMap(228))">
+								<NoCombatMoveTo Name="Storm Captain" XYZ="317.2519, -36.325, 351.5217" />							
+								<UseTransport Name="Ferry Skipper" NpcId="1003584" DialogOption="2" InteractDistance="3.0" XYZ="317.4333, -36.325, 352.8649" />
+							</If>
+							<If Condition="IsOnMap(138) and IsOnSubMap(461)">
+								<NoCombatMoveTo Name="Storm Captain" XYZ="-297.6883, -41.69223, 408.5603" />
+								<TalkTo QuestId="66132" StepId="2" NpcId="1013287" XYZ="-297.6883, -41.69223, 408.5603" />
+							</If>
+						</If>
+						<If Condition="GetQuestStep(66132) &gt; 2 and GetQuestStep(66132) &lt; 9" > 
+						 <If Condition="not IsOnSubMap(461) or not IsOnSubMap(173) or not IsOnSubMap(228)">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>								
+							</If>
+							<If Condition="IsOnMap(138) and not (IsOnSubMap(461) or IsOnSubMap(173) or IsOnSubMap(228))">
+								<NoCombatMoveTo Name="Storm Captain" XYZ="317.2519, -36.325, 351.5217" />							
+								<UseTransport Name="Ferry Skipper" NpcId="1003584" DialogOption="2" InteractDistance="3.0" XYZ="317.4333, -36.325, 352.8649" />
+							</If>
+						 </If>
+						</If>
+						<If Condition="GetQuestStep(66132) == 3">							
+							<NoCombatMoveTo Name="Storm Captain" XYZ="-229.8772, -37.62879, 545.1591" />
+							<TalkTo QuestId="66132" StepId="3" NpcId="1013292" XYZ="-229.8772, -37.62879, 545.1591" />
+							<Grind grindRef="pirates" while="GetQuestStep(66132) == 3" />
+						</If>
+						<If Condition="GetQuestStep(66132) == 4">	
+							<NoCombatMoveTo Name="Storm Captain" XYZ="-229.8772, -37.62879, 545.1591" />						
+							<TalkTo QuestId="66132" StepId="4" NpcId="1013292" XYZ="-229.8772, -37.62879, 545.1591" />
+						</If>
+						<If Condition="GetQuestStep(66132) == 5">	
+							<NoCombatMoveTo Name="Storm Captain" XYZ="-276.6003, -37.4717, 586.9688" />							
+							<TalkTo QuestId="66132" StepId="5" NpcId="1013334" XYZ="-276.6003, -37.4717, 586.9688" />
+							<Grind grindRef="pirates" while="GetQuestStep(66132) == 5" />							
+						</If>
+						<If Condition="GetQuestStep(66132) == 6">	
+							<NoCombatMoveTo Name="Storm Captain" XYZ="-276.6003, -37.4717, 586.9688" />							
+							<TalkTo QuestId="66132" StepId="6" NpcId="1013334" XYZ="-276.6003, -37.4717, 586.9688" />
+						</If>
+						<If Condition="GetQuestStep(66132) == 7">
+							<NoCombatMoveTo Name="Serpent Reaver Captain" XYZ="-253.254, -39.46558, 661.2192" />	
+							<TalkTo QuestId="66132" StepId="7" NpcId="1013338" XYZ="-253.254, -39.46558, 661.2192" />
+							<Grind grindRef="pirates1" while="GetQuestStep(66132) == 7" />
+						</If>
+						<If Condition="GetQuestStep(66132) == 8">	
+							<NoCombatMoveTo Name="Storm Captain" XYZ="-254.1085, -39.31588, 658.8082" />							
+							<TalkTo QuestId="66132" StepId="8" NpcId="1013337" XYZ="-254.1085, -39.31588, 658.8082" />
+						</If>
+						<If Condition="GetQuestStep(66132) == 255">
+							<NoCombatMoveTo Name="Storm Captain" XYZ="304.1886, -36.40591, 332.6923" />
+							<TurnIn QuestId="66132" NpcId="1013282" ItemId="2001662" XYZ="304.1886, -36.40591, 332.6923" />
+						</If> 
 					</If>
 				</If>
 			</If>
@@ -12064,12 +12351,47 @@
 			<If Condition="not IsQuestCompleted(67213)">
 				<If Condition="Core.Player.ClassLevel &gt; 55">
 					<If Condition="not HasQuest(67213)">
-						<LogMessage Message="How to Train Your Warrior quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(138)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+								<TeleportTo Name="Aleport" AetheryteId="14" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+									<TeleportTo Name="Swiftperch" AetheryteId="13" />
+								</If>
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+								<Travel To="138" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Storm Captain" XYZ="304.1886, -36.40591, 332.6923" />
+						<If Condition="IsQuestAcceptQualified(67213)">
+							<PickupQuest NpcId="1013282" QuestId="67213" />
+						</If>
 					</If>
 					<If Condition="HasQuest(67213)">
-						<LogMessage Message="How to Train Your Warrior quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="GetQuestStep(67213) &gt; 0">
+							<If Condition="not IsOnMap(139)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+									<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+									<Travel To="139" />
+								</If>
+							</If>							
+						</If>
+						<If Condition="GetQuestStep(67213) == 1">
+							<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />
+							<TalkTo QuestId="67213" StepId="1" NpcId="1013279" XYZ="441.7028, 8.670496, 18.81433" />
+						</If>
+						<If Condition="GetQuestStep(67213) == 2">							
+							<NoCombatMoveTo Name="Curious Gorge" XYZ="396.1699, 8.113181, 48.14221" />				
+							<TalkTo QuestId="67213" StepId="2" NpcId="1013339" XYZ="396.1699, 8.113181, 48.14221" />
+						</If>
+						<If Condition="GetQuestStep(67213) == 255">
+							<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />
+							<TurnIn QuestId="67213" NpcId="1013279" ItemId="2001662" XYZ="441.7028, 8.670496, 18.81433" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -12079,12 +12401,61 @@
 			<If Condition="not IsQuestCompleted(66134)">
 				<If Condition="Core.Player.ClassLevel &gt; 57">
 					<If Condition="not HasQuest(66134)">
-						<LogMessage Message="Slap an' Chop quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(139)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+								<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+								<Travel To="139" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />
+						<If Condition="IsQuestAcceptQualified(66134)">
+							<PickupQuest NpcId="1013279" QuestId="66134" />
+						</If>
 					</If>
 					<If Condition="HasQuest(66134)">
-						<LogMessage Message="Slap an' Chop quest is coming soon! Stay tuned!" />
-						<StopBot />
+							<If Condition="not IsOnMap(139)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+									<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+									<Travel To="139" />
+								</If>
+							</If>
+						<If Condition="GetQuestStep(66134) == 1">							
+							<NoCombatMoveTo Name="Curious Gorge" XYZ="396.1699, 8.113181, 48.14221" />				
+							<TalkTo QuestId="66134" StepId="1" NpcId="1013339" XYZ="396.1699, 8.113181, 48.14221" />
+						</If>
+						<If Condition="GetQuestStep(66134) == 2">							
+							<NoCombatMoveTo Name="Curious Gorge" XYZ="384.2068, -0.3909925, 65.90369" />				
+							<TalkTo QuestId="66134" StepId="2" NpcId="1014284" XYZ="384.2068, -0.3909925, 65.90369" />
+						</If>
+						<If Condition="GetQuestStep(66134) == 3">							
+							<NoCombatMoveTo Name="Curious Gorge" XYZ="384.2068, -0.3909925, 65.90369" />							
+							<RunCode Name="Curious_Gorge_Slap" />
+						</If>
+						<If Condition="GetQuestStep(66134) == 4">							
+							<NoCombatMoveTo Name="Storm Captain" XYZ="347.3716, 3.045484, -9.445435" />
+							<TalkTo QuestId="66134" StepId="4" NpcId="1013304" XYZ="347.3716, 3.045484, -9.445435" />
+						</If>
+						<If Condition="GetQuestStep(66134) == 5">
+							<NoCombatMoveTo Name="Storm Private" XYZ="354.6348, 23.94434, -133.4402" />
+							<TalkTo QuestId="66134" StepId="5" NpcId="1013310" XYZ="354.6348, 23.94434, -133.4402" />
+							<Grind grindRef="Slap_and_Chop" while="GetQuestStep(66134) == 5" />
+						</If>
+						<If Condition="GetQuestStep(66134) == 6">
+							<NoCombatMoveTo Name="Storm Private" XYZ="354.6348, 23.94434, -133.4402" />
+							<TalkTo QuestId="66134" StepId="6" NpcId="1013310" XYZ="354.6348, 23.94434, -133.4402" />						
+						</If>
+						<If Condition="GetQuestStep(66134) == 7">
+							<NoCombatMoveTo Name="Curious Gorge" XYZ="281.6968, 38.53493, -176.7452" />
+							<TalkTo QuestId="66134" StepId="7" NpcId="1013307" XYZ="281.6968, 38.53493, -176.7452" />						
+						</If>
+						<If Condition="GetQuestStep(66134) == 255">
+							<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />
+							<TurnIn QuestId="66134" NpcId="1013279" ItemId="2001662" XYZ="441.7028, 8.670496, 18.81433" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -12094,12 +12465,81 @@
 			<If Condition="not IsQuestCompleted(66137)">
 				<If Condition="Core.Player.ClassLevel &gt; 59">
 					<If Condition="not HasQuest(66137)">
-						<LogMessage Message="And My Axe quest is coming soon! Stay tuned!" />
-						<StopBot />
+						<If Condition="not IsOnMap(139)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+								<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+								<Travel To="139" />
+							</If>
+						</If>
+						<NoCombatMoveTo Name="Broken Mountain" XYZ="441.7028, 8.670496, 18.81433" />
+						<If Condition="IsQuestAcceptQualified(66137)">
+							<PickupQuest NpcId="1013279" QuestId="66137" />
+						</If>
 					</If>
-					<If Condition="HasQuest(66137)">
-						<LogMessage Message="And My Axe quest is coming soon! Stay tuned!" />
-						<StopBot />
+					<If Condition="HasQuest(66137)">						
+						<If Condition="GetQuestStep(66137) == 1">
+							<If Condition="not IsOnMap(139)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+									<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+									<Travel To="139" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Curious Gorge" XYZ="398.9777, 8.611752, 46.28064" />				
+							<TalkTo QuestId="66137" StepId="1" NpcId="1013316" XYZ="398.9777, 8.611752, 46.28064" />
+						</If>
+						<If Condition="GetQuestStep(66137) == 2">
+							<If Condition="not IsOnMap(139)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+									<TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+									<Travel To="139" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Curious Gorge" XYZ="398.9777, 8.611752, 46.28064" />	
+							<RunCode Name="Curious_Gorge_Slap1" />
+						</If>
+						<If Condition="GetQuestStep(66137) == 3">
+							<If Condition="not IsOnMap(138)">
+								<If Condition="Managers.WorldManager.HasAetheryteId(14)">
+									<TeleportTo Name="Aleport" AetheryteId="14" />
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<If Condition="Managers.WorldManager.HasAetheryteId(13)">
+										<TeleportTo Name="Swiftperch" AetheryteId="13" />
+									</If>
+								</If>
+								<If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+									<Travel To="138" />
+								</If>
+							</If>
+							<NoCombatMoveTo Name="Falkbryda" XYZ="65.87317, -3.118188, 61.41748" />
+							<TalkTo QuestId="66137" StepId="3" NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748" />
+						</If>
+						<If Condition="GetQuestStep(66137) == 4">
+							<NoCombatMoveTo Name="Eynzahr" XYZ="-118.8831, -25.50067, 42.37427" />
+							<SimpleDuty InteractNpcId="1013312" XYZ="-118.8831, -25.50067, 42.37427" QuestId="66137" StepId="4">
+								<HotSpots>
+									<HotSpot XYZ="-134.8337, -26.55252, 18.04902" Radius="50" /> 
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="4162" Weight="10000"/><!-- Zell the Adamantine  -->
+									<TargetMob Id="4154" Weight="5000"/> <!-- Makara -->
+									<TargetMob Id="4161" Weight="4000"/> <!-- Floortooth Sahagin  -->									
+									<TargetMob Id="4159" Weight="3000"/> <!-- Floorclaw Sahagin -->	
+									<TargetMob Id="4160" Weight="2000"/> <!-- Floorscale Sahagin  -->
+									<TargetMob Id="4158" Weight="1000"/> <!-- Floorspine Sahagin  -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(66137) == 255">
+							<NoCombatMoveTo Name="Curious Gorge" XYZ="-109.9718, -24.72433, 63.55383" />
+							<TurnIn QuestId="66137" NpcId="1013329" ItemId="2001886" XYZ="-109.9718, -24.72433, 63.55383" />
+						</If>
 					</If>
 				</If>
 			</If>
@@ -17559,6 +17999,39 @@
 			<MinLevel>35</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
+		<GrindArea name="pirates">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-235.458, -37.52221, 549.3752" name="Pirates" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4102" Weight="2000" /> <!-- Serpent Reaver Blueeye -->
+				<TargetMob Id="4101" Weight="1000" /> <!-- Serpent Reaver Bluetail -->
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="pirates1">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-235.458, -37.52221, 549.3752" name="Pirates" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4104" Weight="2000" /> <!-- Reaver Coeurl  -->
+				<TargetMob Id="4103" Weight="1000" /> <!-- Serpent Reaver Bluefin -->
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Slap_and_Chop">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="352.8289, 24.48975, -137.3322" name="Slap_and_Chop" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="4105" Weight="2000" /> <!-- Fugleman  -->
+				<TargetMob Id="4106" Weight="1000" /> <!-- Prelate -->
+			</TargetMobs>
+			<MinLevel>55</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
 	</GrindAreas>
 	<CodeChunks>
 		<CodeChunk Name="GrimoireFandango">
@@ -17712,6 +18185,29 @@
 				ff14bot.Managers.MovementManager.Jump();
 				await Buddy.Coroutines.Coroutine.Sleep(3000);
 				ff14bot.Managers.MovementManager.MoveForwardStop();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Curious_Gorge_Slap">
+		    <![CDATA[
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1014284).Target();
+				ff14bot.Managers.ChatManager.SendChat("/slap");
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(200);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(200);
+				ff14bot.RemoteWindows.Talk.Next();
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="Curious_Gorge_Slap1">
+		    <![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1013316).Target();
+				ff14bot.Managers.ChatManager.SendChat("/slap");
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(200);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(200);
+				ff14bot.RemoteWindows.Talk.Next();
 		]]>
 		</CodeChunk>
 	</CodeChunks>
