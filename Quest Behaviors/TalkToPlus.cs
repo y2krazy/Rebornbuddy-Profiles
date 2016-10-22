@@ -57,6 +57,12 @@ namespace ff14bot.NeoProfiles.Tags
                         SelectYesno.ClickYes();
                     })
                 ),
+                new Decorator(ret => QuestId == 66426 && SelectString.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectString.ClickSlot(2);
+                    })
+                ),
                 new Decorator(ret => QuestId == 66601 && SelectYesno.IsOpen,
                     new Action(r =>
                     {
@@ -91,6 +97,30 @@ namespace ff14bot.NeoProfiles.Tags
                     new Action(r =>
                     {
                         SelectString.ClickSlot(3);
+                    })
+                ),
+                new Decorator(ret => QuestId == 67692 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 67769 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 67774 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 67783 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
                     })
                 ),
                 base.CreateBehavior()

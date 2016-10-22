@@ -47,11 +47,90 @@ namespace ff14bot.NeoProfiles
 						SelectYesno.ClickYes();
 					})
 				),
+                new Decorator(ret => QuestId == 66053 && SelectString.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectString.ClickSlot(2);
+                    })
+                ),
                 new Decorator(ret => QuestId == 66133 && SelectYesno.IsOpen,
                     new Action(r =>
                     {
                         SelectYesno.ClickYes();
                     })
+                ),
+                new Decorator(ret => QuestId == 66287 && Vector3.Distance(Core.Player.Location, XYZ) < InteractDistance && !actiontaken,
+                    new Sequence(
+						new Action(r =>
+						{
+							var targetnpc = GameObjectManager.GetObjectByNPCId((uint)NpcId);
+							targetnpc.Target();
+							foreach (ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+							{
+								if (slot.RawItemId == 2000975)
+								{
+									slot.UseItem(targetnpc);
+									break;
+								}
+							}
+							actiontaken = true;
+						}),
+						new Sleep(3,5),
+						new Decorator(ret => !Talk.DialogOpen,
+							new Action(r =>
+							{
+								actiontaken = false;
+							})
+						)
+					)
+                ),
+                new Decorator(ret => QuestId == 66426 && SelectString.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectString.ClickSlot(2);
+                    })
+                ),
+                new Decorator(ret => QuestId == 66493 && Vector3.Distance(Core.Player.Location, XYZ) < InteractDistance && !actiontaken,
+                    new Sequence(
+						new Action(r =>
+						{
+							var targetnpc = ff14bot.Managers.GameObjectManager.GetObjectByNPCId((uint)NpcId);
+							targetnpc.Target();
+							foreach (ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+							{
+								if (slot.RawItemId == 2000976)
+								{
+									slot.UseItem(targetnpc);
+									actiontaken = true;
+								}
+							}
+						}),
+						new Sleep(3,5),
+						new Decorator(ret => !Talk.DialogOpen,
+							new Action(r =>
+							{
+								actiontaken = false;
+							})
+						)
+					)
+                ),
+				new Decorator(ret => QuestId == 66579 && Vector3.Distance(Core.Player.Location, XYZ) < InteractDistance && !actiontaken,
+                    new Sequence(
+						new Action(r =>
+						{
+							var targetnpc = ff14bot.Managers.GameObjectManager.GetObjectByNPCId((uint)NpcId);
+							targetnpc.Target();
+							ChatManager.SendChat("/psych");
+							actiontaken = true;
+						}),
+						new Sleep(3,5),
+						new Decorator(ret => !Talk.DialogOpen,
+							new Action(r =>
+							{
+								actiontaken = false;
+							})
+						)
+					)
                 ),
                 new Decorator(ret => QuestId == 66740 && SelectString.IsOpen,
                     new Action(r =>
