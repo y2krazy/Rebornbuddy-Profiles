@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 ##################################################
-# Profile: [O] [BTN] Leveling 1-60 + 1-50 Quests #
+# Profile: [O] [BTN] Leveling 1-60 + 1-60 Quests #
 ##################################################
 # Author: y2krazy                                #
 #         kagepande (1-50 Data)                  #
@@ -1042,6 +1042,7 @@
 								<Travel To="155" />
 							</If>
 						</If>
+						<MoveTo Name="Unspoiled Mature Tree" XYZ="354.2818, 303.052, -348.1232"/>
 						<Gather Loops="1">
 							<GatherObject>Unspoiled Mature Tree</GatherObject>
 							<HotSpots>
@@ -1091,11 +1092,48 @@
 					<RunCode Name="BTNWeapon2"/>
 					<WaitTimer WaitTime="3"/>
 					<LogMessage Message="Level 50 - Seeds of Hope - Completed."/>
-					<LogMessage Message="Congrats! You are now complete with all Botany Quests &amp; Level 50!"/>
+					<!-- <LogMessage Message="Congrats! You are now complete with all Botany Quests &amp; Level 50!"/> -->
 				</If>
 			</If>
 		</If>
 		<!--End Level 50-->
+		
+		<!-- [Pickup Quest] -->
+
+		<!-- Call From The Clouds -->
+		<If Condition="not IsQuestCompleted(67584)">
+			<If Condition="not HasQuest(67584)">
+				<If Condition="not IsOnMap(133)">
+					<GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/> <!-- Old Gridania -->
+				</If>
+				<NoCombatMoveTo Name="Fufucha" XYZ="-232.9017, 6.263501, -169.7613"/>
+				<If Condition="IsQuestAcceptQualified(67584)">
+					<PickupQuest NpcId="1000815" QuestId="67584" InteractDistance="2.0" XYZ="-232.9017, 6.263501, -169.7613"/>
+				</If>
+			</If>
+
+			<!-- [Complete Quest] -->
+
+			<If Condition="HasQuest(67584)">
+				<If Condition="GetQuestStep(67584) == 1">
+					<If Condition="not IsOnMap(155)">
+						<GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/> <!-- Camp Dragonhead -->
+					</If>
+					<NoCombatMoveTo Name="Roiteloin" XYZ="115.3429, 287.0294, 142.1377" />					
+					<HandOver ItemId="2001667" QuestId="67584" StepId="1" NpcId="1000776" XYZ="115.3429, 287.0294, 142.1377" />
+				</If>
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(67584) == 255">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>
+					<NoCombatMoveTo Name="Mujih Mewrilah" XYZ="-84.45868, 8.05915, 37.12512" />
+					<TurnIn QuestId="67584" NpcId="1013240" ItemId="2001886" XYZ="-84.45868, 8.05915, 37.12512" />
+					<LogMessage Message="Level 50 - Call From The Clouds - Completed."/>
+				</If>
+			</If>
+		</If>
 
 		<RunCode Name="Botanist" />
 		<WaitTimer WaitTime="3" />
@@ -1124,7 +1162,7 @@
 					</GatheringSkillOrder>
 				</Gather>
 			</While>
-
+			
 			<!-- Level 51-52 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 52">
@@ -1167,11 +1205,24 @@
 						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
 					</GatheringSkillOrder>
 				</Gather>
-				<NoCombatMoveTo Name="Farming Area" XYZ="-179.7895, 91.5311, -382.9218" />
+				<!-- <NoCombatMoveTo Name="Farming Area" XYZ="-179.7895, 91.5311, -382.9218" /> --> 
+				<NoCombatMoveTo Name="Farming Area" XYZ="-185.5717, 91.58533, -396.8173" />
 				<Gather Loops="1">
 					<GatherObject>Lush Vegetation Patch</GatherObject>
 					<HotSpots>
-						<HotSpot Radius="90" XYZ="-178.0997, 90.86474, -369.4435" name="Lush Vegetation Patches" />
+						<!-- <HotSpot Radius="90" XYZ="-178.0997, 90.86474, -369.4435" name="Lush Vegetation Patches" /> -->
+						<HotSpots Radius="25" X="-185.232758" Y="0" Z="-396.817322" name="Lush Vegetation Patches" />
+					</HotSpots>
+					<Slot>3</Slot> <!-- Rainbow Cotton Boll -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-171.6961, 89.98668, -344.5023" />
+				<Gather Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>						
+						<HotSpots Radius="30" X="-148.5977" Y="0" Z="-341.334656" />
 					</HotSpots>
 					<Slot>3</Slot> <!-- Rainbow Cotton Boll -->
 					<GatheringSkillOrder>
@@ -1252,9 +1303,126 @@
 				<WaitTimer WaitTime="3" />
 			</While>
 
-			<!-- Level 54-56 -->
+				<!-- [Pickup Quest] -->
 
-			<While Condition="Core.Player.ClassLevel &lt; 56">
+			<!-- Onions Of Life Bestowing -->
+			<If Condition="not IsQuestCompleted(67585)">
+				<If Condition="not HasQuest(67585)">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>				
+					<NoCombatMoveTo Name="Mujih Mewrilah" XYZ="-84.45868, 8.05915, 37.12512" />
+					<If Condition="IsQuestAcceptQualified(67585)">
+						<PickupQuest NpcId="1013240" QuestId="67585" XYZ="-84.45868, 8.05915, 37.12512" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67585)">
+					<If Condition="GetQuestStep(67585) == 1">
+						<If Condition="not IsOnMap(401)">
+							<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+						</If>
+						<NoCombatMoveTo Name="Basyle" XYZ="-670.8019, -127.9738, 639.9481" />
+						<TalkTo QuestId="67585" StepId="1" NpcId="1013241" XYZ="-670.8019, -127.9738, 639.9481" />
+					</If>
+					<If Condition="GetQuestStep(67585) == 2">
+						<If Condition="not IsOnMap(398) and not HqHasAtLeast(12878,10)">
+							<GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532"/> <!-- Tailfeather -->							
+						</If>
+						<While Condition="not HqHasAtLeast(12878,10)">
+							<!-- 1 -->
+							<NoCombatMoveTo Name="Farming Area" XYZ="679.8785, -53.19801, -110.3435" />
+							<Dismount />
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="Stealth" />
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="DisableMount" />
+							<ExGather DiscoverUnknowns="true" Loops="1">
+								<GatherObject>Lush Vegetation Patch</GatherObject>
+								<HotSpots>
+									<HotSpots Radius="30" X="693.7159" Y="0" Z="-105.411911" name="Lush Vegetation Patches" />
+								</HotSpots>
+								<ItemNames>
+									<ItemName>Cyclops Onion</ItemName>
+									<ItemName>Highland Wheat</ItemName>
+								</ItemNames>								
+								<GatheringSkillOrder>
+									<GatheringSkill SpellName="Leaf Turn" TimesToCast="1" />
+								</GatheringSkillOrder>
+							</ExGather>
+							<RunCode Name="EnableMount" />
+							
+							<!-- 2 -->
+							<NoCombatMoveTo Name="Farming Area" XYZ="755.217, -35.73953, -231.5897" />
+							<Dismount />
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="Stealth" />
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="DisableMount" />
+							<ExGather DiscoverUnknowns="true" Loops="1">
+								<GatherObject>Lush Vegetation Patch</GatherObject>
+								<HotSpots>
+									<HotSpot Radius="65" XYZ="738.6904, -36.42089, -241.2022" name="Lush Vegetation Patches" />
+								</HotSpots>
+								<ItemNames>
+									<ItemName>Cyclops Onion</ItemName>
+									<ItemName>Highland Wheat</ItemName>
+								</ItemNames>
+								<GatheringSkillOrder>
+									<GatheringSkill SpellName="Leaf Turn" TimesToCast="1" />
+								</GatheringSkillOrder>
+							</ExGather>
+							<RunCode Name="EnableMount" />
+							
+							<!-- 3 -->
+							<NoCombatMoveTo Name="Farming Area" XYZ="818.6202, -38.77975, -92.19202" />
+							<Dismount />
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="Stealth" />
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="DisableMount" />
+							<ExGather DiscoverUnknowns="true" Loops="1">
+								<GatherObject>Lush Vegetation Patch</GatherObject>
+								<HotSpots>
+									<HotSpot Radius="50"  XYZ="816.8012, -38.85839, -92.5163" name="Lush Vegetation Patches" />
+								</HotSpots>
+								<ItemNames>
+									<ItemName>Cyclops Onion</ItemName>
+									<ItemName>Highland Wheat</ItemName>
+								</ItemNames>
+								<GatheringSkillOrder>
+									<GatheringSkill SpellName="Leaf Turn" TimesToCast="1" />
+								</GatheringSkillOrder>
+							</ExGather>
+							<RunCode Name="EnableMount" />						
+						</While>
+						<If Condition="HqHasAtLeast(12878,10)">
+							<If Condition="not IsOnMap(401)">
+								<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+							</If>
+							<NoCombatMoveTo Name="Basyle" XYZ="-670.8019, -127.9738, 639.9481" />	
+							<TurnIn ItemId="12878" RequiresHq="true" QuestId="67585" StepId="2" NpcId="1013241" InteractDistance="2.0" XYZ="-670.8019, -127.9738, 639.9481" />
+						</If>
+					</If>
+					
+				<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67585) == 255">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Mujih Mewrilah" XYZ="-84.45868, 8.05915, 37.12512" />
+						<TurnIn RewardSlot="0" QuestId="67585" NpcId="1013240" ItemId="2001886" XYZ="-84.45868, 8.05915, 37.12512" />
+						<LogMessage Message="Level 53 - Onions Of Life Bestowing - Completed."/>
+					</If>
+				</If>
+			</If>
+			
+			<!-- Level 54-55 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 55">
 				<If Condition="not IsOnMap(398)">
 					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
 						<TeleportTo Name="Tailfeather" AetheryteId="76" />
@@ -1268,8 +1436,22 @@
 						<Travel To="398" />
 					</If>
 				</If>
-				<NoCombatMoveTo Name="Farming Area" XYZ="330.7466, -56.87976, 1.606029" />
-				<NoCombatMoveTo Name="Farming Area" XYZ="182.2724, -85.44949, 169.5125" />
+				<!-- 1 -->
+				<NoCombatMoveTo Name="Farming Area" XYZ="182.2724, -85.44949, 169.5125" />				
+				<Gather Loops="1">
+					<GatherObject>Mature Tree</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="10" XYZ="132.1491, -78.83743, 126.4599" name="Mature Tree" />
+						<HotSpot Radius="10" XYZ="125.7084, -83.36644, 198.7258" name="Mature Tree" />
+					</HotSpots>
+					<Slot>5</Slot> <!-- Dark Chestnut Log -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</Gather>
+				<RunCode Name="EnableMount" />				
+				<!-- 2 -->
+				<NoCombatMoveTo Name="Farming Area" XYZ="185.6325, -83.09682, 154.5031" />	
 				<Dismount />
 				<WaitTimer WaitTime="5" />
 				<RunCode Name="Stealth" />
@@ -1278,7 +1460,6 @@
 				<Gather Loops="1">
 					<GatherObject>Mature Tree</GatherObject>
 					<HotSpots>
-						<HotSpot Radius="10" XYZ="132.1491, -78.83743, 126.4599" name="Mature Tree" />
 						<HotSpot Radius="10" XYZ="173.5779, -75.65202, 95.38009" name="Mature Tree" />
 						<HotSpot Radius="10" XYZ="202.295, -79.33517, 142.928" name="Mature Tree" />
 						<HotSpot Radius="5" XYZ="202.886, -83.62169, 169.4309" name="Safe Spot" />
@@ -1289,7 +1470,8 @@
 					</GatheringSkillOrder>
 				</Gather>
 				<RunCode Name="EnableMount" />
-				<WaitTimer WaitTime="3" />
+				<WaitTimer WaitTime="3" />				
+				<!-- 3 -->
 				<NoCombatMoveTo Name="Farming Area" XYZ="309.5887, -65.90142, 164.1102" />
 				<Dismount />
 				<WaitTimer WaitTime="5" />
@@ -1312,7 +1494,9 @@
 				</Gather>
 				<RunCode Name="EnableMount" />
 				<WaitTimer WaitTime="3" />
-				<NoCombatMoveTo Name="Farming Area" XYZ="302.7231, -99.3852, 329.6814" />
+				
+				<!-- 4 -->
+				<NoCombatMoveTo Name="Farming Area" XYZ="219.5222, -94.79668, 290.0431" />
 				<Dismount />
 				<WaitTimer WaitTime="5" />
 				<RunCode Name="Stealth" />
@@ -1321,7 +1505,8 @@
 				<Gather Loops="1">
 					<GatherObject>Mature Tree</GatherObject>
 					<HotSpots>
-						<HotSpot Radius="10" XYZ="231.6947, -95.85766, 364.9529" name="Mature Tree" />
+						<HotSpot Radius="10" XYZ="231.6947, -95.85766, 364.9529" name="Mature Tree" /> 
+						<HotSpot Radius="10" XYZ="219.523, -94.94508, 290.9246" name="Mature Tree" />
 						<HotSpot Radius="10" XYZ="180.0995, -101.89, 328.9188" name="Mature Tree" />
 						<HotSpot Radius="10" XYZ="106.329, -112.1545, 363.0009" name="Mature Tree" />
 						<HotSpot Radius="5" XYZ="65.5053, -114.0104, 379.4772" name="Safe Spot" />
@@ -1335,135 +1520,448 @@
 				<WaitTimer WaitTime="3" />
 			</While>
 
-			<!-- Level 56-58 -->
+			<!-- [Pickup Quest] -->
 
-			<While Condition="Core.Player.ClassLevel &lt; 58">
-				<If Condition="not IsOnMap(398)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(77)">
-						<TeleportTo Name="Anyx Trine" AetheryteId="77" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
-							<TeleportTo Name="Tailfeather" AetheryteId="76" />
-						</If>
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
-						<Travel To="398" />
+			<!-- Two Nations, One Seed -->
+			<If Condition="not IsQuestCompleted(67586)">
+				<If Condition="not HasQuest(67586)">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>				
+					<NoCombatMoveTo Name="Mujih Mewrilah" XYZ="-84.45868, 8.05915, 37.12512" />
+					<If Condition="IsQuestAcceptQualified(67586)">
+						<PickupQuest NpcId="1013240" QuestId="67586" XYZ="-84.45868, 8.05915, 37.12512" />
 					</If>
 				</If>
-				<NoCombatMoveTo Name="Farming Area" XYZ="-530.593, -96.94361, 485.03686" />
-				<NoCombatMoveTo Name="Farming Area" XYZ="-548.0259, -85.81905, 423.4666" />
-				<Dismount />
-				<WaitTimer WaitTime="3" />
-				<RunCode Name="Stealth" />
-				<WaitTimer WaitTime="3" />
-				<RunCode Name="DisableMount" />
-				<Gather Loops="1">
-					<GatherObject>Lush Vegetation Patch</GatherObject>
-					<HotSpots>
-						<HotSpot Radius="90" XYZ="-548.0259, -85.81905, 423.4666" name="Lush Vegetation Patchs" />
-					</HotSpots>
-					<Slot>0</Slot> <!-- Coneflower -->
-					<GatheringSkillOrder>
-						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
-					</GatheringSkillOrder>
-				</Gather>
-				<RunCode Name="EnableMount" />
-				<WaitTimer WaitTime="3" />
-				<NoCombatMoveTo Name="Farming Area" XYZ="-566.7139, -97.0237, 544.4297" />
-				<Gather Loops="1">
-					<GatherObject>Lush Vegetation Patch</GatherObject>
-					<HotSpots>
-						<HotSpot Radius="90" XYZ="-566.7139, -97.0237, 544.4297" name="Lush Vegetation Patchs" />
-					</HotSpots>
-					<Slot>0</Slot> <!-- Coneflower -->
-					<GatheringSkillOrder>
-						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
-					</GatheringSkillOrder>
-				</Gather>
-				<NoCombatMoveTo Name="Farming Area" XYZ="-699.5511, -114.3527, 574.657" />
-				<Gather Loops="1">
-					<GatherObject>Lush Vegetation Patch</GatherObject>
-					<HotSpots>
-						<HotSpot Radius="90" XYZ="-705.5204, -114.4788, 579.652" name="Lush Vegetation Patchs" />
-						<HotSpot Radius="5" XYZ="-699.5511, -114.3527, 574.657" name="Safe Spot" />
-					</HotSpots>
-					<Slot>0</Slot> <!-- Coneflower -->
-					<GatheringSkillOrder>
-						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
-					</GatheringSkillOrder>
-				</Gather>
-			</While>
 
-			<!-- Level 58-60 -->
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67586)">
+					<If Condition="GetQuestStep(67586) == 1">
+						<If Condition="not IsOnMap(401)">
+							<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+						</If>
+						<NoCombatMoveTo Name="Basyle" XYZ="-670.8019, -127.9738, 639.9481" />
+						<TalkTo QuestId="67586" StepId="1" NpcId="1013241" XYZ="-670.8019, -127.9738, 639.9481" />
+					</If>
+					<If Condition="GetQuestStep(67586) == 2">
+						<If Condition="not IsOnMap(133)">
+							<GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/> <!-- Old Gridania -->
+						</If>
+						<NoCombatMoveTo Name="Fufucha" Distance="1" UseMesh="True" XYZ="-232.9017, 6.263501, -169.7613"/>						
+						<TalkTo QuestId="67586" StepId="2" NpcId="1000815" XYZ="-233.9361, 6.668152, -171.0384" />
+					</If>
+					<If Condition="GetQuestStep(67586) == 3">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Mujih Mewrilah" XYZ="-84.45868, 8.05915, 37.12512" />						
+						<TalkTo QuestId="67586" StepId="3" NpcId="1013240" XYZ="-84.45868, 8.05915, 37.12512" />
+					</If>
+					<If Condition="GetQuestStep(67586) == 4">
+						<If Condition="not IsOnMap(419)">
+							<GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/> <!-- The Pillars -->
+						</If>
+						<NoCombatMoveTo Name="Martineau" XYZ="-136.9193, 14.55313, -150.3167" />						
+						<HandOver ItemId="2001664" QuestId="67586" StepId="4" NpcId="1013245" XYZ="-136.9193, 14.55313, -150.3167" />
+					</If>
+					<If Condition="GetQuestStep(67586) == 5">
+						<If Condition="not IsOnMap(400)">
+							<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
+						</If>
+						<While Condition="not HqHasAtLeast(12879,10)">
+							<!-- 1 -->
+							<NoCombatMoveTo Name="Farming Area" XYZ="1.39111, -22.70498, 120.5849" />
+							<Dismount />
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="Stealth" />
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="DisableMount" />
+							<ExGather DiscoverUnknowns="true" Loops="1">
+								<GatherObject>Lush Vegetation Patch</GatherObject>
+								<HotSpots>
+									<HotSpots Radius="85" XYZ="-10.0374613, 0, 100.5849" name="Lush Vegetation Patches" />
+								</HotSpots>
+								<ItemNames>
+									<ItemName>Emerald Beans</ItemName>
+									<ItemName>Magma Beet</ItemName>
+								</ItemNames>								
+								<GatheringSkillOrder>
+									<GatheringSkill SpellName="Leaf Turn II" TimesToCast="1" />
+								</GatheringSkillOrder>
+							</ExGather>
+							<RunCode Name="EnableMount" />
+							
+							<!-- 2 -->							
+							<NoCombatMoveTo Name="Farming Area" XYZ="-83.91055, -17.16076, -46.15058" />
+							<Dismount />							
+							<ExGather DiscoverUnknowns="true" Loops="1">
+								<GatherObject>Lush Vegetation Patch</GatherObject>
+								<HotSpots>
+									<HotSpot Radius="40"  XYZ="-74.13724, -17.54626, -53.06326" name="Lush Vegetation Patches" />
+								</HotSpots>
+								<ItemNames>
+									<ItemName>Emerald Beans</ItemName>
+									<ItemName>Magma Beet</ItemName>
+								</ItemNames>
+								<GatheringSkillOrder>
+									<GatheringSkill SpellName="Leaf Turn II" TimesToCast="1" />
+								</GatheringSkillOrder>
+							</ExGather>
+							
+							<!-- 3 -->
+							<NoCombatMoveTo Name="Farming Area" XYZ="-83.91055, -17.16076, -46.15058" />
+							<NoCombatMoveTo Name="Farming Area" XYZ="27.09846, -17.88617, -89.4666" />
+							<Dismount />							
+							<ExGather DiscoverUnknowns="true" Loops="1">
+								<GatherObject>Lush Vegetation Patch</GatherObject>
+								<HotSpots>
+									<HotSpot Radius="40"  XYZ="29.59622, -17.77994, -88.65677" name="Lush Vegetation Patches" />
+								</HotSpots>
+								<ItemNames>
+									<ItemName>Emerald Beans</ItemName>
+									<ItemName>Magma Beet</ItemName>
+								</ItemNames>
+								<GatheringSkillOrder>
+									<GatheringSkill SpellName="Leaf Turn II" TimesToCast="1" />
+								</GatheringSkillOrder>
+							</ExGather>
+						</While>
+						<If Condition="HqHasAtLeast(12879,10)">
+							<If Condition="not IsOnMap(401)">
+								<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+							</If>
+							<NoCombatMoveTo Name="Basyle" XYZ="-670.8019, -127.9738, 639.9481" />	
+							<TurnIn ItemId="12879" RequiresHq="true" QuestId="67586" StepId="5" NpcId="1013241" InteractDistance="2.0" XYZ="-670.8019, -127.9738, 639.9481" />
+						</If>
+					</If>
+					
+				<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67586) == 255">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Mujih Mewrilah" XYZ="-84.45868, 8.05915, 37.12512" />
+						<TurnIn RewardSlot="0" QuestId="67586" NpcId="1013240" XYZ="-84.45868, 8.05915, 37.12512" />
+						<LogMessage Message="Level 55 - Two Nations, One Seed - Completed."/>
+					</If>
+				</If>
+			</If>
+			
+			<!-- Level 55-58 - 1kk XP/H-->
+			
+			<While Condition="Core.Player.ClassLevel &lt; 58">
+				<If Condition="not IsOnMap(400)">
+					<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
+				</If>
+				<!-- 1 -->
+				<NoCombatMoveTo Name="Farming Area" XYZ="1.39111, -22.70498, 120.5849" />
+				<Dismount />
+				<If Condition="GameObjectManager.GetObjectByObjectId(1073742566).IsVisible or 
+							GameObjectManager.GetObjectByObjectId(1073742565).IsVisible">
+					<ExGather DiscoverUnknowns="true" Loops="1">
+						<GatherObject>Lush Vegetation Patch</GatherObject>
+						<HotSpots>
+							<HotSpots Radius="30" XYZ="-19.2137985, 0, 125.697281" name="Lush Vegetation Patches" />
+						</HotSpots>
+						<ItemNames>
+							<ItemName>Emerald Beans</ItemName>
+							<ItemName>Magma Beet</ItemName>
+						</ItemNames>								
+						<GatheringSkillOrder>
+							<GatheringSkill SpellName="Leaf Turn" TimesToCast="1" />
+						</GatheringSkillOrder>
+					</ExGather>
+				</If>
+				<If Condition="GameObjectManager.GetObjectByObjectId(1073742610).IsVisible or 
+							GameObjectManager.GetObjectByObjectId(1073742609).IsVisible">
+					<WaitTimer WaitTime="3" />
+					<RunCode Name="Stealth" />
+					<WaitTimer WaitTime="3" />
+					<RunCode Name="DisableMount" />
+					<ExGather DiscoverUnknowns="true" Loops="1">
+						<GatherObject>Lush Vegetation Patch</GatherObject>
+						<HotSpots>
+							<HotSpots Radius="85" XYZ="-10.0374613, 0, 100.5849" name="Lush Vegetation Patches" />
+						</HotSpots>
+						<ItemNames>
+							<ItemName>Emerald Beans</ItemName>
+							<ItemName>Magma Beet</ItemName>
+						</ItemNames>								
+						<GatheringSkillOrder>
+							<GatheringSkill SpellName="Leaf Turn" TimesToCast="1" />
+						</GatheringSkillOrder>
+					</ExGather>
+					<RunCode Name="EnableMount" />
+				</If>	
+				<!-- 2 -->							
+				<NoCombatMoveTo Name="Farming Area" XYZ="-83.91055, -17.16076, -46.15058" />
+				<Dismount />							
+				<ExGather DiscoverUnknowns="true" Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="40"  XYZ="-74.13724, -17.54626, -53.06326" name="Lush Vegetation Patches" />
+					</HotSpots>
+					<ItemNames>
+						<ItemName>Emerald Beans</ItemName>
+						<ItemName>Magma Beet</ItemName>
+					</ItemNames>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Leaf Turn" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+						
+				<!-- 3 -->
+				<NoCombatMoveTo Name="Farming Area" XYZ="-83.91055, -17.16076, -46.15058" />
+				<NoCombatMoveTo Name="Farming Area" XYZ="27.09846, -17.88617, -89.4666" />
+				<Dismount />							
+				<ExGather DiscoverUnknowns="true" Loops="1">
+					<GatherObject>Lush Vegetation Patch</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="40"  XYZ="29.59622, -17.77994, -88.65677" name="Lush Vegetation Patches" />
+					</HotSpots>
+					<ItemNames>
+						<ItemName>Emerald Beans</ItemName>
+						<ItemName>Magma Beet</ItemName>
+					</ItemNames>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Leaf Turn" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</While>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- Love For Harmony -->
+			<If Condition="not IsQuestCompleted(67587)">
+				<If Condition="not HasQuest(67587)">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>
+					<NoCombatMoveTo Name="Mujih Mewrilah" XYZ="-84.45868, 8.05915, 37.12512" />
+					<If Condition="IsQuestAcceptQualified(67587)">
+						<PickupQuest NpcId="1013240" QuestId="67587" XYZ="-84.45868, 8.05915, 37.12512" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67587)">
+					<If Condition="GetQuestStep(67587) == 1">
+						<If Condition="not IsOnMap(401)">
+							<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+						</If>
+						<NoCombatMoveTo Name="Basyle" XYZ="-670.8019, -127.9738, 639.9481" />						
+						<TalkTo QuestId="67587" StepId="1" NpcId="1013241" XYZ="-670.8019, -127.9738, 639.9481" />
+					</If>	
+					<If Condition="GetQuestStep(67587) == 2">
+						<If Condition="not IsOnMap(419)">
+							<GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/> <!-- The Pillars -->
+						</If>
+						<NoCombatMoveTo Name="Martineau" XYZ="-136.9193, 14.55313, -150.3167" />	
+						<TalkTo QuestId="67587" StepId="2" NpcId="1013245" XYZ="-136.9193, 14.55313, -150.3167" />
+					</If>
+					<If Condition="GetQuestStep(67587) == 3">
+						<If Condition="not IsOnMap(401)">
+							<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+						</If>
+						<While Condition="not HqHasAtLeast(12579,10)">
+							<!-- From Entrax -->
+							<ExGather DiscoverUnknowns="true" Loops="1">
+								<GatherObjects>
+									<GatherObject>Mature Tree</GatherObject>
+								</GatherObjects>
+								<Items>
+									<GatherItem Name="Birch Log"/>
+									<GatherItem Name="Birch Sap"/>
+								</Items>
+								<GatheringSkillOrder>
+									<GatheringSkill SpellName="Leaf Turn II" TimesToCast="1" />
+								</GatheringSkillOrder>
+								<GatherSpots>
+									<IndirectApproachGatherSpot ApproachLocation="124.2828, -135.0074, 664.0291" NodeLocation="125.2828, -135, 660.5291" ReturnToApproachLocation="False"/>
+									<IndirectApproachGatherSpot ApproachLocation="239.0889, -147.8377, 562.1637" NodeLocation="240.5389, -147.8377, 560.1057" ReturnToApproachLocation="False"/>
+									<IndirectApproachGatherSpot ApproachLocation="207.4956, -147.8377, 597.161" NodeLocation="206.2956, -147.8377, 599.861" ReturnToApproachLocation="False"/>
+									<IndirectApproachGatherSpot ApproachLocation="81.27682, -146.5234, 640.6451" NodeLocation="73.65515, -145.5559, 640.3448" ReturnToApproachLocation="False"/>
+									<IndirectApproachGatherSpot ApproachLocation="80.38401, -146.5234, 580.8955" NodeLocation="78.89505, -145.5175, 580.6633" ReturnToApproachLocation="False"/>
+									<IndirectApproachGatherSpot ApproachLocation="133.8673, -147.8377, 571.5581" NodeLocation="136.0294, -147.8377, 576.7831" ReturnToApproachLocation="False"/>
+									<IndirectApproachGatherSpot ApproachLocation="100.6749, -147.8656, 505.4717" NodeLocation="100.5335, -147.8377, 502.2275" ReturnToApproachLocation="False"/>
+									<IndirectApproachGatherSpot ApproachLocation="159.7419, -147.8377, 458.0388" NodeLocation="159.2674, -147.0208, 455.2348" ReturnToApproachLocation="False"/>
+									<IndirectApproachGatherSpot ApproachLocation="200.0888, -147.8377, 469.9167" NodeLocation="202.3888, -147.0208, 469.2167" ReturnToApproachLocation="False"/>
+									<IndirectApproachGatherSpot ApproachLocation="309.7932, -118.2533, 530.2704" NodeLocation="310.146, -118.5, 530.895" ReturnToApproachLocation="False"/>
+								</GatherSpots>
+								<HotSpots>
+									<HotSpot Radius="65" XYZ="117.249428, -137.9418, 613.707947"/>
+									<HotSpot Radius="40" XYZ="100.5221, -137.9418, 504.220642"/>
+									<HotSpot Radius="80" XYZ="218.774689, -124.9265, 500.0145"/>
+									<HotSpot Radius="60" XYZ="294.9306, -111.2702, 521.9253"/>
+								</HotSpots>
+							</ExGather>							
+						</While>
+						<If Condition="HqHasAtLeast(12579,10)">
+							<If Condition="not IsOnMap(401)">
+								<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+							</If>
+							<NoCombatMoveTo Name="Basyle" XYZ="-670.8019, -127.9738, 639.9481" />	
+							<TurnIn ItemId="12579" RequiresHq="true" QuestId="67587" StepId="3" NpcId="1013241" InteractDistance="2.0" XYZ="-670.8019, -127.9738, 639.9481" />
+						</If>
+					</If>
+					
+				<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67587) == 255">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Mujih Mewrilah" XYZ="-84.45868, 8.05915, 37.12512" />
+						<TurnIn RewardSlot="0" QuestId="67587" NpcId="1013240" XYZ="-84.45868, 8.05915, 37.12512" />
+						<LogMessage Message="Level 58 - Love For Harmony - Completed."/>
+					</If>
+				</If>
+			</If>
+
+			<!-- Level 58-60 - 1.3kk XP/H -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 60">
 				<If Condition="not IsOnMap(401)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(72)">
-						<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
+					<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+				</If>
+				<!-- From Entrax -->
+				<ExGather DiscoverUnknowns="true" Loops="1">
+					<GatherObjects>
+						<GatherObject>Mature Tree</GatherObject>
+					</GatherObjects>
+					<Items>
+						<GatherItem Name="Birch Log"/>
+						<GatherItem Name="Birch Sap"/>
+					</Items>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Leaf Turn" TimesToCast="1" />
+					</GatheringSkillOrder>
+					<GatherSpots>
+						<IndirectApproachGatherSpot ApproachLocation="124.2828, -135.0074, 664.0291" NodeLocation="125.2828, -135, 660.5291" ReturnToApproachLocation="False"/>
+						<IndirectApproachGatherSpot ApproachLocation="239.0889, -147.8377, 562.1637" NodeLocation="240.5389, -147.8377, 560.1057" ReturnToApproachLocation="False"/>
+						<IndirectApproachGatherSpot ApproachLocation="207.4956, -147.8377, 597.161" NodeLocation="206.2956, -147.8377, 599.861" ReturnToApproachLocation="False"/>
+						<IndirectApproachGatherSpot ApproachLocation="81.27682, -146.5234, 640.6451" NodeLocation="73.65515, -145.5559, 640.3448" ReturnToApproachLocation="False"/>
+						<IndirectApproachGatherSpot ApproachLocation="80.38401, -146.5234, 580.8955" NodeLocation="78.89505, -145.5175, 580.6633" ReturnToApproachLocation="False"/>
+						<IndirectApproachGatherSpot ApproachLocation="133.8673, -147.8377, 571.5581" NodeLocation="136.0294, -147.8377, 576.7831" ReturnToApproachLocation="False"/>
+						<IndirectApproachGatherSpot ApproachLocation="100.6749, -147.8656, 505.4717" NodeLocation="100.5335, -147.8377, 502.2275" ReturnToApproachLocation="False"/>
+						<IndirectApproachGatherSpot ApproachLocation="159.7419, -147.8377, 458.0388" NodeLocation="159.2674, -147.0208, 455.2348" ReturnToApproachLocation="False"/>
+						<IndirectApproachGatherSpot ApproachLocation="200.0888, -147.8377, 469.9167" NodeLocation="202.3888, -147.0208, 469.2167" ReturnToApproachLocation="False"/>
+						<IndirectApproachGatherSpot ApproachLocation="309.7932, -118.2533, 530.2704" NodeLocation="310.146, -118.5, 530.895" ReturnToApproachLocation="False"/>
+					</GatherSpots>
+					<HotSpots>
+						<HotSpot Radius="65" XYZ="117.249428, -137.9418, 613.707947"/>
+						<HotSpot Radius="40" XYZ="100.5221, -137.9418, 504.220642"/>
+						<HotSpot Radius="80" XYZ="218.774689, -124.9265, 500.0145"/>
+						<HotSpot Radius="60" XYZ="294.9306, -111.2702, 521.9253"/>
+					</HotSpots>
+				</ExGather>
+			</While>
+			
+			<!-- [Pickup Quest] -->
+			
+			<!-- Seeds Know No Borders -->
+			<If Condition="not IsQuestCompleted(67588)">
+				<If Condition="not HasQuest(67588)">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
 					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
-						<Travel To="401" />
+					<NoCombatMoveTo Name="Mujih Mewrilah" XYZ="-84.45868, 8.05915, 37.12512" />
+					<If Condition="IsQuestAcceptQualified(67588)">
+						<PickupQuest NpcId="1013240" QuestId="67588" XYZ="-84.45868, 8.05915, 37.12512" />
 					</If>
 				</If>
-				<NoCombatMoveTo Name="Farming Area" XYZ="138.6298, -147.8377, 450.6087" />
-				<Dismount />
-				<WaitTimer WaitTime="3" />
-				<RunCode Name="Stealth" />
-				<WaitTimer WaitTime="3" />
-				<RunCode Name="DisableMount" />
-				<Gather Loops="1">
-					<GatherObject>Mature Tree</GatherObject>
-					<HotSpots>
-						<HotSpot Radius="90" XYZ="138.6298, -147.8377, 450.6087" name="Mature Trees" />
-						<HotSpot Radius="5" XYZ="151.7816, -147.8377, 464.445" name="Safe Spot" />
-					</HotSpots>
-					<Slot>3</Slot> <!-- Birch Sap -->
-					<GatheringSkillOrder>
-						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
-					</GatheringSkillOrder>
-				</Gather>
-				<RunCode Name="EnableMount" />
-				<WaitTimer WaitTime="3" />
-				<NoCombatMoveTo Name="Farming Area" XYZ="65.69433, -144.075, 576.7248" />
-				<Dismount />
-				<WaitTimer WaitTime="3" />
-				<RunCode Name="Stealth" />
-				<WaitTimer WaitTime="3" />
-				<RunCode Name="DisableMount" />
-				<Gather Loops="1">
-					<GatherObject>Mature Tree</GatherObject>
-					<HotSpots>
-						<HotSpot Radius="90" XYZ="79.40888, -146.5234, 584.2872" name="Mature Trees" />
-					</HotSpots>
-					<Slot>3</Slot> <!-- Birch Sap -->
-					<GatheringSkillOrder>
-						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
-					</GatheringSkillOrder>
-				</Gather>
-				<RunCode Name="EnableMount" />
-				<WaitTimer WaitTime="3" />
-				<NoCombatMoveTo Name="Farming Area" XYZ="315.2445, -125.2895, 589.0366" />
-				<Dismount />
-				<WaitTimer WaitTime="3" />
-				<RunCode Name="Stealth" />
-				<WaitTimer WaitTime="3" />
-				<RunCode Name="DisableMount" />
-				<Gather Loops="1">
-					<GatherObject>Mature Tree</GatherObject>
-					<HotSpots>
-						<HotSpot Radius="90" XYZ="315.2445, -125.2895, 589.0366" name="Mature Trees" />
-						<HotSpot Radius="5" XYZ="288.5976, -124.0199, 601.2742" name="Safe Spot" />
-					</HotSpots>
-					<Slot>3</Slot> <!-- Birch Sap -->
-					<GatheringSkillOrder>
-						<GatheringSkill SpellName="Ageless Words" TimesToCast="1" />
-					</GatheringSkillOrder>
-				</Gather>
-				<RunCode Name="EnableMount" />
-				<WaitTimer WaitTime="3" />
-			</While>
+				<!-- [Complete Quest] -->
 
+				<If Condition="HasQuest(67588)">
+					<If Condition="GetQuestStep(67588) == 1">
+						<If Condition="not IsOnMap(401)">
+							<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+						</If>
+						<NoCombatMoveTo Name="Basyle" XYZ="-670.8019, -127.9738, 639.9481" />						
+						<TalkTo QuestId="67588" StepId="1" NpcId="1013241" XYZ="-670.8019, -127.9738, 639.9481" />
+					</If>	
+					<If Condition="GetQuestStep(67588) == 2">
+						<If Condition="not IsOnMap(133)">
+							<GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/> <!-- Old Gridania -->
+						</If>
+						<NoCombatMoveTo Name="Fufucha" XYZ="-232.9017, 6.263501, -169.7613"/>
+						<TalkTo QuestId="67588" StepId="2" NpcId="1000815" XYZ="-232.9017, 6.263501, -169.7613"/>	
+					</If>
+					<If Condition="GetQuestStep(67588) == 3">												
+						<If Condition="not HqHasAtLeast(12900,3)">
+							<If Condition="not IsOnMap(397)">
+								<GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/> <!-- Falcon's Nest -->
+							</If>
+							<NoCombatMoveTo Name="Chysahl greens" XYZ="-693.0293, 99.73334, -589.5204"/>
+							<Dismount />
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="Stealth" />
+							<WaitTimer WaitTime="3" />
+							<ExGather While="not HqHasAtLeast(12900,3)" CordialType="Auto" CordialTime="Auto" DiscoverUnknowns="True" GatherIncrease="Yield">
+								<GatherObjects>
+									<GatherObject>Unspoiled Lush Vegetation Patch</GatherObject>
+								</GatherObjects>
+								<ItemNames>
+									<ItemName>Chysahl Greens</ItemName>
+								</ItemNames>
+								<GatherRotation>Unspoiled</GatherRotation>
+								<HotSpots>
+									<HotSpot Radius="90" XYZ="-684.4172, 130.6977, -600.1046"/>
+								</HotSpots>
+							</ExGather>
+						</If>						
+						<If Condition="HqHasAtLeast(12900,3)">
+							<If Condition="not IsOnMap(419)">
+								<GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/> <!-- The Pillars -->
+							</If>
+							<NoCombatMoveTo Name="Martineau" XYZ="-136.9193, 14.55313, -150.3167" />
+							<TurnIn ItemId="12900" RequiresHq="true" QuestId="67588" StepId="3" NpcId="1013245" InteractDistance="2.0" XYZ="-136.9193, 14.55313, -150.3167" />
+						</If>						
+					</If>
+					<If Condition="GetQuestStep(67588) == 4">
+						<If Condition="not IsOnMap(401)">
+							<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+						</If>
+						<NoCombatMoveTo Name="Basyle" XYZ="-670.8019, -127.9738, 639.9481" />	
+						<TurnIn ItemId="12900" RequiresHq="true" QuestId="67588" StepId="4" NpcId="1013241" InteractDistance="2.0" XYZ="-670.8019, -127.9738, 639.9481" />
+					</If>
+					<If Condition="GetQuestStep(67588) == 5">
+						<If Condition="not IsOnMap(401)">
+							<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+						</If>
+						<NoCombatMoveTo Name="Basyle" XYZ="-670.8019, -127.9738, 639.9481" />						
+						<HandOver ItemId="2001665,2001666" QuestId="67588" StepId="5" NpcId="1013241" XYZ="-670.8019, -127.9738, 639.9481" />
+					</If>
+					<If Condition="GetQuestStep(67588) == 6">
+						<If Condition="not IsOnMap(401)">
+							<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+						</If>
+						<NoCombatMoveTo Name="Basyle" XYZ="-670.8019, -127.9738, 639.9481" />						
+						<TalkTo QuestId="67588" StepId="6" NpcId="1013241" XYZ="-670.8019, -127.9738, 639.9481" />
+					</If>
+					<If Condition="GetQuestStep(67588) == 7">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Mujih Mewrilah" XYZ="-84.45868, 8.05915, 37.12512" />
+						<TalkTo QuestId="67588" StepId="7" NpcId="1013240" XYZ="-84.45868, 8.05915, 37.12512" />
+					</If>
+					
+				<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67588) == 255">
+						<If Condition="not IsOnMap(133)">
+							<GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/> <!-- Old Gridania -->
+						</If>
+						<NoCombatMoveTo Name="Fufucha" XYZ="-232.9017, 6.263501, -169.7613"/>
+						<TurnIn RewardSlot="1" QuestId="67588" NpcId="1000815" XYZ="-232.9017, 6.263501, -169.7613"/>
+						<LogMessage Message="Level 60 - Seeds Know No Borders - Completed."/>
+					</If>
+				</If>
+			</If>			
 		</If>
 
 		<If Condition="Core.Player.ClassLevel == 60">
@@ -1477,7 +1975,6 @@
 				</If>
 			</If>
 		</If>
-
 	</Order>
 	<GrindAreas>
 	</GrindAreas>
