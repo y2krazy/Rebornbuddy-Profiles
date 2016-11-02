@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 ###############################################
-# Profile: [O] [FSH] Leveling 1-60            #
+# Profile: [O] [FSH] Leveling 1-60  + 1-60 Quest          #
 ###############################################
 # Author: y2krazy                             #
 #         (kagamihiragi17 for 1-50 data)      #
@@ -10,7 +10,7 @@
 ###############################################
 # Required Level: 1                           #
 ###############################################
-# Required Teleport Locations:                #
+# Required Teleport Locations:                    #
 # 	Aleport                                   #
 # 	Anyx Trine or Tailfeather                 #
 # 	Camp Bluefog or Ceruleum Processing Plant #
@@ -24,15 +24,15 @@
 # 	Moghome or Zenith                         #
 # 	Swiftperch                                #
 ###############################################
-# Required User Interaction:                  #
-# 	None                                      #
+# Required User Interaction:                      #
+# 	                                          #
 ###############################################
-# Required Setup:                             #
+# Required Setup:                                 #
 # 	Fill out User Configuration below.        #
 # 	Level 1+ Fisher                           #
 # 	Set Fisher Gear Set below.                #
 ###############################################
-# Item Drops:                                 #
+# Item Drops:                                     #
 # 	Tons of fish.                             #
 ###############################################
 -->
@@ -74,11 +74,112 @@
 				if (!Core.Me.HasAura(47) && Actionmanager.CurrentActions.TryGetValue(298, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(298, Core.Me);
 		]]>
 		</CodeChunk>
+		<CodeChunk Name="FSHWeapon">
+			<![CDATA[ 
+				BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+				
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+				{
+					if(slot.RawItemId == 2571)
+					{
+						slot.Move(EquipSlot);
+					}
+				}
+		]]>
+		</CodeChunk>
 	</CodeChunks>
 	<Order>
 
 		<RunCode Name="Fisher" />
-		<WaitTimer WaitTime="3" />
+		<WaitTimer WaitTime="3" /> 
+		
+		<!-- [Pickup Quest] -->
+
+		<!-- So You Want To Be A Fisher -->
+		<If Condition="not IsQuestCompleted(66670)">
+			<If Condition="not HasQuest(66670)">
+				<If Condition="not IsOnMap(129)">
+					<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+				</If>
+				<NoCombatMoveTo Name="N'nmulika" XYZ="-166.7659, 4.549664, 150.0419" />
+				<If Condition="IsQuestAcceptQualified(66670)">
+					<TalkToPlus NpcId="1000859" QuestId="66670" XYZ="-166.7659, 4.549664, 150.0419" />
+				</If>
+			</If>
+		</If>
+				
+		<!-- [Pickup Quest] -->
+
+		<!-- Way of the Fisher -->
+		<If Condition="not IsQuestCompleted(66643)">
+			<If Condition="not HasQuest(66643)">
+				<If Condition="not IsOnMap(129)">
+					<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+				</If>
+				<NoCombatMoveTo Name="N'nmulika" XYZ="-166.7659, 4.549664, 150.0419" />
+				<If Condition="IsQuestAcceptQualified(66643)">
+					<PickupQuest NpcId="1000859" QuestId="66643" XYZ="-166.7659, 4.549664, 150.0419" />
+				</If>
+			</If>
+			<If Condition="HasQuest(66643)">
+			
+				<!-- [Complete Quest] -->							
+							
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(66643) == 255">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />					
+					<TurnInPlus QuestId="66643" StepId="255" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />					
+				</If>
+				<While Condition="ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand].RawItemId != 2571">
+					<RunCode Name="FSHWeapon"/>
+					<WaitTimer WaitTime="3"/>
+				</While>
+			</If>
+		</If>
+		
+		<!-- [Pickup Quest] -->
+
+		<!-- My First Fishing Rod -->
+		<If Condition="not IsQuestCompleted(66644)">
+			<If Condition="not HasQuest(66644)">
+				<If Condition="not IsOnMap(129)">
+					<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+				</If>
+				<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+				<If Condition="IsQuestAcceptQualified(66644)">
+					<PickupQuest NpcId="1000857" QuestId="66644" XYZ="-165.2705, 5.250006, 164.2938" />
+				</If>
+			</If>
+
+			<!-- [Complete Quest] -->
+
+			<If Condition="HasQuest(66644)">							
+				
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(66644) == 255">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<If Condition="not NqHasAtLeast(4870,5)">						
+						<Fish Mooch="1" Bait="Lugworm" MinFish="5" MaxFish="5" Condition="not NqHasAtLeast(4870,5)">
+							<FishSpots>
+								<FishSpot XYZ="-182.1713, 1.999995, 198.2991" Heading="1.16" />
+							</FishSpots>
+						</Fish>						
+					</If>
+					<If Condition="NqHasAtLeast(4870,5)">
+						<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+						<TurnIn ItemId="4870" QuestId="66644" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+			</If>
+		</If>
+		
 		<If Condition="Core.Me.CurrentJob == ClassJobType.Fisher">
 
 			<!-- Level 1-10 -->
@@ -160,6 +261,104 @@
 					</Fish>
 				</While>
 			</While>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- Bigger Fish To Fry -->
+			<If Condition="not IsQuestCompleted(66645)">
+				<If Condition="not HasQuest(66645)">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+					<If Condition="IsQuestAcceptQualified(66645)">
+						<PickupQuest NpcId="1000857" QuestId="66645" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(66645)">
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(66645) == 255">
+						<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<If Condition="not NqHasAtLeast(4874,3)">
+							<!-- Pill Bug - 2587 -->
+
+							<If Condition="not HasAtLeast(2587,99)">
+								<NoCombatMoveTo Name="Syneyhil" XYZ="-246.6011, 16.2, 37.12512" />
+								<BuyItem ItemId="2587" ItemCount="99" NpcId="1003254" XYZ="-246.6011, 16.2, 37.12512" />
+							</If>
+							<Fish Mooch="0" Bait="Pill Bug" MinFish="10" MaxFish="15" Condition="not NqHasAtLeast(4874,3)">
+								<FishSpots>
+									<FishSpot XYZ="-182.1713, 1.999995, 198.2991" Heading="1.16" />
+								</FishSpots>
+							</Fish>						
+						</If>
+						<If Condition="NqHasAtLeast(4874,3)">
+							<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+							<TurnIn ItemId="4874" QuestId="66645" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />							
+						</If>
+					</If>
+				</If>
+			</If>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- The Princess and the Fish -->
+			<If Condition="not IsQuestCompleted(66646)">
+				<If Condition="not HasQuest(66646)">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+					<If Condition="IsQuestAcceptQualified(66646)">
+						<PickupQuest NpcId="1000857" QuestId="66646" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(66646)">									
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(66646) == 255">
+						<If Condition="not HqHasAtLeast(4930,1)">
+						
+							<!-- Moth Pupa - 2586 -->
+							<If Condition="not HasAtLeast(2586,90)">
+								<If Condition="not IsOnMap(129)">
+									<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+								</If>
+								<NoCombatMoveTo Name="Syneyhil" XYZ="-246.6011, 16.2, 37.12512" />
+								<BuyItem ItemId="2586" ItemCount="99" NpcId="1003254" XYZ="-246.6011, 16.2, 37.12512" />
+							</If>
+							<If Condition="not IsOnMap(134)">
+								<GetTo ZoneId="134" XYZ="222.3688, 113.1, -256.9429"/> <!-- Summerford Farms -->
+							</If>
+							<Fish Mooch="0" Bait="Moth Pupa" MinFish="15" MaxFish="20" Condition="not HqHasAtLeast(4930,1)">
+								<FishSpots> 
+									<FishSpot XYZ="-38.5459, 39.96041, 68.37025" Heading="5.13" />
+									<FishSpot XYZ="-58.01261, 38.42447, 71.26994" Heading="5.13" />
+									<FishSpot XYZ="-69.02532, 38.08934, 77.13954" Heading="5.13" />
+								</FishSpots>
+							</Fish>						
+						</If>
+						<If Condition="HqHasAtLeast(4930,1)">
+							<If Condition="not IsOnMap(129)">
+								<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+							</If>
+							<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />							
+							<TurnIn ItemId="4930" RequiresHq="true" QuestId="66646" StepId="255" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />
+						</If>
+					</If>
+				</If>
+			</If>
 
 			<!-- Level 10-15 -->
 
@@ -193,7 +392,7 @@
 						<Travel To="138" />
 					</If>
 				</If>
-				<NoCombatMoveTo Name="Fishing Area" XYZ="653.0214, 5.642591, 561.8297" />
+				<NoCombatMoveTo Name="Fishing Area" XYZ="645.0261, 5.639609, 553.5775" />
 				<While Condition="IsTimeBetween(0,8)">
 					<Fish Mooch="1" Bait="Goby Ball" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
 						<FishSpots>
@@ -245,7 +444,89 @@
 					</Fish>
 				</While>
 			</While>
+			
+			<!-- [Pickup Quest] -->
 
+			<!-- Every Fish Has a Silver Lining -->
+			<If Condition="not IsQuestCompleted(66647)">
+				<If Condition="not HasQuest(66647)">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+					<If Condition="IsQuestAcceptQualified(66647)">
+						<PickupQuest NpcId="1000857" QuestId="66647" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(66647)">
+					<If Condition="GetQuestStep(66647) == 1">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Chuchuroon" XYZ="-185.8396, 4, 169.604" />
+						<TalkTo QuestId="66647" StepId="1" NpcId="1003516" XYZ="-185.8396, 4, 169.604" />
+					</If>	
+					<If Condition="GetQuestStep(66647) == 2">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />						
+						<TalkTo QuestId="66647" StepId="2" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+					<If Condition="GetQuestStep(66647) == 3">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Wawalago" XYZ="-156.6837, 2.999992, 204.5302" />
+						<TalkTo QuestId="66647" StepId="3" NpcId="1000856" XYZ="-155.108, 4.070978, 202.7161" />
+					</If>
+					<If Condition="GetQuestStep(66647) == 4">
+						<While Condition="not NqHasAtLeast(4882,5)"> <!-- Navigator's Dagger -->
+							<If Condition="not IsOnMap(138)">
+								<GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/> <!-- Aleport -->
+							</If>
+							<!-- Rat Tail -->
+							<If Condition="not HasAtLeast(2591,10)">	
+								<NoCombatMoveTo Name="Wawalago" XYZ="240.2533, -24.99897, 231.4336" />
+								<BuyItem ItemId="2591" ItemCount="25" DialogOption="1" NpcId="1003264" XYZ="240.2533, -24.99897, 231.4336" />
+							</If>
+							<NoCombatMoveTo Name="Farm Area" XYZ="488.4257, 11.5766, 344.7761" />
+							<RunCode Name="Dismount" />
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="Stealth" />
+							<WaitTimer WaitTime="3" />
+							<RunCode Name="DisableMount" />
+							<Fish Mooch="0" Bait="Rat Tail" MinFish="15" MaxFish="25" ShuffleFishSpots="True" Condition="not NqHasAtLeast(4882,5)"> <!-- Navigator's Dagger -->
+								<FishSpots> 
+									<FishSpot XYZ="454.892, 11.20673, 447.12" Heading="1.12" />
+									<FishSpot XYZ="436.8279, 12.02531, 439.6364" Heading="4.85" />
+								</FishSpots>
+							</Fish>
+						</While>
+						<RunCode Name="EnableMount" />
+						<If Condition="NqHasAtLeast(4882,5)"> <!-- Navigator's Dagger -->
+							<If Condition="not IsOnMap(129)">
+								<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+							</If>
+							<NoCombatMoveTo Name="Chuchuroon" XYZ="-185.8396, 4, 169.604" />							
+							<HandOver ItemId="4882" QuestId="66647" StepId="4" NpcId="1003516" XYZ="-185.8396, 4, 169.604" />
+						</If>
+					</If>
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(66647) == 255">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+						<TurnIn QuestId="66647" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+			</If>
+			
 			<!-- Level 15-20 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 20">
@@ -332,6 +613,54 @@
 				</While>
 			</While>
 
+			<!-- [Pickup Quest] -->
+
+			<!-- A Fish in Hot Water -->
+			<If Condition="not IsQuestCompleted(66648)">
+				<If Condition="not HasQuest(66648)">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+					<If Condition="IsQuestAcceptQualified(66648)">
+						<PickupQuest NpcId="1000857" QuestId="66648" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(66648)">								
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(66648) == 255">
+						<While Condition="not NqHasAtLeast(4955,5)"> <!-- Warmwater Trout -->
+							<If Condition="not IsOnMap(139)">
+								<GetTo ZoneId="139" XYZ="-462.0732, -0.8506329, 271.5736"/> <!-- Camp Bronze Lake West -->
+							</If>
+							<!-- Crow Fly -->
+							<If Condition="not HasAtLeast(2614,1)">
+								<NoCombatMoveTo Name="Junkmonger" XYZ="-329.6712, -2.533815, 136.2782" />
+								<BuyItem ItemId="2614" ItemCount="1" DialogOption="1" NpcId="1003267" XYZ="-329.6712, -2.533815, 136.2782" />
+							</If>
+							<Fish Mooch="0" Bait="Crow Fly" MinFish="5" MaxFish="10" ShuffleFishSpots="True" Condition="not NqHasAtLeast(4955,5)"> <!-- Warmwater Trout -->
+								<FishSpots> 
+									<FishSpot XYZ="-309.3027, -1.598735, 156.1043" Heading="1.05" />
+									<FishSpot XYZ="-366.208, -1.965184, 127.6567" Heading="4.54" />
+								</FishSpots>
+							</Fish>
+						</While>						
+						<If Condition="NqHasAtLeast(4955,5)"> <!-- Warmwater Trout -->
+							<If Condition="not IsOnMap(129)">
+								<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+							</If>
+							<NoCombatMoveTo Name="Chuchuroon" XYZ="-185.8396, 4, 169.604" />
+							<TurnIn ItemId="4955" QuestId="66648" NpcId="1003516" XYZ="-185.8396, 4, 169.604" />
+						</If>						
+					</If>
+				</If>
+			</If>
+			
 			<!-- Level 20-27 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 27">
@@ -410,6 +739,57 @@
 					</Fish>
 				</While>
 			</While>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- A Game Of Cat And Fish -->
+			<If Condition="not IsQuestCompleted(66649)">
+				<If Condition="not HasQuest(66649)">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+					<If Condition="IsQuestAcceptQualified(66649)">
+						<PickupQuest NpcId="1000857" QuestId="66649" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(66649)">									
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(66649) == 255">
+						<While Condition="not NqHasAtLeast(4963,1)"> <!-- Shadow Catfish -->							
+							<!-- Moth Pupa - 2586 -->
+							<If Condition="not HasAtLeast(2586,10)">
+								<If Condition="not IsOnMap(129)">
+									<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+								</If>
+								<NoCombatMoveTo Name="Syneyhil" XYZ="-246.6011, 16.2, 37.12512" />
+								<BuyItem ItemId="2586" ItemCount="50" NpcId="1003254" XYZ="-246.6011, 16.2, 37.12512" />
+							</If>
+							<If Condition="not IsOnMap(154)">
+								<GetTo ZoneId="154" XYZ="-43.92079, -40.88041, 241.8634"/> <!-- Fallgourd Float -->
+							</If>
+							<Fish Mooch="1" Bait="Moth Pupa" MinFish="10" MaxFish="15" ShuffleFishSpots="True" Condition="not NqHasAtLeast(4963,1)"> <!-- Shadow Catfish -->
+								<FishSpots> 
+									<FishSpot XYZ="-36.05458, -39.68947, 205.9507" Heading="4.44" />
+									<FishSpot XYZ="-10.98111, -40.95001, 197.69" Heading="1.32" />
+								</FishSpots>
+							</Fish>
+						</While>
+						<If Condition="NqHasAtLeast(4963,1)"> <!-- Shadow Catfish -->
+							<If Condition="not IsOnMap(129)">
+								<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+							</If>
+							<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+							<TurnIn ItemId="4963" QuestId="66649" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />
+						</If>
+					</If>
+				</If>
+			</If>
 
 			<!-- Level 27-30 -->
 
@@ -499,6 +879,78 @@
 					</Fish>
 				</While>
 			</While>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- Like Fish Passing in the Night -->
+			<If Condition="not IsQuestCompleted(66650)">
+				<If Condition="not HasQuest(66650)">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+					<If Condition="IsQuestAcceptQualified(66650)">
+						<PickupQuest NpcId="1000857" QuestId="66650" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(66650)">
+					<If Condition="GetQuestStep(66650) == 1">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Tocktix" XYZ="-184.7715, 4, 169.2683" />
+						<TalkTo QuestId="66650" StepId="1" NpcId="1003628" XYZ="-184.7715, 4, 169.2683" />
+					</If>	
+					<If Condition="GetQuestStep(66650) == 2">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Wawalago" XYZ="-157.0917, 2.975464, 201.6174" />
+						<TalkTo QuestId="66650" StepId="2" NpcId="1000856" XYZ="-155.108, 4.070978, 202.7161" />
+					</If>	
+					<If Condition="GetQuestStep(66650) == 3">
+						<While Condition="not NqHasAtLeast(4898,10)"> <!-- Fullmoon Sardine -->
+							<If Condition="not IsOnMap(137)">
+								<GetTo ZoneId="137" XYZ="493.9612, 17.39324, 463.9441"/> <!-- Costa del Sol -->
+							</If>
+							<!-- Spoon Worm - 2596 -->
+							<If Condition="not HasAtLeast(2596,10)">								
+								<NoCombatMoveTo Name="Merchant Mender" XYZ="460.3798, 17.12659, 486.5948" />
+								<BuyItem ItemId="2596" ItemCount="50" DialogOption="1" NpcId="1003261" XYZ="460.3798, 17.12659, 486.5948" />
+							</If>
+							<If Condition="not IsTimeBetween(18,6)">
+								<LogMessage Message="Waiting until 18pm for fishing"/>
+								<WaitWhile Condition="not IsTimeBetween(18,6)" />
+							</If>
+							<Fish Mooch="0" Bait="Spoon Worm" MinFish="10" MaxFish="15" ShuffleFishSpots="True" Condition="not NqHasAtLeast(4898,10) and IsTimeBetween(18,6)"> <!-- Fullmoon Sardine -->
+								<FishSpots> 
+									<FishSpot XYZ="568.5176, 20.45889, 497.8033" Heading="1.43" />
+									<FishSpot XYZ="626.373, 23.93624, 459.1942" Heading="1.47" />
+								</FishSpots>
+							</Fish>
+						</While>
+						<If Condition="NqHasAtLeast(4898,10)"> <!-- Fullmoon Sardine -->
+							<If Condition="not IsOnMap(129)">
+								<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+							</If>
+							<NoCombatMoveTo Name="Tocktix" XYZ="-184.7715, 4, 169.2683" />
+							<HandOver ItemId="4898" QuestId="66650" StepId="3" NpcId="1003628" XYZ="-184.7715, 4, 169.2683" />
+						</If>
+					</If>
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(66650) == 255">						
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+						<TurnIn QuestId="66650" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+			</If>
 
 			<!-- Level 30-32 -->
 
@@ -690,6 +1142,61 @@
 				</While>
 			</While>
 
+			<!-- [Pickup Quest] -->
+
+			<!-- A Fish Out Of Water -->
+			<If Condition="not IsQuestCompleted(66651)">
+				<If Condition="not HasQuest(66651)">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+					<If Condition="IsQuestAcceptQualified(66651)">
+						<PickupQuest NpcId="1000857" QuestId="66651" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(66651)">
+					<If Condition="GetQuestStep(66651) == 1">
+						<If Condition="not IsOnMap(146)">
+							<GetTo ZoneId="146" XYZ="-321.7947, 8.260907, 408.605"/> <!-- Forgotten Springs -->
+						</If>
+						<NoCombatMoveTo Name="U'goromuli" XYZ="-300.1908, 7.278503, 410.9406" />
+						<TalkTo QuestId="66651" StepId="1" NpcId="1004962" XYZ="-300.1908, 7.278503, 410.9406" />
+					</If>
+					
+					<!-- [TurnIn Quest] -->
+					
+					<If Condition="GetQuestStep(66651) == 255">
+						<While Condition="not NqHasAtLeast(5033,1)"> <!-- Desert Catfish -->
+							<If Condition="not IsOnMap(146)">
+								<GetTo ZoneId="146" XYZ="-321.7947, 8.260907, 408.605"/> <!-- Forgotten Springs -->
+							</If>
+							<!-- Sand Leech - 2600 -->
+							<If Condition="not HasAtLeast(2600,10)">								
+								<MoveTo Name="Merchant &amp; Mender" XYZ="-278.7976, 8, 378.8662" />
+								<BuyItem ItemId="2600" ItemCount="50" DialogOption="1" InteractDistance="3.0" NpcId="1004430" XYZ="-278.7976, 8, 378.8662" />
+							</If>							
+							<Fish Mooch="0" Bait="Sand Leech" MinFish="10" MaxFish="15" ShuffleFishSpots="True" Condition="not NqHasAtLeast(5033,1)"> <!-- Desert Catfish -->
+								<FishSpots> 
+									<FishSpot XYZ="197.901, 1.393917, 777.8427" Heading="2.61" />
+									<FishSpot XYZ="179.2327, -1.87568, 725.4612" Heading="1.41" />
+								</FishSpots>
+							</Fish>
+						</While>
+						<If Condition="NqHasAtLeast(5033,1)"> <!-- Desert Catfish -->
+							<If Condition="not IsOnMap(129)">
+								<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+							</If>
+							<NoCombatMoveTo Name="Tocktix" XYZ="-184.7715, 4, 169.2683" />
+							<TurnIn ItemId="5033" QuestId="66651" StepId="255" NpcId="1003628" XYZ="-184.7715, 4, 169.2683" />
+						</If>
+					</If>
+				</If>
+			</If>
+			
 			<!-- Level 35-40 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 40">
@@ -795,6 +1302,64 @@
 					</Fish>
 				</While>
 			</While>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- Fishing In The Rain -->
+			<If Condition="not IsQuestCompleted(66652)">
+				<If Condition="not HasQuest(66652)">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+					<If Condition="IsQuestAcceptQualified(66652)">
+						<PickupQuest NpcId="1000857" QuestId="66652" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(66652)">
+					<If Condition="GetQuestStep(66652) == 1">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Sybell" XYZ="-171.8929, 4, 175.3108" />
+						<TalkTo QuestId="66652" StepId="1" NpcId="1003629" XYZ="-171.8929, 4, 175.3108" />
+					</If>
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(66652) == 255">
+						<While Condition="not NqHasAtLeast(4905,5)"> <!-- Raincaller -->							
+							<!-- Stem Borer - 2601 -->
+							<If Condition="not HasAtLeast(2601,10)">	
+								<If Condition="not IsOnMap(139)">
+									<GetTo ZoneId="139" XYZ="426.6154, 4.171807, 90.07837"/> <!-- Camp Bronze Lake East-->
+								</If>
+								<MoveTo Name="Merchant &amp; Mender" XYZ="427.2678, 4.098778, 115.2819" />
+								<BuyItem ItemId="2601" ItemCount="99" DialogOption="1" NpcId="1003268" XYZ="427.2678, 4.098778, 115.2819" />
+							</If>
+							<If Condition="not IsOnMap(132)">
+								<GetTo ZoneId="132" XYZ="29.56105, 1.691584, 33.32197"/> <!-- New Gridania -->
+							</If>
+							<Fish Mooch="0" Weather="Rain" Bait="Stem Borer" MinFish="10" MaxFish="15" ShuffleFishSpots="True" Condition="not NqHasAtLeast(4905,5)"> <!-- Raincaller -->
+								<FishSpots> 
+									<FishSpot XYZ="70.09777, -7.775955, 115.4598" Heading="6.15" />
+									<FishSpot XYZ="116.3833, -15.31266, 149.7385" Heading="5.40" />
+								</FishSpots>
+							</Fish>
+						</While>
+						<If Condition="NqHasAtLeast(4905,5)"> <!-- Raincaller -->
+							<If Condition="not IsOnMap(129)">
+								<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+							</If>
+							<NoCombatMoveTo Name="Sybell" XYZ="-171.8929, 4, 175.3108" />
+							<TurnIn ItemId="4905" QuestId="66652" NpcId="1003629" XYZ="-171.8929, 4, 175.3108" />
+						</If>						
+					</If>
+				</If>
+			</If>
 
 			<!-- Level 40-45 -->
 
@@ -841,7 +1406,7 @@
 					<Fish Mooch="1" Bait="Stem Borer" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
 						<FishSpots>
 							<FishSpot XYZ="416.9414, 5.382231, 149.479" Heading="5.979445" Sit="&Sit;" />
-							<FishSpot XYZ="392.5663, -7.872552, 214.0463" Heading="0.8814554" Sit="&Sit;" />
+							<FishSpot XYZ="409.0141, -4.83112, 178.4721" Heading="3.88" Sit="&Sit;" />
 							<FishSpot XYZ="417.6696, 1.095959, 165.9138" Heading="4.178374" Sit="&Sit;" />
 						</FishSpots>
 					</Fish>
@@ -885,6 +1450,68 @@
 				</While>
 			</While>
 
+			<!-- [Pickup Quest] -->
+
+			<!-- I Believe Fish Can Fly -->
+			<If Condition="not IsQuestCompleted(66653)">
+				<If Condition="not HasQuest(66653)">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+					<If Condition="IsQuestAcceptQualified(66653)">
+						<PickupQuest NpcId="1000857" QuestId="66653" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(66653)">
+					<If Condition="GetQuestStep(66653) == 1">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Sybell" XYZ="-171.8929, 4, 175.3108" />
+						<TalkTo QuestId="66653" StepId="1" NpcId="1003629" XYZ="-171.8929, 4, 175.3108" />
+					</If>
+					<If Condition="GetQuestStep(66653) == 2">
+						<If Condition="not IsOnMap(155)">
+							<GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/> <!-- Camp Dragonhead -->
+						</If>
+						<NoCombatMoveTo Name="Firminnant" XYZ="-387.625, 208.5254, -257.5266" />
+						<TalkTo QuestId="66653" StepId="2" NpcId="1006804" XYZ="-387.625, 208.5254, -257.5266" />
+					</If>		
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(66653) == 255">
+						<While Condition="not NqHasAtLeast(5040,5)"> <!-- Cloud Cutter -->	
+							<If Condition="not IsOnMap(155)">
+								<GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/> <!-- Camp Dragonhead -->
+							</If>
+							<!--  Hoverworm - 2605 -->
+							<If Condition="not HasAtLeast(2605,10)">									
+								<MoveTo Name="Merchant &amp; Mender" XYZ="-410.6966, 210.8949, -276.1425" />
+								<BuyItem ItemId="2605" ItemCount="50" DialogOption="1" NpcId="1006800" XYZ="-410.6966, 210.8949, -276.1425" />
+							</If>							
+							<Fish Mooch="0" Bait="Hoverworm" MinFish="10" MaxFish="15" ShuffleFishSpots="True" Condition="not NqHasAtLeast(5040,5)"> <!-- Cloud Cutter -->
+								<FishSpots> 
+									<FishSpot XYZ="-373.9706, 198.4853, -320.7455" Heading="2.713604" />
+									<FishSpot XYZ="-404.2428, 191.7843, -334.0057" Heading="3.084312" />
+								</FishSpots>
+							</Fish>
+						</While>
+						<If Condition="NqHasAtLeast(5040,5)"> <!-- Cloud Cutter -->
+							<If Condition="not IsOnMap(129)">
+								<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+							</If>
+							<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+							<TurnIn ItemId="5040" QuestId="66653" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />
+						</If>
+					</If>
+				</If>
+			</If>
+			
 			<!-- Level 45-50 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 50">
@@ -976,7 +1603,123 @@
 					</Fish>
 				</While>
 			</While>
+			
+			<!-- [Pickup Quest] -->
 
+			<!-- So Long, and Thanks for All the Fish -->
+			<If Condition="not IsQuestCompleted(66654)">
+				<If Condition="not HasQuest(66654)">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+					<If Condition="IsQuestAcceptQualified(66654)">
+						<PickupQuest NpcId="1000857" QuestId="66654" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(66654)">
+					<If Condition="GetQuestStep(66654) == 1">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Sybell" XYZ="-171.8929, 4, 175.3108" />
+						<TalkTo QuestId="66654" StepId="1" NpcId="1003629" XYZ="-171.8929, 4, 175.3108" />
+					</If>
+					<If Condition="GetQuestStep(66654) == 2">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Chuchuroon" XYZ="-185.8396, 4, 169.604" />
+						<TalkTo InteractDistance="3.0" QuestId="66654" StepId="2" NpcId="1003516" XYZ="-185.8396, 4, 169.604" />
+					</If>
+					<If Condition="GetQuestStep(66654) == 3">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Chuchuroon" XYZ="-156.0899, 2.999992, 204.557" />
+						<TalkTo QuestId="66654" StepId="3" NpcId="1000856" XYZ="-155.108, 4.070978, 202.7161" />
+					</If>
+					<If Condition="GetQuestStep(66654) == 4">
+						<While Condition="not NqHasAtLeast(4917,1)"> <!-- Mazlaya Marlin -->
+							<!-- Rat Tail - 2591 -->
+							<If Condition="not HasAtLeast(2591,10)">	
+								<If Condition="not IsOnMap(138)">
+									<GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/> <!-- Aleport -->
+								</If>
+								<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="240.2533, -24.99897, 231.4336" />
+								<BuyItem ItemId="2591" ItemCount="50" DialogOption="1" NpcId="1003264" XYZ="240.2533, -24.99897, 231.4336" />
+							</If>
+							<If Condition="not IsOnMap(137)">
+								<GetTo ZoneId="137" XYZ="493.9612, 17.39324, 463.9441"/> <!-- Costa del Sol -->
+							</If>
+							<Fish Mooch="2" Bait="Rat Tail" MinFish="10" MaxFish="15" ShuffleFishSpots="True" Condition="not NqHasAtLeast(4917,1)"> <!-- Mazlaya Marlin -->
+								<FishSpots> 
+									<FishSpot XYZ="559.2889, 15.5846, 101.3109" Heading="2.519588" />
+									<FishSpot XYZ="557.1368, 15.5846, 105.8826" Heading="5.771746" />
+								</FishSpots>
+							</Fish>
+						</While>
+						<If Condition="NqHasAtLeast(4917,1)"> <!-- Mazlaya Marlin -->
+							<If Condition="not IsOnMap(129)">
+								<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+							</If>
+							<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+							<TurnIn ItemId="4917" QuestId="66654" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />
+						</If>
+					</If>
+
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(66654) == 255">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+						<TurnIn QuestId="66654" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+			</If>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- Plenty More Fish in the Sea -->
+			<If Condition="not IsQuestCompleted(67621)">
+				<If Condition="not HasQuest(67621)">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+					</If>
+					<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+					<If Condition="IsQuestAcceptQualified(67621)">
+						<PickupQuest NpcId="1000857" QuestId="67621" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67621)">
+					<If Condition="GetQuestStep(67621) == 1">						
+						<If Condition="not IsOnMap(128)">
+							<GetTo ZoneId="128" XYZ="-43.83308, 43.99126, -133.257"/> <!-- Limsa Lominsa Upper Decks -->
+						</If>
+						<NoCombatMoveTo Name="Ansaulme" XYZ="8.041443, 40.0004, 12.8938" />						
+						<HandOver ItemId="2001720" QuestId="67621" StepId="1" NpcId="1013251" XYZ="8.041443, 40.0004, 12.8938" />
+					</If>
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67621) == 255">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Ansaulme" XYZ="100.3585, 15.00001, 24.3075" />
+						<TurnIn QuestId="67621" NpcId="1013250" ItemId="2001886" XYZ="100.3585, 15.00001, 24.3075" />
+					</If>
+				</If>
+			</If>
+			
 			<!-- Level 50-51 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 51">
@@ -1138,7 +1881,7 @@
 				<While Condition="IsTimeBetween(8,16)">
 					<Fish Mooch="1" Bait="Stonefly Nymph" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
 						<FishSpots>
-							<FishSpot XYZ="243.2819, 131.963, -213.9078" Heading="1.170967" Sit="&Sit;" />
+							<FishSpot XYZ="251.7174, 132.0536, -237.4375" Heading="1.170967" Sit="&Sit;" />
 							<FishSpot XYZ="229.3903, 131.9567, -177.168" Heading="2.107161" Sit="&Sit;" />
 							<FishSpot XYZ="233.6099, 131.9674, -164.1537" Heading="2.136482" Sit="&Sit;" />
 							<FishSpot XYZ="233.0022, 131.8633, -198.3659" Heading="0.9468672" Sit="&Sit;" />
@@ -1185,7 +1928,7 @@
 					</Fish>
 				</While>
 			</While>
-
+			
 			<!-- Level 52-54 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 54">
@@ -1317,6 +2060,61 @@
 				</While>
 			</While>
 
+			<!-- [Pickup Quest] -->
+
+			<!-- The Icepick Challenge -->
+			<If Condition="not IsQuestCompleted(67622)">
+				<If Condition="not HasQuest(67622)">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>
+					<NoCombatMoveTo Name="Ansaulme" XYZ="100.3585, 15.00001, 24.3075" />
+					<If Condition="IsQuestAcceptQualified(67622)">
+						<PickupQuest NpcId="1013250" QuestId="67622" XYZ="100.3585, 15.00001, 24.3075" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67622)">
+					<If Condition="GetQuestStep(67622) == 1">
+						<If Condition="not IsOnMap(397)">
+							<GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/> <!-- Falcon's Nest -->
+						</If>
+						<NoCombatMoveTo Name="Ansaulme" XYZ="456.0768, 200.2136, 668.635" />
+						<TalkTo QuestId="67622" StepId="1" NpcId="1013252" XYZ="459.6169, 200.2377, 665.8884" />
+					</If>		
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67622) == 255">
+						<While Condition="not HqHasAtLeast(12713,3)"> <!-- Icepick -->
+							<!-- Stonefly Nymph - 12704 -->
+							<If Condition="not IsOnMap(397)">
+								<GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/> <!-- Falcon's Nest -->
+							</If>
+							<If Condition="not HasAtLeast(12704,10)">
+								<NoCombatMoveTo Name="Independent Merchant" XYZ="504.5396, 212.7327, 718.5625" />
+								<BuyItem ItemId="12704" ItemCount="99" DialogOption="1" NpcId="1011228" XYZ="504.5396, 212.7327, 718.5625" />
+							</If>
+							<Fish Mooch="0" Bait="Stonefly Nymph" MinFish="20" MaxFish="25" ShuffleFishSpots="True" Condition="not HqHasAtLeast(12713,3)"> <!-- Icepick -->
+								<FishSpots>
+									<FishSpot XYZ="-28.16776, 92.04254, -546.0132" Heading="4.414215" />
+									<FishSpot XYZ="-481.7831, 120.2771, -700.3558" Heading="0.1550088" />
+								</FishSpots>
+							</Fish>
+						</While>
+						<If Condition="HqHasAtLeast(12713,3)"> <!-- Icepick -->
+							<If Condition="not IsOnMap(397)">
+								<GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/> <!-- Falcon's Nest -->
+							</If>
+							<NoCombatMoveTo Name="Ansaulme" XYZ="456.0768, 200.2136, 668.635" />
+							<TurnIn ItemId="12713" RequiresHq="true" QuestId="67622" NpcId="1013252" XYZ="459.6169, 200.2377, 665.8884" />
+						</If>						
+					</If>
+				</If>
+			</If>
+						
 			<!-- Level 54-56 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 56">
@@ -1420,6 +2218,75 @@
 					</Fish>
 				</While>
 			</While>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- Invasion of the Supper Snatchers -->
+			<If Condition="not IsQuestCompleted(67623)">
+				<If Condition="not HasQuest(67623)">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>
+					<NoCombatMoveTo Name="Ansaulme" XYZ="100.3585, 15.00001, 24.3075" />
+					<If Condition="IsQuestAcceptQualified(67623)">
+						<PickupQuest NpcId="1013250" QuestId="67623" XYZ="100.3585, 15.00001, 24.3075" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67623)">
+					<If Condition="GetQuestStep(67623) == 1">
+						<If Condition="not IsOnMap(398)">
+							<GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532"/> <!-- Tailfeather -->
+						</If>	
+						<NoCombatMoveTo Name="Reyna" XYZ="523.6133, -51.424, 62.54675" />					
+						<TalkTo QuestId="67623" StepId="1" NpcId="1013254" XYZ="523.6133, -51.424, 62.54675" />				
+					</If>
+					<If Condition="GetQuestStep(67623) == 2">
+						<If Condition="not IsOnMap(398)">
+							<GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532"/> <!-- Tailfeather -->
+						</If>	
+						<NoCombatMoveTo Name="Tailfeather Hunter" XYZ="560.5706, -21.32274, -557.1527" />
+						<TalkTo QuestId="67623" StepId="2" NpcId="1013256" XYZ="560.5706, -21.32274, -557.1527" />		
+					</If>					
+					<If Condition="GetQuestStep(67623) == 3">
+						<While Condition="not HqHasAtLeast(12769,3)"> <!-- Shadowhisker -->
+							<!-- Stonefly Nymph - 12704 -->
+							<If Condition="not IsOnMap(398)">
+								<GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532"/> <!-- Tailfeather -->
+							</If>
+							<If Condition="not HasAtLeast(12704,10)">
+								<NoCombatMoveTo Name="Traveling Merchant" XYZ="472.9742, -51.1414, 47.269" />
+								<BuyItem ItemId="12704" ItemCount="99" DialogOption="1" NpcId="1011912" XYZ="475.9136, -51.1414, 45.97534" />
+							</If>
+							<Fish Mooch="1" Bait="Stonefly Nymph" MinFish="20" MaxFish="25" ShuffleFishSpots="True" Condition="not HqHasAtLeast(12769,3)"> <!-- Shadowhisker -->
+								<FishSpots>
+									<FishSpot XYZ="277.9648, -21.38772, -580.2007" Heading="2.044546" />
+									<FishSpot XYZ="414.1869, -7.255656, -600.8729" Heading="1.525935" />
+								</FishSpots>
+							</Fish>
+						</While>
+						<If Condition="HqHasAtLeast(12769,3)"> <!-- Shadowhisker -->
+							<If Condition="not IsOnMap(398)">
+								<GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532"/> <!-- Tailfeather -->
+							</If>	
+							<NoCombatMoveTo Name="Reyna" XYZ="523.6133, -51.424, 62.54675" />
+							<TurnIn ItemId="12769" RequiresHq="true" StepId="3" QuestId="67623" NpcId="1013254" XYZ="523.6133, -51.424, 62.54675" />
+						</If>
+					</If>
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67623) == 255">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Ansaulme" XYZ="100.3585, 15.00001, 24.3075" />						
+						<TurnIn QuestId="67623" StepId="255" NpcId="1013250" XYZ="100.3585, 15.00001, 24.3075" />	
+					</If>
+				</If>
+			</If>
 
 			<!-- Level 56-58 -->
 
@@ -1532,6 +2399,85 @@
 				</While>
 			</While>
 
+			<!-- [Pickup Quest] -->
+
+			<!-- One Man's Fish Is Another Man's Poison -->
+			<If Condition="not IsQuestCompleted(67624)">
+				<If Condition="not HasQuest(67624)">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>
+					<NoCombatMoveTo Name="Ansaulme" XYZ="100.3585, 15.00001, 24.3075" />
+					<If Condition="IsQuestAcceptQualified(67624)">
+						<PickupQuest NpcId="1013250" QuestId="67624" XYZ="100.3585, 15.00001, 24.3075" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67624)">
+					<If Condition="GetQuestStep(67624) == 1">
+						<If Condition="not IsOnMap(129)">
+							<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
+						</If>
+						<NoCombatMoveTo Name="Sisipu" XYZ="-165.2705, 5.250006, 164.2938" />
+						<TalkTo QuestId="67624" StepId="1" NpcId="1000857" XYZ="-165.2705, 5.250006, 164.2938" />
+					</If>		
+					<If Condition="GetQuestStep(67624) == 2">
+						<If Condition="not IsOnMap(400)">
+							<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
+						</If>
+						<NoCombatMoveTo Name="Mogtoe" XYZ="406.7596, -73.59544, 702.571" />
+						<TalkTo QuestId="67624" StepId="2" NpcId="1012079" XYZ="406.7596, -73.59544, 702.571" />
+					</If>
+					<If Condition="GetQuestStep(67624) == 3">
+						<If Condition="not IsOnMap(400)">
+							<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
+						</If>
+						<NoCombatMoveTo Name="Mogukk" XYZ="441.306, -29.3383, 218.1277" />						
+						<TalkTo QuestId="67624" StepId="3" NpcId="1013824" XYZ="441.306, -29.3383, 218.1277" />
+					</If>
+					<If Condition="GetQuestStep(67624) == 4">
+						<While Condition="not HqHasAtLeast(12793,1)"> <!-- Letter Puffer -->
+							<!-- Red Balloon - 12708 -->							
+							<If Condition="not HasAtLeast(12708,10)">
+								<If Condition="not IsOnMap(401)">
+									<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+								</If>
+								<NoCombatMoveTo Name="Peddler of Wonders" XYZ="-650.1717, -123.7525, 524.3762" />
+								<BuyItem ItemId="12708" ItemCount="99" DialogOption="1" InteractDistance="3.0" NpcId="1011947" XYZ="-650.1717, -123.7525, 524.3762" />
+							</If>
+							<If Condition="not IsOnMap(400)">
+								<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
+							</If>
+							<Fish Mooch="1" Bait="Red Balloon" MinFish="20" MaxFish="25" ShuffleFishSpots="True" Condition="not HqHasAtLeast(12793,1)"> <!-- Letter Puffer -->
+								<FishSpots>
+									<FishSpot XYZ="447.4596, -31.1029, 221.3827" Heading="0.8094413" />
+									<FishSpot XYZ="486.9679, -15.76843, 197.2486" Heading="0.476438" />
+								</FishSpots>
+							</Fish>
+						</While>
+						<If Condition="HqHasAtLeast(12793,1)"> <!-- Letter Puffer -->
+							<If Condition="not IsOnMap(400)">
+								<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
+							</If>
+							<NoCombatMoveTo Name="Mogukk" XYZ="441.306, -29.3383, 218.1277" />
+							<TurnIn ItemId="12793" RequiresHq="true" StepId="4" QuestId="67624" NpcId="1013824" XYZ="441.306, -29.3383, 218.1277" />
+						</If>
+					</If>
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67624) == 255">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Ansaulme" XYZ="100.3585, 15.00001, 24.3075" />
+						<TurnIn ItemId="12793" RequiresHq="true" StepId="255" QuestId="67624" NpcId="1013250" XYZ="100.3585, 15.00001, 24.3075" />
+					</If>
+				</If>
+			</If>
+			
 			<!-- Level 58-60 -->
 
 			<While Condition="Core.Player.ClassLevel &lt; 60">
@@ -1707,7 +2653,7 @@
 						<Fish Mooch="0" Bait="Red Balloon" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
 							<FishSpots>
 								<FishSpot XYZ="395.5926, -9.912615, 144.1238" Heading="5.124711" Sit="&Sit;" />
-								<FishSpot XYZ="408.392, -20.66908, 166.4381" Heading="4.978103" Sit="&Sit;" />
+								<FishSpot XYZ="408.3639, -20.58113, 166.1436" Heading="5.020552" Sit="&Sit;" />
 								<FishSpot XYZ="404.1494, -28.8089, 200.6677" Heading="4.374915" Sit="&Sit;" />
 								<FishSpot XYZ="391.0198, -33.02426, 218.162" Heading="3.821994" Sit="&Sit;" />
 							</FishSpots>
@@ -1744,9 +2690,85 @@
 					</While>
 				</If>
 			</While>
-
 		</If>
+		
+		<!-- [Pickup Quest] -->
 
+		<!-- Carpe Diem -->
+		<If Condition="not IsQuestCompleted(67625)">
+			<If Condition="not HasQuest(67625)">
+				<If Condition="not IsOnMap(418)">
+					<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+				</If>
+				<NoCombatMoveTo Name="Ansaulme" XYZ="100.3585, 15.00001, 24.3075" />
+				<If Condition="IsQuestAcceptQualified(67625)">
+					<PickupQuest NpcId="1013250" QuestId="67625" XYZ="100.3585, 15.00001, 24.3075" />
+				</If>
+			</If>
+
+			<!-- [Complete Quest] -->
+
+			<If Condition="HasQuest(67625)">
+				<If Condition="GetQuestStep(67625) == 1">
+					<If Condition="not IsOnMap(400)">
+						<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
+					</If>
+					<NoCombatMoveTo Name="Mogukk" XYZ="441.306, -29.3383, 218.1277" />						
+					<TalkTo QuestId="67625" StepId="1" NpcId="1013824" XYZ="441.306, -29.3383, 218.1277" />
+				</If>
+				<If Condition="GetQuestStep(67625) == 2">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>
+					<NoCombatMoveTo Name="Ansaulme" XYZ="100.3585, 15.00001, 24.3075" />
+					<TalkTo QuestId="67625" StepId="2" NpcId="1013250" XYZ="100.3585, 15.00001, 24.3075" />
+				</If>
+				<If Condition="GetQuestStep(67625) == 3">
+					<If Condition="not IsOnMap(401)">
+						<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+					</If>
+					<NoCombatMoveTo Name="Ansaulme" XYZ="-253.0709, -185.1346, 691.5845" />
+					<TalkTo QuestId="67625" StepId="3" NpcId="1013827" XYZ="-253.0709, -185.1346, 691.5845" />
+				</If>
+				<If Condition="GetQuestStep(67625) == 4">
+					<If Condition="not IsOnMap(401)">
+						<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+					</If>
+					<NoCombatMoveTo Name="Tona Vanu" XYZ="418.5517, -186.4494, 817.28" />					
+					<HandOver ItemId="2001721" QuestId="67625" StepId="4" NpcId="1013829" XYZ="420.2487, -186.5173, 814.2061" />
+				</If>
+				
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(67625) == 255">
+					<While Condition="not HqHasAtLeast(12829,1)"> <!-- Catkiller -->
+						<If Condition="not IsOnMap(401)">
+							<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+						</If>
+						<!-- Purse Web Spider - 12705 -->						
+						<If Condition="not HasAtLeast(12705,25)">
+							<NoCombatMoveTo Name="Peddler of Wonders" XYZ="-650.1717, -123.7525, 524.3762" />
+							<BuyItem ItemId="12705" ItemCount="198" DialogOption="1" InteractDistance="3.0" NpcId="1011947" XYZ="-650.1717, -123.7525, 524.3762" />
+						</If>
+						<Fish Mooch="1" Snagging="true" Bait="Purse Web Spider" MinFish="24" MaxFish="24" ShuffleFishSpots="True" Condition="not HqHasAtLeast(12829,1)"> <!-- Catkiller -->
+							<FishSpots>
+								<FishSpot XYZ="404.9829, -186.4827, 830.9991" Heading="6.278952" />
+								<FishSpot XYZ="420.9894, -186.4232, 818.8319" Heading="1,183289" />
+							</FishSpots>
+						</Fish>
+					</While>
+					<If Condition="HqHasAtLeast(12829,1)"> <!-- Catkiller -->
+						<If Condition="not IsOnMap(401)">
+							<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
+						</If>
+						<NoCombatMoveTo Name="Ansaulme" XYZ="400.7477, -123.263, 674.9523" />
+						<TurnIn ItemId="12829" RequiresHq="true" StepId="255" QuestId="67625" NpcId="1013830" XYZ="400.7477, -123.263, 674.9523" />		
+					</If>
+					<StopBot />					
+				</If>
+			</If>
+		</If>
+		
 		<If Condition="Core.Player.ClassLevel == 60">
 			<LogMessage Message="Congrats! You've hit level 60 Fisher!" />
 			<If Condition="not IsOnMap(129)">
@@ -1758,7 +2780,7 @@
 				</If>
 			</If>
 		</If>
-
+		
 	</Order>
 	<GrindAreas>
 	</GrindAreas>
