@@ -45,19 +45,7 @@ namespace ff14bot.NeoProfiles.Tags
 				new Decorator(ret => QuestLogManager.InCutscene,
 					new ActionAlwaysSucceed()
 				),
-                new Decorator(ret => QuestId == 65995 && GameObjectManager.GetObjectByNPCId(2002521) != null && GameObjectManager.GetObjectByNPCId(2002521).IsVisible,
-                    new PrioritySelector(
-                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002521).Location) <= 3,
-                            new Action(r =>
-                            {
-								Logging.Write("[ExtendedDuty] Interacting with object 2002521!");
-                                GameObjectManager.GetObjectByNPCId(2002521).Interact();
-                            })
-				        ),
-                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2002521).Location, 3)
-                    )
-                ),
-				new Decorator(ret => QuestId == 65886 && !Core.Player.InCombat,
+                new Decorator(ret => QuestId == 65886 && !Core.Player.InCombat && GameObjectManager.GetObjectByNPCId(2001471) != null && GameObjectManager.GetObjectByNPCId(2001471).IsVisible,
                     new PrioritySelector(
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2001471).Location) <= 3,
                             new Action(r =>
@@ -69,28 +57,16 @@ namespace ff14bot.NeoProfiles.Tags
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2002521).Location, 3)
                     )
                 ),
-                new Decorator(ret => QuestId == 66633 && GameObjectManager.GetObjectByNPCId(2002522) != null && GameObjectManager.GetObjectByNPCId(2002522).IsVisible,
+                new Decorator(ret => QuestId == 65995 && GameObjectManager.GetObjectByNPCId(2002521) != null && GameObjectManager.GetObjectByNPCId(2002521).IsVisible,
                     new PrioritySelector(
-                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002522).Location) <= 3,
+                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002521).Location) <= 3,
                             new Action(r =>
                             {
-								Logging.Write("[ExtendedDuty] Interacting with object 2002522!");
-                                GameObjectManager.GetObjectByNPCId(2002522).Interact();
+								Logging.Write("[ExtendedDuty] Interacting with object 2002521!");
+                                GameObjectManager.GetObjectByNPCId(2002521).Interact();
                             })
-                        ),
-                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2002522).Location, 3)
-                    )
-                ),
-                new Decorator(ret => QuestId == 66448 && GameObjectManager.GetObjectByNPCId(2002279) != null && GameObjectManager.GetObjectByNPCId(2002279).IsVisible,
-                    new PrioritySelector(
-                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002279).Location) <= 3,
-                            new Action(r =>
-                            {
-								Logging.Write("[ExtendedDuty] Interacting with object 2002279!");
-                                GameObjectManager.GetObjectByNPCId(2002279).Interact();
-                            })
-                        ),
-                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2002279).Location, 3)
+				        ),
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2002521).Location, 3)
                     )
                 ),
 				new Decorator(ret => QuestId == 66057 && ((GameObjectManager.GetObjectByNPCId(2002428) != null && GameObjectManager.GetObjectByNPCId(2002428).IsVisible) || (GameObjectManager.GetObjectByNPCId(2002427) != null && GameObjectManager.GetObjectByNPCId(2002427).IsVisible)),
@@ -131,6 +107,18 @@ namespace ff14bot.NeoProfiles.Tags
 						)
 					)
                 ),
+                new Decorator(ret => QuestId == 66448 && GameObjectManager.GetObjectByNPCId(2002279) != null && GameObjectManager.GetObjectByNPCId(2002279).IsVisible,
+                    new PrioritySelector(
+                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002279).Location) <= 3,
+                            new Action(r =>
+                            {
+								Logging.Write("[ExtendedDuty] Interacting with object 2002279!");
+                                GameObjectManager.GetObjectByNPCId(2002279).Interact();
+                            })
+                        ),
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2002279).Location, 3)
+                    )
+                ),
 				new Decorator(ret => QuestId == 66540 && Vector3.Distance(Core.Player.Location, ObjectXYZ) < InteractDistance,
                     new PrioritySelector(
 						new Decorator(ret => MovementManager.IsMoving,
@@ -153,6 +141,18 @@ namespace ff14bot.NeoProfiles.Tags
 								}
                             })
                         )
+                    )
+                ),
+                new Decorator(ret => QuestId == 66633 && GameObjectManager.GetObjectByNPCId(2002522) != null && GameObjectManager.GetObjectByNPCId(2002522).IsVisible,
+                    new PrioritySelector(
+                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002522).Location) <= 3,
+                            new Action(r =>
+                            {
+								Logging.Write("[ExtendedDuty] Interacting with object 2002522!");
+                                GameObjectManager.GetObjectByNPCId(2002522).Interact();
+                            })
+                        ),
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2002522).Location, 3)
                     )
                 ),
 				new Decorator(ret => QuestId == 66638 && GameObjectManager.GetObjectByNPCId(1650) != null && !GameObjectManager.GetObjectByNPCId(1650).CanAttack,
