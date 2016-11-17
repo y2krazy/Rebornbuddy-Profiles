@@ -93,6 +93,12 @@ namespace ff14bot.NeoProfiles.Tags
                         SelectYesno.ClickYes();
                     })
                 ),
+                new Decorator(ret => QuestId == 67254 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
                 new Decorator(ret => QuestId == 67596 && SelectString.IsOpen,
                     new Action(r =>
                     {
