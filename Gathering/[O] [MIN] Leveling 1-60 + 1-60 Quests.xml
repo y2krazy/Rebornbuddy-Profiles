@@ -1,0 +1,2006 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##################################################
+# Profile: [O] [MIN] Leveling 1-60 + 1-60 Quests #
+##################################################
+# Authors: y2krazy                               #
+#          kagepande                             #
+#          Sora                                  #
+#          birduvprey                            #
+#          Eficiente                             #
+##################################################
+# Version: 1.0.7                                 #
+##################################################
+# Required Level: 1                              #
+##################################################
+# Required User Interaction:                     #
+#  None                                          #
+##################################################
+# Required Setup:                                #
+#  Fill out User Configuration below.            #
+#  Level 1+ Miner                                #
+#  Set Miner Gear Set below.                     #
+##################################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+<!-- Do you want to discover any unknown items in the Gathering Log? -->
+
+<!ENTITY DiscoverUnknowns "True">
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] [MIN] Leveling 1-60 + 1-60 Quests (v1.0.7)</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<CodeChunks>
+
+		<!-- Modify Gear Set -->
+
+		<CodeChunk Name="Miner">
+			<![CDATA[ 
+				ff14bot.Managers.ChatManager.SendChat("/gs change 21");
+		]]>
+		</CodeChunk>
+
+		<!-- End Modify Gear Set -->
+
+		<CodeChunk Name="DisableMount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = false;
+    	]]>
+		</CodeChunk>
+		<CodeChunk Name="Dismount">
+			<![CDATA[
+				ff14bot.Managers.Actionmanager.Dismount();
+    	]]>
+		</CodeChunk>
+		<CodeChunk Name="EnableMount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = true;
+    	]]>
+		</CodeChunk>
+		<CodeChunk Name="MINWeapon">
+			<![CDATA[ 
+				BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+				
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+				{
+					if(slot.RawItemId == 2519)
+					{
+						slot.Move(EquipSlot);
+					}
+				}
+        ]]>
+		</CodeChunk>
+		<CodeChunk Name="MINWeapon2">
+			<![CDATA[ 
+				BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand];
+				
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+				{
+					if(slot.RawItemId == 2532)
+					{
+						slot.Move(EquipSlot);
+					}
+				}
+        ]]>
+		</CodeChunk>
+		<CodeChunk Name="Prospect">
+			<![CDATA[
+				SpellData data;
+				if (!Core.Me.HasAura(225) && Actionmanager.CurrentActions.TryGetValue(227, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(227, Core.Me);
+    	]]>
+		</CodeChunk>
+		<CodeChunk Name="Stealth">
+			<![CDATA[
+				SpellData data;
+				if (!Core.Me.HasAura(47) && Actionmanager.CurrentActions.TryGetValue(229, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(229, Core.Me);
+    	]]>
+		</CodeChunk>
+	</CodeChunks>
+	<Order>			
+		<RunCode Name="Prospect" />
+
+		<LogMessage Message="The Journey Begins! Remember to Check up on me!"/>
+		<!--Unlocking Miner-->
+		<If Condition="not IsQuestCompleted(65728)">
+			<If Condition="not HasQuest(65728)">
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="96.11763, 4, -110.9468"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Linette" Distance="1" UseMesh="True" XYZ="0.9677758, 7.599999, 153.8153"/>
+					<If Condition="IsQuestAcceptQualified(65728)">
+						<TalkToPlus NpcId="1002282" QuestId="65728" XYZ="0.9677758, 7.599999, 153.8153"/>
+					</If>
+				</If>
+			</If>
+		</If>
+		<!--Done Unlocking Miner-->
+
+		<!--Level 1 - Way of the Miner-->
+		<If Condition="not IsQuestCompleted(66133)">
+			<If Condition="not HasQuest(66133)">
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="96.11763, 4, -110.9468"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Linette" Distance="1" UseMesh="True" XYZ="0.9677758, 7.599999, 153.8153"/>
+					<If Condition="IsQuestAcceptQualified(66133)">
+						<PickupQuest NpcId="1002282" QuestId="66133" XYZ="0.9677758, 7.599999, 153.8153"/>
+					</If>
+					<If Condition="GetQuestStep(66133) == 255">
+						<TurnInPlus QuestId="66133" StepId="255" NpcId="1002298" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+					<While Condition="ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.MainHand].RawItemId != 2519">
+						<RunCode Name="MINWeapon"/>
+						<WaitTimer WaitTime="3"/>
+					</While>
+				</If>
+			</If>
+		</If>
+		<!--End Level 1-->
+
+		<RunCode Name="Miner"/>
+		<WaitTimer WaitTime="3"/>
+		<WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
+
+		<!--Level 1 - My First Pickaxe-->
+		<If Condition="not IsQuestCompleted(66135)">
+			<If Condition="not HasQuest(66135)">
+				<LogMessage Message="Picking up Level 1 - My First Pickaxe."/>
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Adalberta" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					<If Condition="IsQuestAcceptQualified(66135)">
+						<PickupQuest NpcId="1002298" QuestId="66135" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="not NqHasAtLeast(5106,10)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<MoveTo Name="Central Than" Distance="1" UseMesh="True" XYZ="45.6631, 3.999936, -165.0893"/>
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="not NqHasAtLeast(5106,10)">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<Hotspot Radius="90" XYZ="-116.501, 2.255364, 209.8106"/>
+					</HotSpots>
+					<Slot>2</Slot>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Prospect" TimesToCast="2" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</If>
+			<If Condition="NqHasAtLeast(5106,10)">
+				<If Condition="GetQuestStep(66135) == 255">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="131" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<TurnIn ItemId="5106" QuestId="66135" StepId="255" NpcId="1002298" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+						<LogMessage Message="Level 1 - My First Pickaxe - Completed."/>
+					</If>
+				</If>
+			</If>
+		</If>
+		<!--End Level 1-->
+
+		<!--Start - Grind to Level 6-->
+		<If Condition="Core.Player.ClassLevel &lt; 6">
+			<LogMessage Message="Starting the Grind to Level 6."/>
+			<If Condition="not IsOnMap(140)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+					<TeleportTo Name="Horizon" AetheryteId="17" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+					<Travel To="140" />
+				</If>
+			</If>
+			<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="Core.Player.ClassLevel &lt; 6">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="95" XYZ="264.0081,56.19608,206.0519" />
+				</HotSpots>
+				<Slot>2</Slot>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Prospect" TimesToCast="2" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</If>
+		<If Condition="Core.Player.ClassLevel == 6">
+			<LogMessage Message="Congrats on Level 6, moving on."/>
+		</If>
+		<!--End Level 6 Grind-->
+
+		<!--Level 5 - Know Thy Land-->
+		<If Condition="not IsQuestCompleted(66136)">
+			<If Condition="not HasQuest(66136)">
+				<LogMessage Message="Picking up Level 5 - Know Thy Land."/>
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Adalberta" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					<If Condition="IsQuestAcceptQualified(66136)">
+						<PickupQuest NpcId="1002298" QuestId="66136" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="not NqHasAtLeast(5432,50)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<MoveTo Name="Central Than" Distance="1" UseMesh="True" XYZ="45.6631, 3.999936, -165.0893"/>
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="not NqHasAtLeast(5432,50)">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<Hotspot Radius="90" XYZ="115.2311, 1.591972, 286.6021"/>
+					</HotSpots>
+					<Slot>3</Slot>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Prospect" TimesToCast="2" />
+						<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</If>
+			<If Condition="NqHasAtLeast(5432,50)">
+				<If Condition="GetQuestStep(66136) == 255">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="131" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<TurnIn ItemId="5432" QuestId="66136" StepId="255" NpcId="1002298" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+						<LogMessage Message="Level 5 - Know Thy Land - Completed."/>
+					</If>
+				</If>
+			</If>
+		</If>
+		<!--End Level 5-->
+
+		<!--Start - Grind to Level 11-->
+		<If Condition="Core.Player.ClassLevel &lt; 11">
+			<LogMessage Message="Starting the Grind to Level 11."/>
+			<If Condition="not IsOnMap(140)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+					<TeleportTo Name="Horizon" AetheryteId="17" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+					<Travel To="140" />
+				</If>
+			</If>
+			<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="Core.Player.ClassLevel &lt; 11">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="95" XYZ="42.69921,56.98661,349.928" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Tin Ore</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</If>
+		<If Condition="Core.Player.ClassLevel == 11">
+			<LogMessage Message="Congrats on Level 11, moving on."/>
+		</If>
+		<!--End Level 11 Grind-->
+
+		<!--Level 10 - The Cutting Edge-->
+		<If Condition="not IsQuestCompleted(66138)">
+			<If Condition="not HasQuest(66138)">
+				<LogMessage Message="Picking up Level 10 - The Cutting Edge."/>
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Adalberta" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					<If Condition="IsQuestAcceptQualified(66138)">
+						<PickupQuest NpcId="1002298" QuestId="66138" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="not NqHasAtLeast(5124,99)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<MoveTo Name="Western Than" Distance="1" UseMesh="True" XYZ="-181.8917, 14, -15.1031"/>
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="not NqHasAtLeast(5124,99)">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<Hotspot Radius="90" XYZ="35.44981, 57.22062, 352.4815"/>
+					</HotSpots>
+					<Slot>7</Slot>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Sharp Vision III" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</If>
+			<If Condition="NqHasAtLeast(5124,99)">
+				<If Condition="GetQuestStep(66138) == 255">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="131" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<TurnIn ItemId="5124" QuestId="66138" StepId="255" NpcId="1002298" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+						<LogMessage Message="Level 10 - The Cutting Edge - Completed."/>
+					</If>
+				</If>
+			</If>
+		</If>
+		<!--End Level 10-->
+
+		<!--Start - Grind to Level 16-->
+		<If Condition="Core.Player.ClassLevel &lt; 16">
+			<LogMessage Message="Starting the Grind to Level 16."/>
+			<If Condition="not IsOnMap(140)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+					<TeleportTo Name="Horizon" AetheryteId="17" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+					<Travel To="140" />
+				</If>
+			</If>
+			<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="Core.Player.ClassLevel &lt; 16">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="95" XYZ="288.9167, 62.34205, -218.6282" />
+				</HotSpots>
+				<Slot>2</Slot>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</If>
+		<If Condition="Core.Player.ClassLevel == 16">
+			<LogMessage Message="Congrats on Level 16, moving on."/>
+		</If>
+		<!--End Level 16 Grind-->
+
+		<!--Level 15 - Getting in Deep-->
+		<If Condition="not IsQuestCompleted(66139)">
+			<If Condition="not HasQuest(66139)">
+				<LogMessage Message="Picking up Level 15 - Getting in Deep."/>
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Adalberta" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					<If Condition="IsQuestAcceptQualified(66139)">
+						<PickupQuest NpcId="1002298" QuestId="66139" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="GetQuestStep(66139) == 1">
+				<TalkTo InteractDistance="1.0" NpcId="1003909" XYZ="18.72768, 9.00961, 168.2022"/>
+			</If>
+			<If Condition="GetQuestStep(66139) == 2">
+				<TalkTo InteractDistance="1.0" NpcId="1002298" XYZ="-16.45324, 6.2, 157.4644"/>
+			</If>
+			<If Condition="not HqHasAtLeast(5519,10)">
+				<If Condition="not IsOnMap(140)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Horizon" AetheryteId="17" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+						<Travel To="140" />
+					</If>
+				</If>
+				<MoveTo Name="Quest Loc1" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="141.1154, 50.40661, -147.4492"/>
+				<RunCode Name="Dismount" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="not HqHasAtLeast(5519,10)">
+					<GatherObject>Rocky Outcrop</GatherObject>
+					<HotSpots>
+						<Hotspot Radius="90" XYZ="141.1154, 50.40661, -147.4492"/>
+					</HotSpots>
+					<Slot>2</Slot>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+				<RunCode Name="EnableMount" />
+			</If>
+			<If Condition="HqHasAtLeast(5519,10)">
+				<If Condition="GetQuestStep(66139) == 255">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="131" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<TurnIn ItemId="5519" QuestId="66139" RequiresHq="true" StepId="255" NpcId="1003909" InteractDistance="1.0" XYZ="18.72768, 9.00961, 168.2022"/>
+						<LogMessage Message="Level 15 - Getting in Deep - Completed."/>
+					</If>
+				</If>
+			</If>
+		</If>
+		<!--End Level 15-->
+
+		<!--Start - Grind to Level 21-->
+		<If Condition="Core.Player.ClassLevel &lt; 21">
+			<LogMessage Message="Starting the Grind to Level 21."/>
+			<If Condition="not IsOnMap(145)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+					<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+					<Travel To="145" />
+				</If>
+			</If>
+			<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="Core.Player.ClassLevel &lt; 21">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="95" XYZ="-183.1978, -34.69329, -37.8227" />
+				</HotSpots>
+				<Slot>5</Slot>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</If>
+		<If Condition="Core.Player.ClassLevel == 21">
+			<LogMessage Message="Congrats on Level 21, moving on."/>
+		</If>
+		<!--End Level 21 Grind-->
+
+		<!--Level 20 - Old Wisdom, New Ways-->
+		<If Condition="not IsQuestCompleted(66140)">
+			<If Condition="not HasQuest(66140)">
+				<LogMessage Message="Picking up Level 20 - Old Wisdom, New Ways"/>
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Adalberta" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					<If Condition="IsQuestAcceptQualified(66140)">
+						<PickupQuest NpcId="1002298" QuestId="66140" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="not NqHasAtLeast(5124,99)">
+				<If Condition="not IsOnMap(134)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(52)">
+						<TeleportTo Name="Summerford Farms" AetheryteId="52" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+						<Travel To="134" />
+					</If>
+				</If>
+				<MoveTo Name="Quest Loc2" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-286.7015, 23.16407, -518.0267"/>
+				<RunCode Name="Dismount" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="not NqHasAtLeast(5599,99)">
+					<GatherObject>Rocky Outcrop</GatherObject>
+					<HotSpots>
+						<Hotspot Radius="90" XYZ="-304.4127, 28.75821, -558.8754"/>
+					</HotSpots>
+					<Slot>0</Slot>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Sharp Vision III" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+				<RunCode Name="EnableMount" />
+			</If>
+			<If Condition="NqHasAtLeast(5599,99)">
+				<If Condition="GetQuestStep(66140) == 255">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="131" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<TurnIn ItemId="5599" QuestId="66140" StepId="255" NpcId="1002298" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+						<LogMessage Message="Level 20 - Old Wisdom, New Ways - Completed."/>
+					</If>
+				</If>
+			</If>
+		</If>
+		<!--End Level 20-->
+
+		<!--Start - Grind to Level 26-->
+		<If Condition="Core.Player.ClassLevel &lt; 26">
+			<LogMessage Message="Starting the Grind to Level 26."/>
+			<If Condition="not IsOnMap(145)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+					<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+					<Travel To="145" />
+				</If>
+			</If>
+			<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="Core.Player.ClassLevel &lt; 26">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="95" XYZ="-183.1978, -34.69329, -37.8227" />
+				</HotSpots>
+				<Slot>1</Slot>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</If>
+		<If Condition="Core.Player.ClassLevel == 26">
+			<LogMessage Message="Congrats on Level 26, moving on."/>
+		</If>
+		<!--End Level 26 Grind-->
+
+		<!--Level 25 - Water From Stone-->
+		<If Condition="not IsQuestCompleted(66141)">
+			<If Condition="not HasQuest(66141)">
+				<LogMessage Message="Picking up Level 25 - Water From Stone"/>
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Adalberta" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					<If Condition="IsQuestAcceptQualified(66141)">
+						<PickupQuest NpcId="1002298" QuestId="66141" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="not HqHasAtLeast(5491,15)">
+				<If Condition="not IsOnMap(153)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(5)">
+						<TeleportTo Name="Quarrymill" AetheryteId="5" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(5)">
+						<Travel To="153" />
+					</If>
+				</If>
+				<MoveTo Name="Quest Loc3" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-33.40127, -1.141631, -46.80482"/>
+				<RunCode Name="Dismount" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="not HqHasAtLeast(5491,15)">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<Hotspot Radius="90" XYZ="-272.7955, 14.0949, -96.55045"/>
+					</HotSpots>
+					<Slot>0</Slot>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+				<RunCode Name="EnableMount" />
+			</If>
+			<If Condition="HqHasAtLeast(5491,15)">
+				<If Condition="GetQuestStep(66141) == 255">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="131" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<TurnIn ItemId="5491" QuestId="66141" RequiresHq="true" StepId="255" NpcId="1002298" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+						<LogMessage Message="Level 25 - Water From Stone - Completed."/>
+					</If>
+				</If>
+			</If>
+		</If>
+		<!--End Level 25-->
+
+		<!--Start - Grind to Level 31-->
+		<If Condition="Core.Player.ClassLevel &lt; 31">
+			<LogMessage Message="Starting the Grind to Level 31."/>
+			<If Condition="not IsOnMap(146)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+					<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+					<Travel To="146" />
+				</If>
+			</If>
+			<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="Core.Player.ClassLevel &lt; 31">
+				<GatherObject>Rocky Outcrop</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="95" XYZ="26.02704, 8.851164, 399.923" />
+				</HotSpots>
+				<Slot>0</Slot>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</If>
+		<If Condition="Core.Player.ClassLevel == 31">
+			<LogMessage Message="Congrats on Level 31, moving on."/>
+		</If>
+		<!--End Level 31 Grind-->
+
+		<!--Level 30 - Obsidian Race-->
+		<If Condition="not IsQuestCompleted(66142)">
+			<If Condition="not HasQuest(66142)">
+				<LogMessage Message="Picking up Level 30 - Obsidian Race."/>
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Adalberta" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					<If Condition="IsQuestAcceptQualified(66142)">
+						<PickupQuest NpcId="1002298" QuestId="66142" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="GetQuestStep(66142) == 1">
+				<TalkTo InteractDistance="1.0" NpcId="1003910" XYZ="-5.715219, 6.2, 165.6139"/>
+			</If>
+			<If Condition="GetQuestStep(66142) == 2">
+				<TalkTo InteractDistance="1.0" NpcId="1003911" XYZ="-80.49365, 6.98457, 9.430854"/>
+			</If>
+			<If Condition="not HqHasAtLeast(5125,15)">
+				<If Condition="not IsOnMap(145)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(18)">
+						<TeleportTo Name="Camp Drybone" AetheryteId="18" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+						<Travel To="145" />
+					</If>
+				</If>
+				<MoveTo Name="Quest Loc5" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="246.3232, 1.898447, -217.2365"/>
+				<RunCode Name="Dismount" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="not HqHasAtLeast(5125,15)">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<Hotspot Radius="90" XYZ="246.3232, 1.898447, -217.2365"/>
+					</HotSpots>
+					<Slot>7</Slot>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+				<RunCode Name="EnableMount" />
+			</If>
+			<If Condition="HqHasAtLeast(5125,15)">
+				<If Condition="GetQuestStep(66142) == 3">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="131" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<HandOver ItemId="5125" QuestId="66142" RequiresHq="true" StepId="255" NpcId="1003910" InteractDistance="1.0" XYZ="-5.715219, 6.2, 165.6139"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="GetQuestStep(66142) == 255">
+				<TurnIn QuestId="66142" StepId="255" NpcId="1002298" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+				<LogMessage Message="Level 30 - Obsidian Race - Completed."/>
+			</If>
+		</If>
+		<!--End Level 30-->
+
+		<!--Start - Grind to Level 36-->
+		<If Condition="Core.Player.ClassLevel &lt; 36">
+			<LogMessage Message="Starting the Grind to Level 36."/>
+			<If Condition="not IsOnMap(146)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(20)">
+					<TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+					<Travel To="146" />
+				</If>
+			</If>
+			<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="Core.Player.ClassLevel &lt; 36">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<Hotspot Radius="80" X="151.5022" Y="3.113048" Z="956.2474"/>
+					<Hotspot Radius="80" X="255.9391" Y="4.553239" Z="939.3931"/>
+				</HotSpots>
+				<BlackSpots>
+					<Blackspot Radius="5" X="190.9561" Y="4.34413" Z="988.1514"/>
+					<Blackspot Radius="5" X="202.4706" Y="5.60542" Z="946.358"/>
+				</BlackSpots>
+				<Slot>6</Slot>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</If>
+		<If Condition="Core.Player.ClassLevel == 36">
+			<LogMessage Message="Congrats on Level 36, moving on."/>
+		</If>
+		<!--End Level 36 Grind-->
+
+		<!--Level 35 - Amethysts Are Forever-->
+		<If Condition="not IsQuestCompleted(66179)">
+			<If Condition="not HasQuest(66179)">
+				<LogMessage Message="Picking up Level 35 - Amethysts Are Forever."/>
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Adalberta" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					<If Condition="IsQuestAcceptQualified(66179)">
+						<PickupQuest NpcId="1002298" QuestId="66179" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="GetQuestStep(66179) == 1">
+				<TalkTo InteractDistance="1.0" NpcId="1003910" XYZ="-5.306236, 6.2, 165.6101"/>
+			</If>
+			<If Condition="not HqHasAtLeast(5138,20)">
+				<If Condition="not IsOnMap(148)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(3)">
+						<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+						<Travel To="148" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Quest Loc6" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-362.8043, 54.60392, 5.231353"/>
+				<RunCode Name="Dismount" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="Stealth" />
+				<WaitTimer WaitTime="3" />
+				<RunCode Name="DisableMount" />
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="not HqHasAtLeast(5138,20)">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<Hotspot Radius="90" XYZ="-362.8043, 54.60392, 5.231353"/>
+					</HotSpots>
+					<Slot>6</Slot>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+				<RunCode Name="EnableMount"/>
+			</If>
+			<If Condition="HqHasAtLeast(5138,20)">
+				<If Condition="GetQuestStep(66179) == 255">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="131" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<TurnIn ItemId="5138" QuestId="66179" RequiresHq="true" StepId="255" NpcId="1003910" InteractDistance="1.0" XYZ="-5.622513, 6.2, 165.3229"/>
+						<LogMessage Message="Level 35 - Amethysts Are Forever - Completed."/>
+					</If>
+				</If>
+			</If>
+		</If>
+		<!--End Level 35-->
+
+		<!--Start - Grind to Level 41-->
+		<If Condition="Core.Player.ClassLevel &lt; 41">
+			<LogMessage Message="Starting the Grind to Level 41."/>
+			<If Condition="not IsOnMap(153)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(5)">
+					<TeleportTo Name="Quarrymill" AetheryteId="5" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(5)">
+					<Travel To="153" />
+				</If>
+			</If>
+			<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="Core.Player.ClassLevel &lt; 41">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="60" XYZ="353.7134, -3.617686, 58.73518" />
+				</HotSpots>
+				<Slot>1</Slot>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</If>
+		<If Condition="Core.Player.ClassLevel == 41">
+			<LogMessage Message="Congrats on Level 41, moving on."/>
+		</If>
+		<!--End Level 41 Grind-->
+
+		<!--Level 40 - To Die For-->
+		<If Condition="not IsQuestCompleted(66180)">
+			<If Condition="not HasQuest(66180)">
+				<LogMessage Message="Picking up Level 40 - To Die For."/>
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Adalberta" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					<If Condition="IsQuestAcceptQualified(66180)">
+						<PickupQuest NpcId="1002298" QuestId="66180" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="GetQuestStep(66180) == 1">
+				<TalkTo NpcId="1003910" InteractDistance="1.0" XYZ="-5.622513, 6.2, 165.3229"/>
+			</If>
+			<If Condition="not HqHasAtLeast(5168,20)">
+				<If Condition="not IsOnMap(155)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+						<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+						<Travel To="155" />
+					</If>
+				</If>
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="not HqHasAtLeast(5168,20)">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<Hotspot Radius="90" XYZ="154.5971, 283.6168, -76.77094"/>
+					</HotSpots>
+					<Slot>6</Slot>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</If>
+			<If Condition="HqHasAtLeast(5168,20)">
+				<If Condition="GetQuestStep(66180) == 255">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="131" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<TurnIn ItemId="5168" QuestId="66180" RequiresHq="true" StepId="255" NpcId="1002298" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+						<LogMessage Message="Level 40 - To Die For - Completed."/>
+					</If>
+				</If>
+			</If>
+		</If>
+		<!--End Level 40-->
+
+		<!--Start - Grind to Level 46-->
+		<If Condition="Core.Player.ClassLevel &lt; 46">
+			<LogMessage Message="Starting the Grind to Level 46."/>
+			<If Condition="not IsOnMap(153)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(5)">
+					<TeleportTo Name="Quarrymill" AetheryteId="5" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(5)">
+					<Travel To="153" />
+				</If>
+			</If>
+			<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="Core.Player.ClassLevel &lt; 46">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="60" XYZ="353.7134, -3.617686, 58.73518" />
+				</HotSpots>
+				<Slot>1</Slot>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</If>
+		<If Condition="Core.Player.ClassLevel == 46">
+			<LogMessage Message="Congrats on Level 46, moving on."/>
+		</If>
+		<!--End Level 46 Grind-->
+
+		<!--Level 45 - Gulley of Woes-->
+		<If Condition="not IsQuestCompleted(66181)">
+			<If Condition="not HasQuest(66181)">
+				<LogMessage Message="Picking up Level 45 - Gulley of Woes."/>
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Adalberta" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					<If Condition="IsQuestAcceptQualified(66181)">
+						<PickupQuest NpcId="1002298" QuestId="66181" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="GetQuestStep(66181) == 1">
+				<TalkTo NpcId="1003910" InteractDistance="1.0" XYZ="-5.622513, 6.2, 165.3229"/>
+			</If>
+			<If Condition="not HqHasAtLeast(5115,20)">
+				<If Condition="not IsOnMap(139)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+						<TeleportTo Name="Camp Bronze Lakes" AetheryteId="15" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+						<Travel To="139" />
+					</If>
+				</If>
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="not HqHasAtLeast(5115,20)">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<Hotspot Radius="90" XYZ="431.7673, -3.4, 181.5331"/>
+					</HotSpots>
+					<Slot>5</Slot>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</If>
+			<If Condition="HqHasAtLeast(5115,20)">
+				<If Condition="GetQuestStep(66181) == 255">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="131" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<TurnIn ItemId="5115" QuestId="66181" RequiresHq="true" StepId="255" NpcId="1003910" InteractDistance="1.0" XYZ="-5.622513, 6.2, 165.3229"/>
+						<LogMessage Message="Level 45 - Gulley of Woes - Completed."/>
+					</If>
+				</If>
+			</If>
+		</If>
+		<!--End Level 45-->
+
+		<!--Start - Grind to Level 50-->
+		<If Condition="Core.Player.ClassLevel &lt; 50">
+			<LogMessage Message="Starting the Grind to Level 50."/>
+			<If Condition="not IsOnMap(139)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(15)">
+					<TeleportTo Name="Camp Bronze Lakes" AetheryteId="15" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+					<Travel To="139" />
+				</If>
+			</If>
+			<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="Core.Player.ClassLevel &lt; 50">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="95" XYZ="425.5676, -2.748671, 180.2855" />
+				</HotSpots>
+				<Slot>5</Slot>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</If>
+		<If Condition="Core.Player.ClassLevel == 50">
+			<LogMessage Message="Congrats on Level 50, moving on."/>
+		</If>
+		<!--End Level 50 Grind-->
+
+		<!--Level 50 - Canyon of Regret-->
+		<If Condition="not IsQuestCompleted(66182)">
+			<If Condition="not HasQuest(66182)">
+				<LogMessage Message="Picking up Level 50 - Canyon of Regret."/>
+				<If Condition="not IsOnMap(131)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="131" />
+					</If>
+				</If>
+				<If Condition="IsOnMap(130)">
+					<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+				</If>
+				<If Condition="IsOnMap(131)">
+					<MoveTo Name="Adalberta" Distance="1" UseMesh="True" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+					<If Condition="IsQuestAcceptQualified(66182)">
+						<PickupQuest NpcId="1002298" QuestId="66182" XYZ="-16.45324, 6.2, 157.4644"/>
+					</If>
+				</If>
+			</If>
+			<If Condition="GetQuestStep(66182) == 1">
+				<TalkTo NpcId="1003910" InteractDistance="1.0" XYZ="-5.622513, 6.2, 165.3229"/>
+			</If>
+			<If Condition="GetQuestStep(66182) == 2">
+				<TalkTo NpcId="1003909" InteractDistance="1.0" XYZ="18.15764, 9.009788, 168.1369"/>
+			</If>
+			<If Condition="GetQuestStep(66182) == 3">
+				<TalkTo NpcId="1002298" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+			</If>
+			<If Condition="GetQuestStep(66182) == 4">
+				<TalkTo NpcId="1003910" InteractDistance="1.0" XYZ="-5.622513, 6.2, 165.3229"/>
+			</If>
+			<If Condition="GetQuestStep(66182) == 5">
+				<If Condition="not IsTimeBetween(1,2) and not NqHasAtLeast(5121,3)">
+					<LogMessage Message="Waiting until 1am for node"/>
+					<WaitWhile Condition ="not IsTimeBetween(1,3)" />
+				</If>
+			</If>
+			<If Condition="GetQuestStep(66182) == 5">
+				<If Condition="not NqHasAtLeast(5121,3)">
+					<If Condition="IsTimeBetween(1,3)">
+						<If Condition="not IsOnMap(155)">
+							<If Condition="Managers.WorldManager.HasAetheryteId(23)">
+								<TeleportTo Name="Camp Dragonhead" AetheryteId="23" />
+							</If>
+							<If Condition="not Managers.WorldManager.HasAetheryteId(23)">
+								<Travel To="155" />
+							</If>
+						</If>
+						<ExGather DiscoverUnknowns="&DiscoverUnknowns;" While="not NqHasAtLeast(5121,3)">
+							<GatherObject>Unspoiled Mineral Deposit</GatherObject>
+							<HotSpots>
+								<Hotspot Radius="500" XYZ="274.5798, 295.1528, -71.25455"/>
+							</HotSpots>
+							<Slot>2</Slot>
+							<GatheringSkillOrder>
+								<GatheringSkill SpellName="Sharp Vision III" TimesToCast="1" />
+							</GatheringSkillOrder>
+						</ExGather>
+					</If>
+				</If>
+			</If>
+			<If Condition="NqHasAtLeast(5121,3)">
+				<If Condition="GetQuestStep(66182) == 5">
+					<If Condition="not IsOnMap(131)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="131" />
+						</If>
+					</If>
+					<If Condition="IsOnMap(130)">
+						<MoveTo Name="Steps of Thal" Distance="1" UseMesh="True" XYZ="93.88152, 4, -102.9668"/>
+					</If>
+					<If Condition="IsOnMap(131)">
+						<HandOverPlus ItemId="5121" QuestId="66182" StepId="5" NpcId="1002298" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+						<TurnIn QuestId="66182" StepId="255" NpcId="1002298" InteractDistance="1.0" XYZ="-16.45324, 6.2, 157.4644"/>
+						<WaitTimer WaitTime="3"/>
+						<RunCode Name="MINWeapon2"/>
+						<WaitTimer WaitTime="3"/>
+						<LogMessage Message="Level 50 - Canyon of Regret - Completed."/>
+						<LogMessage Message="Congrats! You are now complete with all Mining Quests &amp; Level 50!"/>
+					</If>
+				</If>
+			</If>
+		</If>
+		<!--End Level 50-->
+		
+		<!-- [Pickup Quest] -->
+
+		<!-- Breaking New Ground -->
+		<If Condition="not IsQuestCompleted(67616)">
+			<If Condition="not HasQuest(67616)">
+				<If Condition="not IsOnMap(131)">
+					<GetTo ZoneId="131" XYZ="-3.683439, 15.00001, -8.834866"/> <!-- Ul'dah - Steps of Thal -->
+				</If>
+				<NoCombatMoveTo Name="Adalberta" XYZ="-18.9975, 6.2, 157.4272" />
+				<If Condition="IsQuestAcceptQualified(67616)">
+					<PickupQuest NpcId="1002298" QuestId="67616" XYZ="-18.9975, 6.2, 157.4272" />
+				</If>
+			</If>
+
+			<!-- [Complete Quest] -->
+
+			<If Condition="HasQuest(67616)">
+				<If Condition="GetQuestStep(67616) == 1">
+					<If Condition="not IsOnMap(131)">
+						<GetTo ZoneId="131" XYZ="-3.683439, 15.00001, -8.834866"/> <!-- Ul'dah - Steps of Thal -->
+					</If>
+					<NoCombatMoveTo Name="Linette" XYZ="3.555298, 7.599962, 153.2157" />				
+					<TalkTo QuestId="67616" StepId="1" NpcId="1002282" XYZ="3.555298, 7.599962, 153.2157" />
+				</If>
+				<If Condition="GetQuestStep(67616) == 2">
+					<If Condition="not IsOnMap(419)">
+						<GetTo ZoneId="419" XYZ="-93.24056, -4.65301, -38.95392"/> <!-- The Pillars -->
+					</If>
+					<NoCombatMoveTo Name="House Fortemps Knight" XYZ="16.617, 15.96505, 3.677429" />		
+					<HandOver ItemId="2001726" QuestId="67616" StepId="2" NpcId="1013232" XYZ="16.617, 15.96505, 3.677429" />
+				</If>
+				
+				<!-- [TurnIn Quest] -->
+
+				<If Condition="GetQuestStep(67616) == 255">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>
+					<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />
+					<TurnIn QuestId="67616" NpcId="1013230" ItemId="0" XYZ="85.19104, 15.00001, 40.66516" />
+				</If>
+			</If>
+		</If>
+
+		<RunCode Name="Miner" />
+		<WaitTimer WaitTime="3" />
+		<If Condition="Core.Me.CurrentJob == ClassJobType.Miner">
+
+			<!-- Level 50-51 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 51">
+				<If Condition="not IsOnMap(152)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(4)">
+						<TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+						<Travel To="152" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-185.6458, -4.84562, 193.8963" />
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" while="Core.Player.ClassLevel &lt; 51">
+					<GatherObject>Rocky Outcrop</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-155.8013, -0.2726408, 161.3902" name="Rocky Outcrops" />
+					</HotSpots>
+					<Slot>0</Slot> <!-- Grade 3 Carbonized Matter -->
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Solid Reason" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</While>
+
+			<!-- Level 51-52 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 52">
+				<If Condition="not IsOnMap(397)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+						<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="397" /> -->
+						<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+						<StopBot />
+					</If>
+				</If>				
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" Loops="1">
+					<GatherObjects>
+						<GatherObject>Rocky Outcrop</GatherObject>						
+					</GatherObjects>
+					<Items>
+						<GatherItem Name="Mythrite Sand"/>
+					</Items>
+					<GatherRotation>RegularNode</GatherRotation>
+					<GatherSpots/>
+					<HotSpots>
+						<HotSpot Radius="50" XYZ="-193.4736, 105.0126, -414.2657"/>
+						<HotSpot Radius="50" XYZ="-412.046, 105.0645, -455.7659"/>
+						<HotSpot Radius="50" XYZ="-346.8775, 104.6202, -611.3132"/>
+					</HotSpots>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</While>
+
+			<!-- Level 52-54 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 54">
+				<If Condition="not IsOnMap(397)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(71)">
+						<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
+
+						<!-- TO DO -->
+
+						<!-- Update Travel.cs with new zone information.  -->
+
+						<!-- TO DO -->
+
+						<!-- <Travel To="397" /> -->
+						<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
+						<StopBot />
+					</If>
+				</If>				
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" Loops="1">
+					<GatherObjects>						
+						<GatherObject>Mineral Deposit</GatherObject>						
+					</GatherObjects>
+					<Items>
+						<GatherItem Name="Mythrite Ore"/>
+						<GatherItem Name="Raw Larimar"/>
+					</Items>
+					<GatherRotation>RegularNode</GatherRotation>
+					<GatherSpots/>
+					<HotSpots>
+						<HotSpot Radius="50" XYZ="309.281, 183.1803, -547.3681"/>
+						<HotSpot Radius="50" XYZ="465.0197, 174.61, -423.2626"/>
+						<HotSpot Radius="50" XYZ="530.5591, 177.4541, -530.5399"/>
+					</HotSpots>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</While>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- Sellspade -->
+			<If Condition="not IsQuestCompleted(67617)">
+				<If Condition="not HasQuest(67617)">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>
+					<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />
+					<If Condition="IsQuestAcceptQualified(67617)">
+						<PickupQuest NpcId="1013230" QuestId="67617" XYZ="85.19104, 15.00001, 40.66516" />
+					</If>					
+				</If>				
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67617)">
+					<If Condition="GetQuestStep(67617) == 1">
+						<If Condition="not IsOnMap(397)">
+							<GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/> <!-- Falcon's Nest -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="299.6719, 157.9135, 103.2578" />
+						<TalkTo QuestId="67617" StepId="1" NpcId="1013233" XYZ="299.6719, 157.9135, 103.2578" />
+					</If>
+					<If Condition="GetQuestStep(67617) == 2">
+						<If Condition="not IsOnMap(397)">
+							<GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/> <!-- Falcon's Nest -->
+						</If>
+						<If Condition="not HqHasAtLeast(12534,10)">
+							<ExGather DiscoverUnknowns="&DiscoverUnknowns;" While="not HqHasAtLeast(12534,10)">
+								<GatherObjects>
+									<GatherObject>Mineral Deposit</GatherObject>
+								</GatherObjects>
+								<Items>
+									<GatherItem Name="Mythrite Ore"/>
+									<GatherItem Name="Raw Larimar"/>
+								</Items>
+								<GatherRotation>RegularNode</GatherRotation>
+								<GatherSpots/>
+								<HotSpots>
+									<HotSpot Radius="50" XYZ="309.281, 183.1803, -547.3681"/>
+									<HotSpot Radius="50" XYZ="465.0197, 174.61, -423.2626"/>
+									<HotSpot Radius="50" XYZ="530.5591, 177.4541, -530.5399"/>
+								</HotSpots>
+								<GatheringSkillOrder>
+									<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+								</GatheringSkillOrder>
+							</ExGather>
+						</If>
+						<If Condition="HqHasAtLeast(12534,10)">
+							<NoCombatMoveTo Name="Haimirich" XYZ="299.6719, 157.9135, 103.2578" />
+							<TurnIn ItemId="12534" RequiresHq="true" QuestId="67617" StepId="2" NpcId="1013233" InteractDistance="2.0" XYZ="299.6719, 157.9135, 103.2578" />
+						</If>
+					</If>					
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67617) == 255">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />	
+						<TurnIn QuestId="67617" NpcId="1013230" XYZ="85.19104, 15.00001, 40.66516" />
+					</If>
+				</If>
+			</If>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- The Same Vein -->
+			<If Condition="not IsQuestCompleted(67618)">
+				<If Condition="not HasQuest(67618)">
+					<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+					<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />	
+					<If Condition="IsQuestAcceptQualified(67618)">
+						<PickupQuest NpcId="1013230" QuestId="67618" XYZ="85.19104, 15.00001, 40.66516" />	
+					</If>
+				</If>
+				
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67618)">
+					<If Condition="GetQuestStep(67618) == 1">
+						<If Condition="not IsOnMap(131)">
+							<GetTo ZoneId="131" XYZ="-3.683439, 15.00001, -8.834866"/> <!-- Ul'dah - Steps of Thal -->
+						</If>
+						<NoCombatMoveTo Name="Adalberta" XYZ="-16.45324, 6.2, 157.4644"/>						
+						<HandOver ItemId="2001727" QuestId="67618" StepId="1" NpcId="1002298" XYZ="-18.9975, 6.2, 157.4272" />				
+					</If>
+					<If Condition="GetQuestStep(67618) == 2">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />	
+						<HandOver ItemId="2001727" QuestId="67618" StepId="2" NpcId="1013230" XYZ="85.19104, 15.00001, 40.66516" />
+					</If>
+					<If Condition="GetQuestStep(67618) == 3">
+						<If Condition="not IsOnMap(398)">
+							<GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532"/> <!-- Tailfeather -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="388.3573, -43.08157, -368.9174" />						
+						<TalkTo QuestId="67618" StepId="3" NpcId="1013933" XYZ="388.3573, -43.08157, -368.9174" />
+					</If>
+					<If Condition="GetQuestStep(67618) == 4">
+						<If Condition="not IsOnMap(398)">
+							<GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532"/> <!-- Tailfeather -->
+						</If>
+						<If Condition="not HqHasAtLeast(12537,10)">
+							<ExGather DiscoverUnknowns="&DiscoverUnknowns;" While="not HqHasAtLeast(12537,10)">
+								<GatherObjects>
+									<GatherObject>Mineral Deposit</GatherObject>
+								</GatherObjects>
+								<Items>
+									<GatherItem Name="Titanium Ore"/>
+									<GatherItem Name="Raw Star Ruby"/>
+								</Items>
+								<GatherRotation>RegularNode</GatherRotation>
+								<GatherSpots>
+									<IndirectApproachGatherSpot ApproachLocation="-453.1555, 120.3001, -274.9049" ReturnToApproachLocation="True" nodeLocation="-460.4598, 120.6998, -282.0876"/>
+									<StealthApproachGatherSpot ReturnToStealthLocation="True" StealthLocation="-454.0193, 122.0814, -456.4791" nodeLocation="-464.1032, 122.1049, -462.4032"/>
+								</GatherSpots>
+								<HotSpots>
+									<HotSpot Radius="50" XYZ="501.5813, -16.52958, -430.0856"/>
+									<HotSpot Radius="50" XYZ="304.3826, -19.23269, -432.1047"/>
+									<HotSpot Radius="50" XYZ="325.427, -26.5851, -270.1526"/>
+								</HotSpots>
+								<GatheringSkillOrder>
+									<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+								</GatheringSkillOrder>
+							</ExGather>
+						</If>
+						<If Condition="HqHasAtLeast(12537,10)">
+							<NoCombatMoveTo Name="Haimirich" XYZ="388.3573, -43.08157, -368.9174" />
+							<TurnIn ItemId="12537" RequiresHq="true" QuestId="67618" StepId="4" NpcId="1013933" XYZ="388.3573, -43.08157, -368.9174" />
+						</If>
+					</If>
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67618) == 255">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />
+						<TurnIn QuestId="67618" NpcId="1013230" XYZ="85.19104, 15.00001, 40.66516" />
+					</If>
+				</If>
+			</If>
+
+			<!-- Level 54-56 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 56">
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+						<TeleportTo Name="Tailfeather" AetheryteId="76" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+							<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+						<Travel To="398" />
+					</If>
+				</If>
+				<NoCombatMoveTo Name="Farming Area" XYZ="336.5955, -43.11188, -245.9103" />
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" Loops="1">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="336.5955, -43.11188, -245.9103" name="Mineral Deposits" />
+					</HotSpots>
+					<Items>
+						<GatherItem Name="Titanium Ore"/>
+						<GatherItem Name="Raw Star Ruby"/>
+					</Items>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+				<NoCombatMoveTo Name="Farming Area" XYZ="323.2359, -30.1728, -453.7088" />
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" Loops="1">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="323.2359, -30.1728, -453.7088" name="Mineral Deposits" />
+					</HotSpots>
+					<Items>
+						<GatherItem Name="Titanium Ore"/>
+						<GatherItem Name="Raw Star Ruby"/>
+					</Items>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+				<NoCombatMoveTo Name="Farming Area" XYZ="500.7686, -32.96425, -434.2964" />
+				<ExGather DiscoverUnknowns="&DiscoverUnknowns;" Loops="1">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="500.7686, -32.96425, -434.2964" name="Mineral Deposits" />
+					</HotSpots>
+					<Items>
+						<GatherItem Name="Titanium Ore"/>
+						<GatherItem Name="Raw Star Ruby"/>
+					</Items>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</While>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- The Same Vein -->
+			<If Condition="not IsQuestCompleted(67618)">
+				<If Condition="not HasQuest(67618)">
+					<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+					<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />	
+					<If Condition="IsQuestAcceptQualified(67618)">
+						<PickupQuest NpcId="1013230" QuestId="67618" XYZ="85.19104, 15.00001, 40.66516" />	
+					</If>
+				</If>
+				
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67618)">
+					<If Condition="GetQuestStep(67618) == 1">
+						<If Condition="not IsOnMap(131)">
+							<GetTo ZoneId="131" XYZ="-3.683439, 15.00001, -8.834866"/> <!-- Ul'dah - Steps of Thal -->
+						</If>
+						<NoCombatMoveTo Name="Adalberta" XYZ="-16.45324, 6.2, 157.4644"/>						
+						<HandOver ItemId="2001727" QuestId="67618" StepId="1" NpcId="1002298" XYZ="-18.9975, 6.2, 157.4272" />				
+					</If>
+					<If Condition="GetQuestStep(67618) == 2">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />	
+						<HandOver ItemId="2001727" QuestId="67618" StepId="2" NpcId="1013230" XYZ="85.19104, 15.00001, 40.66516" />
+					</If>
+					<If Condition="GetQuestStep(67618) == 3">
+						<If Condition="not IsOnMap(398)">
+							<GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532"/> <!-- Tailfeather -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="388.3573, -43.08157, -368.9174" />						
+						<TalkTo QuestId="67618" StepId="3" NpcId="1013933" XYZ="388.3573, -43.08157, -368.9174" />
+					</If>
+					<If Condition="GetQuestStep(67618) == 4">
+						<If Condition="not IsOnMap(398)">
+							<GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532"/> <!-- Tailfeather -->
+						</If>
+						<If Condition="not HqHasAtLeast(12537,10)">
+							<ExGather DiscoverUnknowns="&DiscoverUnknowns;" While="not HqHasAtLeast(12537,10)">
+								<GatherObjects>
+									<GatherObject>Mineral Deposit</GatherObject>
+								</GatherObjects>
+								<Items>
+									<GatherItem Name="Titanium Ore"/>
+									<GatherItem Name="Raw Star Ruby"/>
+								</Items>
+								<GatherRotation>RegularNode</GatherRotation>
+								<GatherSpots>
+									<IndirectApproachGatherSpot ApproachLocation="-453.1555, 120.3001, -274.9049" ReturnToApproachLocation="True" nodeLocation="-460.4598, 120.6998, -282.0876"/>
+									<StealthApproachGatherSpot ReturnToStealthLocation="True" StealthLocation="-454.0193, 122.0814, -456.4791" nodeLocation="-464.1032, 122.1049, -462.4032"/>
+								</GatherSpots>
+								<HotSpots>
+									<HotSpot Radius="50" XYZ="501.5813, -16.52958, -430.0856"/>
+									<HotSpot Radius="50" XYZ="304.3826, -19.23269, -432.1047"/>
+									<HotSpot Radius="50" XYZ="325.427, -26.5851, -270.1526"/>
+								</HotSpots>
+								<GatheringSkillOrder>
+									<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+								</GatheringSkillOrder>
+							</ExGather>
+						</If>
+						<If Condition="HqHasAtLeast(12537,10)">
+							<NoCombatMoveTo Name="Haimirich" XYZ="388.3573, -43.08157, -368.9174" />
+							<TurnIn ItemId="12537" RequiresHq="true" QuestId="67618" StepId="4" NpcId="1013933" XYZ="388.3573, -43.08157, -368.9174" />
+						</If>
+					</If>
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67618) == 255">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />
+						<TurnIn QuestId="67618" NpcId="1013230" XYZ="85.19104, 15.00001, 40.66516" />
+					</If>
+				</If>
+			</If>
+
+			<!-- Level 56-58 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 58">
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+						<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+						<Travel To="398" />
+					</If>
+				</If>
+				<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+					<GatherObjects>
+						<GatherObject>Mineral Deposit</GatherObject>
+					</GatherObjects>
+					<Items>
+						<GatherItem Name="Raw Opal"/>
+					</Items>
+					<GatherRotation>RegularNode</GatherRotation>
+					<GatherSpots>
+						<IndirectApproachGatherSpot ApproachLocation="-133.4553, -46.51377, 214.2649" ReturnToApproachLocation="True" nodeLocation="-133.4304, -45.47835, 211.6268"/>
+						<IndirectApproachGatherSpot ApproachLocation="-149.9537, -70.32066, 368.6832" ReturnToApproachLocation="True" nodeLocation="-152.9678, -68.49996, 365.0086"/>
+					</GatherSpots>
+					<HotSpots>
+						<HotSpot Radius="50" XYZ="-110.220871, -39.95467, 228.607437"/>
+						<HotSpot Radius="70" XYZ="-154.3863, -63.26427, 368.2925"/>
+						<HotSpot Radius="50" XYZ="-299.2256, -54.72244, 326.3812"/>
+					</HotSpots>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</While>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- Digging Deeper -->
+			<If Condition="not IsQuestCompleted(67619)">
+				<If Condition="not HasQuest(67619)">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>
+					<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />
+					<If Condition="IsQuestAcceptQualified(67619)">
+						<PickupQuest NpcId="1013230" QuestId="67619" XYZ="85.19104, 15.00001, 40.66516" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67619)">
+					<If Condition="GetQuestStep(67619) == 1">
+						<If Condition="not IsOnMap(399)">
+							<GetTo ZoneId="399" XYZ="-216.0735, 103.1677, -584.981"/> <!-- The Dravanian Hinterlands (East) -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="552.3003, 94.17663, 161.7609" />
+						<TalkTo QuestId="67619" StepId="1" NpcId="1013943" XYZ="552.3003, 94.17663, 161.7609" />
+					</If>					
+					<If Condition="GetQuestStep(67619) == 2">
+						<If Condition="not IsOnMap(399)">
+							<GetTo ZoneId="399" XYZ="-216.0735, 103.1677, -584.981"/> <!-- The Dravanian Hinterlands (East) -->
+						</If>
+						<While Condition="GetQuestStep(67619) == 2">
+							<NoCombatMoveTo Name="Mining Point #1" XYZ="386.1599, 77.16479, 286.5186" />
+							<If Condition="GameObjectManager.GetObjectByNPCId(2005949).IsVisible">
+								<UseObject NpcId="2005949" XYZ="386.1599, 77.16479, 286.5186" Radius="10" UseTimes="1" BlacklistAfter="True" />
+							</If>							
+							<NoCombatMoveTo Name="Mining Point #2" XYZ="351.7606, 102.8219, 335.8144" />
+							<If Condition="GameObjectManager.GetObjectByNPCId(2005948).IsVisible">
+								<UseObject NpcId="2005948" XYZ="350.3623, 103.4714, 333.8826" Radius="10" UseTimes="1" BlacklistAfter="True" />
+							</If>
+							<RunCode Name="Stealth" />
+							<WaitTimer WaitTime="3" />
+							<NoCombatMoveTo Name="Mining Point #3" XYZ="337.6349, 92.3186, 313.3165" />
+							<If Condition="GameObjectManager.GetObjectByNPCId(2005950).IsVisible">
+								<UseObject NpcId="2005950" XYZ="338.8571, 92.48486, 314.2595" Radius="10" UseTimes="1" BlacklistAfter="True" />
+							</If>
+						</While>
+					</If>
+					<If Condition="GetQuestStep(67619) == 3">
+						<If Condition="not IsOnMap(399)">
+							<GetTo ZoneId="399" XYZ="-216.0735, 103.1677, -584.981"/> <!-- The Dravanian Hinterlands (East) -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="552.3003, 94.17663, 161.7609" />						
+						<HandOver ItemId="2001728" QuestId="67619" StepId="3" NpcId="1013943" XYZ="552.3003, 94.17663, 161.7609" />
+					</If>
+					<If Condition="GetQuestStep(67619) == 4">
+						<If Condition="not IsOnMap(399)">
+							<GetTo ZoneId="399" XYZ="-216.0735, 103.1677, -584.981"/> <!-- The Dravanian Hinterlands (East) -->
+						</If>
+						<If Condition="not HqHasAtLeast(12535,10)">
+							<!-- Entrax -->
+							<ExGather DiscoverUnknowns="&DiscoverUnknowns;" While="not HqHasAtLeast(12535,10)">
+								<GatherObjects>
+									<GatherObject>Mineral Deposit</GatherObject>>
+								</GatherObjects>
+								<Items>
+									<GatherItem Name="Hardsilver Ore"/>									
+									<GatherItem Name="Grade 5 Carbonized Matter"/>	
+									<GatherItem Name="Raw Chrysolite"/>
+								</Items>
+								<GatherRotation>RegularNode</GatherRotation>
+								<GatherSpots>
+									<StealthApproachGatherSpot ReturnToStealthLocation="True" StealthLocation="226.1602, 76.71241, 178.5256" nodeLocation="211.4673, 75.37302, 169.3396"/>
+									<StealthApproachGatherSpot ReturnToStealthLocation="False" nodeLocation="59.4164, 54.40149, 160.6752" StealthLocation="61.12149, 54.32081, 169.105"/>
+									<StealthApproachGatherSpot ReturnToStealthLocation="False" nodeLocation="47.04347, 53.91698, 164.1816" StealthLocation="45.88089, 53.29337, 168.1437"/>
+									<IndirectApproachGatherSpot ApproachLocation="250.3258, 75.36033, 143.0813" ReturnToApproachLocation="False" nodeLocation="237.4622, 74.67197, 150.8143"/>
+									<IndirectApproachGatherSpot ApproachLocation="235.511, 73.91628, 114.766" ReturnToApproachLocation="False" nodeLocation="231.3517, 74.23511, 112.9807"/>
+									<IndirectApproachGatherSpot ApproachLocation="137.5328, 67.66, 77.90279" ReturnToApproachLocation="False" nodeLocation="138.7979, 69.3564, 76.02666"/>
+									<IndirectApproachGatherSpot ApproachLocation="182.7975, 69.57438, 117.5594" ReturnToApproachLocation="False" nodeLocation="186.0795, 69.36257, 126.6282"/>
+								</GatherSpots>
+								<HotSpots>
+									<HotSpot Radius="50" XYZ="144.1487, 81.11399, 54.39318"/>
+									<HotSpot Radius="80" XYZ="221.9516, 86.1501, 161.2957"/>
+									<HotSpot Radius="50" XYZ="53.67305, 61.78543, 169.2949"/>
+								</HotSpots>
+								<GatheringSkillOrder>
+									<GatheringSkill SpellName="Unearth" TimesToCast="1" />
+								</GatheringSkillOrder>
+							</ExGather>
+						</If>
+						<If Condition="HqHasAtLeast(12535,10)">
+							<NoCombatMoveTo Name="Haimirich" XYZ="552.3003, 94.17663, 161.7609" />	
+							<TurnIn ItemId="12535" RequiresHq="true" QuestId="67619" StepId="4" NpcId="1013943" XYZ="552.3003, 94.17663, 161.7609" />	
+						</If>						
+					</If>
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67619) == 255">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />
+						<TurnIn QuestId="67619" NpcId="1013230" XYZ="85.19104, 15.00001, 40.66516" />
+					</If>
+				</If>
+			</If>
+
+			<!-- Level 58-60 -->
+
+			<While Condition="Core.Player.ClassLevel &lt; 60">
+				<If Condition="not IsOnMap(398)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(77)">
+						<TeleportTo Name="Anyx Trine" AetheryteId="77" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(76)">
+							<TeleportTo Name="Tailfeather" AetheryteId="76" />
+						</If>
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
+						<Travel To="398" />
+					</If>
+				</If>				
+				<NoCombatMoveTo Name="Farming Area" XYZ="-295.0072, -55.02479, 314.6609" />
+				<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-295.0072, -55.02479, 314.6609" name="Mineral Deposits" />
+					</HotSpots>
+					<ItemNames>
+						<ItemName>Eventide Jade</ItemName>
+						<ItemName>Raw Opal</ItemName>
+					</ItemNames>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-133.6192, -46.14014, 212.3715" />
+				<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-133.6192, -46.14014, 212.3715" name="Mineral Deposits" />
+					</HotSpots>
+					<ItemNames>
+						<ItemName>Eventide Jade</ItemName>
+						<ItemName>Raw Opal</ItemName>
+					</ItemNames>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+				<NoCombatMoveTo Name="Farming Area" XYZ="-154.2216, -71.83118, 398.8262" />
+				<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+					<GatherObject>Mineral Deposit</GatherObject>
+					<HotSpots>
+						<HotSpot Radius="90" XYZ="-154.2216, -71.83118, 398.8262" name="Mineral Deposits" />
+					</HotSpots>
+					<ItemNames>
+						<ItemName>Eventide Jade</ItemName>
+						<ItemName>Raw Opal</ItemName>
+					</ItemNames>
+					<GatheringSkillOrder>
+						<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+					</GatheringSkillOrder>
+				</ExGather>
+			</While>
+			
+			<!-- [Pickup Quest] -->
+
+			<!-- The Hole Truth -->
+			<If Condition="not IsQuestCompleted(67620)">
+				<If Condition="not HasQuest(67620)">
+					<If Condition="not IsOnMap(418)">
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+					</If>
+					<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />
+					<If Condition="IsQuestAcceptQualified(67620)">
+						<PickupQuest NpcId="1013230" QuestId="67620" XYZ="85.19104, 15.00001, 40.66516" />
+					</If>
+				</If>
+
+				<!-- [Complete Quest] -->
+
+				<If Condition="HasQuest(67620)">
+					<If Condition="GetQuestStep(67620) == 1">
+						<If Condition="not IsOnMap(478)">
+							<GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279"/> <!-- Idyllshire -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="116.0448, 206.9609, 80.15564" />	
+						<TalkTo QuestId="67620" StepId="1" NpcId="1013956" XYZ="116.0448, 206.9609, 80.15564" />
+					</If>
+					<If Condition="GetQuestStep(67620) == 2">
+						<If Condition="not IsOnMap(478)">
+							<GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279"/> <!-- Idyllshire -->
+						</If>
+						<NoCombatMoveTo Name="Midnight Dew" XYZ="-26.84064, 206.4995, 28.67163" />
+						<TalkTo QuestId="67620" StepId="2" NpcId="1012133" XYZ="-26.84064, 206.4995, 28.67163" />
+					</If>
+					<If Condition="GetQuestStep(67620) == 3">						
+						<If Condition="not HqHasAtLeast(12538,3)">
+							<If Condition="not IsOnMap(402)">
+								<GetTo ZoneId="402" XYZ="-710.4073, -187.544, -589.1729"/> <!-- Helix -->
+							</If>
+							<While Condition="not HqHasAtLeast(12538,3)">
+								<!-- Entrax -->
+								<ExGather DiscoverUnknowns="&DiscoverUnknowns;" While="not HqHasAtLeast(12538,3)">
+									<GatherObjects>
+										<GatherObject>Unspoiled Mineral Deposit</GatherObject>
+									</GatherObjects>
+									<ItemNames>
+										<ItemName>Adamantite Ore</ItemName>
+									</ItemNames>
+									<GatherSpots>
+										<IndirectApproachGatherSpot ReturnToApproachLocation="False" ApproachLocation="71.82657, -0.7113832, -859.5731" nodeLocation="72.07767, 0.7522836, -854.5031"/>
+										<IndirectApproachGatherSpot ReturnToApproachLocation="False" ApproachLocation="24.49877, 0.1047641, -827.0684" nodeLocation="25.29292, 0.5668808, -833.7905"/>
+										<StealthApproachGatherSpot ReturnToStealthLocation="False" StealthLocation="87.43224, -0.9560863, -795.0317" nodeLocation="79.63015, 0.5219008, -804.5839"/>
+									</GatherSpots>
+									<HotSpots>
+										<HotSpot Radius="90" XYZ="41.74664, 16.07355, -843.0107"/>
+									</HotSpots>
+									<GatheringSkillOrder>
+										<GatheringSkill SpellName="Unearth II" TimesToCast="1" />
+									</GatheringSkillOrder>
+								</ExGather>
+							</While>
+						</If>						
+						<If Condition="HqHasAtLeast(12538,3)">
+							<If Condition="not IsOnMap(478)">
+								<GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279"/> <!-- Idyllshire -->
+							</If>
+							<NoCombatMoveTo Name="Goblin Trader" XYZ="59.67798, 207.1303, 3.311157" />	
+							<TurnIn ItemId="12538" RequiresHq="true" QuestId="67620" StepId="3" NpcId="1013958" XYZ="59.67798, 207.1303, 3.311157" />	
+						</If>										
+					</If>
+					<If Condition="GetQuestStep(67620) == 4">
+						<If Condition="not IsOnMap(478)">
+							<GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279"/> <!-- Idyllshire -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="116.0448, 206.9609, 80.15564" />	
+						<TalkTo QuestId="67620" StepId="4" NpcId="1013956" XYZ="116.0448, 206.9609, 80.15564" />
+					</If>	
+					<If Condition="GetQuestStep(67620) == 5">
+						<If Condition="not IsOnMap(399)">
+							<GetTo ZoneId="399" XYZ="-216.0735, 103.1677, -584.981"/> <!-- The Dravanian Hinterlands (East) -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="169.6345, 202.7997, 494.8042" />
+						<TalkTo QuestId="67620" StepId="5" NpcId="1013959" XYZ="169.6345, 202.7997, 494.8042" />
+					</If>
+					<If Condition="GetQuestStep(67620) == 6">
+						<If Condition="not IsOnMap(478)">
+							<GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279"/> <!-- Idyllshire -->
+						</If>
+						<NoCombatMoveTo Name="Midnight Dew" XYZ="-26.84064, 206.4995, 28.67163" />						
+						<HandOver ItemId="2001729" QuestId="67620" StepId="6" NpcId="1012133" XYZ="-26.84064, 206.4995, 28.67163" />
+					</If>	
+					
+					<!-- [TurnIn Quest] -->
+
+					<If Condition="GetQuestStep(67620) == 255">
+						<If Condition="not IsOnMap(418)">
+							<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
+						</If>
+						<NoCombatMoveTo Name="Haimirich" XYZ="86.81773, 15.00001, 36.22687" />
+						<TurnIn QuestId="67620" NpcId="1013230" XYZ="85.19104, 15.00001, 40.66516" />
+					</If>
+				</If>
+			</If>
+		</If>
+
+		<If Condition="Core.Player.ClassLevel == 60">
+			<LogMessage Message="Congrats! You've hit level 60 Miner!" />
+			<If Condition="not IsOnMap(129)">
+				<If Condition="Managers.WorldManager.HasAetheryteId(8)">
+					<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
+				</If>
+				<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
+					<Travel To="129" />
+				</If>
+			</If>
+		</If>
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
