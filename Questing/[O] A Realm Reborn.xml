@@ -6,7 +6,7 @@
 # Authors: y2krazy                                      #
 #          kagamihiiragi17                              #
 #########################################################
-# Version: 2.0.0                                        #
+# Version: 2.0.1                                        #
 #########################################################
 # Required Level: 1+                                    #
 #########################################################
@@ -36,6 +36,8 @@
   <!ENTITY Patch24 "1"> <!-- Enable the Patch 2.4 Main Scenario Quests. -->
   <!ENTITY Patch25 "1"> <!-- Enable the Patch 2.5 Main Scenario Quests. -->
 
+  <!ENTITY IgnoreClassQuests "0"> <!-- Ignore Class and Job Quests? -->
+
   <!ENTITY ImmortalFlames "0"> <!-- Enable The Immortal Flames Grand Company quests. -->
 
   <!-- ExLog Colors -->
@@ -45,7 +47,7 @@
 ]>
 <!-- End User Configuration -->
 <Profile>
-	<Name>[O] A Realm Reborn (v2.0.0)</Name>
+	<Name>[O] A Realm Reborn (v2.0.1)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -110,14 +112,14 @@
 				</If>
 				<If Condition="not IsQuestCompleted(65659)">
 					<If Condition="GetQuestStep(65659) == 1">
-            <If Condition="not IsOnMap(133)">
-              <GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/>
-            </If>
+                        <If Condition="not IsOnMap(133)">
+                            <GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/>
+                        </If>
 						<HandOver ItemId="2000119" QuestId="65659" StepId="1" NpcId="1000768" XYZ="172.3506, 15.5, -89.95197"/>
 					</If>
 					<If Condition="GetQuestStep(65659) == 255">
 						<If Condition="not IsOnMap(132)">
-              <GetTo ZoneId="132" XYZ="29.56105, 1.691584, 33.32197"/>
+                            <GetTo ZoneId="132" XYZ="29.56105, 1.691584, 33.32197"/>
 						</If>
 						<TurnIn QuestId="65659" NpcId="1000100" XYZ="23.81927, -8, 115.9227"/>
 					</If>
@@ -125,8 +127,8 @@
 				<If Condition="not IsQuestCompleted(65557)">
 					<If Condition="GetQuestStep(65557) == 2">
 						<If Condition="not IsOnMap(148)">
-              <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854"/>
-					  </If>
+                            <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854"/>
+					    </If>
 						<If Condition="HasQuest(65557)">
 							<Grind grindRef="WayOfTheArcher_GroundSquirrel" while="HasQuest(65557) and GetQuestById(65557).QuestI8AL &lt; 3"/>
 							<Grind grindRef="WayOfTheArcher_LittleLadybug" while="HasQuest(65557) and GetQuestById(65557).QuestI8BH &lt; 3"/>
@@ -134,9 +136,9 @@
 						</If>
 					</If>
 					<If Condition="GetQuestStep(65557) == 255">
-            <If Condition="not IsOnMap(132)">
-              <GetTo ZoneId="132" XYZ="29.56105, 1.691584, 33.32197"/>
-            </If>
+                        <If Condition="not IsOnMap(132)">
+                            <GetTo ZoneId="132" XYZ="29.56105, 1.691584, 33.32197"/>
+                        </If>
 						<TurnIn QuestId="65557" NpcId="1000200" XYZ="209.5521, 0.9999819, 35.01941"/>
 					</If>
 				</If>
@@ -603,19 +605,19 @@
 				</If>
 			</If>
 
-			<!-- Get to level 4 -->
+            <If Condition="Core.Player.ClassLevel &lt; 4">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 4 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 4..."/>
+                <If Condition="not IsOnMap(148)">
+                    <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="82.48471, 4.452861, -189.8516"/>
+                <Grind grindRef="CentralShroud_Level4" while="Core.Player.ClassLevel &lt; 4"/>
+            </If>
 
-			<If Condition="Core.Player.ClassLevel &lt; 4">
-				<If Condition="IsOnMap(133)">
-					<MoveTo Name="New Gridania" Distance="0" XYZ="137.2878, 11.10256, -18.40056"/>
-				</If>
-				<If Condition="IsOnMap(132)">
-					<MoveTo Name="Central Shroud" Distance="0" XYZ="158.5835, -12.85194, 157.9362"/>
-				</If>
-				<If Condition="IsOnMap(148)">
-					<Grind grindRef="CentralShroud_Level4" while="Core.Player.ClassLevel &lt; 4"/>
-				</If>
-			</If>
+            <!-- ####### -->
+            <!-- LEVEL 4 -->
+            <!-- ####### -->
 
 			<!-- Derision of Labor -->
 
@@ -1132,19 +1134,19 @@
 				</If>
 			</If>
 
-			<!-- Get to level 7 -->
+            <If Condition="Core.Player.ClassLevel &lt; 7">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 7 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 7..."/>
+                <If Condition="not IsOnMap(148)">
+                    <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="300.9742, -7.349854, 31.68934"/>
+                <Grind grindRef="CentralShroud_Level7" while="Core.Player.ClassLevel &lt; 7"/>
+            </If>
 
-			<If Condition="Core.Player.ClassLevel &lt; 7">
-				<If Condition="IsOnMap(133)">
-					<MoveTo Name="New Gridania" Distance="0" XYZ="-152.2898, 24.29599, -470.2093"/>
-				</If>
-				<If Condition="IsOnMap(132)">
-					<MoveTo Name="Central Shroud" Distance="0" XYZ="158.5835, -12.85194, 157.9362"/>
-				</If>
-				<If Condition="IsOnMap(148)">
-					<Grind grindRef="CentralShroud_Level7" while="Core.Player.ClassLevel &lt; 7"/>
-				</If>
-			</If>
+            <!-- ####### -->
+            <!-- LEVEL 7 -->
+            <!-- ####### -->
 
 			<!-- Eggs over Queasy -->
 
@@ -1169,19 +1171,19 @@
 				</If>
 			</If>
 
-			<!-- Get to level 8 -->
+            <If Condition="Core.Player.ClassLevel &lt; 8">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 8 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 8..."/>
+                <If Condition="not IsOnMap(148)">
+                    <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="384.2145, 13.9719, 80.34049"/>
+                <Grind grindRef="CentralShroud_Level8" while="Core.Player.ClassLevel &lt; 8"/>
+            </If>
 
-			<If Condition="Core.Player.ClassLevel &lt; 8">
-				<If Condition="IsOnMap(133)">
-					<MoveTo Name="New Gridania" Distance="0" XYZ="-152.2898, 24.29599, -470.2093"/>
-				</If>
-				<If Condition="IsOnMap(132)">
-					<MoveTo Name="Central Shroud" Distance="0" XYZ="158.5835, -12.85194, 157.9362"/>
-				</If>
-				<If Condition="IsOnMap(148)">
-					<Grind grindRef="CentralShroud_Level8" while="Core.Player.ClassLevel &lt; 8"/>
-				</If>
-			</If>
+            <!-- ####### -->
+            <!-- LEVEL 8 -->
+            <!-- ####### -->
 
 			<!-- Surveying the Damage -->
 
@@ -1383,19 +1385,19 @@
 				</If>
 			</If>
 
-			<!-- Get to level 9 -->
+            <If Condition="Core.Player.ClassLevel &lt; 9">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 9 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 9..."/>
+                <If Condition="not IsOnMap(148)">
+                    <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="127.1992, -8.001418, 44.01471"/>
+                <Grind grindRef="CentralShroud_Level9" while="Core.Player.ClassLevel &lt; 9"/>
+            </If>
 
-			<If Condition="Core.Player.ClassLevel &lt; 9">
-				<If Condition="IsOnMap(133)">
-					<MoveTo Name="New Gridania" Distance="0" XYZ="-152.2898, 24.29599, -470.2093"/>
-				</If>
-				<If Condition="IsOnMap(132)">
-					<MoveTo Name="Central Shroud" Distance="0" XYZ="158.5835, -12.85194, 157.9362"/>
-				</If>
-				<If Condition="IsOnMap(148)">
-					<Grind grindRef="CentralShroud_Level9" while="Core.Player.ClassLevel &lt; 9"/>
-				</If>
-			</If>
+            <!-- ####### -->
+            <!-- LEVEL 9 -->
+            <!-- ####### -->
 
 			<!-- Spirithold Broken -->
 
@@ -1690,19 +1692,19 @@
 				</If>
 			</If>
 
-			<!-- Get to level 10 -->
+            <If Condition="Core.Player.ClassLevel &lt; 10">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 10 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 10..."/>
+                <If Condition="not IsOnMap(148)">
+                    <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="80.51275, -10.80073, 166.1779"/>
+                <Grind grindRef="CentralShroud_Level10" while="Core.Player.ClassLevel &lt; 10"/>
+            </If>
 
-			<If Condition="Core.Player.ClassLevel &lt; 10">
-				<If Condition="IsOnMap(133)">
-					<MoveTo Name="New Gridania" Distance="0" XYZ="-125.1223, 5.566991, -35.60019"/>
-				</If>
-				<If Condition="IsOnMap(132)">
-					<MoveTo Name="Central Shroud" Distance="0" XYZ="158.5835, -12.85194, 157.9362"/>
-				</If>
-				<If Condition="IsOnMap(148)">
-					<Grind grindRef="CentralShroud_Level10" while="Core.Player.ClassLevel &lt; 10"/>
-				</If>
-			</If>
+            <!-- ######## -->
+            <!-- LEVEL 10 -->
+            <!-- ######## -->
 
 			<!-- On to Bentbranch -->
 
@@ -2134,19 +2136,19 @@
 				</If>
 			</If>
 
-			<!-- Get to level 14 -->
+            <If Condition="Core.Player.ClassLevel &lt; 14">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 14 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 14..."/>
+                <If Condition="not IsOnMap(148)">
+                    <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="189.4158, -32.88266, 392.8814"/>
+                <Grind grindRef="CentralShroud_Level14" while="Core.Player.ClassLevel &lt; 14"/>
+            </If>
 
-			<If Condition="Core.Player.ClassLevel &lt; 14">
-				<If Condition="IsOnMap(133)">
-					<MoveTo Name="New Gridania" Distance="0" XYZ="-152.2898, 24.29599, -470.2093"/>
-				</If>
-				<If Condition="IsOnMap(132)">
-					<MoveTo Name="Central Shroud" Distance="0" XYZ="158.5835, -12.85194, 157.9362"/>
-				</If>
-				<If Condition="IsOnMap(148)">
-					<Grind grindRef="CentralShroud_Level14" while="Core.Player.ClassLevel &lt; 14"/>
-				</If>
-			</If>
+            <!-- ######## -->
+            <!-- LEVEL 14 -->
+            <!-- ######## -->
 
 			<!-- Leia's Legacy -->
 
@@ -2534,14 +2536,19 @@
 				</If>
 			</If>
 
-			<!-- Get to level 15 -->
+            <If Condition="Core.Player.ClassLevel &lt; 15">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 15 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 15..."/>
+                <If Condition="not IsOnMap(135)">
+                    <GetTo ZoneId="135" XYZ="163.1953, 14.09587, 673.3568"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="84.03502, 19.74317, 786.6178"/>
+                <Grind grindRef="LowerLaNoscea_Level15" while="Core.Player.ClassLevel &lt; 15"/>
+            </If>
 
-			<If Condition="Core.Player.ClassLevel &lt; 15">
-				<If Condition="IsOnMap(128)">
-					<MoveTo Name="Lower La Noscea" Distance="0" XYZ="24.91524, 44.49993, 181.1817"/>
-				</If>
-				<Grind grindRef="LowerLaNoscea_Level15" while="Core.Player.ClassLevel &lt; 15"/>
-			</If>
+            <!-- ######## -->
+            <!-- LEVEL 15 -->
+            <!-- ######## -->
 
 			<!-- Level 10 Class Quests -->
 
@@ -2635,7 +2642,7 @@
 				<If Condition="not IsQuestCompleted(65627)">
 					<If Condition="not HasQuest(65627)">
 						<If Condition="not IsOnMap(132)">
-  						<GetTo ZoneId="132" XYZ="29.56105, 1.691584, 33.32197"/>
+  						    <GetTo ZoneId="132" XYZ="29.56105, 1.691584, 33.32197"/>
 						</If>
 						<If Condition="IsOnMap(132)">
 							<MoveTo Name="Old Gridania" Distance="0" XYZ="-106.191, 1.08756, 5.450311"/>
@@ -3405,20 +3412,20 @@
 					</If>
 				</If>
 			</If>
-			
-			<!-- Get to level 4 -->
 
-			<If Condition="Core.Player.ClassLevel &lt; 4">
-				<If Condition="IsOnMap(129)">
-					<MoveTo Name="Limsa Lominsa Upper Decks" Distance="0" XYZ="-7.13642, 20.84274, 27.17651"/>
-				</If>
-				<If Condition="IsOnMap(128)">
-					<MoveTo Name="Lower La Noscea" Distance="0" XYZ="24.91524, 44.49993, 181.1817"/>
-				</If>
-				<If Condition="IsOnMap(135)">
-					<Grind grindRef="LowerLaNoscea_Level4" while="Core.Player.ClassLevel &lt; 4"/>
-				</If>
-			</If>
+            <If Condition="Core.Player.ClassLevel &lt; 4">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 4 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 4..."/>
+                <If Condition="not IsOnMap(135)">
+                    <GetTo ZoneId="135" XYZ="163.1953, 14.09587, 673.3568"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="47.63577, 60.93054, 94.4513"/>
+                <Grind grindRef="LowerLaNoscea_Level4" while="Core.Player.ClassLevel &lt; 4"/>
+            </If>
+
+            <!-- ####### -->
+            <!-- LEVEL 4 -->
+            <!-- ####### -->
 			
 			<!-- On to Summerford -->
 
@@ -4158,12 +4165,20 @@
 					<TurnIn QuestId="66004" NpcId="1002626" XYZ="205.052, 112.6122, -222.6982"/>
 				</If>
 			</If>
-			
-			<!-- Get to level 10 -->
 
-			<If Condition="Core.Player.ClassLevel &lt; 10">
-				<Grind grindRef="MiddleLaNoscea_Level10" while="Core.Player.ClassLevel &lt; 10"/>
-			</If>
+            <If Condition="Core.Player.ClassLevel &lt; 10">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 10 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 10..."/>
+                <If Condition="not IsOnMap(134)">
+                    <GetTo ZoneId="134" XYZ="222.3688, 113.1, -256.9429"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="-53.34299, 45.47593, -353.0586"/>
+                <Grind grindRef="MiddleLaNoscea_Level10" while="Core.Player.ClassLevel &lt; 10"/>
+            </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 10 -->
+            <!-- ######## -->
 				
 			<!-- Just Deserts -->
 
@@ -5032,12 +5047,20 @@
 					<TurnIn QuestId="65953" NpcId="1002237" ItemId="2000225" XYZ="167.5593, 14.09592, 683.9244"/>
 				</If>
 			</If>
-			
-			<!-- Get to level 14 -->
 
-			<If Condition="Core.Player.ClassLevel &lt; 14">
-				<Grind grindRef="LowerLaNoscea_Level14" while="Core.Player.ClassLevel &lt; 14"/>
-			</If>
+            <If Condition="Core.Player.ClassLevel &lt; 14">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 14 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 14..."/>
+                <If Condition="not IsOnMap(135)">
+                    <GetTo ZoneId="135" XYZ="163.1953, 14.09587, 673.3568"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="84.03502, 19.74317, 786.6178"/>
+                <Grind grindRef="LowerLaNoscea_Level14" while="Core.Player.ClassLevel &lt; 14"/>
+            </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 14 -->
+            <!-- ######## -->
 			
 			<!-- Victory in Peril -->
 
@@ -5424,15 +5447,20 @@
 					</If>
 				</If>
 			</If>
-			
-			<!-- Get to level 15 -->
 
-			<If Condition="Core.Player.ClassLevel &lt; 15">
-				<If Condition="IsOnMap(128)">
-					<MoveTo Name="Lower La Noscea" Distance="0" XYZ="24.91524, 44.49993, 181.1817"/>
-				</If>
-				<Grind grindRef="LowerLaNoscea_Level15" while="Core.Player.ClassLevel &lt; 15"/>
-			</If>
+            <If Condition="Core.Player.ClassLevel &lt; 15">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 15 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 15..."/>
+                <If Condition="not IsOnMap(135)">
+                    <GetTo ZoneId="135" XYZ="163.1953, 14.09587, 673.3568"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="84.03502, 19.74317, 786.6178"/>
+                <Grind grindRef="LowerLaNoscea_Level15" while="Core.Player.ClassLevel &lt; 15"/>
+            </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 15 -->
+            <!-- ######## -->
 
 		</If>
 
@@ -7045,11 +7073,11 @@
 			<!-- Lend Me Your Ears Already -->
 
 			<!-- Quest no longer available here?
-      <If Condition="not IsQuestCompleted(66965)">
+            <If Condition="not IsQuestCompleted(66965)">
 				<If Condition="not HasQuest(66965)">
-          <If Condition="not IsOnMap(130)">
-            <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
-          </If>
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                    </If>
 					<MoveTo Name="Memenaru" XYZ="14.1756, 6.973328, -83.87885"/>
 					<If Condition="IsQuestAcceptQualified(66965)">
 						<PickupQuest NpcId="1001301" QuestId="66965" XYZ="14.1756, 6.973328, -83.87885"/>
@@ -7569,13 +7597,20 @@
 					<TurnIn QuestId="65871" NpcId="1002071" ItemId="2000382,2000383,2000384" XYZ="-324.7883, 17.58331, -127.6113"/>
 				</If>
 			</If>
-			
-			<!-- Get to level 14 -->
 
+            <If Condition="Core.Player.ClassLevel &lt; 14">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 14 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 14..."/>
+                <If Condition="not IsOnMap(140)">
+                    <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="-228.5533, 14.51385, -338.2217"/>
+                <Grind grindRef="WesternThanalan_Level14" while="Core.Player.ClassLevel &lt; 14"/>
+            </If>
 
-			<If Condition="Core.Player.ClassLevel &lt; 14">
-				<Grind grindRef="WesternThanalan_Level14" while="Core.Player.ClassLevel &lt; 14"/>
-			</If>
+            <!-- ######## -->
+            <!-- LEVEL 14 -->
+            <!-- ######## -->
 			
 			<!-- Oh Captain, My Captain -->
 
@@ -7876,9 +7911,9 @@
 				</If>
 				<WaitWhile Condition="GetQuestStep(66087) == 3"/>
 				<If Condition="GetQuestStep(66087) == 255">
-          <If Condition="not IsOnMap(130)">
-            <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
-          </If>
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                    </If>
 					<If Condition="IsOnMap(130)">
 						<UseTransport NpcId="1001834" DialogOption="1" InteractDistance="3.5" XYZ="-23.33112, 10, -43.44244"/>
 					</If>
@@ -8513,32 +8548,36 @@
 
             <!-- Level 15 Class Quest -->
 
-            <If Condition="ClassName == ClassJobType.Arcanist and not IsQuestCompleted(65994)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Archer and not IsQuestCompleted(65604)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Conjurer and not IsQuestCompleted(65628)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Gladiator and not IsQuestCompleted(65798)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Lancer and not IsQuestCompleted(65591)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Marauder and not IsQuestCompleted(65852)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Pugilist and not IsQuestCompleted(66094)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Rogue and not IsQuestCompleted(65680)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Thaumaturge and not IsQuestCompleted(65886)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+            <If Condition="&IgnoreClassQuests; == 0">
+
+                <If Condition="ClassName == ClassJobType.Arcanist and not IsQuestCompleted(65994)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Archer and not IsQuestCompleted(65604)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Conjurer and not IsQuestCompleted(65628)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Gladiator and not IsQuestCompleted(65798)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Lancer and not IsQuestCompleted(65591)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Marauder and not IsQuestCompleted(65852)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Pugilist and not IsQuestCompleted(66094)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Rogue and not IsQuestCompleted(65680)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Thaumaturge and not IsQuestCompleted(65886)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+
             </If>
 
             <!-- It's Probably Pirates -->
@@ -9427,32 +9466,36 @@
 
             <!-- Level 20 Class Quest -->
 
-            <If Condition="ClassName == ClassJobType.Arcanist and not IsQuestCompleted(65995)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+            <If Condition="&IgnoreClassQuests; == 0">
+
+                <If Condition="ClassName == ClassJobType.Arcanist and not IsQuestCompleted(65995)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Archer and not IsQuestCompleted(65606)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Conjurer and not IsQuestCompleted(65629)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Gladiator and not IsQuestCompleted(65799)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Lancer and not IsQuestCompleted(65592)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Marauder and not IsQuestCompleted(65853)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Pugilist and not IsQuestCompleted(66098)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Rogue and not IsQuestCompleted(65682)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Thaumaturge and not IsQuestCompleted(65887)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
             </If>
-            <If Condition="ClassName == ClassJobType.Archer and not IsQuestCompleted(65606)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Conjurer and not IsQuestCompleted(65629)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Gladiator and not IsQuestCompleted(65799)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Lancer and not IsQuestCompleted(65592)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Marauder and not IsQuestCompleted(65853)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Pugilist and not IsQuestCompleted(66098)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Rogue and not IsQuestCompleted(65682)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Thaumaturge and not IsQuestCompleted(65887)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+
             </If>
 
             <!-- Dressed to Deceive -->
@@ -9863,7 +9906,7 @@
                         </If>
                         <While Condition="not HuntGCEntryCompleted(7)">
                             <If Condition="not IsOnMap(146)">
-                                <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                                <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                             </If>
                             <Grind grindRef="ImmortalFlames_7" while="not HuntGCEntryCompleted(7)"/>
                         </While>
@@ -11446,7 +11489,7 @@
                 </If>
                 <If Condition="GetQuestStep(66293) == 1">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <TalkTo InteractDistance="3.0" NpcId="1006211" XYZ="-217.4869, 26.25821, -361.2574"/>
                 </If>
@@ -11518,7 +11561,7 @@
             <If Condition="not IsQuestCompleted(66297)">
                 <While Condition="GetQuestStep(66297) == 1">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <HandOver ItemId="2000607" NpcId="1006702" XYZ="-186.1448, 3.633583, -247.8218" Condition="IsOnMap(146) and GetQuestById(66297).QuestI8AH == 0"/>
                     <HandOver ItemId="2000607" NpcId="1006704" XYZ="-174.1207, 4.395623, -165.4536" Condition="IsOnMap(146) and GetQuestById(66297).QuestI8AH == 1"/>
@@ -12031,7 +12074,7 @@
 
                 <If Condition="not HuntRankCompleted(Core.Player.CurrentJob, 3) and not HuntEntryCompleted(Core.Player.CurrentJob, 5)">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <Grind grindRef="PricklyPatients" while="not HuntRankCompleted(Core.Player.CurrentJob, 3) and not HuntEntryCompleted(Core.Player.CurrentJob, 5)"/>
                 </If>
@@ -12236,7 +12279,7 @@
                 </If>
                 <If Condition="GetQuestStep(66312) == 255">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <TurnIn QuestId="66312" NpcId="1006215" ItemId="2000614" XYZ="-227.3442, 26.16842, -352.9869"/>
                 </If>
@@ -12297,13 +12340,13 @@
 
             <!-- What's Your Poison -->
 
-            <!-- <If Condition="not IsQuestCompleted(66316)"><If Condition="GetQuestStep(66316) == 1"><If Condition="not IsOnMap(146)"><GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/></If><MoveTo Name="Peistes" Distance="3" XYZ="-188.2425, 23.76437, -478.1503"/><UseItem NpcId="1993" ItemId="2000829" InCombatOnly="True" LacksAuraId="22" UseHealthPercent="100" XYZ="-227.1916, 23.60983, -464.0116" Radius="100" QuestId="66316" StepId="1"/></If></If> -->
+            <!-- <If Condition="not IsQuestCompleted(66316)"><If Condition="GetQuestStep(66316) == 1"><If Condition="not IsOnMap(146)"><GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/></If><MoveTo Name="Peistes" Distance="3" XYZ="-188.2425, 23.76437, -478.1503"/><UseItem NpcId="1993" ItemId="2000829" InCombatOnly="True" LacksAuraId="22" UseHealthPercent="100" XYZ="-227.1916, 23.60983, -464.0116" Radius="100" QuestId="66316" StepId="1"/></If></If> -->
 
             <!-- Wilred Wants You -->
 
             <If Condition="not IsQuestCompleted(66314)">
                 <If Condition="not IsOnMap(146)">
-                    <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                    <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                 </If>
                 <If Condition="GetQuestStep(66314) == 1">
                     <TalkTo InteractDistance="3.0" NpcId="1006228" XYZ="-194.751, 19.02249, -557.8546"/>
@@ -12453,32 +12496,36 @@
 
             <!-- Level 25 Class Quest -->
 
-            <If Condition="ClassName == ClassJobType.Arcanist and not IsQuestCompleted(65996)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Archer and not IsQuestCompleted(65607)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Conjurer and not IsQuestCompleted(65976)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Gladiator and not IsQuestCompleted(65800)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Lancer and not IsQuestCompleted(65974)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Marauder and not IsQuestCompleted(65854)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Pugilist and not IsQuestCompleted(66102)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Rogue and not IsQuestCompleted(65684)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Thaumaturge and not IsQuestCompleted(65888)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+            <If Condition="&IgnoreClassQuests; == 0">
+
+                <If Condition="ClassName == ClassJobType.Arcanist and not IsQuestCompleted(65996)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Archer and not IsQuestCompleted(65607)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Conjurer and not IsQuestCompleted(65976)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Gladiator and not IsQuestCompleted(65800)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Lancer and not IsQuestCompleted(65974)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Marauder and not IsQuestCompleted(65854)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Pugilist and not IsQuestCompleted(66102)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Rogue and not IsQuestCompleted(65684)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Thaumaturge and not IsQuestCompleted(65888)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+
             </If>
 
             <!-- Back to Square One -->
@@ -13550,7 +13597,7 @@
             <If Condition="not IsQuestCompleted(66296)">
                 <If Condition="not HasQuest(66296)">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <MoveTo Name="Annabel" XYZ="-138.8724, 27.26698, -427.8173"/>
                     <If Condition="IsQuestAcceptQualified(66296)">
@@ -13559,14 +13606,14 @@
                 </If>
                 <If Condition="GetQuestStep(66296) == 1">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <UseItem NpcId="1998" ItemId="2000606" LacksAuraId="22" UseHealthPercent="100" InCombatOnly="True" XYZ="-93.94989, 14.76092, -235.6757" Radius="30" Condition="GetQuestById(66296).QuestI8AH == 0"/>
                     <UseItem NpcId="1999" ItemId="2000606" LacksAuraId="22" UseHealthPercent="100" InCombatOnly="True" XYZ="-93.49207, 14.63189, -215.6558" Radius="30" QuestId="66296" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66296) == 255">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <TurnIn QuestId="66296" NpcId="1004894" XYZ="-138.8724, 27.26698, -427.8173"/>
                 </If>
@@ -13577,7 +13624,7 @@
             <If Condition="not IsQuestCompleted(66355)">
                 <If Condition="GetQuestStep(66355) == 255">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <If Condition="not Managers.WorldManager.HasAetheryteId(20)">
                         <SmartMove Name="Aetheryte" Distance="3" XYZ="-321.2028, 8.261247, 406.8774"/>
@@ -13915,14 +13962,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 32 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 32">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 32 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 32..."/>
                 <If Condition="not IsOnMap(137)">
                     <GetTo ZoneId="137" XYZ="493.9612, 17.39324, 463.9441"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="474.8977, 11.13007, 281.463"/>
                 <Grind grindRef="EasternLaNoscea_Level32" while="Core.Player.ClassLevel &lt; 32"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 32 -->
+            <!-- ######## -->
 
             <!-- The Things We Do for Cheese -->
 
@@ -13940,7 +13992,9 @@
                     <TalkTo InteractDistance="3.0" NpcId="1006267" XYZ="340.8102, 34.26972, 110.277"/>
                 </If>
                 <If Condition="GetQuestStep(66368) == 2">
-                    <TeleportTo Name="Wineport" AetheryteId="12" Force="True"/>
+                    <If Condition="not IsOnMap(137)">
+                        <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
+                    </If>
                     <TalkTo InteractDistance="3.0" NpcId="1006268" XYZ="-334.6151, 69.69995, 153.7957"/>
                 </If>
                 <If Condition="GetQuestStep(66368) == 3">
@@ -13951,7 +14005,9 @@
                     <TalkTo InteractDistance="3.0" NpcId="1006268" XYZ="-334.6151, 69.69995, 153.7957"/>
                 </If>
                 <If Condition="GetQuestStep(66368) == 255">
-                    <TeleportTo Name="Costa del Sol" Force="True" AetheryteId="11"/>
+                    <If Condition="not IsOnMap(137)">
+                        <GetTo ZoneId="137" XYZ="493.9612, 17.39324, 463.9441"/>
+                    </If>
                     <TurnIn QuestId="66368" NpcId="1006266" ItemId="2000864" XYZ="560.3571, 20.75329, 455.8937"/>
                 </If>
             </If>
@@ -14156,7 +14212,9 @@
 
             <If Condition="not IsQuestCompleted(66375)">
                 <If Condition="GetQuestStep(66375) == 255">
-                    <TeleportTo Name="Wineport" AetheryteId="12" Force="True"/>
+                    <If Condition="not IsOnMap(137)">
+                        <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
+                    </If>
                     <TurnIn QuestId="66375" NpcId="1006305" ItemId="2000653" XYZ="10.60498, 71.47817, -16.61713"/>
                 </If>
             </If>
@@ -14252,14 +14310,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 33 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 33">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 33 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 33..."/>
                 <If Condition="not IsOnMap(137)">
                     <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="-125.2921, 43.05314, 188.899"/>
                 <Grind grindRef="EasternLaNoscea_Level33" while="Core.Player.ClassLevel &lt; 33"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 33 -->
+            <!-- ######## -->
 
             <!-- Mona Lisa Smile -->
 
@@ -14413,7 +14476,9 @@
                     <HandOver ItemId="2000658" QuestId="66386" StepId="3" NpcId="1006305" XYZ="10.60498, 71.47817, -16.61713"/>
                 </If>
                 <If Condition="GetQuestStep(66386) == 255">
-                    <TeleportTo Name="Costa del Sol" Force="True" AetheryteId="11"/>
+                    <If Condition="not IsOnMap(137)">
+                        <GetTo ZoneId="137" XYZ="493.9612, 17.39324, 463.9441"/>
+                    </If>
                     <TurnIn QuestId="66386" NpcId="1006266" ItemId="2000659" XYZ="560.3571, 20.75329, 455.8937"/>
                 </If>
             </If>
@@ -14597,7 +14662,9 @@
             <If Condition="not IsQuestCompleted(66392)">
                 <If Condition="GetQuestStep(66392) == 1">
                     <If Condition="not IsOnMap(139)">
-                        <TeleportTo Name="Wineport" AetheryteId="12" Force="True"/>
+                        <If Condition="not IsOnMap(137)">
+                            <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
+                        </If>
                         <MoveTo Name="Upper La Noscea" Distance="0" XYZ="78.30981, 80.35239, -124.257"/>
                     </If>
                     <UseObject NpcIds="2002083,2002085,2002084" QuestId="66392" StepId="1">
@@ -14625,14 +14692,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 34 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 34">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 34 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 34..."/>
                 <If Condition="not IsOnMap(139)">
                     <GetTo ZoneId="139" XYZ="426.6154, 4.171807, 90.07837"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="388.8916, -3.11904, 161.1838"/>
                 <Grind grindRef="UpperLaNoscea_Level34" while="Core.Player.ClassLevel &lt; 34"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 34 -->
+            <!-- ######## -->
 
             <!-- Lord of Crags -->
 
@@ -14653,32 +14725,36 @@
 
             <!-- Level 30 Class Quest -->
 
-            <If Condition="ClassName == ClassJobType.Arcanist and not IsQuestCompleted(65997)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Archer and not IsQuestCompleted(65612)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Conjurer and (not IsQuestCompleted(65977) or not IsQuestCompleted(65730))">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Gladiator and not IsQuestCompleted(65801)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Lancer and not IsQuestCompleted(65975)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Marauder and not IsQuestCompleted(65855)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Pugilist and not IsQuestCompleted(66103)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Rogue and not IsQuestCompleted(65690)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Thaumaturge and not IsQuestCompleted(65889)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+            <If Condition="&IgnoreClassQuests; == 0">
+
+                <If Condition="ClassName == ClassJobType.Arcanist and not IsQuestCompleted(65997)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Archer and not IsQuestCompleted(65612)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Conjurer and (not IsQuestCompleted(65977) or not IsQuestCompleted(65730))">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Gladiator and not IsQuestCompleted(65801)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Lancer and not IsQuestCompleted(65975)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Marauder and not IsQuestCompleted(65855)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Pugilist and not IsQuestCompleted(66103)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Rogue and not IsQuestCompleted(65690)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Thaumaturge and not IsQuestCompleted(65889)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+            
             </If>
 
             <!-- Secondary Class - COMING SOON! -->
@@ -15114,7 +15190,7 @@
             <If Condition="not IsQuestCompleted(66300)">
                 <If Condition="GetQuestStep(66300) == 255">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <TurnIn QuestId="66300" NpcId="1006220" XYZ="185.748, 13.7212, -443.1983"/>
                 </If>
@@ -15134,14 +15210,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 35 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 35">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 35 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 35..."/>
                 <If Condition="not IsOnMap(139)">
                     <GetTo ZoneId="139" XYZ="426.6154, 4.171807, 90.07837"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="388.8916, -3.11904, 161.1838"/>
                 <Grind grindRef="UpperLaNoscea_Level35" while="Core.Player.ClassLevel &lt; 35"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 35 -->
+            <!-- ######## -->
 
             <!-- You Can't Take It with You -->
 
@@ -15166,8 +15247,10 @@
                         <PickupQuest NpcId="1003937" QuestId="66407" XYZ="-518.1201, -16.22, 0.1677856"/>
                     </If>
                 </If>
-                <If Condition="GetQuestStep(66407) == 1">
-                    <HandOver ItemId="2000677" QuestId="66407" StepId="1" NpcId="1006672" XYZ="-509.3614, -16.42, -7.522766"/>
+                <If Condition="HasQuest(66407)">
+                    <If Condition="GetQuestStep(66407) == 1">
+                        <HandOver ItemId="2000677" QuestId="66407" StepId="1" NpcId="1006672" XYZ="-509.3614, -16.42, -7.522766"/>
+                    </If>
                 </If>
             </If>
 
@@ -15640,20 +15723,27 @@
                 </If>
             </If>
 
-            <!-- Get to level 36 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 36">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 36 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 36..."/>
                 <If Condition="not IsOnMap(180)">
                     <GetTo ZoneId="180" XYZ="-112.6807, 64.36189, -217.7763"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="-332.5602, 58.02802, -118.3857"/>
                 <Grind grindRef="OuterLaNoscea_Level36" while="Core.Player.ClassLevel &lt; 36"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 36 -->
+            <!-- ######## -->
 
             <!-- Treasures and Tribulations -->
 
             <If Condition="not IsQuestCompleted(66747)">
                 <If Condition="not HasQuest(66747)">
-                    <TeleportTo Name="Wineport" Force="True" AetheryteId="12"/>
+                    <If Condition="not IsOnMap(137)">
+                        <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
+                    </If>
                     <MoveTo Name="H'loonh" XYZ="-17.62427, 70.45007, -17.71582"/>
                     <If Condition="IsQuestAcceptQualified(66747)">
                         <PickupQuest NpcId="1005526" QuestId="66747" XYZ="-17.62427, 70.45007, -17.71582"/>
@@ -16110,14 +16200,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 37 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 37">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 37 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 37..."/>
                 <If Condition="not IsOnMap(155)">
                     <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="256.2161, 290.8591, -80.73458"/>
                 <Grind grindRef="CoerthasCentralHighlands_Level37" while="Core.Player.ClassLevel &lt; 37"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 37 -->
+            <!-- ######## -->
 
             <!-- The Talk of Coerthas -->
 
@@ -16434,21 +16529,26 @@
                 </If>
             </If>
 
-            <!-- Get to level 38 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 38">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 38 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 38..."/>
                 <If Condition="not IsOnMap(155)">
                     <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="256.2161, 290.8591, -80.73458"/>
                 <Grind grindRef="CoerthasCentralHighlands_Level38" while="Core.Player.ClassLevel &lt; 38"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 38 -->
+            <!-- ######## -->
 
             <!-- What's Your Poison -->
 
             <If Condition="not IsQuestCompleted(66316)">
                 <If Condition="GetQuestStep(66316) == 1">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <MoveTo Name="Peistes" Distance="3" XYZ="-188.2425, 23.76437, -478.1503"/>
                     <UseItem NpcId="1993" ItemId="2000829" InCombatOnly="True" LacksAuraId="22" UseHealthPercent="100" XYZ="-227.1916, 23.60983, -464.0116" Radius="100" QuestId="66316" StepId="1"/>
@@ -16460,7 +16560,7 @@
             <If Condition="not IsQuestCompleted(66316)">
                 <If Condition="GetQuestStep(66316) == 255">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <TurnIn QuestId="66316" NpcId="1006227" ItemId="2000615" XYZ="-218.6771, 26.13836, -352.9565"/>
                 </If>
@@ -16471,7 +16571,7 @@
             <If Condition="not IsQuestCompleted(66317)">
                 <If Condition="not HasQuest(66317)">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <MoveTo Name="Amelot" XYZ="-218.6771, 26.13836, -352.9565"/>
                     <If Condition="IsQuestAcceptQualified(66317)">
@@ -16485,7 +16585,7 @@
             <If Condition="not IsQuestCompleted(66317)">
                 <If Condition="GetQuestStep(66317) == 1">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <UseItem NpcId="2002550" ItemId="2000859" XYZ="-238.1171, 4.92865, -242.4506" Radius="10" Condition="GetQuestById(66317).QuestI8CH == 2"/>
                     <UseItem NpcId="2002549" ItemId="2000859" XYZ="-306.4164, 20.58435, -392.0806" Radius="10" Condition="GetQuestById(66317).QuestI8CH == 1"/>
@@ -16498,7 +16598,7 @@
             <If Condition="not IsQuestCompleted(66317)">
                 <If Condition="GetQuestStep(66317) == 255">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <TurnIn QuestId="66317" NpcId="1006227" ItemId="2000973" XYZ="-218.6771, 26.13836, -352.9565"/>
                 </If>
@@ -16922,14 +17022,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 39 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 39">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 39 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 39..."/>
                 <If Condition="not IsOnMap(155)">
                     <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="256.2161, 290.8591, -80.73458"/>
                 <Grind grindRef="CoerthasCentralHighlands_Level39" while="Core.Player.ClassLevel &lt; 39"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 39 -->
+            <!-- ######## -->
 
             <!-- Ye of Little Faith -->
 
@@ -17321,46 +17426,55 @@
                 </If>
             </If>
 
-            <!-- Get to level 40 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 40">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 40 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 40..."/>
                 <If Condition="not IsOnMap(155)">
                     <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="256.2161, 290.8591, -80.73458"/>
                 <Grind grindRef="CoerthasCentralHighlands_Level40" while="Core.Player.ClassLevel &lt; 40"/>
             </If>
 
+            <!-- ######## -->
+            <!-- LEVEL 40 -->
+            <!-- ######## -->
+
             <!-- Level 35 Job Quest -->
 
-            <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(66622)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(66610)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(66604)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(66598)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Ninja and not IsQuestCompleted(65750)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Paladin and not IsQuestCompleted(66592)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Scholar and not IsQuestCompleted(66634)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Summoner and not IsQuestCompleted(66628)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Warrior and not IsQuestCompleted(66586)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.WhiteMage and not IsQuestCompleted(66616)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+            <If Condition="&IgnoreClassQuests; == 0">
+
+                <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(66622)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(66610)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(66604)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(66598)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Ninja and not IsQuestCompleted(65750)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Paladin and not IsQuestCompleted(66592)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Scholar and not IsQuestCompleted(66634)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Summoner and not IsQuestCompleted(66628)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Warrior and not IsQuestCompleted(66586)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.WhiteMage and not IsQuestCompleted(66616)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+
             </If>
 
             <!-- Influencing Inquisitors -->
@@ -17770,14 +17884,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 41 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 41">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 41 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 41..."/>
                 <If Condition="not IsOnMap(155)">
                     <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="256.2161, 290.8591, -80.73458"/>
                 <Grind grindRef="CoerthasCentralHighlands_Level41" while="Core.Player.ClassLevel &lt; 41"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 41 -->
+            <!-- ######## -->
 
             <!-- In Pursuit of the Past -->
 
@@ -17969,14 +18088,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 42 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 42">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 42 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 42..."/>
                 <If Condition="not IsOnMap(145)">
                     <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="403.3923, 6.809714, 134.7006"/>
                 <Grind grindRef="EasternThanalan_Level42" while="Core.Player.ClassLevel &lt; 42"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 42 -->
+            <!-- ######## -->
 
             <!-- It's Probably Not Pirates -->
 
@@ -18245,14 +18369,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 43 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 43">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 43 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 43..."/>
                 <If Condition="not IsOnMap(145)">
                     <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="403.3923, 6.809714, 134.7006"/>
                 <Grind grindRef="EasternThanalan_Level43" while="Core.Player.ClassLevel &lt; 43"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 43 -->
+            <!-- ######## -->
 
             <!-- The Curious Case of Giggity -->
 
@@ -18565,14 +18694,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 44 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 44">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 44 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 44..."/>
                 <If Condition="not IsOnMap(145)">
                     <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="403.3923, 6.809714, 134.7006"/>
                 <Grind grindRef="EasternThanalan_Level44" while="Core.Player.ClassLevel &lt; 44"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 44 -->
+            <!-- ######## -->
 
             <!-- Lady of the Vortex -->
 
@@ -18878,7 +19012,9 @@
                     <UseObject NpcId="2002202" XYZ="-420.5234, -16.9223, -325.3071" Radius="10" QuestId="66522" StepId="2"/>
                 </If>
                 <If Condition="GetQuestStep(66522) == 3">
-                    <TeleportTo Name="Revenant's Toll" AetheryteId="24" Force="True"/>
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
                     <TalkTo InteractDistance="3.0" NpcId="1006534" XYZ="28.21387, 20.66233, -688.4413"/>
                 </If>
                 <If Condition="GetQuestStep(66522) == 255">
@@ -18904,7 +19040,9 @@
                     <UseObject NpcId="2002213" XYZ="-287.007, -16.9223, -361.2574" Radius="10" QuestId="66533" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(66533) == 255">
-                    <TeleportTo Name="Revenant's Toll" AetheryteId="24" Force="True"/>
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
                     <TurnIn QuestId="66533" NpcId="1006542" XYZ="30.62488, 21.25268, -643.5798"/>
                 </If>
             </If>
@@ -18929,46 +19067,55 @@
                 </If>
             </If>
 
-            <!-- Get to level 45 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 45">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 45 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 45..."/>
                 <If Condition="not IsOnMap(145)">
                     <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="403.3923, 6.809714, 134.7006"/>
                 <Grind grindRef="EasternThanalan_Level45" while="Core.Player.ClassLevel &lt; 45"/>
             </If>
 
+            <!-- ######## -->
+            <!-- LEVEL 45 -->
+            <!-- ######## -->
+
             <!-- Level 40 Job Quest -->
 
-            <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(66623)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(66611)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(66605)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(66599)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Ninja and not IsQuestCompleted(65752)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Paladin and not IsQuestCompleted(66593)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Scholar and not IsQuestCompleted(66635)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Summoner and not IsQuestCompleted(66629)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Warrior and not IsQuestCompleted(66587)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.WhiteMage and not IsQuestCompleted(66617)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+            <If Condition="&IgnoreClassQuests; == 0">
+
+                <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(66623)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(66611)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(66605)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(66599)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Ninja and not IsQuestCompleted(65752)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Paladin and not IsQuestCompleted(66593)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Scholar and not IsQuestCompleted(66635)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Summoner and not IsQuestCompleted(66629)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Warrior and not IsQuestCompleted(66587)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.WhiteMage and not IsQuestCompleted(66617)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+
             </If>
 
             <!-- The Sons Also Rise -->
@@ -19105,7 +19252,9 @@
                     </UseObject>
                 </If>
                 <If Condition="GetQuestStep(66535) == 255">
-                    <TeleportTo Name="Revenant's Toll" AetheryteId="24" Force="True"/>
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
                     <TurnIn QuestId="66535" NpcId="1006542" ItemId="2000764" XYZ="30.62488, 21.25268, -643.5798"/>
                 </If>
             </If>
@@ -19187,7 +19336,9 @@
                     <UseObject NpcId="2002451" XYZ="-132.8909, 47.01306, -193.7133" Radius="10" QuestId="66523" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(66523) == 255">
-                    <TeleportTo Name="Revenant's Toll" AetheryteId="24" Force="True"/>
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
                     <TurnIn QuestId="66523" NpcId="1006542" ItemId="2000756" XYZ="30.62488, 21.25268, -643.5798"/>
                 </If>
             </If>
@@ -19252,7 +19403,7 @@
                 <If Condition="GetQuestStep(66539) == 255">
                     <If Condition="GetQuestStep(66539) == 255">
                         <If Condition="not IsOnMap(156)">
-                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                            <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
                         </If>
                         <TurnIn QuestId="66539" NpcId="1006552" ItemId="2000769,2000770" XYZ="54.79517, 25.54827, -698.0544"/>
                     </If>
@@ -19541,7 +19692,9 @@
 
             <If Condition="not IsQuestCompleted(66856)">
                 <If Condition="GetQuestStep(66856) == 1">
-                    <TeleportTo Name="Swiftperch" AetheryteId="13" Force="True"/>
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="658.1301, 9.100406, 510.0844"/>
+                    </If>
                     <TalkTo InteractDistance="3.0" NpcId="1005964" XYZ="651.1177, 9.597839, 484.7333"/>
                 </If>
                 <If Condition="GetQuestStep(66856) == 2">
@@ -19606,14 +19759,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 46 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 46">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 46 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 46..."/>
                 <If Condition="not IsOnMap(156)">
                     <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="358.4799, -15.22239, -420.7379"/>
                 <Grind grindRef="MorDhona_Level46" while="Core.Player.ClassLevel &lt; 46"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 46 -->
+            <!-- ######## -->
 
             <!-- Fool Me Twice -->
 
@@ -19862,7 +20020,7 @@
                 </If>
                 <If Condition="GetQuestStep(66058) == 1">
                     <If Condition="not IsOnMap(131)">
-                        <TeleportTo Name="Uldah - Steps of Nald" AetheryteId="9" Force="True"/>
+                        <GetTo ZoneId="131" XYZ="-3.683439, 15.00001, -8.834866"/>
                     </If>
                     <If Condition="IsOnMap(130)">
                         <MoveTo Name="Ul'dah - Steps of Thal" Distance="0" XYZ="-9.51522, 10, -36.08087"/>
@@ -20018,7 +20176,9 @@
                     <UseObject NpcId="2002614" XYZ="617.2122, 23.60565, 83.26843" Radius="10" QuestId="66545" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(66545) == 4">
-                    <TeleportTo Name="Quarrymill" AetheryteId="5" Force="True"/>
+                    <If Condition="not IsOnMap(153)">
+                        <GetTo ZoneId="153" XYZ="181.2881, 8.417254, -63.92673"/>
+                    </If>
                     <HandOver ItemId="2000965" QuestId="66545" StepId="4" NpcId="1006584" XYZ="193.8353, 7.863429, -57.72491"/>
                 </If>
                 <If Condition="GetQuestStep(66545) == 255">
@@ -20079,7 +20239,7 @@
                 </If>
                 <If Condition="GetQuestStep(66753) == 1">
                     <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                        <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <TalkTo InteractDistance="3.0" NpcId="1006217" XYZ="-181.0483, 28.21407, -402.0295"/>
                 </If>
@@ -20114,14 +20274,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 47 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 47">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 47 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 47..."/>
                 <If Condition="not IsOnMap(156)">
                     <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="358.4799, -15.22239, -420.7379"/>
                 <Grind grindRef="MorDhona_Level47" while="Core.Player.ClassLevel &lt; 47"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 47 -->
+            <!-- ######## -->
 
             <!-- Trauma Queen -->
 
@@ -20397,14 +20562,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 48 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 48">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 48 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 48..."/>
                 <If Condition="not IsOnMap(156)">
                     <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="358.4799, -15.22239, -420.7379"/>
                 <Grind grindRef="MorDhona_Level48" while="Core.Player.ClassLevel &lt; 48"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 48 -->
+            <!-- ######## -->
 
             <!-- Into the Valley of the Skull -->
 
@@ -20707,14 +20877,19 @@
                 </If>
             </If>
 
-            <!-- Get to level 49 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 49">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 49 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 49..."/>
                 <If Condition="not IsOnMap(156)">
                     <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="358.4799, -15.22239, -420.7379"/>
                 <Grind grindRef="MorDhona_Level49" while="Core.Player.ClassLevel &lt; 49"/>
             </If>
+
+            <!-- ######## -->
+            <!-- LEVEL 49 -->
+            <!-- ######## -->
 
             <!-- Operation Archon -->
 
@@ -20750,7 +20925,9 @@
                     <UseObject NpcId="2002252" XYZ="-662.3484, 63.67578, -805.478" Radius="10" QuestId="66572" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(66572) == 4">
-                    <TeleportTo Name="Camp Drybone" AetheryteId="18" Force="True"/>
+                    <If Condition="not IsOnMap(145)">
+                        <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927"/>
+                    </If>
                     <ExLog Color="&ExLogAck;" Name="A Realm Reborn" Message="Please confront Rhitahtyn at Cape Westwind and restart the bot.  Thanks!"/>
                     <StopBot/>
                 </If>
@@ -21039,46 +21216,55 @@
                 </If>
             </If>
 
-            <!-- Get to level 50 -->
-
             <If Condition="Core.Player.ClassLevel &lt; 50">
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You are not level 50 yet!"/>
+                <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="Grinding to level 50..."/>
                 <If Condition="not IsOnMap(156)">
                     <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
                 </If>
+                <NoCombatMoveTo Name="Grinding Area" XYZ="358.4799, -15.22239, -420.7379"/>
                 <Grind grindRef="MorDhona_Level50" while="Core.Player.ClassLevel &lt; 50"/>
             </If>
 
+            <!-- ######## -->
+            <!-- LEVEL 50 -->
+            <!-- ######## -->
+
             <!-- Level 45 Job Quest -->
 
-            <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(66624)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(66613)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(66606)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(66600)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Ninja and not IsQuestCompleted(65768)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Paladin and not IsQuestCompleted(66594)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Scholar and not IsQuestCompleted(66636)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Summoner and not IsQuestCompleted(66630)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Warrior and not IsQuestCompleted(66588)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.WhiteMage and (not IsQuestCompleted(66618) or not IsQuestCompleted(66619))">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+            <If Condition="&IgnoreClassQuests; == 0">
+
+                <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(66624)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(66613)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(66606)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(66600)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Ninja and not IsQuestCompleted(65768)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Paladin and not IsQuestCompleted(66594)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Scholar and not IsQuestCompleted(66636)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Summoner and not IsQuestCompleted(66630)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Warrior and not IsQuestCompleted(66588)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.WhiteMage and (not IsQuestCompleted(66618) or not IsQuestCompleted(66619))">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+
             </If>
 
             <!-- Rock the Castrum -->
@@ -21156,9 +21342,11 @@
                     <If Condition="not IsOnMap(153)">
                         <GetTo ZoneId="153" XYZ="-230.3013, 21.38047, 350.0789"/>
                     </If>
-                    <MoveTo Name="Raya-O-Senna" Distance="2" XYZ="-143.325, 8.179872, 269.7141"/>
-                    <RunCode Name="OneNightInAmdapor"/>
-                    <MoveTo Name="Raya-O-Senna" Distance="1" UseMesh="False" XYZ="-137.7426, 8.47965, 280.7405"/>
+                    <If Condition="Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-139.4522, 8.712891, 281.6968)) &gt; 7">
+                        <NoCombatMoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762"/>
+                        <RunCode Name="CampTranquilJump"/>
+                    </If>
+                    <NoCombatMoveTo Name="Raya-O-Senna" XYZ="-139.4522, 8.712891, 281.6968"/>
                     <TalkTo InteractDistance="3.0" NpcId="1006751" XYZ="-139.4522, 8.712891, 281.6968" QuestId="66925" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66925) == 255">
@@ -21169,35 +21357,39 @@
 
             <!-- Level 50 Job Quest -->
 
-            <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(66626)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(66614)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(66608)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(66602)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Ninja and not IsQuestCompleted(65770)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Paladin and not IsQuestCompleted(66596)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Scholar and not IsQuestCompleted(66638)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Summoner and not IsQuestCompleted(66632)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.Warrior and not IsQuestCompleted(66590)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
-            </If>
-            <If Condition="ClassName == ClassJobType.WhiteMage and not IsQuestCompleted(66620)">
-              <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+            <If Condition="&IgnoreClassQuests; == 0">
+
+                <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(66626)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(66614)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(66608)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(66602)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Ninja and not IsQuestCompleted(65770)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Paladin and not IsQuestCompleted(66596)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Scholar and not IsQuestCompleted(66638)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Summoner and not IsQuestCompleted(66632)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.Warrior and not IsQuestCompleted(66590)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+                <If Condition="ClassName == ClassJobType.WhiteMage and not IsQuestCompleted(66620)">
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+                </If>
+
             </If>
       
             <ExLog Color="&ExLog;" Name="A Realm Reborn" Message="You've completed the A Realm Reborn questline!"/>
@@ -21833,7 +22025,7 @@
                 <If Condition="HasQuest(66718)">
                     <If Condition="GetQuestStep(66718) == 1">
                         <If Condition="not IsOnMap(146)">
-                            <GetTo ZoneId="146" XYZ="158.9477, 26.13835, -407.9711"/>
+                            <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                         </If>
                         <NoCombatMoveTo Name="Bibimu" XYZ="185.748, 13.7212, -443.1983"/>
                         <TalkTo InteractDistance="3.0" NpcId="1006220" XYZ="185.748, 13.7212, -443.1983" QuestId="66718" StepId="1"/>
@@ -22318,8 +22510,11 @@
                     <If Condition="not IsOnMap(153)">
                         <GetTo ZoneId="153" XYZ="-230.3013, 21.38047, 350.0789"/>
                     </If>
-                    <NoCombatMoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762"/>
-                    <RunCode Name="CampTranquilJump"/>
+                    <If Condition="Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-139.4522, 8.712891, 281.6968)) &gt; 7">
+                        <NoCombatMoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762"/>
+                        <RunCode Name="CampTranquilJump"/>
+                    </If>
+                    <NoCombatMoveTo Name="Raya-O-Senna" XYZ="-139.4522, 8.712891, 281.6968"/>
                     <If Condition="IsQuestAcceptQualified(66727)">
                         <PickupQuest NpcId="1006751" QuestId="66727" XYZ="-139.4522, 8.712891, 281.6968"/>
                     </If>
@@ -28041,21 +28236,6 @@
             <![CDATA[ 
 				GameObjectManager.GetObjectByNPCId(1006646).Target();
 				ChatManager.SendChat("/psych");
-        	]]>
-        </CodeChunk>
-        <CodeChunk Name="OneNightInAmdapor">
-            <![CDATA[ 
-				if(Core.Player.IsMounted)
-				{
-					Actionmanager.Dismount();
-					await Coroutine.Sleep(3000);
-				}
-				MovementManager.SetFacing(0.9891489f);
-				MovementManager.MoveForwardStart();
-				await Coroutine.Sleep(500);
-				MovementManager.Jump();
-				await Coroutine.Sleep(500);
-				MovementManager.MoveForwardStop();
         	]]>
         </CodeChunk>
 
