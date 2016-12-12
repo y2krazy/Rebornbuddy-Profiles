@@ -1,0 +1,1484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+#############################################
+# Profile: [O] A Realm Reborn (Patch 2.2)   #
+#############################################
+# Authors: y2krazy                          #
+#          kagamihiiragi17                  #
+#############################################
+# Version: 2.1.0                            #
+#############################################
+# Required Level: 50                        #
+#############################################
+# Required Setup:                           #
+#  Create your character and log in.        #
+#  Select Keyboard/Mouse for your controls. #
+#############################################
+# Required User Interaction:                #
+#  Duty Finder Queues                       #
+#  Manually Buying Chocobo Issuance         #
+#  Naming Your Chocobo                      #
+#############################################
+-->
+<Profile>
+	<Name>[O] A Realm Reborn (Patch 2.2) (v2.1.0)</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<BotSettings AutoEquip="1"/>
+
+		<If Condition="not IsQuestCompleted(66729)">
+			<LogMessage Message="[Pre-Requisite Check] You haven't completed the Build on the Stone quest yet!"/>
+			<LogMessage Message="[Pre-Requisite Check] Loading the A Realm Reborn (Patch 2.1) profile..."/>
+			<LoadProfile Path="Profiles/y2krazy/Questing/[O] A Realm Reborn (Patch 2.1).xml"/>
+		</If>
+
+        <If Condition="(ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
+            <LogMessage Message="[Job Check] You do not have a job assigned on your character."/>
+            <LogMessage Message="[Job Check] Equipping your Soul Crystal now..."/>
+            <If Condition="ClassName == ClassJobType.Archer">
+                <RunCode Name="EquipBRDCrystal"/>
+                <WaitTimer WaitTime="3"/>
+            </If>
+            <If Condition="ClassName == ClassJobType.Thaumaturge">
+                <RunCode Name="EquipBLMCrystal"/>
+                <WaitTimer WaitTime="3"/>
+            </If>
+            <If Condition="ClassName == ClassJobType.Lancer">
+                <RunCode Name="EquipDRGCrystal"/>
+                <WaitTimer WaitTime="3"/>
+            </If>
+            <If Condition="ClassName == ClassJobType.Pugilist">
+                <RunCode Name="EquipMNKCrystal"/>
+                <WaitTimer WaitTime="3"/>
+            </If>
+            <If Condition="ClassName == ClassJobType.Rogue">
+                <RunCode Name="EquipNINCrystal"/>
+                <WaitTimer WaitTime="3"/>
+            </If>
+            <If Condition="ClassName == ClassJobType.Gladiator">
+                <RunCode Name="EquipPLDCrystal"/>
+                <WaitTimer WaitTime="3"/>
+            </If>
+            <If Condition="ClassName == ClassJobType.Arcanist">
+                <RunCode Name="EquipSCHCrystal"/>
+                <WaitTimer WaitTime="3"/>
+                <RunCode Name="EquipSMNCrystal"/>
+                <WaitTimer WaitTime="3"/>
+            </If>
+            <If Condition="ClassName == ClassJobType.Marauder">
+                <RunCode Name="EquipWARCrystal"/>
+                <WaitTimer WaitTime="3"/>
+            </If>
+            <If Condition="ClassName == ClassJobType.Conjurer">
+                <RunCode Name="EquipWHMCrystal"/>
+                <WaitTimer WaitTime="3"/>
+            </If>
+            <If Condition="(ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
+                <LogMessage Message="[Job Check] You do not have the proper Soul Crystal in your Armoury or Inventory."/>
+                <LogMessage Message="[Job Check] Loading the Class and Job Quests profile..."/>
+                <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+            </If>
+        </If>
+
+        <!-- Still Waters -->
+
+        <If Condition="not IsQuestCompleted(66881)">
+            <If Condition="not HasQuest(66881)">
+                <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                    <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                </If>
+                <If Condition="IsOnMap(156)">
+                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                </If>
+                <If Condition="IsOnMap(351) and IsOnSubMap(481)">
+                    <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
+                </If>
+                <MoveTo Name="Minfilia" XYZ="1.022339, -1.995725, -45.79236"/>
+                <If Condition="IsQuestAcceptQualified(66881)">
+                    <PickupQuest NpcId="1007724" QuestId="66881" XYZ="1.022339, -1.995725, -45.79236"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66881)">
+                <If Condition="GetQuestStep(66881) == 1">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Y'shtola" XYZ="79.60632, 46.311, -251.6976"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008595" XYZ="79.60632, 46.311, -251.6976" QuestId="66881" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66881) == 2">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Fufulupa" XYZ="59.61694, 45.14532, -215.9"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1002058" XYZ="59.61694, 45.14532, -215.9" QuestId="66881" StepId="2"/>
+                </If>
+                <If Condition="GetQuestStep(66881) == 3">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Y'shtola" XYZ="79.60632, 46.311, -251.6976"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008595" XYZ="79.60632, 46.311, -251.6976" QuestId="66881" StepId="3"/>
+                </If>
+                <If Condition="GetQuestStep(66881) == 4">
+                    <If Condition="not IsOnMap(145)">
+                        <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927"/>
+                    </If>
+                    <NoCombatMoveTo Name="Thancred" XYZ="-204.7609, -28.56065, 322.1942"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008596" XYZ="-204.7609, -28.56065, 322.1942" QuestId="66881" StepId="4"/>
+                </If>
+                <If Condition="GetQuestStep(66881) == 255">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Thancred" XYZ="57.66382, 45, -220.9354"/>
+                    <TurnIn QuestId="66881" NpcId="1008597" XYZ="57.66382, 45, -220.9354"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- A Final Temptation -->
+
+        <If Condition="not IsQuestCompleted(66882)">
+            <If Condition="not HasQuest(66882)">
+                <If Condition="not IsOnMap(140)">
+                    <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                </If>
+                <NoCombatMoveTo Name="Thancred" XYZ="57.66382, 45, -220.9354"/>
+                <If Condition="IsQuestAcceptQualified(66882)">
+                    <PickupQuest NpcId="1008597" QuestId="66882" XYZ="57.66382, 45, -220.9354"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66882)">
+                <If Condition="GetQuestStep(66882) == 1">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Fufulupa" XYZ="59.61694, 45.14532, -215.9"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1002058" XYZ="59.61694, 45.14532, -215.9" QuestId="66882" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66882) == 2">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="2003561" XYZ="175.0667, 52.6283, -51.65179"/>
+                    <UseObject NpcId="2003561" XYZ="175.0667, 52.6283, -51.65179" Radius="10" QuestId="66882" StepId="2"/>
+                    <Grind grindRef="A_Final_Temptation" while="HasQuest(66882) and GetQuestStep(66882) == 2"/>
+                </If>
+                <If Condition="GetQuestStep(66882) == 3">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Y'shtola" XYZ="140.4592, 55.32161, -33.06635"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008598" XYZ="140.4592, 55.32161, -33.06635" QuestId="66882" StepId="3"/>
+                </If>
+                <If Condition="GetQuestStep(66882) == 255">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Fufulupa" XYZ="59.61694, 45.14532, -215.9"/>
+                    <TurnIn QuestId="66882" NpcId="1002058" XYZ="59.61694, 45.14532, -215.9"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- The Mother of Exiles -->
+
+        <If Condition="not IsQuestCompleted(66883)">
+            <If Condition="not HasQuest(66883)">
+                <If Condition="not IsOnMap(140)">
+                    <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                </If>
+                <NoCombatMoveTo Name="Thancred" XYZ="57.66382, 45, -220.9354"/>
+                <If Condition="IsQuestAcceptQualified(66883)">
+                    <PickupQuest NpcId="1008597" QuestId="66883" XYZ="57.66382, 45, -220.9354"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66883)">
+                <If Condition="GetQuestStep(66883) == 1">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Alphinaud" XYZ="-516.35, 14.95691, -370.4738"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008600" XYZ="-516.35, 14.95691, -370.4738" QuestId="66883" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66883) == 2">
+                    <If Condition="not IsOnMap(131)">
+                        <GetTo ZoneId="131" XYZ="-3.683439, 15.00001, -8.834866"/>
+                    </If>
+                    <MoveTo Name="Domans" XYZ="-24.06354, 38.01001, 82.6886"/>
+                    <WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
+                </If>
+                <If Condition="GetQuestStep(66883) == 3">
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                    </If>
+                    <MoveTo Name="Alphinaud" XYZ="34.77527, 7.199992, -93.91931"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008604" XYZ="34.77527, 7.199992, -93.91931" QuestId="66883" StepId="3"/>
+                </If>
+                <If Condition="GetQuestStep(66883) == 4">
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                    </If>
+                    <MoveTo Name="Yugiri" XYZ="33.18835, 7.199998, -95.38416"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008608" XYZ="33.18835, 7.199998, -95.38416" QuestId="66883" StepId="4"/>
+                </If>
+                <If Condition="GetQuestStep(66883) == 5">
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                    </If>
+                    <MoveTo Name="Momodi" XYZ="21.07263, 7.45, -78.78235"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1001353" XYZ="21.07263, 7.45, -78.78235" QuestId="66883" StepId="5"/>
+                </If>
+                <If Condition="GetQuestStep(66883) == 6">
+                    <If Condition="not IsOnMap(131)">
+                        <GetTo ZoneId="131" XYZ="-3.683439, 15.00001, -8.834866"/>
+                    </If>
+                    <MoveTo Name="Katherine" XYZ="136.0951, 4.009988, -67.85687"/>
+                    <!-- QuestWork -->
+                    <HandOver ItemId="2001203" QuestId="66883" StepId="6" NpcId="1001968" XYZ="136.0951, 4.009988, -67.85687"/>
+                    <!-- QuestWork -->
+                    <HandOver ItemId="2001202" QuestId="66883" StepId="6" NpcId="1001966" XYZ="126.7262, 4.01, -83.84839"/>
+                </If>
+                <If Condition="GetQuestStep(66883) == 7">
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                    </If>
+                    <MoveTo Name="Momodi" XYZ="21.07263, 7.45, -78.78235"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1001353" XYZ="21.07263, 7.45, -78.78235" QuestId="66883" StepId="7"/>
+                </If>
+                <If Condition="GetQuestStep(66883) == 8">
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                    </If>
+                    <MoveTo Name="Yugiri" XYZ="33.18835, 7.199998, -95.38416"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008608" XYZ="33.18835, 7.199998, -95.38416" QuestId="66883" StepId="8"/>
+                </If>
+                <If Condition="GetQuestStep(66883) == 255">
+                    <If Condition="not IsOnMap(131)">
+                        <GetTo ZoneId="131" XYZ="-3.683439, 15.00001, -8.834866"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Lilac Purple Dye
+                    1: Millioncorn Yellow Dye
+                    2: Cork Brown Dye
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66883" NpcId="1008616" XYZ="-18.26508, 36.0139, 57.93848" RewardSlot="0"/>
+
+                    -->
+
+                    <MoveTo Name="Raubahn" XYZ="-18.26508, 36.0139, 57.93848"/>
+                    <TurnIn QuestId="66883" NpcId="1008616" XYZ="-18.26508, 36.0139, 57.93848"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- Promises to Keep -->
+
+        <If Condition="not IsQuestCompleted(66884)">
+            <If Condition="not HasQuest(66884)">
+                <If Condition="not IsOnMap(131)">
+                    <GetTo ZoneId="131" XYZ="-3.683439, 15.00001, -8.834866"/>
+                </If>
+                <MoveTo Name="Raubahn" XYZ="-18.26508, 36.0139, 57.93848"/>
+                <If Condition="IsQuestAcceptQualified(66884)">
+                    <PickupQuest NpcId="1008616" QuestId="66884" XYZ="-18.26508, 36.0139, 57.93848"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66884)">
+                <If Condition="GetQuestStep(66884) == 1">
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                    </If>
+                    <MoveTo Name="Raubahn" XYZ="-132.5247, 4.1, -111.9249"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008700" XYZ="-132.5247, 4.1, -111.9249" QuestId="66884" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66884) == 2">
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                    </If>
+                    <MoveTo Name="Alphinaud" XYZ="24.88745, 6.999997, -80.03363"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363" QuestId="66884" StepId="2"/>
+                </If>
+                <If Condition="GetQuestStep(66884) == 3">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Gigiyon" XYZ="213.4584, 52.03812, 151.4458"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1003889" XYZ="213.4584, 52.03812, 151.4458" QuestId="66884" StepId="3"/>
+                </If>
+                <If Condition="GetQuestStep(66884) == 4">
+                    <If Condition="not IsOnMap(141)">
+                        <GetTo ZoneId="141" XYZ="-13.56739, -1.877733, -163.8"/>
+                    </If>
+                    <NoCombatMoveTo Name="Hyuran Coachman" XYZ="-96.97113, -11.35, -42.00812"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008624" XYZ="-96.97113, -11.35, -42.00812" QuestId="66884" StepId="4"/>
+                </If>
+                <If Condition="GetQuestStep(66884) == 5">
+                    <If Condition="not IsOnMap(141)">
+                        <GetTo ZoneId="141" XYZ="-13.56739, -1.877733, -163.8"/>
+                    </If>
+                    <NoCombatMoveTo Name="Hyuran Coachman" XYZ="-96.97113, -11.35, -42.00812"/>
+                    <!-- <RunCode Name="PromisestoKeep"/> -->
+                    <EmoteNPC NpcId="1008624" Emote="me" XYZ="-96.97113, -11.35, -42.00812" Radius="10" QuestId="66884" StepId="5"/>
+                </If>
+                <If Condition="GetQuestStep(66884) == 6">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Brass Blade" XYZ="89.43311, 15.28377, 154.2839"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008625" XYZ="89.43311, 15.28377, 154.2839" QuestId="66884" StepId="6"/>
+                    <Grind grindRef="Promises_to_Keep" while="HasQuest(66884) and GetQuestStep(66884) == 6"/>
+                </If>
+                <If Condition="GetQuestStep(66884) == 7">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Brass Blade" XYZ="89.43311, 15.28377, 154.2839"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008625" XYZ="89.43311, 15.28377, 154.2839" QuestId="66884" StepId="7"/>
+                </If>
+                <If Condition="GetQuestStep(66884) == 8">
+                    <If Condition="not IsOnMap(141)">
+                        <GetTo ZoneId="141" XYZ="-13.56739, -1.877733, -163.8"/>
+                    </If>
+                    <NoCombatMoveTo Name="Hyuran Coachman" XYZ="-96.97113, -11.35, -42.00812"/>
+                    <HandOver ItemId="2001204,2001205" QuestId="66884" StepId="8" NpcId="1008624" XYZ="-96.97113, -11.35, -42.00812"/>
+                </If>
+                <If Condition="GetQuestStep(66884) == 9">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Gigiyon" XYZ="213.4584, 52.03812, 151.4458"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1003889" XYZ="213.4584, 52.03812, 151.4458" QuestId="66884" StepId="9"/>
+                </If>
+                <If Condition="GetQuestStep(66884) == 255">
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Vitality Earrings
+                    1: Strength Earrings
+                    2: Dexterity Earrings
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66884" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363" RewardSlot="0"/>
+
+                    -->
+
+                    <MoveTo Name="Alphinaud" XYZ="24.88745, 6.999997, -80.03363"/>
+                    <TurnIn QuestId="66884" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- A Small-scale Operation -->
+
+        <If Condition="not IsQuestCompleted(66885)">
+            <If Condition="not HasQuest(66885)">
+                <If Condition="not IsOnMap(130)">
+                    <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                </If>
+                <NoCombatMoveTo Name="Alphinaud" XYZ="24.88745, 6.999997, -80.03363"/>
+                <If Condition="IsQuestAcceptQualified(66885)">
+                    <PickupQuest NpcId="1008623" QuestId="66885" XYZ="24.88745, 6.999997, -80.03363"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66885)">
+                <If Condition="GetQuestStep(66885) == 1">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Hozan" XYZ="-417.4106, 23.16707, -350.5455"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008626" XYZ="-417.4106, 23.16707, -350.5455" QuestId="66885" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66885) == 2">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="2003564" XYZ="-494.9264, 19.02795, -352.2545"/>
+                    <UseObject NpcId="2003564" XYZ="-494.9264, 19.02795, -352.2545" Radius="10" QuestId="66885" StepId="2"/>
+                </If>
+                <If Condition="GetQuestStep(66885) == 3">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Hozan" XYZ="-417.4106, 23.16707, -350.5455"/>
+                    <HandOver ItemId="2001206" QuestId="66885" StepId="3" NpcId="1008626" XYZ="-417.4106, 23.16707, -350.5455"/>
+                </If>
+                <If Condition="GetQuestStep(66885) == 4">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="2003565" XYZ="-444.8463, 22.9953, -360.586"/>
+                    <UseObject NpcIds="2003565,2003566,2003567,2003568" QuestId="66885" StepId="4">
+                        <HotSpots>
+                            <HotSpot XYZ="-444.8463, 22.9953, -360.586" Radius="10"/>
+                            <HotSpot XYZ="-462.8824, 23.02582, -361.1658" Radius="10"/>
+                            <HotSpot XYZ="-477.1649, 21.53046, -362.6307" Radius="10"/>
+                            <HotSpot XYZ="-492.1798, 19.02795, -356.283" Radius="10"/>
+                        </HotSpots>
+                    </UseObject>
+                </If>
+                <If Condition="GetQuestStep(66885) == 255">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Intelligence Earrings
+                    1: Mind/Piety Earrings
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66885" NpcId="1008626" ItemId="2001207" XYZ="-417.4106, 23.16707, -350.5455" RewardSlot="0"/>
+
+                    -->
+
+                    <NoCombatMoveTo Name="Hozan" XYZ="-417.4106, 23.16707, -350.5455"/>
+                    <TurnIn QuestId="66885" NpcId="1008626" ItemId="2001207" XYZ="-417.4106, 23.16707, -350.5455"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- Yugiri's Game -->
+
+        <If Condition="not IsQuestCompleted(66886)">
+            <If Condition="not HasQuest(66886)">
+                <If Condition="not IsOnMap(140)">
+                    <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                </If>
+                <NoCombatMoveTo Name="Hozan" XYZ="-417.4106, 23.16707, -350.5455"/>
+                <If Condition="IsQuestAcceptQualified(66886)">
+                    <PickupQuest NpcId="1008626" QuestId="66886" XYZ="-417.4106, 23.16707, -350.5455"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66886)">
+                <If Condition="GetQuestStep(66886) == 1">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Yozan" XYZ="-431.8761, 25.98387, -368.368"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008628" XYZ="-431.8761, 25.98387, -368.368" QuestId="66886" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66886) == 2">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Hiding Child" XYZ="-415.9152, 23.11401, -394.6136"/>
+                    <!-- QuestWork -->
+                    <TalkTo InteractDistance="3.0" NpcId="1008636" XYZ="-415.9152, 23.11401, -394.6136" QuestId="66886" StepId="2"/>
+                    <!-- QuestWork -->
+                    <TalkTo InteractDistance="3.0" NpcId="1008635" XYZ="-444.2969, 30.99988, -329.6407" QuestId="66886" StepId="2"/>
+                    <!-- QuestWork -->
+                    <TalkTo InteractDistance="3.0" NpcId="1008637" XYZ="-482.5666, 20.99989, -384.5426" QuestId="66886" StepId="2"/>
+                </If>
+                <If Condition="GetQuestStep(66886) == 255">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Hozan" XYZ="-417.4106, 23.16707, -350.5455"/>
+                    <TurnIn QuestId="66886" NpcId="1008626" ItemId="2001207" XYZ="-417.4106, 23.16707, -350.5455"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- If Wishes Were Horsebirds -->
+
+        <If Condition="not IsQuestCompleted(66887)">
+            <If Condition="not HasQuest(66887)">
+                <If Condition="not IsOnMap(140)">
+                    <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                </If>
+                <NoCombatMoveTo Name="Hozan" XYZ="-417.4106, 23.16707, -350.5455"/>
+                <If Condition="IsQuestAcceptQualified(66887)">
+                    <PickupQuest NpcId="1008626" QuestId="66887" XYZ="-417.4106, 23.16707, -350.5455"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66887)">
+                <If Condition="GetQuestStep(66887) == 1">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Folclind" XYZ="-444.7548, 25, -324.2695"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1004096" XYZ="-444.7548, 25, -324.2695" QuestId="66887" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66887) == 2">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Chocobo" XYZ="-386.4042, 23, -350.1183"/>
+                    <UseItem NpcId="1008611" ItemId="2001208" XYZ="-386.4042, 23, -350.1183" Radius="10" QuestId="66887" StepId="2"/>
+                </If>
+                <If Condition="GetQuestStep(66887) == 3">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Chocobo" XYZ="-386.4042, 23, -350.1183"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008611" XYZ="-386.4042, 23, -350.1183" QuestId="66887" StepId="3"/>
+                </If>
+                <If Condition="GetQuestStep(66887) == 4">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Hyuran Coachman" XYZ="-388.6931, 23, -350.9423"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008632" XYZ="-388.6931, 23, -350.9423" QuestId="66887" StepId="4"/>
+                </If>
+                <If Condition="GetQuestStep(66887) == 5">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Hozan" XYZ="-417.4106, 23.16707, -350.5455"/>
+                    <HandOver ItemId="2001209" QuestId="66887" StepId="5" NpcId="1008626" XYZ="-417.4106, 23.16707, -350.5455"/>
+                </If>
+                <If Condition="GetQuestStep(66887) == 255">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Woad Blue Dye
+                    1: Lavender Purple Dye
+                    2: Meadow Green Dye
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66887" NpcId="1008639" XYZ="-497.9477, 19.05133, -354.757" RewardSlot="0"/>
+
+                    -->
+
+                    <NoCombatMoveTo Name="Hozan" XYZ="-497.9477, 19.05133, -354.757"/>
+                    <TurnIn QuestId="66887" NpcId="1008639" XYZ="-497.9477, 19.05133, -354.757"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- Why We Adventure -->
+
+        <If Condition="not IsQuestCompleted(66888)">
+            <If Condition="not HasQuest(66888)">
+                <If Condition="not IsOnMap(140)">
+                    <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                </If>
+                <NoCombatMoveTo Name="Hozan" XYZ="-497.9477, 19.05133, -354.757"/>
+                <If Condition="IsQuestAcceptQualified(66888)">
+                    <PickupQuest NpcId="1008639" QuestId="66888" XYZ="-497.9477, 19.05133, -354.757"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66888)">
+                <If Condition="GetQuestStep(66888) == 1">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Hyuran Coachman" XYZ="-388.6931, 23, -350.9423"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008632" XYZ="-388.6931, 23, -350.9423" QuestId="66888" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66888) == 2">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="2003573" XYZ="192.6757, 52.56726, 14.63336"/>
+                    <UseObject NpcId="2003573" XYZ="192.6757, 52.56726, 14.63336" Radius="10" QuestId="66888" StepId="2"/>
+                    <Grind grindRef="Why_We_Adventure" while="HasQuest(66888) and GetQuestStep(66888) == 2"/>
+                </If>
+                <If Condition="GetQuestStep(66888) == 3">
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
+                    </If>
+                    <NoCombatMoveTo Name="Hyuran Coachman" XYZ="126.1768, 49.27656, -173.2357"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008640" XYZ="126.1768, 49.27656, -173.2357" QuestId="66888" StepId="3"/>
+                </If>
+                <If Condition="GetQuestStep(66888) == 255">
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                    </If>
+                    <MoveTo Name="Alphinaud" XYZ="24.88745, 6.999997, -80.03363"/>
+                    <TurnIn QuestId="66888" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- All Due Respect -->
+
+        <If Condition="not IsQuestCompleted(66889)">
+            <If Condition="not HasQuest(66889)">
+                <If Condition="not IsOnMap(130)">
+                    <GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
+                </If>
+                <MoveTo Name="Alphinaud" XYZ="24.88745, 6.999997, -80.03363"/>
+                <If Condition="IsQuestAcceptQualified(66889)">
+                    <PickupQuest NpcId="1008623" QuestId="66889" XYZ="24.88745, 6.999997, -80.03363"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66889)">
+                <If Condition="GetQuestStep(66889) == 1">
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" QuestId="66889" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66889) == 2">
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <NoCombatMoveTo Name="Yugiri" XYZ="22.53754, 20.07001, -678.1567"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008659" XYZ="22.53754, 20.07001, -678.1567" QuestId="66889" StepId="2"/>
+                </If>
+                <If Condition="GetQuestStep(66889) == 255">
+                    <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <If Condition="IsOnMap(156)">
+                        <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                    </If>
+                    <If Condition="IsOnMap(351) and IsOnSubMap(481)">
+                        <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Vitality Ring
+                    1: Strength Ring
+                    2: Dexterity Ring
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66889" NpcId="1008547" XYZ="0.7781982, -1.995725, -45.48718" RewardSlot="0"/>
+
+                    -->
+
+                    <MoveTo Name="Minfilia" XYZ="0.7781982, -1.995725, -45.48718"/>
+                    <TurnIn QuestId="66889" NpcId="1008547" XYZ="0.7781982, -1.995725, -45.48718"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- Full Belly, Happy Heart -->
+
+        <If Condition="not IsQuestCompleted(66890)">
+            <If Condition="not HasQuest(66890)">
+                <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                    <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                </If>
+                <If Condition="IsOnMap(156)">
+                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                </If>
+                <If Condition="IsOnMap(351) and IsOnSubMap(481)">
+                    <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
+                </If>
+                <MoveTo Name="Minfilia" XYZ="1.632629, -1.995725, -41.91656"/>
+                <If Condition="IsQuestAcceptQualified(66890)">
+                    <PickupQuest NpcId="1008554" QuestId="66890" XYZ="1.632629, -1.995725, -41.91656"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66890)">
+                <If Condition="GetQuestStep(66890) == 1">
+                    <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <If Condition="IsOnMap(156)">
+                        <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                    </If>
+                    <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+                        <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159"/>
+                    </If>
+                    <MoveTo Name="F'lhaminn" XYZ="9.567322, 7.450581E-09, -10.17786"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008559" XYZ="9.567322, 7.450581E-09, -10.17786" QuestId="66890" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66890) == 2">
+                    <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <If Condition="IsOnMap(156)">
+                        <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                    </If>
+                    <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+                        <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159"/>
+                    </If>
+                    <MoveTo Name="2003574" XYZ="10.45239, 0.9002075, -9.079163"/>
+                    <UseObject NpcIds="2003574,2003575" XYZ="10.45239, 0.9002075, -9.079163" Radius="10" QuestId="66890" StepId="2"/>
+                </If>
+                <If Condition="GetQuestStep(66890) == 3">
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <!-- Exit to Revenant's Toll -->
+                    <NoCombatMoveTo Name="Alys" XYZ="14.75543, 21.25269, -640.7111"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1006950" XYZ="14.75543, 21.25269, -640.7111" QuestId="66890" StepId="3"/>
+                </If>
+                <If Condition="GetQuestStep(66890) == 4">
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <NoCombatMoveTo Name="2003576" XYZ="15.82355, 22.20184, -639.0326"/>
+                    <UseObject NpcIds="2003576,2003577,2003578" XYZ="15.82355, 22.20184, -639.0326" Radius="10" QuestId="66890" StepId="4"/>
+                </If>
+                <If Condition="GetQuestStep(66890) == 255">
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Intelligence Earrings
+                    1: Mind/Piety Earrings
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66884" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363" RewardSlot="0"/>
+
+                    -->
+
+                    <NoCombatMoveTo Name="Adventurers' Guild Assistant" XYZ="87.38831, 31.40296, -729.0913"/>
+                    <TurnIn QuestId="66890" NpcId="1008663" ItemIds="2001210,2001211" XYZ="87.38831, 31.40296, -729.0913"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- Writhing in the Dark -->
+
+        <If Condition="not IsQuestCompleted(66891)">
+            <If Condition="not HasQuest(66891)">
+                <If Condition="not IsOnMap(156)">
+                    <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                </If>
+                <NoCombatMoveTo Name="Adventurers' Guild Assistant" XYZ="87.38831, 31.40296, -729.0913"/>
+                <If Condition="IsQuestAcceptQualified(66891)">
+                    <PickupQuest NpcId="1008663" QuestId="66891" XYZ="87.38831, 31.40296, -729.0913"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66891)">
+                <If Condition="GetQuestStep(66891) == 1">
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <NoCombatMoveTo Name="2003579" XYZ="211.2001, 1.266479, -561.059"/>
+                    <UseItem NpcIds="2003579,2003580,2003581,2003582,2003583,2003584" ItemId="2001212" Radius="250" QuestId="66891" StepId="1">
+                        <HotSpots>
+                            <HotSpot XYZ="211.2001, 1.266479, -561.059" Radius="10"/>
+                            <HotSpot XYZ="234.0886, -2.304138, -544.3961" Radius="10"/>
+                            <HotSpot XYZ="82.93274, -2.02948, -482.353" Radius="10"/>
+                            <HotSpot XYZ="168.017, -17.50214, -472.4651" Radius="10"/>
+                            <HotSpot XYZ="273.8231, -22.62915, -452.8115" Radius="10"/>
+                            <HotSpot XYZ="311.0552, -19.08911, -455.0088" Radius="10"/>
+                        </HotSpots>
+                    </UseItem>
+                </If>
+                <If Condition="GetQuestStep(66891) == 2">
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <NoCombatMoveTo Name="Adventurers' Guild Assistant" XYZ="32.66956, 20.47859, -681.3916"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008705" XYZ="32.66956, 20.47859, -681.3916" QuestId="66891" StepId="2"/>
+                </If>
+                <If Condition="GetQuestStep(66891) == 255">
+                    <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <If Condition="IsOnMap(156)">
+                        <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                    </If>
+                    <If Condition="IsOnMap(351) and IsOnSubMap(481)">
+                        <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Vitality Necklace
+                    1: Strength Necklace
+                    2: Dexterity Necklace
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66891" NpcId="1008565" XYZ="1.632629, -1.995725, -41.91656" RewardSlot="0"/>
+
+                    -->
+
+                    <MoveTo Name="Minfilia" XYZ="1.632629, -1.995725, -41.91656"/>
+                    <TurnIn QuestId="66891" NpcId="1008565" XYZ="1.632629, -1.995725, -41.91656"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- The Sea Rises -->
+
+        <If Condition="not IsQuestCompleted(66892)">
+            <If Condition="not HasQuest(66892)">
+                <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                    <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                </If>
+                <If Condition="IsOnMap(156)">
+                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                </If>
+                <If Condition="IsOnMap(351) and IsOnSubMap(481)">
+                    <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
+                </If>
+                <MoveTo Name="Minfilia" XYZ="0.8086548, -1.995725, -42.55743"/>
+                <If Condition="IsQuestAcceptQualified(66892)">
+                    <PickupQuest NpcId="1008542" QuestId="66892" XYZ="0.8086548, -1.995725, -42.55743"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66892)">
+                <If Condition="GetQuestStep(66892) == 1">
+                    <If Condition="not IsOnMap(129) and not IsOnSubMap(351)">
+                        <GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/>
+                    </If>
+                    <If Condition="IsOnMap(129)">
+                        <UseTransport Name="Command Room" InteractDistance="3.0" NpcId="1001029" XYZ="9.170593, 20.9994, -15.21332"/>
+                    </If>
+                    <MoveTo Name="Merlwyb" XYZ="-0.04577637, 1.600142, -7.003906"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" QuestId="66892" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66892) == 255">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Intelligence Necklace
+                    1: Mind/Piety Necklace
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66892" NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748" RewardSlot="0"/>
+
+                    -->
+
+                    <NoCombatMoveTo Name="Falkbryda" XYZ="65.87317, -3.118188, 61.41748"/>
+                    <TurnIn QuestId="66892" NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- Fireworks and Fish Don't Mix -->
+
+        <If Condition="not IsQuestCompleted(66893)">
+            <If Condition="not HasQuest(66893)">
+                <If Condition="not IsOnMap(138)">
+                    <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                </If>
+                <NoCombatMoveTo Name="Falkbryda" XYZ="65.87317, -3.118188, 61.41748"/>
+                <If Condition="IsQuestAcceptQualified(66893)">
+                    <PickupQuest NpcId="1006614" QuestId="66893" XYZ="65.87317, -3.118188, 61.41748"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66893)">
+                <If Condition="GetQuestStep(66893) == 1">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+                    <NoCombatMoveTo Name="U'jughal" XYZ="56.80933, -3.110172, 53.78796"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1006616" XYZ="56.80933, -3.110172, 53.78796" QuestId="66893" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66893) == 2">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+                    <NoCombatMoveTo Name="2003585" XYZ="-34.92792, -19.7605, -129.0456"/>
+                    <UseItem NpcIds="2003585,2003586,2003587,2003588,2003589" ItemId="2001213" Radius="250" QuestId="66893" StepId="2">
+                        <HotSpots>
+                            <HotSpot XYZ="-34.92792, -19.7605, -129.0456" Radius="10"/>
+                            <HotSpot XYZ="-47.62347, -22.87329, -152.7886" Radius="10"/>
+                            <HotSpot XYZ="-110.6737, -31.17426, -158.8007" Radius="10"/>
+                            <HotSpot XYZ="-107.2557, -31.4184, -105.1805" Radius="10"/>
+                            <HotSpot XYZ="-55.375, -24.03302, -102.2203" Radius="10"/>
+                        </HotSpots>
+                    </UseItem>
+                </If>
+                <If Condition="GetQuestStep(66893) == 255">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Vitality Bracelets
+                    1: Strength Bracelets
+                    2: Dexterity Bracelets
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66893" NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748" RewardSlot="0"/>
+
+                    -->
+
+                    <NoCombatMoveTo Name="Falkbryda" XYZ="65.87317, -3.118188, 61.41748"/>
+                    <TurnIn QuestId="66893" NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- Scouts in Distress -->
+
+        <If Condition="not IsQuestCompleted(66894)">
+            <If Condition="not HasQuest(66894)">
+                <If Condition="not IsOnMap(138)">
+                    <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                </If>
+                <NoCombatMoveTo Name="Falkbryda" XYZ="65.87317, -3.118188, 61.41748"/>
+                <If Condition="IsQuestAcceptQualified(66894)">
+                    <PickupQuest NpcId="1006614" QuestId="66894" XYZ="65.87317, -3.118188, 61.41748"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66894)">
+                <If Condition="GetQuestStep(66894) == 1">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+                    <NoCombatMoveTo Name="Scouts" XYZ="-208.4536, -38.99379, -113.2983"/>
+                    <UseItem NpcId="1008683" ItemId="2001214" XYZ="-208.4536, -38.99379, -113.2983" Radius="10" QuestId="66894" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66894) == 2">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+                    <NoCombatMoveTo Name="Drowned Ravagers" XYZ="-451.7739, -41.98507, -237.7203"/>
+                    <Grind grindRef="Scouts_in_Distress" while="HasQuest(66894) and GetQuestStep(66894) == 2"/>
+                </If>
+                <If Condition="GetQuestStep(66894) == 3">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+                    <NoCombatMoveTo Name="Soldier's Corpse" XYZ="-451.7739, -41.98507, -237.7203"/>
+                    <UseObject NpcIds="1008684,1008685" XYZ="-451.7739, -41.98507, -237.7203" Radius="10" QuestId="66894" StepId="3"/>
+                </If>
+                <If Condition="GetQuestStep(66894) == 255">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Intelligence Bracelets
+                    1: Mind/Piety Bracelets
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66894" NpcId="1006614" ItemId="2001215" XYZ="65.87317, -3.118188, 61.41748" RewardSlot="0"/>
+
+                    -->
+
+                    <NoCombatMoveTo Name="Falkbryda" XYZ="65.87317, -3.118188, 61.41748"/>
+                    <TurnIn QuestId="66894" NpcId="1006614" ItemId="2001215" XYZ="65.87317, -3.118188, 61.41748"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- The Gift of Eternity -->
+
+        <If Condition="not IsQuestCompleted(66895)">
+            <If Condition="not HasQuest(66895)">
+                <If Condition="not IsOnMap(138)">
+                    <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                </If>
+                <NoCombatMoveTo Name="Falkbryda" XYZ="65.87317, -3.118188, 61.41748"/>
+                <If Condition="IsQuestAcceptQualified(66895)">
+                    <PickupQuest NpcId="1006614" QuestId="66895" XYZ="65.87317, -3.118188, 61.41748"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66895)">
+                <If Condition="GetQuestStep(66895) == 1">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+                    <NoCombatMoveTo Name="Sahagin Mobs" XYZ="-237.8885, -41.40048, -238.5069"/>
+                    <Grind grindRef="The_Gift_of_Eternity" while="HasQuest(66895) and GetQuestStep(66895) == 1"/>
+                </If>
+                <If Condition="GetQuestStep(66895) == 2">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+                    <NoCombatMoveTo Name="Sahagin Mobs" XYZ="-241.1377, -42.26929, -305.0814"/>
+                    <Grind grindRef="The_Gift_of_Eternity2" while="HasQuest(66895) and GetQuestStep(66895) == 2"/>
+                </If>
+                <If Condition="GetQuestStep(66895) == 3">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+                    <NoCombatMoveTo Name="Sahagin Mobs" XYZ="-299.0577, -41.59381, -327.6577"/>
+                    <Grind grindRef="The_Gift_of_Eternity3" while="HasQuest(66895) and GetQuestStep(66895) == 3"/>
+                </If>
+                <If Condition="GetQuestStep(66895) == 4">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+                    <NoCombatMoveTo Name="Y'shtola" XYZ="-404.8371, -32.80984, -297.2305"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008706" XYZ="-404.8371, -32.80984, -297.2305" QuestId="66895" StepId="4"/>
+                </If>
+                <If Condition="GetQuestStep(66895) == 255">
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Fire Materia IV (Resistance)
+                    1: Ice Materia IV (Resistance)
+                    2: Wind Materia IV (Resistance)
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66884" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363" RewardSlot="0"/>
+
+                    -->
+
+                    <NoCombatMoveTo Name="Merlwyb" XYZ="-418.9059, -35.7011, -400.5035"/>
+                    <TurnIn QuestId="66895" NpcId="1008803" XYZ="-418.9059, -35.7011, -400.5035"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- Into the Heart of the Whorl -->
+
+        <If Condition="not IsQuestCompleted(66896)">
+            <If Condition="not HasQuest(66896)">
+                <If Condition="not IsOnMap(138)">
+                    <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563"/>
+                </If>
+                <NoCombatMoveTo Name="Merlwyb" XYZ="-418.9059, -35.7011, -400.5035"/>
+                <If Condition="IsQuestAcceptQualified(66896)">
+                    <PickupQuest NpcId="1008803" QuestId="66896" XYZ="-418.9059, -35.7011, -400.5035"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66896)">
+                <If Condition="GetQuestStep(66896) == 1">
+                    <If Condition="not IsOnMap(129) and not IsOnSubMap(351)">
+                        <GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/>
+                    </If>
+                    <If Condition="IsOnMap(129)">
+                        <UseTransport Name="Command Room" InteractDistance="3.0" NpcId="1001029" XYZ="9.170593, 20.9994, -15.21332"/>
+                    </If>
+                    <MoveTo Name="Merlwyb" XYZ="-0.04577637, 1.600142, -7.003906"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" QuestId="66896" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(66896) == 2">
+                    <If Condition="not IsOnMap(129) and not IsOnSubMap(351)">
+                        <GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/>
+                    </If>
+                    <If Condition="IsOnMap(129)">
+                        <UseTransport Name="Command Room" InteractDistance="3.0" NpcId="1001029" XYZ="9.170593, 20.9994, -15.21332"/>
+                    </If>
+                    <MoveTo Name="Yugiri" XYZ="-1.205505, 1.604133, -3.830017"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008679" XYZ="-1.205505, 1.604133, -3.830017" QuestId="66896" StepId="2"/>
+                </If>
+                <If Condition="GetQuestStep(66896) == 3">
+                    <If Condition="not IsOnMap(135)">
+                        <GetTo ZoneId="135" XYZ="163.1953, 14.09587, 673.3568"/>
+                    </If>
+                    <NoCombatMoveTo Name="Storm Private" XYZ="712.8556, 66.027, -279.0723"/>
+                    <TalkTo InteractDistance="3.0" NpcId="1008692" XYZ="712.8556, 66.027, -279.0723" QuestId="66896" StepId="3"/>
+                </If>
+                <If Condition="GetQuestStep(66896) == 255">
+                    <If Condition="not IsOnMap(135)">
+                        <GetTo ZoneId="135" XYZ="163.1953, 14.09587, 673.3568"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Earth Materia IV (Resistance)
+                    1: Lightning Materia IV (Resistance)
+                    2: Water Materia IV (Resistance)
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66896" NpcId="1008693" XYZ="155.4741, 8.973627, 584.1306" RewardSlot="0"/>
+
+                    -->
+
+                    <NoCombatMoveTo Name="Eynzahr Slafyrsyn" XYZ="155.4741, 8.973627, 584.1306"/>
+                    <TurnIn QuestId="66896" NpcId="1008693" XYZ="155.4741, 8.973627, 584.1306"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- Lord of the Whorl -->
+
+        <If Condition="not IsQuestCompleted(66897)">
+            <If Condition="not HasQuest(66897)">
+                <If Condition="not IsOnMap(135)">
+                    <GetTo ZoneId="135" XYZ="163.1953, 14.09587, 673.3568"/>
+                </If>
+                <NoCombatMoveTo Name="Eynzahr Slafyrsyn" XYZ="155.4741, 8.973627, 584.1306"/>
+                <If Condition="IsQuestAcceptQualified(66897)">
+                    <PickupQuest NpcId="1008693" QuestId="66897" XYZ="155.4741, 8.973627, 584.1306"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66897)">
+                <If Condition="GetQuestStep(66897) == 1">
+                    <LogMessage Message="[A Realm Reborn (2.2)] Please complete Whorleater (Hard) manually!"/>
+                    <LogMessage Message="[A Realm Reborn (2.2)] Please restart this profile after you are done."/>
+                    <StopBot/>
+                </If>
+                <If Condition="GetQuestStep(66897) == 255">
+                    <If Condition="not IsOnMap(129) and not IsOnSubMap(351)">
+                        <GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/>
+                    </If>
+                    <If Condition="IsOnMap(129)">
+                        <UseTransport Name="Command Room" InteractDistance="3.0" NpcId="1001029" XYZ="9.170593, 20.9994, -15.21332"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Paladin Weapon
+                    1: Monk Weapon
+                    2: Warrior Weapon
+                    3: Dragoon Weapon
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906" RewardSlot="0"/>
+
+                    -->
+
+                    <MoveTo Name="Merlwyb" XYZ="-0.04577637, 1.600142, -7.003906"/>
+                    <TurnIn QuestId="66897" NpcId="1002694" XYZ="-0.04577637, 1.600142, -7.003906"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- When Yugiri Met the Fraternity -->
+
+        <If Condition="not IsQuestCompleted(66898)">
+            <If Condition="not HasQuest(66898)">
+                <If Condition="not IsOnMap(129)">
+                    <GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/>
+                </If>
+                <MoveTo Name="Zanthael" XYZ="9.170593, 20.9994, -15.21332"/>
+                <If Condition="IsQuestAcceptQualified(66898)">
+                    <PickupQuest NpcId="1001029" QuestId="66898" XYZ="9.170593, 20.9994, -15.21332"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66898)">
+                <If Condition="GetQuestStep(66898) == 255">
+                    <If Condition="not IsOnMap(129)">
+                        <GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Bard Weapon
+                    1: White Mage Weapon
+                    2: Black Mage Weapon
+                    3: Summoner Weapon
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66898" NpcId="1008694" ItemId="2001216" XYZ="-117.2656, 9.999866, 154.7417" RewardSlot="0"/>
+
+                    -->
+
+                    <MoveTo Name="Inconspicuous Man" XYZ="-117.2656, 9.999866, 154.7417"/>
+                    <TurnIn QuestId="66898" NpcId="1008694" ItemId="2001216" XYZ="-117.2656, 9.999866, 154.7417"/>
+                </If>
+            </If>
+        </If>
+
+        <!-- Through the Maelstrom -->
+
+        <If Condition="not IsQuestCompleted(66899)">
+            <If Condition="not HasQuest(66899)">
+                <If Condition="not IsOnMap(129)">
+                    <GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/>
+                </If>
+                <NoCombatMoveTo Name="Yugiri" XYZ="-115.5872, 9.999782, 156.0845"/>
+                <If Condition="IsQuestAcceptQualified(66899)">
+                    <PickupQuest NpcId="1008696" QuestId="66899" XYZ="-115.5872, 9.999782, 156.0845"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(66899)">
+                <If Condition="GetQuestStep(66899) == 255">
+                    <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <If Condition="IsOnMap(156)">
+                        <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                    </If>
+                    <If Condition="IsOnMap(351) and IsOnSubMap(481)">
+                        <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
+                    </If>
+
+                    <!-- Rewards
+
+                    0: Scholar Weapon
+                    1: Ninja Weapon
+                    2: Paladin Shield
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="66899" NpcId="1008579" XYZ="1.022339, -1.995725, -45.73132" RewardSlot="0"/>
+
+                    -->
+
+                    <MoveTo Name="Minfilia" XYZ="1.022339, -1.995725, -45.73132"/>
+                    <TurnIn QuestId="66899" NpcId="1008579" XYZ="1.022339, -1.995725, -45.73132"/>
+                </If>
+            </If>
+        </If>
+
+		<If Condition="IsQuestCompleted(66899)">
+            <LogMessage Message="[A Realm Reborn (2.2)] You've completed the A Realm Reborn (Patch 2.2) questline!"/>
+			<LogMessage Message="[A Realm Reborn (2.2)] Loading the A Realm Reborn (Patch 2.3) profile..."/>
+			<LoadProfile Path="Profiles/y2krazy/Questing/[O] A Realm Reborn (Patch 2.3).xml"/>
+		</If>
+
+	</Order>
+	<CodeChunks>
+		<!-- <CodeChunk Name="PromisestoKeep">
+			<![CDATA[ 
+				await Coroutine.Sleep(1000);
+				GameObjectManager.GetObjectByNPCId(1008624).Target();
+				await Coroutine.Sleep(1000);
+				ChatManager.SendChat("/me");
+				await Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(3000);
+		    ]]>
+		</CodeChunk> -->
+
+        <!-- Job Check -->
+
+        <CodeChunk Name="EquipBRDCrystal">
+        <![CDATA[ 
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+            {
+            if(slot.RawItemId == 4546)
+            {
+                slot.Move(EquipSlot);
+            }
+            }
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipBLMCrystal">
+        <![CDATA[ 
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+            {
+            if(slot.RawItemId == 4548)
+            {
+                slot.Move(EquipSlot);
+            }
+            }
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipDRGCrystal">
+        <![CDATA[ 
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+            {
+            if(slot.RawItemId == 4545)
+            {
+                slot.Move(EquipSlot);
+            }
+            }
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipMNKCrystal">
+        <![CDATA[ 
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+            {
+            if(slot.RawItemId == 4543)
+            {
+                slot.Move(EquipSlot);
+            }
+            }
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipNINCrystal">
+        <![CDATA[ 
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+            {
+            if(slot.RawItemId == 7886)
+            {
+                slot.Move(EquipSlot);
+            }
+            }
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipPLDCrystal">
+        <![CDATA[ 
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+            {
+            if(slot.RawItemId == 4542)
+            {
+                slot.Move(EquipSlot);
+            }
+            }
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipSCHCrystal">
+        <![CDATA[ 
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+            {
+            if(slot.RawItemId == 4550)
+            {
+                slot.Move(EquipSlot);
+            }
+            }
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipSMNCrystal">
+        <![CDATA[ 
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+            {
+            if(slot.RawItemId == 4549)
+            {
+                slot.Move(EquipSlot);
+            }
+            }
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipWARCrystal">
+        <![CDATA[ 
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+            {
+            if(slot.RawItemId == 4544)
+            {
+                slot.Move(EquipSlot);
+            }
+            }
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="EquipWHMCrystal">
+        <![CDATA[ 
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+            {
+            if(slot.RawItemId == 4547)
+            {
+                slot.Move(EquipSlot);
+            }
+            }
+            await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+		<GrindArea name="A_Final_Temptation">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="175.0667, 52.6283, -51.65179" name="Unknown Ravagers"/>
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2670"/>
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Promises_to_Keep">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="89.43311, 15.28377, 154.2839" name="Brass Blade Mobs"/>
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="1255"/>
+				<TargetMob Id="2671"/>
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Why_We_Adenveture">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="189.4086, 52.05615, 28.48048" name="Wandering Eye"/>
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2672"/>
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Scouts_in_Distress">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-451.7739, -41.98507, -237.7203" name="Drowned Ravager"/>
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2677"/>
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Gift_of_Eternity">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-237.8885, -41.40048, -238.5069" name="Sahagin Mobs"/>
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2678"/>
+				<TargetMob Id="2679"/>
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Gift_of_Eternity2">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-241.1377, -42.26929, -305.0814" name="Sahagin Mobs"/>
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2678"/>
+				<TargetMob Id="2679"/>
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="The_Gift_of_Eternity3">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-299.0577, -41.59381, -327.6577" name="Sahagin Mobs"/>
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="2680"/>
+				<TargetMob Id="2681"/>
+				<TargetMob Id="2682"/>
+			</TargetMobs>
+			<MinLevel>50</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+	</GrindAreas>
+</Profile>

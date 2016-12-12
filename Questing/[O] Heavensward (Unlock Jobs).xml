@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##########################################
+# Profile: [O] Heavensward (Unlock Jobs) #
+##########################################
+# Authors: y2krazy                       #
+##########################################
+# Version: 2.1.0                         #
+##########################################
+# Required Level: 50                     #
+##########################################
+# Required Setup:                        #
+#  None                                  #
+##########################################
+# Required User Interaction:             #
+#  None                                  #
+##########################################
+-->
+<Profile>
+	<Name>[O] Heavensward (Unlock Jobs) (v2.1.0)</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<BotSettings AutoEquip="1"/>
+
+        <If Condition="Core.Player.ClassLevel &lt; 50">
+            <LogMessage Message="[Pre-Requisite Check] You do not meet the minimum level requirement."/>
+            <LogMessage Message="[Pre-Requisite Check] Please reach level 50 or higher."/>
+        </If>
+
+        <If Condition="not IsQuestCompleted(65964)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the Before the Fall quest yet!"/>
+            <LogMessage Message="[Pre-Requisite Check] Please load the A Realm Reborn profile if you would like to continue questing!"/>
+            <StopBot/>
+        </If>
+
+		<!-- Astrologian -->
+
+        <!-- Stairway to the Heavens -->
+
+        <If Condition="not IsQuestCompleted(67548)">
+
+            <LogMessage Message="[Heavensward (Unlock Jobs)] Unlocking your Astrologian job!"/>
+
+            <If Condition="not HasQuest(67548)">
+                <If Condition="not IsOnMap(419)">
+                    <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/>
+                </If>
+                <MoveTo Name="Jannequinard" XYZ="202.3804, -5.399966, -58.9151"/>
+                <RunCode Name="EnableAstrologianQuest"/>
+                <If Condition="IsQuestAcceptQualified(67548)">
+                    <PickupQuest NpcId="1012222" QuestId="67548" XYZ="202.3804, -5.399966, -58.9151"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(67548)">
+                <If Condition="GetQuestStep(67548) == 1">
+                    <If Condition="not IsOnMap(419)">
+                        <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/>
+                    </If>
+                    <MoveTo Name="Jannequinard" XYZ="202.3804, -5.399966, -58.9151"/>
+                    <TalkTo NpcId="1012222" XYZ="202.3804, -5.399966, -58.9151" QuestId="67548" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(67548) == 2">
+                    <If Condition="not IsOnMap(419)">
+                        <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/>
+                    </If>
+                    <MoveTo Name="Heurriette" XYZ="195.0865, -5.399962, -65.65961"/>
+                    <If Condition="GetQuestById(67548).QuestI8AL == 0">
+                        <TalkTo NpcId="1012221" XYZ="195.0865, -5.399962, -65.65961" QuestId="67548" StepId="2"/>
+                    </If>
+                    <If Condition="GetQuestById(67548).QuestI8AL == 1">
+                        <TalkTo NpcId="1012223" XYZ="188.7083, -5.399966, -68.83344" QuestId="67548" StepId="2"/>
+                    </If>
+                    <If Condition="GetQuestById(67548).QuestI8AL == 2">
+                        <TalkTo NpcId="1012224" XYZ="175.1277, -5.434915, -57.93854" QuestId="67548" StepId="2"/>
+                    </If>
+                </If>
+                <If Condition="GetQuestStep(67548) == 3">
+                    <If Condition="not IsOnMap(419)">
+                        <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/>
+                    </If>
+                    <MoveTo Name="Jannequinard" XYZ="202.3804, -5.399966, -58.9151"/>
+                    <TalkTo NpcId="1012222" XYZ="202.3804, -5.399966, -58.9151" QuestId="67548" StepId="3"/>
+                </If>
+                <If Condition="GetQuestStep(67548) == 4">
+                    <If Condition="not IsOnMap(155) and not IsOnMap(395)">
+                        <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
+                    </If>
+                    <NoCombatMoveTo Name="Jannequinard" XYZ="198.6571, 293.33, 418.5701"/>
+                    <TalkTo NpcId="1014980" XYZ="198.6571, 293.33, 418.5701" QuestId="67548" StepId="4"/>
+                </If>
+                <If Condition="GetQuestStep(67548) == 5">
+                    <If Condition="not IsOnMap(153)">
+                        <GetTo ZoneId="153" XYZ="181.2881, 8.417254, -63.92673"/>
+                    </If>
+                    <NoCombatMoveTo Name="Jannequinard" XYZ="182.9709, 7.488976, -46.83002"/>
+                    <TalkTo NpcId="1014931" XYZ="182.9709, 7.488976, -46.83002" QuestId="67548" StepId="5"/>
+                </If>
+                <If Condition="GetQuestStep(67548) == 255">
+                    <If Condition="not IsOnMap(153)">
+                        <GetTo ZoneId="153" XYZ="181.2881, 8.417254, -63.92673"/>
+                    </If>
+                    <NoCombatMoveTo Name="Quimperain" XYZ="184.4968, 14.11746, 51.92639"/>
+                    <TurnIn QuestId="67548" NpcId="1014925" XYZ="184.4968, 14.11746, 51.92639"/>
+                </If>
+            </If>
+
+        </If>
+
+		<!-- Dark Knight -->
+
+        <!-- Our End -->
+
+        <If Condition="not IsQuestCompleted(67589)">
+
+            <LogMessage Message="[Heavensward (Unlock Jobs)] Unlocking your Death Knight job!"/>
+
+            <If Condition="not HasQuest(67589)">
+                <If Condition="not IsOnMap(419)">
+                    <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/>
+                </If>
+                <MoveTo Name="Ishgardian Citizen" XYZ="101.5792, 12.4182, -117.6013"/>
+                <RunCode Name="EnableDarkKnightQuest"/>
+                <If Condition="IsQuestAcceptQualified(67589)">
+                    <PickupQuest NpcId="1014873" QuestId="67589" XYZ="101.5792, 12.4182, -117.6013"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(67589)">
+                <If Condition="GetQuestStep(67589) == 1">
+                    <If Condition="not IsOnMap(418)">
+                        <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                    </If>
+                    <MoveTo Name="Punctilious Temple Knight" XYZ="5.783081, -2.080677, 45.39551"/>
+                    <TalkTo NpcId="1014876" XYZ="5.783081, -2.080677, 45.39551" QuestId="67589" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(67589) == 255">
+                    <If Condition="not IsOnMap(418)">
+                        <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                    </If>
+                    <MoveTo Name="Fray" XYZ="6.912292, -1.921014, 47.2876"/>
+                    <TurnIn QuestId="67589" NpcId="1014875" XYZ="6.912292, -1.921014, 47.2876"/>
+                </If>
+            </If>
+
+        </If>
+
+		<!-- Machinist -->
+
+        <!-- Savior of Skysteel -->
+
+        <If Condition="not IsQuestCompleted(67232)">
+
+            <LogMessage Message="[Heavensward (Unlock Jobs)] Unlocking your Machinist job!"/>
+
+            <If Condition="not HasQuest(67232)">
+                <If Condition="not IsOnMap(418)">
+                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                </If>
+                <MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609"/>
+                <RunCode Name="EnableMachinistQuest"/>
+                <If Condition="IsQuestAcceptQualified(67232)">
+                    <PickupQuest NpcId="1014577" QuestId="67232" XYZ="-154.3146, 16.99999, -53.3609"/>
+                </If>
+            </If>
+            <If Condition="HasQuest(67232)">
+                <If Condition="GetQuestStep(67232) == 1">
+                    <If Condition="not IsOnMap(418)">
+                        <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                    </If>
+                    <MoveTo Name="Stephanivien" XYZ="-154.3146, 16.99999, -53.3609"/>
+                    <TalkTo NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" QuestId="67232" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(67232) == 2">
+                    <If Condition="not IsOnMap(180)">
+                        <GetTo ZoneId="180" XYZ="-112.6807, 64.36189, -217.7763"/>
+                    </If>
+                    <MoveTo Name="Stephanivien" XYZ="-73.16705, 64.60867, -248.0965"/>
+                    <TalkTo NpcId="1014731" XYZ="-73.16705, 64.60867, -248.0965" QuestId="67232" StepId="2"/>
+                </If>
+                <If Condition="GetQuestStep(67232) == 3">
+                    <If Condition="not IsOnMap(180)">
+                        <GetTo ZoneId="180" XYZ="-112.6807, 64.36189, -217.7763"/>
+                    </If>
+                    <MoveTo Name="Grinning Private" XYZ="-98.43597, 64.48862, -215.5642"/>
+                    <If Condition="GetQuestById(67232).QuestI8AL == 0">
+                        <TalkTo NpcId="1014733" XYZ="-98.43597, 64.48862, -215.5642" QuestId="67232" StepId="3"/>
+                    </If>
+                    <If Condition="GetQuestById(67232).QuestI8AL == 1">
+                        <TalkTo NpcId="1014735" XYZ="-112.6269, 64.39167, -200.1221" QuestId="67232" StepId="3"/>
+                    </If>
+                    <If Condition="GetQuestById(67232).QuestI8AL == 2">
+                        <TalkTo NpcId="1014734" XYZ="-147.8141, 64.37568, -220.5692" QuestId="67232" StepId="3"/>
+                    </If>
+                </If>
+                <If Condition="GetQuestStep(67232) == 4">
+                    <If Condition="not IsOnMap(180)">
+                        <GetTo ZoneId="180" XYZ="-112.6807, 64.36189, -217.7763"/>
+                    </If>
+                    <MoveTo Name="Stephanivien" XYZ="-73.16705, 64.60867, -248.0965"/>
+                    <TalkTo NpcId="1014731" XYZ="-73.16705, 64.60867, -248.0965" QuestId="67232" StepId="4"/>
+                </If>
+                <If Condition="GetQuestStep(67232) == 255">
+                    <If Condition="not IsOnMap(180)">
+                        <GetTo ZoneId="180" XYZ="-112.6807, 64.36189, -217.7763"/>
+                    </If>
+                    <NoCombatMoveTo Name="Stephanivien" XYZ="-99.25995, 62.38235, -182.7878"/>
+                    <TurnIn QuestId="67232" NpcId="1014736" XYZ="-99.25995, 62.38235, -182.7878"/>
+                </If>
+            </If>
+
+        </If>
+
+	</Order>
+	<CodeChunks>
+		<CodeChunk Name="EnableAstrologianQuest">
+			<![CDATA[ 
+				await Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1012222).Interact();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(10000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="EnableDarkKnightQuest">
+			<![CDATA[ 
+				await Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1014873).Interact();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(10000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="EnableMachinistQuest">
+			<![CDATA[ 
+				await Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1014577).Interact();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(10000);
+			]]>
+		</CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
