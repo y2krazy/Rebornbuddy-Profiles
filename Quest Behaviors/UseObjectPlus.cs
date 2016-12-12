@@ -29,6 +29,24 @@ namespace ff14bot.NeoProfiles.Tags
             get
             {
                 return new PrioritySelector(
+                    new Decorator(ret => QuestId == 66043 && SelectYesno.IsOpen,
+                        new Action(r =>
+                        {
+                            SelectYesno.ClickYes();
+                        })
+                    ),
+                    new Decorator(ret => QuestId == 66064 && SelectYesno.IsOpen,
+                        new Action(r =>
+                        {
+                            SelectYesno.ClickYes();
+                        })
+                    ),
+                    new Decorator(ret => QuestId == 66082 && SelectYesno.IsOpen,
+                        new Action(r =>
+                        {
+                            SelectYesno.ClickYes();
+                        })
+                    ),
                     new Decorator(ret => QuestId == 67695 && JournalResult.IsOpen,
                         new Action(r =>
                         {

@@ -27,6 +27,12 @@ namespace ff14bot.NeoProfiles.Tags
         protected override Composite CreateBehavior()
         {
             return new PrioritySelector(
+                new Decorator(ret => QuestId == 65715 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
                 new Decorator(ret => QuestId == 65789 && SelectYesno.IsOpen,
                     new Action(r =>
                     {

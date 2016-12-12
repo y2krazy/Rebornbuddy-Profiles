@@ -50,11 +50,10 @@ namespace ff14bot.NeoProfiles.Tags
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2001471).Location) <= 3,
                             new Action(r =>
                             {
-								Logging.Write("[ExtendedDuty] Interacting with object 2001471!");
                                 GameObjectManager.GetObjectByNPCId(2001471).Interact();
                             })
 				        ),
-                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2002521).Location, 3)
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2001471).Location, 3)
                     )
                 ),
                 new Decorator(ret => QuestId == 65995 && GameObjectManager.GetObjectByNPCId(2002521) != null && GameObjectManager.GetObjectByNPCId(2002521).IsVisible,
