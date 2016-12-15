@@ -8,7 +8,7 @@
 #          hkme                     #
 #          Eficiente                #
 #####################################
-# Version: 2.1.0                    #
+# Version: 2.1.1                    #
 #####################################
 # Required Level: 1+                #
 #####################################
@@ -20,7 +20,7 @@
 #####################################
 -->
 <Profile>
-	<Name>[O] Class and Job Quests (v2.1.0)</Name>
+	<Name>[O] Class and Job Quests (v2.1.1)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -5056,12 +5056,12 @@
 
 		<!-- Conjurer -->
 
-		<If Condition="ClassName != ClassJobType.Conjurer and (IsQuestCompleted(66082) or IsQuestCompleted(66064))">
+		<!-- <If Condition="ClassName != ClassJobType.Conjurer and (IsQuestCompleted(66082) or IsQuestCompleted(66064))"> -->
 
 			<!-- So You Want to Be a Conjurer -->
 
 			<!-- <If Condition="not IsQuestCompleted(65718) and &Conjurer; == 0"> -->
-			<If Condition="not IsQuestCompleted(65718) and ClassName == ClassJobType.Arcanist">
+			<!-- <If Condition="not IsQuestCompleted(65718) and ClassName == ClassJobType.Arcanist">
 
 				<LogMessage Message="[Class and Job Quests] Unlocking your Conjurer class!"/>
 
@@ -5074,12 +5074,12 @@
 						<PickupQuest NpcId="1000323" QuestId="65718" XYZ="-234.0276, -4, -11.09338"/>
 					</If>
 				</If>
-			</If>
+			</If> -->
 
 			<!-- Way of the Conjurer -->
 
 			<!-- <If Condition="not IsQuestCompleted(65669) and &Conjurer; == 0"> -->
-			<If Condition="not IsQuestCompleted(65669) and ClassName == ClassJobType.Arcanist">
+			<!-- <If Condition="not IsQuestCompleted(65669) and ClassName == ClassJobType.Arcanist">
 
 				<LogMessage Message="[Class and Job Quests] Continuing to unlock your Conjurer class..."/>
 
@@ -5101,9 +5101,9 @@
 						<TurnIn QuestId="65669" NpcId="1000692" XYZ="-258.8083, -5.773526, -27.26788"/>
 					</If>
 				</If>
-			</If>
+			</If> -->
 
-		</If>
+		<!-- </If> -->
 
 		<If Condition="(ClassName == ClassJobType.Conjurer) or (ClassName == ClassJobType.WhiteMage)">
 
@@ -5432,11 +5432,11 @@
 					</If>
 				</If>
 			</If>
-<StopBot/>
+
 			<!-- Sylphie's Trials -->
 
 			<If Condition="not IsQuestCompleted(65629)">
-				<If Condition="Core.Player.ClassLevel &gt; 19">
+				<If Condition="Core.Player.ClassLevel &gt; 19"><StopBot/>
 					<If Condition="not HasQuest(65629)">
 						<If Condition="not IsOnMap(133)">
 							<If Condition="not IsOnMap(132)">
@@ -8121,7 +8121,7 @@
 							<If Condition="not IsOnMap(140)">
 								<GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
 							</If>
-							<NoCombatMoveTo Name="Caravan Sacks" XYZ="154.3755, 52.53674, 200.9155"/>
+							<NoCombatMoveTo Name="Caravan Sack" XYZ="154.3755, 52.53674, 200.9155"/>
 							<UseObject NpcIds="2001408,2001409" QuestId="65792" StepId="6">
 								<HotSpots>
 									<HotSpot XYZ="154.3755, 52.53674, 200.9155" Radius="10"/>
@@ -8167,6 +8167,7 @@
 							</If>
 							<NoCombatMoveTo Name="Gutless Gladiator" XYZ="-139.4218, 4.019726, 205.0354"/>
 							<TalkTo NpcId="1002296" XYZ="-139.4218, 4.019726, 205.0354" QuestId="65797" StepId="1"/>
+							<Grind grindRef="Uldahs_Most_Wanted" while="HasQuest(65797) and GetQuestStep(65797) == 1"/>
 						</If>
 						<If Condition="GetQuestStep(65797) == 2">
 							<If Condition="not IsOnMap(141)">
@@ -8187,9 +8188,16 @@
 								<GetTo ZoneId="141" XYZ="-13.56739, -1.877733, -163.8"/>
 							</If>
 							<NoCombatMoveTo Name="Destination" XYZ="27.20679, 12.98535, 51.83484"/>
-							<LogMessage Message="[Class and Job Quests] Please manually complete the Ul'dah's Most Wanted duty!"/>
+
+							<!-- TEMP FIX -->
+
+							<!-- Moved to the Lv15 quest check (in the ARR profile) for a seemingly better chance to succeed.  -->
+
+							<!-- TEMP FIX -->
+
+							<!-- <LogMessage Message="[Class and Job Quests] Please manually complete the Ul'dah's Most Wanted duty!"/>
 							<LogMessage Message="[Class and Job Quests] Run this profile again once you finish the duty."/>
-							<StopBot/>
+							<StopBot/> -->
 
 							<!-- TO DO -->
 
@@ -8197,15 +8205,15 @@
 
 							<!-- TO DO -->
 
-							<!-- <SimpleDuty InteractNpcId="2001426" XYZ="27.20679, 12.98535, 51.83484" GuardianNPCId="924" QuestId="65797" StepId="4">
+							<SimpleDuty InteractNpcId="2001426" XYZ="27.20679, 12.98535, 51.83484" GuardianNPCId="924" QuestId="65797" StepId="4">
 								<HotSpots>
 									<HotSpot XYZ="27.20679, 12.98535, 51.83484" Radius="90"/>
 								</HotSpots>
 								<TargetMobs>
-									<TargetMob Id="923" Weight="2000"/> --> <!-- Duskwight Freelancer -->
-									<!-- <TargetMob Id="944" Weight="1000"/> --> <!-- Duskwight Freelancer Captain -->
-								<!-- </TargetMobs>
-							</SimpleDuty> -->
+									<TargetMob Id="923" Weight="2000"/> <!-- Duskwight Freelancer -->
+									<TargetMob Id="944" Weight="1000"/> <!-- Duskwight Freelancer Captain -->
+								</TargetMobs>
+							</SimpleDuty>
 						</If>
 						<If Condition="GetQuestStep(65797) == 5">
 							<If Condition="not IsOnMap(141)">
@@ -8245,6 +8253,7 @@
 							</If>
 							<NoCombatMoveTo Name="Gutless Gladiator" XYZ="-139.4218, 4.019726, 205.0354"/>
 							<TalkTo NpcId="1002296" XYZ="-139.4218, 4.019726, 205.0354" QuestId="65824" StepId="1"/>
+							<Grind grindRef="Uldahs_Most_Wanted" while="HasQuest(65824) and GetQuestStep(65824) == 1"/>
 						</If>
 						<If Condition="GetQuestStep(65824) == 2">
 							<If Condition="not IsOnMap(141)">
@@ -8265,9 +8274,16 @@
 								<GetTo ZoneId="141" XYZ="-13.56739, -1.877733, -163.8"/>
 							</If>
 							<NoCombatMoveTo Name="Destination" XYZ="27.20679, 12.98535, 51.83484"/>
-							<LogMessage Message="[Class and Job Quests] Please manually complete the Ul'dah's Most Wanted duty!"/>
+
+							<!-- TEMP FIX -->
+
+							<!-- Moved to the Lv15 quest check (in the ARR profile) for a seemingly better chance to succeed.  -->
+
+							<!-- TEMP FIX -->
+
+							<!-- <LogMessage Message="[Class and Job Quests] Please manually complete the Ul'dah's Most Wanted duty!"/>
 							<LogMessage Message="[Class and Job Quests] Run this profile again once you finish the duty."/>
-							<StopBot/>
+							<StopBot/> -->
 
 							<!-- TO DO -->
 
@@ -8275,15 +8291,15 @@
 
 							<!-- TO DO -->
 
-							<!-- <SimpleDuty InteractNpcId="2001756" XYZ="27.20679, 12.98535, 51.83484" GuardianNPCId="924" QuestId="65824" StepId="4">
+							<SimpleDuty InteractNpcId="2001756" XYZ="27.20679, 12.98535, 51.83484" GuardianNPCId="924" QuestId="65824" StepId="4">
 								<HotSpots>
 									<HotSpot XYZ="27.20679, 12.98535, 51.83484" Radius="90"/>
 								</HotSpots>
 								<TargetMobs>
-									<TargetMob Id="923" Weight="2000"/> --> <!-- Duskwight Freelancer -->
-									<!-- <TargetMob Id="944" Weight="1000"/> --> <!-- Duskwight Freelancer Captain -->
-								<!-- </TargetMobs>
-							</SimpleDuty> -->
+									<TargetMob Id="923" Weight="2000"/> <!-- Duskwight Freelancer -->
+									<TargetMob Id="944" Weight="1000"/> <!-- Duskwight Freelancer Captain -->
+								</TargetMobs>
+							</SimpleDuty>
 						</If>
 						<If Condition="GetQuestStep(65824) == 5">
 							<If Condition="not IsOnMap(141)">
@@ -8323,6 +8339,7 @@
 							</If>
 							<NoCombatMoveTo Name="Injured Gladiator" XYZ="-220.9354, -38.40747, 63.91992"/>
 							<TalkTo NpcId="1004224" XYZ="-220.9354, -38.40747, 63.91992" QuestId="65798" StepId="1"/>
+							<Grind grindRef="That_Old_Familiar_Feeling" while="HasQuest(65798) and GetQuestStep(65798) == 1"/>
 						</If>
 						<If Condition="GetQuestStep(65798) == 2">
 							<If Condition="not IsOnMap(145)">
@@ -8368,7 +8385,7 @@
 			<!-- The Face of Thal -->
 
 			<If Condition="not IsQuestCompleted(65799)">
-				<If Condition="Core.Player.ClassLevel &gt; 19"><StopBot/>
+				<If Condition="Core.Player.ClassLevel &gt; 19">
 					<If Condition="not HasQuest(65799)">
 						<If Condition="not IsOnMap(131)">
 							<If Condition="not IsOnMap(130)">
@@ -9342,12 +9359,12 @@
 
 		<!-- Lancer -->
 
-		<If Condition="ClassName != ClassJobType.Lancer and (IsQuestCompleted(66082) or IsQuestCompleted(66064))">
+		<!-- <If Condition="ClassName != ClassJobType.Lancer and (IsQuestCompleted(66082) or IsQuestCompleted(66064))"> -->
 
 			<!-- So You Want to Be a Lancer -->
 
 			<!-- <If Condition="not IsQuestCompleted(65716) and &Lancer; == 0"> -->
-			<If Condition="not IsQuestCompleted(65716)">
+			<!-- <If Condition="not IsQuestCompleted(65716)">
 
 				<LogMessage Message="[Class and Job Quests] Unlocking your Lancer class!"/>
 
@@ -9369,12 +9386,12 @@
 						<TurnIn QuestId="65716" NpcId="1000254" XYZ="157.7019, 15.90038, -270.3442"/>
 					</If>
 				</If>
-			</If>
+			</If> -->
 
 			<!-- Way of the Lancer -->
 
 			<!-- <If Condition="not IsQuestCompleted(65668) and &Lancer; == 0"> -->
-			<If Condition="not IsQuestCompleted(65668)">
+			<!-- <If Condition="not IsQuestCompleted(65668)">
 
 				<LogMessage Message="[Class and Job Quests] Continuing to unlock your Lancer class..."/>
 
@@ -9396,9 +9413,9 @@
 						<TurnIn QuestId="65668" NpcId="1000254" XYZ="157.7019, 15.90038, -270.3442"/>
 					</If>
 				</If>
-			</If>
+			</If> -->
 
-		</If>
+		<!-- </If> -->
 
 		<If Condition="(ClassName == ClassJobType.Lancer) or (ClassName == ClassJobType.Dragoon)">
 
@@ -11859,12 +11876,12 @@
 
 		<!-- Marauder -->
 
-		<If Condition="ClassName != ClassJobType.Marauder and (IsQuestCompleted(66043) or IsQuestCompleted(66064))">
+		<!-- <If Condition="ClassName != ClassJobType.Marauder and (IsQuestCompleted(66043) or IsQuestCompleted(66064))"> -->
 
 			<!-- So You Want to Be a Marauder -->
 
 			<!-- <If Condition="not IsQuestCompleted(65715) and &Marauder; == 0"> -->
-			<If Condition="not IsQuestCompleted(65715)">
+			<!-- <If Condition="not IsQuestCompleted(65715)">
 
 				<LogMessage Message="[Class and Job Quests] Unlocking your Marauder class!"/>
 
@@ -11877,12 +11894,12 @@
 						<PickupQuestPlus NpcId="1000926" QuestId="65715" XYZ="-10.05573, 44.99979, -245.8076"/>
 					</If>
 				</If>
-			</If>
+			</If> -->
 
 			<!-- Way of the Marauder -->
 
 			<!-- <If Condition="not IsQuestCompleted(65846) and &Marauder; == 0"> -->
-			<If Condition="not IsQuestCompleted(65846)">
+			<!-- <If Condition="not IsQuestCompleted(65846)">
 
 				<LogMessage Message="[Class and Job Quests] Continuing to unlock your Marauder class..."/>
 
@@ -11904,9 +11921,9 @@
 						<TurnIn QuestId="65846" NpcId="1000692" XYZ="-258.8083, -5.773526, -27.26788"/>
 					</If>
 				</If>
-			</If>
+			</If> -->
 
-		</If>
+		<!-- </If> -->
 
 		<If Condition="(ClassName == ClassJobType.Marauder) or (ClassName == ClassJobType.Warrior)">
 
@@ -13724,29 +13741,17 @@
 							<If Condition="not IsOnMap(140)">
 								<GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
 							</If>
-							<NoCombatMoveTo Name="Trial Stone" XYZ="222.2692, 51.14947, 53.30082"/>
+							<NoCombatMoveTo Name="Trial Stone" XYZ="229.0933, 51.94556, 91.25763"/>
 							<While Condition="not IsTodoChecked(66090, 3, 0)">
-								<UseSpell SpellId="53" NpcId="2001543" XYZ="224.0176, 52.23157, 41.36719" QuestId="66090" StepId="3"/>
-								<UseSpell SpellId="53" NpcId="2001544" XYZ="259.0524, 53.42175, 25.40625" QuestId="66090" StepId="3"/>
-								<UseSpell SpellId="53" NpcId="2001542" XYZ="245.7159, 52.47571, 58.09106" QuestId="66090" StepId="3"/>
+								<MoveTo Name="Trial Stone" XYZ="224.9629, 52.80996, 78.25069"/>
 								<UseSpell SpellId="53" NpcId="2001541" XYZ="224.7196, 52.04846, 79.45361" QuestId="66090" StepId="3"/>
+								<MoveTo Name="Trial Stone" XYZ="245.7159, 52.47571, 58.09106"/>
+								<UseSpell SpellId="53" Distance="1" NpcId="2001542" XYZ="245.7159, 52.47571, 58.09106" QuestId="66090" StepId="3"/>
+								<MoveTo Name="Trial Stone" XYZ="222.513, 52.76848, 40.68093"/>
+								<UseSpell SpellId="53" Distance="2.5" NpcId="2001543" XYZ="224.0176, 52.23157, 41.36719" QuestId="66090" StepId="3"/>
+								<MoveTo Name="Trial Stone" XYZ="261.3669, 55.53403, 24.92537"/>
+								<UseSpell SpellId="53" NpcId="2001544" XYZ="259.0524, 53.42175, 25.40625" QuestId="66090" StepId="3"/>
 							</While>
-							<!-- <If Condition="GetQuestById(66090).QuestI8AH == 0">
-								<UseSpell SpellId="53" NpcId="2001543" XYZ="224.0176, 52.23157, 41.36719" QuestId="66090" StepId="3"/>
-								<Grind grindRef="Harder_than_Rock" while="HasQuest(66090) and GetQuestById(66090).QuestI8AH == 0"/>
-							</If>
-							<If Condition="GetQuestById(66090).QuestI8AH == 1">
-								<UseSpell SpellId="53" NpcId="2001544" XYZ="259.0524, 53.42175, 25.40625" QuestId="66090" StepId="3"/>
-								<Grind grindRef="Harder_than_Rock2" while="HasQuest(66090) and GetQuestById(66090).QuestI8AH == 1"/>
-							</If>
-							<If Condition="GetQuestById(66090).QuestI8AH == 2">
-								<UseSpell SpellId="53" NpcId="2001542" XYZ="245.7159, 52.47571, 58.09106" QuestId="66090" StepId="3"/>
-								<Grind grindRef="Harder_than_Rock3" while="HasQuest(66090) and GetQuestById(66090).QuestI8AH == 2"/>
-							</If>
-							<If Condition="GetQuestById(66090).QuestI8AH == 3">
-								<UseSpell SpellId="53" NpcId="2001541" XYZ="224.7196, 52.04846, 79.45361" QuestId="66090" StepId="3"/>
-								<Grind grindRef="Harder_than_Rock4" while="HasQuest(66090) and GetQuestById(66090).QuestI8AH == 3"/>
-							</If> -->
 						</If>
 						<If Condition="GetQuestStep(66090) == 255">
 							<If Condition="not IsOnMap(130)">
@@ -13777,29 +13782,14 @@
 							<If Condition="not IsOnMap(130)">
 								<GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
 							</If>
-							<MoveTo Name="Striking Dummies" XYZ="-111.3515, 4, -91.69934"/>
+							<MoveTo Name="Striking Dummy" XYZ="-111.3515, 4, -91.69934"/>
 							<While Condition="not IsTodoChecked(66091, 1, 0)">
-								<UseSpell SpellId="53" NpcId="2001798" XYZ="-107.9271, 4.989685, -105.4857" QuestId="66091" StepId="3"/>
-								<UseSpell SpellId="53" NpcId="2001799" XYZ="-105.6382, 4.959106, -107.5914" QuestId="66091" StepId="3"/>
-								<UseSpell SpellId="53" NpcId="2001800" XYZ="-77.62268, 5.020142, -128.893" QuestId="66091" StepId="3"/>
-								<UseSpell SpellId="53" NpcId="2001801" XYZ="-74.60144, 4.898132, -130.6935" QuestId="66091" StepId="3"/>
-								<UseSpell SpellId="53" NpcId="2001802" XYZ="-71.42755, 5.020142, -132.3415" QuestId="66091" StepId="3"/>
+								<UseSpell SpellId="53" NpcId="2001718" XYZ="-107.5282, 4, -106.335" QuestId="66091" StepId="1"/>
+								<UseSpell SpellId="53" NpcId="2001719" XYZ="-105.3938, 4, -108.4852" QuestId="66091" StepId="1"/>
+								<UseSpell SpellId="53" NpcId="2001720" XYZ="-77.16577, 4, -129.6812" QuestId="66091" StepId="1"/>
+								<UseSpell SpellId="53" NpcId="2001721" XYZ="-74.07706, 4, -131.5156" QuestId="66091" StepId="1"/>
+								<UseSpell SpellId="53" NpcId="2001722" XYZ="-70.9402, 4, -133.1431" QuestId="66091" StepId="1"/>
 							</While>
-							<!-- <If Condition="GetQuestById(66091).QuestI8AH == 0">
-								<UseSpell SpellId="53" NpcId="2001798" XYZ="-107.9271, 4.989685, -105.4857" QuestId="66091" StepId="3"/>
-							</If>
-							<If Condition="GetQuestById(66091).QuestI8AH == 1">
-								<UseSpell SpellId="53" NpcId="2001799" XYZ="-105.6382, 4.959106, -107.5914" QuestId="66091" StepId="3"/>
-							</If>
-							<If Condition="GetQuestById(66091).QuestI8AH == 2">
-								<UseSpell SpellId="53" NpcId="2001800" XYZ="-77.62268, 5.020142, -128.893" QuestId="66091" StepId="3"/>
-							</If>
-							<If Condition="GetQuestById(66091).QuestI8AH == 3">
-								<UseSpell SpellId="53" NpcId="2001801" XYZ="-74.60144, 4.898132, -130.6935" QuestId="66091" StepId="3"/>
-							</If>
-							<If Condition="GetQuestById(66091).QuestI8AH == 4">
-								<UseSpell SpellId="53" NpcId="2001802" XYZ="-71.42755, 5.020142, -132.3415" QuestId="66091" StepId="3"/>
-							</If> -->
 						</If>
 						<If Condition="GetQuestStep(66091) == 2">
 							<If Condition="not IsOnMap(130)">
@@ -13844,29 +13834,14 @@
 							<If Condition="not IsOnMap(130)">
 								<GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674"/>
 							</If>
-							<MoveTo Name="Striking Dummies" XYZ="-111.3515, 4, -91.69934"/>
+							<MoveTo Name="Striking Dummy" XYZ="-111.3515, 4, -91.69934"/>
 							<While Condition="not IsTodoChecked(66234, 1, 0)">
-								<UseSpell SpellId="53" NpcId="2001798" XYZ="-107.9271, 4.989685, -105.4857" QuestId="66234" StepId="1"/>
-								<UseSpell SpellId="53" NpcId="2001799" XYZ="-105.6382, 4.959106, -107.5914" QuestId="66234" StepId="1"/>
-								<UseSpell SpellId="53" NpcId="2001800" XYZ="-77.62268, 5.020142, -128.893" QuestId="66234" StepId="1"/>
-								<UseSpell SpellId="53" NpcId="2001801" XYZ="-74.60144, 4.898132, -130.6935" QuestId="66234" StepId="1"/>
-								<UseSpell SpellId="53" NpcId="2001802" XYZ="-71.42755, 5.020142, -132.3415" QuestId="66234" StepId="1"/>
+								<UseSpell SpellId="53" NpcId="2001718" XYZ="-107.5282, 4, -106.335" QuestId="66234" StepId="1"/>
+								<UseSpell SpellId="53" NpcId="2001719" XYZ="-105.3938, 4, -108.4852" QuestId="66234" StepId="1"/>
+								<UseSpell SpellId="53" NpcId="2001720" XYZ="-77.16577, 4, -129.6812" QuestId="66234" StepId="1"/>
+								<UseSpell SpellId="53" NpcId="2001721" XYZ="-74.07706, 4, -131.5156" QuestId="66234" StepId="1"/>
+								<UseSpell SpellId="53" NpcId="2001722" XYZ="-70.9402, 4, -133.1431" QuestId="66234" StepId="1"/>
 							</While>
-							<!-- <If Condition="GetQuestById(66234).QuestI8AH == 0">
-								<UseSpell SpellId="53" NpcId="2001798" XYZ="-107.9271, 4.989685, -105.4857" QuestId="66234" StepId="1"/>
-							</If>
-							<If Condition="GetQuestById(66234).QuestI8AH == 1">
-								<UseSpell SpellId="53" NpcId="2001799" XYZ="-105.6382, 4.959106, -107.5914" QuestId="66234" StepId="1"/>
-							</If>
-							<If Condition="GetQuestById(66234).QuestI8AH == 2">
-								<UseSpell SpellId="53" NpcId="2001800" XYZ="-77.62268, 5.020142, -128.893" QuestId="66234" StepId="1"/>
-							</If>
-							<If Condition="GetQuestById(66234).QuestI8AH == 3">
-								<UseSpell SpellId="53" NpcId="2001801" XYZ="-74.60144, 4.898132, -130.6935" QuestId="66234" StepId="1"/>
-							</If>
-							<If Condition="GetQuestById(66234).QuestI8AH == 4">
-								<UseSpell SpellId="53" NpcId="2001802" XYZ="-71.42755, 5.020142, -132.3415" QuestId="66234" StepId="1"/>
-							</If> -->
 						</If>
 						<If Condition="GetQuestStep(66234) == 2">
 							<If Condition="not IsOnMap(130)">
@@ -13926,7 +13901,7 @@
 								<GetTo ZoneId="141" XYZ="-13.56739, -1.877733, -163.8"/>
 							</If>
 							<NoCombatMoveTo Name="Zuzumeda" XYZ="-35.44672, -2.057617, -154.9554"/>
-							<While Condition="not IsTodoChecked(66234, 1, 0)">
+							<While Condition="not IsTodoChecked(66094, 3, 0)">
 								<TalkTo NpcId="1001578" XYZ="-35.44672, -2.057617, -154.9554" QuestId="66094" StepId="3"/>
 								<TalkTo NpcId="1001445" XYZ="-13.04651, -2.090576, -184.4053" QuestId="66094" StepId="3"/>
 								<TalkTo NpcId="1004148" XYZ="5.722107, -1.985179, -172.7779" QuestId="66094" StepId="3"/>
@@ -13976,7 +13951,7 @@
 			<!-- Keeping the Spirit Alive -->
 
 			<If Condition="not IsQuestCompleted(66098)">
-				<If Condition="Core.Player.ClassLevel &gt; 19"><StopBot/>
+				<If Condition="Core.Player.ClassLevel &gt; 19">
 					<If Condition="not HasQuest(66098)">
 						<If Condition="not IsOnMap(130)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
@@ -17599,6 +17574,19 @@
 								<GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927"/>
 							</If>
 							<MoveTo Name="Designated Location" XYZ="-24.88751, -25.34528, 321.95"/>
+							<LogMessage Message="[Class and Job Quests] Please manually complete The Threat of Superiority duty!"/>
+							<LogMessage Message="[Class and Job Quests] Run this profile again once you finish the duty."/>
+							<StopBot/>
+
+							<!-- TO DO -->
+
+							<!-- Dies on every attempt with Kupo. Gets lucky sometimes with Ultima. D'oh! -->
+							<!-- Also, unable to interact with the Duty object, as there are two objects with the same ID. Halp! -->
+							<!-- Name:Mormo's Urn 0x11531A40, Type:ff14bot.Objects.EventObject, ID:2001471, Obj:1073773022 -->
+							<!-- Name:Mormo's Urn 0x1156B700, Type:ff14bot.Objects.EventObject, ID:2001471, Obj:4033684 -->
+
+							<!-- TO DO -->
+
 							<ExtendedDuty InteractNpcId="2001470" XYZ="-24.88751, -25.34528, 321.95" QuestId="65886" StepId="4">
 								<HotSpots>
 									<HotSpot XYZ="100.9384, -24.09399, 256.9772" Radius="10"/> <!-- Mormo's Urn -->
@@ -17624,7 +17612,7 @@
 			<!-- The Threat of Perplexity -->
 
 			<If Condition="not IsQuestCompleted(65887)">
-				<If Condition="Core.Player.ClassLevel &gt; 19"><StopBot/>
+				<If Condition="Core.Player.ClassLevel &gt; 19">
 					<If Condition="not HasQuest(65887)">
 						<If Condition="not IsOnMap(130)">
 							<If Condition="Managers.WorldManager.HasAetheryteId(9)">
@@ -19673,6 +19661,26 @@
 				<TargetMob Id="318"/> <!-- Snapping Shrew -->
 			</TargetMobs>
 			<MinLevel>1</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="Uldahs_Most_Wanted">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-139.4218, 4.019726, 205.0354" name="Duskwight Freelancers"/>
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="923"/> <!-- Duskwight Freelancer -->
+			</TargetMobs>
+			<MinLevel>10</MinLevel>
+			<MaxLevel>61</MaxLevel>
+		</GrindArea>
+		<GrindArea name="That_Old_Familiar_Feeling">
+			<Hotspots>
+				<Hotspot Radius="90" XYZ="-220.9354, -38.40747, 63.91992" name="Amalj'aa Ravagers"/>
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="1177"/> <!-- Amalj'aa Ravager -->
+			</TargetMobs>
+			<MinLevel>15</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
 		<GrindArea name="The_Rematch">
