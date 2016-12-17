@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###########################################
+# Profile: [O] Starlight Gift Box (Daily) #
+###########################################
+# Author: y2krazy                         #
+###########################################
+# Version: 2.0.0                          #
+###########################################
+# Required Level: 15                      #
+###########################################
+# Required User Interaction:              #
+#  None                                   #
+###########################################
+# Required Setup:                         #
+#  None                                   #
+###########################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- ExLog Colors -->
+
+  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+]>
+<Profile>
+	<Name>[O] Starlight Gift Box (Daily) (v2.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <!-- A Starlight Story -->
+
+        <If Condition="not HasQuest(67914)">
+            <If Condition="not IsOnMap(131) and not IsOnMap(611)">
+                <GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
+            </If>
+            <If Condition="IsOnMap(131)">
+                <UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
+            </If>
+            <ExLog Color="&ExLog;" Name="Starlight Celebration" Message="Picking up the A Starlight Story quest!"/>
+            <!-- <GetTo ZoneId="611" XYZ="7.644714, 0.005500436, 1.480042"/> -->
+            <MoveTo Name="Damielliot" XYZ="7.644714, 0.005500436, 1.480042"/>
+            <RunCode Name="Pickup67914"/>
+        </If>
+        <If Condition="HasQuest(67914)">
+            <If Condition="GetQuestStep(67914) == 1">
+                <If Condition="not IsOnMap(131) and not IsOnMap(611)">
+                    <GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
+                </If>
+                <If Condition="IsOnMap(131)">
+                    <UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
+                </If>
+                <ExLog Color="&ExLog;" Name="Starlight Celebration" Message="Talking to Reauverre..."/>
+                <!-- <GetTo ZoneId="611" XYZ="-5.081299, 0.005499996, -11.6427"/> -->
+                <TalkTo NpcId="1018227" XYZ="-5.081299, 0.005499996, -11.6427" QuestId="67914" StepId="1"/>
+            </If>
+            <If Condition="GetQuestStep(67914) == 2">
+                <If Condition="not IsOnMap(131) and not IsOnMap(611)">
+                    <GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
+                </If>
+                <If Condition="IsOnMap(131)">
+                    <UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
+                </If>
+                <ExLog Color="&ExLog;" Name="Starlight Celebration" Message="Obtaining the saint-sent gift..."/>
+                <!-- <GetTo ZoneId="611" XYZ="-5.478088, -0.01531982, -7.431213"/> -->
+                <UseObject NpcId="2007500" XYZ="-5.478088, -0.01531982, -7.431213" Radius="10" QuestId="67914" StepId="2"/>
+            </If>
+            <If Condition="GetQuestStep(67914) == 255">
+                <If Condition="not IsOnMap(131) and not IsOnMap(611)">
+                    <GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
+                </If>
+                <If Condition="IsOnMap(131)">
+                    <UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
+                </If>
+                <ExLog Color="&ExLog;" Name="Starlight Celebration" Message="Turning in the A Starlight Story quest!"/>
+                <!-- <GetTo ZoneId="611" XYZ="7.644714, 0.005500436, 1.480042"/> -->
+
+                <!-- Rewards
+
+                Starlight Gift Box
+
+                -->
+
+                <MoveTo Name="Damielliot" XYZ="7.644714, 0.005500436, 1.480042"/>
+                <RunCode Name="Pickup67914"/>
+            </If>
+        </If>
+
+        <ExLog Color="&ExLog;" Name="Starlight Celebration" Message="You've obtained your daily Gift Box! Please re-run this profile after 9 AM PST tomorrow!"/>
+
+	</Order>
+	<CodeChunks>
+		<CodeChunk Name="Pickup67914">
+			<![CDATA[ 
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1017811).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
+					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.JournalAccept.IsOpen)
+					ff14bot.RemoteWindows.JournalAccept.Accept();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TurnIn67914">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1017811).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.Request.IsOpen)
+					ff14bot.RemoteWindows.Request.HandOver();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
