@@ -45,6 +45,47 @@ namespace ff14bot.NeoProfiles.Tags
 				new Decorator(ret => QuestLogManager.InCutscene,
 					new ActionAlwaysSucceed()
 				),
+				new Decorator(ret => QuestId == 65801 && GameObjectManager.GetObjectByNPCId(1004142) != null && !GameObjectManager.GetObjectByNPCId(1004142).CanAttack,
+                    new PrioritySelector(
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(1004142) != null && GameObjectManager.GetObjectByNPCId(1004142).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(1004142).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Handing over items to the Order of the Nald'thal Priest!");
+										ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1004142).Interact();
+										Thread.Sleep(2000);
+										ff14bot.RemoteWindows.Talk.Next();
+										Thread.Sleep(5000);
+										foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+										{
+											if(slot.RawItemId == 2000404)
+											{
+												slot.Handover();
+											}
+										}
+										Thread.Sleep(2000);
+										foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+										{
+											if(slot.RawItemId == 2000411)
+											{
+												slot.Handover();
+											}
+										}
+										Thread.Sleep(2000);
+										if (ff14bot.RemoteWindows.Request.IsOpen)
+											ff14bot.RemoteWindows.Request.HandOver();
+										Thread.Sleep(2000);
+										if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+											ff14bot.RemoteWindows.SelectYesno.ClickYes();
+										Thread.Sleep(2000);
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(1004142).Location, 3)
+							)
+						)
+					)
+                ),
                 new Decorator(ret => QuestId == 65886 && !Core.Player.InCombat && GameObjectManager.GetObjectByNPCId(2001471) != null && GameObjectManager.GetObjectByNPCId(2001471).IsVisible,
                     new PrioritySelector(
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2001471).Location) <= 3,
