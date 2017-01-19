@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+########################################
+# Profile: [O] Heavensward (Patch 3.5) #
+########################################
+# Author: y2krazy                      #
+########################################
+# Version: 2.0.0                       #
+########################################
+# Required Level: 60                   #
+########################################
+# Required Setup:                      #
+#  None                                #
+########################################
+# Required User Interaction:           #
+#  1 Duty Finder Queue                 #
+########################################
+-->
+<Profile>
+	<Name>[O] Heavensward (Patch 3.5) (v2.0.0)</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+    <BotSettings AutoEquip="1"/>
+
+    <If Condition="not IsQuestCompleted(67886)">
+        <LogMessage Name="Pre-Requisite Check" Message="You haven't completed the An Ending to Mark a New Beginning quest yet!"/>
+        <LogMessage Name="Pre-Requisite Check" Message="Loading the Heavensward (Patch 3.4) profile..."/>
+        <LoadProfile Path="Profiles/y2krazy/Questing/[O] Heavensward (Patch 3.4).xml"/>
+    </If>
+
+    <If Condition="(ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
+        <LogMessage Name="Job Check" Message="You do not have a job assigned on your character."/>
+        <LogMessage Name="Job Check" Message="Equipping your Soul Crystal now..."/>
+        <If Condition="ClassName == ClassJobType.Archer">
+            <RunCode Name="EquipBRDCrystal"/>
+            <WaitTimer WaitTime="3"/>
+        </If>
+        <If Condition="ClassName == ClassJobType.Thaumaturge">
+            <RunCode Name="EquipBLMCrystal"/>
+            <WaitTimer WaitTime="3"/>
+        </If>
+        <If Condition="ClassName == ClassJobType.Lancer">
+            <RunCode Name="EquipDRGCrystal"/>
+            <WaitTimer WaitTime="3"/>
+        </If>
+        <If Condition="ClassName == ClassJobType.Pugilist">
+            <RunCode Name="EquipMNKCrystal"/>
+            <WaitTimer WaitTime="3"/>
+        </If>
+        <If Condition="ClassName == ClassJobType.Rogue">
+            <RunCode Name="EquipNINCrystal"/>
+            <WaitTimer WaitTime="3"/>
+        </If>
+        <If Condition="ClassName == ClassJobType.Gladiator">
+            <RunCode Name="EquipPLDCrystal"/>
+            <WaitTimer WaitTime="3"/>
+        </If>
+        <If Condition="ClassName == ClassJobType.Arcanist">
+            <RunCode Name="EquipSCHCrystal"/>
+            <WaitTimer WaitTime="3"/>
+            <RunCode Name="EquipSMNCrystal"/>
+            <WaitTimer WaitTime="3"/>
+        </If>
+        <If Condition="ClassName == ClassJobType.Marauder">
+            <RunCode Name="EquipWARCrystal"/>
+            <WaitTimer WaitTime="3"/>
+        </If>
+        <If Condition="ClassName == ClassJobType.Conjurer">
+            <RunCode Name="EquipWHMCrystal"/>
+            <WaitTimer WaitTime="3"/>
+        </If>
+        <If Condition="(ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
+            <LogMessage Name="Job Check" Message="You do not have the proper Soul Crystal in your Armoury or Inventory."/>
+            <LogMessage Name="Job Check" Message="Loading the Class and Job Quests profile..."/>
+            <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
+        </If>
+    </If>
+
+    <!-- [PickUp Quests] -->
+
+    <!-- Tidings from Gyr Abania -->
+    <If Condition="not IsQuestCompleted(67887)">
+        <If Condition="not HasQuest(67887)">
+            <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/>
+            </If>
+            <If Condition="IsOnMap(156)">
+                <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+            </If>
+            <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+                <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159"/>
+            </If>
+            <MoveTo Name="Tataru" XYZ="27.84766, -1, -0.5036011"/>
+            <If Condition="IsQuestAcceptQualified(67887)">
+                <PickupQuest NpcId="1017788" QuestId="67887" XYZ="27.84766, -1, -0.5036011"/>
+            </If>
+        </If>
+
+        <!-- [Complete Quest] -->
+
+        <If Condition="HasQuest(67887)">
+            <If Condition="GetQuestStep(67887) == 1">
+                <If Condition="not IsOnMap(156)">
+                    <GetTo ZoneId="156" XYZ="35.38562, 28.97681, -791.5618"/>
+                </If>
+                <NoCombatMoveTo Name="Destination" XYZ="35.38562, 28.97681, -791.5618"/>
+                <UseObject NpcId="2007563" XYZ="35.38562, 28.97681, -791.5618" Radius="10" QuestId="67887" StepId="1"/>
+            </If>
+
+            <!-- [TurnIn Quest] -->
+
+            <If Condition="GetQuestStep(67887) == 255">
+                <If Condition="not IsOnMap(418)">
+                    <GetTo ZoneId="418" XYZ="125.6885, 24.45884, 2.456604"/>
+                </If>
+                <MoveTo Name="Lucia" XYZ="125.6885, 24.45884, 2.456604"/>
+                <TurnIn QuestId="67887" NpcId="1013167" XYZ="125.6885, 24.45884, 2.456604"/>
+            </If>
+        </If>
+    </If>
+    <!-- An Envoy for Ishgard -->
+    <If Condition="not IsQuestCompleted(67888)">
+        <If Condition="not HasQuest(67888)">
+            <If Condition="not IsOnMap(418)">
+                <GetTo ZoneId="418" XYZ="125.9326, 24.45884, -5.539063"/>
+            </If>
+            <MoveTo Name="Lucia" XYZ="125.9326, 24.45884, -5.539063"/>
+            <If Condition="IsQuestAcceptQualified(67888)">
+                <PickupQuest NpcId="1016008" QuestId="67888" XYZ="125.9326, 24.45884, -5.539063"/>
+            </If>
+        </If>
+
+        <!-- [Complete Quest] -->
+
+        <If Condition="HasQuest(67888)">
+            <If Condition="GetQuestStep(67888) == 1">
+                <If Condition="not IsOnMap(155)">
+                    <GetTo ZoneId="155" XYZ="-140.9781, 304.097, -311.1467"/>
+                </If>
+                <NoCombatMoveTo Name="Destination" XYZ="-140.9781, 304.097, -311.1467"/>
+                <UseObject NpcId="2007472" XYZ="-140.9781, 304.097, -311.1467" Radius="10" QuestId="67888" StepId="1"/>
+            </If>
+            <If Condition="GetQuestStep(67888) == 2">
+                <If Condition="not IsOnMap(155)">
+                    <GetTo ZoneId="155" XYZ="233.8445, 302, -188.9525"/>
+                </If>
+                <NoCombatMoveTo Name="Aymeric" XYZ="233.8445, 302, -188.9525"/>
+                <TalkTo NpcId="1018013" XYZ="233.8445, 302, -188.9525" QuestId="67888" StepId="2"/>
+            </If>
+
+            <!-- [TurnIn Quest] -->
+
+            <If Condition="GetQuestStep(67888) == 255">
+                <If Condition="not IsOnMap(132)">
+                    <GetTo ZoneId="132" XYZ="8.407715, -1.509768, 13.93146"/>
+                </If>
+                <MoveTo Name="Aymeric" XYZ="8.407715, -1.509768, 13.93146"/>
+                <TurnIn QuestId="67888" NpcId="1018015" XYZ="8.407715, -1.509768, 13.93146"/>
+            </If>
+        </If>
+    </If>
+    <!-- An Allied Decision -->
+    <If Condition="not IsQuestCompleted(67889)">
+        <If Condition="not HasQuest(67889)">
+            <If Condition="not IsOnMap(132)">
+                <GetTo ZoneId="132" XYZ="8.407715, -1.509768, 13.93146"/>
+            </If>
+            <MoveTo Name="Aymeric" XYZ="8.407715, -1.509768, 13.93146"/>
+            <If Condition="IsQuestAcceptQualified(67889)">
+                <PickupQuest NpcId="1018015" QuestId="67889" XYZ="8.407715, -1.509768, 13.93146"/>
+            </If>
+        </If>
+
+        <!-- [Complete Quest] -->
+
+        <If Condition="HasQuest(67889)">
+            <If Condition="GetQuestStep(67889) == 1">
+                <If Condition="not IsOnMap(133)">
+                    <GetTo ZoneId="133" XYZ="-159.411, 4.054098, -4.104736"/>
+                </If>
+                <NoCombatMoveTo Name="Silent Conjurer" XYZ="-159.411, 4.054098, -4.104736"/>
+                <TalkTo NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736" QuestId="67889" StepId="1"/>
+            </If>
+            <If Condition="GetQuestStep(67889) == 2">
+                <If Condition="not IsOnMap(133)">
+                    <GetTo ZoneId="133" XYZ="-154.1009, 4, -15.45746"/>
+                </If>
+                <NoCombatMoveTo Name="Alphinaud" XYZ="-154.1009, 4, -15.45746"/>
+                <TalkTo NpcId="1012395" XYZ="-154.1009, 4, -15.45746" QuestId="67889" StepId="2"/>
+            </If>
+
+            <!-- [TurnIn Quest] -->
+
+            <If Condition="GetQuestStep(67889) == 255">
+                <If Condition="not IsOnMap(156)">
+                    <GetTo ZoneId="156" XYZ="34.1344, 20.495, -655.5734"/>
+                </If>
+                <NoCombatMoveTo Name="Alisaie" XYZ="34.1344, 20.495, -655.5734"/>
+                <TurnIn QuestId="67889" NpcId="1018020" XYZ="34.1344, 20.495, -655.5734"/>
+            </If>
+        </If>
+    </If>
+    <!-- Griffin, Griffin on the Wall -->
+    <If Condition="not IsQuestCompleted(67890)">
+        <If Condition="not HasQuest(67890)">
+            <If Condition="not IsOnMap(156)">
+                <GetTo ZoneId="156" XYZ="34.1344, 20.495, -655.5734"/>
+            </If>
+            <NoCombatMoveTo Name="Alisaie" XYZ="34.1344, 20.495, -655.5734"/>
+            <If Condition="IsQuestAcceptQualified(67890)">
+                <PickupQuest NpcId="1018020" QuestId="67890" XYZ="34.1344, 20.495, -655.5734"/>
+            </If>
+        </If>
+
+        <!-- [Complete Quest] -->
+
+        <If Condition="HasQuest(67890)">
+            <If Condition="GetQuestStep(67890) == 1">
+                <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                    <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/>
+                </If>
+                <If Condition="IsOnMap(156)">
+                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                </If>
+                <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+                    <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159"/>
+                </If>
+                <WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
+            </If>
+            <If Condition="GetQuestStep(67890) == 2">
+                <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                    <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/>
+                </If>
+                <If Condition="IsOnMap(156)">
+                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                </If>
+                <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+                    <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159"/>
+                </If>
+                <MoveTo Name="Alphinaud" XYZ="-1.358093, 7.450581E-09, -4.501404"/>
+                <TalkTo NpcId="1018022" XYZ="-1.358093, 7.450581E-09, -4.501404" QuestId="67890" StepId="2"/>
+            </If>
+            <If Condition="GetQuestStep(67890) == 3">
+                <If Condition="not IsOnMap(152)">
+                    <GetTo ZoneId="152" XYZ="-199.3591, 1.23591, 283.0396"/>
+                </If>
+                <NoCombatMoveTo Name="Alphinaud" XYZ="-199.3591, 1.23591, 283.0396"/>
+                <TalkTo NpcId="1018023" XYZ="-199.3591, 1.23591, 283.0396" QuestId="67890" StepId="3"/>
+            </If>
+            <If Condition="GetQuestStep(67890) == 4">
+                <If Condition="not IsOnMap(152)">
+                    <GetTo ZoneId="152" XYZ="19.08899, 6.192297, 397.9399"/>
+                </If>
+                <NoCombatMoveTo Name="Serpent Scout" XYZ="19.08899, 6.192297, 397.9399"/>
+                <TalkTo NpcId="1018024" XYZ="19.08899, 6.192297, 397.9399" QuestId="67890" StepId="4"/>
+            </If>
+            <If Condition="GetQuestStep(67890) == 5">
+                <GetTo ZoneId="152" XYZ="44.5105, 7.611067, 488.2428"/> <!-- Alphinaud -->
+                <TalkTo NpcId="1018025" XYZ="44.5105, 7.611067, 488.2428" QuestId="67890" StepId="5"/>
+            </If>
+            <If Condition="GetQuestStep(67890) == 6">
+                <LogMessage Message="[Heavensward (3.5)] Please manually complete the Baelsar's Wall duty!"/>
+                <LogMessage Message="[Heavensward (3.5)] Run this profile again once you finish the duty."/>
+                <StopBot/>
+            </If>
+
+            <!-- [TurnIn Quest] -->
+
+            <If Condition="GetQuestStep(67890) == 255">
+                <GetTo ZoneId="152" XYZ="39.59705, 6.826768, 489.8602"/> <!-- Yda -->
+                <TurnIn QuestId="67890" NpcId="1018026" XYZ="39.59705, 6.826768, 489.8602"/>
+            </If>
+        </If>
+    </If>
+    <!-- Louisoix's Finest Student -->
+    <If Condition="not IsQuestCompleted(67891)">
+        <If Condition="not HasQuest(67891)">
+            <GetTo ZoneId="152" XYZ="36.05701, 7.170873, 485.4352"/> <!-- Alphinaud -->
+            <If Condition="IsQuestAcceptQualified(67891)">
+                <PickupQuest NpcId="1018029" QuestId="67891" XYZ="36.05701, 7.170873, 485.4352"/>
+            </If>
+        </If>
+
+        <!-- [Complete Quest] -->
+
+        <If Condition="HasQuest(67891)">
+
+            <!-- [TurnIn Quest] -->
+
+            <If Condition="GetQuestStep(67891) == 255">
+                <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                    <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/> <!-- Rising Stones Entrance -->
+                </If>
+                <If Condition="IsOnMap(156)">
+                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                </If>
+                <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+                    <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159"/>
+                </If>
+                <MoveTo Name="Alisaie" XYZ="-3.708008, 0.01804012, -6.881897"/>
+                <TurnIn QuestId="67891" NpcId="1018033" XYZ="-3.708008, 0.01804012, -6.881897"/>
+            </If>
+        </If>
+    </If>
+
+    <LogMessage Message="[Heavensward (3.5)] You've completed the Heavensward (Patch 3.5) questline!"/>
+
+	</Order>
+	<CodeChunks>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
