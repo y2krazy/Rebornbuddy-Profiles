@@ -1,264 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-########################################
-# Profile: [O] Valentione's Day Quests #
-########################################
-# Author: y2krazy                      #
-########################################
-# Version: 1.0.0                       #
-########################################
-# Required Level: 15                   #
-########################################
-# Required Teleport Locations:         #
-# 	Limsa Lominsa Upper Decks          #
-########################################
-# Required User Interaction:           #
-# 	Join a Party for 1 quest step.     #
-########################################
-# Required Setup:                      #
-# 	None                               #
-########################################
-# Rewards:                             #
-# 	Black-feathered Flat Hat (Male)    #
-# 	Paramour's Earrings                #
-# 	Platinum Paramour's Earrings       #
-# 	Red-feathered Flat Hat (Female)    #
-########################################
+#######################################
+# Profile: [O] Valentione's Day Quest #
+#######################################
+# Author: y2krazy                     #
+#######################################
+# Version: 2.0.0                      #
+#######################################
+# Required Level: 15                  #
+#######################################
+# Required Teleport Locations:        #
+#  New Gridania                       #
+#######################################
+# Required User Interaction:          #
+#  None                               #
+#######################################
 -->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- ExLog Colors -->
+
+  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+]>
+<!-- End User Configuration -->
 <Profile>
-	<Name>[O] Valentione's Day Quests</Name>
+	<Name>[O] Valentione's Day Quest (v2.0.0)</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
-	<CodeChunks>
-	</CodeChunks>
 	<Order>
 
-		<LogMessage Message="Checking for completed quests..." />
+		<ExLog Color="&ExLog;" Name="Valentione's Day" Message="Checking for completed quest..."/>
 
-		<!-- What Is Love -->
+		<!-- Once More with Feeling -->
 
-		<If Condition="not IsQuestCompleted(67754)">
-			<If Condition="not HasQuest(67754)">
-				<If Condition="not IsOnMap(128)">
-					<If Condition="not IsOnMap(129)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-							<Travel To="129" />
-						</If>
-					</If>
-					<Travel To="128" />
+		<If Condition="not IsQuestCompleted(67955)">
+			<If Condition="not HasQuest(67955)">
+				<If Condition="not IsOnMap(133)">
+					<GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/>
 				</If>
-				<MoveTo Name="Lisette de Valentione" XYZ="-7.614319, 44.49999, 108.3542" />
-				<If Condition="IsQuestAcceptQualified(67754)">
-					<PickupQuest NpcId="1016434" QuestId="67754" XYZ="-7.614319, 44.49999, 108.3542" />
+				<ExLog Color="&ExLog;" Name="Valentione's Day" Message="Picking up the Once More with Feeling quest!"/>
+				<MoveTo Name="Lisette de Valentione" XYZ="-50.03442, 6.499999, -89.98254"/>
+				<If Condition="IsQuestAcceptQualified(67955)">
+					<PickupQuest NpcId="1018721" QuestId="67955" XYZ="-50.03442, 6.499999, -89.98254"/>
 				</If>
 			</If>
-			<If Condition="HasQuest(67754)">
-				<If Condition="GetQuestStep(67754) == 255">
-					<If Condition="not IsOnMap(128)">
-						<If Condition="not IsOnMap(129)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-								<Travel To="129" />
-							</If>
-						</If>
-						<Travel To="128" />
+			<If Condition="HasQuest(67955)">
+				<If Condition="GetQuestStep(67955) == 255">
+					<If Condition="not IsOnMap(133)">
+						<GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/>
 					</If>
 
 					<!-- Rewards
 
-					Paramour's Earrings
-					Platinum Paramour's Earrings
+					Dote Emote
 
 					-->
 
-					<MoveTo Name="House Valentione Emissary" XYZ="2.120972, 44.5, 134.0504" />
-					<TurnIn QuestId="67754" NpcId="1016436" XYZ="2.120972, 44.5, 134.0504" />
+					<ExLog Color="&ExLog;" Name="Valentione's Day" Message="Turning in the Once More with Feeling quest!"/>
+					<MoveTo Name="Hortefense" XYZ="-53.23877, 6.835312, -123.0641"/>
+					<TurnIn QuestId="67955" NpcId="1018722" XYZ="-53.23877, 6.835312, -123.0641"/>
 				</If>
 			</If>
 		</If>
 
-		<!-- The Fault in Our Cards -->
-
-		<If Condition="not IsQuestCompleted(67755)">
-			<If Condition="not HasQuest(67755)">
-				<If Condition="not IsOnMap(128)">
-					<If Condition="not IsOnMap(129)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-							<Travel To="129" />
-						</If>
-					</If>
-					<Travel To="128" />
-				</If>
-				<MoveTo Name="House Valentione Emissary" XYZ="2.120972, 44.5, 134.0504" />
-				<If Condition="IsQuestAcceptQualified(67755)">
-					<PickupQuest NpcId="1016436" QuestId="67755" XYZ="2.120972, 44.5, 134.0504" />
-				</If>
-			</If>
-			<If Condition="HasQuest(67755)">
-				<If Condition="GetQuestStep(67755) == 1">
-					<If Condition="not IsOnMap(128)">
-						<If Condition="not IsOnMap(129)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-								<Travel To="129" />
-							</If>
-						</If>
-						<Travel To="128" />
-					</If>
-					<LogMessage Message="Please join a party of 2 people and complete this step of the quest manually." />
-					<StopBot />
-				</If>
-				<If Condition="GetQuestStep(67755) == 255">
-					<If Condition="not IsOnMap(128)">
-						<If Condition="not IsOnMap(129)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-								<Travel To="129" />
-							</If>
-						</If>
-						<Travel To="128" />
-					</If>
-
-					<!-- Rewards
-
-					Prismatic Heart (Left)
-					Prismatic Heart (Right)
-
-					-->
-
-					<MoveTo Name="House Valentione Emissary" XYZ="2.120972, 44.5, 134.0504" />
-					<TurnIn QuestId="67755" NpcId="1016436" XYZ="2.120972, 44.5, 134.0504" />
-				</If>
-			</If>
-		</If>
-
-		<!-- A Pair of Hearts -->
-
-		<If Condition="not IsQuestCompleted(67756)">
-			<If Condition="not HasQuest(67756)">
-				<If Condition="not IsOnMap(128)">
-					<If Condition="not IsOnMap(129)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-							<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-							<Travel To="129" />
-						</If>
-					</If>
-					<Travel To="128" />
-				</If>
-				<MoveTo Name="Lisette de Valentione" XYZ="-7.614319, 44.49999, 108.3542" />
-				<If Condition="IsQuestAcceptQualified(67756)">
-					<PickupQuest NpcId="1016434" QuestId="67756" XYZ="-7.614319, 44.49999, 108.3542" />
-				</If>
-			</If>
-			<If Condition="HasQuest(67756)">
-				<If Condition="GetQuestStep(67756) == 1">
-					<If Condition="not IsOnMap(128)">
-						<If Condition="not IsOnMap(129)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-								<Travel To="129" />
-							</If>
-						</If>
-						<Travel To="128" />
-					</If>
-					<MoveTo Name="House Valentione Emissary" XYZ="2.120972, 44.5, 134.0504" />
-					<If Condition="GetQuestById(67756).QuestI8AH == 0">
-						<TalkTo NpcId="1016436" XYZ="2.120972, 44.5, 134.0504" QuestId="67756" StepId="1" />
-					</If>
-					<If Condition="GetQuestById(67756).QuestI8AH == 1">
-						<TalkTo NpcId="1016444" XYZ="23.11737, 43.6, 104.4785" QuestId="67756" StepId="1" />
-					</If>
-				</If>
-				<If Condition="GetQuestStep(67756) == 2">
-					<If Condition="not IsOnMap(128)">
-						<If Condition="not IsOnMap(129)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-								<Travel To="129" />
-							</If>
-						</If>
-						<Travel To="128" />
-					</If>
-					<MoveTo Name="Frank Fortune-teller" XYZ="31.63196, 44.50471, 134.02" />
-					<TalkTo NpcId="1016437" XYZ="31.63196, 44.50471, 134.02" QuestId="67756" StepId="2" />
-				</If>
-				<If Condition="GetQuestStep(67756) == 3">
-					<If Condition="not IsOnMap(128)">
-						<If Condition="not IsOnMap(129)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-								<Travel To="129" />
-							</If>
-						</If>
-						<Travel To="128" />
-					</If>
-					<MoveTo Name="Lisette de Valentione" XYZ="-7.614319, 44.49999, 108.3542" />
-					<HandOver ItemId="2001939" QuestId="67756" StepId="3" NpcId="1016434" XYZ="-7.614319, 44.49999, 108.3542" />
-				</If>
-				<If Condition="GetQuestStep(67756) == 4">
-					<If Condition="not IsOnMap(128)">
-						<If Condition="not IsOnMap(129)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-								<Travel To="129" />
-							</If>
-						</If>
-						<Travel To="128" />
-					</If>
-					<MoveTo Name="Hortefense" XYZ="-186.1754, 41.24995, 172.2285" />
-					<TalkTo NpcId="1016446" XYZ="-186.1754, 41.24995, 172.2285" QuestId="67756" StepId="4" />
-				</If>
-				<If Condition="GetQuestStep(67756) == 255">
-					<If Condition="not IsOnMap(128)">
-						<If Condition="not IsOnMap(129)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-								<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-								<Travel To="129" />
-							</If>
-						</If>
-						<Travel To="128" />
-					</If>
-
-					<!-- Rewards
-
-					Black-feathered Flat Hat (Male), or
-					Red-feathered Flat Hat (Female)
-
-					-->
-
-					<MoveTo Name="Hortefense" XYZ="33.27991, 44.5, 133.1349" />
-					<TurnIn QuestId="67756" NpcId="1016448" XYZ="33.27991, 44.5, 133.1349" />
-				</If>
-			</If>
-		</If>
-
-		<LogMessage Message="You've completed the Valentione's Day seasonal event quests!" />
+		<ExLog Color="&ExLog;" Name="Valentione's Day" Message="You've completed the Valentione's Day seasonal event quests!"/>
 
 	</Order>
+	<CodeChunks>
+	</CodeChunks>
 	<GrindAreas>
 	</GrindAreas>
 </Profile>
