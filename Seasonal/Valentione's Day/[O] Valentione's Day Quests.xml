@@ -5,7 +5,7 @@
 #######################################
 # Author: y2krazy                     #
 #######################################
-# Version: 2.0.0                      #
+# Version: 2.0.0a                     #
 #######################################
 # Required Level: 15                  #
 #######################################
@@ -25,7 +25,7 @@
 ]>
 <!-- End User Configuration -->
 <Profile>
-	<Name>[O] Valentione's Day Quest (v2.0.0)</Name>
+	<Name>[O] Valentione's Day Quest (v2.0.0a)</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -37,7 +37,7 @@
 		<If Condition="not IsQuestCompleted(67955)">
 			<If Condition="not HasQuest(67955)">
 				<If Condition="not IsOnMap(133)">
-					<GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/>
+					<GetTo ZoneId="133" XYZ="-50.03442, 6.499999, -89.98254"/>
 				</If>
 				<ExLog Color="&ExLog;" Name="Valentione's Day" Message="Picking up the Once More with Feeling quest!"/>
 				<MoveTo Name="Lisette de Valentione" XYZ="-50.03442, 6.499999, -89.98254"/>
@@ -48,7 +48,7 @@
 			<If Condition="HasQuest(67955)">
 				<If Condition="GetQuestStep(67955) == 255">
 					<If Condition="not IsOnMap(133)">
-						<GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/>
+						<GetTo ZoneId="133" XYZ="-53.23877, 6.835312, -123.0641"/>
 					</If>
 
 					<!-- Rewards
@@ -60,6 +60,59 @@
 					<ExLog Color="&ExLog;" Name="Valentione's Day" Message="Turning in the Once More with Feeling quest!"/>
 					<MoveTo Name="Hortefense" XYZ="-53.23877, 6.835312, -123.0641"/>
 					<TurnIn QuestId="67955" NpcId="1018722" XYZ="-53.23877, 6.835312, -123.0641"/>
+				</If>
+			</If>
+		</If>
+
+		<!-- The Magic Number -->
+
+		<If Condition="not IsQuestCompleted(67956)">
+			<If Condition="not HasQuest(67956)">
+				<If Condition="not IsOnMap(133)">
+					<GetTo ZoneId="133" XYZ="-53.23877, 6.835312, -123.0641"/>
+				</If>
+				<ExLog Color="&ExLog;" Name="Valentione's Day" Message="Picking up The Magic Number quest!"/>
+				<MoveTo Name="Hortefense" XYZ="-53.23877, 6.835312, -123.0641"/>
+				<If Condition="IsQuestAcceptQualified(67956)">
+					<PickupQuest NpcId="1018722" QuestId="67956" XYZ="-53.23877, 6.835312, -123.0641"/>
+				</If>
+			</If>
+			<If Condition="HasQuest(67956)">
+                <If Condition="GetQuestStep(67956) == 1">
+                    <If Condition="not IsOnMap(132)">
+                        <GetTo ZoneId="132" XYZ="48.8136, -8.046949, 115.6786"/>
+                    </If>
+                    <NoCombatMoveTo Name="Baderon" XYZ="48.8136, -8.046949, 115.6786"/>
+					<EmoteNPC NpcId="1018729" Emote="dote" XYZ="48.8136, -8.046949, 115.6786" Radius="10" QuestId="67956" StepId="1"/>
+                </If>
+                <If Condition="GetQuestStep(67956) == 2">
+                    <If Condition="not IsOnMap(130)">
+                        <GetTo ZoneId="130" XYZ="16.25085, 7.999979, -114.7326"/>
+                    </If>
+                    <NoCombatMoveTo Name="Baderon" XYZ="16.25085, 7.999979, -114.7326"/>
+					<EmoteNPC NpcId="1018732" Emote="dote" XYZ="16.25085, 7.999979, -114.7326" Radius="10" QuestId="67956" StepId="2"/>
+                </If>
+                <If Condition="GetQuestStep(67956) == 3">
+                    <If Condition="not IsOnMap(128)">
+                        <GetTo ZoneId="128" XYZ="-16.9223, 40.00056, -0.9003296"/>
+                    </If>
+                    <NoCombatMoveTo Name="Miounne" XYZ="-16.9223, 40.00056, -0.9003296"/>
+					<EmoteNPC NpcId="1018733" Emote="dote" XYZ="-16.9223, 40.00056, -0.9003296" Radius="10" QuestId="67956" StepId="3"/>
+                </If>
+				<If Condition="GetQuestStep(67956) == 255">
+					<If Condition="not IsOnMap(133)">
+						<GetTo ZoneId="133" XYZ="-53.23877, 6.835312, -123.0641"/>
+					</If>
+
+					<!-- Rewards
+
+					Dote Emote
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="Valentione's Day" Message="Turning in The Magic Number quest!"/>
+					<MoveTo Name="Hortefense" XYZ="-53.23877, 6.835312, -123.0641"/>
+					<TurnIn QuestId="67956" NpcId="1018722" XYZ="-53.23877, 6.835312, -123.0641"/>
 				</If>
 			</If>
 		</If>
