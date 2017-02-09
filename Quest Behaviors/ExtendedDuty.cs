@@ -116,7 +116,7 @@ namespace ff14bot.NeoProfiles.Tags
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002428).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2002428!");
+										Logging.Write("[ExtendedDuty] Interacting with Rope Bond!");
 										GameObjectManager.GetObjectByNPCId(2002428).Interact();
 									})
 								),
@@ -128,7 +128,7 @@ namespace ff14bot.NeoProfiles.Tags
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002427).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2002427!");
+										Logging.Write("[ExtendedDuty] Interacting with Rope Bond!");
 										GameObjectManager.GetObjectByNPCId(2002427).Interact();
 									})
 								),
@@ -137,22 +137,12 @@ namespace ff14bot.NeoProfiles.Tags
 						)
 					)
                 ),
-				new Decorator(ret => QuestId == 66057 && ((GameObjectManager.GetObjectByNPCId(2094) != null && GameObjectManager.GetObjectByNPCId(2094).IsVisible) || (GameObjectManager.GetObjectByNPCId(1813) != null && GameObjectManager.GetObjectByNPCId(1813).IsVisible)),
-                    new PrioritySelector(
-						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2094) != null && GameObjectManager.GetObjectByNPCId(2094).IsVisible,
-							CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2094).Location, 3)
-						),
-						new Decorator(ret => GameObjectManager.GetObjectByNPCId(1813) != null && GameObjectManager.GetObjectByNPCId(1813).IsVisible,
-							CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(1813).Location, 3)
-						)
-					)
-                ),
                 new Decorator(ret => QuestId == 66448 && GameObjectManager.GetObjectByNPCId(2002279) != null && GameObjectManager.GetObjectByNPCId(2002279).IsVisible,
                     new PrioritySelector(
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002279).Location) <= 3,
                             new Action(r =>
                             {
-								Logging.Write("[ExtendedDuty] Interacting with object 2002279!");
+								Logging.Write("[ExtendedDuty] Interacting with Draconian Rosary!");
                                 GameObjectManager.GetObjectByNPCId(2002279).Interact();
                             })
                         ),
@@ -181,6 +171,18 @@ namespace ff14bot.NeoProfiles.Tags
 								}
                             })
                         )
+                    )
+                ),
+                new Decorator(ret => QuestId == 66596 && GameObjectManager.GetObjectByNPCId(2002296) != null && GameObjectManager.GetObjectByNPCId(2002296).IsVisible,
+                    new PrioritySelector(
+                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002296).Location) <= 3,
+                            new Action(r =>
+                            {
+								Logging.Write("[ExtendedDuty] Interacting with Glowing Grimoire!");
+                                GameObjectManager.GetObjectByNPCId(2002296).Interact();
+                            })
+				        ),
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2002296).Location, 3)
                     )
                 ),
                 new Decorator(ret => QuestId == 66633 && GameObjectManager.GetObjectByNPCId(2002522) != null && GameObjectManager.GetObjectByNPCId(2002522).IsVisible,
