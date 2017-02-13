@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-#############################################
-# Profile: [O] A Realm Reborn (Patch 2.1)   #
-#############################################
-# Authors: y2krazy                          #
-#          kagamihiiragi17                  #
-#############################################
-# Version: 2.1.0                            #
-#############################################
-# Required Level: 50                        #
-#############################################
-# Required Setup:                           #
-#  Create your character and log in.        #
-#  Select Keyboard/Mouse for your controls. #
-#############################################
-# Required User Interaction:                #
-#  Duty Finder Queues                       #
-#  Manually Buying Chocobo Issuance         #
-#  Naming Your Chocobo                      #
-#############################################
+###########################################
+# Profile: [O] A Realm Reborn (Patch 2.1) #
+###########################################
+# Authors: y2krazy                        #
+#          kagamihiiragi17                #
+###########################################
+# Version: 2.1.1                          #
+###########################################
+# Required Level: 50+                     #
+###########################################
+# Required Setup:                         #
+#  None                                   #
+###########################################
+# Required User Interaction:              #
+#  2 Duty Finder Queues                   #
+###########################################
 -->
 <Profile>
-	<Name>[O] A Realm Reborn (Patch 2.1) (v2.1.0)</Name>
+	<Name>[O] A Realm Reborn (Patch 2.1) (v2.1.1)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -111,23 +108,26 @@
                     <If Condition="IsOnMap(212) and IsOnSubMap(374)">
                         <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
                     </If>
-                    <MoveTo Name="Minfilia" XYZ="1.480042, -3.000001, -48.72211"/>
-                    <!-- <If Condition="GetQuestById(66711).QuestI8AH == 0"> -->
-                        <TalkTo InteractDistance="3.0" NpcId="1007534" XYZ="1.480042, -3.000001, -48.72211" QuestId="66711" StepId="1"/>
-                    <!-- </If> -->
-                    <!-- <If Condition="GetQuestById(66711).QuestI8AH == 1"> -->
-                        <TalkTo InteractDistance="3.0" NpcId="1007533" XYZ="-0.8087769, -3, -47.80658" QuestId="66711" StepId="1"/>
-                    <!-- </If> -->
-                    <!-- <If Condition="GetQuestById(66711).QuestI8AH == 2"> -->
-                        <TalkTo InteractDistance="3.0" NpcId="1007530" XYZ="1.296936, -3.000001, -52.26221" QuestId="66711" StepId="1"/>
-                    <!-- </If> -->
-                    <!-- <If Condition="GetQuestById(66711).QuestI8AH == 3"> -->
-                        <TalkTo InteractDistance="3.0" NpcId="1007531" XYZ="0.1677856, -3.000001, -52.71997" QuestId="66711" StepId="1"/>
-                    <!-- </If> -->
-                    <!-- <If Condition="GetQuestById(66711).QuestI8AH == 4"> -->
-                    <MoveTo Name="Alphinaud" XYZ="2.487183, 5.215406E-07, 4.592957"/>
-                        <TalkTo InteractDistance="3.0" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" QuestId="66711" StepId="1"/>
-                    <!-- </If> -->
+                    <If Condition="not IsTodoChecked(66711, 1, 0)">
+                        <MoveTo Name="Y'shtola" XYZ="-0.8087769, -3, -47.80658"/>
+                        <TalkTo NpcId="1007533" XYZ="-0.8087769, -3, -47.80658" QuestId="66711" StepId="1"/>
+                    </If>
+                    <If Condition="not IsTodoChecked(66711, 1, 1)">
+                        <MoveTo Name="Thancred" XYZ="1.480042, -3.000001, -48.72211"/>
+                        <TalkTo NpcId="1007534" XYZ="1.480042, -3.000001, -48.72211" QuestId="66711" StepId="1"/>
+                    </If>
+                    <If Condition="not IsTodoChecked(66711, 1, 2)">
+                        <MoveTo Name="Papalymo" XYZ="0.1677856, -3.000001, -52.71997"/>
+                        <TalkTo NpcId="1007531" XYZ="0.1677856, -3.000001, -52.71997" QuestId="66711" StepId="1"/>
+                    </If>
+                    <If Condition="not IsTodoChecked(66711, 1, 3)">
+                        <MoveTo Name="Yda" XYZ="1.296936, -3.000001, -52.26221"/>
+                        <TalkTo NpcId="1007530" XYZ="1.296936, -3.000001, -52.26221" QuestId="66711" StepId="1"/>
+                    </If>
+                    <If Condition="not IsTodoChecked(66711, 1, 4)">
+                        <MoveTo Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955"/>
+                        <TalkTo NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" QuestId="66711" StepId="1"/>
+                    </If>
                 </If>
                 <If Condition="GetQuestStep(66711) == 255">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -188,21 +188,21 @@
                         <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
                     </If>
                     <MoveTo Name="Alphinaud" XYZ="2.487183, 5.215406E-07, 4.592957"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" QuestId="66712" StepId="1"/>
+                    <TalkTo NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" QuestId="66712" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66712) == 2">
                     <If Condition="not IsOnMap(145)">
                         <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927"/>
                     </If>
                     <NoCombatMoveTo Name="Iliud" XYZ="-512.4742, -16.42, -7.522766"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" QuestId="66712" StepId="2"/>
+                    <TalkTo NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" QuestId="66712" StepId="2"/>
                 </If>
                 <If Condition="GetQuestStep(66712) == 3">
                     <If Condition="not IsOnMap(145)">
                         <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927"/>
                     </If>
                     <NoCombatMoveTo Name="Lichyard Visitor" XYZ="-480.1252, -17.3008, 7.675232"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1007740" XYZ="-480.1252, -17.3008, 7.675232" QuestId="66712" StepId="3"/>
+                    <TalkTo NpcId="1007740" XYZ="-480.1252, -17.3008, 7.675232" QuestId="66712" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(66712) == 255">
                     <If Condition="not IsOnMap(145)">
@@ -241,58 +241,66 @@
             </If>
             <If Condition="HasQuest(66713)">
                 <If Condition="GetQuestStep(66713) == 1">
-                    <If Condition="not IsOnSubMap(206)">
-                        <GetTo ZoneId="137" XYZ="493.9612, 17.39324, 463.9441"/>
+                    <If Condition="not IsOnMap(137)">
+                        <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
+                    </If>
+                    <If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+                        <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156"/>
                     </If>
                     <NoCombatMoveTo Name="Gegeruju" XYZ="619.0126, 23.93624, 455.1002"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1006273" XYZ="619.0126, 23.93624, 455.1002" QuestId="66713" StepId="1"/>
+                    <TalkTo NpcId="1006273" XYZ="619.0126, 23.93624, 455.1002" QuestId="66713" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66713) == 2">
-                    <If Condition="not IsOnSubMap(206)">
-                        <GetTo ZoneId="137" XYZ="493.9612, 17.39324, 463.9441"/>
+                    <If Condition="not IsOnMap(137)">
+                        <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
                     </If>
-                    <UseTransport Name="Raincatcher Gully Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195"/>
+                    <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+                        <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195"/>
+                    </If>
                     <NoCombatMoveTo Name="Byrglaent" XYZ="-25.86407, 71.75401, -36.78955"/>
-                    <!-- <If Condition="GetQuestById(66713).QuestI8AH == 0"> -->
-                        <TalkTo InteractDistance="3.0" NpcId="1006306" XYZ="-25.86407, 71.75401, -36.78955" QuestId="66713" StepId="2"/>
-                    <!-- </If> -->
-                    <!-- <If Condition="GetQuestById(66713).QuestI8AH == 1"> -->
-                        <TalkTo InteractDistance="3.0" NpcId="1006309" XYZ="-116.5637, 86.05164, -5.874817" QuestId="66713" StepId="2"/>
-                    <!-- </If> -->
+                    <While Condition="not IsTodoChecked(66713, 2, 0)">
+                        <TalkTo NpcId="1006306" XYZ="-25.86407, 71.75401, -36.78955" QuestId="66713" StepId="2"/>
+                        <TalkTo NpcId="1006309" XYZ="-116.5637, 86.05164, -5.874817" QuestId="66713" StepId="2"/>
+                    </While>
                 </If>
                 <If Condition="GetQuestStep(66713) == 3">
-                    <If Condition="not IsOnSubMap(216)">
+                    <If Condition="not IsOnMap(137)">
                         <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
                     </If>
+                    <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+                        <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195"/>
+                    </If>
                     <NoCombatMoveTo Name="Shamani Lohmani" XYZ="10.60498, 71.47817, -16.61713"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1006305" XYZ="10.60498, 71.47817, -16.61713" QuestId="66713" StepId="3"/>
+                    <TalkTo NpcId="1006305" XYZ="10.60498, 71.47817, -16.61713" QuestId="66713" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(66713) == 4">
-                    <If Condition="not IsOnSubMap(216)">
+                    <If Condition="not IsOnMap(137)">
                         <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
+                    </If>
+                    <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+                        <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195"/>
                     </If>
                     <NoCombatMoveTo Name="F'lhaminn" XYZ="16.13137, 52.52961, 485.0495"/>
                     <Dismount/>
                     <MoveTo Name="F'lhaminn" XYZ="29.12939, 54.01148, 484.9469"/>
-                    <Grind grindRef="Flowers_for_One" while="HasQuest(66713) and GetQuestStep(66713) == 4"/>
+                    <WaitWhile Condition="GetQuestStep(66713) == 4"/>
                 </If>
                 <If Condition="GetQuestStep(66713) == 5">
-
-                    <!-- TO DO -->
-
-                    <!-- Fix interact and remove CodeChunk. -->
-
-                    <!-- TO DO -->
-
-                    <If Condition="not IsOnSubMap(216)">
+                    <If Condition="not IsOnMap(137)">
                         <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
                     </If>
+                    <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+                        <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195"/>
+                    </If>
                     <NoCombatMoveTo Name="F'lhaminn" XYZ="29.12939, 54.01148, 484.9469"/>
-                    <RunCode Name="FlowersforOne"/>
+                    <TalkTo NpcId="1007738" XYZ="29.12939, 54.01148, 484.9469" QuestId="66713" StepId="5"/>
                 </If>
                 <If Condition="GetQuestStep(66713) == 255">
-                    <If Condition="not IsOnSubMap(216)">
+                    <If Condition="not IsOnMap(137)">
                         <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
+                    </If>
+                    <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+                        <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195"/>
                     </If>
                     <NoCombatMoveTo Name="Alphinaud" XYZ="-35.11102, 70.34484, 4.043579"/>
                     <TurnIn QuestId="66713" NpcId="1007752" XYZ="-35.11102, 70.34484, 4.043579"/>
@@ -304,8 +312,11 @@
 
         <If Condition="not IsQuestCompleted(66714)">
             <If Condition="not HasQuest(66714)">
-                <If Condition="not IsOnSubMap(216)">
+                <If Condition="not IsOnMap(137)">
                     <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
+                </If>
+                <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+                    <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195"/>
                 </If>
                 <NoCombatMoveTo Name="F'lhaminn" XYZ="-34.53119, 70.3476, 2.761841"/>
                 <If Condition="IsQuestAcceptQualified(66714)">
@@ -314,30 +325,41 @@
             </If>
             <If Condition="HasQuest(66714)">
                 <If Condition="GetQuestStep(66714) == 1">
-                    <If Condition="not IsOnSubMap(239)">
+                    <If Condition="not IsOnMap(139)">
                         <GetTo ZoneId="139" XYZ="426.6154, 4.171807, 90.07837"/>
                     </If>
-                    <NoCombatMoveTo Name="Mud Pugils" XYZ="586.0926, -3.052768, 152.8452"/>
+                    <If Condition="IsOnMap(139) and not (IsOnSubMap(177) or IsOnSubMap(178) or IsOnSubMap(239) or IsOnSubMap(240) or IsOnSubMap(241))">
+                        <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003586" XYZ="-342.1226, -1.024988, 111.467"/>
+                    </If>
+                    <NoCombatMoveTo Name="Grinding Area" XYZ="586.0926, -3.052768, 152.8452"/>
                     <Grind grindRef="All_Things_in_Time" while="HasQuest(66714) and GetQuestStep(66714) == 1"/>
                 </If>
                 <If Condition="GetQuestStep(66714) == 2">
-                    <If Condition="not IsOnSubMap(239)">
+                    <If Condition="not IsOnMap(139)">
                         <GetTo ZoneId="139" XYZ="426.6154, 4.171807, 90.07837"/>
                     </If>
-                    <NoCombatMoveTo Name="2002842" XYZ="286.366, -3.158691, 145.6168"/>
+                    <If Condition="IsOnMap(139) and not (IsOnSubMap(177) or IsOnSubMap(178) or IsOnSubMap(239) or IsOnSubMap(240) or IsOnSubMap(241))">
+                        <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003586" XYZ="-342.1226, -1.024988, 111.467"/>
+                    </If>
+                    <NoCombatMoveTo Name="Destination" XYZ="286.366, -3.158691, 145.6168"/>
                     <UseObject NpcId="2002842" XYZ="286.366, -3.158691, 145.6168" Radius="10" QuestId="66714" StepId="2"/>
                 </If>
                 <If Condition="GetQuestStep(66714) == 3">
-                    <If Condition="not IsOnSubMap(239)">
+                    <If Condition="not IsOnMap(139)">
                         <GetTo ZoneId="139" XYZ="426.6154, 4.171807, 90.07837"/>
                     </If>
-                    <NoCombatMoveTo Name="2002843" XYZ="298.4207, -3.128174, 166.9185"/>
+                    <If Condition="IsOnMap(139) and not (IsOnSubMap(177) or IsOnSubMap(178) or IsOnSubMap(239) or IsOnSubMap(240) or IsOnSubMap(241))">
+                        <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003586" XYZ="-342.1226, -1.024988, 111.467"/>
+                    </If>
+                    <NoCombatMoveTo Name="Destination" XYZ="298.4207, -3.128174, 166.9185"/>
                     <UseObject NpcId="2002843" XYZ="298.4207, -3.128174, 166.9185" Radius="10" QuestId="66714" StepId="3"/>
-                    <Grind grindRef="All_Things_in_Time2" while="HasQuest(66714) and GetQuestStep(66714) == 3"/>
                 </If>
                 <If Condition="GetQuestStep(66714) == 4">
-                    <If Condition="not IsOnSubMap(216)">
+                    <If Condition="not IsOnMap(137)">
                         <GetTo ZoneId="137" XYZ="-14.57579, 70.50106, 9.079012"/>
+                    </If>
+                    <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
+                        <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195"/>
                     </If>
                     <NoCombatMoveTo Name="F'lhaminn" XYZ="-34.53119, 70.3476, 2.761841"/>
                     <HandOver ItemId="2001073" QuestId="66714" StepId="4" NpcId="1007739" XYZ="-34.53119, 70.3476, 2.761841"/>
@@ -401,7 +423,7 @@
                         <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
                     </If>
                     <MoveTo Name="F'lhaminn" XYZ="3.341675, 4.768372E-07, 3.860474"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1007723" XYZ="3.341675, 4.768372E-07, 3.860474" QuestId="66715" StepId="1"/>
+                    <TalkTo NpcId="1007723" XYZ="3.341675, 4.768372E-07, 3.860474" QuestId="66715" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66715) == 2">
                     <If Condition="not IsOnMap(131)">
@@ -415,7 +437,7 @@
                         <GetTo ZoneId="146" XYZ="-321.7947, 8.260907, 408.605"/>
                     </If>
                     <NoCombatMoveTo Name="Odinel" XYZ="-111.9249, -10.8135, 722.6825"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1006294" XYZ="-111.9249, -10.8135, 722.6825" QuestId="66715" StepId="3"/>
+                    <TalkTo NpcId="1006294" XYZ="-111.9249, -10.8135, 722.6825" QuestId="66715" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(66715) == 4">
                     <If Condition="not IsOnMap(131)">
@@ -526,29 +548,26 @@
                         <GetTo ZoneId="154" XYZ="-43.92079, -40.88041, 241.8634"/>
                     </If>
                     <NoCombatMoveTo Name="Wood Wailer" XYZ="-24.94855, -40.87433, 239.2156"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1007741" XYZ="-24.94855, -40.87433, 239.2156" QuestId="66717" StepId="1"/>
+                    <TalkTo NpcId="1007741" XYZ="-24.94855, -40.87433, 239.2156" QuestId="66717" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66717) == 2">
                     <If Condition="not IsOnMap(154)">
                         <GetTo ZoneId="154" XYZ="-43.92079, -40.88041, 241.8634"/>
                     </If>
                     <NoCombatMoveTo Name="Wood Wailer" XYZ="179.3392, -27.80587, 176.7147"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1007742" XYZ="179.3392, -27.80587, 176.7147" QuestId="66717" StepId="2"/>
+                    <TalkTo NpcId="1007742" XYZ="179.3392, -27.80587, 176.7147" QuestId="66717" StepId="2"/>
                 </If>
                 <If Condition="GetQuestStep(66717) == 3">
                     <If Condition="not IsOnMap(154)">
                         <GetTo ZoneId="154" XYZ="-43.92079, -40.88041, 241.8634"/>
                     </If>
-                    <NoCombatMoveTo Name="Elezen Coachman" XYZ="-51.95703, -7.130762, -158.0988"/>
                     <While Condition="not IsTodoChecked(66717, 3, 0)">
-                        <!-- <If Condition="GetQuestById(66717).QuestI8AH == 0"> -->
-                            <TalkTo InteractDistance="3.0" NpcId="1007746" XYZ="-51.95703, -7.130762, -158.0988" UseMesh="False" QuestId="66717" StepId="3"/>
-                        <!-- </If> -->
-                        <!-- <If Condition="GetQuestById(66717).QuestI8AH == 1"> -->
-                            <TalkTo InteractDistance="3.0" NpcId="1007747" XYZ="-41.03156, -6.904075, -161.1811" QuestId="66717" StepId="3"/>
-                        <!-- </If> -->
+                        <NoCombatMoveTo Name="Elezen Coachman" XYZ="-51.95703, -7.130762, -158.0988"/>
+                        <TalkTo NpcId="1007746" XYZ="-51.95703, -7.130762, -158.0988" QuestId="66717" StepId="3"/>
+                        <TalkTo NpcId="1007747" XYZ="-41.03156, -6.904075, -161.1811" QuestId="66717" StepId="3"/>
                     </While>
                     <While Condition="not IsTodoChecked(66717, 3, 1)">
+                        <NoCombatMoveTo Name="Stolen Provisions" XYZ="-26.16925, -7.583801, -147.0513"/>
                         <UseObject NpcIds="2002844,2002846,2002845" QuestId="66717" StepId="3">
                             <HotSpots>
                                 <HotSpot XYZ="-26.16925, -7.583801, -147.0513" Radius="10"/>
@@ -563,7 +582,7 @@
                         <GetTo ZoneId="154" XYZ="-43.92079, -40.88041, 241.8634"/>
                     </If>
                     <NoCombatMoveTo Name="Elezen Coachman" XYZ="178.851, -28.27971, 185.748"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1007748" XYZ="178.851, -28.27971, 185.748" QuestId="66717" StepId="4"/>
+                    <TalkTo NpcId="1007748" XYZ="178.851, -28.27971, 185.748" QuestId="66717" StepId="4"/>
                 </If>
                 <If Condition="GetQuestStep(66717) == 255">
                     <If Condition="not IsOnMap(156)">
@@ -606,18 +625,12 @@
                         <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
                     </If>
                     <NoCombatMoveTo Name="Imperial Crate" XYZ="-529.6382, -1.787507, -276.4462"/>
-                    <!-- <If Condition="GetQuestById(66719).QuestI8AH == 0"> -->
-                        <MoveTo Name="Imperial Crate" XYZ="-529.6382, -1.787507, -276.4462"/>
-                        <GroundTargeting XYZ="-529.6382, -1.787507, -276.4462" NpcId="2002847" ItemId="2001079" Condition="not (GetQuestById(66719).QuestI8AH == 0)" Name="Imperial Crate"/>
-                    <!-- </If> -->
-                    <!-- <If Condition="GetQuestById(66719).QuestI8AH == 1"> -->
-                        <MoveTo Name="Imperial Crate" XYZ="-484.6262, -3.998581, -283.6899"/>
-                        <GroundTargeting XYZ="-484.6262, -3.998581, -283.6899" NpcId="2002848" ItemId="2001079" Condition="not (GetQuestById(66719).QuestI8AH == 1)" Name="Imperial Crate"/>
-                    <!-- </If> -->
-                    <!-- <If Condition="GetQuestById(66719).QuestI8AH == 2"> -->
-                        <MoveTo Name="Imperial Crate" XYZ="-477.3291, -3.2168, -252.8857"/>
-                        <GroundTargeting XYZ="-469.2324, -4.000019, -256.7648" NpcId="2002849" ItemId="2001079" Condition="not (GetQuestById(66719).QuestI8AH == 2)" Name="Imperial Crate"/>
-                    <!-- </If> -->
+                    <While Condition="not IsTodoChecked(66719, 1, 0)">
+                        <GroundTargeting XYZ="-529.6382, -1.787507, -276.4462" NpcId="2002847" ItemId="2001079" Condition="not IsTodoChecked(66719, 1, 0)" Name="Imperial Crate"/>
+                        <GroundTargeting XYZ="-484.6262, -3.998581, -283.6899" NpcId="2002848" ItemId="2001079" Condition="not IsTodoChecked(66719, 1, 0)" Name="Imperial Crate"/>
+                        <MoveTo Name="Sark Malark" XYZ="-473.4733, -3.43301, -252.8515"/>
+                        <GroundTargeting XYZ="-469.2324, -4.000019, -256.7648" NpcId="2002849" ItemId="2001079" Condition="not IsTodoChecked(66719, 1, 0)" Name="Imperial Crate"/>
+                    </While>
                 </If>
                 <If Condition="GetQuestStep(66719) == 255">
                     <If Condition="not IsOnMap(156)">
@@ -660,7 +673,7 @@
                         <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                     </If>
                     <NoCombatMoveTo Name="Bibimu" XYZ="185.748, 13.7212, -443.1983"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1006220" XYZ="185.748, 13.7212, -443.1983" QuestId="66718" StepId="1"/>
+                    <TalkTo NpcId="1006220" XYZ="185.748, 13.7212, -443.1983" QuestId="66718" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66718) == 2">
                     <LogMessage Message="[A Realm Reborn (2.1)] Please complete the Sunken Temple of Qarn manually!"/>
@@ -693,7 +706,6 @@
         <!-- Welcome to Morbol Country -->
 
         <If Condition="not IsQuestCompleted(67097)">
-            <!-- Removed from the game? 
             <If Condition="not HasQuest(67097)">
                 <If Condition="not IsOnMap(156)">
                     <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
@@ -702,9 +714,15 @@
                 <If Condition="IsQuestAcceptQualified(67097)">
                     <PickupQuest NpcId="1006530" QuestId="67097" XYZ="21.92719, 20.74698, -682.063"/>
                 </If>
-            </If> -->
+            </If>
             <If Condition="HasQuest(67097)">
-                <Grind grindRef="67097" while="GetQuestStep(67097) == 1"/>
+                <If Condition="GetQuestStep(67097) == 1">
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <NoCombatMoveTo Name="Grinding Area" XYZ="-363.5114, -17.14841, -401.2214"/>
+                    <Grind grindRef="Welcome_to_Morbol_Country" while="HasQuest(67097) and GetQuestStep(67097) == 1"/>
+                </If>
                 <If Condition="GetQuestStep(67097) == 255">
                     <If Condition="not IsOnMap(156)">
                         <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
@@ -718,7 +736,6 @@
         <!-- Answering the Call -->
         
         <If Condition="not IsQuestCompleted(67098)">
-            <!-- Removed from the game? 
             <If Condition="not HasQuest(67098)">
                 <If Condition="not IsOnMap(156)">
                     <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
@@ -727,9 +744,15 @@
                 <If Condition="IsQuestAcceptQualified(67098)">
                     <PickupQuest NpcId="1006530" QuestId="67098" XYZ="21.92719, 20.74698, -682.063"/>
                 </If>
-            </If> -->
+            </If>
             <If Condition="HasQuest(67098)">
-                <Grind grindRef="67098" while="GetQuestStep(67098) == 1"/>
+                <If Condition="GetQuestStep(67098) == 1">
+                    <If Condition="not IsOnMap(156)">
+                        <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    </If>
+                    <NoCombatMoveTo Name="Grinding Area" XYZ="479.877, -2.450189, -784.8846"/>
+                    <Grind grindRef="Answering_the_Call" while="HasQuest(67098) and GetQuestStep(67098) == 1"/>
+                </If>
                 <If Condition="GetQuestStep(67098) == 255">
                     <If Condition="not IsOnMap(156)">
                         <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
@@ -764,7 +787,7 @@
                         <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
                     </If>
                     <MoveTo Name="Alphinaud" XYZ="2.487183, 5.215406E-07, 4.592957"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" QuestId="66722" StepId="1"/>
+                    <TalkTo NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" QuestId="66722" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66722) == 2">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -776,21 +799,19 @@
                     <If Condition="IsOnMap(212) and IsOnSubMap(374)">
                         <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
                     </If>
-                    <!-- <If Condition="GetQuestById(66722).QuestI8AH == 0"> -->
+                    <MoveTo Name="Labeled Package" XYZ="10.26929, -1.113953, -23.69727"/>
+                    <While Condition="not IsTodoChecked(66722, 2, 0)">
                         <UseObject NpcId="2002852" XYZ="10.26929, -1.113953, -23.69727" Radius="10" UseTimes="1" QuestId="66722" StepId="2"/>
-                    <!-- </If> -->
-                    <!-- <If Condition="GetQuestById(66722).QuestI8AH == 1"> -->
-                        <UseObject NpcId="2002853" XYZ="20.40125, -2.151611, -45.91449" Radius="10" UseTimes="1" QuestId="66722" StepId="2"/>
-                    <!-- </If> -->
-                    <!-- <If Condition="GetQuestById(66722).QuestI8AH == 2"> -->
                         <UseObject NpcId="2002850" XYZ="2.120972, -2.212585, -58.54895" Radius="10" UseTimes="1" QuestId="66722" StepId="2"/>
-                    <!-- </If> -->
-                    <!-- <If Condition="GetQuestById(66722).QuestI8AH == 3"> -->
+                        <MoveTo Name="Labeled Package" Distance="1" XYZ="12.21925, -3.000002, -45.98243"/>
+                        <MoveTo Name="Labeled Package" Distance="1" UseMesh="False" XYZ="20.40125, -2.151611, -45.91449"/>
+                        <UseObject NpcId="2002853" XYZ="20.40125, -2.151611, -45.91449" Radius="10" UseTimes="1" QuestId="66722" StepId="2"/>
+                        <MoveTo Name="Labeled Package" Distance="1" UseMesh="False" XYZ="12.21925, -3.000002, -45.98243"/>
                         <If Condition="IsOnMap(212) and IsOnSubMap(356)">
                             <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
                         </If>
                         <UseObject NpcId="2002851" XYZ="31.44885, 1.693726, 5.905212" Radius="10" UseTimes="1" QuestId="66722" StepId="2"/>
-                    <!-- </If> -->
+                    </While>
                 </If>
                 <If Condition="GetQuestStep(66722) == 255">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -816,7 +837,7 @@
 
                     -->
 
-                    <NoCombatMoveTo Name="Alphinaud" XYZ="-489.8299, 21.48999, -381.9791"/>
+                    <NoCombatMoveTo Name="Tataru" XYZ="-489.8299, 21.48999, -381.9791"/>
                     <TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791"/>
                 </If>
             </If>
@@ -826,7 +847,7 @@
 
         <If Condition="not IsQuestCompleted(66723)">
             <If Condition="not HasQuest(66723)">
-                <If Condition="not IsOnMap(140) and not IsOnMap(212)">
+                <If Condition="not IsOnMap(140)">
                     <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
                 </If>
                 <NoCombatMoveTo Name="Tataru" XYZ="-489.8299, 21.48999, -381.9791"/>
@@ -840,37 +861,31 @@
                         <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
                     </If>
                     <NoCombatMoveTo Name="Medguistl" XYZ="196.0936, 303.1, -285.0843"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1006429" XYZ="196.0936, 303.1, -285.0843" QuestId="66723" StepId="1"/>
+                    <TalkTo NpcId="1006429" XYZ="196.0936, 303.1, -285.0843" QuestId="66723" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66723) == 2">
                     <If Condition="not IsOnMap(155)">
                         <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
                     </If>
                     <NoCombatMoveTo Name="Emanuel" XYZ="245.4108, 302, -253.8339"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1006428" XYZ="245.4108, 302, -253.8339" QuestId="66723" StepId="2"/>
+                    <TalkTo NpcId="1006428" XYZ="245.4108, 302, -253.8339" QuestId="66723" StepId="2"/>
                 </If>
                 <If Condition="GetQuestStep(66723) == 3">
                     <If Condition="not IsOnMap(155)">
                         <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
                     </If>
-                    <NoCombatMoveTo Name="2002854" XYZ="-227.5273, 226.0013, 482.9938"/>
-                    <If Condition="GetQuestById(66723).QuestI8AH == 0">
-                        <UseObject NpcId="2002854" XYZ="-227.5273, 226.0013, 482.9938" Radius="10" QuestId="66723" StepId="3"/>
-                    </If>
-                    <If Condition="GetQuestById(66723).QuestI8AH == 1">
-                        <UseObject NpcId="2002856" XYZ="-359.7314, 229.6024, 418.9668" Radius="10" QuestId="66723" StepId="3"/>
-                        <Grind grindRef="The_Things_We_Do_For_Tea" while="HasQuest(66713) and (GetQuestById(66723).QuestI8AH == 1)"/>
-                    </If>
-                    <If Condition="GetQuestById(66723).QuestI8AH == 2">
-                        <UseObject NpcId="2002855" XYZ="-458.2437, 232.349, 442.3132" Radius="10" QuestId="66723" StepId="3"/>
-                    </If>
-                    <If Condition="GetQuestById(66723).QuestI8AH == 3">
-                        <UseObject NpcId="2002857" XYZ="-547.9973, 237.1099, 395.8953" Radius="10" QuestId="66723" StepId="3"/>
-                        <Grind grindRef="The_Things_We_Do_For_Tea2" while="HasQuest(66713) and (GetQuestById(66723).QuestI8AH == 3)"/>
-                    </If>
+                    <NoCombatMoveTo Name="Highland Tea Leaves" XYZ="-227.5273, 226.0013, 482.9938"/>
+                    <UseObject NpcIds="2002854,2002856,2002855,2002857" QuestId="66723" StepId="3">
+                        <HotSpots>
+                            <HotSpot XYZ="-227.5273, 226.0013, 482.9938" Radius="10"/>
+                            <HotSpot XYZ="-359.7314, 229.6024, 418.9668" Radius="10"/>
+                            <HotSpot XYZ="-458.2437, 232.349, 442.3132" Radius="10"/>
+                            <HotSpot XYZ="-547.9973, 237.1099, 395.8953" Radius="10"/>
+                        </HotSpots>
+                    </UseObject>
                 </If>
                 <If Condition="GetQuestStep(66723) == 255">
-                    <If Condition="not IsOnMap(140) and not IsOnMap(212)">
+                    <If Condition="not IsOnMap(140)">
                         <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
                     </If>
 
@@ -917,7 +932,7 @@
                         <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
                     </If>
                     <MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" QuestId="66724" StepId="1"/>
+                    <TalkTo NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" QuestId="66724" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66724) == 255">
                     <If Condition="not IsOnMap(132)">
@@ -936,8 +951,8 @@
 
                     -->
 
-                    <MoveTo Name="Minfilia" XYZ="-75.48645, -0.5013741, -5.081299"/>
-                    <TurnIn QuestId="66724" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299"/>
+                    <MoveTo Name="Vorsaile Heuloix" XYZ="-75.48645, -0.5013741, -5.081299"/>
+                    <TurnInPlus QuestId="66724" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299"/>
                 </If>
             </If>
         </If>
@@ -960,10 +975,10 @@
                         <GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/>
                     </If>
                     <If Condition="IsOnMap(133)">
-                        <UseTransport Name="Lotus Stand" QuestId="66725" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736"/>
+                        <UseTransport Name="Silent Conjurer" QuestId="66725" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736"/>
                     </If>
                     <MoveTo Name="Kan-E-Senna" XYZ="4.898132, -1.92944, -0.1983643"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" QuestId="66725" StepId="1"/>
+                    <TalkTo NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" QuestId="66725" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66725) == 255">
                     <If Condition="not IsOnMap(133) and not IsOnMap(205)">
@@ -1009,16 +1024,16 @@
                         <GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/>
                     </If>
                     <MoveTo Name="Kuplo Kopp" XYZ="180.0106, -2.265522, -245.5024"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1008275" XYZ="180.0106, -2.265522, -245.5024" QuestId="66726" StepId="1"/>
+                    <TalkTo NpcId="1008275" XYZ="180.0106, -2.265522, -245.5024" QuestId="66726" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66726) == 2">
                     <If Condition="not IsOnMap(152) and not IsOnMap(133)">
                         <GetTo ZoneId="152" XYZ="-192.3292, 3.769932, 291.1943"/>
                     </If>
                     <If Condition="IsOnMap(133)">
-                        <UseTransport Name="Westshore Pier Ferry Skipper" DialogOption="0" InteractDistance="3.0" NpcId="1001263" XYZ="181.4144, -2.35195, -240.4059"/>
+                        <UseTransport Name="Romarique" DialogOption="0" InteractDistance="3.0" NpcId="1001263" XYZ="181.4144, -2.35195, -240.4059"/>
                     </If>
-                    <NoCombatMoveTo Name="Kuplo Kopp" XYZ="-550.0482, 10.72236, 65.16396"/>
+                    <NoCombatMoveTo Name="Kuplo Kopp" Distance="0.1" XYZ="-550.0227, 10.72856, 66.06141"/>
                     <WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
                 </If>
                 <If Condition="GetQuestStep(66726) == 3">
@@ -1026,82 +1041,43 @@
                         <GetTo ZoneId="152" XYZ="-192.3292, 3.769932, 291.1943"/>
                     </If>
                     <NoCombatMoveTo Name="Kuplo Kopp" XYZ="-542.9313, 11.20175, 62.24158"/>
-                    <Dismount/>
-                    <RunCode Name="DisableMount"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1008276" XYZ="-542.9313, 11.20175, 62.24158" QuestId="66726" StepId="3"/>
+                    <TalkTo NpcId="1008276" XYZ="-542.9313, 11.20175, 62.24158" QuestId="66726" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(66726) == 4">
                     <If Condition="not IsOnMap(152)">
                         <GetTo ZoneId="152" XYZ="-192.3292, 3.769932, 291.1943"/>
                     </If>
-                    <NoCombatMoveTo Name="Kuplo Kopp" XYZ="-542.9313, 11.20175, 62.24158"/>
-                    <Dismount/>
-                    <RunCode Name="DisableMount"/>
-                    <MoveTo Name="Kuplo Kopp" XYZ="-550.0482, 10.72236, 65.16396"/>
-                    <WaitTimer WaitTime="2"/>
-
-                    <!-- TO DO -->
-
-                    <!-- Figure out the quest variable for the below grind area. -->
-
-                    <!-- TO DO -->
-
-                    <!-- <Grind grindRef="You_Have_Selected_Regicide" while="HasQuest(66726) and GetQuestStep(66726) == 4"/> -->
-                    <MoveTo Name="Kuplo Kopp" XYZ="-387.5481, 0.1001635, 69.79528"/>
-                    <WaitTimer WaitTime="2"/>
-
-                    <!-- TO DO -->
-
-                    <!-- Figure out the quest variable for the below grind area. -->
-
-                    <!-- TO DO -->
-
-                    <!-- <Grind grindRef="You_Have_Selected_Regicide2" while="HasQuest(66726) and GetQuestStep(66726) == 4"/> -->
-                    <MoveTo Name="Kuplo Kopp" XYZ="-356.2295, 4.868959, 62.71615"/>
-                    <WaitTimer WaitTime="2"/>
-
-                    <!-- TO DO -->
-
-                    <!-- Figure out the quest variable for the below grind area. -->
-
-                    <!-- TO DO -->
-
-                    <!-- <Grind grindRef="You_Have_Selected_Regicide3" while="HasQuest(66726) and GetQuestStep(66726) == 4"/> -->
-                    <MoveTo Name="Kuplo Kopp" XYZ="-323.0839, 8.56884, 70.18418"/>
-                    <WaitTimer WaitTime="2"/>
-
-                    <!-- TO DO -->
-
-                    <!-- Figure out the quest variable for the below grind area. -->
-
-                    <!-- TO DO -->
-
-                    <!-- <Grind grindRef="You_Have_Selected_Regicide4" while="HasQuest(66726) and GetQuestStep(66726) == 4"/> -->
-                    <MoveTo Name="Kuplo Kopp" XYZ="-241.7146, 11.89279, 20.12896"/>
-                    <WaitTimer WaitTime="2"/>
-
-                    <!-- TO DO -->
-
-                    <!-- Figure out the quest variable for the below grind area. -->
-
-                    <!-- TO DO -->
-
-                    <!-- <Grind grindRef="You_Have_Selected_Regicide5" while="HasQuest(66726) and GetQuestStep(66726) == 4"/> -->
-                    <RunCode Name="EnableMount"/>
-                    <UseObject NpcId="2003347" XYZ="-318.6237, 12.25293, -35.05005" Radius="10" QuestId="66726" StepId="4"/>
+                    <While Condition="not IsTodoChecked(66726, 4, 0)">
+                        <NoCombatMoveTo Name="Kuplo Kopp" XYZ="-542.9313, 11.20175, 62.24158"/>
+                        <Dismount/>
+                        <RunCode Name="Disable_Mount"/>
+                        <MoveTo Name="Kuplo Kopp" XYZ="-542.9313, 11.20175, 62.24158"/>
+                        <WaitTimer WaitTime="5"/>
+                        <MoveTo Name="Kuplo Kopp" XYZ="-387.5481, 0.1001635, 69.79528"/>
+                        <WaitTimer WaitTime="5"/>
+                        <MoveTo Name="Kuplo Kopp" XYZ="-356.2295, 4.868959, 62.71615"/>
+                        <WaitTimer WaitTime="5"/>
+                        <MoveTo Name="Kuplo Kopp" XYZ="-323.0839, 8.56884, 70.18418"/>
+                        <WaitTimer WaitTime="5"/>
+                        <MoveTo Name="Kuplo Kopp" XYZ="-241.7146, 11.89279, 20.12896"/>
+                        <WaitTimer WaitTime="5"/>
+                        <RunCode Name="Enable_Mount"/>
+                        <NoCombatMoveTo Name="Barrier Threshold" XYZ="-318.6237, 12.25293, -35.05005"/>
+                        <UseObject NpcId="2003347" XYZ="-318.6237, 12.25293, -35.05005" Radius="10" QuestId="66726" StepId="4"/>
+                    </While>
                 </If>
                 <If Condition="GetQuestStep(66726) == 5">
                     <If Condition="not IsOnMap(152)">
                         <GetTo ZoneId="152" XYZ="-192.3292, 3.769932, 291.1943"/>
                     </If>
                     <NoCombatMoveTo Name="Kuplo Kopp" XYZ="-317.6776, 12.29312, -37.30841"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1008277" XYZ="-317.6776, 12.29312, -37.30841" QuestId="66726" StepId="5"/>
+                    <TalkTo NpcId="1008277" XYZ="-317.6776, 12.29312, -37.30841" QuestId="66726" StepId="5"/>
                 </If>
                 <If Condition="GetQuestStep(66726) == 6">
                     <If Condition="not IsOnMap(152)">
                         <GetTo ZoneId="152" XYZ="-192.3292, 3.769932, 291.1943"/>
                     </If>
-                    <NoCombatMoveTo Name="2003046" XYZ="-318.6237, 12.25293, -35.08057"/>
+                    <NoCombatMoveTo Name="Barrier Threshold" XYZ="-318.6237, 12.25293, -35.08057"/>
                     <UseObject NpcId="2003046" XYZ="-318.6237, 12.25293, -35.08057" Radius="10" QuestId="66726" StepId="6"/>
                 </If>
                 <If Condition="GetQuestStep(66726) == 7">
@@ -1127,8 +1103,11 @@
 
                     -->
 
-                    <NoCombatMoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762"/>
-                    <RunCode Name="CampTranquilJump"/>
+                    <If Condition="Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-139.4522, 8.712891, 281.6968)) &gt; 7">
+                        <NoCombatMoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762"/>
+                        <RunCode Name="Camp_Tranquil_Jump"/>
+                    </If>
+                    <NoCombatMoveTo Name="Pukni Pakk" XYZ="-140.032, 8.647763, 280.8728"/>
                     <TurnIn QuestId="66726" NpcId="1007862" XYZ="-140.032, 8.647763, 280.8728"/>
                 </If>
             </If>
@@ -1144,7 +1123,7 @@
                 </If>
                 <If Condition="Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-139.4522, 8.712891, 281.6968)) &gt; 7">
                     <NoCombatMoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762"/>
-                    <RunCode Name="CampTranquilJump"/>
+                    <RunCode Name="Camp_Tranquil_Jump"/>
                 </If>
                 <NoCombatMoveTo Name="Raya-O-Senna" XYZ="-139.4522, 8.712891, 281.6968"/>
                 <If Condition="IsQuestAcceptQualified(66727)">
@@ -1157,10 +1136,10 @@
                         <GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/>
                     </If>
                     <If Condition="IsOnMap(133)">
-                        <UseTransport Name="Lotus Stand" QuestId="66727" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736"/>
+                        <UseTransport Name="Silent Conjurer" QuestId="66727" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736"/>
                     </If>
                     <MoveTo Name="Kan-E-Senna" XYZ="4.898132, -1.92944, -0.1983643"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" QuestId="66727" StepId="1"/>
+                    <TalkTo NpcId="1003027" XYZ="4.898132, -1.92944, -0.1983643" QuestId="66727" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66727) == 255">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -1222,8 +1201,7 @@
                         <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
                     </If>
                     <MoveTo Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" QuestId="66728" StepId="1"/>
-                    <WaitTimer WaitTime="2"/>
+                    <TalkTo NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" QuestId="66728" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66728) == 2">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -1235,62 +1213,40 @@
                     <If Condition="IsOnMap(212) and IsOnSubMap(356)">
                         <UseTransport Name="Exit to Vesper Bay" InteractDistance="3.0" NpcId="2001716" XYZ="-15.7016, 1.083313, -0.01531982"/>
                     </If>
-                    <MoveTo Name="White-robed Ascian" XYZ="-458.952, 23.1922, -369.333"/>
-
-                    <!-- TO DO -->
-
-                    <!-- Remove CodeChunk upon further testing? -->
-
-                    <!-- TO DO -->
-
-                    <!-- <RunCode Name="TheGifted"/> -->
+                    <NoCombatMoveTo Name="White-robed Ascian" XYZ="-458.952, 23.1922, -369.333"/>
                     <WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
                 </If>
                 <If Condition="GetQuestStep(66728) == 3">
                     <If Condition="not IsOnMap(140)">
                         <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
                     </If>
-                    <MoveTo Name="White-robed Ascian" XYZ="-471.5366, 22.80423, -442.6158"/>
-                    <WaitTimer WaitTime="2"/>
-
-                    <!-- TO DO -->
-
-                    <!-- Figure out the quest variable for the below grind area. -->
-
-                    <!-- TO DO -->
-
-                    <!-- <Grind grindRef="The_Gifted" while="HasQuest(66728) and GetQuestStep(66728) == 3"/> -->
-                    <MoveTo Name="White-robed Ascian" XYZ="-385.2847, 24.55097, -503.652"/>
-                    <WaitTimer WaitTime="2"/>
-
-                    <!-- TO DO -->
-
-                    <!-- Figure out the quest variable for the below grind area. -->
-
-                    <!-- TO DO -->
-
-                    <!-- <Grind grindRef="The_Gifted2" while="HasQuest(66728) and GetQuestStep(66728) == 3"/> -->
+                    <While Condition="not IsTodoChecked(66728, 3, 0)">
+                        <NoCombatMoveTo Name="White-robed Ascian" XYZ="-471.5366, 22.80423, -442.6158"/>
+                        <NoCombatMoveTo Name="White-robed Ascian" XYZ="-385.2847, 24.55097, -503.652"/>
+                    </While>
+                    <WaitWhile Condition="GetQuestStep(66728) == 3"/>
                 </If>
                 <If Condition="GetQuestStep(66728) == 4">
                     <If Condition="not IsOnMap(140)">
                         <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
                     </If>
-                    <MoveTo Name="White-robed Ascian" XYZ="-365.1668, 16.09825, -631.1841"/>
-                    <Grind grindRef="The_Gifted3" while="HasQuest(66728) and GetQuestStep(66728) == 5"/>
+                    <NoCombatMoveTo Name="White-robed Ascian" XYZ="-365.1668, 16.09825, -631.1841"/>
+                    <WaitWhile Condition="GetQuestStep(66728) == 5"/>
                 </If>
                 <If Condition="GetQuestStep(66728) == 6">
                     <If Condition="not IsOnMap(140)">
                         <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
                     </If>
-                    <MoveTo Name="White-robed Ascian" XYZ="-324.1881, 14.81629, -790.2355"/>
-                    <Grind grindRef="The_Gifted4" while="HasQuest(66728) and GetQuestStep(66728) == 6"/>
+                    <NoCombatMoveTo Name="White-robed Ascian" XYZ="-324.1881, 14.81629, -790.2355"/>
+                    <WaitWhile Condition="GetQuestStep(66728) == 6"/>
                 </If>
                 <If Condition="GetQuestStep(66728) == 7">
                     <If Condition="not IsOnMap(140)">
                         <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376"/>
                     </If>
                     <NoCombatMoveTo Name="White-robed Ascian" XYZ="-325.185, 14.7074, -784.3595"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1007751" XYZ="-325.185, 14.7074, -784.3595" QuestId="66728" StepId="7"/>
+                    <TalkTo NpcId="1007751" XYZ="-325.185, 14.7074, -784.3595" QuestId="66728" StepId="7"/>
+                    <WaitWhile Condition="GetQuestStep(66728) == 7"/>
                 </If>
                 <If Condition="GetQuestStep(66728) == 255">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
@@ -1344,8 +1300,8 @@
                     <If Condition="not IsOnMap(156)">
                         <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
                     </If>
-                    <MoveTo Name="Tataru" XYZ="20.2182, 21.25272, -632.3796"/>
-                    <TalkTo InteractDistance="3.0" NpcId="1007765" XYZ="20.2182, 21.25272, -632.3796" QuestId="66729" StepId="2"/>
+                    <NoCombatMoveTo Name="Tataru" XYZ="20.2182, 21.25272, -632.3796"/>
+                    <TalkTo NpcId="1007765" XYZ="20.2182, 21.25272, -632.3796" QuestId="66729" StepId="2"/>
                 </If>
                 <If Condition="GetQuestStep(66729) == 255">
                     <If Condition="not IsOnMap(156) and not IsOnMap(351)">
@@ -1371,91 +1327,17 @@
 
 	</Order>
 	<CodeChunks>
-		<CodeChunk Name="FlowersforOne">
-			<![CDATA[ 
-				GameObjectManager.GetObjectByNPCId(1007738).Interact();
-				await Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(8000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(3000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(12000);
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="WhatPeistesCraveLeve">
-			<![CDATA[ 
-				RaptureAtkUnitManager.GetWindowByName("_ToDoList").SendAction(4, 3, 5, 3, 0, 3, 0, 4, 0x3C);
-				await Coroutine.Sleep(500);
-				RaptureAtkUnitManager.GetWindowByName("Journal").SendAction(2, 3, 4, 4, 566);
-				await Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
-					ff14bot.RemoteWindows.SelectYesno.ClickYes();
-				await Coroutine.Sleep(2000);
-				RaptureAtkUnitManager.GetWindowByName("GuildLeveDifficulty").SendAction(2, 3, 0, 3, 4);
-				await Coroutine.Sleep(5000);
-			]]>
-		</CodeChunk>
-		<!-- <CodeChunk Name="SelectYes">
-			<![CDATA[ 
-				await Coroutine.Sleep(1000);
-				RaptureAtkUnitManager.GetWindowByName("SelectYesnoCount").SendAction(1, 3, 0);
-				await Coroutine.Sleep(5000);
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="JournalDecline">
-			<![CDATA[ 
-				await Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.Decline();
-				await Coroutine.Sleep(2000);
-			]]>
-		</CodeChunk> -->
-		<CodeChunk Name="LevesofHorizon">
-			<![CDATA[ 
-				await Coroutine.Sleep(1000);
-				GameObjectManager.GetObjectByNPCId(1001796).Interact();
-				await Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(500);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.SelectSlot(2);
-					ff14bot.RemoteWindows.JournalResult.Complete();
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="DisableMount">
+		<CodeChunk Name="Disable_Mount">
 			<![CDATA[
 				ff14bot.Settings.CharacterSettings.Instance.UseMount = false;
 			]]>
 		</CodeChunk>
-		<CodeChunk Name="EnableMount">
+		<CodeChunk Name="Enable_Mount">
 			<![CDATA[
 				ff14bot.Settings.CharacterSettings.Instance.UseMount = true;
 			]]>
 		</CodeChunk>
-		<CodeChunk Name="CampTranquilJump">
+		<CodeChunk Name="Camp_Tranquil_Jump">
 			<![CDATA[ 
 				if(Core.Player.IsMounted)
 				{
@@ -1470,340 +1352,187 @@
 				MovementManager.MoveForwardStop();
 			]]>
 		</CodeChunk>
-		<!-- <CodeChunk Name="TheGifted">
-			<![CDATA[ 
-				await Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Coroutine.Sleep(10000);
-			]]>
-		</CodeChunk> -->
 
         <!-- Job Check -->
 
         <CodeChunk Name="EquipBRDCrystal">
-        <![CDATA[ 
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
-            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
 
-            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-            {
-            if(slot.RawItemId == 4546)
-            {
-                slot.Move(EquipSlot);
-            }
-            }
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                if(slot.RawItemId == 4546)
+                {
+                    slot.Move(EquipSlot);
+                }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
             ]]>
         </CodeChunk>
         <CodeChunk Name="EquipBLMCrystal">
-        <![CDATA[ 
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
-            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
 
-            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-            {
-            if(slot.RawItemId == 4548)
-            {
-                slot.Move(EquipSlot);
-            }
-            }
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                if(slot.RawItemId == 4548)
+                {
+                    slot.Move(EquipSlot);
+                }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
             ]]>
         </CodeChunk>
         <CodeChunk Name="EquipDRGCrystal">
-        <![CDATA[ 
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
-            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
 
-            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-            {
-            if(slot.RawItemId == 4545)
-            {
-                slot.Move(EquipSlot);
-            }
-            }
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                if(slot.RawItemId == 4545)
+                {
+                    slot.Move(EquipSlot);
+                }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
             ]]>
         </CodeChunk>
         <CodeChunk Name="EquipMNKCrystal">
-        <![CDATA[ 
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
-            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
 
-            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-            {
-            if(slot.RawItemId == 4543)
-            {
-                slot.Move(EquipSlot);
-            }
-            }
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                if(slot.RawItemId == 4543)
+                {
+                    slot.Move(EquipSlot);
+                }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
             ]]>
         </CodeChunk>
         <CodeChunk Name="EquipNINCrystal">
-        <![CDATA[ 
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
-            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
 
-            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-            {
-            if(slot.RawItemId == 7886)
-            {
-                slot.Move(EquipSlot);
-            }
-            }
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                if(slot.RawItemId == 7886)
+                {
+                    slot.Move(EquipSlot);
+                }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
             ]]>
         </CodeChunk>
         <CodeChunk Name="EquipPLDCrystal">
-        <![CDATA[ 
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
-            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
 
-            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-            {
-            if(slot.RawItemId == 4542)
-            {
-                slot.Move(EquipSlot);
-            }
-            }
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                if(slot.RawItemId == 4542)
+                {
+                    slot.Move(EquipSlot);
+                }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
             ]]>
         </CodeChunk>
         <CodeChunk Name="EquipSCHCrystal">
-        <![CDATA[ 
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
-            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
 
-            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-            {
-            if(slot.RawItemId == 4550)
-            {
-                slot.Move(EquipSlot);
-            }
-            }
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                if(slot.RawItemId == 4550)
+                {
+                    slot.Move(EquipSlot);
+                }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
             ]]>
         </CodeChunk>
         <CodeChunk Name="EquipSMNCrystal">
-        <![CDATA[ 
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
-            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
 
-            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-            {
-            if(slot.RawItemId == 4549)
-            {
-                slot.Move(EquipSlot);
-            }
-            }
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                if(slot.RawItemId == 4549)
+                {
+                    slot.Move(EquipSlot);
+                }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
             ]]>
         </CodeChunk>
         <CodeChunk Name="EquipWARCrystal">
-        <![CDATA[ 
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
-            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
 
-            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-            {
-            if(slot.RawItemId == 4544)
-            {
-                slot.Move(EquipSlot);
-            }
-            }
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                if(slot.RawItemId == 4544)
+                {
+                    slot.Move(EquipSlot);
+                }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
             ]]>
         </CodeChunk>
         <CodeChunk Name="EquipWHMCrystal">
-        <![CDATA[ 
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
-            BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+            <![CDATA[ 
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
+                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
 
-            foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
-            {
-            if(slot.RawItemId == 4547)
-            {
-                slot.Move(EquipSlot);
-            }
-            }
-            await Buddy.Coroutines.Coroutine.Sleep(1000);
+                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+                {
+                if(slot.RawItemId == 4547)
+                {
+                    slot.Move(EquipSlot);
+                }
+                }
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
             ]]>
         </CodeChunk>
 	</CodeChunks>
 	<GrindAreas>
-		<GrindArea name="Flowers_for_One">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="29.12939, 54.01148, 484.9469" name="Hoary Goobbue"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="687"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
 		<GrindArea name="All_Things_in_Time">
 			<Hotspots>
 				<Hotspot Radius="90" XYZ="586.0926, -3.052768, 152.8452" name="Mud Pugils"/>
 			</Hotspots>
 			<TargetMobs>
-				<TargetMob Id="642"/>
+				<TargetMob Id="642"/> <!-- Mud Pugil -->
 			</TargetMobs>
 			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
-		<GrindArea name="All_Things_in_Time2">
+		<GrindArea name="Welcome_to_Morbol_Country">
 			<Hotspots>
-				<Hotspot Radius="90" XYZ="298.4207, -3.128174, 166.9185" name="Gurangatch"/>
+				<Hotspot Radius="90" XYZ="-363.5114, -17.14841, -401.2214" name="Morbols"/>
 			</Hotspots>
 			<TargetMobs>
-				<TargetMob Id="688"/>
+				<TargetMob Id="237"/> <!-- Morbol -->
 			</TargetMobs>
 			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
 		</GrindArea>
-		<GrindArea name="Leves_of_Horizon">
+		<GrindArea name="Answering_the_Call">
 			<Hotspots>
-				<Hotspot Radius="90" XYZ="-146.158, 15.46816, -261.4188" name="Softskin Peiste"/>
+				<Hotspot Radius="90" XYZ="479.877, -2.450189, -784.8846" name="Hapalits"/>
 			</Hotspots>
 			<TargetMobs>
-				<TargetMob Id="1037"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="The_Things_We_Do_For_Tea">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-359.7314, 229.6024, 418.9668" name="Rimy Biasts"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="691"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="The_Things_We_Do_For_Tea2">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-547.9973, 237.1099, 395.8953" name="Rimy Biasts"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="691"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="You_Have_Selected_Regicide">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-550.0482, 10.72236, 65.16396" name="Malevolent Fungus"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="699"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="You_Have_Selected_Regicide2">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-387.5481, 0.1001635, 69.79528" name="Malevolent Squirrels"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="700"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="You_Have_Selected_Regicide3">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-356.2295, 4.868959, 62.71615" name="Malevolent Galago"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="701"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="You_Have_Selected_Regicide4">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-323.0839, 8.56884, 70.18418" name="Malevolent Ked"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="702"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="You_Have_Selected_Regicide5">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-241.7146, 11.89279, 20.12896" name="Malevolent Mobs"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="705" Weight="2000"/>
-				<TargetMob Id="704" Weight="1000"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="The_Gifted">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-469.1342, 22.86516, -442.4682" name="Brutish Imps"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="692"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="The_Gifted2">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-385.2847, 24.55097, -503.652" name="Gruesome Gargoyle"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="693"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="The_Gifted3">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-365.1668, 16.09825, -631.1841" name="Gnarled Gargoyle"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="694"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="The_Gifted4">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-324.1881, 14.81629, -790.2355" name="Ascian Mobs"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="695"/>
-				<TargetMob Id="697"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="67097">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="-363.5114, -17.14841, -401.2214" name="Morbol"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="237"/>
-			</TargetMobs>
-			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
-		</GrindArea>
-		<GrindArea name="67098">
-			<Hotspots>
-				<Hotspot Radius="90" XYZ="479.877, -2.450189, -784.8846" name="Hapalit"/>
-			</Hotspots>
-			<TargetMobs>
-				<TargetMob Id="793"/>
+				<TargetMob Id="793"/> <!-- Hapalit -->
 			</TargetMobs>
 			<MinLevel>50</MinLevel>
 			<MaxLevel>61</MaxLevel>
