@@ -41,6 +41,18 @@ namespace ff14bot.NeoProfiles
                         SelectYesno.ClickYes();
                     })
                 ),
+                new Decorator(ret => QuestId == 65590 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65622 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
 				new Decorator(ret => QuestId == 65964 && SelectYesno.IsOpen,
 					new Action(r =>
 					{
@@ -132,12 +144,30 @@ namespace ff14bot.NeoProfiles
 						)
 					)
                 ),
+				new Decorator(ret => QuestId == 66584 && SelectYesno.IsOpen,
+					new Action(r =>
+					{
+						SelectYesno.ClickYes();
+					})
+				),
                 new Decorator(ret => QuestId == 66642 && SelectYesno.IsOpen,
                     new Action(r =>
                     {
                         SelectYesno.ClickYes();
                     })
                 ),
+				new Decorator(ret => QuestId == 66693 && SelectYesno.IsOpen,
+					new Action(r =>
+					{
+						SelectYesno.ClickYes();
+					})
+				),
+				new Decorator(ret => QuestId == 66694 && SelectYesno.IsOpen,
+					new Action(r =>
+					{
+						SelectYesno.ClickYes();
+					})
+				),
                 new Decorator(ret => QuestId == 66724 && SelectYesno.IsOpen,
                     new Action(r =>
                     {
@@ -149,6 +179,24 @@ namespace ff14bot.NeoProfiles
                     {
                         SelectString.ClickSlot(1);
                     })
+                ),
+				new Decorator(ret => QuestId == 66979 && Vector3.Distance(Core.Player.Location, XYZ) < InteractDistance && !actiontaken,
+                    new Sequence(
+						new Action(r =>
+						{
+							var targetnpc = ff14bot.Managers.GameObjectManager.GetObjectByNPCId((uint)NpcId);
+							targetnpc.Target();
+							ChatManager.SendChat("/soothe");
+							actiontaken = true;
+						}),
+						new Sleep(3,5),
+						new Decorator(ret => !Talk.DialogOpen,
+							new Action(r =>
+							{
+								actiontaken = false;
+							})
+						)
+					)
                 ),
                 new Decorator(ret => QuestId == 67138 && SelectString.IsOpen,
                     new Action(r =>
