@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##########################################
+# Profile: [O] Little Ladies' Day Quests #
+##########################################
+# Author: y2krazy                        #
+##########################################
+# Version: 1.0.1                         #
+##########################################
+# Required Level: 15                     #
+##########################################
+# Required Teleport Locations:           #
+# 	Ul'dah - Steps of Nald               #
+##########################################
+# Required User Interaction:             #
+# 	None                                 #
+##########################################
+# Required Setup:                        #
+# 	Fill out User Configuration below.   #
+##########################################
+# Rewards:                               #
+# 	Lady's Suikan or Lord's Suikan       #
+# 	Certificate(s) of Collaboration      #
+##########################################
+-->
+
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- Certificate of Collaboration Required for: -->
+  <!-- Little Lord's Clogs: 2 --> <!-- Male characters only! -->
+  <!-- Little Lady's Clogs: 2 --> <!-- Female characters only! -->
+  <!-- Thorne Dynasty Mantelshelf: 4 -->
+  <!-- Peach Confetti (10 Bags): 1 -->
+  <!-- Cherry Confetti (10 Bags): 1 -->
+  <!-- Cast your vote with the Slight Servant: 1 -->
+  <!-- Cast your vote with the Stout Servant: 20 -->
+
+  <!-- NOTE: Rewards are the same regardless of who your vote is cast with. -->
+
+  <!ENTITY Certificates "0"> <!-- Certificates to earn before stopping. -->
+
+  <!ENTITY SlightServant "0"> <!-- Cast your vote with the Slight Servant? -->
+  <!ENTITY StoutServant "0"> <!-- Cast your vote with the Stout Servant? -->
+]>
+<!-- End User Configuration -->
+
+<Profile>
+	<Name>[O] Little Ladies' Day Quests</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<ExLog Color="#66FF66" Name="y2k's LLD 2016" Message="Checking for completed quests..." />
+
+		<!-- Aligning the Stars -->
+
+		<If Condition="not IsQuestCompleted(67757)">
+			<If Condition="not HasQuest(67757)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<MoveTo Name="Mythril Eye Reporter" XYZ="-100.1755, 4, -106.4012" />
+				<If Condition="IsQuestAcceptQualified(67757)">
+					<PickupQuest NpcId="1016354" QuestId="67757" XYZ="-100.1755, 4, -106.4012" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67757)">
+				<If Condition="GetQuestStep(67757) == 255">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<MoveTo Name="Royal Seneschal" XYZ="-28.06134, 8, -104.6006" />
+					<TurnIn QuestId="67757" NpcId="1016356" XYZ="-28.06134, 8, -104.6006" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Sugar, Spice, and Everything Rice -->
+
+		<While Condition="not HasAtLeast(13741,&Certificates;)">
+
+			<If Condition="&Certificates; == 0">
+				<ExLog Color="#FF0000" Name="y2k's LLD 2016" Message="Please set the amount of Certificates you would like to obtain!" />
+				<StopBot/>
+			</If>
+
+			<ExLog Color="#66FF66" Name="y2k's LLD 2016" Message="Checking for &Certificates; Certificate(s) of Collaboration..." />
+
+			<If Condition="not HasQuest(67758)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<MoveTo Name="Royal Servant" XYZ="-30.07556, 8, -103.8071" />
+				<RunCode Name="Pickup67758" />
+				<!-- <If Condition="IsQuestAcceptQualified(67758)">
+					<PickupQuest NpcId="1016361" QuestId="67758" XYZ="-30.07556, 8, -103.8071" />
+				</If> -->
+			</If>
+			<If Condition="HasQuest(67758)">
+				<If Condition="GetQuestStep(67758) == 1">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<MoveTo Name="Ul'dahn Citizen" XYZ="30.89954, 4.099995, -153.0938" />
+					<If Condition="GetQuestById(67758).QuestI8AH == 0">
+						<HandOver ItemId="2001936" NpcId="1016407" XYZ="30.89954, 4.099995, -153.0938" />
+					</If>
+					<If Condition="GetQuestById(67758).QuestI8AH == 1">
+						<HandOver ItemId="2001936" NpcId="1016404" XYZ="47.56238, 4.099995, -147.6006" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(67758) == 255">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Certificate of Collaboration
+
+					-->
+
+					<MoveTo Name="Royal Servant" XYZ="-30.07556, 8, -103.8071" />
+					<RunCode Name="TurnIn67758" />
+					<!-- <TurnIn QuestId="67758" NpcId="1016361" XYZ="-30.07556, 8, -103.8071" /> -->
+				</If>
+			</If>
+
+		</While>
+
+		<!-- The Lead Starling -->
+
+		<If Condition="not IsQuestCompleted(67759)">
+			<If Condition="not HasQuest(67759)">
+				<If Condition="not IsOnMap(130)">
+					<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+						<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+					</If>
+					<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+						<Travel To="130" />
+					</If>
+				</If>
+				<MoveTo Name="Royal Seneschal" XYZ="-28.06134, 8, -104.6006" />
+				<If Condition="IsQuestAcceptQualified(67759)">
+					<PickupQuest NpcId="1016356" QuestId="67759" XYZ="-28.06134, 8, -104.6006" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67759)">
+				<If Condition="GetQuestStep(67759) == 1">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+					<If Condition="&SlightServant; == 0 and &StoutServant; == 0">
+						<ExLog Color="#FF0000" Name="y2k's LLD 2016" Message="Please choose a NPC to cast your vote with!" />
+						<StopBot/>
+					</If>
+					<If Condition="&SlightServant; != 0 and &StoutServant; != 0">
+						<ExLog Color="#FF0000" Name="y2k's LLD 2016" Message="Please choose only 1 NPC to cast your vote with!" />
+						<StopBot/>
+					</If>
+					<If Condition="&SlightServant; != 0 and &StoutServant; == 0">
+						<MoveTo Name="Slight Servant" XYZ="-4.806641, 7.992439, -99.71777" />
+						<HandOver ItemId="13741" NpcId="1016412" XYZ="-4.806641, 7.992439, -99.71777" />
+					</If>
+					<If Condition="&SlightServant; == 0 and &StoutServant; != 0">
+						<MoveTo Name="Stout Servant" XYZ="-6.33252, 7.996815, -99.3515" />
+						<HandOver ItemId="13741" NpcId="1016413" XYZ="-6.33252, 7.996815, -99.3515" />
+					</If>
+				</If>
+				<If Condition="GetQuestStep(67759) == 255">
+					<If Condition="not IsOnMap(130)">
+						<If Condition="Managers.WorldManager.HasAetheryteId(9)">
+							<TeleportTo Name="Ul'dah - Steps of Nald" AetheryteId="9" />
+						</If>
+						<If Condition="not Managers.WorldManager.HasAetheryteId(9)">
+							<Travel To="130" />
+						</If>
+					</If>
+
+					<!-- Rewards
+
+					Lady's Suikan (Female), or
+					Lord's Suikan (Male)
+
+					-->
+
+					<MoveTo Name="Royal Seneschal" XYZ="-28.06134, 8, -104.6006" />
+					<TurnIn QuestId="67759" NpcId="1016356" XYZ="-28.06134, 8, -104.6006" />
+				</If>
+			</If>
+		</If>
+
+		<ExLog Color="#66FF66" Name="y2k's LLD 2016" Message="You've completed the Little Ladies' Day seasonal event quests!" />
+
+	</Order>
+	<GrindAreas>
+	</GrindAreas>
+	<CodeChunks>
+		<CodeChunk Name="Pickup67758">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1016361).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
+					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.JournalAccept.IsOpen)
+					ff14bot.RemoteWindows.JournalAccept.Accept();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+		]]>
+		</CodeChunk>
+		<CodeChunk Name="TurnIn67758">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1016361).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
+					ff14bot.RemoteWindows.JournalResult.Complete();
+				await Buddy.Coroutines.Coroutine.Sleep(7000);
+				if (ff14bot.RemoteWindows.SelectString.IsOpen)
+					ff14bot.RemoteWindows.SelectString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(9000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(20000);
+				if (ff14bot.RemoteWindows.SelectString.IsOpen)
+					ff14bot.RemoteWindows.SelectString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				if (ff14bot.RemoteWindows.SelectString.IsOpen)
+					ff14bot.RemoteWindows.SelectString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(10000);
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+</Profile>
