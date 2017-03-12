@@ -5,7 +5,7 @@
 ########################################
 # Author: y2krazy                      #
 ########################################
-# Version: 2.1.0a                      #
+# Version: 2.1.0b                      #
 ########################################
 # Required Level: 60                   #
 ########################################
@@ -17,7 +17,7 @@
 ########################################
 -->
 <Profile>
-	<Name>[O] Heavensward (Patch 3.3) (v2.1.0a)</Name>
+	<Name>[O] Heavensward (Patch 3.3) (v2.1.0b)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -25,14 +25,14 @@
     <BotSettings AutoEquip="1"/>
 
     <If Condition="not IsQuestCompleted(67777)">
-        <LogMessage Name="Pre-Requisite Check" Message="You haven't completed the Causes and Costs quest yet!"/>
-        <LogMessage Name="Pre-Requisite Check" Message="Loading the Heavensward (Patch 3.2) profile..."/>
+        <LogMessage Message="[Pre-Requisite Check] You haven't completed the Causes and Costs quest yet!"/>
+        <LogMessage Message="[Pre-Requisite Check] Loading the Heavensward (Patch 3.2) profile..."/>
         <LoadProfile Path="Profiles/y2krazy/Questing/[O] Heavensward (Patch 3.2).xml"/>
     </If>
 
-    <If Condition="(ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
-        <LogMessage Name="Job Check" Message="You do not have a job assigned on your character."/>
-        <LogMessage Name="Job Check" Message="Equipping your Soul Crystal now..."/>
+    <If Condition="(ClassName != ClassJobType.Astrologian) and (ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.DarkKnight) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Machinist) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
+        <LogMessage Message="[Job Check] You do not have a job assigned on your character."/>
+        <LogMessage Message="[Job Check] Equipping your Soul Crystal now..."/>
         <If Condition="ClassName == ClassJobType.Archer">
             <RunCode Name="EquipBRDCrystal"/>
             <WaitTimer WaitTime="3"/>
@@ -72,8 +72,8 @@
             <WaitTimer WaitTime="3"/>
         </If>
         <If Condition="(ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
-            <LogMessage Name="Job Check" Message="You do not have the proper Soul Crystal in your Armoury or Inventory."/>
-            <LogMessage Name="Job Check" Message="Loading the Class and Job Quests profile..."/>
+            <LogMessage Message="[Job Check] You do not have the proper Soul Crystal in your Armoury or Inventory."/>
+            <LogMessage Message="[Job Check] Loading the Class and Job Quests profile..."/>
             <LoadProfile Path="Profiles/y2krazy/Questing/[O] Class and Job Quests.xml"/>
         </If>
     </If>
