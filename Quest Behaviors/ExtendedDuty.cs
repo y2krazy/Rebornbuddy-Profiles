@@ -45,6 +45,70 @@ namespace ff14bot.NeoProfiles.Tags
 				new Decorator(ret => QuestLogManager.InCutscene,
 					new ActionAlwaysSucceed()
 				),
+				new Decorator(ret => QuestId == 65680 && !Core.Player.InCombat && ((GameObjectManager.GetObjectByNPCId(2004819) != null && GameObjectManager.GetObjectByNPCId(2004819).IsVisible) || (GameObjectManager.GetObjectByNPCId(2004821) != null && GameObjectManager.GetObjectByNPCId(2004821).IsVisible) || (GameObjectManager.GetObjectByNPCId(2004824) != null && GameObjectManager.GetObjectByNPCId(2004824).IsVisible) || (GameObjectManager.GetObjectByNPCId(2004823) != null && GameObjectManager.GetObjectByNPCId(2004823).IsVisible)),
+                    new PrioritySelector(
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2004819) != null && GameObjectManager.GetObjectByNPCId(2004819).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2004819).Location) <= 2,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Bindings!");
+										GameObjectManager.GetObjectByNPCId(2004819).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2004819).Location, 2)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2004821) != null && GameObjectManager.GetObjectByNPCId(2004821).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2004821).Location) <= 2,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Bindings!");
+										GameObjectManager.GetObjectByNPCId(2004821).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2004821).Location, 2)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2004824) != null && GameObjectManager.GetObjectByNPCId(2004824).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2004824).Location) <= 2,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Bindings!");
+										GameObjectManager.GetObjectByNPCId(2004824).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2004824).Location, 2)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2004823) != null && GameObjectManager.GetObjectByNPCId(2004823).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2004823).Location) <= 2,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Bindings!");
+										GameObjectManager.GetObjectByNPCId(2004823).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2004823).Location, 2)
+							)
+						)
+					)
+                ),
+                // new Decorator(ret => QuestId == 65753 && !Core.Player.InCombat && Vector3.Distance(Core.Player.Location, new Vector3(213.2676f, -36.40339f, 309.0858f)) <= 3,
+                    // new PrioritySelector(
+						// new Decorator(ret => !Core.Me.HasAura(614) && Vector3.Distance(Core.Player.Location, new Vector3(213.2676f, -36.40339f, 309.0858f)) <= 3,
+							// new Action(r =>
+							// {
+								// Logging.Write("[ExtendedDuty] Using Hide on me!");
+								// ff14bot.Managers.Actionmanager.DoAction(2245, Core.Me);
+							// })
+						// ),
+						// CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(3165).Location, 3)
+                    // )
+                // ),
 				new Decorator(ret => QuestId == 65801 && GameObjectManager.GetObjectByNPCId(1004142) != null && !GameObjectManager.GetObjectByNPCId(1004142).CanAttack,
                     new PrioritySelector(
 						new Decorator(ret => GameObjectManager.GetObjectByNPCId(1004142) != null && GameObjectManager.GetObjectByNPCId(1004142).IsVisible,
@@ -86,6 +150,49 @@ namespace ff14bot.NeoProfiles.Tags
 						)
 					)
                 ),
+				new Decorator(ret => QuestId == 65853 && GameObjectManager.GetObjectByNPCId(1002684) != null && !GameObjectManager.GetObjectByNPCId(1002684).CanAttack,
+                    new PrioritySelector(
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(1002684) != null && GameObjectManager.GetObjectByNPCId(1002684).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(1002684).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Handing over items to Solkwyb!");
+										ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1002684).Interact();
+										Thread.Sleep(2000);
+										ff14bot.RemoteWindows.Talk.Next();
+										Thread.Sleep(5000);
+										foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+										{
+											if(slot.RawItemId == 2000525)
+											{
+												slot.Handover();
+											}
+										}
+										Thread.Sleep(2000);
+										foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+										{
+											if(slot.RawItemId == 2000526)
+											{
+												slot.Handover();
+											}
+										}
+										Thread.Sleep(2000);
+										if (ff14bot.RemoteWindows.Request.IsOpen)
+											ff14bot.RemoteWindows.Request.HandOver();
+										Thread.Sleep(2000);
+										ff14bot.RemoteWindows.Talk.Next();
+										Thread.Sleep(2000);
+										if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+											ff14bot.RemoteWindows.SelectYesno.ClickYes();
+										Thread.Sleep(2000);
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(1002684).Location, 3)
+							)
+						)
+					)
+                ),
                 new Decorator(ret => QuestId == 65886 && !Core.Player.InCombat && GameObjectManager.GetObjectByNPCId(2001471) != null && GameObjectManager.GetObjectByNPCId(2001471).IsVisible,
                     new PrioritySelector(
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2001471).Location) <= 3,
@@ -102,7 +209,7 @@ namespace ff14bot.NeoProfiles.Tags
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002521).Location) <= 3,
                             new Action(r =>
                             {
-								Logging.Write("[ExtendedDuty] Interacting with object 2002521!");
+								Logging.Write("[ExtendedDuty] Interacting with K'lyhia's Grimoire!");
                                 GameObjectManager.GetObjectByNPCId(2002521).Interact();
                             })
 				        ),
@@ -116,7 +223,7 @@ namespace ff14bot.NeoProfiles.Tags
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002428).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with Rope Bond!");
+										Logging.Write("[ExtendedDuty] Interacting with the Rope Bond!");
 										GameObjectManager.GetObjectByNPCId(2002428).Interact();
 									})
 								),
@@ -128,7 +235,7 @@ namespace ff14bot.NeoProfiles.Tags
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002427).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with Rope Bond!");
+										Logging.Write("[ExtendedDuty] Interacting with the Rope Bond!");
 										GameObjectManager.GetObjectByNPCId(2002427).Interact();
 									})
 								),
@@ -142,7 +249,7 @@ namespace ff14bot.NeoProfiles.Tags
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002279).Location) <= 3,
                             new Action(r =>
                             {
-								Logging.Write("[ExtendedDuty] Interacting with Draconian Rosary!");
+								Logging.Write("[ExtendedDuty] Interacting with the Draconian Rosary!");
                                 GameObjectManager.GetObjectByNPCId(2002279).Interact();
                             })
                         ),
@@ -178,11 +285,98 @@ namespace ff14bot.NeoProfiles.Tags
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002296).Location) <= 3,
                             new Action(r =>
                             {
-								Logging.Write("[ExtendedDuty] Interacting with Glowing Grimoire!");
+								Logging.Write("[ExtendedDuty] Interacting with the Glowing Grimoire!");
                                 GameObjectManager.GetObjectByNPCId(2002296).Interact();
                             })
 				        ),
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2002296).Location, 3)
+                    )
+                ),
+				new Decorator(ret => QuestId == 66597 && Vector3.Distance(Core.Player.Location, ObjectXYZ) < InteractDistance,
+                    new PrioritySelector(
+						new Decorator(ret => MovementManager.IsMoving,
+                            new Action(r =>
+                            {
+                                MovementManager.MoveForwardStop();
+                            })
+                        ),
+                        new Decorator(ret => !didthething,
+                            new Action(r =>
+                            {
+                                var targetnpc = ff14bot.Managers.GameObjectManager.GetObjectByNPCId((uint)InteractNpcId);
+								foreach (ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+								{
+									if (slot.RawItemId == 2000951)
+									{
+										Logging.Write("[ExtendedDuty] Using Aetherometer on Destination!");
+										slot.UseItem(targetnpc);
+										Thread.Sleep(5000);
+										Logging.Write("[ExtendedDuty] Using Aetherometer on Destination!");
+										slot.UseItem(targetnpc);
+										Thread.Sleep(5000);
+										didthething = true;
+									}
+								}
+                            })
+                        )
+                    )
+                ),
+				new Decorator(ret => QuestId == 66624 && Vector3.Distance(Core.Player.Location, ObjectXYZ) < InteractDistance,
+                    new PrioritySelector(
+						new Decorator(ret => MovementManager.IsMoving,
+                            new Action(r =>
+                            {
+                                MovementManager.MoveForwardStop();
+                            })
+                        ),
+                        new Decorator(ret => !didthething,
+                            new Action(r =>
+                            {
+                                var targetnpc = ff14bot.Managers.GameObjectManager.GetObjectByNPCId((uint)InteractNpcId);
+								foreach (ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+								{
+									if (slot.RawItemId == 2000952)
+									{
+										Logging.Write("[ExtendedDuty] Using Nymeia Lilies on Destination!");
+										slot.UseItem(targetnpc);
+										Thread.Sleep(5000);
+										Logging.Write("[ExtendedDuty] Using Nymeia Lilies on Destination!");
+										slot.UseItem(targetnpc);
+										Thread.Sleep(5000);
+										didthething = true;
+									}
+								}
+                            })
+                        )
+                    )
+                ),
+				new Decorator(ret => QuestId == 66626 && Vector3.Distance(Core.Player.Location, ObjectXYZ) < InteractDistance,
+                    new PrioritySelector(
+						new Decorator(ret => MovementManager.IsMoving,
+                            new Action(r =>
+                            {
+                                MovementManager.MoveForwardStop();
+                            })
+                        ),
+                        new Decorator(ret => !didthething,
+                            new Action(r =>
+                            {
+                                var targetnpc = ff14bot.Managers.GameObjectManager.GetObjectByNPCId((uint)InteractNpcId);
+								foreach (ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+								{
+									if (slot.RawItemId == 2000953)
+									{
+										Logging.Write("[ExtendedDuty] Using Nymeia Lilies on Destination!");
+										slot.UseItem(targetnpc);
+										Thread.Sleep(5000);
+										Logging.Write("[ExtendedDuty] Using Nymeia Lilies on Destination!");
+										slot.UseItem(targetnpc);
+										Thread.Sleep(5000);
+										didthething = true;
+									}
+								}
+                            })
+                        )
                     )
                 ),
                 new Decorator(ret => QuestId == 66633 && GameObjectManager.GetObjectByNPCId(2002522) != null && GameObjectManager.GetObjectByNPCId(2002522).IsVisible,
@@ -190,7 +384,7 @@ namespace ff14bot.NeoProfiles.Tags
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2002522).Location) <= 3,
                             new Action(r =>
                             {
-								Logging.Write("[ExtendedDuty] Interacting with object 2002522!");
+								Logging.Write("[ExtendedDuty] Interacting with the Stolen Crate!");
                                 GameObjectManager.GetObjectByNPCId(2002522).Interact();
                             })
                         ),
@@ -204,7 +398,7 @@ namespace ff14bot.NeoProfiles.Tags
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(1650).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Using spell 190 on NPC 1650 !");
+										Logging.Write("[ExtendedDuty] Using Physick on Tonberry Wanderer!");
 										ff14bot.Managers.Actionmanager.DoAction(190, GameObjectManager.GetObjectByNPCId(1650));
 									})
 								),
@@ -285,7 +479,7 @@ namespace ff14bot.NeoProfiles.Tags
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006369).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2006369!");
+										Logging.Write("[ExtendedDuty] Interacting with the Black Standard!");
 										GameObjectManager.GetObjectByNPCId(2006369).Interact();
 									})
 								),
@@ -297,7 +491,7 @@ namespace ff14bot.NeoProfiles.Tags
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006370).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2006370!");
+										Logging.Write("[ExtendedDuty] Interacting with the Crimson Standard!");
 										GameObjectManager.GetObjectByNPCId(2006370).Interact();
 									})
 								),
@@ -309,7 +503,7 @@ namespace ff14bot.NeoProfiles.Tags
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2005848).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2005848!");
+										Logging.Write("[ExtendedDuty] Interacting with the Ambush Site!");
 										GameObjectManager.GetObjectByNPCId(2005848).Interact();
 									})
 								),
@@ -321,7 +515,7 @@ namespace ff14bot.NeoProfiles.Tags
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006175).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2006175!");
+										Logging.Write("[ExtendedDuty] Interacting with the Signal Mortar!");
 										GameObjectManager.GetObjectByNPCId(2006175).Interact();
 									})
 								),
@@ -333,7 +527,7 @@ namespace ff14bot.NeoProfiles.Tags
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2005851).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2005851!");
+										Logging.Write("[ExtendedDuty] Interacting with Townsperson!");
 										GameObjectManager.GetObjectByNPCId(2005851).Interact();
 									})
 								),
@@ -347,7 +541,7 @@ namespace ff14bot.NeoProfiles.Tags
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2005959).Location) <= 3,
                             new Action(r =>
                             {
-								Logging.Write("[ExtendedDuty] Interacting with object 2005959!");
+								Logging.Write("[ExtendedDuty] Interacting with The Balance!");
                                 GameObjectManager.GetObjectByNPCId(2005959).Interact();
                             })
 				        ),
@@ -358,10 +552,10 @@ namespace ff14bot.NeoProfiles.Tags
                     new PrioritySelector(
 						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2005851) != null && GameObjectManager.GetObjectByNPCId(2005851).IsVisible,
 							new PrioritySelector(
-								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2005851).Location) <= 3,
+								new Decorator(ret => Vector3.Distance(Core.Player.Location, new Vector3(6.698669f, 44.51124f, -41.33673f)) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2005851!");
+										Logging.Write("[ExtendedDuty] Interacting with Townsperson!");
 										GameObjectManager.GetObjectByNPCId(2005851).Interact();
 									})
 								),
@@ -415,11 +609,27 @@ namespace ff14bot.NeoProfiles.Tags
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2005632).Location) <= 3,
                             new Action(r =>
                             {
-								Logging.Write("[ExtendedDuty] Interacting with object 2005632!");
+								Logging.Write("[ExtendedDuty] Interacting with Sealed Missive!");
                                 GameObjectManager.GetObjectByNPCId(2005632).Interact();
                             })
 				        ),
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2005632).Location, 3)
+                    )
+                ),
+                new Decorator(ret => QuestId == 67590 && !Core.Player.InCombat && GameObjectManager.GetObjectByNPCId(2006125) != null && GameObjectManager.GetObjectByNPCId(2006125).IsVisible,
+                    new PrioritySelector(
+                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006125).Location) <= 3 && !didthething,
+                            new Action(r =>
+                            {
+								Logging.Write("[ExtendedDuty] Interacting with the Frightened Maid!");
+                                GameObjectManager.GetObjectByNPCId(2006125).Interact();
+								Thread.Sleep(1000);
+                                GameObjectManager.GetObjectByNPCId(2006125).Interact();
+								Thread.Sleep(1000);
+								didthething = true;
+                            })
+				        ),
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006125).Location, 3)
                     )
                 ),
                 new Decorator(ret => QuestId == 67592 && !Core.Player.InCombat && GameObjectManager.GetObjectByNPCId(2005823) != null && GameObjectManager.GetObjectByNPCId(2005823).IsVisible,
@@ -427,7 +637,7 @@ namespace ff14bot.NeoProfiles.Tags
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2005823).Location) <= 3,
                             new Action(r =>
                             {
-								Logging.Write("[ExtendedDuty] Interacting with object 2005823!");
+								Logging.Write("[ExtendedDuty] Interacting with Captive Pilgrims!");
                                 GameObjectManager.GetObjectByNPCId(2005823).Interact();
                             })
 				        ),
@@ -439,85 +649,85 @@ namespace ff14bot.NeoProfiles.Tags
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006340).Location) <= 3,
                             new Action(r =>
                             {
-								Logging.Write("[ExtendedDuty] Interacting with object 2006340!");
+								Logging.Write("[ExtendedDuty] Interacting with Stolen Goods!");
                                 GameObjectManager.GetObjectByNPCId(2006340).Interact();
                             })
 				        ),
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006340).Location, 3)
                     )
                 ),
-				new Decorator(ret => QuestId == 67640 && ((GameObjectManager.GetObjectByNPCId(2006281) != null && GameObjectManager.GetObjectByNPCId(2006281).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006283) != null && GameObjectManager.GetObjectByNPCId(2006283).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006285) != null && GameObjectManager.GetObjectByNPCId(2006285).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006282) != null && GameObjectManager.GetObjectByNPCId(2006282).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006284) != null && GameObjectManager.GetObjectByNPCId(2006284).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006286) != null && GameObjectManager.GetObjectByNPCId(2006286).IsVisible)),
+				new Decorator(ret => QuestId == 67640 && Core.Player.InCombat && ((GameObjectManager.GetObjectByNPCId(2006281) != null && GameObjectManager.GetObjectByNPCId(2006281).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006283) != null && GameObjectManager.GetObjectByNPCId(2006283).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006285) != null && GameObjectManager.GetObjectByNPCId(2006285).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006282) != null && GameObjectManager.GetObjectByNPCId(2006282).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006284) != null && GameObjectManager.GetObjectByNPCId(2006284).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006286) != null && GameObjectManager.GetObjectByNPCId(2006286).IsVisible)),
                     new PrioritySelector(
-						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006281) != null && GameObjectManager.GetObjectByNPCId(2006281).IsVisible,
-							new PrioritySelector(
-								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006281).Location) <= 3,
-									new Action(r =>
-									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2006281!");
-										GameObjectManager.GetObjectByNPCId(2006281).Interact();
-									})
-								),
-								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006281).Location, 3)
-							)
-						),
-						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006283) != null && GameObjectManager.GetObjectByNPCId(2006283).IsVisible,
-							new PrioritySelector(
-								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006283).Location) <= 3,
-									new Action(r =>
-									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2006283!");
-										GameObjectManager.GetObjectByNPCId(2006283).Interact();
-									})
-								),
-								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006283).Location, 3)
-							)
-						),
-						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006285) != null && GameObjectManager.GetObjectByNPCId(2006285).IsVisible,
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006285) != null && GameObjectManager.GetObjectByNPCId(2006285).IsTargetable,
 							new PrioritySelector(
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006285).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2006285!");
+										Logging.Write("[ExtendedDuty] Interacting with Lingering Aether!");
 										GameObjectManager.GetObjectByNPCId(2006285).Interact();
 									})
 								),
 								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006285).Location, 3)
 							)
 						),
-						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006282) != null && GameObjectManager.GetObjectByNPCId(2006282).IsVisible,
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006283) != null && GameObjectManager.GetObjectByNPCId(2006283).IsTargetable,
 							new PrioritySelector(
-								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006282).Location) <= 3,
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006283).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2006282!");
-										GameObjectManager.GetObjectByNPCId(2006282).Interact();
+										Logging.Write("[ExtendedDuty] Interacting with Lingering Aether!");
+										GameObjectManager.GetObjectByNPCId(2006283).Interact();
 									})
 								),
-								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006282).Location, 3)
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006283).Location, 3)
 							)
 						),
-						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006284) != null && GameObjectManager.GetObjectByNPCId(2006284).IsVisible,
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006281) != null && GameObjectManager.GetObjectByNPCId(2006281).IsTargetable,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006281).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with Lingering Aether!");
+										GameObjectManager.GetObjectByNPCId(2006281).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006281).Location, 3)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006286) != null && GameObjectManager.GetObjectByNPCId(2006286).IsTargetable,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006286).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with Lingering Aether!");
+										GameObjectManager.GetObjectByNPCId(2006286).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006286).Location, 3)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006284) != null && GameObjectManager.GetObjectByNPCId(2006284).IsTargetable,
 							new PrioritySelector(
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006284).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2006284!");
+										Logging.Write("[ExtendedDuty] Interacting with Lingering Aether!");
 										GameObjectManager.GetObjectByNPCId(2006284).Interact();
 									})
 								),
 								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006284).Location, 3)
 							)
 						),
-						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006286) != null && GameObjectManager.GetObjectByNPCId(2006286).IsVisible,
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006282) != null && GameObjectManager.GetObjectByNPCId(2006282).IsTargetable,
 							new PrioritySelector(
-								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006286).Location) <= 3,
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2006282).Location) <= 3,
 									new Action(r =>
 									{
-										Logging.Write("[ExtendedDuty] Interacting with object 2006286!");
-										GameObjectManager.GetObjectByNPCId(2006286).Interact();
+										Logging.Write("[ExtendedDuty] Interacting with Lingering Aether!");
+										GameObjectManager.GetObjectByNPCId(2006282).Interact();
 									})
 								),
-								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006286).Location, 3)
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2006282).Location, 3)
 							)
 						)
 					)
