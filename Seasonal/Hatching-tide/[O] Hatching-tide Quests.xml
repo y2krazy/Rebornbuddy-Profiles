@@ -1,371 +1,328 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-########################################
-# Profile: [O] Hatching-tide Quests    #
-########################################
-# Author: y2krazy                      #
-########################################
-# Version: 1.0.1                       #
-########################################
-# Required Level: 15                   #
-########################################
-# Required Teleport Locations:         #
-# 	New Gridania                       #
-########################################
-# Required User Interaction:           #
-# 	Hard-boiled Hocus Quest            #
-# 	Spriggan Scramble Quest            #
-########################################
-# Required Setup:                      #
-# 	Fill out User Configuration below. #
-########################################
-# Rewards:                             #
-# 	Egg Hunter Barding                 #
-# 	Fortune Egg(s)                     #
-########################################
+#####################################
+# Profile: [O] Hatching-tide Quests #
+#####################################
+# Author: y2krazy                   #
+#####################################
+# Version: 2.0.0                    #
+#####################################
+# Required Level: 15                #
+#####################################
+# Required User Interaction:        #
+#  None                             #
+#####################################
+# Required Setup:                   #
+#  None                             #
+#####################################
 -->
-
 <!-- User Configuration -->
 <!DOCTYPE Profile [
 
-  <!-- Fortune Eggs Required for: -->
-  <!-- Archon Egg Tower: 5 -->
-  <!-- DustBunny: 5 -->
-  <!-- Spriggan Cap: 15 -->
-  <!-- Pa-Paya Orchestrion Roll: 5 -->
+  <!-- ExLog Colors -->
 
-  <!ENTITY Eggs "0"> <!-- Eggs to earn before stopping. -->
+  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+  <!ENTITY ExLogAck "#FF0000"> <!-- Warnings -->
 ]>
 <!-- End User Configuration -->
-
 <Profile>
-	<Name>[O] Hatching-tide Quests</Name>
+	<Name>[O] Hatching-tide Quests (v2.0.0)</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
 
-		<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="Checking for completed quests..." />
+		<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Checking for completed quests..." />
 
-		<!-- Jihli Dreams of Egghunts -->
+		<!-- When Eggs Fly -->
 
-		<If Condition="IsQuestCompleted(67664)">
-			<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="Jihli Dreams of Egghunts has been completed!" />
-		</If>
-
-		<If Condition="not IsQuestCompleted(67664)">
-			<If Condition="not HasQuest(67664)">
-				<If Condition="not IsOnMap(133)">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<Travel To="133" />
-				</If>
-				<MoveTo Name="Jihli Aliapoh" XYZ="-50.06488, 6.499999, -89.95197" />
-				<If Condition="IsQuestAcceptQualified(67664)">
-					<PickupQuest NpcId="1016894" QuestId="67664" XYZ="-50.06488, 6.499999, -89.95197" />
+		<If Condition="not IsQuestCompleted(67957)">
+			<If Condition="not HasQuest(67957)">
+				<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Picking up the When Eggs Fly quest!" />
+				<GetTo ZoneId="133" XYZ="-49.97333, 6.5, -89.95197" /> <!-- Jihli Aliapoh -->
+				<If Condition="IsQuestAcceptQualified(67957)">
+					<PickupQuestPlus NpcId="1019591" QuestId="67957" XYZ="-49.97333, 6.5, -89.95197" />
 				</If>
 			</If>
-			<If Condition="HasQuest(67664)">
-				<If Condition="GetQuestStep(67664) == 255">
-					<If Condition="not IsOnMap(133)">
-						<If Condition="not IsOnMap(132)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-								<TeleportTo Name="New Gridania" AetheryteId="2" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-								<Travel To="132" />
-							</If>
-						</If>
-						<Travel To="133" />
-					</If>
-					<MoveTo Name="Nonotta" XYZ="-47.53192, 5.742336, -100.4502" />
-					<TurnIn QuestId="67664" NpcId="1016895" XYZ="-47.53192, 5.742336, -100.4502" />
+			<If Condition="HasQuest(67957)">
+				<If Condition="GetQuestStep(67957) == 255">
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Turning in the When Eggs Fly quest!" />
+					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+					<TurnIn QuestId="67957" NpcId="1019592" XYZ="370.7484, -6.244256, -93.82776" />
 				</If>
 			</If>
 		</If>
 
-		<!-- Pass the Poacher -->
+		<!-- Shock-full of Eggcitement -->
 
-		<If Condition="&Eggs; == 0">
-			<ExLog Color="#FF0000" Name="Hatching-tide 2016" Message="If you're farming Fortune Eggs, please set the amount of Eggs you would like to obtain!" />
+		<If Condition="not IsQuestCompleted(67958)">
+			<If Condition="not HasQuest(67958)">
+				<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Picking up Shock-full of Eggcitement quest!" />
+				<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+				<If Condition="IsQuestAcceptQualified(67958)">
+					<Dismount/>
+					<PickupQuest NpcId="1019592" QuestId="67958" XYZ="370.7484, -6.244256, -93.82776" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67958)">
+				<If Condition="GetQuestStep(67958) == 1">
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Royal Seneschal..." />
+					<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+					<TalkTo NpcId="1019593" XYZ="372.8846, -6.640748, -101.6404" QuestId="67958" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67958) == 2">
+					<If Condition="Actionmanager.CanMount == 0">
+						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Shockfull_of_Eggcitement" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Nonotta..." />
+					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+					<RunCode Name="Shockfull_of_Eggcitement2" />
+					<WaitWhile Condition="GetQuestStep(67958) == 2" />
+				</If>
+				<If Condition="GetQuestStep(67958) == 3">
+					<If Condition="Actionmanager.CanMount == 0">
+						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Shockfull_of_Eggcitement" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Expectant Youth..." />
+					<GetTo ZoneId="154" XYZ="289.8451, -7.425683, -25.74207" /> <!-- Expectant Youth -->
+					<RunCode Name="Shockfull_of_Eggcitement3" />
+					<If Condition="Actionmanager.CanMount == 0">
+						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Shockfull_of_Eggcitement" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Impatient Man..." />
+					<GetTo ZoneId="154" XYZ="245.7465, -4.641291, -17.28851" /> <!-- Impatient Man -->
+					<RunCode Name="Shockfull_of_Eggcitement4" />
+					<If Condition="Actionmanager.CanMount == 0">
+						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Shockfull_of_Eggcitement" />
+					</If>
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Anxious Girl..." />
+					<GetTo ZoneId="154" XYZ="269.9473, -11.21869, 24.18555" /> <!-- Anxious Girl -->
+					<RunCode Name="Shockfull_of_Eggcitement5" />
+					<WaitWhile Condition="GetQuestStep(67958) == 3" />
+				</If>
+				<If Condition="GetQuestStep(67958) == 255">
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Turning in Shock-full of Eggcitement quest!" />
+					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+					<TurnIn QuestId="67958" NpcId="1019592" ItemId="2002054" XYZ="370.7484, -6.244256, -93.82776" />
+				</If>
+			</If>
 		</If>
+ 
+		<!-- Eggsistential Crisis -->
 
-		<While Condition="not HasAtLeast(14944,&Eggs;)">
-
-			<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="Checking for &Eggs; Fortune Egg(s)..." />
-
-			<If Condition="not HasQuest(67665)">
-				<If Condition="not IsOnMap(133)">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
-					</If>
-					<Travel To="133" />
-				</If>
-				<MoveTo Name="Cock-a-hoop Collector" XYZ="-53.42188, 6.885379, -111.101" />
-				<RunCode Name="Pickup67665" />
-				<!-- <If Condition="IsQuestAcceptQualified(67665)">
-					<PickupQuest NpcId="1016897" QuestId="67665" XYZ="-53.42188, 6.885379, -111.101" />
-				</If> -->
-			</If>
-			<If Condition="HasQuest(67665)">
-				<If Condition="GetQuestStep(67665) == 1">
-					<If Condition="not IsOnMap(133)">
-						<If Condition="not IsOnMap(132)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-								<TeleportTo Name="New Gridania" AetheryteId="2" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-								<Travel To="132" />
-							</If>
-						</If>
-						<Travel To="133" />
-					</If>
-					<MoveTo Name="Decorative Egg" XYZ="-53.75763, 6.973328, -112.1691" />
-					<UseObject NpcId="2006985" XYZ="-53.75763, 6.973328, -112.1691" Radius="10" UseTimes="1" />
-					<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="Looking for the Collector-in-training..." />
-					<WaitTimer WaitTime="3" />
-					<If Condition="GetQuestById(67665).QuestI8C == 1">
-						<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="Heading to the Botanists' Guild..." />
-						<MoveTo Name="Collector-in-training" XYZ="163.3282, 15.5, -96.04031" />
-						<MoveTo Name="Collector-in-training" XYZ="134.1315, 11.93477, -225.5659" />
-						<MoveTo Name="Collector-in-training" XYZ="20.22248, 13.15536, -284.4151" />
-						<MoveTo Name="Collector-in-training" XYZ="-112.042, 6.469089, -185.5668" />
-						<MoveTo Name="Collector-in-training" XYZ="-119.5597, 6.889931, -147.0391" />
-						<MoveTo Name="Collector-in-training" XYZ="-137.909, 6.806392, -127.4614" />
-						<TalkTo NpcId="1017006" XYZ="-330.8004, 7.085257, -208.6367" />
-					</If>
-					<If Condition="GetQuestById(67665).QuestI8C == 2">
-						<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="Heading to the Conjurers' Guild..." />
-						<MoveTo Name="Collector-in-training" XYZ="163.3282, 15.5, -96.04031" />
-						<MoveTo Name="Collector-in-training" XYZ="134.1315, 11.93477, -225.5659" />
-						<MoveTo Name="Collector-in-training" XYZ="20.22248, 13.15536, -284.4151" />
-						<MoveTo Name="Collector-in-training" XYZ="-124.5296, 7.060551, -193.3225" />
-						<MoveTo Name="Collector-in-training" XYZ="-163.9173, 9.804989, -166.1669" />
-						<MoveTo Name="Collector-in-training" XYZ="-145.1831, 6.575075, -113.4569" />
-						<TalkTo NpcId="1017007" XYZ="-160.7538, 4.185064, -19.21112" />
-					</If>
-					<If Condition="GetQuestById(67665).QuestI8C == 3">
-						<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="Heading to the Westshore Pier..." />
-						<MoveTo Name="Collector-in-training" XYZ="-115.2155, 7.249669, -143.4712" />
-						<MoveTo Name="Collector-in-training" XYZ="-141.4543, 6.759915, -124.874" />
-						<MoveTo Name="Collector-in-training" XYZ="-172.5146, 10.75655, -163.5972" />
-						<MoveTo Name="Collector-in-training" XYZ="-136.2484, 7.039979, -191.3918" />
-						<MoveTo Name="Collector-in-training" XYZ="-52.43565, 10.78572, -220.1932" />
-						<MoveTo Name="Collector-in-training" XYZ="2.958295, 6.956132, -138.4436" />
-						<MoveTo Name="Collector-in-training" XYZ="163.3282, 15.5, -96.04031" />
-						<MoveTo Name="Collector-in-training" XYZ="152.0007, 11.78088, -215.2662" />
-						<TalkTo NpcId="1017008" XYZ="211.8409, -2.58255, -232.3492" />
-					</If>
-					<If Condition="GetQuestById(67665).QuestI8C == 4">
-						<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="Heading to the Leatherworkers' Guild..." />
-						<MoveTo Name="Collector-in-training" XYZ="-115.2155, 7.249669, -143.4712" />
-						<MoveTo Name="Collector-in-training" XYZ="-141.4543, 6.759915, -124.874" />
-						<MoveTo Name="Collector-in-training" XYZ="-172.5146, 10.75655, -163.5972" />
-						<MoveTo Name="Collector-in-training" XYZ="-136.2484, 7.039979, -191.3918" />
-						<MoveTo Name="Collector-in-training" XYZ="20.77164, 13.14697, -283.9598" />
-						<MoveTo Name="Collector-in-training" XYZ="138.7081, 11.76984, -223.2555" />
-						<MoveTo Name="Collector-in-training" XYZ="163.3282, 15.5, -96.04031" />
-						<TalkTo NpcId="1017009" XYZ="75.18115, 8.001266, -144.5488" />
-					</If>
-				</If>
-				<If Condition="GetQuestStep(67665) == 255">
-					<If Condition="not IsOnMap(133)">
-						<If Condition="not IsOnMap(132)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-								<TeleportTo Name="New Gridania" AetheryteId="2" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-								<Travel To="132" />
-							</If>
-						</If>
-						<Travel To="133" />
-					</If>
-
-					<!-- Rewards
-
-					Fortune Egg
-
-					-->
-
-					<MoveTo Name="Cock-a-hoop Collector" XYZ="-53.42188, 6.885379, -111.101" />
-					<RunCode Name="TurnIn67665" />
-					<!-- <TurnIn QuestId="67665" NpcId="1016897" XYZ="-53.42188, 6.885379, -111.101" /> -->
+		<If Condition="not IsQuestCompleted(67959)">
+			<If Condition="not HasQuest(67959)">
+				<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Picking up Eggsistential Crisis quest!" />
+				<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+				<If Condition="IsQuestAcceptQualified(67959)">
+					<PickupQuest NpcId="1019592" QuestId="67959" XYZ="370.7484, -6.244256, -93.82776" />
 				</If>
 			</If>
-
-		</While>
-
-		<!-- Eggsaltation of a Lark -->
-
-		<If Condition="IsQuestCompleted(67668)">
-			<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="Eggsaltation of a Lark has been completed!" />
-		</If>
-
-		<If Condition="not IsQuestCompleted(67668)">
-			<If Condition="not HasQuest(67668)">
-				<If Condition="not IsOnMap(133)">
-					<If Condition="not IsOnMap(132)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-							<TeleportTo Name="New Gridania" AetheryteId="2" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-							<Travel To="132" />
-						</If>
+			<If Condition="HasQuest(67959)">
+				<If Condition="GetQuestStep(67959) == 1">
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Jihli Aliapoh..." />
+					<GetTo ZoneId="133" XYZ="-49.97333, 6.5, -89.95197" /> <!-- Jihli Aliapoh -->
+					<TalkTo NpcId="1019591" XYZ="-49.97333, 6.5, -89.95197" QuestId="67959" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67959) == 2">
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Soothing Riggy..." />
+					<GetTo ZoneId="133" XYZ="-247.8828, 2.418674, -216.3577" /> <!-- Riggy -->
+					<EmoteNPC NpcId="1019608" Emote="soothe" XYZ="-247.8828, 2.418674, -216.3577" Radius="10" QuestId="67959" StepId="2"/>
+				</If>
+				<If Condition="GetQuestStep(67959) == 3">
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Nonotta..." />
+					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+					<TalkTo NpcId="1019592" XYZ="370.7484, -6.244256, -93.82776" QuestId="67959" StepId="3" />
+				</If>
+				<If Condition="GetQuestStep(67959) == 4">
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+					<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+					<TalkTo NpcId="1019593" XYZ="372.8846, -6.640748, -101.6404" QuestId="67959" StepId="4" />
+				</If>
+				<If Condition="GetQuestStep(67959) == 5">
+					<If Condition="Actionmanager.CanMount == 0">
+						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Eggsistential_Crisis" />
 					</If>
-					<Travel To="133" />
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
+					<GetTo ZoneId="154" XYZ="258.8387, -7.039977, -8.590881" /> <!-- Riggy -->
+					<RunCode Name="Eggsistential_Crisis2" />
 				</If>
-				<MoveTo Name="Nonotta" XYZ="-47.53192, 5.742336, -100.4502" />
-				<If Condition="not IsQuestAcceptQualified(67668)">
-					<ExLog Color="#FF0000" Name="Hatching-tide 2016" Message="Please ensure you've manually completed the Hard-boiled Hocus and Spriggan Scramble quests!" />
-					<StopBot/>
-				</If>
-				<If Condition="IsQuestAcceptQualified(67668)">
-					<PickupQuest NpcId="1016895" QuestId="67668" XYZ="-47.53192, 5.742336, -100.4502" />
-				</If>
-			</If>
-			<If Condition="HasQuest(67668)">
-				<If Condition="GetQuestStep(67668) == 1">
-					<If Condition="not IsOnMap(133)">
-						<If Condition="not IsOnMap(132)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-								<TeleportTo Name="New Gridania" AetheryteId="2" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-								<Travel To="132" />
-							</If>
-						</If>
-						<Travel To="133" />
+				<If Condition="GetQuestStep(67959) == 6">
+					<If Condition="Actionmanager.CanMount == 0">
+						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Eggsistential_Crisis" />
 					</If>
-					<MoveTo Name="Jihli Aliapoh" XYZ="-50.06488, 6.499999, -89.95197" />
-					<TalkTo NpcId="1016894" XYZ="-50.06488, 6.499999, -89.95197" QuestId="67668" StepId="1" />
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
+					<GetTo ZoneId="154" XYZ="238.9104, -12.48186, 77.98877" /> <!-- Riggy -->
+					<RunCode Name="Eggsistential_Crisis3" />
 				</If>
-				<If Condition="GetQuestStep(67668) == 2">
-					<While Condition="not IsTodoChecked(67668, 2, 0)">
-						<If Condition="not IsOnMap(133)">
-							<If Condition="not IsOnMap(132)">
-								<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-									<TeleportTo Name="New Gridania" AetheryteId="2" />
-								</If>
-								<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-									<Travel To="132" />
-								</If>
-							</If>
-							<Travel To="133" />
-						</If>
-						<MoveTo Name="Stout Elm" XYZ="-138.9335, 6.640973, -115.7703" />
-						<TalkTo NpcId="1000787" XYZ="-138.9335, 6.640973, -115.7703" QuestId="67668" StepId="2" />
-					</While>
-					<While Condition="not IsTodoChecked(67668, 2, 1)">
-						<If Condition="not IsOnMap(132) and not IsOnMap(133)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-								<TeleportTo Name="New Gridania" AetheryteId="2" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-								<Travel To="132" />
-							</If>
-						</If>
-						<If Condition="IsOnMap(133)">
-							<Travel To="132" />
-						</If>
-						<MoveTo Name="Bernadette" XYZ="49.79016, -1.466969, 51.74329" />
-						<TalkTo NpcId="1000146" XYZ="49.79016, -1.466969, 51.74329" QuestId="67668" StepId="2" />
-						<TalkTo NpcId="1000123" XYZ="142.5649, -13.18344, 161.9135" QuestId="67668" StepId="2" />
-					</While>
-				</If>
-				<If Condition="GetQuestStep(67668) == 3">
-					<If Condition="not IsOnMap(133)">
-						<If Condition="not IsOnMap(132)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-								<TeleportTo Name="New Gridania" AetheryteId="2" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-								<Travel To="132" />
-							</If>
-						</If>
-						<Travel To="133" />
+				<If Condition="GetQuestStep(67959) == 7">
+					<If Condition="Actionmanager.CanMount == 0">
+						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Eggsistential_Crisis" />
 					</If>
-					<MoveTo Name="Jihli Aliapoh" XYZ="-50.06488, 6.499999, -89.95197" />
-					<TalkTo NpcId="1016894" XYZ="-50.06488, 6.499999, -89.95197" QuestId="67668" StepId="3" />
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
+					<GetTo ZoneId="154" XYZ="338.4907, -5.823289, 29.52612" /> <!-- Riggy -->
+					<RunCode Name="Eggsistential_Crisis4" />
 				</If>
-				<If Condition="GetQuestStep(67668) == 255">
-					<If Condition="not IsOnMap(148)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(3)">
-							<TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(3)">
-							<Travel To="148" />
-						</If>
-					</If>
-
-					<!-- Rewards
-
-					Egg Hunter Barding
-
-					-->
-
-					<MoveTo Name="Keitha" XYZ="-59.00665, -0.01083579, 26.41333" />
-					<TurnIn QuestId="67668" NpcId="1000470" XYZ="-59.00665, -0.01083579, 26.41333" />
-					<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="You've completed the Hatching-tide seasonal event quests!" />
+				<If Condition="GetQuestStep(67959) == 255">
+					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Turning in Eggsistential Crisis quest!" />
+					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+					<TurnIn QuestId="67959" NpcId="1019592" ItemId="2002055" XYZ="370.7484, -6.244256, -93.82776" />
 				</If>
 			</If>
 		</If>
 
-		<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="You've obtained &Eggs; Fortune Egg(s)!" />
-		<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="If you need more Fortune Eggs, please adjust the quantity in the user configuration within the profile!" />
-		<ExLog Color="#66FF66" Name="Hatching-tide 2016" Message="Stopping the bot. Nothing left for me to to!" />
+		<ExLog Color="&ExLog;" Name="Hatching-tide" Message="You've completed the Hatching-tide seasonal event quests!"/>
 
 	</Order>
-	<GrindAreas>
-	</GrindAreas>
 	<CodeChunks>
-		<CodeChunk Name="Pickup67665">
+		<CodeChunk Name="Shockfull_of_Eggcitement">
 			<![CDATA[ 
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1016897).Interact();
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019593).Interact();
 				await Buddy.Coroutines.Coroutine.Sleep(2000);
 				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
 					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
 				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.JournalAccept.IsOpen)
-					ff14bot.RemoteWindows.JournalAccept.Accept();
+				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-		]]>
+			]]>
 		</CodeChunk>
-		<CodeChunk Name="TurnIn67665">
+		<CodeChunk Name="Shockfull_of_Eggcitement2">
 			<![CDATA[ 
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1016897).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019592).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(370.7484f,-6.244256f,-93.82776f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Buddy.Coroutines.Coroutine.Sleep(1000);
 				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
-					ff14bot.RemoteWindows.JournalResult.Complete();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Shockfull_of_Eggcitement3">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019604).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(289.8451f,-7.425683f,-25.74207f));
 				await Buddy.Coroutines.Coroutine.Sleep(5000);
-		]]>
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Shockfull_of_Eggcitement4">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019605).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(245.7465f,-4.641291f,-17.28851f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Shockfull_of_Eggcitement5">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019606).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(269.9473f,-11.21869f,24.18555f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Eggsistential_Crisis">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019593).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
+					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Eggsistential_Crisis2">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019612).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(258.8387f,-7.039977f,-8.590881f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Eggsistential_Crisis3">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019613).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(238.9104f,-12.48186f,77.98877f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Eggsistential_Crisis4">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019614).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(338.4907f,-5.823289f,29.52612f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+			]]>
 		</CodeChunk>
 	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
 </Profile>
