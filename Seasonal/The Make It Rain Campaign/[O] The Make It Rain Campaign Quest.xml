@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+################################################
+# Profile: [O] The Make It Rain Campaign Quest #
+################################################
+# Author: y2krazy                              #
+################################################
+# Version: 1.0.0                               #
+################################################
+# Required Level: 15                           #
+################################################
+# Required User Interaction:                   #
+#  None                                        #
+################################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- ExLog Colors -->
+
+  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] The Make It Rain Campaign Quest (v1.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<ExLog Color="&ExLog;" Name="The Make It Rain Campaign" Message="Checking for completed quest..."/>
+
+		<!-- Once More with Feeling -->
+
+		<If Condition="not IsQuestCompleted(67960)">
+			<If Condition="not HasQuest(67960)">
+				<ExLog Color="&ExLog;" Name="The Make It Rain Campaign" Message="Picking up the Golden Rain quest!"/>
+				<GetTo ZoneId="130" XYZ="-90.04352, 4, -101.6404"/> <!-- Beggarly Bloke -->
+				<If Condition="IsQuestAcceptQualified(67960)">
+					<PickupQuest NpcId="1019794" QuestId="67960" XYZ="-90.04352, 4, -101.6404"/>
+				</If>
+			</If>
+			<If Condition="HasQuest(67960)">
+                <If Condition="GetQuestStep(67960) == 1">
+					<ExLog Color="&ExLog;" Name="The Make It Rain Campaign" Message="Talking to Saucer Attendant..."/>
+					<GetTo ZoneId="130" XYZ="-35.1416, 5.000001, -130.3884"/> <!-- Saucer Attendant -->
+					<TalkTo NpcId="1019795" XYZ="-35.1416, 5.000001, -130.3884" QuestId="67960" StepId="1"/>
+                </If>
+				<If Condition="GetQuestStep(67960) == 255">
+
+					<!-- Rewards
+
+					MGP Gold Card (30,000 MGP)
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="The Make It Rain Campaign" Message="Turning in the Golden Rain quest!"/>
+					<GetTo ZoneId="144" XYZ="17.65466, 3.99973, 40.63477"/> <!-- Ollier -->
+					<TurnIn QuestId="67960" ItemId="2002056" NpcId="1019796" XYZ="17.65466, 3.99973, 40.63477"/>
+				</If>
+			</If>
+		</If>
+
+		<ExLog Color="&ExLog;" Name="The Make It Rain Campaign" Message="You've completed the The Make It Rain Campaign seasonal event quest!"/>
+
+	</Order>
+	<CodeChunks>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
