@@ -5,7 +5,7 @@
 ######################################################
 # Author: y2krazy                                    #
 ######################################################
-# Version: 1.0.1                                     #
+# Version: 1.0.2                                     #
 ######################################################
 # Required Level: 15                                 #
 ######################################################
@@ -27,7 +27,7 @@
 ######################################################
 -->
 <Profile>
-	<Name>[O] Aethernet - Gridania</Name>
+	<Name>[O] Aethernet - Gridania (v1.0.2)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -69,12 +69,7 @@
 			<!-- Gridania Aethernet -->
 
 			<If Condition="not IsOnMap(132)">
-				<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-					<TeleportTo Name="New Gridania" AetheryteId="2" />
-				</If>
-				<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-					<Travel To="132" />
-				</If>
+				<GetTo ZoneId="132" XYZ="29.56105, 1.691584, 33.32197"/> <!-- New Gridania -->
 			</If>
 
 			<!-- Archers' Guild -->
@@ -82,15 +77,7 @@
 			<UseObject UseDistance="3.0" NpcId="25" XYZ="166.5828, -1.724304, 86.13721" Radius="10" UseTimes="1" BlacklistAfter="True" />
 
 			<If Condition="not IsOnMap(133)">
-				<If Condition="not IsOnMap(132)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(2)">
-						<TeleportTo Name="New Gridania" AetheryteId="2" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(2)">
-						<Travel To="132" />
-					</If>
-				</If>
-				<Travel To="133" />
+				<GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751"/> <!-- Old Gridania -->
 			</If>
 
 			<!-- Leatherworkers' Guild -->

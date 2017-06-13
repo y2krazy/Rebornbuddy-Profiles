@@ -5,7 +5,7 @@
 ########################################
 # Author: y2krazy                      #
 ########################################
-# Version: 1.0.1                       #
+# Version: 1.0.2                       #
 ########################################
 # Required Level: 59                   #
 ########################################
@@ -43,7 +43,7 @@
 <!-- End User Configuration -->
 
 <Profile>
-	<Name>[O] All Heavensward Zones</Name>
+	<Name>[O] All Heavensward Zones (v1.0.2)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -53,21 +53,7 @@
 			<!-- Coerthas Western Highlands -->
 
 			<If Condition="not IsOnMap(397)">
-				<If Condition="Managers.WorldManager.HasAetheryteId(71)">
-					<TeleportTo Name="Falcon's Nest" AetheryteId="71" />
-				</If>
-				<If Condition="not Managers.WorldManager.HasAetheryteId(71)">
-							
-					<!-- TO DO -->
-
-					<!-- Update Travel.cs with new zone information.  -->
-
-					<!-- TO DO -->
-
-					<!-- <Travel To="397" /> -->
-					<LogMessage Message="Please manually move to Falcon's Nest and restart the profile." />
-					<StopBot />
-				</If>
+				<GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
 			</If>
 
 			<!-- Aether Current #1 -->
@@ -166,17 +152,7 @@
 			<!-- The Dravanian Forelands -->
 
 			<If Condition="not IsOnMap(398)">
-				<If Condition="Managers.WorldManager.HasAetheryteId(76)">
-					<TeleportTo Name="Tailfeather" AetheryteId="76" />
-				</If>
-				<If Condition="not Managers.WorldManager.HasAetheryteId(76)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(77)">
-						<TeleportTo Name="Anyx Trine" AetheryteId="77" />
-					</If>
-				</If>
-				<If Condition="not Managers.WorldManager.HasAetheryteId(77)">
-					<Travel To="398" />
-				</If>
+				<GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532"/> <!-- Tailfeather -->
 			</If>
 
 			<!-- Aether Current #1 -->
@@ -278,17 +254,7 @@
 			<!-- The Churning Mists -->
 
 			<If Condition="not IsOnMap(400)">
-				<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-					<TeleportTo Name="Moghome" AetheryteId="78" />
-				</If>
-				<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-						<TeleportTo Name="Zenith" AetheryteId="79" />
-					</If>
-				</If>
-				<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-					<Travel To="400" />
-				</If>
+				<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 			</If>
 
 			<!-- Aether Current #1 -->
@@ -370,14 +336,7 @@
 			<!-- The Sea of Clouds -->
 
 			<If Condition="not IsOnMap(401)">
-				<If Condition="not IsOnMap(401)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(72)">
-						<TeleportTo Name="Camp Cloudtop" AetheryteId="72" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(72)">
-						<Travel To="401" />
-					</If>
-				</If>
+				<GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152"/> <!-- Camp Cloudtop -->
 			</If>
 
 			<!-- Aether Current #1 -->
@@ -431,27 +390,14 @@
 			</If>
 			<If Condition="IsQuestCompleted(67179)">
 				<If Condition="not IsOnMap(129)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-						<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-						<Travel To="129" />
-					</If>
+					<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
 				</If>
 				<If Condition="Managers.WorldManager.HasAetheryteId(73)">
 					<TeleportTo Name="Ok' Zundu" AetheryteId="73" />
 				</If>
 				<If Condition="not Managers.WorldManager.HasAetheryteId(73)">
 					<If Condition="not IsOnMap(419)">
-						<If Condition="not IsOnMap(418)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(70)">
-								<TeleportTo Name="Foundation" AetheryteId="70" />
-							</If>
-							<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
-								<Travel To="418" />
-							</If>
-						</If>
-						<Travel To="419" />
+						<GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/> <!-- The Pillars -->
 					</If>
 					<If Condition="IsOnMap(419)">
 						<UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
@@ -496,15 +442,7 @@
 			<!-- The Dravanian Hinterlands -->
 
 			<If Condition="not IsOnMap(399)">
-				<If Condition="not IsOnMap(478)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(75)">
-						<TeleportTo Name="Idyllshire" AetheryteId="75" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(75)">
-						<Travel To="478" />
-					</If>
-				</If>
-				<Travel To="399_East" />
+				<GetTo ZoneId="399" XYZ="-216.0735, 103.1677, -584.981"/> <!-- The Dravanian Hinterlands (East) -->
 			</If>
 
 			<!-- Aether Current #1 -->
@@ -542,22 +480,9 @@
 			</If>
 			<If Condition="IsQuestCompleted(67194)">
 				<If Condition="not IsOnMap(129)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(8)">
-						<TeleportTo Name="Limsa Lominsa Lower Decks" AetheryteId="8" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(8)">
-						<Travel To="129" />
-					</If>
+					<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
 				</If>
-				<If Condition="not IsOnMap(478)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(75)">
-						<TeleportTo Name="Idyllshire" AetheryteId="75" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(75)">
-						<Travel To="478" />
-					</If>
-				</If>
-				<Travel To="399_West" />
+				<GetTo ZoneId="399" XYZ="-529.9246, 150.2556, -467.4438"/> <!-- The Dravanian Hinterlands (West) -->
 			</If>
 
 			<!-- Aether Current #5 -->

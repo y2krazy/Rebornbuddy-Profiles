@@ -5,7 +5,7 @@
 ###################################################################
 # Author: y2krazy                                                 #
 ###################################################################
-# Version: 1.0.0                                                  #
+# Version: 1.0.1                                                  #
 ###################################################################
 # Required Level: 50                                              #
 ###################################################################
@@ -24,7 +24,7 @@
 ###################################################################
 -->
 <Profile>
-	<Name>[O] Aethernet - Foundation</Name>
+	<Name>[O] Aethernet - Foundation (v1.0.1)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -42,21 +42,7 @@
 			<!-- Foundation Aethernet -->
 
 			<If Condition="not IsOnMap(418)">
-				<If Condition="Managers.WorldManager.HasAetheryteId(70)">
-					<TeleportTo Name="Foundation" AetheryteId="70" />
-				</If>
-				<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
-							
-					<!-- TO DO -->
-
-					<!-- Update Travel.cs with new zone information.  -->
-
-					<!-- TO DO -->
-
-					<!-- <Travel To="418" /> -->
-					<LogMessage Message="Please manually move to Foundation and restart the profile." />
-					<StopBot />
-				</If>
+				<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
 			</If>
 
 			<!-- The Brume -->
@@ -72,24 +58,7 @@
 			<UseObject UseDistance="3.0" NpcId="81" XYZ="-111.4366, 16.12872, -27.05432" Radius="10" UseTimes="1" BlacklistAfter="True" />
 
 			<If Condition="not IsOnMap(419)">
-				<If Condition="not IsOnMap(418)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(70)">
-						<TeleportTo Name="Foundation" AetheryteId="70" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
-								
-						<!-- TO DO -->
-
-						<!-- Update Travel.cs with new zone information.  -->
-
-						<!-- TO DO -->
-
-						<!-- <Travel To="418" /> -->
-						<LogMessage Message="Please manually move to Foundation and restart the profile." />
-						<StopBot />
-					</If>
-				</If>
-				<Travel To="419" />
+				<GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/> <!-- The Pillars -->
 			</If>
 
 			<!-- The Jeweled Crozier -->
