@@ -5,7 +5,7 @@
 ########################################
 # Author: y2krazy                      #
 ########################################
-# Version: 2.1.0b                      #
+# Version: 2.1.1                       #
 ########################################
 # Required Level: 60                   #
 ########################################
@@ -18,7 +18,7 @@
 ########################################
 -->
 <Profile>
-	<Name>[O] Heavensward (Patch 3.4) (v2.1.0b)</Name>
+	<Name>[O] Heavensward (Patch 3.4) (v2.1.1)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -160,8 +160,7 @@
                 <TalkTo NpcId="1017725" XYZ="603.6315, 331.4291, -306.508" QuestId="67878" StepId="2"/>
             </If>
             <If Condition="GetQuestStep(67878) == 3">
-                <LogMessage Message="[Heavensward (3.4)] Please complete Xelphatol manually!"/>
-                <LogMessage Message="[Heavensward (3.4)] Please restart this profile after you are done."/>
+                <RunCode Name="Shadows_of_the_First"/>
                 <StopBot/>
             </If>
             <If Condition="GetQuestStep(67878) == 4">
@@ -373,8 +372,7 @@
                 <TalkTo NpcId="1017741" XYZ="146.6849, 24.24001, -632.4712" QuestId="67881" StepId="7"/>
             </If>
             <If Condition="GetQuestStep(67881) == 8">
-                <LogMessage Message="[Heavensward (3.4)] Please complete The Navel (Hard) manually!"/>
-                <LogMessage Message="[Heavensward (3.4)] Please restart this profile after you are done."/>
+                <RunCode Name="The_Beast_that_Mourned_at_the_Heart_of_the_Mountain"/>
                 <StopBot/>
             </If>
 
@@ -599,8 +597,7 @@
                     <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711"/>
                 </If>
                 <NoCombatMoveTo Name="Alphinaud" XYZ="4.226685, 0.9134139, -9.720032"/>
-                <LogMessage Message="[Heavensward (3.4)] Please manually complete the One Life for One World duty!"/>
-                <LogMessage Message="[Heavensward (3.4)] Run this profile again once you finish the duty."/>
+                <RunCode Name="One_Life_for_One_World"/>
                 <StopBot/>
 
                 <!-- TO DO -->
@@ -714,10 +711,12 @@
                 if(slot.RawItemId == 2995)
                 {
                     slot.Move(EquipSlot);
+                    await Coroutine.Sleep(1000);
                 }
                 if(slot.RawItemId == 3306)
                 {
                     slot.Move(EquipSlot2);
+                    await Coroutine.Sleep(1000);
                 }
                 }
             ]]>
@@ -874,6 +873,39 @@
                 }
                 await Coroutine.Sleep(1000);
             ]]>
+        </CodeChunk>
+        <CodeChunk Name="Shadows_of_the_First">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67878) == 3)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Heavensward (3.4)]\nPlease manually complete the Xelphatol duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+        	]]>
+        </CodeChunk>
+        <CodeChunk Name="The_Beast_that_Mourned_at_the_Heart_of_the_Mountain">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67881) == 8)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Heavensward (3.4)]\nPlease manually complete the The Navel (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+        	]]>
+        </CodeChunk>
+        <CodeChunk Name="One_Life_for_One_World">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67885) == 2)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Heavensward (3.4)]\nPlease manually complete the One Life for One World duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+        	]]>
         </CodeChunk>
 	</CodeChunks>
 	<GrindAreas>
