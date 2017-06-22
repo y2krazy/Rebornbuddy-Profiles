@@ -105,14 +105,14 @@ namespace ff14bot.NeoProfiles
                         if (!Core.Player.IsCasting)
                         {
                             GameObjectManager.GetObjectByNPCId(NPC).Face();
-                            if (Actionmanager.DoAction(SpellID, GameObjectManager.GetObjectByNPCId(NPC)))
+                            if (ActionManager.DoAction(SpellID, GameObjectManager.GetObjectByNPCId(NPC)))
                             {
-                                Actionmanager.DoAction(SpellID, GameObjectManager.GetObjectByNPCId(NPC));
+                                ActionManager.DoAction(SpellID, GameObjectManager.GetObjectByNPCId(NPC));
 								casted = true;
                             }
                             else
                             {
-                                Actionmanager.DoActionLocation(SpellID, Core.Player.Location);
+                                ActionManager.DoActionLocation(SpellID, Core.Player.Location);
 								casted = true;
                             }
                         }

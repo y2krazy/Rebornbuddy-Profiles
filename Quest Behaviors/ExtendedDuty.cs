@@ -103,7 +103,7 @@ namespace ff14bot.NeoProfiles.Tags
 							// new Action(r =>
 							// {
 								// Logging.Write("[ExtendedDuty] Using Hide on me!");
-								// ff14bot.Managers.Actionmanager.DoAction(2245, Core.Me);
+								// ff14bot.Managers.ActionManager.DoAction(2245, Core.Me);
 							// })
 						// ),
 						// CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(3165).Location, 3)
@@ -399,7 +399,7 @@ namespace ff14bot.NeoProfiles.Tags
 									new Action(r =>
 									{
 										Logging.Write("[ExtendedDuty] Using Physick on Tonberry Wanderer!");
-										ff14bot.Managers.Actionmanager.DoAction(190, GameObjectManager.GetObjectByNPCId(1650));
+										ff14bot.Managers.ActionManager.DoAction(190, GameObjectManager.GetObjectByNPCId(1650));
 									})
 								),
 								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(1650).Location, 3)
@@ -596,7 +596,7 @@ namespace ff14bot.NeoProfiles.Tags
 									new Action(r =>
 									{
 										Logging.Write("[ExtendedDuty] Using spell 3594 on NPC 3861!");
-										ff14bot.Managers.Actionmanager.DoAction(3594, GameObjectManager.GetObjectByNPCId(3861));
+										ff14bot.Managers.ActionManager.DoAction(3594, GameObjectManager.GetObjectByNPCId(3861));
 									})
 								),
 								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(3861).Location, 3)

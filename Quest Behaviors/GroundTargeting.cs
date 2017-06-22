@@ -92,7 +92,7 @@ namespace ff14bot.NeoProfiles
                     new Action(ret => _done = true)),
                 new Decorator(ret => Core.Me.Location.Distance(Position) <= Distance,
                     new PrioritySelector(
-                        new Decorator(ret => Actionmanager.InSpellInRangeLOS(1, GameObjectManager.GetObjectByNPCId(NPC)) == Enums.SpellRangeCheck.ErrorNotInLineOfSight,
+                        new Decorator(ret => ActionManager.InSpellInRangeLOS(1, GameObjectManager.GetObjectByNPCId(NPC)) == Enums.SpellRangeCheck.ErrorNotInLineOfSight,
                             CommonBehaviors.MoveToLos(r => GameObjectManager.GetObjectByNPCId(NPC), true)
                         ),
                         new Decorator(ret => true,
@@ -100,12 +100,12 @@ namespace ff14bot.NeoProfiles
                             {
                                 if (Core.Player.IsMounted)
                                 {
-                                    Actionmanager.Dismount();
+                                    ActionManager.Dismount();
                                 }
                                 Navigator.PlayerMover.MoveStop();
                                 if (!Core.Player.IsCasting)
                                 {
-							        Actionmanager.DoActionLocation(Enums.ActionType.KeyItem, ItemID, XYZ);
+							        ActionManager.DoActionLocation(Enums.ActionType.KeyItem, ItemID, XYZ);
 							        casted = true;
                                 }
                             })

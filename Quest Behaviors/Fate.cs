@@ -446,8 +446,8 @@ namespace ff14bot.NeoProfiles
 
                 if (MovementManager.IsMoving && !Core.Me.IsMounted)
                 {
-                    if (Actionmanager.IsSprintReady && WorldManager.InSanctuary) { Actionmanager.Sprint(); }
-                    else if (Actionmanager.IsSprintReady && !WorldManager.InSanctuary && Core.Me.InCombat) { Actionmanager.Sprint(); }
+                    if (ActionManager.IsSprintReady && WorldManager.InSanctuary) { ActionManager.Sprint(); }
+                    else if (ActionManager.IsSprintReady && !WorldManager.InSanctuary && Core.Me.InCombat) { ActionManager.Sprint(); }
                 }
 
                 await Coroutine.Yield();
