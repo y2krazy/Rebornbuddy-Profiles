@@ -27,7 +27,43 @@ namespace ff14bot.NeoProfiles.Tags
         protected override Composite CreateBehavior()
         {
             return new PrioritySelector(
+                new Decorator(ret => QuestId == 65713 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65714 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
                 new Decorator(ret => QuestId == 65715 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65716 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65717 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65718 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65719 && SelectYesno.IsOpen,
                     new Action(r =>
                     {
                         SelectYesno.ClickYes();
@@ -40,6 +76,12 @@ namespace ff14bot.NeoProfiles.Tags
                     })
                 ),
                 new Decorator(ret => QuestId == 65789 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65987 && SelectYesno.IsOpen,
                     new Action(r =>
                     {
                         SelectYesno.ClickYes();

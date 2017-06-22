@@ -53,16 +53,64 @@ namespace ff14bot.NeoProfiles
                         SelectYesno.ClickYes();
                     })
                 ),
+                new Decorator(ret => QuestId == 65667 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65668 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65669 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65821 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65846 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
+                new Decorator(ret => QuestId == 65880 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
 				new Decorator(ret => QuestId == 65964 && SelectYesno.IsOpen,
 					new Action(r =>
 					{
 						SelectYesno.ClickYes();
 					})
 				),
+                new Decorator(ret => QuestId == 65988 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
+                    })
+                ),
                 new Decorator(ret => QuestId == 66053 && SelectString.IsOpen,
                     new Action(r =>
                     {
                         SelectString.ClickSlot(2);
+                    })
+                ),
+                new Decorator(ret => QuestId == 66068 && SelectYesno.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectYesno.ClickYes();
                     })
                 ),
                 new Decorator(ret => QuestId == 66133 && SelectYesno.IsOpen,
