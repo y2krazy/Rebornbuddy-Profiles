@@ -6,7 +6,7 @@
 # Authors: y2krazy                        #
 #          kagamihiiragi17                #
 ###########################################
-# Version: 2.1.1                          #
+# Version: 2.1.2                          #
 ###########################################
 # Required Level: 50+                     #
 ###########################################
@@ -18,7 +18,7 @@
 ###########################################
 -->
 <Profile>
-	<Name>[O] A Realm Reborn (Patch 2.4) (v2.1.1)</Name>
+	<Name>[O] A Realm Reborn (Patch 2.4) (v2.1.2)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -535,8 +535,7 @@
                     <TalkTo NpcId="1010054" XYZ="-916.6552, 229.3692, -6.424072" QuestId="65611" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(65611) == 4">
-                    <LogMessage Message="[A Realm Reborn (2.4)] Please complete Snowcloak manually!"/>
-                    <LogMessage Message="[A Realm Reborn (2.4)] Please restart this profile after you are done."/>
+                    <RunCode Name="The_Path_of_the_Righteous"/>
                     <StopBot/>
                 </If>
                 <If Condition="GetQuestStep(65611) == 255">
@@ -985,8 +984,7 @@
                     <TalkTo NpcId="1010054" XYZ="-916.6552, 229.3692, -6.424072" QuestId="65620" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(65620) == 4">
-                    <LogMessage Message="[A Realm Reborn (2.4)] Please complete Akh Afah Amphitheatre (Hard) manually!"/>
-                    <LogMessage Message="[A Realm Reborn (2.4)] Please restart this profile after you are done."/>
+                    <RunCode Name="The_Instruments_of_Our_Deliverance"/>
                     <StopBot/>
                 </If>
                 <If Condition="GetQuestStep(65620) == 255">
@@ -1365,6 +1363,28 @@
                 }
                 }
                 await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="The_Path_of_the_Righteous">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(65611) == 4)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.4)]\nPlease manually complete the Snowcloak duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="The_Instruments_of_Our_Deliverance">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(65620) == 4)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.4)]\nPlease manually complete the Akh Afah Amphitheatre (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
             ]]>
         </CodeChunk>
 	</CodeChunks>

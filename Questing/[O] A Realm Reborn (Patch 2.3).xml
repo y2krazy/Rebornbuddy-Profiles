@@ -6,7 +6,7 @@
 # Authors: y2krazy                        #
 #          kagamihiiragi17                #
 ###########################################
-# Version: 2.1.1                          #
+# Version: 2.1.2                          #
 ###########################################
 # Required Level: 50+                     #
 ###########################################
@@ -19,7 +19,7 @@
 ###########################################
 -->
 <Profile>
-	<Name>[O] A Realm Reborn (Patch 2.3) (v2.1.1)</Name>
+	<Name>[O] A Realm Reborn (Patch 2.3) (v2.1.2)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -710,8 +710,7 @@
                 </If>
                 <If Condition="GetQuestStep(66988) == 2">
                     <If Condition="GetQuestStep(66988) == 2">
-                        <LogMessage Message="[A Realm Reborn (2.3)] Please complete Striking Tree (Hard) manually!"/>
-                        <LogMessage Message="[A Realm Reborn (2.3)] Please restart this profile after you are done."/>
+                        <RunCode Name="Levin_an_Impression"/>
                         <StopBot/>
                     </If>
                 </If>
@@ -982,8 +981,7 @@
                         <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
                     </If>
                     <NoCombatMoveTo Name="Hoary Boulder" XYZ="132.9518, -2.204463, -556.2372"/>
-                    <LogMessage Message="[A Realm Reborn (2.3)] Please manually complete the Guardian of Eorzea duty!"/>
-                    <LogMessage Message="[A Realm Reborn (2.3)] Run this profile again once you finish the duty."/>
+                    <RunCode Name="Guardian_of_Eorzea"/>
                     <StopBot/>
 
                     <!-- TO DO -->
@@ -1582,6 +1580,28 @@
                 }
                 }
                 await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="Levin_an_Impression">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(66988) == 2)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.3)]\nPlease manually complete the Striking Tree (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="Guardian_of_Eorzea">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(66992) == 2)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.3)]\nPlease manually complete the Guardian of Eorzea duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
             ]]>
         </CodeChunk>
 	</CodeChunks>

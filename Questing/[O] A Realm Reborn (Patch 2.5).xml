@@ -6,7 +6,7 @@
 # Authors: y2krazy                        #
 #          kagamihiiragi17                #
 ###########################################
-# Version: 2.1.1                          #
+# Version: 2.1.2                          #
 ###########################################
 # Required Level: 50+                     #
 ###########################################
@@ -18,7 +18,7 @@
 ###########################################
 -->
 <Profile>
-	<Name>[O] A Realm Reborn (Patch 2.5) (v2.1.1)</Name>
+	<Name>[O] A Realm Reborn (Patch 2.5) (v2.1.2)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -169,8 +169,7 @@
                 </If>
 				<MoveTo Name="Papalymo" XYZ="0.1677856, -3.000001, -52.71997"/>
 				<If Condition="not IsQuestAcceptQualified(66693)">
-					<LogMessage Message="[A Realm Reborn (2.5)] Please manually complete The Bowl of Embers (Hard) duty!"/>
-                    <LogMessage Message="[A Realm Reborn (2.5)] Run this profile again once you finish the duty."/>
+					<RunCode Name="In_for_Garuda_Awakening"/>
 					<StopBot/>	
 				</If>
 				<If Condition="IsQuestAcceptQualified(66693)">
@@ -213,8 +212,7 @@
                 </If>
 				<MoveTo Name="Y'shtola" XYZ="-0.8087769, -3, -47.80658"/>
 				<If Condition="not IsQuestAcceptQualified(66694)">
-					<LogMessage Message="[A Realm Reborn (2.5)] Please manually complete The Howling Eye (Hard) duty!"/>
-                    <LogMessage Message="[A Realm Reborn (2.5)] Run this profile again once you finish the duty."/>
+					<RunCode Name="In_a_Titan_Spot"/>
 					<StopBot/>	
 				</If>
 				<If Condition="IsQuestAcceptQualified(66694)">
@@ -257,8 +255,7 @@
                 </If>
                 <MoveTo Name="Minfilia" XYZ="0.9917603, -1.995725, -45.70081"/>
                 <If Condition="not IsQuestAcceptQualified(65899)">
-                    <LogMessage Message="[A Realm Reborn (2.5)] Please manually complete The Navel (Hard) duty!"/>
-                    <LogMessage Message="[A Realm Reborn (2.5)] Run this profile again once you finish the duty."/>
+                    <RunCode Name="Good_Intentions"/>
                     <StopBot/>
                 </If>
                 <If Condition="IsQuestAcceptQualified(65899)">
@@ -430,8 +427,7 @@
                     <TalkTo NpcId="1010881" XYZ="336.3545, -27.80885, -369.7414" QuestId="65902" StepId="2"/>
                 </If>
                 <If Condition="GetQuestStep(65902) == 3">
-                    <LogMessage Message="[A Realm Reborn (2.5)] Please manually complete The Keeper of the Lake duty!"/>
-                    <LogMessage Message="[A Realm Reborn (2.5)] Run this profile again once you finish the duty."/>
+                    <RunCode Name="The_Rising_Chorus"/>
                     <StopBot/>
                 </If>
                 <If Condition="GetQuestStep(65902) == 5">
@@ -668,8 +664,7 @@
                     <WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
                 </If>
                 <If Condition="GetQuestStep(65905) == 3">
-                    <LogMessage Message="[A Realm Reborn (2.5)] Please manually complete The Chrysalis duty!"/>
-                    <LogMessage Message="[A Realm Reborn (2.5)] Run this profile again once you finish the duty."/>
+                    <RunCode Name="An_Uninvited_Ascian"/>
                     <StopBot/>
                 </If>
                 <If Condition="GetQuestStep(65905) == 255">
@@ -1086,8 +1081,7 @@
             </If>
             <If Condition="HasQuest(65955)">
                 <If Condition="GetQuestStep(65955) == 1">
-                    <LogMessage Message="[A Realm Reborn (2.5)] Please manually complete The Steps of Faith duty!"/>
-                    <LogMessage Message="[A Realm Reborn (2.5)] Run this profile again once you finish the duty."/>
+                    <RunCode Name="The_Steps_of_Faith"/>
                     <StopBot/>
                 </If>
                 <If Condition="GetQuestStep(65955) == 3">
@@ -1788,6 +1782,72 @@
                 }
                 }
                 await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="In_for_Garuda_Awakening">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(66693) != 255)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Bowl of Embers (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="In_a_Titan_Spot">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(66694) != 255)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Howling Eye (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="Good_Intentions">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(65899) != 255)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Navel (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="The_Rising_Chorus">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(65902) == 3)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Keeper of the Lake duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="An_Uninvited_Ascian">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(65905) == 3)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Chrysalis duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="The_Steps_of_Faith">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(65955) == 1)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Steps of Faith duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
             ]]>
         </CodeChunk>
 	</CodeChunks>

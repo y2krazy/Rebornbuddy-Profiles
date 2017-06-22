@@ -5,7 +5,7 @@
 ########################################
 # Author: y2krazy                      #
 ########################################
-# Version: 2.1.0b                      #
+# Version: 2.1.1                       #
 ########################################
 # Required Level: 60                   #
 ########################################
@@ -17,7 +17,7 @@
 ########################################
 -->
 <Profile>
-	<Name>[O] Heavensward (Patch 3.1) (v2.1.0b)</Name>
+	<Name>[O] Heavensward (Patch 3.1) (v2.1.1)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -449,8 +449,7 @@
                     <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/>
                 </If>
                 <MoveTo Name="Aymeric" XYZ="-182.3911, -0.2309884, -70.72565"/>
-                <LogMessage Message="[Heavensward (3.1)] Please manually complete the As Goes Light, So Goes Darkness duty!"/>
-                <LogMessage Message="[Heavensward (3.1)] Run this profile again once you finish the duty."/>
+                <RunCode Name="As_Goes_Light_So_Goes_Darkness"/>
                 <StopBot/>
 
                 <!-- TO DO -->
@@ -667,6 +666,17 @@
                 }
                 await Coroutine.Sleep(1000);
             ]]>
+        </CodeChunk>
+        <CodeChunk Name="As_Goes_Light_So_Goes_Darkness">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67699) == 1)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Heavensward (3.1)]\nPlease manually complete the As Goes Light, So Goes Darkness duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+        	]]>
         </CodeChunk>
 	</CodeChunks>
 	<GrindAreas>

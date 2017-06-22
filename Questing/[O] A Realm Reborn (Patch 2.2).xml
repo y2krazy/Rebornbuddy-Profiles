@@ -6,7 +6,7 @@
 # Authors: y2krazy                          #
 #          kagamihiiragi17                  #
 #############################################
-# Version: 2.1.1                            #
+# Version: 2.1.2                            #
 #############################################
 # Required Level: 50+                       #
 #############################################
@@ -18,7 +18,7 @@
 #############################################
 -->
 <Profile>
-	<Name>[O] A Realm Reborn (Patch 2.2) (v2.1.1)</Name>
+	<Name>[O] A Realm Reborn (Patch 2.2) (v2.1.2)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -1117,8 +1117,7 @@
             </If>
             <If Condition="HasQuest(66897)">
                 <If Condition="GetQuestStep(66897) == 1">
-                    <LogMessage Message="[A Realm Reborn (2.2)] Please complete Whorleater (Hard) manually!"/>
-                    <LogMessage Message="[A Realm Reborn (2.2)] Please restart this profile after you are done."/>
+                    <RunCode Name="Lord_of_the_Whorl"/>
                     <StopBot/>
                 </If>
                 <If Condition="GetQuestStep(66897) == 255">
@@ -1386,6 +1385,17 @@
                 }
                 }
                 await Buddy.Coroutines.Coroutine.Sleep(1000);
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="Lord_of_the_Whorl">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(66897) == 1)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.2)]\nPlease manually complete the Whorleater (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
             ]]>
         </CodeChunk>
 	</CodeChunks>

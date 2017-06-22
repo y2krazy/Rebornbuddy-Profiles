@@ -5,7 +5,7 @@
 ########################################
 # Author: y2krazy                      #
 ########################################
-# Version: 2.1.0                       #
+# Version: 2.1.1                       #
 ########################################
 # Required Level: 60                   #
 ########################################
@@ -14,10 +14,11 @@
 ########################################
 # Required User Interaction:           #
 #  1 Duty Finder Queue                 #
+#  1 Solo Duty                         #
 ########################################
 -->
 <Profile>
-	<Name>[O] Heavensward (Patch 3.5) (v2.1.0)</Name>
+	<Name>[O] Heavensward (Patch 3.5) (v2.1.1)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -261,8 +262,7 @@
                 <TalkTo NpcId="1018025" XYZ="44.5105, 7.611067, 488.2428" QuestId="67890" StepId="5"/>
             </If>
             <If Condition="GetQuestStep(67890) == 6">
-                <LogMessage Message="[Heavensward (3.5)] Please manually complete the Baelsar's Wall duty!"/>
-                <LogMessage Message="[Heavensward (3.5)] Run this profile again once you finish the duty."/>
+                <RunCode Name="Griffin_Griffin_on_the_Wall"/>
                 <StopBot/>
             </If>
 
@@ -414,8 +414,7 @@
         <If Condition="HasQuest(67894)">
             <If Condition="GetQuestStep(67894) == 1">
                 <GetTo ZoneId="156" XYZ="127.7333, -15.35372, -421.1338"/> <!-- Cid -->
-                <LogMessage Message="[Heavensward (3.5)] Please manually complete the Fly Free, My Pretty duty!"/>
-                <LogMessage Message="[Heavensward (3.5)] Run this profile again once you finish the duty."/>
+                <RunCode Name="Fly_Free_My_Pretty"/>
                 <StopBot/>
 
                 <!-- TO DO -->
@@ -515,6 +514,28 @@
 
 	</Order>
 	<CodeChunks>
+        <CodeChunk Name="Griffin_Griffin_on_the_Wall">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67890) == 6)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Heavensward (3.5)]\nPlease manually complete the Baelsar's Wall duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+        	]]>
+        </CodeChunk>
+        <CodeChunk Name="Fly_Free_My_Pretty">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67894) == 1)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Heavensward (3.5)]\nPlease manually complete the Fly Free, My Pretty duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+        	]]>
+        </CodeChunk>
 	</CodeChunks>
 	<GrindAreas>
 	</GrindAreas>

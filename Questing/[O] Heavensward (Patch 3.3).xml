@@ -5,7 +5,7 @@
 ########################################
 # Author: y2krazy                      #
 ########################################
-# Version: 2.1.0b                      #
+# Version: 2.1.1                       #
 ########################################
 # Required Level: 60                   #
 ########################################
@@ -17,7 +17,7 @@
 ########################################
 -->
 <Profile>
-	<Name>[O] Heavensward (Patch 3.3) (v2.1.0b)</Name>
+	<Name>[O] Heavensward (Patch 3.3) (v2.1.1)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -202,8 +202,7 @@
                 <TalkTo NpcId="1016812" XYZ="-743.3127, 83.8, 267.689" QuestId="67780" StepId="4"/>
             </If>
             <If Condition="GetQuestStep(67780) == 5">
-                <LogMessage Message="[Heavensward (3.3)] Please complete Sohr Khai manually!"/>
-                <LogMessage Message="[Heavensward (3.3)] Please restart this profile after you are done."/>
+                <RunCode Name="Winning_Over_the_Wyrm"/>
                 <StopBot/>
             </If>
 
@@ -234,8 +233,7 @@
 
         <If Condition="HasQuest(67781)">
             <If Condition="GetQuestStep(67781) == 2">
-                <LogMessage Message="[Heavensward (3.3)] Please complete The Final Steps of Faith manually!"/>
-                <LogMessage Message="[Heavensward (3.3)] Please restart this profile after you are done."/>
+                <RunCode Name="An_End_to_the_Song"/>
                 <StopBot/>
             </If>
 
@@ -505,6 +503,28 @@
                 }
                 await Coroutine.Sleep(1000);
             ]]>
+        </CodeChunk>
+        <CodeChunk Name="Winning_Over_the_Wyrm">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67780) == 5)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Heavensward (3.3)]\nPlease manually complete the Sohr Khai duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+        	]]>
+        </CodeChunk>
+        <CodeChunk Name="An_End_to_the_Song">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67781) == 2)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Heavensward (3.3)]\nPlease manually complete The Final Steps of Faith duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+        	]]>
         </CodeChunk>
 	</CodeChunks>
 	<GrindAreas>

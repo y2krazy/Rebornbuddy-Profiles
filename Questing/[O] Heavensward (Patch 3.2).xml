@@ -5,7 +5,7 @@
 ########################################
 # Author: y2krazy                      #
 ########################################
-# Version: 2.1.0b                      #
+# Version: 2.1.1                       #
 ########################################
 # Required Level: 60                   #
 ########################################
@@ -13,11 +13,12 @@
 #  None                                #
 ########################################
 # Required User Interaction:           #
-#  None                                #
+#  1 Duty Finder Queue                 #
+#  1 Solo Duty                         #
 ########################################
 -->
 <Profile>
-	<Name>[O] Heavensward (Patch 3.2) (v2.1.0b)</Name>
+	<Name>[O] Heavensward (Patch 3.2) (v2.1.1)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -178,8 +179,7 @@
                 <WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
             </If>
             <If Condition="GetQuestStep(67768) == 3">
-                <LogMessage Message="[Heavensward (3.2)] Please complete the Antitower duty."/>
-                <LogMessage Message="[Heavensward (3.2)] Run this profile again once you finish the duty."/>
+                <RunCode Name="The_Word_of_the_Mother"/>
                 <StopBot/>
             </If>
 
@@ -514,8 +514,7 @@
                     <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
                 </If>
                 <NoCombatMoveTo Name="Emmanellain" XYZ="-133.9285, 304.1539, -300.8317"/>
-                <LogMessage Message="[Heavensward (3.2)] Please manually complete the A Spectacle for the Ages duty!"/>
-                <LogMessage Message="[Heavensward (3.2)] Run this profile again once you finish the duty."/>
+                <RunCode Name="A_Spectacle_for_the_Ages"/>
                 <StopBot/>
 
                 <!-- TO DO -->
@@ -813,6 +812,28 @@
                 }
                 await Coroutine.Sleep(1000);
             ]]>
+        </CodeChunk>
+        <CodeChunk Name="The_Word_of_the_Mother">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67768) == 3)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Heavensward (3.2)]\nPlease manually complete the Antitower duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+        	]]>
+        </CodeChunk>
+        <CodeChunk Name="A_Spectacle_for_the_Ages">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67775) == 2)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Heavensward (3.2)]\nPlease manually complete the A Spectacle for the Ages duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+        	]]>
         </CodeChunk>
 	</CodeChunks>
 	<GrindAreas>
