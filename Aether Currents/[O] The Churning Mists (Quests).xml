@@ -5,7 +5,7 @@
 ############################################
 # Author: y2krazy                          #
 ############################################
-# Version: 1.0.0                           #
+# Version: 1.0.1                           #
 ############################################
 # Required Level: 55                       #
 ############################################
@@ -23,7 +23,7 @@
 ############################################
 -->
 <Profile>
-	<Name>[O] The Churning Mists (Quests)</Name>
+	<Name>[O] The Churning Mists (Quests) (v1.0.1)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -31,17 +31,7 @@
 		<!-- The Churning Mists -->
 
 		<If Condition="not IsOnMap(400)">
-			<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-				<TeleportTo Name="Moghome" AetheryteId="78" />
-			</If>
-			<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-				<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-					<TeleportTo Name="Zenith" AetheryteId="79" />
-				</If>
-			</If>
-			<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-				<Travel To="400" />
-			</If>
+			<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 		</If>
 
 		<!-- ######## -->
@@ -55,17 +45,7 @@
 		<If Condition="not IsQuestCompleted(67359)">
 			<If Condition="not HasQuest(67359)">
 				<If Condition="not IsOnMap(400)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-						<TeleportTo Name="Moghome" AetheryteId="78" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-							<TeleportTo Name="Zenith" AetheryteId="79" />
-						</If>
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-						<Travel To="400" />
-					</If>
+					<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 				</If>
 				<NoCombatMoveTo Name="Mogsy" XYZ="247.1199, -42.33362, 565.3314" />
 				<If Condition="not IsQuestAcceptQualified(67359)">
@@ -79,34 +59,14 @@
 			<If Condition="HasQuest(67359)">
 				<If Condition="GetQuestStep(67359) == 1">
 					<If Condition="not IsOnMap(400)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-							<TeleportTo Name="Moghome" AetheryteId="78" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-								<TeleportTo Name="Zenith" AetheryteId="79" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-							<Travel To="400" />
-						</If>
+						<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 					</If>
 					<NoCombatMoveTo Name="Archaeosaurs" XYZ="432.7348, -31.88561, 196.7521" />
 					<Grind grindRef="Road_Kill" while="HasQuest(67359) and GetQuestStep(67359) == 1" />
 				</If>
 				<If Condition="GetQuestStep(67359) == 255">
 					<If Condition="not IsOnMap(400)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-							<TeleportTo Name="Zenith" AetheryteId="79" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-								<TeleportTo Name="Moghome" AetheryteId="78" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-							<Travel To="400" />
-						</If>
+						<GetTo ZoneId="400" XYZ="-575.8106, 48.80803, 319.44"/> <!-- Zenith -->
 					</If>
 
 					<!-- Rewards
@@ -126,17 +86,7 @@
 		<If Condition="not IsQuestCompleted(67355)">
 			<If Condition="not HasQuest(67355)">
 				<If Condition="not IsOnMap(400)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-						<TeleportTo Name="Moghome" AetheryteId="78" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-							<TeleportTo Name="Zenith" AetheryteId="79" />
-						</If>
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-						<Travel To="400" />
-					</If>
+					<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 				</If>
 				<NoCombatMoveTo Name="Mogret" XYZ="363.241, -73.25598, 678.4314" />
 				<If Condition="not IsQuestAcceptQualified(67355)">
@@ -150,34 +100,14 @@
 			<If Condition="HasQuest(67355)">
 				<If Condition="GetQuestStep(67355) == 1">
 					<If Condition="not IsOnMap(400)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-							<TeleportTo Name="Moghome" AetheryteId="78" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-								<TeleportTo Name="Zenith" AetheryteId="79" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-							<Travel To="400" />
-						</If>
+						<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 					</If>
 					<NoCombatMoveTo Name="Hropkens" XYZ="714.7452, -50.23019, 407.4195" />
 					<Grind grindRef="The_Bathing_Bully" while="HasQuest(67355) and GetQuestStep(67355) == 1" />
 				</If>
 				<If Condition="GetQuestStep(67355) == 255">
 					<If Condition="not IsOnMap(400)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-							<TeleportTo Name="Moghome" AetheryteId="78" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-								<TeleportTo Name="Zenith" AetheryteId="79" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-							<Travel To="400" />
-						</If>
+						<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 					</If>
 
 					<!-- Rewards
@@ -197,17 +127,7 @@
 		<If Condition="not IsQuestCompleted(67371)">
 			<If Condition="not HasQuest(67371)">
 				<If Condition="not IsOnMap(400)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-						<TeleportTo Name="Moghome" AetheryteId="78" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-							<TeleportTo Name="Zenith" AetheryteId="79" />
-						</If>
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-						<Travel To="400" />
-					</If>
+					<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 				</If>
 				<NoCombatMoveTo Name="Moon-eyed Moogle" XYZ="517.9064, -1.191711, -354.6349" />
 				<If Condition="not IsQuestAcceptQualified(67371)">
@@ -221,34 +141,14 @@
 			<If Condition="HasQuest(67371)">
 				<If Condition="GetQuestStep(67371) == 1">
 					<If Condition="not IsOnMap(400)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-							<TeleportTo Name="Moghome" AetheryteId="78" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-								<TeleportTo Name="Zenith" AetheryteId="79" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-							<Travel To="400" />
-						</If>
+						<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 					</If>
 					<NoCombatMoveTo Name="Tulihands" XYZ="537.2871, -8.29427, -335.9211" />
 					<Grind grindRef="Waiting_to_Inhale" while="HasQuest(67371) and GetQuestStep(67371) == 1" />
 				</If>
 				<If Condition="GetQuestStep(67371) == 255">
 					<If Condition="not IsOnMap(400)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-							<TeleportTo Name="Moghome" AetheryteId="78" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-								<TeleportTo Name="Zenith" AetheryteId="79" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-							<Travel To="400" />
-						</If>
+						<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 					</If>
 
 					<!-- Rewards
@@ -268,17 +168,7 @@
 		<If Condition="not IsQuestCompleted(67365)">
 			<If Condition="not HasQuest(67365)">
 				<If Condition="not IsOnMap(400)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-						<TeleportTo Name="Zenith" AetheryteId="79" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-							<TeleportTo Name="Moghome" AetheryteId="78" />
-						</If>
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-						<Travel To="400" />
-					</If>
+					<GetTo ZoneId="400" XYZ="-575.8106, 48.80803, 319.44"/> <!-- Zenith -->
 				</If>
 				<NoCombatMoveTo Name="Manic Moogle" XYZ="-516.9299, 60.54165, 485.6489" />
 				<If Condition="not IsQuestAcceptQualified(67365)">
@@ -292,34 +182,14 @@
 			<If Condition="HasQuest(67365)">
 				<If Condition="GetQuestStep(67365) == 1">
 					<If Condition="not IsOnMap(400)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-							<TeleportTo Name="Zenith" AetheryteId="79" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-								<TeleportTo Name="Moghome" AetheryteId="78" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-							<Travel To="400" />
-						</If>
+						<GetTo ZoneId="400" XYZ="-575.8106, 48.80803, 319.44"/> <!-- Zenith -->
 					</If>
 					<NoCombatMoveTo Name="Clay Pot" XYZ="-517.2046, 60.86816, 486.5338" />
 					<UseObject NpcId="2005682" XYZ="-517.2046, 60.86816, 486.5338" Radius="10" QuestId="67365" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(67365) == 255">
 					<If Condition="not IsOnMap(400)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-							<TeleportTo Name="Moghome" AetheryteId="78" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-								<TeleportTo Name="Zenith" AetheryteId="79" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-							<Travel To="400" />
-						</If>
+						<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 					</If>
 
 					<!-- Rewards
@@ -345,12 +215,7 @@
 		<If Condition="not IsQuestCompleted(67170)">
 			<If Condition="not HasQuest(67170)">
 				<If Condition="not IsOnMap(418)">
-					<If Condition="Managers.WorldManager.HasAetheryteId(70)">
-						<TeleportTo Name="Foundation" AetheryteId="70" />
-					</If>
-					<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
-						<Travel To="418" />
-					</If>
+					<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
 				</If>
 				<MoveTo Name="Estinien" XYZ="107.4692, 24.37563, -8.407776" />
 				<If Condition="not IsQuestAcceptQualified(67170)">
@@ -364,12 +229,7 @@
 			<If Condition="HasQuest(67170)">
 				<If Condition="GetQuestStep(67170) == 1">
 					<If Condition="not IsOnMap(418)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(70)">
-							<TeleportTo Name="Foundation" AetheryteId="70" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(70)">
-							<Travel To="418" />
-						</If>
+						<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/> <!-- Foundation -->
 					</If>
 					<MoveTo Name="Cid" XYZ="-187.1824, 15.994, -47.68445" />
 					<ExtendedTalkTo NpcId="1013168" XYZ="-187.1824, 15.994, -47.68445" QuestId="67170" StepId="1" />
@@ -381,17 +241,7 @@
 				</If>
 				<If Condition="GetQuestStep(67170) == 255">
 					<If Condition="not IsOnMap(400)">
-						<If Condition="Managers.WorldManager.HasAetheryteId(78)">
-							<TeleportTo Name="Moghome" AetheryteId="78" />
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(78)">
-							<If Condition="Managers.WorldManager.HasAetheryteId(79)">
-								<TeleportTo Name="Zenith" AetheryteId="79" />
-							</If>
-						</If>
-						<If Condition="not Managers.WorldManager.HasAetheryteId(79)">
-							<Travel To="400" />
-						</If>
+						<GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133"/> <!-- Moghome -->
 					</If>
 
 					<!-- Rewards
