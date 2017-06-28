@@ -8,7 +8,7 @@
 #         birduvprey                             #
 #         Eficiente                              #
 ##################################################
-# Version: 1.0.6                                 #
+# Version: 1.0.7                                 #
 ##################################################
 # Required Level: 1                              #
 ##################################################
@@ -22,7 +22,7 @@
 ##################################################
 -->
 <Profile>
-	<Name>[O] [BTN] Leveling 1-60 + 1-60 Quests (v1.0.6)</Name>
+	<Name>[O] [BTN] Leveling 1-60 + 1-60 Quests (v1.0.7)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<CodeChunks>
@@ -70,7 +70,7 @@
 		</CodeChunk>
 		<CodeChunk Name="Dismount">
 			<![CDATA[
-				ff14bot.Managers.Actionmanager.Dismount();
+				ff14bot.Managers.ActionManager.Dismount();
 		]]>
 		</CodeChunk>
 		<CodeChunk Name="EnableMount">
@@ -81,12 +81,12 @@
 		<CodeChunk Name="Stealth">
 			<![CDATA[
 				SpellData data;
-				if (!Core.Me.HasAura(47) && Actionmanager.CurrentActions.TryGetValue(212, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(212, Core.Me);
+				if (!Core.Me.HasAura(47) && ActionManager.CurrentActions.TryGetValue(212, out data) && ActionManager.CanCast(data, Core.Me)) ActionManager.DoAction(212, Core.Me);
 		]]>
 		</CodeChunk>
 		<CodeChunk Name="Triangulate">
 			<![CDATA[ SpellData data;
-			if (!Core.Me.HasAura(217) && Actionmanager.CurrentActions.TryGetValue(210, out data) && Actionmanager.CanCast(data, Core.Me)) Actionmanager.DoAction(210, Core.Me);
+			if (!Core.Me.HasAura(217) && ActionManager.CurrentActions.TryGetValue(210, out data) && ActionManager.CanCast(data, Core.Me)) ActionManager.DoAction(210, Core.Me);
     	]]>
 		</CodeChunk>
 	</CodeChunks>
