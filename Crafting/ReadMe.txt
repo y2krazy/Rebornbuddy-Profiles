@@ -30,4 +30,4 @@ Manually purchase the following to aid while leveling. They are usually reasonab
 
 Use the pre-configured profiles to obtain gear sets for those DoH classes and level ranges.
 
-If you need a custom set of gear, please modify the pre-configured profiles or modify the "[O] Disciples of Hand Leveling Gear" profile to suit your needs.
+If you need a custom set of gear, please modify the pre-configured profiles or modify the "[O] DoH Leveling Gear - XXX XX-XX.xml" profile to suit your needs.

@@ -1,4 +1,12 @@
-IMPORTANT NOTE: Please check your achievements in-game before starting these orders. Adjust the quantities so that you don't craft more than you need!
+######################################################################
+###  _____ __  __ _____   ____  _____ _______       _   _ _______  ###
+### |_   _|  \/  |  __ \ / __ \|  __ \__   __|/\   | \ | |__   __| ###
+###   | | | \  / | |__) | |  | | |__) | | |  /  \  |  \| |  | |    ###
+###   | | | |\/| |  ___/| |  | |  _  /  | | / /\ \ | . ` |  | |    ###
+###  _| |_| |  | | |    | |__| | | \ \  | |/ ____ \| |\  |  | |    ###
+### |_____|_|  |_|_|     \____/|_|  \_\ |_/_/    \_\_| \_|  |_|    ###
+###                                                                ###
+######################################################################
 
 Reward & Achievement Links:
 
@@ -25,3 +33,11 @@ Achievement: http://ffxiv.gamerescape.com/wiki/A_Leatherworker%27s_Life_for_Me
 
 WVR Reward: http://ffxiv.gamerescape.com/wiki/Needle_of_the_Luminary
 Achievement: http://ffxiv.gamerescape.com/wiki/A_Weaver%27s_Life_for_Me
+
+#######################
+### ╔╗╔╔═╗╔╦╗╔═╗╔═╗ ###
+### ║║║║ ║ ║ ║╣ ╚═╗ ###
+### ╝╚╝╚═╝ ╩ ╚═╝╚═╝ ###                                
+#######################
+
+Please check your achievements in-game before starting these orders. Adjust the quantities so that you don't craft more than you need!
