@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 ###################################################
-# Profile: [O] [FSH] Leveling 1-60  + 1-60 Quests #
+# Profile: [O] [FSH] Leveling 1-65  + 1-60 Quests #
 ###################################################
 # Author: y2krazy                                 #
 #         kagamihiragi17                          #
 ###################################################
-# Version: 1.0.7                                  #
+# Version: 2.0.0                                  #
 ###################################################
 # Required Level: 1                               #
 ###################################################
@@ -28,13 +28,13 @@
 ]>
 <!-- End User Configuration -->
 <Profile>
-	<Name>[O] [FSH] Leveling 1-60 (v1.0.7)</Name>
+	<Name>[O] [FSH] Leveling 1-65  + 1-60 Quests (v2.0.0)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<CodeChunks>
 		<CodeChunk Name="Fisher">
 			<![CDATA[ 
-				ff14bot.Managers.ChatManager.SendChat("/gs change 23");
+				ff14bot.Managers.ChatManager.SendChat("/gs change 26");
 		]]>
 		</CodeChunk>
 		<CodeChunk Name="DisableMount">
@@ -2324,9 +2324,125 @@
 				</If>
 			</If>
 		</If>
+						
+		<!-- Level 60-63 -->
+
+		<While Condition="Core.Player.ClassLevel &lt; 63">
+
+			<!-- Bait: Salmon Roe -->
+
+			<If Condition="not HasAtLeast(20613,198)">
+				<LogMessage Message="You need more Salmon Roe!"/>
+				<GetTo ZoneId="635" XYZ="73.0144, 0.04551338, -9.903137"/> <!-- Independent Merchant -->
+				<BuyItem ItemId="20613" ItemCount="198" DialogOption="9" InteractDistance="3.0" NpcId="1019443" XYZ="73.0144, 0.04551338, -9.903137"/>
+			</If>
+			<GetTo ZoneId="635" XYZ="0.002523281, 2.945151, -38.22441"/> <!-- Fishing Area -->
+			<While Condition="IsTimeBetween(0,8)">
+				<Fish Mooch="0" Bait="Salmon Roe" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+					<FishSpots>
+						<FishSpot XYZ="15.95977, 2.937013, -21.95711" Heading="2.229775" Sit="&Sit;" />
+						<FishSpot XYZ="5.587603, 2.937046, -40.72326" Heading="2.014053" Sit="&Sit;" />
+						<FishSpot XYZ="3.153704, 2.937028, -58.00983" Heading="1.55957" Sit="&Sit;" />
+						<FishSpot XYZ="-3.123435, 2.937044, -67.27262" Heading="4.720011" Sit="&Sit;" />
+					</FishSpots>
+				</Fish>
+			</While>
+			<While Condition="IsTimeBetween(8,16)">
+				<Fish Mooch="0" Bait="Salmon Roe" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+					<FishSpots>
+						<FishSpot XYZ="-3.166146, 2.93703, -48.91908" Heading="4.711631" Sit="&Sit;" />
+						<FishSpot XYZ="-9.758772, 2.937037, -31.0727" Heading="4.17337" Sit="&Sit;" />
+						<FishSpot XYZ="-16.03595, 2.937013, -21.87461" Heading="4.068652" Sit="&Sit;" />
+						<FishSpot XYZ="-5.630361, 2.937046, -40.73873" Heading="4.248769" Sit="&Sit;" />
+					</FishSpots>
+				</Fish>
+			</While>
+			<While Condition="IsTimeBetween(16,24)">
+				<Fish Mooch="0" Bait="Salmon Roe" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+					<FishSpots>
+						<FishSpot XYZ="-3.185333, 2.937037, -57.68096" Heading="4.73467" Sit="&Sit;" />
+						<FishSpot XYZ="3.05108, 2.937042, -67.31972" Heading="1.526058" Sit="&Sit;" />
+						<FishSpot XYZ="3.163961, 2.937021, -48.85423" Heading="1.544909" Sit="&Sit;" />
+						<FishSpot XYZ="9.734669, 2.937036, -31.15075" Heading="2.110395" Sit="&Sit;" />
+					</FishSpots>
+				</Fish>
+			</While>
+			<LogMessage Message="Swapping zones to not scare the fish..."/>
+			<GetTo ZoneId="635" XYZ="78.44666, 0, -2.945007"/> <!-- Independent Mender -->
+			<NPCRepair NpcID="1019444"/>
+			<GetTo ZoneId="612" XYZ="463.0549, 61.3824, -548.7882"/> <!-- Fishing Area -->
+			<While Condition="IsTimeBetween(0,2)">
+				<Fish Mooch="0" Bait="Salmon Roe" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+					<FishSpots>
+						<FishSpot XYZ="480.4132, 62.22974, -547.1341" Heading="0.707912" />
+						<FishSpot XYZ="474.7702, 62.34209, -544.9133" Heading="0.2429571" />
+						<FishSpot XYZ="470.7138, 60.29871, -540.8479" Heading="0.996933" />
+						<FishSpot XYZ="465.9592, 60.21578, -534.6426" Heading="0.5885274" />
+					</FishSpots>
+				</Fish>
+			</While>
+		</While>
+						
+		<!-- Level 63-65 -->
+
+		<While Condition="Core.Player.ClassLevel &lt; 65">
+
+			<!-- Bait: Live Shrimp -->
+
+			<If Condition="not HasAtLeast(20617,198)">
+				<LogMessage Message="You need more Live Shrimp!"/>
+				<GetTo ZoneId="613" XYZ="93.21729, 2.087148, -612.3598"/> <!-- Independent Merchant -->
+				<BuyItem ItemId="20617" ItemCount="198" DialogOption="6" InteractDistance="3.0" NpcId="1021501" XYZ="93.21729, 2.087148, -612.3598"/>
+			</If>
+			<GetTo ZoneId="613" XYZ="29.90769, 1.117763, -554.4817"/> <!-- Fishing Area -->
+			<While Condition="IsTimeBetween(0,8)">
+				<Fish Mooch="0" Bait="Live Shrimp" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+					<FishSpots>
+						<FishSpot XYZ="32.20642, 1.117759, -532.4893" Heading="1.296273" Sit="&Sit;" />
+						<FishSpot XYZ="32.32644, 1.185593, -503.7883" Heading="1.55598" Sit="&Sit;" />
+						<FishSpot XYZ="42.65696, 5.064558, -490.5556" Heading="1.572741" Sit="&Sit;" />
+						<FishSpot XYZ="-7.816518, 5.064557, -491.4328" Heading="4.695486" Sit="&Sit;" />
+					</FishSpots>
+				</Fish>
+			</While>
+			<While Condition="IsTimeBetween(8,16)">
+				<Fish Mooch="0" Bait="Live Shrimp" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+					<FishSpots>
+						<FishSpot XYZ="20.26595, 5.064557, -493.6194" Heading="3.128876" Sit="&Sit;" />
+						<FishSpot XYZ="27.13177, 1.185596, -518.063" Heading="4.703861" Sit="&Sit;" />
+						<FishSpot XYZ="17.27816, -0.1915844, -534.2278" Heading="0.08362508" Sit="&Sit;" />
+						<FishSpot XYZ="27.18371, 1.185594, -507.3221" Heading="4.722712" Sit="&Sit;" />
+					</FishSpots>
+				</Fish>
+			</While>
+			<While Condition="IsTimeBetween(16,24)">
+				<Fish Mooch="0" Bait="Live Shrimp" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+					<FishSpots>
+						<FishSpot XYZ="-0.842374, 5.064557, -493.9959" Heading="3.116313" Sit="&Sit;" />
+						<FishSpot XYZ="11.72736, 5.435435, -474.2061" Heading="6.262094" Sit="&Sit;" />
+						<FishSpot XYZ="31.93688, 1.185592, -495.8714" Heading="1.551795" Sit="&Sit;" />
+						<FishSpot XYZ="32.24778, 1.185596, -521.1351" Heading="1.845005" Sit="&Sit;" />
+					</FishSpots>
+				</Fish>
+			</While>
+			<LogMessage Message="Swapping zones to not scare the fish..."/>
+			<GetTo ZoneId="628" XYZ="-4.257263, 0.05502258, -64.01166"/> <!-- Independent Mender -->
+			<NPCRepair NpcID="1019010"/>
+			<GetTo ZoneId="628" XYZ="-85.08927, -6.999999, -58.93172"/> <!-- Fishing Area -->
+			<While Condition="IsTimeBetween(0,2)">
+				<Fish Mooch="0" Bait="Live Shrimp" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+					<FishSpots>
+						<FishSpot XYZ="-100.6475, -6.999997, -55.67667" Heading="6.28313" />
+						<FishSpot XYZ="-113.3279, -7.010038, -43.33344" Heading="1.581213" />
+						<FishSpot XYZ="-126.6836, -6.999998, -55.67347" Heading="6.278943" />
+						<FishSpot XYZ="-121.2449, -7.000176, -69.3604" Heading="3.162483" />
+					</FishSpots>
+				</Fish>
+			</While>
+		</While>
 		
-		<If Condition="Core.Player.ClassLevel == 60">
-			<LogMessage Message="Congrats! You've hit level 60 Fisher!"/>
+		<If Condition="Core.Player.ClassLevel == 70">
+			<LogMessage Message="Congrats! You've hit level 70 Fisher!"/>
 			<If Condition="not IsOnMap(129)">
 				<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/> <!-- Limsa Lominsa Lower Decks -->
 			</If>
