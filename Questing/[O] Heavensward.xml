@@ -5,7 +5,7 @@
 ##############################
 # Author: y2krazy            #
 ##############################
-# Version: 2.1.1e            #
+# Version: 2.1.1f            #
 ##############################
 # Required Level: 50+        #
 ##############################
@@ -18,7 +18,7 @@
 ##############################
 -->
 <Profile>
-	<Name>[O] Heavensward (v2.1.1e)</Name>
+	<Name>[O] Heavensward (v2.1.1f)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -23901,7 +23901,7 @@
 	<CodeChunks>
 		<CodeChunk Name="TravelToFalconsNest">
 			<![CDATA[ 
-				if (Chocobo.Summoned) await Chocobo.DismissChocobo();
+				if (ChocoboManager.Summoned) await ChocoboManager.DismissChocobo();
 				GameObjectManager.GetObjectByNPCId(1011195).Interact();
 				await Coroutine.Sleep(1000);
 				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
@@ -23923,9 +23923,9 @@
 		</CodeChunk>
 		<CodeChunk Name="WithdrawChocobo">
 			<![CDATA[ 
-				if(ff14bot.Objects.Chocobo.Summoned)
+				if(ChocoboManager.Summoned)
 				{
-					ff14bot.Objects.Chocobo.DismissChocobo();
+					ChocoboManager.DismissChocobo();
 					await Coroutine.Sleep(1000);
 				}
 		    ]]>
@@ -23980,9 +23980,9 @@
 		</CodeChunk>
 		<CodeChunk Name="SummonChocobo">
 			<![CDATA[ 
-				if(!ff14bot.Objects.Chocobo.Summoned)
+				if(!ff14bot.Managers.ChocoboManager.Summoned)
 				{
-					ff14bot.Objects.Chocobo.Summon();
+					ff14bot.Managers.ChocoboManager.Summon();
 					await Coroutine.Sleep(1000);
 				}
 		    ]]>
