@@ -5,7 +5,7 @@
 ########################################
 # Author: y2krazy                      #
 ########################################
-# Version: 2.1.1b                      #
+# Version: 2.1.1c                      #
 ########################################
 # Required Level: 60                   #
 ########################################
@@ -18,64 +18,64 @@
 ########################################
 -->
 <Profile>
-	<Name>[O] Heavensward (Patch 3.2) (v2.1.1b)</Name>
+	<Name>[O] Heavensward (Patch 3.2) (v2.1.1c)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
 
-    <BotSettings AutoEquip="1"/>
+    <BotSettings AutoEquip="1" />
 
     <If Condition="not IsQuestCompleted(67699)">
-        <LogMessage Message="[Pre-Requisite Check] You haven't completed the As Goes Light, So Goes Darkness quest yet!"/>
-        <LogMessage Message="[Pre-Requisite Check] Loading the Heavensward (Patch 3.1) profile..."/>
-        <LoadProfile Path="[O] Heavensward (Patch 3.1).xml"/>
+        <LogMessage Message="[Pre-Requisite Check] You haven't completed the As Goes Light, So Goes Darkness quest yet!" />
+        <LogMessage Message="[Pre-Requisite Check] Loading the Heavensward (Patch 3.1) profile..." />
+        <LoadProfile Path="[O] Heavensward (Patch 3.1).xml" />
     </If>
 
     <If Condition="(ClassName != ClassJobType.Astrologian) and (ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.DarkKnight) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Machinist) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.RedMage) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Samurai) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
-        <LogMessage Message="[Job Check] You do not have a job assigned on your character."/>
-        <LogMessage Message="[Job Check] Equipping your Soul Crystal now..."/>
+        <LogMessage Message="[Job Check] You do not have a job assigned on your character." />
+        <LogMessage Message="[Job Check] Equipping your Soul Crystal now..." />
         <If Condition="ClassName == ClassJobType.Archer">
-            <RunCode Name="EquipBRDCrystal"/>
-            <WaitTimer WaitTime="3"/>
+            <RunCode Name="EquipBRDCrystal" />
+            <WaitTimer WaitTime="3" />
         </If>
         <If Condition="ClassName == ClassJobType.Thaumaturge">
-            <RunCode Name="EquipBLMCrystal"/>
-            <WaitTimer WaitTime="3"/>
+            <RunCode Name="EquipBLMCrystal" />
+            <WaitTimer WaitTime="3" />
         </If>
         <If Condition="ClassName == ClassJobType.Lancer">
-            <RunCode Name="EquipDRGCrystal"/>
-            <WaitTimer WaitTime="3"/>
+            <RunCode Name="EquipDRGCrystal" />
+            <WaitTimer WaitTime="3" />
         </If>
         <If Condition="ClassName == ClassJobType.Pugilist">
-            <RunCode Name="EquipMNKCrystal"/>
-            <WaitTimer WaitTime="3"/>
+            <RunCode Name="EquipMNKCrystal" />
+            <WaitTimer WaitTime="3" />
         </If>
         <If Condition="ClassName == ClassJobType.Rogue">
-            <RunCode Name="EquipNINCrystal"/>
-            <WaitTimer WaitTime="3"/>
+            <RunCode Name="EquipNINCrystal" />
+            <WaitTimer WaitTime="3" />
         </If>
         <If Condition="ClassName == ClassJobType.Gladiator">
-            <RunCode Name="EquipPLDCrystal"/>
-            <WaitTimer WaitTime="3"/>
+            <RunCode Name="EquipPLDCrystal" />
+            <WaitTimer WaitTime="3" />
         </If>
         <If Condition="ClassName == ClassJobType.Arcanist">
-            <RunCode Name="EquipSCHCrystal"/>
-            <WaitTimer WaitTime="3"/>
-            <RunCode Name="EquipSMNCrystal"/>
-            <WaitTimer WaitTime="3"/>
+            <RunCode Name="EquipSCHCrystal" />
+            <WaitTimer WaitTime="3" />
+            <RunCode Name="EquipSMNCrystal" />
+            <WaitTimer WaitTime="3" />
         </If>
         <If Condition="ClassName == ClassJobType.Marauder">
-            <RunCode Name="EquipWARCrystal"/>
-            <WaitTimer WaitTime="3"/>
+            <RunCode Name="EquipWARCrystal" />
+            <WaitTimer WaitTime="3" />
         </If>
         <If Condition="ClassName == ClassJobType.Conjurer">
-            <RunCode Name="EquipWHMCrystal"/>
-            <WaitTimer WaitTime="3"/>
+            <RunCode Name="EquipWHMCrystal" />
+            <WaitTimer WaitTime="3" />
         </If>
         <If Condition="(ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
-            <LogMessage Message="[Job Check] You do not have the proper Soul Crystal in your Armoury or Inventory."/>
-            <LogMessage Message="[Job Check] Loading the Class and Job Quests profile..."/>
-            <LoadProfile Path="[O] Class and Job Quests.xml"/>
+            <LogMessage Message="[Job Check] You do not have the proper Soul Crystal in your Armoury or Inventory." />
+            <LogMessage Message="[Job Check] Loading the Class and Job Quests profile..." />
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
     </If>
 
@@ -85,11 +85,11 @@
     <If Condition="not IsQuestCompleted(67767)">
         <If Condition="not HasQuest(67767)">
             <If Condition="not IsOnMap(419)">
-                <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/>
+                <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746" />
             </If>
-            <MoveTo Name="Tataru" XYZ="16.00671, 16.00967, -3.189148"/>
+            <MoveTo Name="Tataru" XYZ="16.00671, 16.00967, -3.189148" />
             <If Condition="IsQuestAcceptQualified(67767)">
-                <PickupQuest NpcId="1012580" QuestId="67767" XYZ="16.00671, 16.00967, -3.189148"/>
+                <PickupQuest NpcId="1012580" QuestId="67767" XYZ="16.00671, 16.00967, -3.189148" />
             </If>
         </If>
 
@@ -98,31 +98,31 @@
         <If Condition="HasQuest(67767)">
             <If Condition="GetQuestStep(67767) == 1">
                 <If Condition="not IsOnMap(129)">
-                    <GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393"/>
+                    <GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393" />
                 </If>
-                <MoveTo Name="F'lhaminn" XYZ="-323.9949, 12, 44.96826"/>
-                <ExtendedTalkTo NpcId="1016531" XYZ="-323.9949, 12, 44.96826" QuestId="67767" StepId="1"/>
+                <MoveTo Name="F'lhaminn" XYZ="-323.9949, 12, 44.96826" />
+                <ExtendedTalkTo NpcId="1016531" XYZ="-323.9949, 12, 44.96826" QuestId="67767" StepId="1" />
             </If>
             <If Condition="GetQuestStep(67767) == 2">
                 <If Condition="not IsOnMap(156)">
-                    <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
                 </If>
-                <NoCombatMoveTo Name="F'lhaminn" XYZ="40.48218, 20.495, -650.9651"/>
-                <TalkTo NpcId="1010388" XYZ="40.48218, 20.495, -650.9651" QuestId="67767" StepId="2"/>
+                <NoCombatMoveTo Name="F'lhaminn" XYZ="40.48218, 20.495, -650.9651" />
+                <TalkTo NpcId="1010388" XYZ="40.48218, 20.495, -650.9651" QuestId="67767" StepId="2" />
             </If>
             <If Condition="GetQuestStep(67767) == 3">
                 <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                    <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
                 </If>
                 <If Condition="IsOnMap(156)">
-                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
                 </If>
                 <While Condition="not IsTodoChecked(67767, 3, 0)">
-                    <TalkTo NpcId="1016541" XYZ="2.151489, 7.450581E-09, -7.492188" QuestId="67767" StepId="3"/>
-                    <TalkTo NpcId="1016538" XYZ="14.57233, 7.450581E-09, -9.964172" QuestId="67767" StepId="3"/>
-                    <TalkTo NpcId="1016540" XYZ="31.96765, -1, -4.196289" QuestId="67767" StepId="3"/>
-                    <TalkTo NpcId="1016542" XYZ="36.27063, -0.2594604, 2.487183" QuestId="67767" StepId="3"/>
-                    <TalkTo NpcId="1016543" XYZ="33.0968, -1, 5.752625" QuestId="67767" StepId="3"/>
+                    <TalkTo NpcId="1016541" XYZ="2.151489, 7.450581E-09, -7.492188" QuestId="67767" StepId="3" />
+                    <TalkTo NpcId="1016538" XYZ="14.57233, 7.450581E-09, -9.964172" QuestId="67767" StepId="3" />
+                    <TalkTo NpcId="1016540" XYZ="31.96765, -1, -4.196289" QuestId="67767" StepId="3" />
+                    <TalkTo NpcId="1016542" XYZ="36.27063, -0.2594604, 2.487183" QuestId="67767" StepId="3" />
+                    <TalkTo NpcId="1016543" XYZ="33.0968, -1, 5.752625" QuestId="67767" StepId="3" />
                 </While>
             </If>
 
@@ -130,13 +130,13 @@
 
             <If Condition="GetQuestStep(67767) == 255">
                 <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                    <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                    <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
                 </If>
                 <If Condition="IsOnMap(156)">
-                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
                 </If>
-                <MoveTo Name="Tataru" XYZ="-2.67041, 7.450581E-09, -5.264404"/>
-                <TurnIn QuestId="67767" NpcId="1016535" XYZ="-2.67041, 7.450581E-09, -5.264404"/>
+                <MoveTo Name="Tataru" XYZ="-2.67041, 7.450581E-09, -5.264404" />
+                <TurnIn QuestId="67767" NpcId="1016535" XYZ="-2.67041, 7.450581E-09, -5.264404" />
             </If>
         </If>
     </If>
@@ -144,14 +144,14 @@
     <If Condition="not IsQuestCompleted(67768)">
         <If Condition="not HasQuest(67768)">
             <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967"/>
+                <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
             </If>
             <If Condition="IsOnMap(156)">
-                <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
+                <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
             </If>
-            <MoveTo Name="Alphinaud" XYZ="-1.724304, 7.450581E-09, -3.646973"/>
+            <MoveTo Name="Alphinaud" XYZ="-1.724304, 7.450581E-09, -3.646973" />
             <If Condition="IsQuestAcceptQualified(67768)">
-                <PickupQuest NpcId="1016534" QuestId="67768" XYZ="-1.724304, 7.450581E-09, -3.646973"/>
+                <PickupQuest NpcId="1016534" QuestId="67768" XYZ="-1.724304, 7.450581E-09, -3.646973" />
             </If>
         </If>
 
@@ -160,26 +160,26 @@
         <If Condition="HasQuest(67768)">
             <If Condition="GetQuestStep(67768) == 1">
                 <If Condition="not IsOnMap(478)">
-                    <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279"/>
+                    <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279" />
                 </If>
-                <MoveTo Name="Krile" XYZ="43.74756, 205.2239, 19.63837"/>
-                <TalkTo NpcId="1016558" XYZ="43.74756, 205.2239, 19.63837" QuestId="67768" StepId="1"/>
-                <WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
+                <MoveTo Name="Krile" XYZ="43.74756, 205.2239, 19.63837" />
+                <TalkTo NpcId="1016558" XYZ="43.74756, 205.2239, 19.63837" QuestId="67768" StepId="1" />
+                <WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
             </If>
             <If Condition="GetQuestStep(67768) == 2">
                 <If Condition="not IsOnMap(399) and not IsOnMap(463)">
-                    <GetTo ZoneId="399" XYZ="-529.9246, 150.2556, -467.4438"/>
+                    <GetTo ZoneId="399" XYZ="-529.9246, 150.2556, -467.4438" />
                 </If>
                 <If Condition="IsOnMap(399)">
-                    <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543"/>
-                    <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543"/>
+                    <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543" />
+                    <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543" />
                 </If>
-                <MoveTo Name="Matoya" XYZ="19.27209, 38.43, 15.85406"/>
-                <TalkTo NpcId="1012138" XYZ="19.27209, 38.43, 15.85406" QuestId="67768" StepId="2"/>
-                <WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
+                <MoveTo Name="Matoya" XYZ="19.27209, 38.43, 15.85406" />
+                <TalkTo NpcId="1012138" XYZ="19.27209, 38.43, 15.85406" QuestId="67768" StepId="2" />
+                <WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
             </If>
             <If Condition="GetQuestStep(67768) == 3">
-                <RunCode Name="The_Word_of_the_Mother"/>
+                <RunCode Name="The_Word_of_the_Mother" />
                 <StopBot/>
             </If>
 
@@ -187,14 +187,14 @@
 
             <If Condition="GetQuestStep(67768) == 255">
                 <If Condition="not IsOnMap(399) and not IsOnMap(463)">
-                    <GetTo ZoneId="399" XYZ="-529.9246, 150.2556, -467.4438"/>
+                    <GetTo ZoneId="399" XYZ="-529.9246, 150.2556, -467.4438" />
                 </If>
                 <If Condition="IsOnMap(399)">
-                    <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543"/>
-                    <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543"/>
+                    <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543" />
+                    <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543" />
                 </If>
-                <MoveTo Name="Alphinaud" XYZ="19.48578, 38.4364, 6.973328"/>
-                <TurnIn QuestId="67768" NpcId="1016560" XYZ="19.48578, 38.4364, 6.973328"/>
+                <MoveTo Name="Alphinaud" XYZ="19.48578, 38.4364, 6.973328" />
+                <TurnIn QuestId="67768" NpcId="1016560" XYZ="19.48578, 38.4364, 6.973328" />
             </If>
         </If>
     </If>
@@ -202,15 +202,15 @@
     <If Condition="not IsQuestCompleted(67769)">
         <If Condition="not HasQuest(67769)">
             <If Condition="not IsOnMap(399) and not IsOnMap(463)">
-                <GetTo ZoneId="399" XYZ="-529.9246, 150.2556, -467.4438"/>
+                <GetTo ZoneId="399" XYZ="-529.9246, 150.2556, -467.4438" />
             </If>
             <If Condition="IsOnMap(399)">
-                <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543"/>
-                <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543"/>
+                <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543" />
+                <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543" />
             </If>
-            <MoveTo Name="Alphinaud" XYZ="19.48578, 38.4364, 6.973328"/>
+            <MoveTo Name="Alphinaud" XYZ="19.48578, 38.4364, 6.973328" />
             <If Condition="IsQuestAcceptQualified(67769)">
-                <PickupQuest NpcId="1016560" QuestId="67769" XYZ="19.48578, 38.4364, 6.973328"/>
+                <PickupQuest NpcId="1016560" QuestId="67769" XYZ="19.48578, 38.4364, 6.973328" />
             </If>
         </If>
 
@@ -219,24 +219,24 @@
         <If Condition="HasQuest(67769)">
             <If Condition="GetQuestStep(67769) == 1">
                 <If Condition="not IsOnMap(418)">
-                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
                 </If>
-                <MoveTo Name="Temple Knight Guard" XYZ="114.58, 24.41283, -11.06281"/>
+                <MoveTo Name="Temple Knight Guard" XYZ="114.58, 24.41283, -11.06281" />
 
                 <!-- NOTE: While in the cutscene: Waiting at location for valid npc to spawn -->
 
-                <TalkToPlus NpcId="1011223" XYZ="114.58, 24.41283, -11.06281" QuestId="67769" StepId="1"/>
-                <WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
+                <TalkToPlus NpcId="1011223" XYZ="114.58, 24.41283, -11.06281" QuestId="67769" StepId="1" />
+                <WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
             </If>
 
             <!-- [TurnIn Quest] -->
 
             <If Condition="GetQuestStep(67769) == 255">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Lucia" XYZ="481.4069, 225.0023, 793.0876"/>
-                <TurnIn QuestId="67769" NpcId="1016564" XYZ="481.4069, 225.0023, 793.0876"/>
+                <NoCombatMoveTo Name="Lucia" XYZ="481.4069, 225.0023, 793.0876" />
+                <TurnIn QuestId="67769" NpcId="1016564" XYZ="481.4069, 225.0023, 793.0876" />
             </If>
         </If>
     </If>
@@ -244,11 +244,11 @@
     <If Condition="not IsQuestCompleted(67770)">
         <If Condition="not HasQuest(67770)">
             <If Condition="not IsOnMap(397)">
-                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
             </If>
-            <NoCombatMoveTo Name="Lucia" XYZ="481.4069, 225.0023, 793.0876"/>
+            <NoCombatMoveTo Name="Lucia" XYZ="481.4069, 225.0023, 793.0876" />
             <If Condition="IsQuestAcceptQualified(67770)">
-                <PickupQuest NpcId="1016564" QuestId="67770" XYZ="481.4069, 225.0023, 793.0876"/>
+                <PickupQuest NpcId="1016564" QuestId="67770" XYZ="481.4069, 225.0023, 793.0876" />
             </If>
         </If>
 
@@ -257,12 +257,12 @@
         <If Condition="HasQuest(67770)">
             <If Condition="GetQuestStep(67770) == 1">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
                 <While Condition="not IsTodoChecked(67770, 1, 0)">
-                    <TalkTo NpcId="1011231" XYZ="503.1051, 217.9515, 790.2189" QuestId="67770" StepId="1"/>
-                    <TalkTo NpcId="1016568" XYZ="465.5984, 217.9513, 752.7428" QuestId="67770" StepId="1"/>
-                    <TalkTo NpcId="1011236" XYZ="446.0059, 217.9514, 764.0649" QuestId="67770" StepId="1"/>
+                    <TalkTo NpcId="1011231" XYZ="503.1051, 217.9515, 790.2189" QuestId="67770" StepId="1" />
+                    <TalkTo NpcId="1016568" XYZ="465.5984, 217.9513, 752.7428" QuestId="67770" StepId="1" />
+                    <TalkTo NpcId="1011236" XYZ="446.0059, 217.9514, 764.0649" QuestId="67770" StepId="1" />
                 </While>
             </If>
 
@@ -270,10 +270,10 @@
 
             <If Condition="GetQuestStep(67770) == 255">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Artoirel" XYZ="503.3494, 217.9515, 760.4639"/>
-                <TurnIn QuestId="67770" NpcId="1016565" XYZ="503.3494, 217.9515, 760.4639"/>
+                <NoCombatMoveTo Name="Artoirel" XYZ="503.3494, 217.9515, 760.4639" />
+                <TurnIn QuestId="67770" NpcId="1016565" XYZ="503.3494, 217.9515, 760.4639" />
             </If>
         </If>
     </If>
@@ -281,11 +281,11 @@
     <If Condition="not IsQuestCompleted(67771)">
         <If Condition="not HasQuest(67771)">
             <If Condition="not IsOnMap(397)">
-                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
             </If>
-            <NoCombatMoveTo Name="Emmanellain" XYZ="515.5565, 217.9515, 763.7291"/>
+            <NoCombatMoveTo Name="Emmanellain" XYZ="515.5565, 217.9515, 763.7291" />
             <If Condition="IsQuestAcceptQualified(67771)">
-                <PickupQuest NpcId="1016566" QuestId="67771" XYZ="515.5565, 217.9515, 763.7291"/>
+                <PickupQuest NpcId="1016566" QuestId="67771" XYZ="515.5565, 217.9515, 763.7291" />
             </If>
         </If>
 
@@ -294,39 +294,39 @@
         <If Condition="HasQuest(67771)">
             <If Condition="GetQuestStep(67771) == 1">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Destination" XYZ="334.7981, 186.1143, 442.2217"/>
+                <NoCombatMoveTo Name="Destination" XYZ="334.7981, 186.1143, 442.2217" />
                 <UseObject NpcIds="2006869,2006870" QuestId="67771" StepId="1">
                     <HotSpots>
-                        <HotSpot XYZ="334.7981, 186.1143, 442.2217" Radius="10"/>
-                        <HotSpot XYZ="439.9939, 165.4535, 344.7469" Radius="10"/>
+                        <HotSpot XYZ="334.7981, 186.1143, 442.2217" Radius="10" />
+                        <HotSpot XYZ="439.9939, 165.4535, 344.7469" Radius="10" />
                     </HotSpots>
                 </UseObject>
             </If>
             <If Condition="GetQuestStep(67771) == 2">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Emmanellain" XYZ="515.5565, 217.9515, 763.7291"/>
-                <TalkTo NpcId="1016566" XYZ="515.5565, 217.9515, 763.7291" QuestId="67771" StepId="2"/>
+                <NoCombatMoveTo Name="Emmanellain" XYZ="515.5565, 217.9515, 763.7291" />
+                <TalkTo NpcId="1016566" XYZ="515.5565, 217.9515, 763.7291" QuestId="67771" StepId="2" />
             </If>
             <If Condition="GetQuestStep(67771) == 3">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Thancred" XYZ="79.02649, 117.1969, 157.58"/>
-                <TalkTo NpcId="1016573" XYZ="79.02649, 117.1969, 157.58" QuestId="67771" StepId="3"/>
+                <NoCombatMoveTo Name="Thancred" XYZ="79.02649, 117.1969, 157.58" />
+                <TalkTo NpcId="1016573" XYZ="79.02649, 117.1969, 157.58" QuestId="67771" StepId="3" />
             </If>
 
             <!-- [TurnIn Quest] -->
 
             <If Condition="GetQuestStep(67771) == 255">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Emmanellain" XYZ="515.5565, 217.9515, 763.7291"/>
-                <TurnIn QuestId="67771" NpcId="1016566" XYZ="515.5565, 217.9515, 763.7291"/>
+                <NoCombatMoveTo Name="Emmanellain" XYZ="515.5565, 217.9515, 763.7291" />
+                <TurnIn QuestId="67771" NpcId="1016566" XYZ="515.5565, 217.9515, 763.7291" />
             </If>
         </If>
     </If>
@@ -334,11 +334,11 @@
     <If Condition="not IsQuestCompleted(67772)">
         <If Condition="not HasQuest(67772)">
             <If Condition="not IsOnMap(397)">
-                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
             </If>
-            <NoCombatMoveTo Name="Emmanellain" XYZ="515.5565, 217.9515, 763.7291"/>
+            <NoCombatMoveTo Name="Emmanellain" XYZ="515.5565, 217.9515, 763.7291" />
             <If Condition="IsQuestAcceptQualified(67772)">
-                <PickupQuest NpcId="1016566" QuestId="67772" XYZ="515.5565, 217.9515, 763.7291"/>
+                <PickupQuest NpcId="1016566" QuestId="67772" XYZ="515.5565, 217.9515, 763.7291" />
             </If>
         </If>
 
@@ -347,19 +347,19 @@
         <If Condition="HasQuest(67772)">
             <If Condition="GetQuestStep(67772) == 1">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Thancred" XYZ="507.1641, 217.9515, 769.9243"/>
-                <TalkTo NpcId="1016579" XYZ="507.1641, 217.9515, 769.9243" QuestId="67772" StepId="1"/>
+                <NoCombatMoveTo Name="Thancred" XYZ="507.1641, 217.9515, 769.9243" />
+                <TalkTo NpcId="1016579" XYZ="507.1641, 217.9515, 769.9243" QuestId="67772" StepId="1" />
             </If>
             <If Condition="GetQuestStep(67772) == 2">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
                 <While Condition="not IsTodoChecked(67772, 2, 0)">
-                    <TalkTo NpcId="1016569" XYZ="495.3231, 217.9514, 742.6107" QuestId="67772" StepId="2"/>
-                    <TalkTo NpcId="1011235" XYZ="522.5452, 228.3512, 723.5675" QuestId="67772" StepId="2"/>
-                    <TalkTo NpcId="1016570" XYZ="520.0122, 228.377, 752.7732" QuestId="67772" StepId="2"/>
+                    <TalkTo NpcId="1016569" XYZ="495.3231, 217.9514, 742.6107" QuestId="67772" StepId="2" />
+                    <TalkTo NpcId="1011235" XYZ="522.5452, 228.3512, 723.5675" QuestId="67772" StepId="2" />
+                    <TalkTo NpcId="1016570" XYZ="520.0122, 228.377, 752.7732" QuestId="67772" StepId="2" />
                 </While>
             </If>
 
@@ -367,10 +367,10 @@
 
             <If Condition="GetQuestStep(67772) == 255">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Thancred" XYZ="416.5254, 217.9514, 754.2076"/>
-                <TurnIn QuestId="67772" NpcId="1016580" XYZ="416.5254, 217.9514, 754.2076"/>
+                <NoCombatMoveTo Name="Thancred" XYZ="416.5254, 217.9514, 754.2076" />
+                <TurnIn QuestId="67772" NpcId="1016580" XYZ="416.5254, 217.9514, 754.2076" />
             </If>
         </If>
     </If>
@@ -378,11 +378,11 @@
     <If Condition="not IsQuestCompleted(67773)">
         <If Condition="not HasQuest(67773)">
             <If Condition="not IsOnMap(397)">
-                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
             </If>
-            <NoCombatMoveTo Name="Thancred" XYZ="416.5254, 217.9514, 754.2076"/>
+            <NoCombatMoveTo Name="Thancred" XYZ="416.5254, 217.9514, 754.2076" />
             <If Condition="IsQuestAcceptQualified(67773)">
-                <PickupQuest NpcId="1016580" QuestId="67773" XYZ="416.5254, 217.9514, 754.2076"/>
+                <PickupQuest NpcId="1016580" QuestId="67773" XYZ="416.5254, 217.9514, 754.2076" />
             </If>
         </If>
 
@@ -391,27 +391,27 @@
         <If Condition="HasQuest(67773)">
             <If Condition="GetQuestStep(67773) == 1">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Lucia" XYZ="540.3677, 217.9083, 769.0393"/>
-                <TalkTo NpcId="1016069" XYZ="540.3677, 217.9083, 769.0393" QuestId="67773" StepId="1"/>
+                <NoCombatMoveTo Name="Lucia" XYZ="540.3677, 217.9083, 769.0393" />
+                <TalkTo NpcId="1016069" XYZ="540.3677, 217.9083, 769.0393" QuestId="67773" StepId="1" />
             </If>
             <If Condition="GetQuestStep(67773) == 2">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Honoroit" XYZ="477.3784, 223.926, 872.6787"/>
-                <ExtendedTalkTo NpcId="1016581" XYZ="477.3784, 223.926, 872.6787" QuestId="67773" StepId="2"/>
+                <NoCombatMoveTo Name="Honoroit" XYZ="477.3784, 223.926, 872.6787" />
+                <ExtendedTalkTo NpcId="1016581" XYZ="477.3784, 223.926, 872.6787" QuestId="67773" StepId="2" />
             </If>
 
             <!-- [TurnIn Quest] -->
 
             <If Condition="GetQuestStep(67773) == 255">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Thancred" XYZ="507.1641, 217.9515, 769.9243"/>
-                <TurnIn QuestId="67773" NpcId="1016579" XYZ="507.1641, 217.9515, 769.9243"/>
+                <NoCombatMoveTo Name="Thancred" XYZ="507.1641, 217.9515, 769.9243" />
+                <TurnIn QuestId="67773" NpcId="1016579" XYZ="507.1641, 217.9515, 769.9243" />
             </If>
         </If>
     </If>
@@ -419,11 +419,11 @@
     <If Condition="not IsQuestCompleted(67774)">
         <If Condition="not HasQuest(67774)">
             <If Condition="not IsOnMap(397)">
-                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
             </If>
-            <NoCombatMoveTo Name="Thancred" XYZ="507.1641, 217.9515, 769.9243"/>
+            <NoCombatMoveTo Name="Thancred" XYZ="507.1641, 217.9515, 769.9243" />
             <If Condition="IsQuestAcceptQualified(67774)">
-                <PickupQuest NpcId="1016579" QuestId="67774" XYZ="507.1641, 217.9515, 769.9243"/>
+                <PickupQuest NpcId="1016579" QuestId="67774" XYZ="507.1641, 217.9515, 769.9243" />
             </If>
         </If>
 
@@ -432,58 +432,58 @@
         <If Condition="HasQuest(67774)">
             <If Condition="GetQuestStep(67774) == 1">
                 <If Condition="not IsOnMap(418) and not IsOnMap(428)">
-                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
                 </If>
                 <If Condition="IsOnMap(418)">
-                    <UseTransport Name="Temple Knight Guard" InteractDistance="3.0" NpcId="1011223" XYZ="114.58, 24.41283, -11.06281"/>
+                    <UseTransport Name="Temple Knight Guard" InteractDistance="3.0" NpcId="1011223" XYZ="114.58, 24.41283, -11.06281" />
                 </If>
-                <MoveTo Name="Aymeric" XYZ="-0.01531982, 0.01999969, -6.302063"/>
-                <ExtendedTalkTo NpcId="1013183" XYZ="-0.01531982, 0.01999969, -6.302063" QuestId="67774" StepId="1"/>
+                <MoveTo Name="Aymeric" XYZ="-0.01531982, 0.01999969, -6.302063" />
+                <ExtendedTalkTo NpcId="1013183" XYZ="-0.01531982, 0.01999969, -6.302063" QuestId="67774" StepId="1" />
             </If>
             <If Condition="GetQuestStep(67774) == 2">
                 <If Condition="not IsOnMap(418)">
-                <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
                 </If>
-                <MoveTo Name="Thancred" XYZ="112.5352, 24.39169, -2.914551"/>
-                <TalkTo NpcId="1016583" XYZ="112.5352, 24.39169, -2.914551" QuestId="67774" StepId="2"/>
+                <MoveTo Name="Thancred" XYZ="112.5352, 24.39169, -2.914551" />
+                <TalkTo NpcId="1016583" XYZ="112.5352, 24.39169, -2.914551" QuestId="67774" StepId="2" />
             </If>
             <If Condition="GetQuestStep(67774) == 3">
                 <If Condition="not IsOnMap(418)">
-                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
                 </If>
-                <MoveTo Name="Lucia" XYZ="125.6885, 24.45884, 2.456604"/>
-                <TalkTo NpcId="1013167" XYZ="125.6885, 24.45884, 2.456604" QuestId="67774" StepId="3"/>
+                <MoveTo Name="Lucia" XYZ="125.6885, 24.45884, 2.456604" />
+                <TalkTo NpcId="1013167" XYZ="125.6885, 24.45884, 2.456604" QuestId="67774" StepId="3" />
             </If>
             <If Condition="GetQuestStep(67774) == 4">
                 <If Condition="not IsOnMap(418)">
-                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
                 </If>
-                <MoveTo Name="Hilda" XYZ="12.31396, -12.02088, 40.26843"/>
-                <HandOver ItemId="2001945" QuestId="67774" StepId="4" NpcId="1012251" XYZ="12.31396, -12.02088, 40.26843"/>
+                <MoveTo Name="Hilda" XYZ="12.31396, -12.02088, 40.26843" />
+                <HandOver ItemId="2001945" QuestId="67774" StepId="4" NpcId="1012251" XYZ="12.31396, -12.02088, 40.26843" />
             </If>
             <If Condition="GetQuestStep(67774) == 5">
                 <If Condition="not IsOnMap(419)">
-                    <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/>
+                    <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746" />
                 </If>
-                <MoveTo Name="Emmanellain" XYZ="-177.1115, -12.53491, -43.13727"/>
-                <TalkTo NpcId="1016585" XYZ="-177.1115, -12.53491, -43.13727" QuestId="67774" StepId="5"/>
+                <MoveTo Name="Emmanellain" XYZ="-177.1115, -12.53491, -43.13727" />
+                <TalkTo NpcId="1016585" XYZ="-177.1115, -12.53491, -43.13727" QuestId="67774" StepId="5" />
             </If>
             <If Condition="GetQuestStep(67774) == 6">
                 <If Condition="not IsOnMap(418)">
-                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
                 </If>
-                <MoveTo Name="Temple Knight Guard" XYZ="114.58, 24.41283, -11.06281"/>
-                <TalkToPlus NpcId="1011223" XYZ="114.58, 24.41283, -11.06281" QuestId="67774" StepId="6"/>
+                <MoveTo Name="Temple Knight Guard" XYZ="114.58, 24.41283, -11.06281" />
+                <TalkToPlus NpcId="1011223" XYZ="114.58, 24.41283, -11.06281" QuestId="67774" StepId="6" />
             </If>
 
             <!-- [TurnIn Quest] -->
 
             <If Condition="GetQuestStep(67774) == 255">
                 <If Condition="not IsOnMap(418)">
-                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
                 </If>
-                <MoveTo Name="Thancred" XYZ="112.5352, 24.39169, -2.914551"/>
-                <TurnIn QuestId="67774" NpcId="1016583" XYZ="112.5352, 24.39169, -2.914551"/>
+                <MoveTo Name="Thancred" XYZ="112.5352, 24.39169, -2.914551" />
+                <TurnIn QuestId="67774" NpcId="1016583" XYZ="112.5352, 24.39169, -2.914551" />
             </If>
         </If>
     </If>
@@ -491,11 +491,11 @@
     <If Condition="not IsQuestCompleted(67775)">
         <If Condition="not HasQuest(67775)">
             <If Condition="not IsOnMap(418)">
-                <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
             </If>
-            <MoveTo Name="Lucia" XYZ="111.2839, 24.38816, -4.379395"/>
+            <MoveTo Name="Lucia" XYZ="111.2839, 24.38816, -4.379395" />
             <If Condition="IsQuestAcceptQualified(67775)">
-                <PickupQuest NpcId="1015978" QuestId="67775" XYZ="111.2839, 24.38816, -4.379395"/>
+                <PickupQuest NpcId="1015978" QuestId="67775" XYZ="111.2839, 24.38816, -4.379395" />
             </If>
         </If>
 
@@ -504,17 +504,17 @@
         <If Condition="HasQuest(67775)">
             <If Condition="GetQuestStep(67775) == 1">
                 <If Condition="not IsOnMap(155)">
-                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
+                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699" />
                 </If>
-                <NoCombatMoveTo Name="Emmanellain" XYZ="-133.9285, 304.1539, -300.8317"/>
-                <TalkTo NpcId="1016587" XYZ="-133.9285, 304.1539, -300.8317" QuestId="67775" StepId="1"/>
+                <NoCombatMoveTo Name="Emmanellain" XYZ="-133.9285, 304.1539, -300.8317" />
+                <TalkTo NpcId="1016587" XYZ="-133.9285, 304.1539, -300.8317" QuestId="67775" StepId="1" />
             </If>
             <If Condition="GetQuestStep(67775) == 2">
                 <If Condition="not IsOnMap(155)">
-                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
+                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699" />
                 </If>
-                <NoCombatMoveTo Name="Emmanellain" XYZ="-133.9285, 304.1539, -300.8317"/>
-                <RunCode Name="A_Spectacle_for_the_Ages"/>
+                <NoCombatMoveTo Name="Emmanellain" XYZ="-133.9285, 304.1539, -300.8317" />
+                <RunCode Name="A_Spectacle_for_the_Ages" />
                 <StopBot/>
 
                 <!-- TO DO -->
@@ -529,37 +529,37 @@
 
                 <!-- <SimpleDuty InteractNpcId="1016587" XYZ="-133.9285, 304.1539, -300.8317" QuestId="67775" StepId="2">
                     <HotSpots>
-                        <HotSpot XYZ="-41.52696, 298.9, -208.9486" Radius="90"/>
-                        <HotSpot XYZ="-34.72089, 298.9, -206.1401" Radius="90"/> --> <!-- Flame General Aldynn -->
+                        <HotSpot XYZ="-41.52696, 298.9, -208.9486" Radius="90" />
+                        <HotSpot XYZ="-34.72089, 298.9, -206.1401" Radius="90" /> --> <!-- Flame General Aldynn -->
                     <!-- </HotSpots>
                     <TargetMobs>
-                        <TargetMob Id="4729" Weight="8000"/> --> <!-- Storm Veteran -->
-                        <!-- <TargetMob Id="4734" Weight="7000"/> --> <!-- Flame Veteran -->
-                        <!-- <TargetMob Id="4732" Weight="6000"/> --> <!-- Serpent Veteran -->
-                        <!-- <TargetMob Id="4742" Weight="5000"/> --> <!-- Serpent Commander Heuloix -->
-                        <!-- <TargetMob Id="4741" Weight="4000"/> --> <!-- Storm Commander Rhiki -->
-                        <!-- <TargetMob Id="4740" Weight="3000"/> --> <!-- Pipin of the Steel Heart -->
-                        <!-- <TargetMob Id="4743" Weight="2000"/> --> <!-- Tizona -->
-                        <!-- <TargetMob Id="4739" Weight="1000"/> --> <!-- Flame General Aldynn -->
+                        <TargetMob Id="4729" Weight="8000" /> --> <!-- Storm Veteran -->
+                        <!-- <TargetMob Id="4734" Weight="7000" /> --> <!-- Flame Veteran -->
+                        <!-- <TargetMob Id="4732" Weight="6000" /> --> <!-- Serpent Veteran -->
+                        <!-- <TargetMob Id="4742" Weight="5000" /> --> <!-- Serpent Commander Heuloix -->
+                        <!-- <TargetMob Id="4741" Weight="4000" /> --> <!-- Storm Commander Rhiki -->
+                        <!-- <TargetMob Id="4740" Weight="3000" /> --> <!-- Pipin of the Steel Heart -->
+                        <!-- <TargetMob Id="4743" Weight="2000" /> --> <!-- Tizona -->
+                        <!-- <TargetMob Id="4739" Weight="1000" /> --> <!-- Flame General Aldynn -->
                     <!-- </TargetMobs>
                 </SimpleDuty> -->
             </If>
             <If Condition="GetQuestStep(67775) == 4">
                 <If Condition="not IsOnMap(155)">
-                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
+                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699" />
                 </If>
-                <NoCombatMoveTo Name="Raubahn" XYZ="-53.54395, 298.9, -204.3641"/>
-                <TalkTo NpcId="1016072" XYZ="-53.54395, 298.9, -204.3641" QuestId="67775" StepId="4"/>
+                <NoCombatMoveTo Name="Raubahn" XYZ="-53.54395, 298.9, -204.3641" />
+                <TalkTo NpcId="1016072" XYZ="-53.54395, 298.9, -204.3641" QuestId="67775" StepId="4" />
             </If>
 
             <!-- [TurnIn Quest] -->
 
             <If Condition="GetQuestStep(67775) == 255">
                 <If Condition="not IsOnMap(155)">
-                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
+                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699" />
                 </If>
-                <NoCombatMoveTo Name="Thancred" XYZ="-136.6445, 304.1538, -308.3696"/>
-                <TurnIn QuestId="67775" NpcId="1016588" XYZ="-136.6445, 304.1538, -308.3696"/>
+                <NoCombatMoveTo Name="Thancred" XYZ="-136.6445, 304.1538, -308.3696" />
+                <TurnIn QuestId="67775" NpcId="1016588" XYZ="-136.6445, 304.1538, -308.3696" />
             </If>
         </If>
     </If>
@@ -567,11 +567,11 @@
     <If Condition="not IsQuestCompleted(67776)">
         <If Condition="not HasQuest(67776)">
             <If Condition="not IsOnMap(155)">
-                <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
+                <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699" />
             </If>
-            <NoCombatMoveTo Name="Aymeric" XYZ="-139.849, 304.1538, -309.8955"/>
+            <NoCombatMoveTo Name="Aymeric" XYZ="-139.849, 304.1538, -309.8955" />
             <If Condition="IsQuestAcceptQualified(67776)">
-                <PickupQuest NpcId="1016074" QuestId="67776" XYZ="-139.849, 304.1538, -309.8955"/>
+                <PickupQuest NpcId="1016074" QuestId="67776" XYZ="-139.849, 304.1538, -309.8955" />
             </If>
         </If>
 
@@ -580,27 +580,27 @@
         <If Condition="HasQuest(67776)">
             <If Condition="GetQuestStep(67776) == 1">
                 <If Condition="not IsOnMap(418)">
-                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942"/>
+                    <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
                 </If>
-                <MoveTo Name="Alphinaud" XYZ="7.400574, 1.279123, 104.3563"/>
-                <TalkTo NpcId="1016589" XYZ="7.400574, 1.279123, 104.3563" QuestId="67776" StepId="1"/>
+                <MoveTo Name="Alphinaud" XYZ="7.400574, 1.279123, 104.3563" />
+                <TalkTo NpcId="1016589" XYZ="7.400574, 1.279123, 104.3563" QuestId="67776" StepId="1" />
             </If>
             <If Condition="GetQuestStep(67776) == 2">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Artoirel" XYZ="503.3494, 217.9515, 760.4639"/>
-                <TalkTo NpcId="1016565" XYZ="503.3494, 217.9515, 760.4639" QuestId="67776" StepId="2"/>
+                <NoCombatMoveTo Name="Artoirel" XYZ="503.3494, 217.9515, 760.4639" />
+                <TalkTo NpcId="1016565" XYZ="503.3494, 217.9515, 760.4639" QuestId="67776" StepId="2" />
             </If>
 
             <!-- [TurnIn Quest] -->
 
             <If Condition="GetQuestStep(67776) == 255">
                 <If Condition="not IsOnMap(397)">
-                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                    <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
                 </If>
-                <NoCombatMoveTo Name="Alphinaud" XYZ="501.976, 217.9515, 762.7222"/>
-                <TurnIn QuestId="67776" NpcId="1016590" XYZ="501.976, 217.9515, 762.7222"/>
+                <NoCombatMoveTo Name="Alphinaud" XYZ="501.976, 217.9515, 762.7222" />
+                <TurnIn QuestId="67776" NpcId="1016590" XYZ="501.976, 217.9515, 762.7222" />
             </If>
         </If>
     </If>
@@ -608,11 +608,11 @@
     <If Condition="not IsQuestCompleted(67777)">
         <If Condition="not HasQuest(67777)">
             <If Condition="not IsOnMap(397)">
-                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003"/>
+                <GetTo ZoneId="397" XYZ="474.8097, 212.5399, 721.9003" />
             </If>
-            <NoCombatMoveTo Name="Alphinaud" XYZ="501.976, 217.9515, 762.7222"/>
+            <NoCombatMoveTo Name="Alphinaud" XYZ="501.976, 217.9515, 762.7222" />
             <If Condition="IsQuestAcceptQualified(67777)">
-                <PickupQuest NpcId="1016590" QuestId="67777" XYZ="501.976, 217.9515, 762.7222"/>
+                <PickupQuest NpcId="1016590" QuestId="67777" XYZ="501.976, 217.9515, 762.7222" />
             </If>
         </If>
 
@@ -621,41 +621,41 @@
         <If Condition="HasQuest(67777)">
             <If Condition="GetQuestStep(67777) == 1">
                 <If Condition="not IsOnMap(155) and not IsOnMap(395)">
-                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
+                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699" />
                 </If>
                 <If Condition="IsOnMap(155)">
-                    <UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126"/>
+                    <UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126" />
                 </If>
-                <MoveTo Name="Destination" XYZ="-2.792419, -0.01531982, 0.1067505"/>
-                <UseObject NpcId="2006864" XYZ="-2.792419, -0.01531982, 0.1067505" Radius="10" QuestId="67777" StepId="1"/>
+                <MoveTo Name="Destination" XYZ="-2.792419, -0.01531982, 0.1067505" />
+                <UseObject NpcId="2006864" XYZ="-2.792419, -0.01531982, 0.1067505" Radius="10" QuestId="67777" StepId="1" />
             </If>
             <If Condition="GetQuestStep(67777) == 2">
                 <If Condition="not IsOnMap(155) and not IsOnMap(395)">
-                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699"/>
+                    <GetTo ZoneId="155" XYZ="223.9285, 312, -240.9699" />
                 </If>
                 <If Condition="IsOnMap(155)">
-                    <UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126"/>
+                    <UseTransport Name="Intercessory" InteractDistance="3.0" NpcId="1009973" XYZ="264.9119, 302.2624, -223.7126" />
                 </If>
-                <MoveTo Name="Alphinaud" XYZ="-2.02948, 0.01498272, 4.562378"/>
-                <TalkTo NpcId="1016591" XYZ="-2.02948, 0.01498272, 4.562378" QuestId="67777" StepId="2"/>
+                <MoveTo Name="Alphinaud" XYZ="-2.02948, 0.01498272, 4.562378" />
+                <TalkTo NpcId="1016591" XYZ="-2.02948, 0.01498272, 4.562378" QuestId="67777" StepId="2" />
             </If>
 
             <!-- [TurnIn Quest] -->
 
             <If Condition="GetQuestStep(67777) == 255">
                 <If Condition="not IsOnMap(419)">
-                    <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746"/>
+                    <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746" />
                 </If>
-                <MoveTo Name="Alphinaud" XYZ="14.8775, 16.00967, -4.196289"/>
-                <TurnIn QuestId="67777" NpcId="1013227" XYZ="14.8775, 16.00967, -4.196289"/>
+                <MoveTo Name="Alphinaud" XYZ="14.8775, 16.00967, -4.196289" />
+                <TurnIn QuestId="67777" NpcId="1013227" XYZ="14.8775, 16.00967, -4.196289" />
             </If>
         </If>
     </If>
 
     <If Condition="IsQuestCompleted(67777)">
-        <LogMessage Message="[Heavensward (3.2)] You've completed the Heavensward (Patch 3.2) questline!"/>
-        <LogMessage Message="[Heavensward (3.2)] Loading the Heavensward (Patch 3.3) profile..."/>
-        <LoadProfile Path="[O] Heavensward (Patch 3.3).xml"/>
+        <LogMessage Message="[Heavensward (3.2)] You've completed the Heavensward (Patch 3.2) questline!" />
+        <LogMessage Message="[Heavensward (3.2)] Loading the Heavensward (Patch 3.3) profile..." />
+        <LoadProfile Path="[O] Heavensward (Patch 3.3).xml" />
     </If>
 
 	</Order>
