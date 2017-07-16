@@ -6,7 +6,7 @@
 # Author: y2krazy                                #
 #         kagamihiragi17                         #
 ##################################################
-# Version: 2.1.1                                 #
+# Version: 2.1.2                                 #
 ##################################################
 # Required Level: 1                              #
 ##################################################
@@ -28,7 +28,7 @@
 ]>
 <!-- End User Configuration -->
 <Profile>
-	<Name>[O] [FSH] Leveling 1-70 + 1-60 Quests (v2.1.1)</Name>
+	<Name>[O] [FSH] Leveling 1-70 + 1-60 Quests (v2.1.2)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<CodeChunks>
@@ -2385,7 +2385,7 @@
 						
 		<!-- Level 63-65 -->
 
-		<While Condition="Core.Player.ClassLevel &lt; 70">
+		<While Condition="Core.Player.ClassLevel &lt; 65">
 
 			<!-- Bait: Live Shrimp -->
 
@@ -2440,13 +2440,68 @@
 				</Fish>
 			</While>
 		</While>
-		
-		<If Condition="Core.Player.ClassLevel == 70">
-			<LogMessage Message="Congrats! You've hit level 70 Fisher!" />
-			<If Condition="not IsOnMap(129)">
-				<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393" /> <!-- Limsa Lominsa Lower Decks -->
+						
+		<!-- Level 65-67 -->
+
+		<While Condition="Core.Player.ClassLevel &lt; 70">
+
+			<!-- Bait: Midge Larva -->
+
+			<If Condition="not HasAtLeast(20615,198)">
+				<LogMessage Message="You need more Midge Larva!" />
+				<GetTo ZoneId="622" XYZ="553.0938, -19.50565, 374.6241" /> <!-- Traveling Merchant -->
+				<BuyItem ItemId="20615" ItemCount="198" InteractDistance="3.0" NpcId="1019340" XYZ="553.0938, -19.50565, 374.6241" />
 			</If>
-		</If>
+			<GetTo ZoneId="620" XYZ="488.1469, 220.8684, -727.9365" /> <!-- Fishing Area -->
+			<While Condition="IsTimeBetween(0,8)">
+				<Fish Mooch="0" Bait="Midge Larva" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(0,8)">
+					<FishSpots>
+						<FishSpot XYZ="515.5537, 221.6723, -794.8837" Heading="0.8815162" Sit="&Sit;" />
+						<FishSpot XYZ="508.7783, 221.5808, -772.2563" Heading="1.748603" Sit="&Sit;" />
+						<FishSpot XYZ="491.5799, 221.8725, -749.932" Heading="0.6658025" Sit="&Sit;" />
+						<FishSpot XYZ="476.5363, 221.706, -720.4422" Heading="1.287843" Sit="&Sit;" />
+					</FishSpots>
+				</Fish>
+			</While>
+			<While Condition="IsTimeBetween(8,16)">
+				<Fish Mooch="0" Bait="Midge Larva" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(8,16)">
+					<FishSpots>
+						<FishSpot XYZ="445.971, 221.7074, -713.3638" Heading="5.117448" Sit="&Sit;" />
+						<FishSpot XYZ="414.8221, 223.6728, -733.8677" Heading="0.08461928" Sit="&Sit;" />
+						<FishSpot XYZ="390.2447, 220.8194, -715.5833" Heading="0.01131582" Sit="&Sit;" />
+						<FishSpot XYZ="436.6497, 223.9395, -731.5844" Heading="5.59078" Sit="&Sit;" />
+					</FishSpots>
+				</Fish>
+			</While>
+			<While Condition="IsTimeBetween(16,24)">
+				<Fish Mooch="0" Bait="Midge Larva" MinFish="&MinFish;" MaxFish="&MaxFish;" ShuffleFishSpots="True" Condition="IsTimeBetween(16,24)">
+					<FishSpots>
+						<FishSpot XYZ="460.3327, 221.7273, -706.9502" Heading="6.14789" Sit="&Sit;" />
+						<FishSpot XYZ="481.1847, 221.8464, -737.7766" Heading="0.9045651" Sit="&Sit;" />
+						<FishSpot XYZ="502.2134, 221.743, -757.7801" Heading="0.4312279" Sit="&Sit;" />
+						<FishSpot XYZ="508.695, 221.5678, -784.8376" Heading="1.132846" Sit="&Sit;" />
+					</FishSpots>
+				</Fish>
+			</While>
+			<LogMessage Message="Swapping zones to not scare the fish..." />
+			<GetTo ZoneId="622" XYZ="554.467, -19.50564, 309.4376" /> <!-- Traveling Mender -->
+			<NPCRepair NpcID="1019341" />
+			<GetTo ZoneId="622" XYZ="500.333, -21.74792, 301.5574" /> <!-- Fishing Area -->
+			<While Condition="IsTimeBetween(0,2)">
+				<Fish Mooch="0" Bait="Midge Larva" ShuffleFishSpots="True" Condition="IsTimeBetween(0,2)">
+					<FishSpots>
+						<FishSpot XYZ="490.7007, -24.61672, 298.2483" Heading="4.701779" />
+						<FishSpot XYZ="477.6625, -26.39521, 322.7394" Heading="1.449185" />
+						<FishSpot XYZ="475.0894, -28.01641, 350.3477" Heading="1.530869" />
+						<FishSpot XYZ="478.0901, -27.64755, 386.0205" Heading="1.275351" />
+					</FishSpots>
+				</Fish>
+			</While>
+		</While>
+
+		<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393" /> <!-- Limsa Lominsa Lower Decks -->
+		
+		<LogMessage Message="Congrats! You've hit level 70 Fisher!" />
 		
 	</Order>
 	<GrindAreas>
