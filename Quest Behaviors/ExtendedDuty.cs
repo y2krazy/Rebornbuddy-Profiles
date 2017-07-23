@@ -744,6 +744,18 @@ namespace ff14bot.NeoProfiles.Tags
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2007454).Location, 3)
                     )
                 ),
+                new Decorator(ret => QuestId == 68051 && Core.Player.InCombat && GameObjectManager.GetObjectByNPCId(2008289) != null && GameObjectManager.GetObjectByNPCId(2008289).IsVisible,
+                    new PrioritySelector(
+                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2008289).Location) <= 3,
+                            new Action(r =>
+                            {
+								Logging.Write("[ExtendedDuty] Interacting with Ovoo!");
+                                GameObjectManager.GetObjectByNPCId(2008289).Interact();
+                            })
+				        ),
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008289).Location, 3)
+                    )
+                ),
                 base.CreateBehavior()
                 );
         }
