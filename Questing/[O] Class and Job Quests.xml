@@ -8,7 +8,7 @@
 #          hkme                     #
 #          Eficiente                #
 #####################################
-# Version: 2.1.4b                   #
+# Version: 3.0.0                    #
 #####################################
 # Required Level: 1+                #
 #####################################
@@ -20,7 +20,7 @@
 #####################################
 -->
 <Profile>
-	<Name>[O] Class and Job Quests (v2.1.4b)</Name>
+	<Name>[O] Class and Job Quests (v3.0.0)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -2058,6 +2058,151 @@
 						</If>
 					</If>
 				</If>
+
+				<!-- A Book with Bite -->
+
+				<If Condition="not IsQuestCompleted(68161)">
+					<If Condition="Core.Player.ClassLevel &gt; 59">
+						<If Condition="not HasQuest(68161)">
+							<GetTo ZoneId="133" XYZ="-16.89185, 10.17425, -246.8757" /> <!-- Y'mhitra -->
+							<If Condition="IsQuestAcceptQualified(68161)">
+								<PickupQuest NpcId="1006756" QuestId="68161" XYZ="-16.89185, 10.17425, -246.8757" />
+							</If>
+						</If>
+						<If Condition="HasQuest(68161)">
+							<If Condition="GetQuestStep(68161) == 1">
+								<GetTo ZoneId="156" XYZ="446.8298, -5.306207, -465.7206" /> <!-- Rammbroes -->
+								<TalkTo NpcId="1006725" XYZ="446.8298, -5.306207, -465.7206" QuestId="68161" StepId="1" />
+							</If>
+							<If Condition="GetQuestStep(68161) == 2">
+								<GetTo ZoneId="156" XYZ="5.996765, 20.71253, -659.2661" /> <!-- Y'mhitra -->
+								<HandOver ItemId="2001810" QuestId="68161" StepId="2" NpcId="1022761" XYZ="5.996765, 20.71253, -659.2661" />
+							</If>
+							<If Condition="GetQuestStep(68161) == 3">
+								<GetTo ZoneId="156" XYZ="385.397, 23.71174, -712.7031" /> <!-- Principia -->
+								<TalkTo NpcId="1022762" XYZ="385.397, 23.71174, -712.7031" QuestId="68161" StepId="3" />
+								<WaitWhile Condition="GetQuestStep(68161) == 3" />
+							</If>
+							<If Condition="GetQuestStep(68161) == 4">
+								<GetTo ZoneId="156" XYZ="384.0542, 23.60255, -711.2078" /> <!-- Y'mhitra -->
+								<TalkTo NpcId="1022763" XYZ="384.0542, 23.60255, -711.2078" QuestId="68161" StepId="4" />
+							</If>
+							<If Condition="GetQuestStep(68161) == 255">
+								<GetTo ZoneId="133" XYZ="-16.89185, 10.17425, -246.8757" /> <!-- Y'mhitra -->
+								<TurnIn QuestId="68161" NpcId="1006756" XYZ="-16.89185, 10.17425, -246.8757" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<!-- Performing for Prin -->
+
+				<If Condition="not IsQuestCompleted(68162)">
+					<If Condition="Core.Player.ClassLevel &gt; 62">
+						<If Condition="not HasQuest(68162)">
+							<GetTo ZoneId="133" XYZ="-16.89185, 10.17425, -246.8757" /> <!-- Y'mhitra -->
+							<If Condition="IsQuestAcceptQualified(68162)">
+								<PickupQuest NpcId="1006756" QuestId="68162" XYZ="-16.89185, 10.17425, -246.8757" />
+							</If>
+						</If>
+						<If Condition="HasQuest(68162)">
+							<If Condition="GetQuestStep(68162) == 1">
+								<GetTo ZoneId="147" XYZ="49.66809, 4, 429.2209" /> <!-- Dancing Wolf -->
+								<TalkTo NpcId="1022765" XYZ="49.66809, 4, 429.2209" QuestId="68162" StepId="1" />
+							</If>
+							<If Condition="GetQuestStep(68162) == 2">
+								<GetTo ZoneId="147" XYZ="82.38342, 14.36233, 221.21" /> <!-- Crispin -->
+								<TalkTo NpcId="1022770" XYZ="82.38342, 14.36233, 221.21" QuestId="68162" StepId="2" />
+								<WaitWhile Condition="GetQuestStep(68162) == 2" />
+							</If>
+							<If Condition="GetQuestStep(68162) == 3">
+								<GetTo ZoneId="147" XYZ="87.9071, 14.7131, 222.0339" /> <!-- Jajasamu -->
+								<TalkTo NpcId="1022772" XYZ="87.9071, 14.7131, 222.0339" QuestId="68162" StepId="3" />
+								<WaitWhile Condition="GetQuestStep(68162) == 3" />
+							</If>
+							<If Condition="GetQuestStep(68162) == 4">
+								<GetTo ZoneId="147" XYZ="87.9071, 14.7131, 222.0339" /> <!-- Jajasamu -->
+								<TalkTo NpcId="1022772" XYZ="87.9071, 14.7131, 222.0339" QuestId="68162" StepId="4" />
+								<WaitWhile Condition="GetQuestStep(68162) == 3" />
+							</If>
+							<If Condition="GetQuestStep(68162) == 5">
+								<GetTo ZoneId="147" XYZ="74.66235, 14.03336, 228.5343" /> <!-- Dancing Wolf -->
+								<TalkTo NpcId="1022773" XYZ="74.66235, 14.03336, 228.5343" QuestId="68162" StepId="5" />
+							</If>
+							<If Condition="GetQuestStep(68162) == 255">
+								<GetTo ZoneId="133" XYZ="-16.89185, 10.17425, -246.8757" /> <!-- Y'mhitra -->
+								<TurnIn QuestId="68162" NpcId="1006756" XYZ="-16.89185, 10.17425, -246.8757" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<!-- An Egi-stential Crisis -->
+
+				<If Condition="not IsQuestCompleted(68163)">
+					<If Condition="Core.Player.ClassLevel &gt; 64">
+						<If Condition="not HasQuest(68163)">
+							<GetTo ZoneId="133" XYZ="-16.89185, 10.17425, -246.8757" /> <!-- Y'mhitra -->
+							<If Condition="IsQuestAcceptQualified(68163)">
+								<PickupQuest NpcId="1006756" QuestId="68163" XYZ="-16.89185, 10.17425, -246.8757" />
+							</If>
+						</If>
+						<If Condition="HasQuest(68163)">
+							<If Condition="GetQuestStep(68163) == 1">
+								<If Condition="not IsOnMap(130)">
+									<GetTo ZoneId="130" XYZ="-23.33112, 10, -43.44244" /> <!-- Willahelm -->
+								</If>
+								<If Condition="IsOnMap(130) and not IsOnSubMap(654)">
+									<UseTransport Name="Willahelm" NpcId="1001834" InteractDistance="3.0" DialogOption="0" XYZ="-23.33112, 10, -43.44244" />
+								</If>
+								<GetTo ZoneId="130" XYZ="-17.99042, 83.19999, 0.6560669" /> <!-- Y'mhitra -->
+								<TalkTo NpcId="1014039" XYZ="-17.99042, 83.19999, 0.6560669" QuestId="68163" StepId="1" />
+							</If>
+							<If Condition="GetQuestStep(68163) == 2">
+								<If Condition="not IsOnMap(130)">
+									<GetTo ZoneId="130" XYZ="-23.33112, 10, -43.44244" /> <!-- Willahelm -->
+								</If>
+								<If Condition="IsOnMap(130) and not IsOnSubMap(654)">
+									<UseTransport Name="Willahelm" NpcId="1001834" InteractDistance="3.0" DialogOption="0" XYZ="-23.33112, 10, -43.44244" />
+								</If>
+								<GetTo ZoneId="130" XYZ="-20.24878, 83.19999, -1.480164" /> <!-- Elite Flyer -->
+								<SimpleDuty InteractNpcId="1014038" XYZ="-20.24878, 83.19999, -1.480164" QuestId="68163" StepId="2">
+									<HotSpots>
+										<HotSpot XYZ="-172.4662, 23.34271, 70.47948" Radius="90" />
+										<HotSpot XYZ="-23.91843, 14.86364, 12.88679" Radius="90" />
+										<HotSpot XYZ="51.77154, 12.18365, 4.953246" Radius="90" />
+									</HotSpots>
+									<TargetMobs>
+										<TargetMob Id="6707" Weight="4000" /> <!-- Demiwyvern -->
+										<TargetMob Id="6701" Weight="3000" /> <!-- Sephirot Binah -->
+										<TargetMob Id="6700" Weight="2000" /> <!-- Sephirot Egi -->
+										<TargetMob Id="6705" Weight="1000" /> <!-- Off-center Summoner -->
+									</TargetMobs>
+								</SimpleDuty>
+							</If>
+							<If Condition="GetQuestStep(68162) == 3">
+								<GetTo ZoneId="147" XYZ="87.9071, 14.7131, 222.0339" /> <!-- Jajasamu -->
+								<TalkTo NpcId="1022772" XYZ="87.9071, 14.7131, 222.0339" QuestId="68162" StepId="3" />
+								<WaitWhile Condition="GetQuestStep(68162) == 3" />
+							</If>
+							<If Condition="GetQuestStep(68162) == 4">
+								<GetTo ZoneId="147" XYZ="87.9071, 14.7131, 222.0339" /> <!-- Jajasamu -->
+								<TalkTo NpcId="1022772" XYZ="87.9071, 14.7131, 222.0339" QuestId="68162" StepId="4" />
+								<WaitWhile Condition="GetQuestStep(68162) == 3" />
+							</If>
+							<If Condition="GetQuestStep(68162) == 5">
+								<GetTo ZoneId="147" XYZ="74.66235, 14.03336, 228.5343" /> <!-- Dancing Wolf -->
+								<TalkTo NpcId="1022773" XYZ="74.66235, 14.03336, 228.5343" QuestId="68162" StepId="5" />
+							</If>
+							<If Condition="GetQuestStep(68162) == 255">
+								<GetTo ZoneId="133" XYZ="-16.89185, 10.17425, -246.8757" /> <!-- Y'mhitra -->
+								<TurnIn QuestId="68162" NpcId="1006756" XYZ="-16.89185, 10.17425, -246.8757" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<StopBot />
 
 			</If>
 
