@@ -44,6 +44,3 @@ Manually purchase the following for now:
 • Lv50-60 DoH/DoL Armor: Norlaise @ The Jeweled Crozier in Foundation (x7.1, y10.2)
 • Lv50-60 DoH/DoL Tools/Bait: Evrardoux @ The Jeweled Crozier in Foundation (x6.4, y9.6)
 • Lv50 DoH/DoL Accessories: Seghuie @ The Jeweled Crozier in Foundation (x7.4, y10.4)
-
-• Lv60-70 DoH/DoL Armor: Independent Merchant @ Rhalgr's Reach (x12.7, y11.0)
-• Lv60-70 DoH/DoL Tools/Bait: Independent Merchant @ Rhalgr's Reach (x12.7, y11.0)
