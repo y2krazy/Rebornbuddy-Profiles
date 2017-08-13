@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--	
+##########################################
+# Profile: [O] Aethernet - Kugane        #
+##########################################
+# Author: y2krazy                        #
+##########################################
+# Version: 3.0.0                         #
+##########################################
+# Required Level: 61                     #
+##########################################
+# Required Setup:                        #
+#  Not Without Incident quest completed. #
+##########################################
+# Required User Interaction:             #
+#  None                                  #
+##########################################
+-->
+<Profile>
+	<Name>[O] Aethernet - Kugane (v3.0.0)</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="not IsQuestCompleted(68005)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the Not Without Incident quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete Not Without Incident and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsAetheryteKnown(112) and IsAetheryteKnown(113) and IsAetheryteKnown(114) and IsAetheryteKnown(115) and IsAetheryteKnown(116) and IsAetheryteKnown(117) and IsAetheryteKnown(118) and IsAetheryteKnown(119)">
+			<LogMessage Message="[Aethernets - Kugane] You have already unlocked all of the Kugane Aethernet Shards!" />
+			<StopBot />
+		</If>
+
+		<While Condition="not IsAetheryteKnown(112) or not IsAetheryteKnown(113) or not IsAetheryteKnown(114) or not IsAetheryteKnown(115) or not IsAetheryteKnown(116) or not IsAetheryteKnown(117) or not IsAetheryteKnown(118) or not IsAetheryteKnown(119)">
+			<GetTo ZoneId="628" XYZ="-31.31025, 0.1000018, -43.71614" /> <!-- Kugane -->
+		</While>
+
+		<LogMessage Message="[Aethernet - Kugane] You have unlocked all of the Kugane Aethernet Shards!" />
+
+	</Order>
+	<CodeChunks>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>

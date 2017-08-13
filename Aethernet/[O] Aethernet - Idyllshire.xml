@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--	
+########################################
+# Profile: [O] Aethernet - Idyllshire  #
+########################################
+# Author: y2krazy                      #
+########################################
+# Version: 3.0.0                       #
+########################################
+# Required Level: 58                   #
+########################################
+# Required Setup:                      #
+#  A Great New Nation quest completed. #
+########################################
+# Required User Interaction:           #
+#  None                                #
+########################################
+-->
+<Profile>
+	<Name>[O] Aethernet - Idyllshire (v3.0.0)</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="not IsQuestCompleted(67191)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the A Great New Nation quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete A Great New Nation and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsAetheryteKnown(90)">
+			<LogMessage Message="[Aethernets - Idyllshire] You have already unlocked the Idyllshire Aethernet Shard!" />
+			<StopBot />
+		</If>
+
+		<While Condition="not IsAetheryteKnown(90)">
+			<GetTo ZoneId="478" XYZ="0.1224781, 206.4994, 50.41509" /> <!-- Idyllshire -->
+		</While>
+
+		<LogMessage Message="[Aethernet - Idyllshire] You have unlocked the Idyllshire Aethernet Shard!" />
+
+	</Order>
+	<CodeChunks>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>

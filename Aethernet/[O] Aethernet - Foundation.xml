@@ -1,94 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--	
-###################################################################
-# Profile: [O] Aethernet - Foundation                             #
-###################################################################
-# Author: y2krazy                                                 #
-###################################################################
-# Version: 1.0.1a                                                 #
-###################################################################
-# Required Level: 50                                              #
-###################################################################
-# Required Teleport Locations:                                    #
-# 	Foundation                                                    #
-###################################################################
-# Required User Interaction:                                      #
-# 	None.                                                         #
-###################################################################
-# Required Setup:                                                 #
-# 	Coming to Ishgard quest completed.                            #
-###################################################################
-# Rewards:                                                        #
-# 	Access to all Foundation Aethernet Shards                     #
-# 	Access to the Gates of Judgement (Coerthas Central Highlands) #
-###################################################################
+#######################################
+# Profile: [O] Aethernet - Foundation #
+#######################################
+# Author: y2krazy                     #
+#######################################
+# Version: 3.0.0                      #
+#######################################
+# Required Level: 50                  #
+#######################################
+# Required Setup:                     #
+#  Coming to Ishgard quest completed. #
+#######################################
+# Required User Interaction:          #
+#  None                               #
+#######################################
 -->
 <Profile>
-	<Name>[O] Aethernet - Foundation (v1.0.1a)</Name>
+	<Name>[O] Aethernet - Foundation (v3.0.0)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
 
-		<!-- Required Quest Check -->
-
-		<If Condition="not IsQuestCompleted(67116)">
-			<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
-			<LogMessage Message="Please complete Coming to Ishgard and restart the profile." />
+        <If Condition="not IsQuestCompleted(67116)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the Coming to Ishgard quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete Coming to Ishgard and restart the profile." />
 			<StopBot />
 		</If>
 
-		<If Condition="IsQuestCompleted(67116) or IsQuestCompleted(66082) or IsQuestCompleted(66064)">
-
-			<!-- Foundation Aethernet -->
-
-			<If Condition="not IsOnMap(418)">
-				<GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" /> <!-- Foundation -->
-			</If>
-
-			<!-- The Brume -->
-
-			<UseObject UseDistance="3.0" NpcId="82" XYZ="49.42395, -11.15442, 66.69714" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<!-- The Forgotten Knight -->
-
-			<UseObject UseDistance="3.0" NpcId="80" XYZ="45.79224, 24.55164, 0.9917603" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<!-- Skysteel Manufactory -->
-
-			<UseObject UseDistance="3.0" NpcId="81" XYZ="-111.4366, 16.12872, -27.05432" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<If Condition="not IsOnMap(419)">
-				<GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746" /> <!-- The Pillars -->
-			</If>
-
-			<!-- The Jeweled Crozier -->
-
-			<UseObject UseDistance="3.0" NpcId="84" XYZ="-134.6914, -11.79523, -15.39642" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<!-- Saint Reymanaud Cathedral -->
-
-			<UseObject UseDistance="3.0" NpcId="85" XYZ="-77.95837, 10.60498, -126.5432" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<!-- The Last Vigil -->
-
-			<UseObject UseDistance="3.0" NpcId="87" XYZ="0.01519775, 16.52545, -32.51703" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<!-- The Tribunal -->
-
-			<UseObject UseDistance="3.0" NpcId="86" XYZ="78.01941, 11.00171, -126.5126" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<!-- Athenaeum Astrologicum -->
-
-			<UseObject UseDistance="3.0" NpcId="83" XYZ="133.379, -8.86554, -64.77466" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<LogMessage Message="You have unlocked all of the Foundation Aethernet Shards!" />
+		<If Condition="IsAetheryteKnown(80) and IsAetheryteKnown(81) and IsAetheryteKnown(82) and IsAetheryteKnown(83) and IsAetheryteKnown(84) and IsAetheryteKnown(85) and IsAetheryteKnown(86) and IsAetheryteKnown(87)">
+			<LogMessage Message="[Aethernets - Foundation] You have already unlocked all of the Foundation Aethernet Shards!" />
 			<StopBot />
-
 		</If>
+
+		<While Condition="not IsAetheryteKnown(80) or not IsAetheryteKnown(81) or not IsAetheryteKnown(82) or not IsAetheryteKnown(83) or not IsAetheryteKnown(84) or not IsAetheryteKnown(85) or not IsAetheryteKnown(86) or not IsAetheryteKnown(87)">
+			<GetTo ZoneId="418" XYZ="73.89941, 24.3075, 22.04926" /> <!-- Foundation -->
+			<GetTo ZoneId="419" XYZ="17.99036, 16.00967, -9.567444" /> <!-- The Pillars -->
+		</While>
+
+		<LogMessage Message="[Aethernet - Foundation] You have unlocked all of the Foundation Aethernet Shards!" />
 
 	</Order>
-	<GrindAreas>
-	</GrindAreas>
 	<CodeChunks>
 	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
 </Profile>

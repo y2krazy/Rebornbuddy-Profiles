@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--	
+###########################################
+# Profile: [O] Aethernet - Rhalgr's Reach #
+###########################################
+# Author: y2krazy                         #
+###########################################
+# Version: 3.0.0                          #
+###########################################
+# Required Level: 60                      #
+###########################################
+# Required Setup:                         #
+#  Lyse Takes the Lead quest completed.   #
+###########################################
+# Required User Interaction:              #
+#  None                                   #
+###########################################
+-->
+<Profile>
+	<Name>[O] Aethernet - Rhalgr's Reach (v3.0.0)</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="not IsQuestCompleted(67983)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the Lyse Takes the Lead quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete Lyse Takes the Lead and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsAetheryteKnown(121) and IsAetheryteKnown(122)">
+			<LogMessage Message="[Aethernets - Rhalgr's Reach] You have already unlocked all of the Rhalgr's Reach Aethernet Shards!" />
+			<StopBot />
+		</If>
+
+		<While Condition="not IsAetheryteKnown(121) or not IsAetheryteKnown(122)">
+			<GetTo ZoneId="635" XYZ="-57.19875, 0, 48.23918" /> <!-- Rhalgr's Reach -->
+		</While>
+
+		<LogMessage Message="[Aethernet - Rhalgr's Reach] You have unlocked all of the Rhalgr's Reach Aethernet Shards!" />
+
+	</Order>
+	<CodeChunks>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>

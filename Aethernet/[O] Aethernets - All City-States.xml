@@ -1,192 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-##########################################################
-# Profile: [O] Aethernet - All City-States               #
-##########################################################
-# Author: y2krazy                                        #
-##########################################################
-# Version: 1.0.2a                                        #
-##########################################################
-# Required Level: 15                                     #
-##########################################################
-# Required Teleport Locations:                           #
-# 	Limsa Lominsa Lower Decks                            #
-# 	New Gridania                                         #
-# 	Ul'dah - Steps of Nald                               #
-##########################################################
-# Required User Interaction:                             #
-# 	None.                                                #
-##########################################################
-# Required Setup:                                        #
-# 	The Gridanian Envoy quest completed, or              #
-# 	The Lominsan Envoy quest completed, or               #
-# 	The Ul'dahn Envoy quest completed.                   #
-##########################################################
-# Rewards:                                               #
-# 	Access to all Gridania Aethernet Shards              #
-# 	Access to the Blue Badger Gate (Central Shroud)      #
-# 	Access to the Yellow Serpent Gate (North Shroud)     #
-# 	Access to all Limsa Lominsa Aethernet Shards         #
-# 	Access to the Tempest Gate (Lower La Noscea)         #
-# 	Access to the Zephyr Gate (Middle La Noscea)         #
-# 	Access to all Ul'dah Aethernet Shards                #
-# 	Access to the Gate of Nald (Western Thanalan)        #
-# 	Access to the Gate of Thal (Central Thanalan)        #
-# 	Access to the Gate of the Sultana (Western Thanalan) #
-##########################################################
+#############################################
+# Profile: [O] Aethernets - All City-states #
+#############################################
+# Author: y2krazy                           #
+#############################################
+# Version: 3.0.0                            #
+#############################################
+# Required Level: 61                        #
+#############################################
+# Required Setup:                           #
+#  Not Without Incident quest completed.    #
+#############################################
+# Required User Interaction:                #
+#  None                                     #
+#############################################
 -->
 <Profile>
-	<Name>[O] Aethernets - All City-States (v1.0.2a)</Name>
+	<Name>[O] Aethernets - All City-states (v3.0.0)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
-		<!-- Required Quest Check -->
-		<If Condition="IsQuestCompleted(65575)">
-			<If Condition="not IsQuestCompleted(66043)">
-				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
-				<LogMessage Message="Please complete The Gridanian Envoy and restart the profile." />
-				<StopBot />
-			</If>
-		</If>
-		<If Condition="IsQuestCompleted(65643)">
-			<If Condition="not IsQuestCompleted(66082)">
-				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
-				<LogMessage Message="Please complete The Lominsan Envoy and restart the profile." />
-				<StopBot />
-			</If>
-		</If>
-		<If Condition="IsQuestCompleted(66130)">
-			<If Condition="not IsQuestCompleted(66064)">
-				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
-				<LogMessage Message="Please complete The Ul'dahn Envoy and restart the profile." />
-				<StopBot />
-			</If>
-		</If>
-		<If Condition="IsQuestCompleted(66043) or IsQuestCompleted(66082) or IsQuestCompleted(66064)">
-			<!-- Gridania Aethernet -->
-			<LogMessage Message="Checking the Gridanian Aethernet..." />
-			<If Condition="not IsAetheryteKnown(25) or not IsAetheryteKnown(26) or not IsAetheryteKnown(27) or not IsAetheryteKnown(28) or not IsAetheryteKnown(29) or not IsAetheryteKnown(30)">
-				<If Condition="not IsOnMap(132)">
-					<GetTo ZoneId="132" XYZ="29.56105, 1.691584, 33.32197" /> <!-- New Gridania -->
-				</If>
-				<!-- Archers' Guild -->
-				<If Condition="not IsAetheryteKnown(25)">
-					<UseObject UseDistance="3.0" NpcId="25" XYZ="166.5828, -1.724304, 86.13721" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<If Condition="not IsOnMap(133)">
-					<GetTo ZoneId="133" XYZ="29.11956, 8.114757, -101.8751" /> <!-- Old Gridania -->
-				</If>
-				<!-- Leatherworkers' Guild -->
-				<If Condition="not IsAetheryteKnown(26)">
-					<UseObject UseDistance="3.0" NpcId="26" XYZ="101.274, 9.018005, -111.3146" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Lancers' Guild -->
-				<If Condition="not IsAetheryteKnown(27)">
-					<UseObject UseDistance="3.0" NpcId="27" XYZ="121.2329, 12.64966, -229.6331" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Mih Khetto's Amphitheatre -->
-				<If Condition="not IsAetheryteKnown(30)">
-					<UseObject UseDistance="3.0" NpcId="30" XYZ="-73.92999, 7.980469, -140.1542" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Conjurers' Guild -->
-				<If Condition="not IsAetheryteKnown(28)">
-					<UseObject UseDistance="3.0" NpcId="28" XYZ="-145.1591, 4.959106, -11.76477" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Botanists' Guild -->
-				<If Condition="not IsAetheryteKnown(29)">
-					<UseObject UseDistance="3.0" NpcId="29" XYZ="-311.0857, 7.94989, -177.0505" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<LogMessage Message="You have unlocked all of the Gridania Aethernet Shards!" />
-			</If>
-			<If Condition="IsAetheryteKnown(25) and IsAetheryteKnown(26)  and IsAetheryteKnown(27) and IsAetheryteKnown(28) and IsAetheryteKnown(29) and IsAetheryteKnown(30)">
-				<LogMessage Message="Checking the Limsa Lominsa Aethernet..." />
-			</If>
-			<!-- Limsa Lominsa Aethernet -->
-			<If Condition="not IsAetheryteKnown(49) or not IsAetheryteKnown(43) or not IsAetheryteKnown(44) or not IsAetheryteKnown(41) or not IsAetheryteKnown(42) or not IsAetheryteKnown(48)">
-				<LogMessage Message="Moving on to the Limsa Lominsa Aethernet..." />
-				<If Condition="not IsOnMap(129)">
-					<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393" /> <!-- Limsa Lominsa Lower Decks -->
-				</If>
-				<!-- Hawkers' Alley -->
-				<If Condition="not IsAetheryteKnown(49)">
-					<UseObject UseDistance="3.0" NpcId="49" XYZ="-213.6111, 16.73914, 51.80432" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Arcanists' Guild -->
-				<If Condition="not IsAetheryteKnown(43)">
-					<UseObject UseDistance="3.0" NpcId="43" XYZ="-335.1645, 12.6192, 56.38196" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Fisherman's Bottom -->
-				<If Condition="not IsAetheryteKnown(44)">
-					<UseObject UseDistance="3.0" NpcId="44" XYZ="-179.4003, 4.806519, 182.9709" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<If Condition="not IsOnMap(128)">
-					<GetTo ZoneId="128" XYZ="-43.83308, 43.99126, -133.257" /> <!-- Limsa Lominsa Upper Decks -->
-				</If>
-				<!-- The Aftcastle -->
-				<If Condition="not IsAetheryteKnown(41)">
-					<UseObject UseDistance="3.0" NpcId="41" XYZ="16.06769, 40.78735, 68.80286" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Culinarians' Guild -->
-				<If Condition="not IsAetheryteKnown(42)">
-					<UseObject UseDistance="3.0" NpcId="42" XYZ="-56.50421, 44.47998, -131.4565" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Marauders' Guild -->
-				<If Condition="not IsAetheryteKnown(48)">
-					<UseObject UseDistance="3.0" NpcId="48" XYZ="-5.172852, 44.63257, -218.0667" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<LogMessage Message="You have unlocked all of the Limsa Lominsa Aethernet Shards!" />
-			</If>
-			<If Condition="IsAetheryteKnown(49) and IsAetheryteKnown(43) and IsAetheryteKnown(44) and IsAetheryteKnown(41) and IsAetheryteKnown(42) and IsAetheryteKnown(48)">
-				<LogMessage Message="Checking the Ul'dah Aethernet..." />
-			</If>
-			<!-- Ul'dah Aethernet -->
-			<If Condition="not IsAetheryteKnown(34) or not IsAetheryteKnown(33) or not IsAetheryteKnown(35) or not IsAetheryteKnown(50) or not IsAetheryteKnown(36) or not IsAetheryteKnown(47) or not IsAetheryteKnown(51) or not IsAetheryteKnown(37)">
-				<LogMessage Message="Moving on to the Ul'dah Aethernet..." />
-				<If Condition="not IsOnMap(130)">
-					<GetTo ZoneId="130" XYZ="-139.9186, -3.154888, -164.1674" /> <!-- Ul'dah - Steps of Nald -->
-				</If>
-				<!-- Thaumaturges' Guild -->
-				<If Condition="not IsAetheryteKnown(34)">
-					<UseObject UseDistance="3.0" NpcId="34" XYZ="-154.8333, 14.63336, 73.07532" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Adventurers' Guild -->
-				<If Condition="not IsAetheryteKnown(33)">
-					<UseObject UseDistance="3.0" NpcId="33" XYZ="64.22522, 4.53186, -115.3124" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<If Condition="not IsOnMap(131)">
-					<GetTo ZoneId="131" XYZ="-3.683439, 15.00001, -8.834866" /> <!-- Ul'dah - Steps of Thal -->
-				</If>
-				<!-- Gladiators' Guild -->
-				<If Condition="not IsAetheryteKnown(35)">
-					<UseObject UseDistance="3.0" NpcId="35" XYZ="-53.84918, 10.69653, 12.22241" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Goldsmiths' Guild -->
-				<If Condition="not IsAetheryteKnown(50)">
-					<UseObject UseDistance="3.0" NpcId="50" XYZ="-19.33325, 14.60284, 72.03784" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Miners' Guild -->
-				<If Condition="not IsAetheryteKnown(36)">
-					<UseObject UseDistance="3.0" NpcId="36" XYZ="33.49353, 13.22949, 113.2067" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Weavers' Guild -->
-				<If Condition="not IsAetheryteKnown(47)">
-					<UseObject UseDistance="3.0" NpcId="47" XYZ="89.64673, 12.92438, 58.27417" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Chamber of Rule -->
-				<If Condition="not IsAetheryteKnown(51)">
-					<UseObject UseDistance="3.0" NpcId="51" XYZ="6.637634, 30.65527, -24.82648" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-				<!-- Alchemists' Guild -->
-				<If Condition="not IsAetheryteKnown(37)">
-					<UseObject UseDistance="3.0" NpcId="37" XYZ="-98.25293, 42.34375, 88.45642" Radius="10" UseTimes="1" BlacklistAfter="True" />
-				</If>
-			</If>
-			<If Condition="IsAetheryteKnown(34) and IsAetheryteKnown(33) and IsAetheryteKnown(35) and IsAetheryteKnown(50) and IsAetheryteKnown(36) and IsAetheryteKnown(47) and IsAetheryteKnown(51) and IsAetheryteKnown(37)">
-				<LogMessage Message="You have unlocked all of the major city Aethernet Shards!" />
-			</If>
+
+		<If Condition="IsQuestCompleted(65575) and not IsQuestCompleted(66043)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed The Gridanian Envoy quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete The Gridanian Envoy and restart the profile." />
 			<StopBot />
 		</If>
+
+		<If Condition="IsQuestCompleted(65643) and not IsQuestCompleted(66082)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed The Lominsan Envoy quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete The Lominsan Envoy and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsQuestCompleted(66130) and not IsQuestCompleted(66064)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed The Ul'dahn Envoy quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete The Ul'dahn Envoy and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsAetheryteKnown(25) and IsAetheryteKnown(26) and IsAetheryteKnown(27) and IsAetheryteKnown(28) and IsAetheryteKnown(29) and IsAetheryteKnown(30)">
+			<LogMessage Message="[Aethernets - All City-states] You have already unlocked all of the Gridania Aethernet Shards!" />
+		</If>
+
+		<While Condition="not IsAetheryteKnown(25) or not IsAetheryteKnown(26) or not IsAetheryteKnown(27) or not IsAetheryteKnown(28) or not IsAetheryteKnown(29) or not IsAetheryteKnown(30)">
+			<GetTo ZoneId="132" XYZ="-77.78102, -0.5030983, 2.252599" /> <!-- New Gridania -->
+			<GetTo ZoneId="133" XYZ="160.4767, 15.69993, -135.2895" /> <!-- Old Gridania -->
+		</While>
+
+		<If Condition="IsAetheryteKnown(49) and IsAetheryteKnown(43) and IsAetheryteKnown(44) and IsAetheryteKnown(41) and IsAetheryteKnown(42) and IsAetheryteKnown(48)">
+			<LogMessage Message="[Aethernets - All City-states] You have already unlocked all of the Limsa Lominsa Aethernet Shards!" />
+		</If>
+
+		<While Condition="not IsAetheryteKnown(49) or not IsAetheryteKnown(43) or not IsAetheryteKnown(44) or not IsAetheryteKnown(41) or not IsAetheryteKnown(42) or not IsAetheryteKnown(48)">
+			<GetTo ZoneId="129" XYZ="-124.3134, 18, 20.80783" /> <!-- Limsa Lominsa Lower Decks -->
+			<GetTo ZoneId="128" XYZ="94.38336, 40.24703, 60.49877" /> <!-- Limsa Lominsa Upper Decks -->
+		</While>
+
+		<If Condition="IsAetheryteKnown(34) and IsAetheryteKnown(33) and IsAetheryteKnown(35) and IsAetheryteKnown(50) and IsAetheryteKnown(36) and IsAetheryteKnown(47) and IsAetheryteKnown(51) and IsAetheryteKnown(37)">
+			<LogMessage Message="[Aethernets - All City-states] You have already unlocked all of the Ul'dah Aethernet Shards!" />
+		</If>
+
+		<While Condition="not IsAetheryteKnown(34) or not IsAetheryteKnown(33) or not IsAetheryteKnown(35) or not IsAetheryteKnown(50) or not IsAetheryteKnown(36) or not IsAetheryteKnown(47) or not IsAetheryteKnown(51) or not IsAetheryteKnown(37)">
+			<GetTo ZoneId="130" XYZ="-152.032, 4.099983, -92.52749" /> <!-- Ul'dah - Steps of Nald -->
+			<GetTo ZoneId="131" XYZ="148.1966, 4, -43.52148" /> <!-- Ul'dah - Steps of Thal -->
+		</While>
+
+        <If Condition="not IsQuestCompleted(67116)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the Coming to Ishgard quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete Coming to Ishgard and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsAetheryteKnown(80) and IsAetheryteKnown(81) and IsAetheryteKnown(82) and IsAetheryteKnown(83) and IsAetheryteKnown(84) and IsAetheryteKnown(85) and IsAetheryteKnown(86) and IsAetheryteKnown(87)">
+			<LogMessage Message="[Aethernets - All City-states] You have already unlocked all of the Foundation Aethernet Shards!" />
+		</If>
+
+		<While Condition="not IsAetheryteKnown(80) or not IsAetheryteKnown(81) or not IsAetheryteKnown(82) or not IsAetheryteKnown(83) or not IsAetheryteKnown(84) or not IsAetheryteKnown(85) or not IsAetheryteKnown(86) or not IsAetheryteKnown(87)">
+			<GetTo ZoneId="418" XYZ="73.89941, 24.3075, 22.04926" /> <!-- Foundation -->
+			<GetTo ZoneId="419" XYZ="17.99036, 16.00967, -9.567444" /> <!-- The Pillars -->
+		</While>
+
+        <If Condition="not IsQuestCompleted(67191)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the A Great New Nation quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete A Great New Nation and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsAetheryteKnown(90)">
+			<LogMessage Message="[Aethernets - All City-states] You have already unlocked the Idyllshire Aethernet Shard!" />
+		</If>
+
+		<While Condition="not IsAetheryteKnown(90)">
+			<GetTo ZoneId="478" XYZ="0.1224781, 206.4994, 50.41509" /> <!-- Idyllshire -->
+		</While>
+
+        <If Condition="not IsQuestCompleted(67983)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the Lyse Takes the Lead quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete Lyse Takes the Lead and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsAetheryteKnown(121) and IsAetheryteKnown(122)">
+			<LogMessage Message="[Aethernets - All City-states] You have already unlocked all of the Rhalgr's Reach Aethernet Shards!" />
+		</If>
+
+		<While Condition="not IsAetheryteKnown(121) or not IsAetheryteKnown(122)">
+			<GetTo ZoneId="635" XYZ="-57.19875, 0, 48.23918" /> <!-- Rhalgr's Reach -->
+		</While>
+
+        <If Condition="not IsQuestCompleted(68005)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the Not Without Incident quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete Not Without Incident and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsAetheryteKnown(112) and IsAetheryteKnown(113) and IsAetheryteKnown(114) and IsAetheryteKnown(115) and IsAetheryteKnown(116) and IsAetheryteKnown(117) and IsAetheryteKnown(118) and IsAetheryteKnown(119)">
+			<LogMessage Message="[Aethernets - All City-states] You have already unlocked all of the Kugane Aethernet Shards!" />
+		</If>
+
+		<While Condition="not IsAetheryteKnown(112) or not IsAetheryteKnown(113) or not IsAetheryteKnown(114) or not IsAetheryteKnown(115) or not IsAetheryteKnown(116) or not IsAetheryteKnown(117) or not IsAetheryteKnown(118) or not IsAetheryteKnown(119)">
+			<GetTo ZoneId="628" XYZ="-31.31025, 0.1000018, -43.71614" /> <!-- Kugane -->
+		</While>
+
+		<LogMessage Message="[Aethernets - All City-states] You have unlocked all of the City-state Aethernet Shards!" />
+
 	</Order>
-	<GrindAreas></GrindAreas>
-	<CodeChunks></CodeChunks>
+	<CodeChunks>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
 </Profile>

@@ -1,113 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-##################################################
-# Profile: [O] Aethernet - Limsa Lominsa         #
-##################################################
-# Author: y2krazy                                #
-##################################################
-# Version: 1.0.2a                                #
-##################################################
-# Required Level: 15                             #
-##################################################
-# Required Teleport Locations:                   #
-# 	Limsa Lominsa Lower Decks                    #
-##################################################
-# Required User Interaction:                     #
-# 	None.                                        #
-##################################################
-# Required Setup:                                #
-# 	The Gridanian Envoy quest completed, or      #
-# 	The Lominsan Envoy quest completed, or       #
-# 	The Ul'dahn Envoy quest completed.           #
-##################################################
-# Rewards:                                       #
-# 	Access to all Limsa Lominsa Aethernet Shards #
-# 	Access to the Tempest Gate (Lower La Noscea) #
-# 	Access to the Zephyr Gate (Middle La Noscea) #
-##################################################
+############################################
+# Profile: [O] Aethernet - Limsa Lominsa   #
+############################################
+# Author: y2krazy                          #
+############################################
+# Version: 3.0.0                           #
+############################################
+# Required Level: 15                       #
+############################################
+# Required Setup:                          #
+#  The Gridanian Envoy quest completed, or #
+#  The Lominsan Envoy quest completed, or  #
+#  The Ul'dahn Envoy quest completed.      #
+############################################
+# Required User Interaction:               #
+#  None                                    #
+############################################
 -->
 <Profile>
-	<Name>[O] Aethernet - Limsa Lominsa (v1.0.2a)</Name>
+	<Name>[O] Aethernet - Limsa Lominsa (v3.0.0)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
 
-		<!-- Required Quest Check -->
-
-		<If Condition="IsQuestCompleted(65575)">
-
-			<If Condition="not IsQuestCompleted(66043)">
-				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
-				<LogMessage Message="Please complete The Gridanian Envoy and restart the profile." />
-				<StopBot />
-			</If>
-
-		</If>
-
-		<If Condition="IsQuestCompleted(65643)">
-
-			<If Condition="not IsQuestCompleted(66082)">
-				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
-				<LogMessage Message="Please complete The Lominsan Envoy and restart the profile." />
-				<StopBot />
-			</If>
-
-		</If>
-
-		<If Condition="IsQuestCompleted(66130)">
-
-			<If Condition="not IsQuestCompleted(66064)">
-				<LogMessage Message="You have not completed the required quest to unlock the city-states!" />
-				<LogMessage Message="Please complete The Ul'dahn Envoy and restart the profile." />
-				<StopBot />
-			</If>
-
-		</If>
-
-		<If Condition="IsQuestCompleted(66043) or IsQuestCompleted(66082) or IsQuestCompleted(66064)">
-
-			<!-- Limsa Lominsa Aethernet -->
-
-			<If Condition="not IsOnMap(129)">
-				<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393" /> <!-- Limsa Lominsa Lower Decks -->
-			</If>
-
-			<!-- Hawkers' Alley -->
-
-			<UseObject UseDistance="3.0" NpcId="49" XYZ="-213.6111, 16.73914, 51.80432" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<!-- Arcanists' Guild -->
-
-			<UseObject UseDistance="3.0" NpcId="43" XYZ="-335.1645, 12.6192, 56.38196" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<!-- Fisherman's Bottom -->
-
-			<UseObject UseDistance="3.0" NpcId="44" XYZ="-179.4003, 4.806519, 182.9709" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<If Condition="not IsOnMap(128)">
-				<GetTo ZoneId="128" XYZ="-43.83308, 43.99126, -133.257" /> <!-- Limsa Lominsa Upper Decks -->
-			</If>
-
-			<!-- The Aftcastle -->
-
-			<UseObject UseDistance="3.0" NpcId="41" XYZ="16.06769, 40.78735, 68.80286" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<!-- Culinarians' Guild -->
-
-			<UseObject UseDistance="3.0" NpcId="42" XYZ="-56.50421, 44.47998, -131.4565" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<!-- Marauders' Guild -->
-
-			<UseObject UseDistance="3.0" NpcId="48" XYZ="-5.172852, 44.63257, -218.0667" Radius="10" UseTimes="1" BlacklistAfter="True" />
-
-			<LogMessage Message="You have unlocked all of the Limsa Lominsa Aethernet Shards!" />
+		<If Condition="IsQuestCompleted(65575) and not IsQuestCompleted(66043)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed The Gridanian Envoy quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete The Gridanian Envoy and restart the profile." />
 			<StopBot />
-
 		</If>
+
+		<If Condition="IsQuestCompleted(65643) and not IsQuestCompleted(66082)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed The Lominsan Envoy quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete The Lominsan Envoy and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsQuestCompleted(66130) and not IsQuestCompleted(66064)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed The Ul'dahn Envoy quest yet!" />
+			<LogMessage Message="[Pre-Requisite Check] Please complete The Ul'dahn Envoy and restart the profile." />
+			<StopBot />
+		</If>
+
+		<If Condition="IsAetheryteKnown(49) and IsAetheryteKnown(43) and IsAetheryteKnown(44) and IsAetheryteKnown(41) and IsAetheryteKnown(42) and IsAetheryteKnown(48)">
+			<LogMessage Message="[Aethernets - Limsa Lominsa] You have already unlocked all of the Limsa Lominsa Aethernet Shards!" />
+			<StopBot />
+		</If>
+
+		<While Condition="not IsAetheryteKnown(49) or not IsAetheryteKnown(43) or not IsAetheryteKnown(44) or not IsAetheryteKnown(41) or not IsAetheryteKnown(42) or not IsAetheryteKnown(48)">
+			<GetTo ZoneId="129" XYZ="-124.3134, 18, 20.80783" /> <!-- Limsa Lominsa Lower Decks -->
+			<GetTo ZoneId="128" XYZ="94.38336, 40.24703, 60.49877" /> <!-- Limsa Lominsa Upper Decks -->
+		</While>
+
+		<LogMessage Message="[Aethernets - Limsa Lominsa] You have unlocked all of the Limsa Lominsa Aethernet Shards!" />
 
 	</Order>
-	<GrindAreas>
-	</GrindAreas>
 	<CodeChunks>
 	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
 </Profile>
