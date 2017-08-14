@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################
+# Profile: [O] Samurai       #
+##############################
+# Authors: y2krazy           #
+##############################
+# Version: 3.0.0             #
+##############################
+# Required Level: 60         #
+##############################
+# Required Setup:            #
+#  None                      #
+##############################
+# Required User Interaction: #
+#  None                      #
+##############################
+-->
+<Profile>
+	<Name>[O] Samurai (v3.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="IsQuestCompleted(68095)">
+            <LogMessage Message="[Samurai] You have already unlocked your Samurai job." />
+            <StopBot />
+        </If>
+
+		<!-- The Way of the Samurai -->
+        <If Condition="not IsQuestCompleted(68095)">
+
+            <LogMessage Message="[Samurai] Unlocking your Samurai job!" />
+
+            <If Condition="not HasQuest(68095)">
+                <GetTo ZoneId="130" XYZ="-98.43597, 4, -104.9974" /> <!-- Ul'dahn Citizen -->
+                <If Condition="IsQuestAcceptQualified(68095)">
+                    <PickupQuest NpcId="1021829" QuestId="68095" XYZ="-98.43597, 4, -104.9974" />
+                </If>
+            </If>
+            <If Condition="HasQuest(68095)">
+                <If Condition="GetQuestStep(68095) == 1">
+                    <GetTo ZoneId="131" XYZ="-102.0677, 6.984566, 12.00879" /> <!-- Silver-tongued Showmaster -->
+                    <TalkTo NpcId="1021830" XYZ="-102.0677, 6.984566, 12.00879" QuestId="68095" StepId="1" />
+                </If>
+                <If Condition="GetQuestStep(68095) == 255">
+                    <GetTo ZoneId="131" XYZ="-89.28058, 2.150003, 59.73901" /> <!-- Far Eastern Elder -->
+                    <TurnIn QuestId="68095" NpcId="1021834" XYZ="-89.28058, 2.150003, 59.73901" />
+                </If>
+            </If>
+        </If>
+
+	</Order>
+	<CodeChunks>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>

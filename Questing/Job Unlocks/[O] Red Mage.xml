@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################
+# Profile: [O] Red Mage      #
+##############################
+# Authors: y2krazy           #
+##############################
+# Version: 3.0.0             #
+##############################
+# Required Level: 60         #
+##############################
+# Required Setup:            #
+#  None                      #
+##############################
+# Required User Interaction: #
+#  None                      #
+##############################
+-->
+<Profile>
+	<Name>[O] Red Mage (v3.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="IsQuestCompleted(68112)">
+            <LogMessage Message="[Red Mage] You have already unlocked your Red Mage job." />
+            <StopBot />
+        </If>
+
+		<!-- Taking the Red -->
+        <If Condition="not IsQuestCompleted(68112)">
+
+            <LogMessage Message="[Red Mage] Unlocking your Red Mage job!" />
+
+            <If Condition="not HasQuest(68112)">
+                <GetTo ZoneId="131" XYZ="146.1051, 4, 25.22314" /> <!-- Distraught Lass -->
+                <If Condition="IsQuestAcceptQualified(68112)">
+                    <PickupQuestPlus NpcId="1021425" QuestId="68112" XYZ="146.1051, 4, 25.22314" />
+                </If>
+            </If>
+            <If Condition="HasQuest(68112)">
+                <If Condition="GetQuestStep(68112) == 1">
+                    <GetTo ZoneId="141" XYZ="124.0405, 5.292755, 559.6552" /> <!-- Well-dressed Lass -->
+                    <TalkTo NpcId="1021426" XYZ="124.0405, 5.292755, 559.6552" QuestId="68112" StepId="1" />
+                </If>
+                <If Condition="GetQuestStep(68112) == 2">
+                    <GetTo ZoneId="141" XYZ="125.719, 5.292949, 558.9531" /> <!-- Red-garbed Traveler -->
+                    <TalkTo NpcId="1021434" XYZ="125.719, 5.292949, 558.9531" QuestId="68112" StepId="2" />
+                </If>
+                <If Condition="GetQuestStep(68112) == 3">
+                	<GetTo ZoneId="131" XYZ="146.1051, 4, 25.22314" /> <!-- Distraught Lass -->
+                    <TalkTo NpcId="1021435" XYZ="146.1051, 4, 25.22314" QuestId="68112" StepId="3" />
+                </If>
+                <If Condition="GetQuestStep(68112) == 4">
+                    <GetTo ZoneId="141" XYZ="-96.84906, -11.35, -47.3183" /> <!-- X'rhun Tia -->
+                    <TalkTo NpcId="1021438" XYZ="-96.84906, -11.35, -47.3183" QuestId="68112" StepId="4" />
+                </If>
+                <If Condition="GetQuestStep(68112) == 255">
+                    <GetTo ZoneId="141" XYZ="-96.84906, -11.35, -47.3183" /> <!-- X'rhun Tia -->
+                    <TurnInPlus QuestId="68112" NpcId="1021438" XYZ="-96.84906, -11.35, -47.3183" />
+                </If>
+            </If>
+        </If>
+
+	</Order>
+	<CodeChunks>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
