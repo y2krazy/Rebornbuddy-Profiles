@@ -756,6 +756,58 @@ namespace ff14bot.NeoProfiles.Tags
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008289).Location, 3)
                     )
                 ),
+				new Decorator(ret => QuestId == 68085 && !Core.Player.InCombat && ((GameObjectManager.GetObjectByNPCId(2008919) != null && GameObjectManager.GetObjectByNPCId(2008919).IsVisible) || (GameObjectManager.GetObjectByNPCId(2008914) != null && GameObjectManager.GetObjectByNPCId(2008914).IsVisible) || (GameObjectManager.GetObjectByNPCId(2008945) != null && GameObjectManager.GetObjectByNPCId(2008945).IsVisible)),
+                    new PrioritySelector(
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2008945) != null && GameObjectManager.GetObjectByNPCId(2008945).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2008945).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Destination!");
+										GameObjectManager.GetObjectByNPCId(2008945).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008945).Location, 3)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2008914) != null && GameObjectManager.GetObjectByNPCId(2008914).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2008914).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Tattered Diary!");
+										GameObjectManager.GetObjectByNPCId(2008914).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008914).Location, 3)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2008919) != null && GameObjectManager.GetObjectByNPCId(2008919).IsVisible && GameObjectManager.GetObjectByNPCId(2008919).IsTargetable,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2008919).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Queer Device!");
+										GameObjectManager.GetObjectByNPCId(2008919).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008919).Location, 3)
+							)
+						)
+					)
+                ),
+                new Decorator(ret => QuestId == 68086 && GameObjectManager.GetObjectByNPCId(2008907) != null && GameObjectManager.GetObjectByNPCId(2008907).IsVisible,
+                    new PrioritySelector(
+                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2008907).Location) <= 3,
+                            new Action(r =>
+                            {
+								Logging.Write("[ExtendedDuty] Interacting with Gate Winch!");
+                                GameObjectManager.GetObjectByNPCId(2008907).Interact();
+                            })
+				        ),
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008907).Location, 3)
+                    )
+                ),
                 base.CreateBehavior()
                 );
         }
