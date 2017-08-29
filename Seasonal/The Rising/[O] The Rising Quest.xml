@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#################################
+# Profile: [O] The Rising Quest #
+#################################
+# Author: y2krazy               #
+#################################
+# Version: 3.0.0                #
+#################################
+# Required Level: 15            #
+#################################
+# Required User Interaction:    #
+#  1 "Puzzle"                   #
+#################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- NOTE: The following can be purchased from the Rising Vendor in Ul'dah - Steps of Nald (x10.6, y9.1).
+  <!-- Rising Balloon: 152 Gil -->
+  <!-- Answers - Reprise Orchestrion Roll: 5,000 Gil -->
+  <!-- Magicked Prisms: 19 Gil -->
+  <!-- Meteor Shower: 19 Gil -->
+  <!-- Heavenscracker: 19 Gil -->
+  <!-- Realm Reborn Red: 19 Gil -->
+
+  <!-- ExLog Colors -->
+
+  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] The Rising Quest (v3.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<ExLog Color="&ExLog;" Name="The Rising" Message="Checking for completed quest..." />
+
+		<!-- A Reoccurring Bug -->
+
+		<If Condition="not IsQuestCompleted(68497)">
+			<If Condition="not HasQuest(68497)">
+				<ExLog Color="&ExLog;" Name="The Rising" Message="Picking up the A Reoccurring Bug quest!"/>
+                <GetTo ZoneId="130" XYZ="-22.65973, 10, -47.98962" /> <!-- Nonora -->
+                <If Condition="IsQuestAcceptQualified(68497)">
+                    <PickupQuest NpcId="1023935" QuestId="68497" XYZ="-22.65973, 10, -47.98962" />
+                </If>
+			</If>
+			<If Condition="HasQuest(68497)">
+                <If Condition="GetQuestStep(68497) == 1">
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Searching for signs of the Wandering Minstrel..."/>
+                    <GetTo ZoneId="140" XYZ="113.6644, 18.99738, 70.81714" /> <!-- Teleportation Ward -->
+                    <UseObject NpcId="2009036" XYZ="113.6644, 18.99738, 70.81714" Radius="10" QuestId="68497" StepId="1" />
+                </If>
+                <If Condition="GetQuestStep(68497) == 2">
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Activating the Teleportation Ward..."/>
+                    <GetTo ZoneId="140" XYZ="113.6644, 18.99738, 70.81714" /> <!-- Teleportation Ward -->
+                    <UseObjectPlus NpcId="2009036" XYZ="113.6644, 18.99738, 70.81714" Radius="10" QuestId="68497" StepId="2" />
+                </If>
+                <If Condition="GetQuestStep(68497) == 3">
+					<If Condition="not IsOnMap(140) and not IsOnMap(728)">
+						<GetTo ZoneId="140" XYZ="113.6644, 18.99738, 70.81714" /> <!-- Teleportation Ward -->
+					</If>
+					<If Condition="IsOnMap(140) and not IsOnMap(728)">
+						<UseTransport Name="Teleportation Ward" InteractDistance="3.0" NpcId="2009036" XYZ="113.6644, 18.99738, 70.81714" />
+					</If>
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Assisting the Wandering Minstrel..."/>
+                    <MoveTo Name="Wandering Minstrel" Distance="1" UseMesh="False" XYZ="-0.01531982, -0.1162655, -1.785339" />
+                    <TalkTo NpcId="1023943" XYZ="-0.01531982, -0.1162655, -1.785339" QuestId="68497" StepId="3" />
+                </If>
+                <If Condition="GetQuestStep(68497) == 4">
+					<If Condition="not IsOnMap(140) and not IsOnMap(728)">
+						<GetTo ZoneId="140" XYZ="113.6644, 18.99738, 70.81714" /> <!-- Teleportation Ward -->
+					</If>
+					<If Condition="IsOnMap(140) and not IsOnMap(728)">
+						<UseTransport Name="Teleportation Ward" InteractDistance="3.0" NpcId="2009036" XYZ="113.6644, 18.99738, 70.81714" />
+					</If>
+                    <MoveTo Name="Battered Bug" Distance="1" UseMesh="False" XYZ="-0.1068726, -0.01531982, -6.21051" />
+					<RunCode Name="A_Reoccurring_Bug" />
+					<StopBot />
+                </If>
+				<If Condition="GetQuestStep(68497) == 255">
+
+					<!-- Rewards
+
+					Wind-up Lyse
+					Wind-up Gosetsu
+					Stormblood Orchestrion Roll
+
+					-->
+
+					<ExLog Color="&ExLog;" Name="The Rising" Message="Turning in the A Reoccurring Bug quest!" />
+                    <GetTo ZoneId="130" XYZ="-22.65973, 10, -47.98962" /> <!-- Nonora -->
+                    <TurnIn QuestId="68497" NpcId="1023935" XYZ="-22.65973, 10, -47.98962" />
+                </If>
+			</If>
+		</If>
+
+		<ExLog Color="&ExLog;" Name="The Rising" Message="You've completed the The Rising seasonal event quest!" />
+
+	</Order>
+	<CodeChunks>
+        <CodeChunk Name="A_Reoccurring_Bug">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68497) == 4)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[The Rising]\nPlease manually complete the Cheap Dungeon duty!\n\nUse Q, W, E and S to quickly clear both floors.\n\nPossible passwords:\nBAHAMUT / CHOCOBO / CRYSTAL / FANTASY", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
