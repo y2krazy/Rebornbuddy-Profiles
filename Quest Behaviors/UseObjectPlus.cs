@@ -53,6 +53,12 @@ namespace ff14bot.NeoProfiles.Tags
                             JournalResult.Complete();
                         })
                     ),
+                    new Decorator(ret => QuestId == 68497 && SelectYesno.IsOpen,
+                        new Action(r =>
+                        {
+                            SelectYesno.ClickYes();
+                        })
+                    ),
                     base.CustomLogic
                     );
             }
