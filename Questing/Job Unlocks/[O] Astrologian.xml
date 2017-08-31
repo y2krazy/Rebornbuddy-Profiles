@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################
+# Profile: [O] Astrologian   #
+##############################
+# Authors: y2krazy           #
+##############################
+# Version: 3.0.0             #
+##############################
+# Required Level: 60         #
+##############################
+# Required Setup:            #
+#  None                      #
+##############################
+# Required User Interaction: #
+#  None                      #
+##############################
+-->
+<Profile>
+	<Name>[O] Astrologian (v3.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="not IsQuestCompleted(65964)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the Before the Fall quest yet!" />
+            <LogMessage Message="[Pre-Requisite Check] Please load the A Realm Reborn profile if you would like to unlock your Astrologian job!" />
+            <StopBot/>
+        </If>
+
+        <If Condition="IsQuestCompleted(67548)">
+            <LogMessage Message="[Astrologian] You have already unlocked your Astrologian job." />
+            <StopBot />
+        </If>
+
+		<!-- Stairway to the Heavens -->
+        <If Condition="not IsQuestCompleted(67548)">
+
+            <LogMessage Message="[Astrologian] Unlocking your Astrologian job!" />
+
+            <If Condition="not HasQuest(67548)">
+                <GetTo ZoneId="419" XYZ="202.3804, -5.399966, -58.9151" /> <!-- Jannequinard -->
+                <RunCode Name="Stairway_to_the_Heavens" />
+                <If Condition="IsQuestAcceptQualified(67548)">
+                    <PickupQuest NpcId="1012222" QuestId="67548" XYZ="202.3804, -5.399966, -58.9151" />
+                </If>
+            </If>
+            <If Condition="HasQuest(67548)">
+                <If Condition="GetQuestStep(67548) == 1">
+                    <GetTo ZoneId="419" XYZ="202.3804, -5.399966, -58.9151" /> <!-- Jannequinard -->
+                    <TalkTo NpcId="1012222" XYZ="202.3804, -5.399966, -58.9151" QuestId="67548" StepId="1" />
+                </If>
+                <While Condition="GetQuestStep(67548) == 2">
+                    <GetTo ZoneId="419" XYZ="195.0865, -5.399962, -65.65961" /> <!-- Heurriette -->
+                    <TalkTo NpcId="1012221" XYZ="195.0865, -5.399962, -65.65961" QuestId="67548" StepId="2" />
+                    <TalkTo NpcId="1012223" XYZ="188.7083, -5.399966, -68.83344" QuestId="67548" StepId="2" />
+                    <TalkTo NpcId="1012224" XYZ="175.1277, -5.434915, -57.93854" QuestId="67548" StepId="2" />
+                </While>
+                <If Condition="GetQuestStep(67548) == 3">
+                    <GetTo ZoneId="419" XYZ="202.3804, -5.399966, -58.9151" /> <!-- Jannequinard -->
+                    <TalkTo NpcId="1012222" XYZ="202.3804, -5.399966, -58.9151" QuestId="67548" StepId="3" />
+                </If>
+                <If Condition="GetQuestStep(67548) == 4">
+                    <GetTo ZoneId="155" XYZ="198.6571, 293.33, 418.5701" /> <!-- Jannequinard -->
+                    <TalkTo NpcId="1014980" XYZ="198.6571, 293.33, 418.5701" QuestId="67548" StepId="4" />
+                </If>
+                <If Condition="GetQuestStep(67548) == 5">
+                    <GetTo ZoneId="153" XYZ="182.9709, 7.488976, -46.83002" /> <!-- Jannequinard -->
+                    <TalkTo NpcId="1014931" XYZ="182.9709, 7.488976, -46.83002" QuestId="67548" StepId="5" />
+                </If>
+                <If Condition="GetQuestStep(67548) == 255">
+                    <GetTo ZoneId="153" XYZ="184.4968, 14.11746, 51.92639" /> <!-- Quimperain -->
+                    <TurnIn QuestId="67548" NpcId="1014925" XYZ="184.4968, 14.11746, 51.92639" />
+                </If>
+            </If>
+        </If>
+
+	</Order>
+	<CodeChunks>
+		<CodeChunk Name="Stairway_to_the_Heavens">
+			<![CDATA[ 
+				await Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1012222).Interact();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(10000);
+			]]>
+		</CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>

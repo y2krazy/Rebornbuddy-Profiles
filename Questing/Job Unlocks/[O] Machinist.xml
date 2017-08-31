@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################
+# Profile: [O] Machinist     #
+##############################
+# Authors: y2krazy           #
+##############################
+# Version: 3.0.0             #
+##############################
+# Required Level: 60         #
+##############################
+# Required Setup:            #
+#  None                      #
+##############################
+# Required User Interaction: #
+#  None                      #
+##############################
+-->
+<Profile>
+	<Name>[O] Machinist (v3.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="not IsQuestCompleted(65964)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the Before the Fall quest yet!" />
+            <LogMessage Message="[Pre-Requisite Check] Please load the A Realm Reborn profile if you would like to unlock your Machinist job!" />
+            <StopBot/>
+        </If>
+
+        <If Condition="IsQuestCompleted(67232)">
+            <LogMessage Message="[Machinist] You have already unlocked your Machinist job." />
+            <StopBot />
+        </If>
+
+		<!-- Savior of Skysteel -->
+        <If Condition="not IsQuestCompleted(67232)">
+
+            <LogMessage Message="[Machinist] Unlocking your Machinist job!" />
+
+            <If Condition="not HasQuest(67232)">
+                <GetTo ZoneId="418" XYZ="-154.3146, 16.99999, -53.3609" /> <!-- Stephanivien -->
+                <RunCode Name="Savior_of_Skysteel" />
+                <If Condition="IsQuestAcceptQualified(67232)">
+                    <PickupQuest NpcId="1014577" QuestId="67232" XYZ="-154.3146, 16.99999, -53.3609" />
+                </If>
+            </If>
+            <If Condition="HasQuest(67232)">
+                <If Condition="GetQuestStep(67232) == 1">
+                    <GetTo ZoneId="418" XYZ="-154.3146, 16.99999, -53.3609" /> <!-- Stephanivien -->
+                    <TalkTo NpcId="1014577" XYZ="-154.3146, 16.99999, -53.3609" QuestId="67232" StepId="1" />
+                </If>
+                <If Condition="GetQuestStep(67232) == 2">
+                    <GetTo ZoneId="180" XYZ="-73.16705, 64.60867, -248.0965" /> <!-- Stephanivien -->
+                    <TalkTo NpcId="1014731" XYZ="-73.16705, 64.60867, -248.0965" QuestId="67232" StepId="2" />
+                </If>
+                <While Condition="GetQuestStep(67232) == 3">
+                    <GetTo ZoneId="180" XYZ="-98.43597, 64.48862, -215.5642" /> <!-- Grinning Private -->
+                    <TalkTo NpcId="1014733" XYZ="-98.43597, 64.48862, -215.5642" QuestId="67232" StepId="3" />
+                    <TalkTo NpcId="1014735" XYZ="-112.6269, 64.39167, -200.1221" QuestId="67232" StepId="3" />
+                    <TalkTo NpcId="1014734" XYZ="-147.8141, 64.37568, -220.5692" QuestId="67232" StepId="3" />
+                </While>
+                <If Condition="GetQuestStep(67232) == 4">
+                    <GetTo ZoneId="180" XYZ="-73.16705, 64.60867, -248.0965" /> <!-- Stephanivien -->
+                    <TalkTo NpcId="1014731" XYZ="-73.16705, 64.60867, -248.0965" QuestId="67232" StepId="4" />
+                </If>
+                <If Condition="GetQuestStep(67232) == 255">
+                    <GetTo ZoneId="180" XYZ="-99.25995, 62.38235, -182.7878" /> <!-- Stephanivien -->
+                    <TurnIn QuestId="67232" NpcId="1014736" XYZ="-99.25995, 62.38235, -182.7878" />
+                </If>
+            </If>
+        </If>
+
+	</Order>
+	<CodeChunks>
+		<CodeChunk Name="Savior_of_Skysteel">
+			<![CDATA[ 
+				await Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1014577).Interact();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(10000);
+			]]>
+		</CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>

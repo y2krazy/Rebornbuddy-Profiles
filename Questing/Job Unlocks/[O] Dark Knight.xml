@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################
+# Profile: [O] Dark Knight   #
+##############################
+# Authors: y2krazy           #
+##############################
+# Version: 3.0.0             #
+##############################
+# Required Level: 60         #
+##############################
+# Required Setup:            #
+#  None                      #
+##############################
+# Required User Interaction: #
+#  None                      #
+##############################
+-->
+<Profile>
+	<Name>[O] Dark Knight (v3.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="not IsQuestCompleted(65964)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed the Before the Fall quest yet!" />
+            <LogMessage Message="[Pre-Requisite Check] Please load the A Realm Reborn profile if you would like to unlock your Dark Knight job!" />
+            <StopBot/>
+        </If>
+
+        <If Condition="IsQuestCompleted(67589)">
+            <LogMessage Message="[Dark Knight] You have already unlocked your Dark Knight job." />
+            <StopBot />
+        </If>
+
+		<!-- Our End -->
+        <If Condition="not IsQuestCompleted(67589)">
+
+            <LogMessage Message="[Dark Knight] Unlocking your Dark Knight job!" />
+
+            <If Condition="not HasQuest(67589)">
+                <GetTo ZoneId="419" XYZ="101.5792, 12.4182, -117.6013" /> <!-- Ishgardian Citizen -->
+                <RunCode Name="Our_End" />
+                <If Condition="IsQuestAcceptQualified(67589)">
+                    <PickupQuest NpcId="1014873" QuestId="67589" XYZ="101.5792, 12.4182, -117.6013" />
+                </If>
+            </If>
+            <If Condition="HasQuest(67589)">
+                <If Condition="GetQuestStep(67589) == 1">
+                    <GetTo ZoneId="418" XYZ="5.783081, -2.080677, 45.39551" /> <!-- Punctilious Temple Knight -->
+                    <TalkTo NpcId="1014876" XYZ="5.783081, -2.080677, 45.39551" QuestId="67589" StepId="1" />
+                </If>
+                <If Condition="GetQuestStep(67589) == 255">
+                    <GetTo ZoneId="418" XYZ="6.912292, -1.921014, 47.2876" /> <!-- Fray -->
+                    <TurnIn QuestId="67589" NpcId="1014875" XYZ="6.912292, -1.921014, 47.2876" />
+                </If>
+            </If>
+        </If>
+
+	</Order>
+	<CodeChunks>
+		<CodeChunk Name="Our_End">
+			<![CDATA[ 
+				await Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1014873).Interact();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(500);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+					ff14bot.RemoteWindows.SelectYesno.ClickYes();
+				await Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(10000);
+			]]>
+		</CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
