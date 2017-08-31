@@ -5,7 +5,7 @@
 ##############################
 # Authors: y2krazy           #
 ##############################
-# Version: 3.0.0             #
+# Version: 3.0.1             #
 ##############################
 # Required Level: 60         #
 ##############################
@@ -17,10 +17,16 @@
 ##############################
 -->
 <Profile>
-	<Name>[O] Red Mage (v3.0.0)</Name>
+	<Name>[O] Red Mage (v3.0.1)</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
+
+        <If Condition="not IsQuestCompleted(67895)">
+            <LogMessage Message="[Pre-Requisite Check] You haven't completed The Far Edge of Fate quest yet!" />
+            <LogMessage Message="[Pre-Requisite Check] Please load the Heavensward profile if you would like to unlock your Red Mage job!" />
+            <StopBot/>
+        </If>
 
         <If Condition="IsQuestCompleted(68112)">
             <LogMessage Message="[Red Mage] You have already unlocked your Red Mage job." />
