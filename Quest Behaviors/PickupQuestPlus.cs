@@ -147,6 +147,12 @@ namespace ff14bot.NeoProfiles.Tags
                         SelectString.ClickSlot(0);
                     })
                 ),
+                new Decorator(ret => QuestId == 67966 && SelectString.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectString.ClickSlot(0);
+                    })
+                ),
                 new Decorator(ret => QuestId == 68024 && SelectString.IsOpen,
                     new Action(r =>
                     {
@@ -160,6 +166,18 @@ namespace ff14bot.NeoProfiles.Tags
                     })
                 ),
                 new Decorator(ret => QuestId == 68168 && SelectString.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectString.ClickSlot(0);
+                    })
+                ),
+                new Decorator(ret => QuestId == 68487 && SelectString.IsOpen,
+                    new Action(r =>
+                    {
+                        SelectString.ClickSlot(2);
+                    })
+                ),
+                new Decorator(ret => QuestId == 68488 && SelectString.IsOpen,
                     new Action(r =>
                     {
                         SelectString.ClickSlot(0);
