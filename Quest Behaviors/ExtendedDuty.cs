@@ -808,6 +808,19 @@ namespace ff14bot.NeoProfiles.Tags
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008907).Location, 3)
                     )
                 ),
+                new Decorator(ret => QuestId == 68486 && GameObjectManager.GetObjectByNPCId(2008896) != null && GameObjectManager.GetObjectByNPCId(2008896).IsVisible,
+                    new PrioritySelector(
+                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2008896).Location) <= 3,
+                            new Action(r =>
+                            {
+								Logging.Write("[ExtendedDuty] Interacting with the Shackles!");
+                                GameObjectManager.GetObjectByNPCId(2008896).Interact();
+								Thread.Sleep(15000);
+                            })
+				        ),
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008896).Location, 3)
+                    )
+                ),
                 base.CreateBehavior()
                 );
         }
