@@ -5,7 +5,7 @@
 ##############################
 # Author: y2krazy            #
 ##############################
-# Version: 2.1.1g            #
+# Version: 3.0.0             #
 ##############################
 # Required Level: 50+        #
 ##############################
@@ -18,7 +18,7 @@
 ##############################
 -->
 <Profile>
-	<Name>[O] Heavensward (v2.1.1g)</Name>
+	<Name>[O] Heavensward (v3.0.0)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -2745,10 +2745,7 @@
         <If Condition="Core.Player.ClassLevel &lt; 51">
             <LogMessage Message="[Heavensward] You are not level 51 yet!" />
             <LogMessage Message="[Heavensward] Grinding to level 51..." />
-            <If Condition="not IsOnMap(401)">
-                <GetTo ZoneId="401" XYZ="-605.4334, -149.4642, 487.6404" />
-            </If>
-            <NoCombatMoveTo Name="Grinding Area" XYZ="-605.4334, -149.4642, 487.6404" />
+            <GetTo ZoneId="401" XYZ="-605.4334, -149.4642, 487.6404" /> <!-- Grinding Area -->
             <Grind grindRef="To_Level_51" while="Core.Player.ClassLevel &lt; 51" />
         </If>
 
@@ -4580,10 +4577,7 @@
         <If Condition="Core.Player.ClassLevel &lt; 52">
             <LogMessage Message="[Heavensward] You are not level 52 yet!" />
             <LogMessage Message="[Heavensward] Grinding to level 52..." />
-            <If Condition="not IsOnMap(401)">
-                <GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152" />
-            </If>
-            <NoCombatMoveTo Name="Grinding Area" XYZ="615.3962, -128.0629, 235.5195" />
+            <GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152" /> <!-- Grinding Area -->
             <Grind grindRef="To_Level_52" while="Core.Player.ClassLevel &lt; 52" />
         </If>
 
@@ -4595,13 +4589,22 @@
 
         <!-- Level 52 Job Quest -->
 
+        <If Condition="ClassName == ClassJobType.Astrologian and not IsQuestCompleted(67557)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
         <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(67250)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
         <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(67215)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
+        <If Condition="ClassName == ClassJobType.DarkKnight and not IsQuestCompleted(67596)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
         <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(67226)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
+        <If Condition="ClassName == ClassJobType.Machinist and not IsQuestCompleted(67242)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
         <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(67563)">
@@ -6424,10 +6427,7 @@
         <If Condition="Core.Player.ClassLevel &lt; 53">
             <LogMessage Message="[Heavensward] You are not level 53 yet!" />
             <LogMessage Message="[Heavensward] Grinding to level 53..." />
-            <If Condition="not IsOnMap(398)">
-            <GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532" />
-            </If>
-            <NoCombatMoveTo Name="Grinding Area" XYZ="662.7492, -52.71334, 135.2424" />
+            <GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532" /> <!-- Grinding Area -->
             <Grind grindRef="To_Level_53" while="Core.Player.ClassLevel &lt; 53" />
         </If>
 
@@ -8355,10 +8355,7 @@
         <If Condition="Core.Player.ClassLevel &lt; 54">
             <LogMessage Message="[Heavensward] You are not level 54 yet!" />
             <LogMessage Message="[Heavensward] Grinding to level 54..." />
-            <If Condition="not IsOnMap(398) and not IsOnMap(400)">
-                <GetTo ZoneId="398" XYZ="-300.4373, -21.13108, 37.52076" />
-            </If>
-            <NoCombatMoveTo Name="Grinding Area" XYZ="-213.4017, -43.2216, 209.5412" />
+            <GetTo ZoneId="398" XYZ="-300.4373, -21.13108, 37.52076" /> <!-- Grinding Area -->
             <Grind grindRef="To_Level_54" while="Core.Player.ClassLevel &lt; 54" />
         </If>
 
@@ -8370,13 +8367,22 @@
 
         <!-- Level 54 Job Quest -->
 
+        <If Condition="ClassName == ClassJobType.Astrologian and not IsQuestCompleted(67558)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
         <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(67251)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
         <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(67216)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
+        <If Condition="ClassName == ClassJobType.DarkKnight and not IsQuestCompleted(67597)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
         <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(67228)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
+        <If Condition="ClassName == ClassJobType.Machinist and not IsQuestCompleted(67243)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
         <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(67564)">
@@ -10301,77 +10307,59 @@
         <!-- Sidequest: Toll Booty -->
         <If Condition="not IsQuestCompleted(65581)">
             <If Condition="not HasQuest(65581)">
-            <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
-            </If>
-            <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-                <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
-            </If>
-            <If Condition="IsOnMap(351) and IsOnSubMap(481)">
-                <UseTransport Name="Exit to Revenant's Toll" InteractDistance="3.0" NpcId="2002879" XYZ="-0.01531982, 2.975464, 27.48145" />
-            </If>
-            <NoCombatMoveTo Name="Rhesh Polaali" XYZ="74.08252, 30.54939, -720.9735" />
-            <If Condition="IsQuestAcceptQualified(65581)">
-                <PickupQuest NpcId="1009812" QuestId="65581" XYZ="74.08252, 30.54939, -720.9735" />
-            </If>
+                <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+                    <GetTo ZoneId="156" XYZ="74.08252, 30.54939, -720.9735" /> <!-- Rhesh Polaali -->
+                </If>
+                <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+                    <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
+                </If>
+                <If Condition="IsOnMap(351) and IsOnSubMap(481)">
+                    <UseTransport Name="Exit to Revenant's Toll" InteractDistance="3.0" NpcId="2002879" XYZ="-0.01531982, 2.975464, 27.48145" />
+                </If>
+                <NoCombatMoveTo Name="Rhesh Polaali" XYZ="74.08252, 30.54939, -720.9735" />
+                <If Condition="IsQuestAcceptQualified(65581)">
+                    <PickupQuest NpcId="1009812" QuestId="65581" XYZ="74.08252, 30.54939, -720.9735" />
+                </If>
             </If>
 
             <!-- [Complete Quest] -->
 
             <If Condition="HasQuest(65581)">
-            <If Condition="GetQuestStep(65581) == 1">
-                <If Condition="not IsOnMap(156)">
-                <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
+                <If Condition="GetQuestStep(65581) == 1">
+                    <GetTo ZoneId="156" XYZ="25.58936, 29, -825.3757" /> <!-- Rowena -->
+                    <TalkTo NpcId="1001304" XYZ="25.58936, 29, -825.3757" QuestId="65581" StepId="1" />
                 </If>
-                <NoCombatMoveTo Name="Rowena" XYZ="25.58936, 29, -825.3757" />
-                <TalkTo NpcId="1001304" XYZ="25.58936, 29, -825.3757" QuestId="65581" StepId="1" />
-            </If>
-            <If Condition="GetQuestStep(65581) == 2">
-                <If Condition="not IsOnMap(156)">
-                <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
+                <If Condition="GetQuestStep(65581) == 2">
+                    <GetTo ZoneId="156" XYZ="50.61414, 31.14368, -748.4092" /> <!-- Designated Spot -->
+                    <UseObject NpcId="2004628" XYZ="50.61414, 31.14368, -748.4092" Radius="10" QuestId="65581" StepId="2" />
                 </If>
-                <NoCombatMoveTo Name="Designated Spot" XYZ="50.61414, 31.14368, -748.4092" />
-                <UseObject NpcId="2004628" XYZ="50.61414, 31.14368, -748.4092" Radius="10" QuestId="65581" StepId="2" />
-            </If>
-            <If Condition="GetQuestStep(65581) == 3">
-                <If Condition="not IsOnMap(156)">
-                <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
+                <If Condition="GetQuestStep(65581) == 3">
+                    <GetTo ZoneId="156" XYZ="-127.5502, -1.937927, -638.4833" /> <!-- Designated Spot -->
+                    <UseObject NpcId="2004631" XYZ="-127.5502, -1.937927, -638.4833" Radius="10" QuestId="65581" StepId="3" />
                 </If>
-                <NoCombatMoveTo Name="Designated Spot" XYZ="-127.5502, -1.937927, -638.4833" />
-                <UseObject NpcId="2004631" XYZ="-127.5502, -1.937927, -638.4833" Radius="10" QuestId="65581" StepId="3" />
-            </If>
-            <If Condition="GetQuestStep(65581) == 4">
-                <If Condition="not IsOnMap(156)">
-                <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
+                <While Condition="GetQuestStep(65581) == 4">
+                    <GetTo ZoneId="156" XYZ="-161.8922, 3.324731, -635.2208" /> <!--Soiled Canvas -->
+                    <NoCombatMoveTo Name="Soiled Canvas" XYZ="-165.7335, 11.67028, -617.3524" UseMesh="False" />
+                    <UseObject NpcId="2004629" XYZ="-166.7964, 12.28351, -619.8978" Radius="10" QuestId="65581" StepId="4" />
+                    <If Condition="IsOnMap(156) and Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-166.7964, 12.28351, -619.8978)) &lt; 5">
+                        <NoCombatMoveTo Name="Yozan" Distance="1" XYZ="-157.9067, 1.972912, -635.4232" UseMesh="False" />
+                    </If>
+                </While>
+                <If Condition="GetQuestStep(65581) == 5">
+                    <GetTo ZoneId="156" XYZ="-158.6168, 2.240817, -635.399" /> <!-- Yozan -->
+                    <HandOver ItemId="2001462" QuestId="65581" StepId="5" NpcId="1009817" XYZ="-130.1748, -0.8585259, -645.2583" />
                 </If>
-                <NoCombatMoveTo Name="Soiled Canvas" XYZ="-161.8922, 3.324731, -635.2208" />
-                <NoCombatMoveTo Name="Soiled Canvas" XYZ="-165.7335, 11.67028, -617.3524" UseMesh="False" />
-                <UseObject NpcId="2004629" XYZ="-166.7964, 12.28351, -619.8978" Radius="10" QuestId="65581" StepId="4" />
-            </If>
-            <If Condition="GetQuestStep(65581) == 5">
-                <If Condition="not IsOnMap(156)">
-                <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
+                <If Condition="GetQuestStep(65581) == 6">
+                    <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" /> <!-- Slafborn -->
+                    <HandOver ItemId="2001462" QuestId="65581" StepId="6" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
                 </If>
-                <NoCombatMoveTo Name="Yozan" XYZ="-158.6168, 2.240817, -635.399" />
-                <HandOver ItemId="2001462" QuestId="65581" StepId="5" NpcId="1009817" XYZ="-130.1748, -0.8585259, -645.2583" />
-            </If>
-            <If Condition="GetQuestStep(65581) == 6">
-                <If Condition="not IsOnMap(156)">
-                <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
-                </If>
-                <NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
-                <HandOver ItemId="2001462" QuestId="65581" StepId="6" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
-            </If>
 
-            <!-- [TurnIn Quest] -->
+                <!-- [TurnIn Quest] -->
 
-            <If Condition="GetQuestStep(65581) == 255">
-                <If Condition="not IsOnMap(156)">
-                <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" />
+                <If Condition="GetQuestStep(65581) == 255">
+                    <GetTo ZoneId="156" XYZ="55.43604, 31.18755, -763.4241" /> <!-- Yozan -->
+                    <TurnIn QuestId="65581" NpcId="1009813" XYZ="55.43604, 31.18755, -763.4241" />
                 </If>
-                <NoCombatMoveTo Name="Yozan" XYZ="55.43604, 31.18755, -763.4241" />
-                <TurnIn QuestId="65581" NpcId="1009813" XYZ="55.43604, 31.18755, -763.4241" />
-            </If>
             </If>
         </If>
 
@@ -10524,10 +10512,7 @@
         <If Condition="Core.Player.ClassLevel &lt; 55">
             <LogMessage Message="[Heavensward] You are not level 55 yet!" />
             <LogMessage Message="[Heavensward] Grinding to level 55..." />
-            <If Condition="not IsOnMap(400)">
-            <GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133" />
-            </If>
-            <NoCombatMoveTo Name="Grinding Area" XYZ="259.4673, -38.6805, 489.154" />
+            <GetTo ZoneId="400" XYZ="252.6177, -42.16244, 590.2133" /> <!-- Grinding Area -->
             <Grind grindRef="To_Level_55" while="Core.Player.ClassLevel &lt; 55" />
         </If>
 
@@ -12436,10 +12421,7 @@
         <If Condition="Core.Player.ClassLevel &lt; 56">
             <LogMessage Message="[Heavensward] You are not level 56 yet!" />
             <LogMessage Message="[Heavensward] Grinding to level 56..." />
-            <If Condition="not IsOnMap(400)">
-                <GetTo ZoneId="400" XYZ="-575.8106, 48.80803, 319.44" />
-            </If>
-            <NoCombatMoveTo Name="Grinding Area" XYZ="-434.0145, 39.88776, 52.7067" />
+            <GetTo ZoneId="400" XYZ="-575.8106, 48.80803, 319.44" /> <!-- Grinding Area -->
             <Grind grindRef="To_Level_56" while="Core.Player.ClassLevel &lt; 56" />
         </If>
 
@@ -12451,13 +12433,22 @@
 
         <!-- Level 56 Job Quest -->
 
+        <If Condition="ClassName == ClassJobType.Astrologian and not IsQuestCompleted(67559)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
         <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(67252)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
         <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(67217)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
+        <If Condition="ClassName == ClassJobType.DarkKnight and not IsQuestCompleted(67598)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
         <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(67229)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
+        <If Condition="ClassName == ClassJobType.Machinist and not IsQuestCompleted(67244)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
         <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(67565)">
@@ -15009,10 +15000,7 @@
         <If Condition="Core.Player.ClassLevel &lt; 57">
             <LogMessage Message="[Heavensward] You are not level 57 yet!" />
             <LogMessage Message="[Heavensward] Grinding to level 57..." />
-            <If Condition="not IsOnMap(401)">
-            <GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152" />
-            </If>
-            <NoCombatMoveTo Name="Grinding Area" XYZ="-369.8674, -208.3285, 423.0157" />
+            <GetTo ZoneId="401" XYZ="-626.617, -122.5, 539.8152" /> <!-- Grinding Area -->
             <Grind grindRef="To_Level_57" while="Core.Player.ClassLevel &lt; 57" />
         </If>
 
@@ -16983,27 +16971,25 @@
         <!-- Sidequest: For Your Spies Only -->
         <If Condition="not IsQuestCompleted(67456)">
             <If Condition="HasQuest(67456)">
-            <If Condition="GetQuestStep(67456) == 1">
-                <If Condition="not IsOnMap(401)">
-                <If Condition="Managers.WorldManager.HasAetheryteId(73)">
-                    <GetTo ZoneId="401" XYZ="-625.5765, -51.05184, -421.227" />
-                </If>
-                <If Condition="not Managers.WorldManager.HasAetheryteId(73)">
-                    <If Condition="not IsOnMap(419)">
-                    <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746" />
+                <While Condition="GetQuestStep(67456) == 1">
+                    <If Condition="not IsOnMap(401)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(73)">
+                            <GetTo ZoneId="401" XYZ="-625.5765, -51.05184, -421.227" />
+                        </If>
+                        <If Condition="not Managers.WorldManager.HasAetheryteId(73)">
+                            <If Condition="not IsOnMap(419)">
+                                <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746" />
+                            </If>
+                            <If Condition="IsOnMap(419)">
+                                <UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
+                            </If>
+                        </If>
                     </If>
-                    <If Condition="IsOnMap(419)">
-                    <UseTransport Name="Blue Window" InteractDistance="3.0" NpcId="1011212" XYZ="147.3258, -12.63491, -12.40564" />
-                    </If>
-                </If>
-                </If>
-                <NoCombatMoveTo Name="Hidden Zundu Youth" XYZ="223.8041, 155.5352, -47.37933" />
-                <While Condition="not IsTodoChecked(67456, 1, 0)">
-                <TalkTo NpcId="1013579" XYZ="223.8041, 155.5352, -47.37933" QuestId="67456" StepId="1" />
-                <TalkTo NpcId="1013577" XYZ="239.5209, 127.7943, 121.1414" QuestId="67456" StepId="1" />
-                <TalkTo NpcId="1013578" XYZ="-108.8121, 164.2938, -395.285" QuestId="67456" StepId="1" />
+                    <NoCombatMoveTo Name="Hidden Zundu Youth" XYZ="223.8041, 155.5352, -47.37933" />
+                    <TalkTo NpcId="1013579" XYZ="223.8041, 155.5352, -47.37933" QuestId="67456" StepId="1" />
+                    <TalkTo NpcId="1013577" XYZ="239.5209, 127.7943, 121.1414" QuestId="67456" StepId="1" />
+                    <TalkTo NpcId="1013578" XYZ="-108.8121, 164.2938, -395.285" QuestId="67456" StepId="1" />
                 </While>
-            </If>
             </If>
         </If>
         <!-- Sidequest: One Flew Over the Vundu’s Nest -->
@@ -18192,10 +18178,7 @@
         <If Condition="Core.Player.ClassLevel &lt; 58">
             <LogMessage Message="[Heavensward] You are not level 58 yet!" />
             <LogMessage Message="[Heavensward] Grinding to level 58..." />
-            <If Condition="not IsOnMap(398)">
-                <GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532" />
-            </If>
-            <NoCombatMoveTo Name="Grinding Area" XYZ="206.3193, -118.7918, 556.496" />
+            <GetTo ZoneId="398" XYZ="527.918, -51.27571, 41.3532" /> <!-- Grinding Area -->
             <Grind grindRef="To_Level_58" while="Core.Player.ClassLevel &lt; 58" />
         </If>
 
@@ -18207,13 +18190,22 @@
 
         <!-- Level 58 Job Quest -->
 
+        <If Condition="ClassName == ClassJobType.Astrologian and not IsQuestCompleted(67560)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
         <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(67253)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
         <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(67218)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
+        <If Condition="ClassName == ClassJobType.DarkKnight and not IsQuestCompleted(67599)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
         <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(67230)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
+        <If Condition="ClassName == ClassJobType.Machinist and not IsQuestCompleted(67246)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
         <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(67566)">
@@ -18319,25 +18311,19 @@
         <!-- Golems Begone -->
         <If Condition="not IsQuestCompleted(67192)">
             <If Condition="not HasQuest(67192)">
-            <If Condition="not IsOnMap(478)">
-                <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279" />
-            </If>
-            <MoveTo Name="Slowfix" XYZ="73.3501, 205.8894, 23.48358" />
-            <If Condition="IsQuestAcceptQualified(67192)">
-                <PickupQuest NpcId="1012097" QuestId="67192" XYZ="73.3501, 205.8894, 23.48358" />
-            </If>
+                <GetTo ZoneId="478" XYZ="73.3501, 205.8894, 23.48358" /> <!-- Slowfix -->
+                <If Condition="IsQuestAcceptQualified(67192)">
+                    <PickupQuest NpcId="1012097" QuestId="67192" XYZ="73.3501, 205.8894, 23.48358" />
+                </If>
             </If>
         </If>
         <!-- Sidequest: Community Service -->
         <If Condition="not IsQuestCompleted(67468)">
             <If Condition="not HasQuest(67468)">
-            <If Condition="not IsOnMap(478)">
-                <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279" />
-            </If>
-            <MoveTo Name="Midnight Dew" XYZ="-26.84064, 206.5, 28.67163" />
-            <If Condition="IsQuestAcceptQualified(67468)">
-                <PickupQuest NpcId="1012133" QuestId="67468" XYZ="-26.84064, 206.5, 28.67163" />
-            </If>
+                <GetTo ZoneId="478" XYZ="-26.84064, 206.5, 28.67163" /> <!-- Midnight Dew -->
+                <If Condition="IsQuestAcceptQualified(67468)">
+                    <PickupQuest NpcId="1012133" QuestId="67468" XYZ="-26.84064, 206.5, 28.67163" />
+                </If>
             </If>
         </If>
         <!-- Sidequest: Stop Bugging Me -->
@@ -18358,67 +18344,46 @@
         <!-- Golems Begone -->
         <If Condition="not IsQuestCompleted(67192)">
             <If Condition="HasQuest(67192)">
-            <If Condition="GetQuestStep(67192) == 1">
-                <If Condition="not IsOnMap(478)">
-                <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279" />
+                <If Condition="GetQuestStep(67192) == 1">
+                    <GetTo ZoneId="478" XYZ="71.73267, 205.6281, 26.90161" /> <!-- Y'shtola -->
+                    <TalkTo NpcId="1012410" XYZ="71.73267, 205.6281, 26.90161" QuestId="67192" StepId="1" />
                 </If>
-                <MoveTo Name="Y'shtola" XYZ="71.73267, 205.6281, 26.90161" />
-                <TalkTo NpcId="1012410" XYZ="71.73267, 205.6281, 26.90161" QuestId="67192" StepId="1" />
-            </If>
             </If>
         </If>
         <!-- Sidequest: Community Service -->
         <If Condition="not IsQuestCompleted(67468)">
             <If Condition="HasQuest(67468)">
-            <If Condition="GetQuestStep(67468) == 1">
-                <If Condition="not IsOnMap(478)">
-                <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279" />
+                <If Condition="GetQuestStep(67468) == 1">
+                    <GetTo ZoneId="478" XYZ="14.43683, 206.8306, 53.31999" /> <!-- Adventure-dreaming Porter -->
+                    <TalkTo NpcId="1013640" XYZ="14.43683, 206.8306, 53.31999" QuestId="67468" StepId="1" />
                 </If>
-                <MoveTo Name="Adventure-dreaming Porter" XYZ="14.43683, 206.8306, 53.31999" />
-                <TalkTo NpcId="1013640" XYZ="14.43683, 206.8306, 53.31999" QuestId="67468" StepId="1" />
-            </If>
-            <If Condition="GetQuestStep(67468) == 2">
-                <If Condition="not IsOnMap(478)">
-                <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279" />
-                </If>
-                <MoveTo Name="Crabapples" XYZ="25.00952, 206.2561, 55.03931" />
-                <While Condition="not IsTodoChecked(67468, 2, 0)">
-                <TalkTo NpcId="1013642" XYZ="38.28479, 205.8759, 53.14709" QuestId="67468" StepId="2" />
-                <TalkTo NpcId="1013641" XYZ="25.00952, 205.31, 40.42102" QuestId="67468" StepId="2" />
-                <UseObject NpcIds="2005864,2005865,2005866" QuestId="67468" StepId="2">
-                    <HotSpots>
-                    <HotSpot XYZ="18.2345, 206.5613, 66.69714" Radius="10" />
-                    <HotSpot XYZ="25.00952, 206.2561, 55.03931" Radius="10" />
-                    <HotSpot XYZ="33.49353, 205.2795, 39.35291" Radius="10" />
-                    </HotSpots>
-                </UseObject>
+                <While Condition="GetQuestStep(67468) == 2">
+                    <GetTo ZoneId="478" XYZ="25.00952, 206.2561, 55.03931" /> <!-- Crabapples -->
+                    <TalkTo NpcId="1013642" XYZ="38.28479, 205.8759, 53.14709" QuestId="67468" StepId="2" />
+                    <TalkTo NpcId="1013641" XYZ="25.00952, 205.31, 40.42102" QuestId="67468" StepId="2" />
+                    <UseObject NpcIds="2005864,2005865,2005866" UseTimes="3" QuestId="67468" StepId="2">
+                        <HotSpots>
+                        <HotSpot XYZ="18.2345, 206.5613, 66.69714" Radius="10" />
+                        <HotSpot XYZ="25.00952, 206.2561, 55.03931" Radius="10" />
+                        <HotSpot XYZ="33.49353, 205.2795, 39.35291" Radius="10" />
+                        </HotSpots>
+                    </UseObject>
                 </While>
-            </If>
-            <If Condition="GetQuestStep(67468) == 3">
-                <If Condition="not IsOnMap(478)">
-                <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279" />
+                <If Condition="GetQuestStep(67468) == 3">
+                    <GetTo ZoneId="478" XYZ="14.43683, 206.8306, 53.31999" /> <!-- Adventure-dreaming Porter -->
+                    <HandOver ItemId="2001690" QuestId="67468" StepId="3" NpcId="1013640" XYZ="14.43683, 206.8306, 53.31999" />
                 </If>
-                <MoveTo Name="Adventure-dreaming Porter" XYZ="14.43683, 206.8306, 53.31999" />
-                <HandOver ItemId="2001690" QuestId="67468" StepId="3" NpcId="1013640" XYZ="14.43683, 206.8306, 53.31999" />
-            </If>
             </If>
         </If>
-        <!-- Golems Begone (2) -->
+        <!-- Golems Begone -->
         <If Condition="not IsQuestCompleted(67192)">
             <If Condition="HasQuest(67192)">
-            <If Condition="GetQuestStep(67192) == 2">
-                <If Condition="not IsOnMap(478)">
-                <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279" />
-                </If>
-                <If Condition="GetQuestById(67192).QuestI8AL == 0">
-                <MoveTo Name="Abandoned Golem" XYZ="-41.33673, 205.7962, 3.189148" />
-                <SendChat Message="Noughts and Crosses" QuestId="67192" StepId="2" />
-                </If>
-                <If Condition="GetQuestById(67192).QuestI8AL == 1">
-                <MoveTo Name="Abandoned Golem" XYZ="-67.94849, 209.0566, -36.08759" />
-                <SendChat Message="Noughts and Crosses" QuestId="67192" StepId="2" />
-                </If>
-            </If>
+                <While Condition="GetQuestStep(67192) == 2">
+                    <GetTo ZoneId="478" XYZ="-41.33673, 205.7962, 3.189148" /> <!-- Abandoned Golem -->
+                    <SendChat Message="/say Noughts and Crosses" QuestId="67192" StepId="2" />
+                    <MoveTo Name="Abandoned Golem" XYZ="-67.94849, 209.0566, -36.08759" />
+                    <SendChat Message="/say Noughts and Crosses" QuestId="67192" StepId="2" />
+                </While>
             </If>
         </If>
 
@@ -18427,52 +18392,46 @@
         <!-- Sidequest: Community Service -->
         <If Condition="not IsQuestCompleted(67468)">
             <If Condition="HasQuest(67468)">
-            <If Condition="GetQuestStep(67468) == 255">
-                <If Condition="not IsOnMap(478)">
-                <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279" />
+                <If Condition="GetQuestStep(67468) == 255">
+                    <GetTo ZoneId="478" XYZ="-26.84064, 206.5, 28.67163" /> <!-- Midnight Dew -->
+
+                    <!-- Rewards
+
+                    0: Bard/Machinist Body
+                    1: White Mage/Scholoar/Astrologian Body
+                    2: Black Mage/Summoner Body
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="67468" NpcId="1012133" XYZ="-26.84064, 206.5, 28.67163" RewardSlot="0" />
+
+                    -->
+
+                    <TurnIn QuestId="67468" NpcId="1012133" XYZ="-26.84064, 206.5, 28.67163" />
                 </If>
-
-                <!-- Rewards
-
-                0: Bard/Machinist Body
-                1: White Mage/Scholoar/Astrologian Body
-                2: Black Mage/Summoner Body
-
-                If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
-
-                <TurnIn QuestId="67468" NpcId="1012133" XYZ="-26.84064, 206.5, 28.67163" RewardSlot="0" />
-
-                -->
-
-                <MoveTo Name="Midnight Dew" XYZ="-26.84064, 206.5, 28.67163" />
-                <TurnIn QuestId="67468" NpcId="1012133" XYZ="-26.84064, 206.5, 28.67163" />
-            </If>
             </If>
         </If>
         <!-- Golems Begone -->
         <If Condition="not IsQuestCompleted(67192)">
             <If Condition="HasQuest(67192)">
-            <If Condition="GetQuestStep(67192) == 255">
-                <If Condition="not IsOnMap(478)">
-                <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279" />
+                <If Condition="GetQuestStep(67192) == 255">
+                    <GetTo ZoneId="478" XYZ="73.3501, 205.8894, 23.48358" /> <!-- Slowfix -->
+
+                    <!-- Rewards
+
+                    0: Dragoon Weapon
+                    1: Monk Weapon
+                    2: Ninja Weapon
+                    3: Paladin Weapon
+
+                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
+
+                    <TurnIn QuestId="67192" NpcId="1012097" XYZ="73.3501, 205.8894, 23.48358" RewardSlot="0" />
+
+                    -->
+
+                    <TurnIn QuestId="67192" NpcId="1012097" XYZ="73.3501, 205.8894, 23.48358" />
                 </If>
-
-                <!-- Rewards
-
-                0: Dragoon Weapon
-                1: Monk Weapon
-                2: Ninja Weapon
-                3: Paladin Weapon
-
-                If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
-
-                <TurnIn QuestId="67192" NpcId="1012097" XYZ="73.3501, 205.8894, 23.48358" RewardSlot="0" />
-
-                -->
-
-                <MoveTo Name="Slowfix" XYZ="73.3501, 205.8894, 23.48358" />
-                <TurnIn QuestId="67192" NpcId="1012097" XYZ="73.3501, 205.8894, 23.48358" />
-            </If>
             </If>
         </If>
 
@@ -20598,10 +20557,7 @@
         <If Condition="Core.Player.ClassLevel &lt; 59">
             <LogMessage Message="[Heavensward] You are not level 59 yet!" />
             <LogMessage Message="[Heavensward] Grinding to level 59..." />
-            <If Condition="not IsOnMap(399)">
-            <GetTo ZoneId="399" XYZ="-216.0735, 103.1677, -584.981" />
-            </If>
-            <NoCombatMoveTo Name="Grinding Area" XYZ="-168.2214, 101.1341, -396.9354" />
+            <GetTo ZoneId="399" XYZ="-216.0735, 103.1677, -584.981" /> <!-- Grinding Area -->
             <Grind grindRef="To_Level_59" while="Core.Player.ClassLevel &lt; 59" />
         </If>
 
@@ -23600,13 +23556,12 @@
             <LogMessage Message="[Heavensward] You are not level 60 yet!" />
             <LogMessage Message="[Heavensward] Grinding to level 60..." />
             <If Condition="not IsOnMap(402) and not IsOnMap(419)">
-                <GetTo ZoneId="419" XYZ="-48.65455, -8.234923, -59.07746" />
+                <GetTo ZoneId="419" XYZ="168.4442, -14.34896, 49.57654" /> <!-- Notrelchamps -->
             </If>
             <If Condition="IsOnMap(419)">
-                <!-- <GetTo ZoneId="402" XYZ="-710.4073, -187.544, -589.1729" /> -->
                 <UseTransport Name="Notrelchamps" InteractDistance="3.0" NpcId="1012153" XYZ="168.4442, -14.34896, 49.57654" />
             </If>
-            <MoveTo Name="Grinding Area" XYZ="-622.1088, -176.9089, -513.5219" />
+            <GetTo ZoneId="402" XYZ="-622.1088, -176.9089, -513.5219" /> <!-- Grinding Area -->
             <Grind grindRef="To_Level_60" while="Core.Player.ClassLevel &lt; 60" />
         </If>
 
@@ -23618,13 +23573,22 @@
 
         <!-- Level 60 Job Quest -->
 
+        <If Condition="ClassName == ClassJobType.Astrologian and not IsQuestCompleted(67561)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
         <If Condition="ClassName == ClassJobType.Bard and not IsQuestCompleted(67254)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
         <If Condition="ClassName == ClassJobType.BlackMage and not IsQuestCompleted(67219)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
+        <If Condition="ClassName == ClassJobType.DarkKnight and not IsQuestCompleted(67600)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
         <If Condition="ClassName == ClassJobType.Dragoon and not IsQuestCompleted(67231)">
+            <LoadProfile Path="[O] Class and Job Quests.xml" />
+        </If>
+        <If Condition="ClassName == ClassJobType.Machinist and not IsQuestCompleted(67247)">
             <LoadProfile Path="[O] Class and Job Quests.xml" />
         </If>
         <If Condition="ClassName == ClassJobType.Monk and not IsQuestCompleted(67567)">
