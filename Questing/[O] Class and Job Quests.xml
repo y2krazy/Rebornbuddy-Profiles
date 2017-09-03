@@ -8,7 +8,7 @@
 #          hkme                     #
 #          Eficiente                #
 #####################################
-# Version: 3.1.1                    #
+# Version: 3.1.2                    #
 #####################################
 # Required Level: 1+                #
 #####################################
@@ -16,11 +16,11 @@
 #  None                             #
 #####################################
 # Required User Interaction:        #
-#  23 Solo Duty Queues              #
+#  31 Solo Duty Queues              #
 #####################################
 -->
 <Profile>
-	<Name>[O] Class and Job Quests (v3.1.1)</Name>
+	<Name>[O] Class and Job Quests (v3.1.2)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -1410,7 +1410,7 @@
 
 								<!-- TO DO -->
 
-								<!-- Cleanse the friendly NPCs. Nymian Plague: 785-->
+								<!-- Cleanse the friendly NPCs. Nymian Plague: 785 -->
 
 								<!-- TO DO -->
 
@@ -1449,6 +1449,244 @@
 								</If>
 								<NoCombatMoveTo Name="Surito Carito" XYZ="491.4778, 16.49544, 69.16907" />
 								<TurnIn QuestId="67212" NpcId="1013199" XYZ="491.4778, 16.49544, 69.16907" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<!-- The Vanishing Act -->
+
+				<If Condition="not IsQuestCompleted(68459) and IsQuestCompleted(67895)">
+					<If Condition="Core.Player.ClassLevel &gt; 59">
+						<If Condition="not HasQuest(68459)">
+							<GetTo ZoneId="128" XYZ="-4.470947, 44.99989, -250.5685" /> <!-- Alka Zolka -->
+							<If Condition="IsQuestAcceptQualified(68459)">
+								<PickupQuest NpcId="1006757" QuestId="68459" XYZ="-4.470947, 44.99989, -250.5685" />
+							</If>
+						</If>
+						<If Condition="HasQuest(68459)">
+							<If Condition="GetQuestStep(68459) == 1">
+								<GetTo ZoneId="139" XYZ="206.0426, -3.111818, 41.94702" /> <!-- Surito Carito -->
+								<TalkTo NpcId="1013135" XYZ="206.0426, -3.111818, 41.94702" QuestId="68459" StepId="1" />
+							</If>
+							<If Condition="GetQuestStep(68459) == 2">
+								<GetTo ZoneId="128" XYZ="96.02502, 40.24715, 60.68506" /> <!-- Hunt Billmaster -->
+								<TalkTo NpcId="1009552" XYZ="96.02502, 40.24715, 60.68506" QuestId="68459" StepId="2" />
+							</If>
+							<If Condition="GetQuestStep(68459) == 3">
+								<GetTo ZoneId="140" XYZ="-480.5829, 23.11401, -315.816" /> <!-- Alka Zolka -->
+								<TalkTo NpcId="1021904" XYZ="-480.5829, 23.11401, -315.816" QuestId="68459" StepId="3" />
+							</If>
+							<If Condition="GetQuestStep(68459) == 255">
+								<GetTo ZoneId="139" XYZ="206.0426, -3.111818, 41.94702" /> <!-- Surito Carito -->
+								<TurnIn QuestId="68459" NpcId="1013135" XYZ="206.0426, -3.111818, 41.94702" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<!-- A Safe Place to Hide -->
+
+				<If Condition="not IsQuestCompleted(68460)">
+					<If Condition="Core.Player.ClassLevel &gt; 62">
+						<If Condition="not HasQuest(68460)">
+							<GetTo ZoneId="139" XYZ="206.0426, -3.111818, 41.94702" /> <!-- Surito Carito -->
+							<If Condition="IsQuestAcceptQualified(68460)">
+								<PickupQuest NpcId="1013135" QuestId="68460" XYZ="206.0426, -3.111818, 41.94702" />
+							</If>
+						</If>
+						<If Condition="HasQuest(68460)">
+							<If Condition="GetQuestStep(68460) == 1">
+								<GetTo ZoneId="128" XYZ="-4.470947, 44.99989, -250.5685" /> <!-- Alka Zolka -->
+								<TalkTo NpcId="1006757" XYZ="-4.470947, 44.99989, -250.5685" QuestId="68460" StepId="1" />
+							</If>
+							<If Condition="GetQuestStep(68460) == 2">
+								<GetTo ZoneId="153" XYZ="-220.1724, 20.83071, 353.1699" /> <!-- Alka Zolka -->
+								<TalkTo NpcId="1021905" XYZ="-220.1724, 20.83071, 353.1699" QuestId="68460" StepId="2" />
+							</If>
+							<If Condition="GetQuestStep(68460) == 3">
+								<GetTo ZoneId="153" XYZ="-230.1824, 1.327454, 406.3629" /> <!-- Destination -->
+								<UseObject NpcId="2008554" XYZ="-230.1824, 1.327454, 406.3629" Radius="10" QuestId="68460" StepId="3" />
+							</If>
+							<If Condition="GetQuestStep(68460) == 4">
+								<GetTo ZoneId="153" XYZ="-182.8794, 0.3508911, 463.7673" /> <!-- Destination -->
+								<UseObject NpcId="2008555" XYZ="-182.8794, 0.3508911, 463.7673" Radius="10" QuestId="68460" StepId="4" />
+							</If>
+							<If Condition="GetQuestStep(68460) == 5">
+								<GetTo ZoneId="153" XYZ="-81.71216, 1.205444, 395.7122" /> <!-- Destination -->
+								<UseObject NpcId="2008556" XYZ="-81.71216, 1.205444, 395.7122" Radius="10" QuestId="68460" StepId="5" />
+							</If>
+							<If Condition="GetQuestStep(68460) == 6">
+								<GetTo ZoneId="153" XYZ="-70.11523, 0.9409913, 360.3723" /> <!-- Setoto -->
+								<WaitWhile Condition="GetQuestStep(68460) == 6" />
+							</If>
+							<If Condition="GetQuestStep(68460) == 7">
+								<GetTo ZoneId="153" XYZ="-70.11523, 0.9409913, 360.3723" /> <!-- Setoto -->
+								<RunCode Name="A_Safe_Place_to_Hide" />
+							</If>
+							<If Condition="GetQuestStep(68460) == 255">
+								<GetTo ZoneId="153" XYZ="-220.8439, 21.26176, 363.3936" /> <!-- Alka Zolka -->
+								<TurnIn QuestId="68460" NpcId="1021911" XYZ="-220.8439, 21.26176, 363.3936" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<!-- In Loving Memory -->
+
+				<If Condition="not IsQuestCompleted(68461)">
+					<If Condition="Core.Player.ClassLevel &gt; 64">
+						<If Condition="not HasQuest(68461)">
+							<GetTo ZoneId="153" XYZ="-220.8439, 21.26176, 363.3936" /> <!-- Alka Zolka -->
+							<If Condition="IsQuestAcceptQualified(68461)">
+								<PickupQuest NpcId="1021911" QuestId="68461" XYZ="-220.8439, 21.26176, 363.3936" />
+							</If>
+						</If>
+						<If Condition="HasQuest(68461)">
+							<If Condition="GetQuestStep(68461) == 1">
+                    			<GetTo ZoneId="153" XYZ="161.3945, 37.62588, 169.1766" /> <!-- Alka Zolka -->
+								<RunCode Name="In_Loving_Memory" />
+								<StopBot />
+
+								<!-- TO DO -->
+
+								<!-- Heal the friendly NPCs. -->
+
+								<!-- TO DO -->
+
+								<ExtendedDuty InteractNpcId="1021913" XYZ="161.3945, 37.62588, 169.1766" GuardianNPCId="2147" IgnoreNpcIds="6718" QuestId="68461" StepId="1">
+									<HotSpots>
+										<HotSpot XYZ="32.93429, 48, 0.3026393" Radius="90" />
+										<HotSpot XYZ="130.07, 44.19999, -0.1443437" Radius="90" />
+										<HotSpot XYZ="74.82513, 48, -13.25667" Radius="10" /> <!-- Leather-bound Tome -->
+										<HotSpot XYZ="214.235, 44.24062, -17.81819" Radius="30" />
+										<HotSpot XYZ="200.0763, 44, -91.73009" Radius="30" />
+										<HotSpot XYZ="199.4319, 44, -147.94" Radius="90" />
+									</HotSpots>
+									<TargetMobs>
+										<TargetMob Id="3259" Weight="7000" /> <!-- Ruins Wamoura -->
+										<TargetMob Id="3257" Weight="6000" /> <!-- Lordstool -->
+										<TargetMob Id="3258" Weight="5000" /> <!-- Demonic Rose -->
+										<TargetMob Id="3264" Weight="4000" /> <!-- Foxglove -->
+										<TargetMob Id="3262" Weight="3000" /> <!-- Knotty Treant -->
+										<TargetMob Id="4760" Weight="2000" /> <!-- Mana Idol -->
+										<TargetMob Id="6716" Weight="1000" /> <!-- Manasnatcher -->
+									</TargetMobs>
+								</ExtendedDuty>
+							</If>
+							<If Condition="GetQuestStep(68461) == 2">
+								<WaitWhile Condition="GetQuestStep(68461) == 2" />
+							</If>
+							<If Condition="GetQuestStep(68461) == 255">
+								<GetTo ZoneId="153" XYZ="-220.8439, 21.26176, 363.3936" /> <!-- Alka Zolka -->
+								<TurnIn QuestId="68461" NpcId="1021911" XYZ="-220.8439, 21.26176, 363.3936" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<!-- The Chase -->
+
+				<If Condition="not IsQuestCompleted(68462)">
+					<If Condition="Core.Player.ClassLevel &gt; 67">
+						<If Condition="not HasQuest(68462)">
+							<GetTo ZoneId="153" XYZ="-220.8439, 21.26176, 363.3936" /> <!-- Alka Zolka -->
+							<If Condition="IsQuestAcceptQualified(68462)">
+								<PickupQuest NpcId="1021911" QuestId="68462" XYZ="-220.8439, 21.26176, 363.3936" />
+							</If>
+						</If>
+						<If Condition="HasQuest(68462)">
+							<If Condition="GetQuestStep(68462) == 1">
+								<GetTo ZoneId="139" XYZ="206.0426, -3.111818, 41.94702" /> <!-- Surito Carito -->
+								<TalkTo NpcId="1013135" XYZ="206.0426, -3.111818, 41.94702" QuestId="68462" StepId="1" />
+							</If>
+							<If Condition="GetQuestStep(68462) == 2">
+								<GetTo ZoneId="153" XYZ="-220.8439, 21.26176, 363.3936" /> <!-- Alka Zolka -->
+								<TalkTo NpcId="1021911" XYZ="-220.8439, 21.26176, 363.3936" QuestId="68462" StepId="2" />
+							</If>
+							<If Condition="GetQuestStep(68462) == 3">
+								<GetTo ZoneId="153" XYZ="-160.0825, 1.968323, 175.5245" /> <!-- Destination -->
+								<UseObject NpcId="2008557" XYZ="-160.0825, 1.968323, 175.5245" Radius="10" QuestId="68462" StepId="3" />
+							</If>
+							<If Condition="GetQuestStep(68462) == 4">
+								<GetTo ZoneId="153" XYZ="-150.1946, 4.714966, 52.1095" /> <!-- Destination -->
+								<UseObject NpcId="2008558" XYZ="-150.1946, 4.714966, 52.1095" Radius="10" QuestId="68462" StepId="4" />
+							</If>
+							<If Condition="GetQuestStep(68462) == 5">
+								<GetTo ZoneId="153" XYZ="-250.5379, 16.83069, 19.21106" /> <!-- Destination -->
+								<UseObject NpcId="2008559" XYZ="-250.5379, 16.83069, 19.21106" Radius="10" QuestId="68462" StepId="5" />
+							</If>
+							<If Condition="GetQuestStep(68462) == 255">
+								<GetTo ZoneId="153" XYZ="-220.8439, 21.26176, 363.3936" /> <!-- Alka Zolka -->
+								<TurnIn QuestId="68462" NpcId="1021911" XYZ="-220.8439, 21.26176, 363.3936" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<!-- Our Unsung Heroes -->
+
+				<If Condition="not IsQuestCompleted(68463)">
+					<If Condition="Core.Player.ClassLevel &gt; 69">
+						<If Condition="not HasQuest(68463)">
+							<GetTo ZoneId="153" XYZ="-220.8439, 21.26176, 363.3936" /> <!-- Alka Zolka -->
+							<If Condition="IsQuestAcceptQualified(68463)">
+								<PickupQuest NpcId="1021911" QuestId="68463" XYZ="-220.8439, 21.26176, 363.3936" />
+							</If>
+						</If>
+						<If Condition="HasQuest(68463)">
+							<If Condition="GetQuestStep(68463) == 1">
+                    			<GetTo ZoneId="153" XYZ="-343.801, -0.3600376, 448.1117" /> <!-- Alka Zolka -->
+								<RunCode Name="Our_Unsung_Heroes" />
+								<StopBot />
+
+								<!-- TO DO -->
+
+								<!-- Heal the friendly NPCs. -->
+
+								<!-- TO DO -->
+
+								<SimpleDuty InteractNpcId="1021917" XYZ="-343.801, -0.3600376, 448.1117" QuestId="68463" StepId="1">
+									<HotSpots>
+										<HotSpot XYZ="154.953, -844.9052, 269.072" Radius="90" />
+										<HotSpot XYZ="216.4619, -856.4358, 252.4087" Radius="90" />
+										<HotSpot XYZ="261.4536, -867.9571, 297.8764" Radius="90" />
+										<HotSpot XYZ="232.374, -854.546, 407.7509" Radius="90" />
+									</HotSpots>
+									<TargetMobs>
+										<TargetMob Id="6346" Weight="6000" /> <!-- Shadow Sprite -->
+										<TargetMob Id="4759" Weight="5000" /> <!-- Clay Effigy -->
+										<TargetMob Id="4760" Weight="4000" /> <!-- Mana Idol -->
+										<TargetMob Id="4761" Weight="3000" /> <!-- Mana Pot -->
+										<TargetMob Id="4762" Weight="2000" /> <!-- Light Sprite -->
+										<TargetMob Id="6345" Weight="1000" /> <!-- Fallen Kuribu -->
+									</TargetMobs>
+								</SimpleDuty>
+							</If>
+							<If Condition="GetQuestStep(68463) == 2">
+								<WaitWhile Condition="GetQuestStep(68463) == 2" />
+							</If>
+							<If Condition="GetQuestStep(68463) == 3">
+								<GetTo ZoneId="153" XYZ="-220.8439, 21.26176, 363.3936" /> <!-- Alka Zolka -->
+								<TalkTo NpcId="1021911" XYZ="-220.8439, 21.26176, 363.3936" QuestId="68463" StepId="3" />
+							</If>
+							<If Condition="GetQuestStep(68463) == 4">
+								<GetTo ZoneId="139" XYZ="206.0426, -3.111818, 41.94702" /> <!-- Surito Carito -->
+								<TalkTo NpcId="1013135" XYZ="206.0426, -3.111818, 41.94702" QuestId="68463" StepId="4" />
+							</If>
+							<If Condition="GetQuestStep(68463) == 5">
+								<If Condition="not IsTodoChecked(68463, 5, 1)">
+									<GetTo ZoneId="139" XYZ="207.5378, -3.049825, 43.22876" /> <!-- Setoto -->
+									<TalkTo NpcId="1021919" XYZ="207.5378, -3.049825, 43.22876" QuestId="68463" StepId="5" />
+								</If>
+								<If Condition="not IsTodoChecked(68463, 5, 0)">
+									<GetTo ZoneId="139" XYZ="206.0426, -3.111818, 41.94702" /> <!-- Surito Carito -->
+									<TalkTo NpcId="1013135" XYZ="206.0426, -3.111818, 41.94702" QuestId="68463" StepId="5" />
+								</If>
+							</If>
+							<If Condition="GetQuestStep(68463) == 255">
+								<GetTo ZoneId="139" XYZ="206.8054, -3.065021, 43.83911" /> <!-- Alka Zolka -->
+								<TurnIn QuestId="68463" NpcId="1021918" XYZ="206.8054, -3.065021, 43.83911" />
 							</If>
 						</If>
 					</If>
@@ -4487,6 +4725,218 @@
 				</If>
 			</If>
 
+			<!-- East Meets West -->
+
+			<If Condition="not IsQuestCompleted(67945) and IsQuestCompleted(67895)">
+				<If Condition="Core.Player.ClassLevel &gt; 59">
+					<If Condition="not HasQuest(67945)">
+						<GetTo ZoneId="419" XYZ="200.0353, -5.399966, -59.32621" /> <!-- Jannequinard -->
+						<If Condition="IsQuestAcceptQualified(67945)">
+							<PickupQuest NpcId="1012222" QuestId="67945" XYZ="202.3804, -5.399966, -58.9151" />
+						</If>
+					</If>
+					<If Condition="HasQuest(67945)">
+						<If Condition="GetQuestStep(67945) == 1">
+							<GetTo ZoneId="155" XYZ="191.9126, 234.449, 402.4567" /> <!-- Leveva -->
+							<TalkTo NpcId="1021184" XYZ="191.9126, 234.449, 402.4567" QuestId="67945" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67945) == 2">
+							<GetTo ZoneId="153" XYZ="-1.999023, 0.74535, 360.2501" /> <!-- Kyokuho -->
+							<TalkTo NpcId="1021187" XYZ="-1.999023, 0.74535, 360.2501" QuestId="67945" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67945) == 255">
+							<GetTo ZoneId="419" XYZ="195.1781, -5.399962, -67.06348" /> <!-- Leveva -->
+							<TurnIn QuestId="67945" NpcId="1021191" XYZ="195.1781, -5.399962, -67.06348" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Ride Like the Wind -->
+
+			<If Condition="not IsQuestCompleted(67946)">
+				<If Condition="Core.Player.ClassLevel &gt; 62">
+					<If Condition="not HasQuest(67946)">
+						<GetTo ZoneId="419" XYZ="195.1781, -5.399962, -67.06348" /> <!-- Leveva -->
+						<If Condition="IsQuestAcceptQualified(67946)">
+							<PickupQuest NpcId="1021191" QuestId="67946" XYZ="195.1781, -5.399962, -67.06348" />
+						</If>
+					</If>
+					<If Condition="HasQuest(67946)">
+						<If Condition="GetQuestStep(67946) == 1">
+							<GetTo ZoneId="419" XYZ="180.2242, -5.434915, -55.58868" /> <!-- Leveva -->
+							<TalkTo NpcId="1021221" XYZ="180.2242, -5.434915, -55.58868" QuestId="67946" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67946) == 2">
+							<GetTo ZoneId="155" XYZ="240.7109, 362.1378, -614.7402" /> <!-- Kyokuho -->
+							<TalkTo NpcId="1021222" XYZ="240.7109, 362.1378, -614.7402" QuestId="67946" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67946) == 3">
+							<GetTo ZoneId="419" XYZ="195.1781, -5.399962, -67.06348" /> <!-- Leveva -->
+							<TalkTo NpcId="1021191" XYZ="195.1781, -5.399962, -67.06348" QuestId="67946" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(67946) == 255">
+							<GetTo ZoneId="419" XYZ="200.0353, -5.399966, -59.32621" /> <!-- Jannequinard -->
+							<TurnIn QuestId="67946" NpcId="1012222" XYZ="202.3804, -5.399966, -58.9151" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Come Rain or Shine -->
+
+			<If Condition="not IsQuestCompleted(67947)">
+				<If Condition="Core.Player.ClassLevel &gt; 64">
+					<If Condition="not HasQuest(67947)">
+						<GetTo ZoneId="419" XYZ="200.0353, -5.399966, -59.32621" /> <!-- Jannequinard -->
+						<If Condition="IsQuestAcceptQualified(67947)">
+							<PickupQuest NpcId="1012222" QuestId="67947" XYZ="202.3804, -5.399966, -58.9151" />
+						</If>
+					</If>
+					<If Condition="HasQuest(67947)">
+						<If Condition="GetQuestStep(67947) == 1">
+							<GetTo ZoneId="419" XYZ="-0.3510132, 11.9651, 45.0293" /> <!-- Leveva -->
+							<TalkTo NpcId="1021255" XYZ="-0.3510132, 11.9651, 45.0293" QuestId="67947" StepId="1" />
+						</If>
+						<While Condition="GetQuestStep(67947) == 2">
+							<GetTo ZoneId="628" XYZ="-16.25085, 0.09999631, -31.78455" /> <!-- Wizened Elder -->
+							<TalkTo NpcId="1021259" XYZ="-16.25085, 0.09999631, -31.78455" QuestId="67947" StepId="2" />
+							<TalkTo NpcId="1021256" XYZ="28.6106, 4, 53.57434" QuestId="67947" StepId="2" />
+							<TalkTo NpcId="1021260" XYZ="-12.06995, -4.988929, 15.57941" QuestId="67947" StepId="2" />
+						</While>
+						<If Condition="GetQuestStep(67947) == 3">
+							<GetTo ZoneId="628" XYZ="-51.62134, 16.89172, 0.04577637" /> <!-- Destination -->
+							<UseObject NpcId="2007937" XYZ="-51.62134, 16.89172, 0.04577637" Radius="10" QuestId="67947" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(67947) == 4">
+							<WaitWhile Condition="GetQuestStep(67947) == 4" />
+						</If>
+						<If Condition="GetQuestStep(67947) == 4">
+                    		<GetTo ZoneId="628" XYZ="-57.84698, -3, 25.16211" /> <!-- Kyokuho -->
+							<RunCode Name="Come_Rain_or_Shine" />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Need to go in a specific order, but it tries to run through barriers put up during the Duty. -->
+
+							<!-- TO DO -->
+
+							<ExtendedDuty InteractNpcId="1021261" XYZ="-57.84698, -3, 25.16211" GuardianNPCId="5643" QuestId="67947" StepId="4">
+								<HotSpots>
+									<HotSpot XYZ="-59.83464, -3, 23.87561" Radius="10" /> <!-- Westerly Shrine -->
+									<HotSpot XYZ="39.47474, 8.151434, 198.4829" Radius="10" /> <!-- Southerly Shrine -->
+									<HotSpot XYZ="160.3876, 24.979, -26.47449" Radius="10" /> <!-- Easterly Shrine -->
+									<HotSpot XYZ="19.15009, 10.48285, -213.8857" Radius="10" /> <!-- Northerly Shrine -->
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6045" Weight="4000" /> <!-- Fleeting Spirit -->
+									<TargetMob Id="6050" Weight="3000" /> <!-- Evil Spirit -->
+									<TargetMob Id="6051" Weight="2000" /> <!-- Angry Spirit -->
+									<TargetMob Id="5645" Weight="1000" /> <!-- Fury of the Golden Fox -->
+								</TargetMobs>
+							</ExtendedDuty>
+						</If>
+						<If Condition="GetQuestStep(67947) == 5">
+							<WaitWhile Condition="GetQuestStep(67947) == 5" />
+						</If>
+						<If Condition="GetQuestStep(67947) == 255">
+							<GetTo ZoneId="628" XYZ="98.10022, 4.000001, 87.44946" /> <!-- Kyokuho -->
+							<TurnIn QuestId="67947" NpcId="1021262" XYZ="98.10022, 4.000001, 87.44946" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Behind Door Number Two -->
+
+			<If Condition="not IsQuestCompleted(67948)">
+				<If Condition="Core.Player.ClassLevel &gt; 67">
+					<If Condition="not HasQuest(67948)">
+						<GetTo ZoneId="628" XYZ="98.10022, 4.000001, 87.44946" /> <!-- Kyokuho -->
+						<If Condition="IsQuestAcceptQualified(67948)">
+							<PickupQuest NpcId="1021262" QuestId="67948" XYZ="98.10022, 4.000001, 87.44946" />
+						</If>
+					</If>
+					<If Condition="HasQuest(67948)">
+						<If Condition="GetQuestStep(67948) == 1">
+							<GetTo ZoneId="614" XYZ="469.8405, 69.6416, -68.37573" /> <!-- Kyokuho -->
+							<TalkTo NpcId="1021273" XYZ="469.8405, 69.6416, -68.37573" QuestId="67948" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67948) == 2">
+							<GetTo ZoneId="614" XYZ="-413.7789, 55.09362, 305.8365" /> <!-- Kyokuho -->
+							<TalkToPlus NpcId="1021274" XYZ="-413.7789, 55.09362, 305.8365" QuestId="67948" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67948) == 3">
+							<GetTo ZoneId="614" XYZ="-413.7789, 55.09362, 305.8365" /> <!-- Kyokuho -->
+							<TalkTo NpcId="1021274" XYZ="-413.7789, 55.09362, 305.8365" QuestId="67948" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(67948) == 4">
+							<GetTo ZoneId="628" XYZ="-36.66742, 14, -58.45734" /> <!-- Kyokuho -->
+							<TalkTo NpcId="1021054" XYZ="-36.66742, 14, -58.45734" QuestId="67948" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(67948) == 255">
+							<GetTo ZoneId="628" XYZ="98.10022, 4.000001, 87.44946" /> <!-- Kyokuho -->
+							<TurnIn QuestId="67948" NpcId="1021262" XYZ="98.10022, 4.000001, 87.44946" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Foxfire -->
+
+			<If Condition="not IsQuestCompleted(67949)">
+				<If Condition="Core.Player.ClassLevel &gt; 69">
+					<If Condition="not HasQuest(67949)">
+						<GetTo ZoneId="628" XYZ="98.10022, 4.000001, 87.44946" /> <!-- Kyokuho -->
+						<If Condition="IsQuestAcceptQualified(67949)">
+							<PickupQuest NpcId="1021262" QuestId="67949" XYZ="98.10022, 4.000001, 87.44946" />
+						</If>
+					</If>
+					<If Condition="HasQuest(67949)">
+						<If Condition="GetQuestStep(67949) == 1">
+							<GetTo ZoneId="628" XYZ="44.84619, 8.255066, 178.1185" /> <!-- Destination -->
+							<UseObject NpcId="2008103" XYZ="44.84619, 8.255066, 178.1185" Radius="10" QuestId="67949" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(67949) == 2">
+							<GetTo ZoneId="628" XYZ="-61.35657, -3, 28.85474" /> <!-- Kyokuho -->
+							<TalkTo NpcId="1021305" XYZ="-61.35657, -3, 28.85474" QuestId="67949" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(67949) == 3">
+                    		<GetTo ZoneId="628" XYZ="128.13, 24.979, -0.2289429" /> <!-- Destination -->
+							<RunCode Name="Foxfire" />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Heal the friendly NPCs, mainly Kyokuho of Wind and Water. -->
+							<!-- Need to heal Wraths (6046), Anguishes (6047) and Unrest (6048) when they spawn. -->
+							<!-- Unrest (6048) needs Aspected Benefic cast on it while under Nocturnal Sect at 100% health to complete the Duty. -->
+
+							<!-- TO DO -->
+
+							<SimpleDuty InteractNpcId="2008104" XYZ="128.13, 24.979, -0.2289429" QuestId="67949" StepId="3">
+								<HotSpots>
+									<HotSpot XYZ="12.7602, 4, 32.48608" Radius="30" />
+									<HotSpot XYZ="-48.06839, 16.8152, 5.263452" Radius="30" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6045" Weight="5000" /> <!-- Fleeting Spirit -->
+									<TargetMob Id="6050" Weight="4000" /> <!-- Evil Spirit -->
+									<TargetMob Id="6051" Weight="3000" /> <!-- Angry Spirit -->
+									<TargetMob Id="5645" Weight="2000" /> <!-- Fury of the Golden Fox -->
+									<TargetMob Id="5644" Weight="1000" /> <!-- Kinko Kugane -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(67949) == 255">
+							<GetTo ZoneId="628" XYZ="-47.50134, 16.62471, 9.719971" /> <!-- Kyokuho -->
+							<TurnIn QuestId="67949" NpcId="1021309" XYZ="-47.50134, 16.62471, 9.719971" />
+						</If>
+					</If>
+				</If>
+			</If>
+
 		</If>
 
 		<If Condition="(ClassName == ClassJobType.Conjurer) or (ClassName == ClassJobType.WhiteMage)">
@@ -5776,6 +6226,216 @@
 					</If>
 				</If>
 
+				<!-- Unease in East End -->
+
+				<If Condition="not IsQuestCompleted(67950) and IsQuestCompleted(67895)">
+					<If Condition="Core.Player.ClassLevel &gt; 59">
+						<If Condition="not HasQuest(67950)">
+							<If Condition="not IsOnMap(153)">
+								<GetTo ZoneId="153" XYZ="-143.6555, 8.149665, 269.7762" />
+							</If>
+							<If Condition="Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-139.4522, 8.712891, 281.6968)) &gt; 7">
+								<NoCombatMoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762" />
+								<RunCode Name="Camp_Tranquil_Jump" />
+							</If>
+							<GetTo ZoneId="153" XYZ="-139.4522, 8.712891, 281.6968" /> <!-- Raya-O-Senna -->
+							<If Condition="IsQuestAcceptQualified(67950)">
+								<PickupQuest NpcId="1006751" QuestId="67950" XYZ="-139.4522, 8.712891, 281.6968" />
+							</If>
+						</If>
+						<If Condition="HasQuest(67950)">
+							<If Condition="GetQuestStep(67950) == 1">
+								<GetTo ZoneId="133" XYZ="-258.8083, -5.773526, -27.26788" /> <!-- E-Sumi-Yan -->
+								<TalkTo NpcId="1000692" XYZ="-258.8083, -5.773526, -27.26788" QuestId="67950" StepId="1" />
+							</If>
+							<If Condition="GetQuestStep(67950) == 2">
+								<GetTo ZoneId="152" XYZ="87.96814, 5.94581, 490.5621" /> <!-- E-Sumi-Yan -->
+								<TalkTo NpcId="1018744" XYZ="87.96814, 5.94581, 490.5621" QuestId="67950" StepId="2" />
+							</If>
+							<If Condition="GetQuestStep(67950) == 3">
+								<GetTo ZoneId="612" XYZ="-651.3619, 130, -527.8248" /> <!-- E-Sumi-Yan -->
+								<TalkTo NpcId="1018746" XYZ="-651.3619, 130, -527.8248" QuestId="67950" StepId="3" />
+							</If>
+							<If Condition="GetQuestStep(67950) == 4">
+								<GetTo ZoneId="612" XYZ="-640.8331, 120.3479, -291.5236" /> <!-- Destination -->
+								<UseObject NpcId="2007687" XYZ="-640.8331, 120.3479, -291.5236" Radius="10" QuestId="67950" StepId="4" />
+							</If>
+							<If Condition="GetQuestStep(67950) == 255">
+								<GetTo ZoneId="612" XYZ="-622.5834, 130.265, -473.7469" /> <!-- E-Sumi-Yan -->
+								<TurnIn QuestId="67950" NpcId="1018752" XYZ="-622.5834, 130.265, -473.7469" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<!-- An Aura for Trouble -->
+
+				<If Condition="not IsQuestCompleted(67951)">
+					<If Condition="Core.Player.ClassLevel &gt; 62">
+						<If Condition="not HasQuest(67951)">
+							<GetTo ZoneId="612" XYZ="-623.621, 130.2421, -474.7234" /> <!-- Sylphie -->
+							<If Condition="IsQuestAcceptQualified(67951)">
+								<PickupQuest NpcId="1018753" QuestId="67951" XYZ="-623.621, 130.2421, -474.7234" />
+							</If>
+						</If>
+						<If Condition="HasQuest(67951)">
+							<If Condition="GetQuestStep(67951) == 1">
+								<GetTo ZoneId="612" XYZ="-437.2168, 73.07981, -100.2366" /> <!-- Sylphie -->
+								<TalkTo NpcId="1018757" XYZ="-437.2168, 73.07981, -100.2366" QuestId="67951" StepId="1" />
+							</If>
+							<If Condition="GetQuestStep(67951) == 2">
+								<GetTo ZoneId="612" XYZ="-586.0533, 54.95936, 204.8218" /> <!-- Strange Child -->
+								<TalkTo NpcId="1018758" XYZ="-586.0533, 54.95936, 204.8218" QuestId="67951" StepId="2" />
+							</If>
+							<If Condition="GetQuestStep(67951) == 3">
+								<GetTo ZoneId="133" XYZ="-258.8083, -5.773526, -27.26788" /> <!-- E-Sumi-Yan -->
+								<TalkTo NpcId="1000692" XYZ="-258.8083, -5.773526, -27.26788" QuestId="67951" StepId="3" />
+							</If>
+							<If Condition="GetQuestStep(67951) == 255">
+								<GetTo ZoneId="612" XYZ="-623.621, 130.2421, -474.7234" /> <!-- Sylphie -->
+								<TurnIn QuestId="67951" NpcId="1018753" XYZ="-623.621, 130.2421, -474.7234" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<!-- A Beacon for Bad Things -->
+
+				<If Condition="not IsQuestCompleted(67952)">
+					<If Condition="Core.Player.ClassLevel &gt; 64">
+						<If Condition="not HasQuest(67952)">
+							<GetTo ZoneId="612" XYZ="-623.621, 130.2421, -474.7234" /> <!-- Sylphie -->
+							<If Condition="IsQuestAcceptQualified(67952)">
+								<PickupQuest NpcId="1018753" QuestId="67952" XYZ="-623.621, 130.2421, -474.7234" />
+							</If>
+						</If>
+						<If Condition="HasQuest(67952)">
+							<If Condition="GetQuestStep(67952) == 1">
+								<GetTo ZoneId="612" XYZ="-488.0293, 50.94983, 86.96118" /> <!-- Destination -->
+								<UseObject NpcId="2007711" XYZ="-488.0293, 50.94983, 86.96118" Radius="10" QuestId="67952" StepId="1" />
+							</If>
+							<If Condition="GetQuestStep(67952) == 2">
+								<GetTo ZoneId="612" XYZ="-461.6312, 57.14502, 186.0837" /> <!-- Destination -->
+								<UseObject NpcId="2007712" XYZ="-461.6312, 57.14502, 186.0837" Radius="10" QuestId="67952" StepId="2" />
+							</If>
+							<If Condition="GetQuestStep(67952) == 3">
+								<GetTo ZoneId="612" XYZ="-529.9306, 36.88098, 451.1635" /> <!-- Destination -->
+								<UseObject NpcId="2007713" XYZ="-529.9306, 36.88098, 451.1635" Radius="10" QuestId="67952" StepId="3" />
+							</If>
+							<If Condition="GetQuestStep(67952) == 4">
+                    			<GetTo ZoneId="612" XYZ="-638.3002, 38.30705, 374.9293" /> <!-- Sylphie -->
+								<SimpleDuty InteractNpcId="1019090" XYZ="-638.3002, 38.30705, 374.9293" QuestId="67952" StepId="4">
+									<HotSpots>
+										<HotSpot XYZ="-645.5243, 39.40442, 372.364" Radius="90" />
+									</HotSpots>
+									<TargetMobs>
+										<TargetMob Id="2096" Weight="4000" /> <!-- Planar Fissure -->
+										<TargetMob Id="6017" Weight="3000" /> <!-- Aether-starved Vodoriga -->
+										<TargetMob Id="6018" Weight="2000" /> <!-- Aether-starved Gargoyle -->
+										<TargetMob Id="6019" Weight="1000" /> <!-- Aether-starved Imp -->
+									</TargetMobs>
+								</SimpleDuty>
+							</If>
+							<If Condition="GetQuestStep(67952) == 5">
+								<WaitWhile Condition="GetQuestStep(67952) == 5" />
+							</If>
+							<If Condition="GetQuestStep(67952) == 255">
+								<GetTo ZoneId="612" XYZ="-623.621, 130.2421, -474.7234" /> <!-- Sylphie -->
+								<TurnIn QuestId="67952" NpcId="1018753" XYZ="-623.621, 130.2421, -474.7234" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<!-- The Problem with Padjals -->
+
+				<If Condition="not IsQuestCompleted(67953)">
+					<If Condition="Core.Player.ClassLevel &gt; 67">
+						<If Condition="not HasQuest(67953)">
+							<GetTo ZoneId="612" XYZ="-623.621, 130.2421, -474.7234" /> <!-- Sylphie -->
+							<If Condition="IsQuestAcceptQualified(67953)">
+								<PickupQuest NpcId="1018753" QuestId="67953" XYZ="-623.621, 130.2421, -474.7234" />
+							</If>
+						</If>
+						<If Condition="HasQuest(67953)">
+							<If Condition="GetQuestStep(67953) == 1">
+								<GetTo ZoneId="612" XYZ="-651.8196, 40.06705, 370.8094" /> <!-- E-Sumi-Yan -->
+								<TalkTo NpcId="1019125" XYZ="-651.8196, 40.06705, 370.8094" QuestId="67953" StepId="1" />
+							</If>
+							<If Condition="GetQuestStep(67953) == 2">
+								<GetTo ZoneId="612" XYZ="-175.0668, 59.7798, -558.8312" /> <!-- Gatty -->
+								<TalkTo NpcId="1019128" XYZ="-175.0668, 59.7798, -558.8312" QuestId="67953" StepId="2" />
+							</If>
+							<If Condition="GetQuestStep(67953) == 3">
+								<GetTo ZoneId="612" XYZ="-663.7522, 43.59454, 363.7598" /> <!-- E-Sumi-Yan -->
+								<TalkTo NpcId="1019131" XYZ="-663.7522, 43.59454, 363.7598" QuestId="67953" StepId="3" />
+							</If>
+							<If Condition="GetQuestStep(67953) == 255">
+								<GetTo ZoneId="612" XYZ="-655.024, 40.43195, 375.967" /> <!-- Sylphie -->
+								<TurnIn QuestId="67953" NpcId="1019132" XYZ="-655.024, 40.43195, 375.967" />
+							</If>
+						</If>
+					</If>
+				</If>
+
+				<!-- What She Always Wanted -->
+
+				<If Condition="not IsQuestCompleted(67954)">
+					<If Condition="Core.Player.ClassLevel &gt; 69">
+						<If Condition="not HasQuest(67954)">
+							<GetTo ZoneId="612" XYZ="-655.024, 40.43195, 375.967" /> <!-- Sylphie -->
+							<If Condition="IsQuestAcceptQualified(67954)">
+								<PickupQuest NpcId="1019132" QuestId="67954" XYZ="-655.024, 40.43195, 375.967" />
+							</If>
+						</If>
+						<If Condition="HasQuest(67954)">
+							<If Condition="GetQuestStep(67954) == 1">
+								<GetTo ZoneId="612" XYZ="-636.8048, 130, -528.6183" /> <!-- Independent Sutler -->
+								<TalkTo NpcId="1018759" XYZ="-636.8048, 130, -528.6183" QuestId="67954" StepId="1" />
+							</If>
+							<If Condition="GetQuestStep(67954) == 2">
+								<GetTo ZoneId="612" XYZ="-665.3696, 43.59457, 364.4006" /> <!-- Sylphie -->
+								<TalkTo NpcId="1019130" XYZ="-665.3696, 43.59457, 364.4006" QuestId="67954" StepId="2" />
+							</If>
+							<If Condition="GetQuestStep(67954) == 3">
+								<GetTo ZoneId="612" XYZ="-665.3696, 43.59457, 364.4006" /> <!-- Sylphie -->
+								<EmoteNPCPlus NpcId="1019130" Emote="soothe" XYZ="-665.3696, 43.59457, 364.4006" Radius="10" QuestId="67954" StepId="3" />
+							</If>
+							<If Condition="GetQuestStep(67954) == 4">
+								<GetTo ZoneId="612" XYZ="-381.8876, 40.28381, 484.8248" /> <!-- Sanche -->
+								<WaitWhile Condition="GetQuestStep(67954) == 4" />
+							</If>
+							<If Condition="GetQuestStep(67954) == 5">
+								<GetTo ZoneId="612" XYZ="-381.8876, 40.28381, 484.8248" /> <!-- Sanche -->
+								<RunCode Name="What_She_Always_Wanted" />
+								<StopBot />
+
+								<!-- TO DO -->
+
+								<!-- Heal the friendly NPC. -->
+
+								<!-- TO DO -->
+
+								<ExtendedDuty InteractNpcId="1019127" XYZ="-381.8876, 40.28381, 484.8248" QuestId="67954" StepId="5">
+									<HotSpots>
+										<HotSpot XYZ="-381.2671, 40.29111, 485.4266" Radius="90" />
+									</HotSpots>
+									<TargetMobs>
+										<TargetMob Id="2096" Weight="4000" /> <!-- Planar Fissure -->
+										<TargetMob Id="6016" Weight="3000" /> <!-- Aether-starved Hecteyes -->
+										<TargetMob Id="6020" Weight="4000" /> <!-- Aether-starved Arch Demon -->
+										<TargetMob Id="5664" Weight="1000" /> <!-- Camazotz -->
+									</TargetMobs>
+								</ExtendedDuty>
+							</If>
+							<If Condition="GetQuestStep(67954) == 255">
+								<GetTo ZoneId="612" XYZ="-382.7115, 40.27582, 484.3669" /> <!-- Gatty -->
+								<TurnIn QuestId="67954" NpcId="1019588" XYZ="-382.7115, 40.27582, 484.3669" />
+							</If>
+						</If>
+					</If>
+				</If>
+
 			</If>
 
 		</If>
@@ -6557,6 +7217,297 @@
 							</If>
 							<MoveTo Name="Sidurgu" XYZ="104.2344, 14.99999, 40.78735" />
 							<TurnIn QuestId="67600" NpcId="1013969" XYZ="104.2344, 14.99999, 40.78735" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- In Memories We Walked -->
+
+			<If Condition="not IsQuestCompleted(68451) and IsQuestCompleted(67895)">
+				<If Condition="Core.Player.ClassLevel &gt; 59">
+					<If Condition="not HasQuest(68451)">
+						<GetTo ZoneId="418" XYZ="104.2344, 14.99999, 40.78735" /> <!-- Sidurgu -->
+						<If Condition="IsQuestAcceptQualified(68451)">
+							<PickupQuestPlus NpcId="1013969" QuestId="68451" XYZ="104.2344, 14.99999, 40.78735" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68451)">
+						<If Condition="GetQuestStep(68451) == 1">
+							<GetTo ZoneId="419" XYZ="2.5177, 11.94781, 37.00305" /> <!-- Destination -->
+							<UseObject NpcId="2008659" XYZ="2.5177, 11.94781, 37.00305" Radius="10" QuestId="68451" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68451) == 2">
+							<GetTo ZoneId="418" XYZ="75.39478, 24.07172, -13.59583" /> <!-- Millie -->
+							<TalkTo NpcId="1022855" XYZ="75.39478, 24.07172, -13.59583" QuestId="68451" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68451) == 3">
+							<GetTo ZoneId="418" XYZ="3.677429, 5.46805, 26.59644" /> <!-- Myste -->
+							<TalkTo NpcId="1022859" XYZ="3.677429, 5.46805, 26.59644" QuestId="68451" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68451) == 4">
+							<GetTo ZoneId="418" XYZ="75.39478, 24.07172, -13.59583" /> <!-- Millie -->
+							<TalkTo NpcId="1022855" XYZ="75.39478, 24.07172, -13.59583" QuestId="68451" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68451) == 5">
+							<GetTo ZoneId="419" XYZ="31.90649, 15.94562, -65.07977" /> <!-- Destination -->
+							<UseObject NpcId="2008660" XYZ="31.90649, 15.94562, -65.07977" Radius="10" QuestId="68451" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68451) == 6">
+							<GetTo ZoneId="397" XYZ="482.2919, 203.4332, 683.2531" /> <!-- Myste -->
+							<TalkTo NpcId="1022862" XYZ="482.2919, 203.4332, 683.2531" QuestId="68451" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68451) == 7">
+							<GetTo ZoneId="397" XYZ="384.2068, 170.0774, 419.7909" /> <!-- Myste -->
+							<TalkTo NpcId="1022863" XYZ="384.2068, 170.0774, 419.7909" QuestId="68451" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(68451) == 8">
+                    		<GetTo ZoneId="397" XYZ="380.0259, 169.7871, 416.5559" /> <!-- Swirling Abyss -->
+							<RunCode Name="In_Memories_We_Walked" />
+						</If>
+						<If Condition="GetQuestStep(68451) == 255">
+							<GetTo ZoneId="397" XYZ="482.0782, 203.4332, 680.7506" /> <!-- Sidurgu -->
+							<TurnIn QuestId="68451" NpcId="1022866" XYZ="482.0782, 203.4332, 680.7506" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- The Widow and Her Love -->
+
+			<If Condition="not IsQuestCompleted(68452)">
+				<If Condition="Core.Player.ClassLevel &gt; 62">
+					<If Condition="not HasQuest(68452)">
+						<GetTo ZoneId="397" XYZ="482.0782, 203.4332, 680.7506" /> <!-- Sidurgu -->
+						<If Condition="IsQuestAcceptQualified(68452)">
+							<PickupQuest NpcId="1022866" QuestId="68452" XYZ="482.0782, 203.4332, 680.7506" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68452)">
+						<If Condition="GetQuestStep(68452) == 1">
+							<GetTo ZoneId="398" XYZ="464.5303, -51.1414, 44.47998" /> <!-- Rielle -->
+							<TalkTo NpcId="1022870" XYZ="464.5303, -51.1414, 44.47998" QuestId="68452" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68452) == 2">
+							<GetTo ZoneId="398" XYZ="436.942, -51.16351, 98.68005" /> <!-- Destination -->
+							<UseObject NpcId="2008662" XYZ="436.942, -51.16351, 98.68005" Radius="10" QuestId="68452" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68452) == 3">
+							<GetTo ZoneId="398" XYZ="503.4713, -45.07872, -116.9299" /> <!-- Orthodox Proctor -->
+							<TalkTo NpcId="1022879" XYZ="503.4713, -45.07872, -116.9299" QuestId="68452" StepId="3" />
+							<WaitWhile Condition="GetQuestStep(68452) == 3" />
+						</If>
+						<If Condition="GetQuestStep(68452) == 4">
+							<GetTo ZoneId="398" XYZ="612.8175, -26.251, -436.4539" /> <!-- Myste -->
+							<TalkTo NpcId="1022880" XYZ="612.8175, -26.251, -436.4539" QuestId="68452" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68452) == 5">
+							<GetTo ZoneId="398" XYZ="622.8275, -25.46735, -446.4332" /> <!-- Swirling Abyss -->
+							<UseSpell SpellId="3632" NpcId="2008663" XYZ="622.8275, -25.46735, -446.4332" QuestId="68452" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68452) == 6">
+							<GetTo ZoneId="398" XYZ="617.8529, -25.57793, -446.6163" /> <!-- Myste -->
+							<TalkTo NpcId="1023414" XYZ="617.8529, -25.57793, -446.6163" QuestId="68452" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68452) == 255">
+							<GetTo ZoneId="398" XYZ="461.4175, -51.1414, 43.4729" /> <!-- Sidurgu -->
+							<TurnIn QuestId="68452" NpcId="1022885" XYZ="461.4175, -51.1414, 43.4729" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- The Orphans and the Broken Blade -->
+
+			<If Condition="not IsQuestCompleted(68453)">
+				<If Condition="Core.Player.ClassLevel &gt; 64">
+					<If Condition="not HasQuest(68453)">
+						<GetTo ZoneId="398" XYZ="461.4175, -51.1414, 43.4729" /> <!-- Sidurgu -->
+						<If Condition="IsQuestAcceptQualified(68453)">
+							<PickupQuest NpcId="1022885" QuestId="68453" XYZ="461.4175, -51.1414, 43.4729" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68453)">
+						<If Condition="GetQuestStep(68453) == 1">
+							<GetTo ZoneId="400" XYZ="252.5825, -43.12347, 627.0695" /> <!-- Sidurgu -->
+							<TalkTo NpcId="1022888" XYZ="252.5825, -43.12347, 627.0695" QuestId="68453" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68453) == 2">
+							<GetTo ZoneId="400" XYZ="154.2534, -64.44958, 678.0651" /> <!-- Myste -->
+							<TalkTo NpcId="1022891" XYZ="154.2534, -64.44958, 678.0651" QuestId="68453" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68453) == 3">
+							<GetTo ZoneId="400" XYZ="252.5825, -43.12347, 627.0695" /> <!-- Sidurgu -->
+							<TalkTo NpcId="1022888" XYZ="252.5825, -43.12347, 627.0695" QuestId="68453" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68453) == 4">
+							<GetTo ZoneId="400" XYZ="418.5397, -28.94705, 89.25" /> <!-- Sidurgu -->
+							<TalkTo NpcId="1022893" XYZ="418.5397, -28.94705, 89.25" QuestId="68453" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68453) == 5">
+                    		<GetTo ZoneId="400" XYZ="-166.2471, -22.88001, 289.3873" /> <!-- Rielle -->
+							<RunCode Name="The_Orphans_and_the_Broken_Blade" />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Need to stack on Sidurgu the Obsidian Heart to share the damage taken. -->
+
+							<!-- TO DO -->
+
+							<SimpleDuty InteractNpcId="1022897" XYZ="-166.2471, -22.88001, 289.3873" QuestId="68453" StepId="5">
+								<HotSpots>
+									<HotSpot XYZ="-168.2864, -22.86844, 291.3996" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6301" Weight="3000" /> <!-- Deepblack Rune -->
+									<TargetMob Id="6302" Weight="2000" /> <!-- Dark Sprite -->
+									<TargetMob Id="6300" Weight="1000" /> <!-- Ompagne Deepblack -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(68453) == 6">
+							<WaitWhile Condition="GetQuestStep(68453) == 6" />
+						</If>
+						<If Condition="GetQuestStep(68453) == 7">
+                    		<GetTo ZoneId="400" XYZ="-160.0214, -22.99542, 283.6194" /> <!-- Swirling Abyss -->
+							<UseSpell SpellId="3632" NpcId="2008665" XYZ="-160.0214, -22.99542, 283.6194" QuestId="68453" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(68453) == 8">
+							<GetTo ZoneId="400" XYZ="-164.5686, -22.88756, 285.7556" /> <!-- Sidurgu -->
+							<TalkTo NpcId="1022900" XYZ="-164.5686, -22.88756, 285.7556" QuestId="68453" StepId="8" />
+						</If>
+						<If Condition="GetQuestStep(68453) == 255">
+							<GetTo ZoneId="400" XYZ="253.0708, -43.13636, 626.8864" /> <!-- Sidurgu -->
+							<TurnIn QuestId="68453" NpcId="1022953" XYZ="253.0708, -43.13636, 626.8864" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- We Can Never Go Home -->
+
+			<If Condition="not IsQuestCompleted(68454)">
+				<If Condition="Core.Player.ClassLevel &gt; 67">
+					<If Condition="not HasQuest(68454)">
+						<GetTo ZoneId="400" XYZ="252.6436, -43.03291, 625.0857" /> <!-- Myste -->
+						<If Condition="IsQuestAcceptQualified(68454)">
+							<PickupQuest NpcId="1022892" QuestId="68454" XYZ="252.6436, -43.03291, 625.0857" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68454)">
+						<If Condition="GetQuestStep(68454) == 1">
+							<GetTo ZoneId="612" XYZ="-620.5692, 130, -527.5807" /> <!-- Myste -->
+							<TalkTo NpcId="1022890" XYZ="-620.5692, 130, -527.5807" QuestId="68454" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68454) == 2">
+							<GetTo ZoneId="612" XYZ="-359.5178, 63.3675, -727.9316" /> <!-- Gallien -->
+							<TalkTo NpcId="1022902" XYZ="-359.5178, 63.3675, -727.9316" QuestId="68454" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68454) == 3">
+							<GetTo ZoneId="612" XYZ="-276.7529, 74.50722, -695.8572" /> <!-- Houdart -->
+							<TalkTo NpcId="1022904" XYZ="-276.7529, 74.50722, -695.8572" QuestId="68454" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68454) == 4">
+							<GetTo ZoneId="612" XYZ="25.10107, 54.83547, -533.0435" /> <!-- Houdart -->
+							<TalkTo NpcId="1022905" XYZ="25.10107, 54.83547, -533.0435" QuestId="68454" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68454) == 5">
+							<GetTo ZoneId="612" XYZ="182.8794, 54.52025, -491.5694" /> <!-- Houdart -->
+							<TalkTo NpcId="1022908" XYZ="182.8794, 54.52025, -491.5694" QuestId="68454" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68454) == 6">
+							<GetTo ZoneId="612" XYZ="301.3198, 56.41936, -470.0847" /> <!-- Houdart -->
+							<TalkTo NpcId="1022910" XYZ="301.3198, 56.41936, -470.0847" QuestId="68454" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68454) == 7">
+							<GetTo ZoneId="612" XYZ="383.6575, 65.51434, -539.4217" /> <!-- Myste -->
+							<TalkTo NpcId="1022911" XYZ="383.6575, 65.51434, -539.4217" QuestId="68454" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(68454) == 8">
+                    		<GetTo ZoneId="612" XYZ="386.9534, 65.53748, -540.9171" /> <!-- Swirling Abyss -->
+							<UseSpell SpellId="3632" NpcId="2008667" XYZ="386.9534, 65.53748, -540.9171" QuestId="68454" StepId="8" />
+						</If>
+						<If Condition="GetQuestStep(68454) == 9">
+							<GetTo ZoneId="635" XYZ="0.05746084, 3.87704, -76.70002" /> <!-- Destination -->
+							<EmoteNPC NpcId="2008668" Emote="respect" XYZ="-0.04577637, 5.81366, -77.59222" Radius="10" QuestId="68454" StepId="9" />
+						</If>
+						<If Condition="GetQuestStep(68454) == 255">
+							<GetTo ZoneId="418" XYZ="104.2344, 14.99999, 40.78735" /> <!-- Sidurgu -->
+							<TurnIn QuestId="68454" NpcId="1013969" XYZ="104.2344, 14.99999, 40.78735" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Our Compromise -->
+
+			<If Condition="not IsQuestCompleted(68455)">
+				<If Condition="Core.Player.ClassLevel &gt; 69">
+					<If Condition="not HasQuest(68455)">
+						<GetTo ZoneId="418" XYZ="104.2344, 14.99999, 40.78735" /> <!-- Sidurgu -->
+						<If Condition="IsQuestAcceptQualified(68455)">
+							<PickupQuest NpcId="1013969" QuestId="68455" XYZ="104.2344, 14.99999, 40.78735" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68455)">
+						<While Condition="GetQuestStep(68455) == 1">
+							<GetTo ZoneId="635" XYZ="-38.77325, 18.82157, 146.807" /> <!-- Resistance Guard -->
+							<TalkTo NpcId="1022915" XYZ="-38.77325, 18.82157, 146.807" QuestId="68455" StepId="1" />
+							<TalkTo NpcId="1022916" XYZ="-57.72491, -0.07119644, -40.14648" QuestId="68455" StepId="1" />
+							<TalkTo NpcId="1019486" XYZ="-116.7468, 0.6342248, -55.83282" QuestId="68455" StepId="1" />
+						</While>
+						<If Condition="GetQuestStep(68455) == 2">
+							<GetTo ZoneId="635" XYZ="112.7489, 0.6520417, -9.414856" /> <!-- Sidurgu -->
+							<TalkTo NpcId="1022914" XYZ="112.7489, 0.6520417, -9.414856" QuestId="68455" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68455) == 3">
+							<GetTo ZoneId="620" XYZ="-553.7042, 46.75543, -669.9474" /> <!-- Sidurgu -->
+							<TalkTo NpcId="1022922" XYZ="-553.7042, 46.75543, -669.9474" QuestId="68455" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68455) == 4">
+							<GetTo ZoneId="620" XYZ="-387.9607, 51.83484, -626.3676" /> <!-- Destination -->
+							<UseObject NpcId="2008669" XYZ="-387.9607, 51.83484, -626.3676" Radius="10" QuestId="68455" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68455) == 5">
+                    		<GetTo ZoneId="620" XYZ="-624.7196, 58.3448, -484.4893" /> <!-- Sidurgu -->
+							<SimpleDuty InteractNpcId="1023073" XYZ="-624.7196, 58.3448, -484.4893" QuestId="68455" StepId="5">
+								<HotSpots>
+									<HotSpot XYZ="-617.5602, 58.71369, -474.0806" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6306" Weight="19000" /> <!-- Impenetrable Veil -->
+									<TargetMob Id="4131" Weight="18000" /> <!-- Ser Paulecrain Coldfire -->
+									<TargetMob Id="6318" Weight="17000" /> <!-- Ser Hermenost the Levinlight -->
+									<TargetMob Id="6317" Weight="16000" /> <!-- Ser Ignasse of the Dragon's Tail -->
+									<TargetMob Id="6319" Weight="15000" /> <!-- Ser Guerrique the Cleaver -->
+									<TargetMob Id="3850" Weight="14000" /> <!-- Ser Grinnaux the Bull -->
+									<TargetMob Id="6314" Weight="13000" /> <!-- Ser Noudenet the Wise -->
+									<TargetMob Id="4142" Weight="12000" /> <!-- Ser Charibert the Stern -->
+									<TargetMob Id="6315" Weight="11000" /> <!-- Ser Haumeric the Valiant -->
+									<TargetMob Id="3849" Weight="10000" /> <!-- Ser Adelphel Brightblade -->
+									<TargetMob Id="6313" Weight="9000" /> <!-- Ser Janlenoux of the Steel Oath -->
+									<TargetMob Id="5244" Weight="8000" /> <!-- Magus of Darkness -->
+									<TargetMob Id="5242" Weight="7000" /> <!-- Ranger of Darkness -->
+									<TargetMob Id="5243" Weight="6000" /> <!-- Devout of Darkness -->
+									<TargetMob Id="5241" Weight="5000" /> <!-- Knight of Darkness -->
+									<TargetMob Id="5240" Weight="4000" /> <!-- Warrior of Darkness -->
+									<TargetMob Id="6320" Weight="3000" /> <!-- Very Reverend Archimandrite Ser Zephirin -->
+									<TargetMob Id="6304" Weight="2000" /> <!-- Hollow Temple Knight -->
+									<TargetMob Id="4332" Weight="1000" /> <!-- Ystride Godhand -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(68455) == 6">
+							<WaitWhile Condition="GetQuestStep(68455) == 6" />
+						</If>
+						<If Condition="GetQuestStep(68455) == 7">
+							<GetTo ZoneId="418" XYZ="104.2344, 14.99999, 40.78735" /> <!-- Sidurgu -->
+							<TalkTo NpcId="1013969" XYZ="104.2344, 14.99999, 40.78735" QuestId="68455" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(68455) == 255">
+							<GetTo ZoneId="419" XYZ="2.670288, 11.94781, 36.97253" /> <!-- Where It All Began -->
+							<TurnIn QuestId="68455" NpcId="2008885" XYZ="2.670288, 11.94781, 36.97253" />
 						</If>
 					</If>
 				</If>
@@ -17171,6 +18122,17 @@
 				await Coroutine.Sleep(12000);
 			]]>
 		</CodeChunk>
+        <CodeChunk Name="The_Orphans_and_the_Broken_Blade">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68453) == 5)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete The Orphans and the Broken Blade duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
         <CodeChunk Name="In_Thals_Name">
             <![CDATA[ 
                 while (ConditionParser.GetQuestStep(68108) == 2)
@@ -17434,6 +18396,87 @@
                 }
             ]]>
         </CodeChunk>
+		<CodeChunk Name="A_Safe_Place_to_Hide">
+			<![CDATA[ 
+				GameObject target;
+
+				await Coroutine.Sleep(1000);
+				target = GameObjectManager.GetObjectByNPCId(1021910);
+
+				target.Target();
+
+				await Coroutine.Sleep(1000);
+				ActionManager.DoAction(189,target);
+				await Coroutine.Sleep(15000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(9000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(8000);
+				if (ff14bot.RemoteWindows.SelectString.IsOpen)
+					ff14bot.RemoteWindows.SelectString.ClickSlot(0);
+				await Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(6000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(3000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(10000);
+			]]>
+		</CodeChunk>
+        <CodeChunk Name="In_Loving_Memory">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68461) == 1)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete the In Loving Memory duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="Our_Unsung_Heroes">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68463) == 1)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete the Our Unsung Heroes duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
         <CodeChunk Name="Austerities_of_Earth">
             <![CDATA[ 
                 while (ConditionParser.GetQuestStep(66628) == 1)
@@ -17489,6 +18532,28 @@
                 }
             ]]>
         </CodeChunk>
+        <CodeChunk Name="Come_Rain_or_Shine">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67947) == 4)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete the Come Rain or Shine duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="Foxfire">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67949) == 3)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete the Foxfire duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
         <CodeChunk Name="Heart_of_the_Forest">
             <![CDATA[ 
                 while (ConditionParser.GetQuestStep(66620) == 1)
@@ -17518,6 +18583,17 @@
                     System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
                     System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
                     Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete the Hands of Healing duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="What_She_Always_Wanted">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67954) == 5)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete the What She Always Wanted duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
                     await Coroutine.Sleep(26000);
                 }
             ]]>
