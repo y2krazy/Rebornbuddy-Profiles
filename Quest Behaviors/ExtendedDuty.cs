@@ -272,6 +272,7 @@ namespace ff14bot.NeoProfiles.Tags
 								{
 									if (slot.RawItemId == 2000771)
 									{
+										Logging.Write("[ExtendedDuty] Using the Imperial Smoke Signal on Destination!");
 										slot.UseItem(targetnpc);
 										didthething = true;
 									}
@@ -744,6 +745,103 @@ namespace ff14bot.NeoProfiles.Tags
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2007454).Location, 3)
                     )
                 ),
+				new Decorator(ret => QuestId == 67947 && !Core.Player.InCombat && ((GameObjectManager.GetObjectByNPCId(6049) != null && GameObjectManager.GetObjectByNPCId(6049).IsVisible) || (GameObjectManager.GetObjectByNPCId(2007826) != null && GameObjectManager.GetObjectByNPCId(2007826).IsVisible) || (GameObjectManager.GetObjectByNPCId(2007825) != null && GameObjectManager.GetObjectByNPCId(2007825).IsVisible) || (GameObjectManager.GetObjectByNPCId(2007824) != null && GameObjectManager.GetObjectByNPCId(2007824).IsVisible) || (GameObjectManager.GetObjectByNPCId(2007823) != null && GameObjectManager.GetObjectByNPCId(2007823).IsVisible)),
+                    new PrioritySelector(
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(6049) != null && GameObjectManager.GetObjectByNPCId(6049).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => !Core.Me.HasAura(840),
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Using Nocturnal Sect on me!");
+										ff14bot.Managers.ActionManager.DoAction(3605, Core.Me);
+									})
+								),
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(6049).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Using Aspected Benefic on Geomantic Bond!");
+										ff14bot.Managers.ActionManager.DoAction(3595, GameObjectManager.GetObjectByNPCId(6049));
+										Thread.Sleep(10000);
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(6049).Location, 3)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2007826) != null && GameObjectManager.GetObjectByNPCId(2007826).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2007826).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Northerly Shrine!");
+										GameObjectManager.GetObjectByNPCId(2007826).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2007826).Location, 3)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2007825) != null && GameObjectManager.GetObjectByNPCId(2007825).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2007825).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Easterly Shrine!");
+										GameObjectManager.GetObjectByNPCId(2007825).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2007825).Location, 3)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2007824) != null && GameObjectManager.GetObjectByNPCId(2007824).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2007824).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Southerly Shrine!");
+										GameObjectManager.GetObjectByNPCId(2007824).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2007824).Location, 3)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2007823) != null && GameObjectManager.GetObjectByNPCId(2007823).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2007823).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Westerly Shrine!");
+										GameObjectManager.GetObjectByNPCId(2007823).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2007823).Location, 3)
+							)
+						)
+					)
+                ),
+				new Decorator(ret => QuestId == 67954 && Vector3.Distance(Core.Player.Location, ObjectXYZ) < InteractDistance,
+                    new PrioritySelector(
+						new Decorator(ret => MovementManager.IsMoving,
+                            new Action(r =>
+                            {
+                                MovementManager.MoveForwardStop();
+                            })
+                        ),
+                        new Decorator(ret => !didthething,
+                            new Action(r =>
+                            {
+                                var targetnpc = ff14bot.Managers.GameObjectManager.GetObjectByNPCId((uint)InteractNpcId);
+								foreach (ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+								{
+									if (slot.RawItemId == 2002053)
+									{
+										Logging.Write("[ExtendedDuty] Using the Herbal Remedy on Sanche!");
+										slot.UseItem(targetnpc);
+										didthething = true;
+									}
+								}
+                            })
+                        )
+                    )
+                ),
                 new Decorator(ret => QuestId == 68051 && Core.Player.InCombat && GameObjectManager.GetObjectByNPCId(2008289) != null && GameObjectManager.GetObjectByNPCId(2008289).IsVisible,
                     new PrioritySelector(
                         new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2008289).Location) <= 3,
@@ -807,6 +905,34 @@ namespace ff14bot.NeoProfiles.Tags
 				        ),
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008907).Location, 3)
                     )
+                ),
+				new Decorator(ret => QuestId == 68461 && !Core.Player.InCombat && ((GameObjectManager.GetObjectByNPCId(2008882) != null && GameObjectManager.GetObjectByNPCId(2008882).IsVisible) || (GameObjectManager.GetObjectByNPCId(2008434) != null && GameObjectManager.GetObjectByNPCId(2008434).IsVisible)),
+                    new PrioritySelector(
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2008882) != null && GameObjectManager.GetObjectByNPCId(2008882).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2008882).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Silver Coffer!");
+										GameObjectManager.GetObjectByNPCId(2008882).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008882).Location, 3)
+							)
+						),
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2008434) != null && GameObjectManager.GetObjectByNPCId(2008434).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2008434).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Interacting with the Leather-bound Tome!");
+										GameObjectManager.GetObjectByNPCId(2008434).Interact();
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008434).Location, 3)
+							)
+						)
+					)
                 ),
                 new Decorator(ret => QuestId == 68486 && GameObjectManager.GetObjectByNPCId(2008896) != null && GameObjectManager.GetObjectByNPCId(2008896).IsVisible,
                     new PrioritySelector(
