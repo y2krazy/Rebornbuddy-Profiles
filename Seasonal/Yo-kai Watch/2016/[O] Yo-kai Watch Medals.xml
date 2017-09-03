@@ -7,16 +7,39 @@
 #          Kataera (Minion Summon Code)  #
 #          Harath (Default Zones)        #
 ##########################################
-# Version: 2.0.0                         #
+# Version: 1.0.1i                        #
 ##########################################
 # Required Level: 15                     #
 ##########################################
-# Required Setup:                        #
-#  Fill out User Configuration below.    #
+# Required Teleport Locations:           #
+#  Aleport or Swiftperch                 #
+#  Bentbranch Meadows                    #
+#  Black Brush Station                   #
+#  Camp Bronze Lake                      #
+#  Camp Drybone                          #
+#  Camp Overlook                         #
+#  Camp Tranquil or Quarrymill           #
+#  Fallgourd Float                       #
+#  Forgotten Springs or Little Ala Mhigo #
+#  Horizon                               #
+#  Moraby Drydocks                       #
+#  The Hawthorne Hut                     #
+#  Summerford Farms                      #
 ##########################################
 # Required User Interaction:             #
 #  Disable "Wrists" in Agil Auto-Equip   #
 #  Disable Chocobo (Companion) Summoning #
+##########################################
+# Required Setup:                        #
+#  Fill out User Configuration below.    #
+##########################################
+# Rewards:                               #
+#  Yo-kai Legendary Medals               #
+#  Yo-kai Medals                         #
+#  13 Yo-kai Minions (Medals)            #
+#  13 Yo-kai Weapon (Legendary Medals)   #
+#  Whisper-go Mount                      #
+#  Whisper A-go-go Mount                 #
 ##########################################
 -->
 <!-- User Configuration -->
@@ -183,13 +206,13 @@
 ]>
 <!-- End User Configuration -->
 <Profile>
-    <Name>[O] Yo-kai Watch Medals (v2.0.0)</Name>
+    <Name>[O] Yo-kai Watch Medals (v1.0.1i)</Name>
     <BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
     <KillRadius>90</KillRadius>
     <Order>
 
         <If Condition="&Medals; == 0 and &BlizzariaMedals; == 0 and &HovernyanMedals; == 0 and &JibanyanMedals; == 0 and &KomajiroMedals; == 0 and &KomasanMedals; == 0 and &KyubiMedals; == 0 and &ManjimuttMedals; == 0 and &NokoMedals; == 0 and &RobonyanFtypeMedals; == 0 and &ShogunyanMedals; == 0 and &USApyonMedals; == 0 and &VenoctMedals; == 0 and &WhisperMedals; == 0">
-            <RunCode Name="No_Medals" />
+            <ExLog Color="&ExLogAck;" Name="Yo-kai Watch" Message="You have not selected anything to farm! Derp!" />
             <StopBot/>
         </If>
 
@@ -206,7 +229,14 @@
 
             <If Condition="&MedalsLowerLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Lower La Noscea..." />
-                <GetTo ZoneId="135" XYZ="163.1953, 14.09587, 673.3568" /> <!-- Moraby Drydocks -->
+                <If Condition="not IsOnMap(135)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(10)">
+                        <TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+                        <Travel To="135" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -237,7 +267,14 @@
 
             <If Condition="&MedalsMiddleLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Middle La Noscea..." />
-                <GetTo ZoneId="134" XYZ="222.3688, 113.1, -256.9429" /> <!-- Summerford Farms -->
+                <If Condition="not IsOnMap(134)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(52)">
+                        <TeleportTo Name="Summerford Farms" AetheryteId="52" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+                        <Travel To="134" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -272,7 +309,14 @@
 
             <If Condition="&MedalsOuterLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Outer La Noscea..." />
-                <GetTo ZoneId="180" XYZ="-112.6807, 64.36189, -217.7763" /> <!-- Camp Overlook -->
+                <If Condition="not IsOnMap(180)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(16)">
+                        <TeleportTo Name="Camp Overlook" AetheryteId="16" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(16)">
+                        <Travel To="180" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -304,7 +348,14 @@
 
             <If Condition="&MedalsUpperLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Upper La Noscea..." />
-                <GetTo ZoneId="139" XYZ="426.6154, 4.171807, 90.07837" /> <!-- Camp Bronze Lake -->
+                <If Condition="not IsOnSubMap(239)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(15)">
+                        <TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+                        <Travel To="139_East" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -338,7 +389,19 @@
 
             <If Condition="&MedalsWesternLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Western La Noscea..." />
-                <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563" /> <!-- Aleport -->
+                <If Condition="not IsOnMap(138)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(14)">
+                        <TeleportTo Name="Aleport" AetheryteId="14" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(13)">
+                            <TeleportTo Name="Swiftperch" AetheryteId="13" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+                        <Travel To="138" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -380,7 +443,14 @@
 
             <If Condition="&MedalsCentralShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Central Shroud..." />
-                <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854" /> <!-- Bentbranch Meadows -->
+                <If Condition="not IsOnMap(148)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(3)">
+                        <TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+                        <Travel To="148" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -423,7 +493,14 @@
 
             <If Condition="&MedalsEastShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in East Shroud..." />
-                <GetTo ZoneId="152" XYZ="-192.3292, 3.769932, 291.1943" /> <!-- The Hawthorne Hut -->
+                <If Condition="not IsOnMap(152)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(4)">
+                        <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+                        <Travel To="152" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -465,7 +542,14 @@
 
             <If Condition="&MedalsNorthShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in North Shroud..." />
-                <GetTo ZoneId="154" XYZ="-43.92079, -40.88041, 241.8634" /> <!-- Fallgourd Float -->
+                <If Condition="not IsOnMap(154)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(7)">
+                        <TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+                        <Travel To="154" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -500,7 +584,19 @@
 
             <If Condition="&MedalsSouthShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in South Shroud..." />
-                <GetTo ZoneId="153" XYZ="181.2881, 8.417254, -63.92673" /> <!-- Quarrymill -->
+                <If Condition="not IsOnMap(153)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(5)">
+                        <TeleportTo Name="Quarrymill" AetheryteId="5" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(5)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(6)">
+                            <TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+                        <Travel To="153" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -538,7 +634,14 @@
 
             <If Condition="&MedalsCentralThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Central Thanalan..." />
-                <GetTo ZoneId="141" XYZ="-13.56739, -1.877733, -163.8" /> <!-- Black Brush Station -->
+                <If Condition="not IsOnMap(141)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(53)">
+                        <TeleportTo Name="Black Brush Station" AetheryteId="53" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+                        <Travel To="141" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -570,7 +673,14 @@
 
             <If Condition="&MedalsEasternThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Eastern Thanalan..." />
-                <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927" /> <!-- Camp Drybone -->
+                <If Condition="not IsOnMap(145)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(18)">
+                        <TeleportTo Name="Camp Drybone" AetheryteId="18" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+                        <Travel To="145" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -609,7 +719,19 @@
 
             <If Condition="&MedalsSouthernThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Southern Thanalan..." />
-                <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711" /> <!-- Little Ala Mhigo -->
+                <If Condition="not IsOnMap(146)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(19)">
+                        <TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(20)">
+                            <TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+                        <Travel To="146" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -658,7 +780,14 @@
 
             <If Condition="&MedalsWesternThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Western Thanalan..." />
-                <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376" /> <!-- Horizon -->
+                <If Condition="not IsOnMap(140)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(17)">
+                        <TeleportTo Name="Horizon" AetheryteId="17" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+                        <Travel To="140" />
+                    </If>
+                </If>
                 <WaitTimer WaitTime="3" />
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
@@ -705,7 +834,14 @@
 
             <If Condition="&BlizzariaMiddleLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Blizzaria Medal(s) in Middle La Noscea..." />
-                <GetTo ZoneId="134" XYZ="222.3688, 113.1, -256.9429" /> <!-- Summerford Farms -->
+                <If Condition="not IsOnMap(134)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(52)">
+                        <TeleportTo Name="Summerford Farms" AetheryteId="52" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+                        <Travel To="134" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -741,7 +877,14 @@
 
             <If Condition="&BlizzariaOuterLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Blizzaria Medal(s) in Outer La Noscea..." />
-                <GetTo ZoneId="180" XYZ="-112.6807, 64.36189, -217.7763" /> <!-- Camp Overlook -->
+                <If Condition="not IsOnMap(180)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(16)">
+                        <TeleportTo Name="Camp Overlook" AetheryteId="16" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(16)">
+                        <Travel To="180" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -774,7 +917,14 @@
 
             <If Condition="&BlizzariaShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Blizzaria Medal(s) in North Shroud..." />
-                <GetTo ZoneId="154" XYZ="-43.92079, -40.88041, 241.8634" /> <!-- Fallgourd Float -->
+                <If Condition="not IsOnMap(154)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(7)">
+                        <TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+                        <Travel To="154" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -821,7 +971,19 @@
 
             <If Condition="&HovernyanLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Hovernyan Medal(s) in Western La Noscea..." />
-                <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563" /> <!-- Aleport -->
+                <If Condition="not IsOnMap(138)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(14)">
+                        <TeleportTo Name="Aleport" AetheryteId="14" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(13)">
+                            <TeleportTo Name="Swiftperch" AetheryteId="13" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+                        <Travel To="138" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15178,&HovernyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -864,7 +1026,19 @@
 
             <If Condition="&HovernyanShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Hovernyan Medal(s) in South Shroud..." />
-                <GetTo ZoneId="153" XYZ="181.2881, 8.417254, -63.92673" /> <!-- Quarrymill -->
+                <If Condition="not IsOnMap(153)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(5)">
+                        <TeleportTo Name="Quarrymill" AetheryteId="5" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(5)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(6)">
+                            <TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+                        <Travel To="153" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15178,&HovernyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -903,7 +1077,14 @@
 
             <If Condition="&HovernyanThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Hovernyan Medal(s) in Eastern Thanalan..." />
-                <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927" /> <!-- Camp Drybone -->
+                <If Condition="not IsOnMap(145)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(18)">
+                        <TeleportTo Name="Camp Drybone" AetheryteId="18" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+                        <Travel To="145" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15178,&HovernyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -954,7 +1135,14 @@
 
             <If Condition="&JibanyanLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Lower La Noscea..." />
-                <GetTo ZoneId="135" XYZ="163.1953, 14.09587, 673.3568" /> <!-- Moraby Drydocks -->
+                <If Condition="not IsOnMap(135)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(10)">
+                        <TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+                        <Travel To="135" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -986,7 +1174,14 @@
 
             <If Condition="&JibanyanShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Central Shroud..." />
-                <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854" /> <!-- Bentbranch Meadows -->
+                <If Condition="not IsOnMap(148)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(3)">
+                        <TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+                        <Travel To="148" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1030,7 +1225,14 @@
 
             <If Condition="&JibanyanThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Central Thanalan..." />
-                <GetTo ZoneId="141" XYZ="-13.56739, -1.877733, -163.8" /> <!-- Black Brush Station -->
+                <If Condition="not IsOnMap(141)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(53)">
+                        <TeleportTo Name="Black Brush Station" AetheryteId="53" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+                        <Travel To="141" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1074,7 +1276,19 @@
 
             <If Condition="&KomajiroLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komajiro Medal(s) in Western La Noscea..." />
-                <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563" /> <!-- Aleport -->
+                <If Condition="not IsOnMap(138)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(14)">
+                        <TeleportTo Name="Aleport" AetheryteId="14" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(13)">
+                            <TeleportTo Name="Swiftperch" AetheryteId="13" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+                        <Travel To="138" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15173,&KomajiroMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1117,7 +1331,14 @@
 
             <If Condition="&KomajiroShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komajiro Medal(s) in East Shroud..." />
-                <GetTo ZoneId="152" XYZ="-192.3292, 3.769932, 291.1943" /> <!-- The Hawthorne Hut -->
+                <If Condition="not IsOnMap(152)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(4)">
+                        <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+                        <Travel To="152" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15173,&KomajiroMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1160,7 +1381,14 @@
 
             <If Condition="&KomajiroThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komajiro Medal(s) in Central Thanalan..." />
-                <GetTo ZoneId="141" XYZ="-13.56739, -1.877733, -163.8" /> <!-- Black Brush Station -->
+                <If Condition="not IsOnMap(141)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(53)">
+                        <TeleportTo Name="Black Brush Station" AetheryteId="53" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+                        <Travel To="141" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15173,&KomajiroMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1204,7 +1432,19 @@
 
             <If Condition="&KomasanLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komasan Medal(s) in Western La Noscea..." />
-                <GetTo ZoneId="138" XYZ="261.1299, -22.75, 224.9563" /> <!-- Aleport -->
+                <If Condition="not IsOnMap(138)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(14)">
+                        <TeleportTo Name="Aleport" AetheryteId="14" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(13)">
+                            <TeleportTo Name="Swiftperch" AetheryteId="13" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(14)">
+                        <Travel To="138" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15169,&KomasanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1247,7 +1487,14 @@
 
             <If Condition="&KomasanShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komasan Medal(s) in East Shroud..." />
-                <GetTo ZoneId="152" XYZ="-192.3292, 3.769932, 291.1943" /> <!-- The Hawthorne Hut -->
+                <If Condition="not IsOnMap(152)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(4)">
+                        <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+                        <Travel To="152" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15169,&KomasanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1290,7 +1537,14 @@
 
             <If Condition="&KomasanThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komasan Medal(s) in Eastern Thanalan..." />
-                <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927" /> <!-- Camp Drybone -->
+                <If Condition="not IsOnMap(145)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(18)">
+                        <TeleportTo Name="Camp Drybone" AetheryteId="18" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+                        <Travel To="145" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15169,&KomasanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1341,7 +1595,14 @@
 
             <If Condition="&KyubiLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Lower La Noscea..." />
-                <GetTo ZoneId="135" XYZ="163.1953, 14.09587, 673.3568" /> <!-- Moraby Drydocks -->
+                <If Condition="not IsOnMap(135)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(10)">
+                        <TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+                        <Travel To="135" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15172,&KyubiMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1373,7 +1634,14 @@
 
             <If Condition="&KyubiShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Central Shroud..." />
-                <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854" /> <!-- Bentbranch Meadows -->
+                <If Condition="not IsOnMap(148)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(3)">
+                        <TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+                        <Travel To="148" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15172,&KyubiMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1417,7 +1685,14 @@
 
             <If Condition="&KyubiThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Western Thanalan..." />
-                <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376" /> <!-- Horizon -->
+                <If Condition="not IsOnMap(140)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(17)">
+                        <TeleportTo Name="Horizon" AetheryteId="17" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+                        <Travel To="140" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15172,&KyubiMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1465,7 +1740,14 @@
 
             <If Condition="&ManjimuttLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Manjimutt Medal(s) in Upper La Noscea..." />
-                <GetTo ZoneId="139" XYZ="426.6154, 4.171807, 90.07837" /> <!-- Camp Bronze Lake -->
+                <If Condition="not IsOnSubMap(239)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(15)">
+                        <TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+                        <Travel To="139_East" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1500,7 +1782,19 @@
 
             <If Condition="&ManjimuttShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Manjimutt Medal(s) in South Shroud..." />
-                <GetTo ZoneId="153" XYZ="181.2881, 8.417254, -63.92673" /> <!-- Quarrymill -->
+                <If Condition="not IsOnMap(153)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(5)">
+                        <TeleportTo Name="Quarrymill" AetheryteId="5" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(5)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(6)">
+                            <TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+                        <Travel To="153" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1539,7 +1833,14 @@
 
             <If Condition="&ManjimuttThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Manjimutt Medal(s) in Eastern Thanalan..." />
-                <GetTo ZoneId="145" XYZ="-386.3481, -59, 134.0927" /> <!-- Camp Drybone -->
+                <If Condition="not IsOnMap(145)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(18)">
+                        <TeleportTo Name="Camp Drybone" AetheryteId="18" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(18)">
+                        <Travel To="145" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1590,7 +1891,14 @@
 
             <If Condition="&NokoLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Noko Medal(s) in Outer La Noscea..." />
-                <GetTo ZoneId="180" XYZ="-112.6807, 64.36189, -217.7763" /> <!-- Camp Overlook -->
+                <If Condition="not IsOnMap(180)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(16)">
+                        <TeleportTo Name="Camp Overlook" AetheryteId="16" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(16)">
+                        <Travel To="180" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15175,&NokoMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1623,7 +1931,14 @@
 
             <If Condition="&NokoShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Noko Medal(s) in North Shroud..." />
-                <GetTo ZoneId="154" XYZ="-43.92079, -40.88041, 241.8634" /> <!-- Fallgourd Float -->
+                <If Condition="not IsOnMap(154)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(7)">
+                        <TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+                        <Travel To="154" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15175,&NokoMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1659,7 +1974,19 @@
 
             <If Condition="&NokoThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Noko Medal(s) in Southern Thanalan..." />
-                <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711" /> <!-- Little Ala Mhigo -->
+                <If Condition="not IsOnMap(146)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(19)">
+                        <TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(20)">
+                            <TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+                        <Travel To="146" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15175,&NokoMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1720,7 +2047,14 @@
 
             <If Condition="&RobonyanFtypeLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Robonyan F-type Medal(s) in Upper La Noscea..." />
-                <GetTo ZoneId="139" XYZ="426.6154, 4.171807, 90.07837" /> <!-- Camp Bronze Lake -->
+                <If Condition="not IsOnSubMap(239)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(15)">
+                        <TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+                        <Travel To="139_East" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1755,7 +2089,14 @@
 
             <If Condition="&RobonyanFtypeShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Robonyan F-type Medal(s) in North Shroud..." />
-                <GetTo ZoneId="154" XYZ="-43.92079, -40.88041, 241.8634" /> <!-- Fallgourd Float -->
+                <If Condition="not IsOnMap(154)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(7)">
+                        <TeleportTo Name="Fallgourd Float" AetheryteId="7" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(7)">
+                        <Travel To="154" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1791,7 +2132,19 @@
 
             <If Condition="&RobonyanFtypeThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Robonyan F-type Medal(s) in Southern Thanalan..." />
-                <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711" /> <!-- Little Ala Mhigo -->
+                <If Condition="not IsOnMap(146)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(19)">
+                        <TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(20)">
+                            <TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+                        <Travel To="146" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1852,7 +2205,14 @@
 
             <If Condition="&ShogunyanLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in Lower La Noscea..." />
-                <GetTo ZoneId="135" XYZ="163.1953, 14.09587, 673.3568" /> <!-- Moraby Drydocks -->
+                <If Condition="not IsOnMap(135)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(10)">
+                        <TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(10)">
+                        <Travel To="135" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1884,7 +2244,14 @@
 
             <If Condition="&ShogunyanShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in East Shroud..." />
-                <GetTo ZoneId="152" XYZ="-192.3292, 3.769932, 291.1943" /> <!-- The Hawthorne Hut -->
+                <If Condition="not IsOnMap(152)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(4)">
+                        <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(4)">
+                        <Travel To="152" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1927,7 +2294,14 @@
 
             <If Condition="&ShogunyanThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in Central Thanalan..." />
-                <GetTo ZoneId="141" XYZ="-13.56739, -1.877733, -163.8" /> <!-- Black Brush Station -->
+                <If Condition="not IsOnMap(141)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(53)">
+                        <TeleportTo Name="Black Brush Station" AetheryteId="53" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(53)">
+                        <Travel To="141" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -1971,7 +2345,14 @@
 
             <If Condition="&USApyonMiddleLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary USApyon Medal(s) in Middle La Noscea..." />
-                <GetTo ZoneId="134" XYZ="222.3688, 113.1, -256.9429" /> <!-- Summerford Farms -->
+                <If Condition="not IsOnMap(134)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(52)">
+                        <TeleportTo Name="Summerford Farms" AetheryteId="52" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+                        <Travel To="134" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15180,&USApyonMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -2007,7 +2388,14 @@
 
             <If Condition="&USApyonOuterLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary USApyon Medal(s) in Outer La Noscea..." />
-                <GetTo ZoneId="180" XYZ="-112.6807, 64.36189, -217.7763" /> <!-- Camp Overlook -->
+                <If Condition="not IsOnMap(180)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(16)">
+                        <TeleportTo Name="Camp Overlook" AetheryteId="16" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(16)">
+                        <Travel To="180" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15180,&USApyonMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -2040,7 +2428,14 @@
 
             <If Condition="&USApyonThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary USApyon Medal(s) in Western Thanalan..." />
-                <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376" /> <!-- Horizon -->
+                <If Condition="not IsOnMap(140)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(17)">
+                        <TeleportTo Name="Horizon" AetheryteId="17" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+                        <Travel To="140" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15180,&USApyonMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -2088,7 +2483,14 @@
 
             <If Condition="&VenoctLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Venoct Medal(s) in Middle La Noscea..." />
-                <GetTo ZoneId="134" XYZ="222.3688, 113.1, -256.9429" /> <!-- Summerford Farms -->
+                <If Condition="not IsOnMap(134)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(52)">
+                        <TeleportTo Name="Summerford Farms" AetheryteId="52" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(52)">
+                        <Travel To="134" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15176,&VenoctMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -2124,7 +2526,14 @@
 
             <If Condition="&VenoctShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Venoct Medal(s) in Central Shroud..." />
-                <GetTo ZoneId="148" XYZ="5.736485, -1.221331, 36.01854" /> <!-- Bentbranch Meadows -->
+                <If Condition="not IsOnMap(148)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(3)">
+                        <TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(3)">
+                        <Travel To="148" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15176,&VenoctMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -2168,7 +2577,14 @@
 
             <If Condition="&VenoctThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Venoct Medal(s) in Western Thanalan..." />
-                <GetTo ZoneId="140" XYZ="61.26291, 45, -227.1376" /> <!-- Horizon -->
+                <If Condition="not IsOnMap(140)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(17)">
+                        <TeleportTo Name="Horizon" AetheryteId="17" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(17)">
+                        <Travel To="140" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15176,&VenoctMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -2216,7 +2632,14 @@
 
             <If Condition="&WhisperLaNoscea; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Whisper Medal(s) in Upper La Noscea..." />
-                <GetTo ZoneId="139" XYZ="426.6154, 4.171807, 90.07837" /> <!-- Camp Bronze Lake -->
+                <If Condition="not IsOnSubMap(239)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(15)">
+                        <TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(15)">
+                        <Travel To="139_East" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15170,&WhisperMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -2251,7 +2674,19 @@
 
             <If Condition="&WhisperShroud; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Whisper Medal(s) in South Shroud..." />
-                <GetTo ZoneId="153" XYZ="181.2881, 8.417254, -63.92673" /> <!-- Quarrymill -->
+                <If Condition="not IsOnMap(153)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(5)">
+                        <TeleportTo Name="Quarrymill" AetheryteId="5" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(5)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(6)">
+                            <TeleportTo Name="Camp Tranquil" AetheryteId="6" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(6)">
+                        <Travel To="153" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15170,&WhisperMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -2290,7 +2725,19 @@
 
             <If Condition="&WhisperThanalan; == 1">
                 <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Whisper Medal(s) in Southern Thanalan..." />
-                <GetTo ZoneId="146" XYZ="-158.9477, 26.13835, -407.9711" /> <!-- Little Ala Mhigo -->
+                <If Condition="not IsOnMap(146)">
+                    <If Condition="Managers.WorldManager.HasAetheryteId(19)">
+                        <TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(19)">
+                        <If Condition="Managers.WorldManager.HasAetheryteId(20)">
+                            <TeleportTo Name="Forgotten Springs" AetheryteId="20" />
+                        </If>
+                    </If>
+                    <If Condition="not Managers.WorldManager.HasAetheryteId(20)">
+                        <Travel To="146" />
+                    </If>
+                </If>
                 <While Condition="not HasAtLeast(15170,&WhisperMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
@@ -2382,25 +2829,15 @@
         </If>
 
         <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="If you need more Medals, please adjust the quantity in the user configuration within the profile!" />
+        <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Stopping the bot. Nothing left for me to to!" />
 
     </Order>
     <GrindAreas>
     </GrindAreas>
     <CodeChunks>
-        <CodeChunk Name="No_Medals">
-            <![CDATA[ 
-                while (ConditionParser.IsQuestCompleted(67677))
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "You have not selected anything to farm!\nPlease set the amount(s) in the profile configuration.", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
         <CodeChunk Name="EquipYoKaiWatch">
             <![CDATA[ 
-                await Coroutine.Sleep(1000);
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
                 BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Bracelet];
                 
                 foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
@@ -2410,7 +2847,7 @@
                         slot.Move(EquipSlot);
                     }
                 }
-                await Coroutine.Sleep(1000);
+                await Buddy.Coroutines.Coroutine.Sleep(1000);
         ]]>
         </CodeChunk>
 		<CodeChunk Name="SummonBlizzaria">
@@ -2426,21 +2863,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion Blizzaria");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion Blizzaria");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2457,21 +2894,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion Hovernyan");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion Hovernyan");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2488,21 +2925,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion Jibanyan");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion Jibanyan");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2519,21 +2956,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion Komajiro");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion Komajiro");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2550,21 +2987,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion Komasan");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion Komasan");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2581,21 +3018,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion Kyubi");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion Kyubi");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2612,21 +3049,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion Manjimutt");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion Manjimutt");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2643,21 +3080,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion Noko");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion Noko");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2674,21 +3111,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion \"Robonyan F-type\"");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion \"Robonyan F-type\"");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2705,21 +3142,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion Shogunyan");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion Shogunyan");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2736,21 +3173,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion USApyon");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion USApyon");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2767,21 +3204,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion Venoct");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion Venoct");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
@@ -2798,21 +3235,21 @@
 					else
 					{
 						Logging.Write("[Yo-kai Watch] The wrong minion is currently active! Assuming " + minionName + " is not summoned.");
-						await Coroutine.Sleep(1000);
+						await Buddy.Coroutines.Coroutine.Sleep(1000);
 						Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-						await Coroutine.Sleep(500);
+						await Buddy.Coroutines.Coroutine.Sleep(500);
 						ff14bot.Managers.ChatManager.SendChat("/minion Whisper");
-						await Coroutine.Sleep(3000);
+						await Buddy.Coroutines.Coroutine.Sleep(3000);
 					}
 				}
 				else
 				{
 					Logging.Write("[Yo-kai Watch] You do not have an active minion. Assuming " + minionName + " is not summoned.");
-					await Coroutine.Sleep(1000);
+					await Buddy.Coroutines.Coroutine.Sleep(1000);
 					Logging.Write("[Yo-kai Watch] Summoning " + minionName + " now...");
-					await Coroutine.Sleep(500);
+					await Buddy.Coroutines.Coroutine.Sleep(500);
 					ff14bot.Managers.ChatManager.SendChat("/minion Whisper");
-					await Coroutine.Sleep(3000);
+					await Buddy.Coroutines.Coroutine.Sleep(3000);
 				}
 		]]>
 		</CodeChunk>
