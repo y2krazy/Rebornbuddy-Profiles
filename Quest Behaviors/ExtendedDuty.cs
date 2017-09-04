@@ -906,6 +906,41 @@ namespace ff14bot.NeoProfiles.Tags
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2008907).Location, 3)
                     )
                 ),
+				new Decorator(ret => QuestId == 68098 && GameObjectManager.GetObjectByNPCId(1021866) != null && !GameObjectManager.GetObjectByNPCId(1021866).CanAttack,
+                    new PrioritySelector(
+						new Decorator(ret => GameObjectManager.GetObjectByNPCId(1021866) != null && GameObjectManager.GetObjectByNPCId(1021866).IsVisible,
+							new PrioritySelector(
+								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(1021866).Location) <= 3,
+									new Action(r =>
+									{
+										Logging.Write("[ExtendedDuty] Handing over the Banquet Invitation to Gurumi Borlumi's Retainer!");
+										ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1021866).Interact();
+										Thread.Sleep(2000);
+										ff14bot.RemoteWindows.Talk.Next();
+										Thread.Sleep(3000);
+										foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
+										{
+											if(slot.RawItemId == 2002195)
+											{
+												slot.Handover();
+											}
+										}
+										Thread.Sleep(2000);
+										if (ff14bot.RemoteWindows.Request.IsOpen)
+											ff14bot.RemoteWindows.Request.HandOver();
+										Thread.Sleep(2000);
+										ff14bot.RemoteWindows.Talk.Next();
+										Thread.Sleep(2000);
+										if (ff14bot.RemoteWindows.SelectYesno.IsOpen)
+											ff14bot.RemoteWindows.SelectYesno.ClickYes();
+										Thread.Sleep(2000);
+									})
+								),
+								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(1004142).Location, 3)
+							)
+						)
+					)
+                ),
 				new Decorator(ret => QuestId == 68461 && !Core.Player.InCombat && ((GameObjectManager.GetObjectByNPCId(2008882) != null && GameObjectManager.GetObjectByNPCId(2008882).IsVisible) || (GameObjectManager.GetObjectByNPCId(2008434) != null && GameObjectManager.GetObjectByNPCId(2008434).IsVisible)),
                     new PrioritySelector(
 						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2008882) != null && GameObjectManager.GetObjectByNPCId(2008882).IsVisible,
