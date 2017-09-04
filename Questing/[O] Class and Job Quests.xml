@@ -8,7 +8,7 @@
 #          hkme                     #
 #          Eficiente                #
 #####################################
-# Version: 3.1.2a                   #
+# Version: 3.1.3                    #
 #####################################
 # Required Level: 1+                #
 #####################################
@@ -16,11 +16,11 @@
 #  None                             #
 #####################################
 # Required User Interaction:        #
-#  31 Solo Duty Queues              #
+#  34 Solo Duty Queues              #
 #####################################
 -->
 <Profile>
-	<Name>[O] Class and Job Quests (v3.1.2a)</Name>
+	<Name>[O] Class and Job Quests (v3.1.3)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -16496,6 +16496,511 @@
 
 		</If>
 
+		<If Condition="ClassName == ClassJobType.Samurai">
+
+			<!-- Samurai -->
+
+			<LogMessage Message="[Class and Job Quests] Checking Samurai job quests..." />
+
+			<!-- Master Musosai -->
+
+			<If Condition="not IsQuestCompleted(68096)">
+				<If Condition="Core.Player.ClassLevel &gt; 49">
+					<If Condition="not HasQuest(68096)">
+						<GetTo ZoneId="131" XYZ="-89.28058, 2.150003, 59.73901" /> <!-- Musosai -->
+						<If Condition="IsQuestAcceptQualified(68096)">
+							<PickupQuest NpcId="1023637" QuestId="68096" XYZ="-89.28058, 2.150003, 59.73901" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68096)">
+						<If Condition="GetQuestStep(68096) == 1">
+                    		<GetTo ZoneId="131" XYZ="-89.28058, 2.150003, 59.73901" /> <!-- Musosai -->
+							<SimpleDuty InteractNpcId="1023637" XYZ="-89.28058, 2.150003, 59.73901" QuestId="68096" StepId="1">
+								<HotSpots>
+									<HotSpot XYZ="-89.29291, -13.12956, 0.07605382" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6684" Weight="3000" /> <!-- Loyal Grunt -->
+									<TargetMob Id="6111" Weight="2000" /> <!-- Musosai -->
+									<TargetMob Id="6683" Weight="1000" /> <!-- Beroald the Last Standing -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(68096) == 2">
+							<GetTo ZoneId="131" XYZ="-89.28058, 2.150003, 59.73901" /> <!-- Musosai -->
+							<TalkToPlus NpcId="1023637" XYZ="-89.28058, 2.150003, 59.73901" QuestId="68096" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68096) == 255">
+							<GetTo ZoneId="130" XYZ="35.66028, 6.999999, -82.99384" /> <!-- Musosai -->
+							<TurnIn QuestId="68096" NpcId="1021835" XYZ="35.66028, 6.999999, -82.99384" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- The Sands of Debt -->
+
+			<If Condition="not IsQuestCompleted(68097)">
+				<If Condition="Core.Player.ClassLevel &gt; 51">
+					<If Condition="not HasQuest(68097)">
+						<GetTo ZoneId="130" XYZ="35.66028, 6.999999, -82.99384" /> <!-- Musosai -->
+						<If Condition="IsQuestAcceptQualified(68097)">
+							<PickupQuest NpcId="1021835" QuestId="68097" XYZ="35.66028, 6.999999, -82.99384" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68097)">
+						<While Condition="GetQuestStep(68097) == 1">
+							<GetTo ZoneId="141" XYZ="-138.5978, 4.211028, 223.9567" /> <!-- Pleasant Pauper -->
+							<TalkTo NpcId="1021845" XYZ="-138.5978, 4.211028, 223.9567" QuestId="68097" StepId="1" />
+							<TalkTo NpcId="1021844" XYZ="-157.2748, 4.235418, 205.4626" QuestId="68097" StepId="1" />
+							<TalkTo NpcId="1021843" XYZ="-164.3855, 4.235419, 234.3633" QuestId="68097" StepId="1" />
+						</While>
+						<If Condition="GetQuestStep(68097) == 2">
+							<GetTo ZoneId="141" XYZ="-153.0633, 4.235418, 226.5507" /> <!-- Musosai -->
+							<TalkTo NpcId="1021847" XYZ="-153.0633, 4.235418, 226.5507" QuestId="68097" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68097) == 3">
+							<GetTo ZoneId="141" XYZ="-132.311, 3.911323, 221.21" /> <!-- Downtrodden Daughter -->
+							<TalkTo NpcId="1022092" XYZ="-132.311, 3.911323, 221.21" QuestId="68097" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68097) == 4">
+							<GetTo ZoneId="141" XYZ="91.17261, 0.959186, 345.6931" /> <!-- Musosai -->
+							<TalkTo NpcId="1021849" XYZ="91.17261, 0.959186, 345.6931" QuestId="68097" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68097) == 5">
+							<GetTo ZoneId="141" XYZ="106.0654, 1.957014, 360.1586" /> <!-- Downtrodden Daughter -->
+							<WaitWhile Condition="GetQuestStep(68097) == 5" />
+						</If>
+						<If Condition="GetQuestStep(68097) == 6">
+							<GetTo ZoneId="141" XYZ="106.0654, 1.957014, 360.1586" /> <!-- Downtrodden Daughter -->
+							<TalkTo NpcId="1021854" XYZ="106.0654, 1.957014, 360.1586" QuestId="68097" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68097) == 255">
+							<GetTo ZoneId="128" XYZ="9.536865, 40.00023, -15.21332" /> <!-- Musosai -->
+							<TurnIn QuestId="68097" NpcId="1021858" XYZ="9.536865, 40.00023, -15.21332" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Blood on the Deck -->
+
+			<If Condition="not IsQuestCompleted(68098)">
+				<If Condition="Core.Player.ClassLevel &gt; 53">
+					<If Condition="not HasQuest(68098)">
+						<GetTo ZoneId="128" XYZ="9.536865, 40.00023, -15.21332" /> <!-- Musosai -->
+						<If Condition="IsQuestAcceptQualified(68098)">
+							<PickupQuest NpcId="1021858" QuestId="68098" XYZ="9.536865, 40.00023, -15.21332" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68098)">
+						<While Condition="GetQuestStep(68098) == 1">
+							<GetTo ZoneId="129" XYZ="-140.856, 18.2, 17.01373" /> <!-- Swozblaet -->
+							<TalkTo NpcId="1001217" XYZ="-140.856, 18.2, 17.01373" QuestId="68098" StepId="1" />
+							<TalkTo NpcId="1001208" XYZ="-228.1682, 16, 50.64465" QuestId="68098" StepId="1" />
+							<TalkTo NpcId="1003272" XYZ="-262.9282, 16.2, 51.40759" QuestId="68098" StepId="1" />
+						</While>
+						<If Condition="GetQuestStep(68098) == 2">
+							<GetTo ZoneId="129" XYZ="-205.7069, 16, 52.8114" /> <!-- Musosai -->
+							<TalkTo NpcId="1021860" XYZ="-205.7069, 16, 52.8114" QuestId="68098" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68098) == 3">
+							<GetTo ZoneId="129" XYZ="-176.6232, 4, 181.6586" /> <!-- Musosai -->
+							<TalkTo NpcId="1021862" XYZ="-176.6232, 4, 181.6586" QuestId="68098" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68098) == 4">
+							<GetTo ZoneId="137" XYZ="619.0126, 23.93624, 455.1002" /> <!-- Gegeruju -->
+							<TalkTo NpcId="1006273" XYZ="619.0126, 23.93624, 455.1002" QuestId="68098" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68098) == 5">
+                    		<GetTo ZoneId="137" XYZ="673.5483, 11.59444, 390.7378" /> <!-- Gurumi Borlumi's Retainer -->
+							<ExtendedDuty InteractNpcId="1021866" XYZ="673.5483, 11.59444, 390.7378" QuestId="68098" StepId="5">
+								<HotSpots>
+									<HotSpot XYZ="0.5338305, 16.36709, 16.24026" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="5764" Weight="3000" /> <!-- Vanara -->
+									<TargetMob Id="6113" Weight="2000" /> <!-- Adjunct Ostyrgrein -->
+									<TargetMob Id="6112" Weight="1000" /> <!-- Sham Shinobi -->
+								</TargetMobs>
+							</ExtendedDuty>
+						</If>
+						<If Condition="GetQuestStep(68098) == 6">
+							<WaitWhile Condition="GetQuestStep(68098) == 6" />
+						</If>
+						<If Condition="GetQuestStep(68098) == 255">
+							<GetTo ZoneId="132" XYZ="43.25928, -8, 99.19885" /> <!-- Musosai -->
+							<TurnIn QuestId="68098" NpcId="1021869" XYZ="43.25928, -8, 99.19885" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- A Fraudster in the Forest -->
+
+			<If Condition="not IsQuestCompleted(68099)">
+				<If Condition="Core.Player.ClassLevel &gt; 55">
+					<If Condition="not HasQuest(68099)">
+						<GetTo ZoneId="132" XYZ="43.25928, -8, 99.19885" /> <!-- Musosai -->
+						<If Condition="IsQuestAcceptQualified(68099)">
+							<PickupQuest NpcId="1021869" QuestId="68099" XYZ="43.25928, -8, 99.19885" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68099)">
+						<While Condition="GetQuestStep(68099) == 1">
+							<GetTo ZoneId="132" XYZ="49.79016, -1.466969, 51.74329" /> <!-- Bernadette -->
+							<TalkTo NpcId="1000146" XYZ="49.79016, -1.466969, 51.74329" QuestId="68099" StepId="1" />
+							<TalkTo NpcId="1000184" XYZ="12.13086, -1.420323, 30.44165" QuestId="68099" StepId="1" />
+							<TalkTo NpcId="1001276" XYZ="13.96191, 0.1373291, 2.090454" QuestId="68099" StepId="1" />
+						</While>
+						<If Condition="GetQuestStep(68099) == 2">
+							<GetTo ZoneId="132" XYZ="-17.92938, -3.517572, 8.895996" /> <!-- Musosai -->
+							<TalkTo NpcId="1021871" XYZ="-17.92938, -3.517572, 8.895996" QuestId="68099" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68099) == 3">
+							<GetTo ZoneId="132" XYZ="-75.48645, -0.5013741, -5.081299" /> <!-- Vorsaile Heuloix -->
+							<TalkTo NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" QuestId="68099" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68099) == 4">
+							<GetTo ZoneId="154" XYZ="15.67102, -13.15956, 14.57233" /> <!-- Momozigo -->
+							<WaitWhile Condition="GetQuestStep(68099) == 4" />
+						</If>
+						<If Condition="GetQuestStep(68099) == 5">
+							<GetTo ZoneId="154" XYZ="15.67102, -13.15956, 14.57233" /> <!-- Momozigo -->
+							<TalkTo NpcId="1021873" XYZ="15.67102, -13.15956, 14.57233" QuestId="68099" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68099) == 6">
+							<GetTo ZoneId="154" XYZ="72.03784, -13.57346, -6.790344" /> <!-- Momozigo -->
+							<TalkTo NpcId="1021877" XYZ="72.03784, -13.57346, -6.790344" QuestId="68099" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68099) == 7">
+							<GetTo ZoneId="132" XYZ="-16.73914, -3.372195, 8.590759" /> <!-- Momozigo -->
+							<TalkTo NpcId="1021923" XYZ="-16.73914, -3.372195, 8.590759" QuestId="68099" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(68099) == 255">
+							<GetTo ZoneId="418" XYZ="112.4132, 3.629973, 62.30261" /> <!-- Musosai -->
+							<TurnIn QuestId="68099" NpcId="1021878" XYZ="112.4132, 3.629973, 62.30261" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Tears in the Snow -->
+
+			<If Condition="not IsQuestCompleted(68100)">
+				<If Condition="Core.Player.ClassLevel &gt; 57">
+					<If Condition="not HasQuest(68100)">
+						<GetTo ZoneId="418" XYZ="112.4132, 3.629973, 62.30261" /> <!-- Musosai -->
+						<If Condition="IsQuestAcceptQualified(68100)">
+							<PickupQuest NpcId="1021878" QuestId="68100" XYZ="112.4132, 3.629973, 62.30261" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68100)">
+						<While Condition="GetQuestStep(68100) == 1">
+							<GetTo ZoneId="418" XYZ="35.20251, -14, 34.74475" /> <!-- Leery Lowborn -->
+							<TalkTo NpcId="1021883" XYZ="35.20251, -14, 34.74475" QuestId="68100" StepId="1" />
+                    		<TalkTo NpcId="1021884" XYZ="20.64545, -12.02088, 37.79651" QuestId="68100" StepId="1" />
+                    		<TalkTo NpcId="1021882" XYZ="104.2954, -20.02087, 60.62402" QuestId="68100" StepId="1" />
+						</While>
+						<If Condition="GetQuestStep(68100) == 2">
+							<GetTo ZoneId="418" XYZ="36.63684, -6.947113, 79.39258" /> <!-- Musosai -->
+							<TalkTo NpcId="1021885" XYZ="36.63684, -6.947113, 79.39258" QuestId="68100" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68100) == 3">
+							<GetTo ZoneId="418" XYZ="110.277, -20, 69.93213" /> <!-- Musosai -->
+							<TalkTo NpcId="1022094" XYZ="110.277, -20, 69.93213" QuestId="68100" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68100) == 4">
+							<GetTo ZoneId="419" XYZ="3.233686, 12.16507, 58.96883" /> <!-- Honfraint -->
+							<TalkTo NpcId="1021886" XYZ="0.01519775, 13.46524, 59.15918" QuestId="68100" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68100) == 5">
+							<GetTo ZoneId="397" XYZ="358.8768, 161.108, 26.5354" /> <!-- Momozigo -->
+							<WaitWhile Condition="GetQuestStep(68100) == 5" />
+						</If>
+						<If Condition="GetQuestStep(68100) == 6">
+							<GetTo ZoneId="397" XYZ="358.8768, 161.108, 26.5354" /> <!-- Momozigo -->
+							<TalkTo NpcId="1021888" XYZ="358.8768, 161.108, 26.5354" QuestId="68100" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68100) == 255">
+							<GetTo ZoneId="418" XYZ="112.5048, 3.629974, 60.83765" /> <!-- Momozigo -->
+							<TurnIn QuestId="68100" NpcId="1021879" XYZ="112.5048, 3.629974, 60.83765" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- The Face of True Evil -->
+
+			<If Condition="not IsQuestCompleted(68101)">
+				<If Condition="Core.Player.ClassLevel &gt; 59">
+					<If Condition="not HasQuest(68101)">
+						<GetTo ZoneId="418" XYZ="112.5048, 3.629974, 60.83765" /> <!-- Momozigo -->
+						<If Condition="IsQuestAcceptQualified(68101)">
+							<PickupQuest NpcId="1021879" QuestId="68101" XYZ="112.5048, 3.629974, 60.83765" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68101)">
+						<If Condition="GetQuestStep(68101) == 1">
+							<GetTo ZoneId="418" XYZ="59.40332, 23.97186, -5.600098" /> <!-- Destination -->
+							<UseObject NpcId="2008327" XYZ="59.40332, 23.97186, -5.600098" Radius="10" QuestId="68101" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68101) == 2">
+							<GetTo ZoneId="418" XYZ="-17.28851, 5.477966, 29.70923" /> <!-- Destination -->
+							<UseObject NpcId="2008328" XYZ="-17.28851, 5.477966, 29.70923" Radius="10" QuestId="68101" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68101) == 3">
+                    		<GetTo ZoneId="397" XYZ="-217.8226, 112.3331, -243.946" /> <!-- Musosai -->
+							<RunCode Name="The_Face_of_True_Evil" />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Too many deaths! Needs OMEN (SideStep's replacement). -->
+
+							<!-- TO DO -->
+
+							<SimpleDuty InteractNpcId="1021894" XYZ="-217.8226, 112.3331, -243.946" QuestId="68101" StepId="3">
+								<HotSpots>
+									<HotSpot XYZ="-217.0828, 112.9773, -158.4048" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6710" Weight="2000" /> <!-- Violent Wind -->
+									<TargetMob Id="6111" Weight="1000" /> <!-- Musosai -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(68101) == 255">
+							<GetTo ZoneId="130" XYZ="36.85046, 6.999999, -83.78735" /> <!-- Momozigo -->
+							<TurnIn QuestId="68101" NpcId="1021836" XYZ="36.85046, 6.999999, -83.78735" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- A Dignified Visitor -->
+
+			<If Condition="not IsQuestCompleted(68102) and IsQuestCompleted(67895)">
+				<If Condition="Core.Player.ClassLevel &gt; 59">
+					<If Condition="not HasQuest(68102)">
+						<GetTo ZoneId="130" XYZ="36.85046, 6.999999, -83.78735" /> <!-- Momozigo -->
+						<If Condition="IsQuestAcceptQualified(68102)">
+							<PickupQuest NpcId="1021836" QuestId="68102" XYZ="36.85046, 6.999999, -83.78735" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68102)">
+						<If Condition="GetQuestStep(68102) == 1">
+							<GetTo ZoneId="130" XYZ="39.04773, 7.999955, -119.7681" /> <!-- Dignified Samurai -->
+							<TalkTo NpcId="1022185" XYZ="39.04773, 7.999955, -119.7681" QuestId="68102" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68102) == 2">
+							<GetTo ZoneId="140" XYZ="-99.87211, 49.52889, 322.5" /> <!-- Makoto -->
+							<WaitWhile Condition="GetQuestStep(68102) == 2" />
+						</If>
+						<If Condition="GetQuestStep(68102) == 3">
+							<GetTo ZoneId="140" XYZ="-98.95477, 49.46991, 317.8301" /> <!-- Makoto -->
+							<TalkTo NpcId="1022186" XYZ="-98.95477, 49.46991, 317.8301" QuestId="68102" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68102) == 4">
+							<GetTo ZoneId="140" XYZ="-312.6727, 33.08935, 446.5553" /> <!-- Makoto -->
+							<TalkTo NpcId="1022189" XYZ="-312.6727, 33.08935, 446.5553" QuestId="68102" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68102) == 255">
+							<GetTo ZoneId="130" XYZ="36.85046, 6.999999, -83.78735" /> <!-- Momozigo -->
+							<TurnIn QuestId="68102" NpcId="1021836" XYZ="36.85046, 6.999999, -83.78735" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Trials of the Sekiseigumi -->
+
+			<If Condition="not IsQuestCompleted(68103)">
+				<If Condition="Core.Player.ClassLevel &gt; 62">
+					<If Condition="not HasQuest(68103)">
+						<GetTo ZoneId="130" XYZ="36.85046, 6.999999, -83.78735" /> <!-- Momozigo -->
+						<If Condition="IsQuestAcceptQualified(68103)">
+							<PickupQuest NpcId="1021836" QuestId="68103" XYZ="36.85046, 6.999999, -83.78735" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68103)">
+						<If Condition="GetQuestStep(68103) == 1">
+							<GetTo ZoneId="628" XYZ="128.6183, 15, -158.0378" /> <!-- Soft-spoken Sekiseigumi -->
+							<TalkTo NpcId="1022190" XYZ="128.6183, 15, -158.0378" QuestId="68103" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68103) == 2">
+							<GetTo ZoneId="613" XYZ="567.8645, 0.7330354, 755.1842" /> <!-- Makoto -->
+							<WaitWhile Condition="GetQuestStep(68103) == 2" />
+						</If>
+						<If Condition="GetQuestStep(68103) == 3">
+							<GetTo ZoneId="613" XYZ="567.8645, 0.7330354, 755.1842" /> <!-- Makoto -->
+							<TalkTo NpcId="1022191" XYZ="567.8645, 0.7330354, 755.1842" QuestId="68103" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68103) == 255">
+							<GetTo ZoneId="628" XYZ="128.6183, 15, -158.0378" /> <!-- Soft-spoken Sekiseigumi -->
+							<TurnInPlus QuestId="68103" NpcId="1022190" XYZ="128.6183, 15, -158.0378" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Matsuba Mayhem -->
+
+			<If Condition="not IsQuestCompleted(68104)">
+				<If Condition="Core.Player.ClassLevel &gt; 64">
+					<If Condition="not HasQuest(68104)">
+						<GetTo ZoneId="628" XYZ="129.7169, 15, -157.6105" /> <!-- Makoto -->
+						<If Condition="IsQuestAcceptQualified(68104)">
+							<PickupQuest NpcId="1022184" QuestId="68104" XYZ="129.7169, 15, -157.6105" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68104)">
+						<If Condition="GetQuestStep(68104) == 1">
+							<GetTo ZoneId="628" XYZ="-100.8774, -6.027344, 67.03284" /> <!-- Destination -->
+							<UseObject NpcId="2008439" XYZ="-100.8774, -6.027344, 67.03284" Radius="10" QuestId="68104" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68104) == 2">
+							<GetTo ZoneId="628" XYZ="-140.3677, -7.064941, 78.3551" /> <!-- Destination -->
+							<UseObject NpcId="2008440" XYZ="-140.3677, -7.064941, 78.3551" Radius="10" QuestId="68104" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68104) == 3">
+							<GetTo ZoneId="628" XYZ="-140.3373, -7.003906, 72.73975" /> <!-- Quaint Charm -->
+							<UseObject NpcId="2008441" XYZ="-140.3373, -7.003906, 72.73975" Radius="10" QuestId="68104" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68104) == 4">
+                    		<GetTo ZoneId="628" XYZ="-22.29346, -3, 31.81494" /> <!-- Makoto -->
+							<HandOver ItemId="2002238" QuestId="68104" StepId="4" NpcId="1022196" XYZ="-22.29346, -3, 31.81494" />
+						</If>
+						<If Condition="GetQuestStep(68104) == 5">
+							<GetTo ZoneId="628" XYZ="46.21948, 8.02, 144.7928" /> <!-- Makoto -->
+							<TalkTo NpcId="1022197" XYZ="46.21948, 8.02, 144.7928" QuestId="68104" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68104) == 6">
+                    		<GetTo ZoneId="628" XYZ="37.33875, 5.951231, -133.959" /> <!-- Makoto -->
+							<RunCode Name="Matsuba_Mayhem" />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Too many deaths! Needs OMEN (SideStep's replacement). -->
+
+							<!-- TO DO -->
+
+							<SimpleDuty InteractNpcId="1022201" XYZ="37.33875, 5.951231, -133.959" QuestId="68104" StepId="6">
+								<HotSpots>
+									<HotSpot XYZ="38.98654, 10.50397, -196.7926" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6110" Weight="2000" /> <!-- Traitorous Sekiseigumi -->
+									<TargetMob Id="6095" Weight="1000" /> <!-- Shiden Skyscream -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(68104) == 255">
+							<GetTo ZoneId="628" XYZ="128.5573, 15, -158.0988" /> <!-- Kongo -->
+							<TurnIn QuestId="68104" NpcId="1022203" XYZ="128.5573, 15, -158.0988" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- The Hunt for Ugetsu -->
+
+			<If Condition="not IsQuestCompleted(68105)">
+				<If Condition="Core.Player.ClassLevel &gt; 67">
+					<If Condition="not HasQuest(68105)">
+						<GetTo ZoneId="628" XYZ="129.7169, 15, -157.6105" /> <!-- Makoto -->
+						<If Condition="IsQuestAcceptQualified(68105)">
+							<PickupQuest NpcId="1022184" QuestId="68105" XYZ="129.7169, 15, -157.6105" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68105)">
+						<If Condition="GetQuestStep(68105) == 1">
+							<GetTo ZoneId="614" XYZ="537.0107, 70.39123, 25.37573" /> <!-- Makoto -->
+							<TalkTo NpcId="1022204" XYZ="537.0107, 70.39123, 25.37573" QuestId="68105" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68105) == 2">
+							<GetTo ZoneId="614" XYZ="255.0239, 7.766785, 458.5182" /> <!-- Destination -->
+							<UseObject NpcId="2008443" XYZ="255.0239, 7.766785, 458.5182" Radius="10" QuestId="68105" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68105) == 3">
+							<GetTo ZoneId="614" XYZ="152.575, 13.62622, 425.5587" /> <!-- Destination -->
+							<UseObject NpcId="2008444" XYZ="152.575, 13.62622, 425.5587" Radius="10" QuestId="68105" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68105) == 4">
+							<GetTo ZoneId="614" XYZ="64.43884, 10.78809, 444.236" /> <!-- Destination -->
+							<UseObject NpcId="2008445" XYZ="64.43884, 10.78809, 444.236" Radius="10" QuestId="68105" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68105) == 5">
+							<GetTo ZoneId="614" XYZ="175.2804, 5.19015, 522.3315" /> <!-- Makoto -->
+							<TalkTo NpcId="1022205" XYZ="175.2804, 5.19015, 522.3315" QuestId="68105" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68105) == 6">
+							<GetTo ZoneId="614" XYZ="175.2804, 5.19015, 522.3315" /> <!-- Makoto -->
+							<TalkToPlus NpcId="1022205" XYZ="175.2804, 5.19015, 522.3315" QuestId="68105" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68105) == 255">
+							<GetTo ZoneId="628" XYZ="129.7169, 15, -157.6105" /> <!-- Makoto -->
+							<TurnIn QuestId="68105" NpcId="1022184" XYZ="129.7169, 15, -157.6105" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- The Battle on Bekko -->
+
+			<If Condition="not IsQuestCompleted(68106)">
+				<If Condition="Core.Player.ClassLevel &gt; 69">
+					<If Condition="not HasQuest(68106)">
+						<GetTo ZoneId="628" XYZ="129.7169, 15, -157.6105" /> <!-- Makoto -->
+						<If Condition="IsQuestAcceptQualified(68106)">
+							<PickupQuest NpcId="1022184" QuestId="68106" XYZ="129.7169, 15, -157.6105" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68106)">
+						<While Condition="GetQuestStep(68106) == 1">
+							<GetTo ZoneId="628" XYZ="14.75543, 0, -66.88031" /> <!-- Gruff Sekiseigumi -->
+							<TalkTo NpcId="1022208" XYZ="14.75543, 0, -66.88031" QuestId="68106" StepId="1" />
+							<TalkTo NpcId="1022207" XYZ="-59.86121, -2.900029, -64.80511" QuestId="68106" StepId="1" />
+							<TalkTo NpcId="1022209" XYZ="42.64893, 4, 54.97815" QuestId="68106" StepId="1" />
+						</While>
+						<If Condition="GetQuestStep(68106) == 2">
+							<GetTo ZoneId="628" XYZ="124.6814, 15, -154.8333" /> <!-- Makoto -->
+							<TalkTo NpcId="1022377" XYZ="124.6814, 15, -154.8333" QuestId="68106" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68106) == 3">
+                    		<GetTo ZoneId="613" XYZ="787.1976, 1.587234, 80.03345" /> <!-- Makoto -->
+							<RunCode Name="The_Battle_on_Bekko" />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Too many deaths! Needs OMEN (SideStep's replacement). -->
+
+							<!-- TO DO -->
+
+							<SimpleDuty InteractNpcId="1022215" XYZ="787.1976, 1.587234, 80.03345" QuestId="68106" StepId="3">
+								<HotSpots>
+									<HotSpot XYZ="808.847, 0.9577323, 69.79609" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6096" Weight="1000" /> <!-- Ugetsu, Slayer of a Thousand Souls -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(68106) == 4">
+							<WaitWhile Condition="GetQuestStep(68106) == 4" />
+						</If>
+						<If Condition="GetQuestStep(68106) == 255">
+							<GetTo ZoneId="628" XYZ="129.7169, 15, -157.6105" /> <!-- Makoto -->
+							<TurnIn QuestId="68106" NpcId="1022184" XYZ="129.7169, 15, -157.6105" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+		</If>
+
 		<If Condition="(ClassName == ClassJobType.BlackMage) or (ClassName == ClassJobType.Thaumaturge)">
 
 			<!-- Thaumaturge -->
@@ -18720,6 +19225,39 @@
 				MovementManager.MoveStop();
         	]]>
 		</CodeChunk>
+        <CodeChunk Name="The_Face_of_True_Evil">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68101) == 3)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete The Face of True Evil duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="Matsuba_Mayhem">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68104) == 6)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete the Matsuba Mayhem duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="The_Battle_on_Bekko">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68106) == 3)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete The Battle on Bekko duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
         <CodeChunk Name="The_Threat_of_Superiority">
             <![CDATA[ 
                 while (ConditionParser.GetQuestStep(65886) == 4)
