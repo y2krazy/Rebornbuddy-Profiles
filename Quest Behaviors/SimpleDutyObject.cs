@@ -4,6 +4,7 @@ using ff14bot.Behavior;
 using ff14bot.Managers;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using TreeSharp;
 using Action = TreeSharp.Action;
 
@@ -67,6 +68,28 @@ namespace ff14bot.NeoProfiles.Tags {
             );
         }
 
+        protected Composite Q67131() {
+            // (67131) Heavensward - A Series of Unfortunate Events
+            return new PrioritySelector(
+                CommonBehaviors.HandleLoading,
+                new Decorator(ret => QuestLogManager.InCutscene, new ActionAlwaysSucceed()),
+                new Decorator(ret => QuestId == 67131 && GameObjectManager.GetObjectByNPCId(4129) != null && GameObjectManager.GetObjectByNPCId(4129).IsVisible && Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(4129).Location) > 20,
+                    CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(4129).Location, 15)
+                ),
+                new Decorator(ret => QuestId == 67131 && GameObjectManager.GetObjectByNPCId(2005710) != null && GameObjectManager.GetObjectByNPCId(2005710).IsVisible && !Core.Player.InCombat,
+                    new PrioritySelector(
+                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2005710).Location) <= 3,
+                            new Action(r => {
+                                GameObjectManager.GetObjectByNPCId(2005710).Interact();
+                            })
+                        ),
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2005710).Location, 3)
+                    )
+                ),
+                base.CreateBehavior()
+            );
+        }
+
         protected Composite Q67137() {
             // (67137) Heavensward -  Keeping the Flame Alive
             return new PrioritySelector(
@@ -97,24 +120,34 @@ namespace ff14bot.NeoProfiles.Tags {
             );
         }
 
-        protected Composite Q67131() {
-            // (67131) Heavensward - A Series of Unfortunate Events
+        protected Composite Q68123() {
+            // (68123) Stormblood - With Heart and Steel
+            Vector3 c1 = new Vector3(-299.7701f, -116.947f, -343.4173f);
+            Vector3 c2 = new Vector3(-300f, -74.1117f, -416.5f);
+
             return new PrioritySelector(
                 CommonBehaviors.HandleLoading,
                 new Decorator(ret => QuestLogManager.InCutscene, new ActionAlwaysSucceed()),
-                new Decorator(ret => QuestId == 67131 && GameObjectManager.GetObjectByNPCId(4129) != null && GameObjectManager.GetObjectByNPCId(4129).IsVisible && Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(4129).Location) > 20,
-                    CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(4129).Location, 15)
-                ),
-                new Decorator(ret => QuestId == 67131 && GameObjectManager.GetObjectByNPCId(2005710) != null && GameObjectManager.GetObjectByNPCId(2005710).IsVisible && !Core.Player.InCombat,
+                new Decorator(ret => QuestId == 68123 && GameObjectManager.GetObjectByNPCId(2007630) != null && GameObjectManager.GetObjectByNPCId(2007630).IsVisible,
                     new PrioritySelector(
-                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2005710).Location) <= 3,
-                            new Action(r => {
-                                GameObjectManager.GetObjectByNPCId(2005710).Interact();
-                            })
-                        ),
-                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2005710).Location, 3)
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2007630).Location, 1)
                     )
                 ),
+                new Decorator(ret => DutyManager.InInstance && QuestId == 68123 && HasCheckPointReached(1) && Core.Me.Location.Distance(c1) < 3,
+                    new PrioritySelector(
+                        new Decorator(ret => Core.Me.Location.Distance(c1) < 3,
+                            new Action(r => {
+                                MovementManager.MoveForwardStart();
+                                Thread.Sleep(3000);
+                                MovementManager.MoveForwardStop();
+                            })
+                        )
+                    )
+                ),
+                new Decorator(ret => DutyManager.InInstance && QuestId == 68123 && !HasCheckPointReached(1) && Core.Me.Location.Distance(c1) < 3, new Action(a => { CheckPointReached(1); })),
+                new Decorator(ret => DutyManager.InInstance && !Core.Player.InCombat && QuestId == 68123 && !HasCheckPointReached(1), CommonBehaviors.MoveAndStop(ret => c1, 3)),
+                new Decorator(ret => DutyManager.InInstance && QuestId == 68123 && !HasCheckPointReached(2) && Core.Me.Location.Distance(c2) < 5, new Action(a => { CheckPointReached(2); })),
+                new Decorator(ret => DutyManager.InInstance && QuestId == 68123 && !HasCheckPointReached(2), CommonBehaviors.MoveAndStop(ret => c2, 3)),
                 base.CreateBehavior()
             );
         }
@@ -123,6 +156,7 @@ namespace ff14bot.NeoProfiles.Tags {
             if (QuestId == 67124) return Q67124();
             if (QuestId == 67131) return Q67131();
             if (QuestId == 67137) return Q67137();
+            if (QuestId == 68123) return Q68123();
 
             return new PrioritySelector(
                 CommonBehaviors.HandleLoading,
