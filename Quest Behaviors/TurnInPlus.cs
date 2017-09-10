@@ -258,6 +258,24 @@ namespace ff14bot.NeoProfiles
                         SelectString.ClickSlot(4);
                     })
                 ),
+				new Decorator(ret => QuestId == 67504 && Vector3.Distance(Core.Player.Location, XYZ) < InteractDistance && !actiontaken,
+                    new Sequence(
+						new Action(r =>
+						{
+							var targetnpc = ff14bot.Managers.GameObjectManager.GetObjectByNPCId((uint)NpcId);
+							targetnpc.Target();
+							ChatManager.SendChat("/cry");
+							actiontaken = true;
+						}),
+						new Sleep(3,5),
+						new Decorator(ret => !Talk.DialogOpen,
+							new Action(r =>
+							{
+								actiontaken = false;
+							})
+						)
+					)
+                ),
 				new Decorator(ret => QuestId == 67670 && SelectYesno.IsOpen,
 					new Action(r =>
 					{
