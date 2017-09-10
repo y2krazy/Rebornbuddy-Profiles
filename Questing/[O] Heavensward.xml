@@ -5,7 +5,7 @@
 ##############################
 # Author: y2krazy            #
 ##############################
-# Version: 3.0.1             #
+# Version: 3.0.2             #
 ##############################
 # Required Level: 50+        #
 ##############################
@@ -18,7 +18,7 @@
 ##############################
 -->
 <Profile>
-	<Name>[O] Heavensward (v3.0.1)</Name>
+	<Name>[O] Heavensward (v3.0.2)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -8314,41 +8314,28 @@
         <!-- [PickUp Quest] -->
 
         <!-- Sidequest: Let the Clan Hunt Begin -->
-        <If Condition="not IsQuestCompleted(67655)">
+        <If Condition="not IsQuestCompleted(67655) and (IsQuestCompleted(67099) or IsQuestCompleted(67100) or IsQuestCompleted(67101))">
             <If Condition="not HasQuest(67655)">
-            <If Condition="not IsQuestAcceptQualified(67655)">
-                <!-- <LogMessage Message="[Heavensward] You have not completed the Let the Hunt Begin quest yet!" /> -->
-                <LogMessage Message="[Heavensward] Skipping the Let the Clan Hunt Begin quest until I add the old quests in this profile..." />
-            </If>
-            <!-- <If Condition="not IsOnMap(418)">
-                <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
-            </If>
-            <MoveTo Name="Aytienne" XYZ="86.96118, 24, 30.3501" />
-            <If Condition="IsQuestAcceptQualified(67655)">
-                <PickupQuest NpcId="1012256" QuestId="67655" XYZ="86.96118, 24, 30.3501" />
-            </If> -->
+                <GetTo ZoneId="418" XYZ="86.96118, 24, 30.3501" /> <!-- Aytienne -->
+                <If Condition="IsQuestAcceptQualified(67655)">
+                    <PickupQuest NpcId="1012256" QuestId="67655" XYZ="86.96118, 24, 30.3501" />
+                </If>
             </If>
 
             <!-- [Complete Quest] -->
 
             <If Condition="HasQuest(67655)">
-            <If Condition="GetQuestStep(67655) == 1">
-                <If Condition="not IsOnMap(418)">
-                <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
+                <If Condition="GetQuestStep(67655) == 1">
+                    <GetTo ZoneId="418" XYZ="90.10449, 15.09468, 29.95337" /> <!-- Ardolain -->
+                    <TalkTo NpcId="1012225" XYZ="90.10449, 15.09468, 29.95337" QuestId="67655" StepId="1" />
                 </If>
-                <MoveTo Name="Ardolain" XYZ="90.10449, 15.09468, 29.95337" />
-                <TalkTo NpcId="1012225" XYZ="90.10449, 15.09468, 29.95337" QuestId="67655" StepId="1" />
-            </If>
 
-            <!-- [TurnIn Quest] -->
+                <!-- [TurnIn Quest] -->
 
-            <If Condition="GetQuestStep(67655) == 255">
-                <If Condition="not IsOnMap(418)">
-                <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
+                <If Condition="GetQuestStep(67655) == 255">
+                    <GetTo ZoneId="418" XYZ="73.89941, 24.3075, 22.04926" /> <!-- Clan Hunt Board -->
+                    <TurnIn QuestId="67655" NpcId="2005909" XYZ="73.89941, 24.3075, 22.04926" />
                 </If>
-                <MoveTo Name="Clan Hunt Board" XYZ="73.89941, 24.3075, 22.04926" />
-                <TurnIn QuestId="67655" NpcId="2005909" XYZ="73.89941, 24.3075, 22.04926" />
-            </If>
             </If>
         </If>
 
@@ -12529,46 +12516,33 @@
             </If>
         </If>
         <!-- Sidequest: Better Bill Hunting -->
-        <If Condition="not IsQuestCompleted(67656)">
+        <If Condition="not IsQuestCompleted(67656) and IsQuestCompleted(67655)">
             <If Condition="not HasQuest(67656)">
-            <If Condition="not IsQuestAcceptQualified(67655)">
-                <!-- <LogMessage Message="[Heavensward] You have not completed the Let the Clan Hunt Begin quest yet!" /> -->
-                <LogMessage Message="[Heavensward] Skipping the Better Bill Hunting quest until I add the old quests in this profile..." />
+                <GetTo ZoneId="418" XYZ="71.73267, 23.97913, 20.85907" /> <!-- Eustacia -->
+                <If Condition="IsQuestAcceptQualified(67656)">
+                    <PickupQuest NpcId="1012226" QuestId="67656" XYZ="71.73267, 23.97913, 20.85907" />
+                </If>
             </If>
-            <!-- <If Condition="not IsOnMap(418)">
-                <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
-            </If>
-            <MoveTo Name="Eustacia" XYZ="71.73267, 23.97913, 20.85907" />
-            <If Condition="IsQuestAcceptQualified(67656)">
-                <PickupQuest NpcId="1012226" QuestId="67656" XYZ="71.73267, 23.97913, 20.85907" />
-            </If> -->
+
+            <!-- [Complete Quest] -->
+
+            <If Condition="HasQuest(67656)">
+                <If Condition="GetQuestStep(67656) == 1">
+                    <GetTo ZoneId="418" XYZ="90.10449, 15.09468, 29.95337" /> <!-- Ardolain -->
+                    <TalkTo NpcId="1012225" XYZ="90.10449, 15.09468, 29.95337" QuestId="67656" StepId="1" />
+                </If>
+
+                <!-- [TurnIn Quest] -->
+
+                <If Condition="GetQuestStep(67656) == 255">
+                    <GetTo ZoneId="418" XYZ="73.89941, 24.3075, 22.04926" /> <!-- Clan Hunt Board -->
+                    <TurnIn QuestId="67656" NpcId="2005909" XYZ="73.89941, 24.3075, 22.04926" />
+                </If>
             </If>
         </If>
 
         <!-- [Complete Quests] -->
 
-        <!-- Sidequest: Better Bill Hunting -->
-        <If Condition="not IsQuestCompleted(67656)">
-            <If Condition="HasQuest(67656)">
-            <If Condition="GetQuestStep(67656) == 1">
-                <If Condition="not IsOnMap(418)">
-                <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
-                </If>
-                <MoveTo Name="Ardolain" XYZ="90.10449, 15.09468, 29.95337" />
-                <TalkTo NpcId="1012225" XYZ="90.10449, 15.09468, 29.95337" QuestId="67656" StepId="1" />
-            </If>
-
-            <!-- [TurnIn Quest] -->
-
-            <If Condition="GetQuestStep(67656) == 255">
-                <If Condition="not IsOnMap(418)">
-                <GetTo ZoneId="418" XYZ="-56.30568, 8.113304, 38.95942" />
-                </If>
-                <MoveTo Name="Clan Hunt Board" XYZ="73.89941, 24.3075, 22.04926" />
-                <TurnIn QuestId="67656" NpcId="2005909" XYZ="73.89941, 24.3075, 22.04926" />
-            </If>
-            </If>
-        </If>
         <!-- He Who Would Not Be Denied -->
         <If Condition="not IsQuestCompleted(67173)">
             <If Condition="HasQuest(67173)">
@@ -20570,7 +20544,7 @@
         <!-- [PickUp Quests] -->
 
         <!-- Sidequest: Top Marks -->
-        <If Condition="not IsQuestCompleted(67657)">
+        <If Condition="not IsQuestCompleted(67657) and IsQuestCompleted(67656)">
             <If Condition="not HasQuest(67657)">
             <If Condition="not IsOnMap(478)">
                 <GetTo ZoneId="478" XYZ="68.67902, 207.3838, -6.457279" />
@@ -20791,44 +20765,44 @@
         <!-- Sidequest: A Statuesque Interest -->
         <If Condition="not IsQuestCompleted(67504)">
             <If Condition="not HasQuest(67504)">
-            <If Condition="not IsOnMap(399) and not IsOnMap(463)">
-                <GetTo ZoneId="399" XYZ="-529.9246, 150.2556, -467.4438" />
+                <If Condition="not IsOnMap(399) and not IsOnMap(463)">
+                    <GetTo ZoneId="399" XYZ="-488.7923, 138.9333, 741.0543" /> <!-- Cave Entrance -->
+                </If>
+                <If Condition="IsOnMap(399)">
+                    <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543" />
+                    <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543" />
+                </If>
+                <MoveTo Name="Statuesque Broom" XYZ="-3.463867, 37.42972, -6.607239" />
+                <If Condition="IsQuestAcceptQualified(67504)">
+                    <PickupQuest NpcId="1012140" QuestId="67504" XYZ="-3.463867, 37.42972, -6.607239" />
+                </If>
             </If>
-            <If Condition="IsOnMap(399)">
-                <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543" />
-                <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543" />
-            </If>
-            <MoveTo Name="Statuesque Broom" XYZ="-3.463867, 37.42972, -6.607239" />
-            <If Condition="IsQuestAcceptQualified(67504)">
-                <PickupQuest NpcId="1012140" QuestId="67504" XYZ="-3.463867, 37.42972, -6.607239" />
-            </If>
+
+            <!-- [Complete Quest] -->
+
+            <If Condition="HasQuest(67504)">
+                <If Condition="GetQuestStep(67504) == 1">
+                    <If Condition="not IsOnMap(399) and not IsOnMap(463)">
+                        <GetTo ZoneId="399" XYZ="-883.8483, 200.3357, 495.0179" /> <!-- Untainted Spring -->
+                    </If>
+                    <If Condition="IsOnMap(463)">
+                        <UseTransport Name="Cave Exit" InteractDistance="3.0" NpcId="2005337" XYZ="7.765594, 38.9395, -50.9989" />
+                    </If>
+                    <NoCombatMoveTo Name="Untainted Spring" XYZ="-883.8483, 200.3357, 495.0179" />
+                    <UseObject NpcIds="2006075,2006074,2006073,2006072" QuestId="67504" StepId="1">
+                        <HotSpots>
+                            <HotSpot XYZ="-883.8483, 200.3357, 495.0179" Radius="10" />
+                            <HotSpot XYZ="-782.1927, 176.257, 391.5616" Radius="10" />
+                            <HotSpot XYZ="-924.6204, 223.9567, 266.0715" Radius="10" />
+                            <HotSpot XYZ="-876.7681, 167.071, 42.67944" Radius="10" />
+                        </HotSpots>
+                    </UseObject>
+                </If>
             </If>
         </If>
 
         <!-- [Complete Quests] -->
 
-        <!-- Sidequest: A Statuesque Interest -->
-        <If Condition="not IsQuestCompleted(67504)">
-            <If Condition="HasQuest(67504)">
-            <If Condition="GetQuestStep(67504) == 1">
-                <If Condition="not IsOnMap(399) and not IsOnMap(463)">
-                <GetTo ZoneId="399" XYZ="-529.9246, 150.2556, -467.4438" />
-                </If>
-                <If Condition="IsOnMap(463)">
-                <UseTransport Name="Cave Exit" InteractDistance="3.0" NpcId="2005337" XYZ="7.765594, 38.9395, -50.9989" />
-                </If>
-                <NoCombatMoveTo Name="Untainted Spring" XYZ="-883.8483, 200.3357, 495.0179" />
-                <UseObject NpcIds="2006075,2006074,2006073,2006072" QuestId="67504" StepId="1">
-                <HotSpots>
-                    <HotSpot XYZ="-883.8483, 200.3357, 495.0179" Radius="10" />
-                    <HotSpot XYZ="-782.1927, 176.257, 391.5616" Radius="10" />
-                    <HotSpot XYZ="-924.6204, 223.9567, 266.0715" Radius="10" />
-                    <HotSpot XYZ="-876.7681, 167.071, 42.67944" Radius="10" />
-                </HotSpots>
-                </UseObject>
-            </If>
-            </If>
-        </If>
         <!-- Sidequest: A Self-possessed Pastime -->
         <If Condition="not IsQuestCompleted(67505)">
             <If Condition="HasQuest(67505)">
@@ -20871,38 +20845,37 @@
         <!-- Sidequest: A Statuesque Interest (2) -->
         <If Condition="not IsQuestCompleted(67504)">
             <If Condition="HasQuest(67504)">
-            <If Condition="GetQuestStep(67504) == 2">
-                <If Condition="not IsOnMap(399) and not IsOnMap(463)">
-                <GetTo ZoneId="399" XYZ="-529.9246, 150.2556, -467.4438" />
+                <If Condition="GetQuestStep(67504) == 2">
+                    <If Condition="not IsOnMap(399) and not IsOnMap(463)">
+                        <GetTo ZoneId="399" XYZ="-488.7923, 138.9333, 741.0543" /> <!-- Cave Entrance -->
+                    </If>
+                    <If Condition="IsOnMap(399)">
+                        <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543" />
+                        <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543" />
+                    </If>
+                    <MoveTo Name="Statuesque Broom" XYZ="-3.463867, 37.42972, -6.607239" />
+                    <HandOver ItemId="2001768" QuestId="67504" StepId="2" NpcId="1012140" XYZ="-3.463867, 37.42972, -6.607239" />
                 </If>
-                <If Condition="IsOnMap(399)">
-                <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543" />
-                <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543" />
+
+                <!-- [TurnIn Quest] -->
+
+                <If Condition="GetQuestStep(67504) == 255">
+                    <If Condition="not IsOnMap(399) and not IsOnMap(463)">
+                        <GetTo ZoneId="399" XYZ="-488.7923, 138.9333, 741.0543" /> <!-- Cave Entrance -->
+                    </If>
+                    <If Condition="IsOnMap(399)">
+                        <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543" />
+                        <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543" />
+                    </If>
+                    <MoveTo Name="Statuesque Broom" XYZ="-3.463867, 37.42972, -6.607239" />
+                    <TurnInPlus QuestId="67504" NpcId="1012140" XYZ="-3.463867, 37.42972, -6.607239" />
+                    <!-- <RunCode Name="A_Statuesque_Interest" /> -->
                 </If>
-                <MoveTo Name="Statuesque Broom" XYZ="-3.463867, 37.42972, -6.607239" />
-                <HandOver ItemId="2001768" QuestId="67504" StepId="2" NpcId="1012140" XYZ="-3.463867, 37.42972, -6.607239" />
-            </If>
             </If>
         </If>
 
         <!-- [TurnIn Quests] -->
 
-        <!-- Sidequest: A Statuesque Interest -->
-        <If Condition="not IsQuestCompleted(67504)">
-            <If Condition="HasQuest(67504)">
-            <If Condition="GetQuestStep(67504) == 255">
-                <If Condition="not IsOnMap(399) and not IsOnMap(463)">
-                <GetTo ZoneId="399" XYZ="-529.9246, 150.2556, -467.4438" />
-                </If>
-                <If Condition="IsOnMap(399)">
-                <NoCombatMoveTo Name="Cave Entrance" XYZ="-488.7923, 138.9333, 741.0543" />
-                <UseTransport Name="Cave Entrance" InteractDistance="2.5" NpcId="2005336" XYZ="-488.7923, 138.9333, 741.0543" />
-                </If>
-                <MoveTo Name="Statuesque Broom" XYZ="-3.463867, 37.42972, -6.607239" />
-                <RunCode Name="AStatuesqueInterest" />
-            </If>
-            </If>
-        </If>
         <!-- Sidequest: A Self-possessed Pastime -->
         <If Condition="not IsQuestCompleted(67505)">
             <If Condition="HasQuest(67505)">
@@ -24069,12 +24042,12 @@
 				MovementManager.MoveStop();
 		    ]]>
 		</CodeChunk>
-		<CodeChunk Name="AStatuesqueInterest">
+		<!-- <CodeChunk Name="A_Statuesque_Interest">
 			<![CDATA[ 
 				await Coroutine.Sleep(1000);
 				GameObjectManager.GetObjectByNPCId(1012140).Target();
 				await Coroutine.Sleep(1000);
-				ChatManager.SendChat(" />cry");
+				ChatManager.SendChat("/cry");
 				await Coroutine.Sleep(10000);
 				ff14bot.RemoteWindows.Talk.Next();
 				await Coroutine.Sleep(500);
@@ -24093,7 +24066,7 @@
 				if (ff14bot.RemoteWindows.JournalResult.IsOpen)
 					ff14bot.RemoteWindows.JournalResult.Complete();				
 		    ]]>
-		</CodeChunk>
+		</CodeChunk> -->
 
         <!-- Job Check -->
 
