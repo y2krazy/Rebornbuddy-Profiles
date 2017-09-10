@@ -8,7 +8,7 @@
 #          hkme                     #
 #          Eficiente                #
 #####################################
-# Version: 3.1.3                    #
+# Version: 3.1.4                    #
 #####################################
 # Required Level: 1+                #
 #####################################
@@ -16,11 +16,11 @@
 #  None                             #
 #####################################
 # Required User Interaction:        #
-#  34 Solo Duty Queues              #
+#  37 Solo Duty Queues              #
 #####################################
 -->
 <Profile>
-	<Name>[O] Class and Job Quests (v3.1.3)</Name>
+	<Name>[O] Class and Job Quests (v3.1.4)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -11544,7 +11544,7 @@
 									<GetTo ZoneId="138" XYZ="299.1836, 0.713913, 86.10657" />
 								</If>
 								<NoCombatMoveTo Name="Solkwyb" XYZ="299.1836, 0.713913, 86.10657" />
-								<ExtendedDuty InteractNpcId="1002684" GuardianNPC="824" XYZ="299.1836, 0.713913, 86.10657" QuestId="65853" StepId="6">
+								<ExtendedDuty InteractNpcId="1002684" GuardianNPCId="824" XYZ="299.1836, 0.713913, 86.10657" QuestId="65853" StepId="6">
 									<HotSpots>
 										<HotSpot XYZ="296.9577, 0.8551753, 85.03024" Radius="90" />
 									</HotSpots>
@@ -14226,6 +14226,598 @@
 					</If>
 				</If>
 
+			</If>
+
+		</If>
+
+		<If Condition="ClassName == ClassJobType.RedMage">
+
+			<!-- Red Mage -->
+
+			<LogMessage Message="[Class and Job Quests] Checking Red Mage job quests..." />
+
+			<!-- The Crimson Duelist -->
+
+			<If Condition="not IsQuestCompleted(68113)">
+				<If Condition="Core.Player.ClassLevel &gt; 49">
+					<If Condition="not HasQuest(68113)">
+						<GetTo ZoneId="141" XYZ="-96.84906, -11.35, -47.3183" /> <!-- X'rhun Tia -->
+						<If Condition="IsQuestAcceptQualified(68113)">
+							<PickupQuest NpcId="1021438" QuestId="68113" XYZ="-96.84906, -11.35, -47.3183" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68113)">
+						<If Condition="GetQuestStep(68113) == 1">
+							<GetTo ZoneId="145" XYZ="-513.7255, -16.42, -6.668213" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021439" XYZ="-513.7255, -16.42, -6.668213" QuestId="68113" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68113) == 2">
+                    		<GetTo ZoneId="145" XYZ="-505.6382, -17.81084, 28.70215" /> <!-- X'rhun Tia -->
+							<SimpleDuty InteractNpcId="1021440" XYZ="-505.6382, -17.81084, 28.70215" QuestId="68113" StepId="2">
+								<HotSpots>
+									<HotSpot XYZ="-504.5141, -20.59241, 56.39757" Radius="90" />
+									<HotSpot XYZ="-545.2692, -17.77956, 83.10616" Radius="90" />
+									<HotSpot XYZ="-517.4673, -21.90821, 112.1676" Radius="90" />
+									<HotSpot XYZ="-476.1711, -26.44986, 77.82757" Radius="90" />
+									<HotSpot XYZ="-427.6277, -29.30166, 23.48058" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6786" Weight="6000" /> <!-- Empty Archmagus -->
+									<TargetMob Id="6676" Weight="5000" /> <!-- Bloodshot Hecteyes -->
+									<TargetMob Id="1768" Weight="4000" /> <!-- Bloodshot Eye -->
+									<TargetMob Id="6677" Weight="3000" /> <!-- Bloody Cur -->
+									<TargetMob Id="6691" Weight="2000" /> <!-- Empty Magus -->
+									<TargetMob Id="6675" Weight="1000" /> <!-- Sarameya -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(68113) == 3">
+							<GetTo ZoneId="145" XYZ="-428.5801, -29.27635, 24.82642" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021441" XYZ="-428.5801, -29.27635, 24.82642" QuestId="68113" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68113) == 255">
+							<GetTo ZoneId="145" XYZ="-496.7575, -17.41137, 28.0918" /> <!-- X'rhun Tia -->
+							<TurnIn QuestId="68113" NpcId="1021447" XYZ="-496.7575, -17.41137, 28.0918" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- A Rewarding Struggle -->
+
+			<If Condition="not IsQuestCompleted(68114)">
+				<If Condition="Core.Player.ClassLevel &gt; 51">
+					<If Condition="not HasQuest(68114)">
+						<GetTo ZoneId="145" XYZ="-496.7575, -17.41137, 28.0918" /> <!-- X'rhun Tia -->
+						<If Condition="IsQuestAcceptQualified(68114)">
+							<PickupQuest NpcId="1021447" QuestId="68114" XYZ="-496.7575, -17.41137, 28.0918" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68114)">
+						<If Condition="GetQuestStep(68114) == 1">
+							<GetTo ZoneId="145" XYZ="-512.4742, -16.42, -7.522766" /> <!-- Iliud -->
+							<TalkTo NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" QuestId="68114" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68114) == 2">
+							<GetTo ZoneId="144" XYZ="-56.71783, -1.817942E-06, 102.7084" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021448" XYZ="-56.71783, -1.817942E-06, 102.7084" QuestId="68114" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68114) == 3">
+							<GetTo ZoneId="144" XYZ="-0.07635498, 20.98108, 53.60486" /> <!-- Destination -->
+							<UseObject NpcId="2008218" XYZ="-0.07635498, 20.98108, 53.60486" Radius="10" QuestId="68114" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68114) == 4">
+							<GetTo ZoneId="144" XYZ="-8.621399, 20.99973, 43.38135" /> <!-- Wilkin -->
+							<TalkTo NpcId="1021450" XYZ="-8.621399, 20.99973, 43.38135" QuestId="68114" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68114) == 5">
+							<GetTo ZoneId="140" XYZ="-429.6483, 23.74324, -351.0643" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021451" XYZ="-429.6483, 23.74324, -351.0643" QuestId="68114" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68114) == 6">
+							<GetTo ZoneId="140" XYZ="-326.1311, 22.9953, -348.1956" /> <!-- Destination -->
+							<UseObject NpcId="2008219" XYZ="-326.1311, 22.9953, -348.1956" Radius="10" QuestId="68114" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68114) == 7">
+							<GetTo ZoneId="140" XYZ="-407.9805, 23.00789, -320.3632" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021453" XYZ="-407.9805, 23.00789, -320.3632" QuestId="68114" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(68114) == 8">
+							<GetTo ZoneId="140" XYZ="-400.3815, 23, -348.1346" /> <!-- Wilkin -->
+							<TalkTo NpcId="1021456" XYZ="-400.3815, 23, -348.1346" QuestId="68114" StepId="8" />
+						</If>
+						<If Condition="GetQuestStep(68114) == 255">
+							<GetTo ZoneId="140" XYZ="-476.402, 23.2289, -430.7164" /> <!-- X'rhun Tia -->
+							<TurnIn QuestId="68114" ItemId="2002181" NpcId="1021457" XYZ="-476.402, 23.2289, -430.7164" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Tracking the Cabal -->
+
+			<If Condition="not IsQuestCompleted(68115)">
+				<If Condition="Core.Player.ClassLevel &gt; 53">
+					<If Condition="not HasQuest(68115)">
+						<GetTo ZoneId="140" XYZ="-476.402, 23.2289, -430.7164" /> <!-- X'rhun Tia -->
+						<If Condition="IsQuestAcceptQualified(68115)">
+							<PickupQuest NpcId="1021457" QuestId="68115" XYZ="-476.402, 23.2289, -430.7164" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68115)">
+						<If Condition="GetQuestStep(68115) == 1">
+							<GetTo ZoneId="138" XYZ="282.5818, -24.99538, 243.7323" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021458" XYZ="282.5818, -24.99538, 243.7323" QuestId="68115" StepId="1" />
+						</If>
+						<While Condition="GetQuestStep(68115) == 2">
+							<GetTo ZoneId="138" XYZ="327.7791, -31.89878, 275.5931" /> <!-- Dallying Deckhand -->
+							<TalkTo NpcId="1021464" XYZ="327.7791, -31.89878, 275.5931" QuestId="68115" StepId="2" />
+                    		<TalkTo NpcId="1021463" XYZ="311.4823, -36.325, 351.3389" QuestId="68115" StepId="2" />
+                    		<TalkTo NpcId="1021465" XYZ="319.2339, -40.425, 382.3757" QuestId="68115" StepId="2" />
+						</While>
+						<If Condition="GetQuestStep(68115) == 3">
+							<GetTo ZoneId="138" XYZ="282.5818, -24.99538, 243.7323" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021458" XYZ="282.5818, -24.99538, 243.7323" QuestId="68115" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68115) == 4">
+							<GetTo ZoneId="138" XYZ="200.0916, -36.72852, 276.173" /> <!-- Mystery Cargo -->
+							<UseObject NpcId="2008221" XYZ="200.0916, -36.72852, 276.173" Radius="10" QuestId="68115" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68115) == 5">
+							<GetTo ZoneId="138" XYZ="207.3549, -36.40591, 328.1146" /> <!-- X'rhun Tia -->
+							<HandOver ItemId="2002182" QuestId="68115" StepId="5" NpcId="1021459" XYZ="207.3549, -36.40591, 328.1146" />
+						</If>
+						<If Condition="GetQuestStep(68115) == 6">
+							<GetTo ZoneId="138" XYZ="206.073, -35.56885, 329.2134" /> <!-- Locked Crate -->
+							<UseItem NpcId="2008924" ItemId="2002182" XYZ="206.073, -35.56885, 329.2134" Radius="10" QuestId="68115" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68115) == 7">
+							<GetTo ZoneId="138" XYZ="319.4476, -35.9496, 305.6228" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021460" XYZ="319.4476, -35.9496, 305.6228" QuestId="68115" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(68115) == 255">
+							<GetTo ZoneId="138" XYZ="307.3624, -36.40299, 309.9871" /> <!-- X'rhun Tia -->
+							<TurnIn QuestId="68115" NpcId="1021462" XYZ="307.3624, -36.40299, 309.9871" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- A Vermilion Vendetta -->
+
+			<If Condition="not IsQuestCompleted(68116)">
+				<If Condition="Core.Player.ClassLevel &gt; 55">
+					<If Condition="not HasQuest(68116)">
+						<GetTo ZoneId="138" XYZ="307.3624, -36.40299, 309.9871" /> <!-- X'rhun Tia -->
+						<If Condition="IsQuestAcceptQualified(68116)">
+							<PickupQuest NpcId="1021462" QuestId="68116" XYZ="307.3624, -36.40299, 309.9871" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68116)">
+						<If Condition="GetQuestStep(68116) == 1">
+							<GetTo ZoneId="138" XYZ="320.5463, -35.94973, 306.1111" /> <!-- Arya -->
+							<TalkTo NpcId="1021466" XYZ="320.5463, -35.94973, 306.1111" QuestId="68116" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68116) == 2">
+							<GetTo ZoneId="138" XYZ="190.9667, -17.33975, 269.2759" /> <!-- Arya -->
+							<TalkTo NpcId="1021467" XYZ="190.9667, -17.33975, 269.2759" QuestId="68116" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68116) == 3">
+							<GetTo ZoneId="138" XYZ="319.4476, -35.9497, 306.9047" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021468" XYZ="319.4476, -35.9497, 306.9047" QuestId="68116" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68116) == 4">
+							<If Condition="not IsOnMap(138)">
+								<GetTo ZoneId="138" XYZ="317.4333, -36.325, 352.8649" /> <!-- Ferry Skipper -->
+							</If>
+							<If Condition="IsOnMap(138) and not (IsOnSubMap(461) or IsOnSubMap(173) or IsOnSubMap(228))">						
+								<UseTransport Name="Ferry Skipper" NpcId="1003584" DialogOption="2" InteractDistance="3.0" XYZ="317.4333, -36.325, 352.8649" />
+							</If>
+                    		<GetTo ZoneId="138" XYZ="-289.1432, -40.63008, 420.4623" /> <!-- X'rhun Tia -->
+							<SimpleDuty InteractNpcId="1021469" XYZ="-289.1432, -40.63008, 420.4623" QuestId="68116" StepId="4">
+								<HotSpots>
+									<HotSpot XYZ="-314.8452, -41.28702, 680.295" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6346" Weight="6000" /> <!-- Shadow Sprite -->
+									<TargetMob Id="1854" Weight="5000" /> <!-- Dead Man's Moan -->
+									<TargetMob Id="6787" Weight="4000" /> <!-- Empty Magus -->
+									<TargetMob Id="6691" Weight="3000" /> <!-- Empty Magus -->
+									<TargetMob Id="6673" Weight="2000" /> <!-- Empty Archmagus -->
+									<TargetMob Id="6672" Weight="1000" /> <!-- Fear Gorta -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(68116) == 5">
+							<GetTo ZoneId="138" XYZ="-304.8906, -40.17231, 660.1815" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021442" XYZ="-304.8906, -40.17231, 660.1815" QuestId="68116" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68116) == 6">
+							<GetTo ZoneId="138" XYZ="320.8818, -40.425, 369.7719" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021471" XYZ="320.8818, -40.425, 369.7719" QuestId="68116" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68116) == 255">
+							<GetTo ZoneId="138" XYZ="311.3907, -25.00225, 230.8231" /> <!-- X'rhun Tia -->
+							<TurnIn QuestId="68116" NpcId="1021473" XYZ="311.3907, -25.00225, 230.8231" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- On Lambard's Trail -->
+
+			<If Condition="not IsQuestCompleted(68117)">
+				<If Condition="Core.Player.ClassLevel &gt; 57">
+					<If Condition="not HasQuest(68117)">
+						<GetTo ZoneId="138" XYZ="311.3907, -25.00225, 230.8231" /> <!-- X'rhun Tia -->
+						<If Condition="IsQuestAcceptQualified(68117)">
+							<PickupQuest NpcId="1021473" QuestId="68117" XYZ="311.3907, -25.00225, 230.8231" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68117)">
+						<If Condition="GetQuestStep(68117) == 1">
+							<GetTo ZoneId="129" XYZ="-196.9482, 15.54289, 37.58289" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021475" XYZ="-196.9482, 15.54289, 37.58289" QuestId="68117" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68117) == 2">
+							<GetTo ZoneId="128" XYZ="-17.258, 40.0005, -6.424072" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021478" XYZ="-17.258, 40.0005, -6.424072" QuestId="68117" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68117) == 3">
+							<GetTo ZoneId="147" XYZ="-304.2802, 78.85497, -140.8256" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021480" XYZ="-304.2802, 78.85497, -140.8256" QuestId="68117" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68117) == 4">
+							<GetTo ZoneId="147" XYZ="-292.6833, 84.4281, -359.3958" /> <!-- Destination -->
+							<UseObject NpcId="2008233" XYZ="-292.6833, 84.4281, -359.3958" Radius="10" QuestId="68117" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68117) == 5">
+							<GetTo ZoneId="147" XYZ="-304.2802, 78.85497, -140.8256" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021480" XYZ="-304.2802, 78.85497, -140.8256" QuestId="68117" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68117) == 255">
+							<GetTo ZoneId="147" XYZ="-94.92645, 48.01958, -31.57098" /> <!-- X'rhun Tia -->
+							<TurnIn QuestId="68117" NpcId="1021482" XYZ="-94.92645, 48.01958, -31.57098" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Stained in Scarlet -->
+
+			<If Condition="not IsQuestCompleted(68118)">
+				<If Condition="Core.Player.ClassLevel &gt; 59">
+					<If Condition="not HasQuest(68118)">
+						<GetTo ZoneId="147" XYZ="-94.92645, 48.01958, -31.57098" /> <!-- X'rhun Tia -->
+						<If Condition="IsQuestAcceptQualified(68118)">
+							<PickupQuest NpcId="1021482" QuestId="68118" XYZ="-94.92645, 48.01958, -31.57098" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68118)">
+						<If Condition="GetQuestStep(68118) == 1">
+							<GetTo ZoneId="156" XYZ="3.372192, 50.26623, -770.1076" /> <!-- Arya -->
+							<TalkTo NpcId="1021484" XYZ="3.372192, 50.26623, -770.1076" QuestId="68118" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68118) == 2">
+							<GetTo ZoneId="156" XYZ="54.64246, 20.4949, -671.3207" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021486" XYZ="54.64246, 20.4949, -671.3207" QuestId="68118" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68118) == 3">
+							<GetTo ZoneId="156" XYZ="94.56018, 20.33948, -609.4606" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021487" XYZ="94.56018, 20.33948, -609.4606" QuestId="68118" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68118) == 4">
+							<GetTo ZoneId="156" XYZ="176.3789, 9.963035, -583.6423" /> <!-- Arya -->
+							<TalkTo NpcId="1021489" XYZ="176.3789, 9.963035, -583.6423" QuestId="68118" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68118) == 5">
+							<GetTo ZoneId="156" XYZ="211.5663, -17.61211, -469.5049" /> <!-- Arya -->
+							<TalkTo NpcId="1021490" XYZ="211.5663, -17.61211, -469.5049" QuestId="68118" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68118) == 6">
+                    		<GetTo ZoneId="156" XYZ="376.8215, -17.56317, -343.679" /> <!-- Destination -->
+							<RunCode Name="Stained_in_Scarlet" />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- SideStep does not stop avoidance to kill a Voidfire. -->
+
+							<!-- TO DO -->
+
+							<SimpleDuty InteractNpcId="2008526" XYZ="376.8215, -17.56317, -343.679" QuestId="68118" StepId="6">
+								<HotSpots>
+									<HotSpot XYZ="382.7737, -17.73706, -350.8944" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6671" Weight="3000" /> <!-- Voidfire -->
+									<TargetMob Id="6669" Weight="2000" /> <!-- Empty Assassin -->
+									<TargetMob Id="6670" Weight="1000" /> <!-- Lambard the Regal -->
+								</TargetMobs>
+							</SimpleDuty>
+						</If>
+						<If Condition="GetQuestStep(68118) == 7">
+							<WaitWhile Condition="GetQuestStep(68118) == 7" />
+						</If>
+						<If Condition="GetQuestStep(68118) == 255">
+							<GetTo ZoneId="156" XYZ="55.55798, 20.48517, -672.5719" /> <!-- X'rhun Tia -->
+							<TurnIn QuestId="68118" NpcId="1021493" XYZ="55.55798, 20.48517, -672.5719" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- The Color of Her Hair -->
+
+			<If Condition="not IsQuestCompleted(68119) and IsQuestCompleted(67895)">
+				<If Condition="Core.Player.ClassLevel &gt; 59">
+					<If Condition="not HasQuest(68119)">
+						<GetTo ZoneId="156" XYZ="55.55798, 20.48517, -672.5719" /> <!-- X'rhun Tia -->
+						<If Condition="IsQuestAcceptQualified(68119)">
+							<PickupQuest NpcId="1021493" QuestId="68119" XYZ="55.55798, 20.48517, -672.5719" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68119)">
+						<If Condition="GetQuestStep(68119) == 1">
+							<GetTo ZoneId="478" XYZ="63.09595, 207.8269, -14.72504" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021772" XYZ="63.09595, 207.8269, -14.72504" QuestId="68119" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68119) == 2">
+							<GetTo ZoneId="399" XYZ="385.9464, 78.44666, -114.4885" /> <!-- Destination -->
+							<UseObject NpcId="2008220" XYZ="385.9464, 78.44666, -114.4885" Radius="10" QuestId="68119" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68119) == 3">
+							<GetTo ZoneId="399" XYZ="141.3137, 66.09973, -238.1476" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021774" XYZ="141.3137, 66.09973, -238.1476" QuestId="68119" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68119) == 4">
+							<GetTo ZoneId="399" XYZ="266.9871, 78.3604, -10.78815" /> <!-- Arya -->
+							<TalkTo NpcId="1021775" XYZ="266.9871, 78.3604, -10.78815" QuestId="68119" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68119) == 5">
+							<GetTo ZoneId="478" XYZ="-4.135254, 211, -39.84137" /> <!-- Arya -->
+							<TalkTo NpcId="1021778" XYZ="-4.135254, 211, -39.84137" QuestId="68119" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68119) == 255">
+							<GetTo ZoneId="478" XYZ="-5.44751, 211, -39.6582" /> <!-- X'rhun Tia -->
+							<TurnIn QuestId="68119" NpcId="1021779" XYZ="-5.44751, 211, -39.6582" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Traced in Blood -->
+
+			<If Condition="not IsQuestCompleted(68120)">
+				<If Condition="Core.Player.ClassLevel &gt; 62">
+					<If Condition="not HasQuest(68120)">
+						<GetTo ZoneId="478" XYZ="-5.44751, 211, -39.6582" /> <!-- X'rhun Tia -->
+						<If Condition="IsQuestAcceptQualified(68120)">
+							<PickupQuestPlus NpcId="1021779" QuestId="68120" XYZ="-5.44751, 211, -39.6582" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68120)">
+						<If Condition="GetQuestStep(68120) == 1">
+							<GetTo ZoneId="620" XYZ="-339.0402, 94.94087, -414.1757" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021780" XYZ="-339.0402, 94.94087, -414.1757" QuestId="68120" StepId="1" />
+						</If>
+						<While Condition="GetQuestStep(68120) == 2">
+							<If Condition="not IsOnMap(620)">
+								<GetTo ZoneId="620" XYZ="-281.6916, 201.7965, -228.508" /> <!-- Top of Ziggurat -->
+							</If>
+							<If Condition="IsOnMap(620) and Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-281.5421, 200.7199, -275.0992)) &gt; 45">
+								<MoveTo Name="Top of Ziggurat" Distance="1" XYZ="-281.5421, 201.7965, -228.9883" />
+								<MoveTo Name="Ziggurat Ledge" Distance="1" UseMesh="False" XYZ="-293.1979, 202.1412, -229.3104" />
+								<MoveTo Name="Jump" Distance="1" UseMesh="False" XYZ="-293.9656, 200.7199, -238.914" />
+							</If>
+							<MoveTo Name="Charred Tablet" XYZ="-299.4888, 200.7019, -240.5585" />
+							<UseObject NpcId="2008291" XYZ="-299.4888, 200.7019, -240.5585" Radius="10" UseTimes="1" QuestId="68120" StepId="2" />
+							<If Condition="IsOnMap(620) and Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-281.5421, 200.7199, -275.0992)) &lt; 45">
+								<ClimbHill Name="Ziggurat Ledge" Start="-293.5586, 200.7199, -238.6227" End="-293.6911, 202.1412, -229.7622" />
+								<MoveTo Name="Jump" Distance="1" UseMesh="False" XYZ="-281.967, 201.6015, -230.1202" />
+							</If>
+                    		<MoveTo Name="Cracked Tablet" XYZ="-212.1347, 106.9472, -301.3294" />
+							<UseObject NpcId="2008293" XYZ="-210.4067, 109.6665, -299.794" Radius="10" UseTimes="1" QuestId="68120" StepId="2" />
+							<MoveTo Name="Chipped Tablet" XYZ="-262.3789, 106.6147, -206.8666" />
+							<UseObject NpcId="2008292" XYZ="-262.3789, 106.6147, -206.8666" Radius="10" UseTimes="1" QuestId="68120" StepId="2" />
+						</While>
+						<If Condition="GetQuestStep(68120) == 3">
+							<GetTo ZoneId="620" XYZ="-308.4307, 102.6244, -372.2744" /> <!-- X'rhun Tia -->
+							<HandOver ItemIds="2002189,2002190,2002191" QuestId="68120" StepId="3" NpcId="1021781" XYZ="-308.4307, 102.6244, -372.2744" />
+						</If>
+						<If Condition="GetQuestStep(68120) == 4">
+							<GetTo ZoneId="620" XYZ="782.6809, 256.916, -388.2963" /> <!-- Destination -->
+							<UseObject NpcId="2008294" XYZ="782.6809, 256.916, -388.2963" Radius="10" QuestId="68120" StepId="4" />
+						</If>
+						<If Condition="GetQuestStep(68120) == 5">
+							<GetTo ZoneId="620" XYZ="120.7446, 118.3833, -732.5704" /> <!-- X'rhun Tia -->
+							<HandOver ItemId="2002192" QuestId="68120" StepId="5" NpcId="1021782" XYZ="120.7446, 118.3833, -732.5704" />
+						</If>
+						<If Condition="GetQuestStep(68120) == 255">
+							<GetTo ZoneId="478" XYZ="-4.135254, 211, -39.84137" /> <!-- Arya -->
+							<TurnIn QuestId="68120" NpcId="1021778" XYZ="-4.135254, 211, -39.84137" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Nightkin -->
+
+			<If Condition="not IsQuestCompleted(68121)">
+				<If Condition="Core.Player.ClassLevel &gt; 64">
+					<If Condition="not HasQuest(68121)">
+						<GetTo ZoneId="478" XYZ="-5.44751, 211, -39.6582" /> <!-- X'rhun Tia -->
+						<If Condition="IsQuestAcceptQualified(68121)">
+							<PickupQuest NpcId="1021779" QuestId="68121" XYZ="-5.44751, 211, -39.6582" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68121)">
+						<If Condition="GetQuestStep(68121) == 1">
+							<GetTo ZoneId="478" XYZ="-26.84064, 206.4994, 28.67163" /> <!-- Midnight Dew -->
+							<TalkTo NpcId="1012133" XYZ="-26.84064, 206.4994, 28.67163" QuestId="68121" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68121) == 2">
+							<GetTo ZoneId="478" XYZ="-5.44751, 211, -39.6582" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021779" XYZ="-5.44751, 211, -39.6582" QuestId="68121" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68121) == 3">
+                    		<GetTo ZoneId="399" XYZ="277.119, 232.541, 785.5801" /> <!-- X'rhun Tia -->
+							<RunCode Name="Nightkin" />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Not properly interacting with the Piles of Books. -->
+							<!-- Not stepping in the circles to break the summons. -->
+
+							<!-- TO DO -->
+
+							<ExtendedDuty InteractNpcId="1021783" XYZ="277.119, 232.541, 785.5801" QuestId="68121" StepId="3">
+								<HotSpots>
+									<HotSpot XYZ="364.1259, -39.0174, -61.63129" Radius="5" /> <!-- Pile of Books -->
+									<HotSpot XYZ="368.9174, -39.0174, -67.61273" Radius="5" /> <!-- Pile of Books -->
+									<HotSpot XYZ="376.7352, -39, -72.19662" Radius="5" /> <!-- Pile of Books -->
+									<HotSpot XYZ="384.6841, -39, -51.21257" Radius="5" /> <!-- Pile of Books -->
+									<HotSpot XYZ="376.9069, -39, -47.19531" Radius="5" /> <!-- Pile of Books -->
+									<HotSpot XYZ="378.0697, -39, -59.71389" Radius="10" /> <!-- Rhapsodies Quadrangle -->
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="6668" Weight="2000" /> <!-- The Lasting Manuscript -->
+									<TargetMob Id="3913" Weight="1500" /> <!-- Sentient Tome -->
+									<TargetMob Id="3912" Weight="1400" /> <!-- Sentient Inkhorn -->
+									<TargetMob Id="3921" Weight="1300" /> <!-- Speedreader -->
+									<TargetMob Id="3922" Weight="1200" /> <!-- Skatene -->
+									<TargetMob Id="3920" Weight="1100" /> <!-- Logos -->
+									<TargetMob Id="3930" Weight="1000" /> <!-- The Everliving Bibliotaph -->
+								</TargetMobs>
+							</ExtendedDuty>
+						</If>
+						<If Condition="GetQuestStep(68121) == 4">
+							<GetTo ZoneId="399" XYZ="277.119, 232.541, 785.5801" /> <!-- X'rhun Tia -->
+							<HandOver ItemId="2002194" QuestId="68121" StepId="4" NpcId="1021783" XYZ="277.119, 232.541, 785.5801" />
+						</If>
+						<If Condition="GetQuestStep(68121) == 255">
+							<GetTo ZoneId="478" XYZ="-5.44751, 211, -39.6582" /> <!-- X'rhun Tia -->
+							<TurnIn QuestId="68121" NpcId="1021779" XYZ="-5.44751, 211, -39.6582" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- Child of Lilith -->
+
+			<If Condition="not IsQuestCompleted(68122)">
+				<If Condition="Core.Player.ClassLevel &gt; 67">
+					<If Condition="not HasQuest(68122)">
+						<GetTo ZoneId="478" XYZ="-5.44751, 211, -39.6582" /> <!-- X'rhun Tia -->
+						<If Condition="IsQuestAcceptQualified(68122)">
+							<PickupQuest NpcId="1021779" QuestId="68122" XYZ="-5.44751, 211, -39.6582" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68122)">
+						<If Condition="GetQuestStep(68122) == 1">
+							<GetTo ZoneId="419" XYZ="115.1903, 14.63132, -165.1179" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021785" XYZ="115.1903, 14.63132, -165.1179" QuestId="68122" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68122) == 2">
+							<GetTo ZoneId="419" XYZ="34.04285, 11.96508, 48.35571" /> <!-- Arya -->
+							<TalkTo NpcId="1021788" XYZ="34.04285, 11.96508, 48.35571" QuestId="68122" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68122) == 3">
+							<GetTo ZoneId="155" XYZ="455.5885, 300.3799, -349.3248" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021789" XYZ="455.5885, 300.3799, -349.3248" QuestId="68122" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68122) == 4">
+                    		<GetTo ZoneId="155" XYZ="294.3007, 235.5229, -352.8344" /> <!-- Destination -->
+							<UseObject NpcIds="2008952,2008951,2008997" BlacklistAfter="True" QuestId="68122" StepId="4">
+								<HotSpots>
+									<HotSpot XYZ="294.3007, 235.5229, -352.8344" Radius="10" />
+									<HotSpot XYZ="274.6471, 237.5981, -322.7742" Radius="10" />
+									<HotSpot XYZ="299.2141, 239.1241, -312.7642" Radius="10" />
+								</HotSpots>
+							</UseObject>
+						</If>
+						<If Condition="GetQuestStep(68122) == 5">
+							<GetTo ZoneId="155" XYZ="445.9448, 250.979, -309.2546" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021791" XYZ="445.9448, 250.979, -309.2546" QuestId="68122" StepId="5" />
+						</If>
+						<If Condition="GetQuestStep(68122) == 6">
+							<GetTo ZoneId="155" XYZ="295.9486, 238.0959, -317.3419" /> <!-- Arya -->
+							<TalkTo NpcId="1021794" XYZ="295.9486, 238.0959, -317.3419" QuestId="68122" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68122) == 7">
+							<GetTo ZoneId="155" XYZ="295.2468, 238.256, -315.7855" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021793" XYZ="295.2468, 238.256, -315.7855" QuestId="68122" StepId="7" />
+						</If>
+						<If Condition="GetQuestStep(68122) == 255">
+							<GetTo ZoneId="419" XYZ="-19.63837, 15.96505, -37.24731" /> <!-- X'rhun Tia -->
+							<TurnIn QuestId="68122" NpcId="1021795" XYZ="-19.63837, 15.96505, -37.24731" />
+						</If>
+					</If>
+				</If>
+			</If>
+
+			<!-- With Heart and Steel -->
+
+			<If Condition="not IsQuestCompleted(68123)">
+				<If Condition="Core.Player.ClassLevel &gt; 69">
+					<If Condition="not HasQuest(68123)">
+						<GetTo ZoneId="419" XYZ="-19.63837, 15.96505, -37.24731" /> <!-- X'rhun Tia -->
+						<If Condition="IsQuestAcceptQualified(68123)">
+							<PickupQuest NpcId="1021795" QuestId="68123" XYZ="-19.63837, 15.96505, -37.24731" />
+						</If>
+					</If>
+					<If Condition="HasQuest(68123)">
+						<If Condition="GetQuestStep(68123) == 1">
+							<GetTo ZoneId="130" XYZ="-198.7183, 18, 61.08191" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021796" XYZ="-198.7183, 18, 61.08191" QuestId="68123" StepId="1" />
+						</If>
+						<If Condition="GetQuestStep(68123) == 2">
+							<GetTo ZoneId="130" XYZ="-198.7183, 18, 61.08191" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021798" XYZ="-198.7183, 18, 61.08191" QuestId="68123" StepId="2" />
+						</If>
+						<If Condition="GetQuestStep(68123) == 3">
+							<GetTo ZoneId="156" XYZ="54.52039, 20.41162, -676.6614" /> <!-- Jessie -->
+							<TalkTo NpcId="1021799" XYZ="54.52039, 20.41162, -676.6614" QuestId="68123" StepId="3" />
+						</If>
+						<If Condition="GetQuestStep(68123) == 4">
+                    		<GetTo ZoneId="156" XYZ="367.8796, -16.46795, -335.8663" /> <!-- Jessie -->
+							<RunCode Name="With_Heart_and_Steel" />
+							<StopBot />
+
+							<!-- TO DO -->
+
+							<!-- Unable to move across the bridge at the start of the solo Duty. -->
+							<!-- Need to heal Deep Red X'rhun Tia (ID: 6342) during Soulsteal. -->
+							<!-- Need to move to falling orbs when they spawn. -->
+
+							<!-- TO DO -->
+
+							<SimpleDutyObject InteractNpcId="1021801" XYZ="367.8796, -16.46795, -335.8663" QuestId="68123" StepId="4">
+								<HotSpots>
+									<HotSpot XYZ="-300, -74.1117, -416.5" Radius="90" />
+								</HotSpots>
+								<TargetMobs>
+									<TargetMob Id="4866" Weight="4000" /> <!-- Mhachi Bhoot -->
+									<TargetMob Id="4869" Weight="3000" /> <!-- Parthenope -->
+									<TargetMob Id="4865" Weight="2000" /> <!-- Mhachi Ghost -->
+									<TargetMob Id="6352" Weight="1000" /> <!-- Lilith -->
+								</TargetMobs>
+							</SimpleDutyObject>
+						</If>
+						<If Condition="GetQuestStep(68123) == 5">
+							<WaitWhile Condition="GetQuestStep(68123) == 5" />
+						</If>
+						<If Condition="GetQuestStep(68123) == 6">
+							<GetTo ZoneId="156" XYZ="368.1543, -16.33959, -331.4413" /> <!-- X'rhun Tia -->
+							<TalkTo NpcId="1021804" XYZ="368.1543, -16.33959, -331.4413" QuestId="68123" StepId="6" />
+						</If>
+						<If Condition="GetQuestStep(68123) == 255">
+							<GetTo ZoneId="156" XYZ="55.55798, 20.41107, -675.5627" /> <!-- X'rhun Tia -->
+							<TurnIn QuestId="68123" NpcId="1021800" XYZ="55.55798, 20.41107, -675.5627" />
+						</If>
+					</If>
+				</If>
 			</If>
 
 		</If>
@@ -19165,6 +19757,39 @@
                     System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
                     System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
                     Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete the And My Axe duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="Stained_in_Scarlet">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68118) == 6)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete the Stained in Scarlet duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="Nightkin">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68121) == 3)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete the Nightkin duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="With_Heart_and_Steel">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68123) == 4)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Class and Job Quests]\nPlease manually complete the With Heart and Steel duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
                     await Coroutine.Sleep(26000);
                 }
             ]]>
