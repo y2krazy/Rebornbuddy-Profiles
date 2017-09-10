@@ -941,6 +941,18 @@ namespace ff14bot.NeoProfiles.Tags
 						)
 					)
                 ),
+                new Decorator(ret => QuestId == 68121 && GameObjectManager.GetObjectByNPCId(2007939) != null && GameObjectManager.GetObjectByNPCId(2007939).IsVisible,
+                    new PrioritySelector(
+                        new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(2007939).Location) <= 3,
+                            new Action(r =>
+                            {
+								Logging.Write("[ExtendedDuty] Interacting with the Pile of Books!");
+                                GameObjectManager.GetObjectByNPCId(2007939).Interact();
+                            })
+				        ),
+                        CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2007939).Location, 3)
+                    )
+                ),
 				new Decorator(ret => QuestId == 68461 && !Core.Player.InCombat && ((GameObjectManager.GetObjectByNPCId(2008882) != null && GameObjectManager.GetObjectByNPCId(2008882).IsVisible) || (GameObjectManager.GetObjectByNPCId(2008434) != null && GameObjectManager.GetObjectByNPCId(2008434).IsVisible)),
                     new PrioritySelector(
 						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2008882) != null && GameObjectManager.GetObjectByNPCId(2008882).IsVisible,
