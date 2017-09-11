@@ -5,7 +5,7 @@
 ########################################
 # Author: y2krazy                      #
 ########################################
-# Version: 2.1.1c                      #
+# Version: 3.0.0                       #
 ########################################
 # Required Level: 60                   #
 ########################################
@@ -18,7 +18,7 @@
 ########################################
 -->
 <Profile>
-	<Name>[O] Heavensward (Patch 3.5) (v2.1.1c)</Name>
+	<Name>[O] Heavensward (Patch 3.5) (v3.0.0)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -85,7 +85,7 @@
     <If Condition="not IsQuestCompleted(67887)">
         <If Condition="not HasQuest(67887)">
             <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" />
+                <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" /> <!-- Rising Stones Entrance -->
             </If>
             <If Condition="IsOnMap(156)">
                 <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
@@ -103,20 +103,14 @@
 
         <If Condition="HasQuest(67887)">
             <If Condition="GetQuestStep(67887) == 1">
-                <If Condition="not IsOnMap(156)">
-                    <GetTo ZoneId="156" XYZ="35.38562, 28.97681, -791.5618" />
-                </If>
-                <NoCombatMoveTo Name="Destination" XYZ="35.38562, 28.97681, -791.5618" />
+                <GetTo ZoneId="156" XYZ="35.38562, 28.97681, -791.5618" /> <!-- Destination -->
                 <UseObject NpcId="2007563" XYZ="35.38562, 28.97681, -791.5618" Radius="10" QuestId="67887" StepId="1" />
             </If>
 
             <!-- [TurnIn Quest] -->
 
             <If Condition="GetQuestStep(67887) == 255">
-                <If Condition="not IsOnMap(418)">
-                    <GetTo ZoneId="418" XYZ="125.6885, 24.45884, 2.456604" />
-                </If>
-                <MoveTo Name="Lucia" XYZ="125.6885, 24.45884, 2.456604" />
+                <GetTo ZoneId="418" XYZ="125.6885, 24.45884, 2.456604" /> <!-- Lucia -->
                 <TurnIn QuestId="67887" NpcId="1013167" XYZ="125.6885, 24.45884, 2.456604" />
             </If>
         </If>
@@ -124,10 +118,7 @@
     <!-- An Envoy for Ishgard -->
     <If Condition="not IsQuestCompleted(67888)">
         <If Condition="not HasQuest(67888)">
-            <If Condition="not IsOnMap(418)">
-                <GetTo ZoneId="418" XYZ="125.9326, 24.45884, -5.539063" />
-            </If>
-            <MoveTo Name="Lucia" XYZ="125.9326, 24.45884, -5.539063" />
+            <GetTo ZoneId="418" XYZ="125.9326, 24.45884, -5.539063" /> <!-- Lucia -->
             <If Condition="IsQuestAcceptQualified(67888)">
                 <PickupQuest NpcId="1016008" QuestId="67888" XYZ="125.9326, 24.45884, -5.539063" />
             </If>
@@ -137,27 +128,18 @@
 
         <If Condition="HasQuest(67888)">
             <If Condition="GetQuestStep(67888) == 1">
-                <If Condition="not IsOnMap(155)">
-                    <GetTo ZoneId="155" XYZ="-140.9781, 304.097, -311.1467" />
-                </If>
-                <NoCombatMoveTo Name="Destination" XYZ="-140.9781, 304.097, -311.1467" />
+                <GetTo ZoneId="155" XYZ="-140.9781, 304.097, -311.1467" /> <!-- Destination -->
                 <UseObject NpcId="2007472" XYZ="-140.9781, 304.097, -311.1467" Radius="10" QuestId="67888" StepId="1" />
             </If>
             <If Condition="GetQuestStep(67888) == 2">
-                <If Condition="not IsOnMap(155)">
-                    <GetTo ZoneId="155" XYZ="233.8445, 302, -188.9525" />
-                </If>
-                <NoCombatMoveTo Name="Aymeric" XYZ="233.8445, 302, -188.9525" />
+                <GetTo ZoneId="155" XYZ="233.8445, 302, -188.9525" /> <!-- Aymeric -->
                 <TalkTo NpcId="1018013" XYZ="233.8445, 302, -188.9525" QuestId="67888" StepId="2" />
             </If>
 
             <!-- [TurnIn Quest] -->
 
             <If Condition="GetQuestStep(67888) == 255">
-                <If Condition="not IsOnMap(132)">
-                    <GetTo ZoneId="132" XYZ="8.407715, -1.509768, 13.93146" />
-                </If>
-                <MoveTo Name="Aymeric" XYZ="8.407715, -1.509768, 13.93146" />
+                <GetTo ZoneId="132" XYZ="8.407715, -1.509768, 13.93146" /> <!-- Aymeric -->
                 <TurnIn QuestId="67888" NpcId="1018015" XYZ="8.407715, -1.509768, 13.93146" />
             </If>
         </If>
@@ -165,10 +147,7 @@
     <!-- An Allied Decision -->
     <If Condition="not IsQuestCompleted(67889)">
         <If Condition="not HasQuest(67889)">
-            <If Condition="not IsOnMap(132)">
-                <GetTo ZoneId="132" XYZ="8.407715, -1.509768, 13.93146" />
-            </If>
-            <MoveTo Name="Aymeric" XYZ="8.407715, -1.509768, 13.93146" />
+            <GetTo ZoneId="132" XYZ="8.407715, -1.509768, 13.93146" /> <!-- Aymeric -->
             <If Condition="IsQuestAcceptQualified(67889)">
                 <PickupQuest NpcId="1018015" QuestId="67889" XYZ="8.407715, -1.509768, 13.93146" />
             </If>
@@ -178,27 +157,18 @@
 
         <If Condition="HasQuest(67889)">
             <If Condition="GetQuestStep(67889) == 1">
-                <If Condition="not IsOnMap(133)">
-                    <GetTo ZoneId="133" XYZ="-159.411, 4.054098, -4.104736" />
-                </If>
-                <NoCombatMoveTo Name="Silent Conjurer" XYZ="-159.411, 4.054098, -4.104736" />
+                <GetTo ZoneId="133" XYZ="-159.411, 4.054098, -4.104736" /> <!-- Silent Conjurer -->
                 <TalkTo NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736" QuestId="67889" StepId="1" />
             </If>
             <If Condition="GetQuestStep(67889) == 2">
-                <If Condition="not IsOnMap(133)">
-                    <GetTo ZoneId="133" XYZ="-154.1009, 4, -15.45746" />
-                </If>
-                <NoCombatMoveTo Name="Alphinaud" XYZ="-154.1009, 4, -15.45746" />
+                <GetTo ZoneId="133" XYZ="-154.1009, 4, -15.45746" /> <!-- Alphinaud -->
                 <TalkTo NpcId="1012395" XYZ="-154.1009, 4, -15.45746" QuestId="67889" StepId="2" />
             </If>
 
             <!-- [TurnIn Quest] -->
 
             <If Condition="GetQuestStep(67889) == 255">
-                <If Condition="not IsOnMap(156)">
-                    <GetTo ZoneId="156" XYZ="34.1344, 20.495, -655.5734" />
-                </If>
-                <NoCombatMoveTo Name="Alisaie" XYZ="34.1344, 20.495, -655.5734" />
+                <GetTo ZoneId="156" XYZ="34.1344, 20.495, -655.5734" /> <!-- Alisaie -->
                 <TurnIn QuestId="67889" NpcId="1018020" XYZ="34.1344, 20.495, -655.5734" />
             </If>
         </If>
@@ -206,10 +176,7 @@
     <!-- Griffin, Griffin on the Wall -->
     <If Condition="not IsQuestCompleted(67890)">
         <If Condition="not HasQuest(67890)">
-            <If Condition="not IsOnMap(156)">
-                <GetTo ZoneId="156" XYZ="34.1344, 20.495, -655.5734" />
-            </If>
-            <NoCombatMoveTo Name="Alisaie" XYZ="34.1344, 20.495, -655.5734" />
+            <GetTo ZoneId="156" XYZ="34.1344, 20.495, -655.5734" /> <!-- Alisaie -->
             <If Condition="IsQuestAcceptQualified(67890)">
                 <PickupQuest NpcId="1018020" QuestId="67890" XYZ="34.1344, 20.495, -655.5734" />
             </If>
@@ -220,7 +187,7 @@
         <If Condition="HasQuest(67890)">
             <If Condition="GetQuestStep(67890) == 1">
                 <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                    <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" />
+                    <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" /> <!-- Rising Stones Entrance -->
                 </If>
                 <If Condition="IsOnMap(156)">
                     <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
@@ -232,7 +199,7 @@
             </If>
             <If Condition="GetQuestStep(67890) == 2">
                 <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                    <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" />
+                    <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" /> <!-- Rising Stones Entrance -->
                 </If>
                 <If Condition="IsOnMap(156)">
                     <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
@@ -244,17 +211,11 @@
                 <TalkTo NpcId="1018022" XYZ="-1.358093, 7.450581E-09, -4.501404" QuestId="67890" StepId="2" />
             </If>
             <If Condition="GetQuestStep(67890) == 3">
-                <If Condition="not IsOnMap(152)">
-                    <GetTo ZoneId="152" XYZ="-199.3591, 1.23591, 283.0396" />
-                </If>
-                <NoCombatMoveTo Name="Alphinaud" XYZ="-199.3591, 1.23591, 283.0396" />
+                <GetTo ZoneId="152" XYZ="-199.3591, 1.23591, 283.0396" /> <!-- Alphinaud -->
                 <TalkTo NpcId="1018023" XYZ="-199.3591, 1.23591, 283.0396" QuestId="67890" StepId="3" />
             </If>
             <If Condition="GetQuestStep(67890) == 4">
-                <If Condition="not IsOnMap(152)">
-                    <GetTo ZoneId="152" XYZ="19.08899, 6.192297, 397.9399" />
-                </If>
-                <NoCombatMoveTo Name="Serpent Scout" XYZ="19.08899, 6.192297, 397.9399" />
+                <GetTo ZoneId="152" XYZ="19.08899, 6.192297, 397.9399" /> <!-- Serpent Scout -->
                 <TalkTo NpcId="1018024" XYZ="19.08899, 6.192297, 397.9399" QuestId="67890" StepId="4" />
             </If>
             <If Condition="GetQuestStep(67890) == 5">
@@ -338,10 +299,7 @@
             <!-- [TurnIn Quest] -->
 
             <If Condition="GetQuestStep(67892) == 255">
-                <If Condition="not IsOnMap(133)">
-                    <GetTo ZoneId="133" XYZ="-154.1009, 4, -15.45746" /> <!-- Alphinaud -->
-                </If>
-                <MoveTo Name="Alphinaud" XYZ="-154.1009, 4, -15.45746" />
+                <GetTo ZoneId="133" XYZ="-154.1009, 4, -15.45746" /> <!-- Alphinaud -->
                 <TurnIn QuestId="67892" NpcId="1012395" XYZ="-154.1009, 4, -15.45746" />
             </If>
         </If>
@@ -349,10 +307,7 @@
     <!-- The Greater Obeisance -->
     <If Condition="not IsQuestCompleted(67893)">
         <If Condition="not HasQuest(67893)">
-            <If Condition="not IsOnMap(133)">
-                <GetTo ZoneId="133" XYZ="-154.1009, 4, -15.45746" /> <!-- Alphinaud -->
-            </If>
-            <MoveTo Name="Alphinaud" XYZ="-154.1009, 4, -15.45746" />
+            <GetTo ZoneId="133" XYZ="-154.1009, 4, -15.45746" /> <!-- Alphinaud -->
             <If Condition="IsQuestAcceptQualified(67893)">
                 <PickupQuest NpcId="1012395" QuestId="67893" XYZ="-154.1009, 4, -15.45746" />
             </If>
@@ -510,7 +465,10 @@
         </If>
     </If>
 
-    <LogMessage Message="[Heavensward (3.5)] You've completed the Heavensward (Patch 3.5) questline!" />
+    <If Condition="IsQuestCompleted(67895)">
+        <RunCode Name="3_5_Questline" />
+        <StopBot/>
+    </If>
 
 	</Order>
 	<CodeChunks>
@@ -535,6 +493,17 @@
                     await Coroutine.Sleep(26000);
                 }
         	]]>
+        </CodeChunk>
+        <CodeChunk Name="3_5_Questline">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(67895) != 255)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "You've completed the Heavensward (Patch 3.5) questline!\nPlease load the Stormblood profile\nif you would like to continue questing!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
         </CodeChunk>
 	</CodeChunks>
 	<GrindAreas>
