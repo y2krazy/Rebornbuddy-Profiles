@@ -19,9 +19,9 @@
 <!-- User Configuration -->
 <!DOCTYPE Profile [
 
-  <!-- ExLog Colors -->
+  <!-- Log Colors -->
 
-  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
 ]>
 <!-- End User Configuration -->
 <Profile>
@@ -30,13 +30,13 @@
 	<KillRadius>90</KillRadius>
 	<Order>
 
-		<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking for completed quest..." />
+		<Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking for completed quest..." />
 
 		<!-- A Complete Game Changer -->
 
 		<If Condition="not IsQuestCompleted(67677)">
 			<If Condition="not HasQuest(67677)">
-				<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Picking up the A Complete Game Changer quest!" />
+				<Log Color="&LogColor;" Name="Yo-kai Watch" Message="Picking up the A Complete Game Changer quest!" />
                 <GetTo ZoneId="130" XYZ="-101.4879, 4, -105.4552" /> <!-- Poor-heeled Youth -->
 				<If Condition="IsQuestAcceptQualified(67677)">
 					<PickupQuest NpcId="1017234" QuestId="67677" XYZ="-101.4879, 4, -105.4552" />
@@ -44,24 +44,24 @@
 			</If>
 			<If Condition="HasQuest(67677)">
 				<If Condition="GetQuestStep(67677) == 1">
-					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Talking to the Wandering Executive..." />
+					<Log Color="&LogColor;" Name="Yo-kai Watch" Message="Talking to the Wandering Executive..." />
 					<GetTo ZoneId="144" XYZ="-42.40485, 3.814697E-06, 40.51257" /> <!-- Wandering Executive -->
                     <TalkToPlus NpcId="1017235" XYZ="-42.40485, 3.814697E-06, 40.51257" QuestId="67677" StepId="1" />
 				</If>
 				<While Condition="GetQuestStep(67677) == 2">
-					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Gathering information in Bentbranch Meadows..." />
+					<Log Color="&LogColor;" Name="Yo-kai Watch" Message="Gathering information in Bentbranch Meadows..." />
 					<GetTo ZoneId="148" XYZ="-2.548279, -1.219153, 39.96338" /> <!-- Giah Molkoh -->
 					<TalkTo NpcId="1000734" XYZ="-2.548279, -1.219153, 39.96338" QuestId="67677" StepId="2" />
 					<TalkTo NpcId="1000470" XYZ="-59.00665, -0.01083579, 26.41333" QuestId="67677" StepId="2" />
 					<TalkTo NpcId="1000474" XYZ="-39.32251, -4.373491E-06, 62.02783" QuestId="67677" StepId="2" />
 				</While>
 				<If Condition="GetQuestStep(67677) == 3">
-					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Investigating the area near the Guardian Tree..." />
+					<Log Color="&LogColor;" Name="Yo-kai Watch" Message="Investigating the area near the Guardian Tree..." />
 					<GetTo ZoneId="148" XYZ="-317.5861, 22.93427, 185.2292" /> <!-- Ancient Stone Vessel -->
                     <UseObjectPlus NpcId="2007169" XYZ="-317.5861, 22.93427, 185.2292" Radius="10" QuestId="67677" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(67677) == 255">
-					<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Turning in the A Complete Game Changer quest!" />
+					<Log Color="&LogColor;" Name="Yo-kai Watch" Message="Turning in the A Complete Game Changer quest!" />
 					<GetTo ZoneId="144" XYZ="-42.40485, 3.814697E-06, 40.51257" /> <!-- Wandering Executive -->
 
 					<!-- Rewards
@@ -77,7 +77,7 @@
 			</If>
 		</If>
 
-		<ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've completed the Yo-kai Watch seasonal event quest!" />
+		<Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've completed the Yo-kai Watch seasonal event quest!" />
 
 	</Order>
 	<CodeChunks>

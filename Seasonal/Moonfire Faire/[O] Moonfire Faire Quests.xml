@@ -16,9 +16,9 @@
 <!-- User Configuration -->
 <!DOCTYPE Profile [
 
-  <!-- ExLog Colors -->
+  <!-- Log Colors -->
 
-  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
 ]>
 <!-- End User Configuration -->
 <Profile>
@@ -27,13 +27,13 @@
 	<KillRadius>90</KillRadius>
 	<Order>
 
-		<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Checking for completed quest..."/>
+		<Log Color="&LogColor;" Name="Moonfire Faire" Message="Checking for completed quest..."/>
 
 		<!-- The Isle and the Faire -->
 
 		<If Condition="not IsQuestCompleted(68492)">
 			<If Condition="not HasQuest(68492)">
-				<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Picking up The Isle and the Faire quest!"/>
+				<Log Color="&LogColor;" Name="Moonfire Faire" Message="Picking up The Isle and the Faire quest!"/>
                 <GetTo ZoneId="128" XYZ="14.32819, 45.66599, 131.3649" /> <!-- Mayaru Moyaru -->
                 <If Condition="IsQuestAcceptQualified(68492)">
                     <PickupQuest NpcId="1023793" QuestId="68492" XYZ="14.32819, 45.66599, 131.3649" />
@@ -41,22 +41,22 @@
 			</If>
 			<If Condition="HasQuest(68492)">
                 <If Condition="GetQuestStep(68492) == 1">
-					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Haermaga..."/>
+					<Log Color="&LogColor;" Name="Moonfire Faire" Message="Talking to Haermaga..."/>
                     <GetTo ZoneId="137" XYZ="763.8518, 11.07654, 478.8833" /> <!-- Haermaga -->
                     <TalkTo NpcId="1023788" XYZ="765.8044, 11.00171, 478.9348" QuestId="68492" StepId="1" />
                 </If>
                 <If Condition="GetQuestStep(68492) == 2">
-					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to P'obyano..."/>
+					<Log Color="&LogColor;" Name="Moonfire Faire" Message="Talking to P'obyano..."/>
                     <GetTo ZoneId="137" XYZ="768.4159, 11.07654, 474.5369" /> <!-- P'obyano -->
                     <TalkTo NpcId="1023789" XYZ="768.307, 11.00171, 476.2491" QuestId="68492" StepId="2" />
                 </If>
                 <If Condition="GetQuestStep(68492) == 3">
-					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Jiriri..."/>
+					<Log Color="&LogColor;" Name="Moonfire Faire" Message="Talking to Jiriri..."/>
                     <GetTo ZoneId="137" XYZ="761.9896, 9.809009, 494.9873" /> <!-- Jiriri -->
                     <TalkTo NpcId="1023792" XYZ="761.9896, 9.809009, 494.9873" QuestId="68492" StepId="3" />
                 </If>
                 <If Condition="GetQuestStep(68492) == 4">
-					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Using Firework Mortar..."/>
+					<Log Color="&LogColor;" Name="Moonfire Faire" Message="Using Firework Mortar..."/>
                     <GetTo ZoneId="137" XYZ="798.062, 9.353699, 399.1912" /> <!-- Firework Mortar -->
                     <UseItem NpcId="2009014" ItemId="2002394" XYZ="798.062, 9.353699, 399.1912" Radius="10" QuestId="68492" StepId="4" />
                 </If>
@@ -68,7 +68,7 @@
 
 					-->
 
-					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Turning in the Golden Rain quest!"/>
+					<Log Color="&LogColor;" Name="Moonfire Faire" Message="Turning in the Golden Rain quest!"/>
                     <GetTo ZoneId="137" XYZ="768.4146, 11.07654, 474.5158" /> <!-- P'obyano -->
                     <TurnIn QuestId="68492" NpcId="1023789" XYZ="768.307, 11.00171, 476.2491" />
 				</If>
@@ -79,7 +79,7 @@
 
 		<If Condition="not IsQuestCompleted(68496)">
 			<If Condition="not HasQuest(68496)">
-				<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Picking up The True Meaning of Summer quest!"/>
+				<Log Color="&LogColor;" Name="Moonfire Faire" Message="Picking up The True Meaning of Summer quest!"/>
                 <GetTo ZoneId="137" XYZ="763.8458, 11.07654, 478.9243" /> <!-- Haermaga -->
                 <If Condition="IsQuestAcceptQualified(68496)">
                     <PickupQuestPlus NpcId="1023788" QuestId="68496" XYZ="765.8044, 11.00171, 478.9348" />
@@ -92,7 +92,7 @@
 			<!-- These Fireworks Won't Light Themselves -->
 
 			<If Condition="not HasQuest(68493)">
-				<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Picking up the These Fireworks Won't Light Themselves quest!"/>
+				<Log Color="&LogColor;" Name="Moonfire Faire" Message="Picking up the These Fireworks Won't Light Themselves quest!"/>
 				<GetTo ZoneId="137" XYZ="768.3526, 11.07654, 474.5328" /> <!-- P'obyano -->
 				<If Condition="IsQuestAcceptQualified(68493)">
 					<RunCode Name="Pickup68493" />
@@ -100,7 +100,7 @@
 			</If>
 			<If Condition="HasQuest(68493)">
 				<If Condition="GetQuestStep(68493) == 1">
-					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Using Firework Mortars..."/>
+					<Log Color="&LogColor;" Name="Moonfire Faire" Message="Using Firework Mortars..."/>
 					<GetTo ZoneId="137" XYZ="631.7997, 9.323181, 346.7001" /> <!-- Firework Mortar -->
 					<UseItem NpcIds="2009015,2009016,2009017,2009018,2009019,2009020" ItemId="2002395" QuestId="68493" StepId="1">
 						<HotSpots>
@@ -114,7 +114,7 @@
 					</UseItem>
 				</If>
 				<If Condition="GetQuestStep(68493) == 255">
-					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Turning in the These Fireworks Won't Light Themselves quest!" />
+					<Log Color="&LogColor;" Name="Moonfire Faire" Message="Turning in the These Fireworks Won't Light Themselves quest!" />
 
 					<!-- Rewards
 
@@ -134,7 +134,7 @@
 		<If Condition="not IsQuestCompleted(68496)">
 			<If Condition="HasQuest(68496)">
                 <If Condition="GetQuestStep(68496) == 1 and HasAtLeast(20304,7)">
-					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Talking to Haermaga..."/>
+					<Log Color="&LogColor;" Name="Moonfire Faire" Message="Talking to Haermaga..."/>
                     <GetTo ZoneId="137" XYZ="769.0955, 11.07654, 474.62" /> <!-- Haermaga -->
                     <HandOver ItemId="20304" QuestId="68496" StepId="1" NpcId="1023788" XYZ="765.8044, 11.00171, 478.9348" />
                 </If>
@@ -170,7 +170,7 @@
                     <UseObject NpcId="2009026" XYZ="710.4447, 9.964111, 296.1317" Radius="10" QuestId="68496" StepId="4" />
                 </If>
                 <If Condition="GetQuestStep(68496) == 5">
-					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Delivering Gegeruju's spyglass..."/>
+					<Log Color="&LogColor;" Name="Moonfire Faire" Message="Delivering Gegeruju's spyglass..."/>
                     <GetTo ZoneId="137" XYZ="769.0955, 11.07654, 474.62" /> <!-- Haermaga -->
                     <HandOver ItemId="2002396" QuestId="68496" StepId="5" NpcId="1023788" XYZ="765.8044, 11.00171, 478.9348" />
                 </If>
@@ -194,7 +194,7 @@
 			</If>
 		</If>
 
-		<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="You've completed the Moonfire Faire seasonal event quests!"/>
+		<Log Color="&LogColor;" Name="Moonfire Faire" Message="You've completed the Moonfire Faire seasonal event quests!"/>
 
 	</Order>
 	<CodeChunks>

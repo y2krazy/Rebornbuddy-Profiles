@@ -199,10 +199,10 @@
     <!ENTITY WhisperShroud "1"> <!-- Farm Medals in South Shroud. -->
     <!ENTITY WhisperThanalan "0"> <!-- Farm Medals in Southern Thanalan. -->
 
-  <!-- ExLog Colors -->
+  <!-- Log Colors -->
 
-  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
-  <!ENTITY ExLogAck "#FF0000"> <!-- Warnings -->
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
+  <!ENTITY LogColorAck "#FF0000"> <!-- Warnings -->
 ]>
 <!-- End User Configuration -->
 <Profile>
@@ -212,23 +212,23 @@
     <Order>
 
         <If Condition="&Medals; == 0 and &BlizzariaMedals; == 0 and &HovernyanMedals; == 0 and &JibanyanMedals; == 0 and &KomajiroMedals; == 0 and &KomasanMedals; == 0 and &KyubiMedals; == 0 and &ManjimuttMedals; == 0 and &NokoMedals; == 0 and &RobonyanFtypeMedals; == 0 and &ShogunyanMedals; == 0 and &USApyonMedals; == 0 and &VenoctMedals; == 0 and &WhisperMedals; == 0">
-            <ExLog Color="&ExLogAck;" Name="Yo-kai Watch" Message="You have not selected anything to farm! Derp!" />
+            <Log Color="&LogColorAck;" Name="Yo-kai Watch" Message="You have not selected anything to farm! Derp!" />
             <StopBot/>
         </If>
 
         <!-- Yo-kai Medals -->
 
         <If Condition="&Medals; &gt; 0 and HasAtLeast(15167,&Medals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &Medals; Yo-Kai Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &Medals; Yo-Kai Medal(s)!" />
         </If>
 
         <If Condition="&Medals; &gt; 0 and not HasAtLeast(15167,&Medals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &Medals; Yo-Kai Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &Medals; Yo-Kai Medal(s)..." />
 
             <!-- Farm Yo-kai Medals in Lower La Noscea. -->
 
             <If Condition="&MedalsLowerLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Lower La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Lower La Noscea..." />
                 <If Condition="not IsOnMap(135)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(10)">
                         <TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
@@ -238,7 +238,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -266,7 +266,7 @@
             <!-- Farm Yo-kai Medals in Middle La Noscea. -->
 
             <If Condition="&MedalsMiddleLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Middle La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Middle La Noscea..." />
                 <If Condition="not IsOnMap(134)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(52)">
                         <TeleportTo Name="Summerford Farms" AetheryteId="52" />
@@ -276,7 +276,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -308,7 +308,7 @@
             <!-- Farm Yo-kai Medals in Outer La Noscea. -->
 
             <If Condition="&MedalsOuterLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Outer La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Outer La Noscea..." />
                 <If Condition="not IsOnMap(180)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(16)">
                         <TeleportTo Name="Camp Overlook" AetheryteId="16" />
@@ -318,7 +318,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -347,7 +347,7 @@
             <!-- Farm Yo-kai Medals in Upper La Noscea. -->
 
             <If Condition="&MedalsUpperLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Upper La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Upper La Noscea..." />
                 <If Condition="not IsOnSubMap(239)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(15)">
                         <TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
@@ -357,7 +357,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -388,7 +388,7 @@
             <!-- Farm Yo-kai Medals in Western La Noscea. -->
 
             <If Condition="&MedalsWesternLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Western La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Western La Noscea..." />
                 <If Condition="not IsOnMap(138)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(14)">
                         <TeleportTo Name="Aleport" AetheryteId="14" />
@@ -403,7 +403,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -442,7 +442,7 @@
             <!-- Farm Yo-kai Medals in Central Shroud. -->
 
             <If Condition="&MedalsCentralShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Central Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Central Shroud..." />
                 <If Condition="not IsOnMap(148)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(3)">
                         <TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
@@ -452,7 +452,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -492,7 +492,7 @@
             <!-- Farm Yo-kai Medals in East Shroud. -->
 
             <If Condition="&MedalsEastShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in East Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in East Shroud..." />
                 <If Condition="not IsOnMap(152)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(4)">
                         <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
@@ -502,7 +502,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -541,7 +541,7 @@
             <!-- Farm Yo-kai Medals in North Shroud. -->
 
             <If Condition="&MedalsNorthShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in North Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in North Shroud..." />
                 <If Condition="not IsOnMap(154)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(7)">
                         <TeleportTo Name="Fallgourd Float" AetheryteId="7" />
@@ -551,7 +551,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -583,7 +583,7 @@
             <!-- Farm Yo-kai Medals in South Shroud. -->
 
             <If Condition="&MedalsSouthShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in South Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in South Shroud..." />
                 <If Condition="not IsOnMap(153)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(5)">
                         <TeleportTo Name="Quarrymill" AetheryteId="5" />
@@ -598,7 +598,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -633,7 +633,7 @@
             <!-- Farm Yo-kai Medals in Central Thanalan. -->
 
             <If Condition="&MedalsCentralThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Central Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Central Thanalan..." />
                 <If Condition="not IsOnMap(141)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(53)">
                         <TeleportTo Name="Black Brush Station" AetheryteId="53" />
@@ -643,7 +643,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -672,7 +672,7 @@
             <!-- Farm Yo-kai Medals in Eastern Thanalan. -->
 
             <If Condition="&MedalsEasternThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Eastern Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Eastern Thanalan..." />
                 <If Condition="not IsOnMap(145)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(18)">
                         <TeleportTo Name="Camp Drybone" AetheryteId="18" />
@@ -682,7 +682,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -718,7 +718,7 @@
             <!-- Farm Yo-kai Medals in Southern Thanalan. -->
 
             <If Condition="&MedalsSouthernThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Southern Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Southern Thanalan..." />
                 <If Condition="not IsOnMap(146)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(19)">
                         <TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
@@ -733,7 +733,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -779,7 +779,7 @@
             <!-- Farm Yo-kai Medals in Western Thanalan. -->
 
             <If Condition="&MedalsWesternThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Western Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Yo-Kai Medal(s) in Western Thanalan..." />
                 <If Condition="not IsOnMap(140)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(17)">
                         <TeleportTo Name="Horizon" AetheryteId="17" />
@@ -789,7 +789,7 @@
                     </If>
                 </If>
                 <WaitTimer WaitTime="3" />
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Equipping your Yo-kai Watch..." />
                 <RunCode Name="EquipYoKaiWatch" />
                 <WaitTimer WaitTime="3" />
                 <While Condition="not HasAtLeast(15167,&Medals;)">
@@ -824,16 +824,16 @@
         <!-- Legendary Blizzaria Medals -->
 
         <If Condition="&BlizzariaMedals; &gt; 0 and HasAtLeast(15171,&BlizzariaMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &BlizzariaMedals; Legendary Blizzaria Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &BlizzariaMedals; Legendary Blizzaria Medal(s)!" />
         </If>
 
         <If Condition="&BlizzariaMedals; &gt; 0 and not HasAtLeast(15171,&BlizzariaMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &BlizzariaMedals; Legendary Blizzaria Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &BlizzariaMedals; Legendary Blizzaria Medal(s)..." />
 
             <!-- Farm Legendary Blizzaria Medals in Middle La Noscea. -->
 
             <If Condition="&BlizzariaMiddleLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Blizzaria Medal(s) in Middle La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Blizzaria Medal(s) in Middle La Noscea..." />
                 <If Condition="not IsOnMap(134)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(52)">
                         <TeleportTo Name="Summerford Farms" AetheryteId="52" />
@@ -845,7 +845,7 @@
                 <While Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
                     <RunCode Name="SummonBlizzaria" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -876,7 +876,7 @@
             <!-- Farm Legendary Blizzaria Medals in Outer La Noscea. -->
 
             <If Condition="&BlizzariaOuterLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Blizzaria Medal(s) in Outer La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Blizzaria Medal(s) in Outer La Noscea..." />
                 <If Condition="not IsOnMap(180)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(16)">
                         <TeleportTo Name="Camp Overlook" AetheryteId="16" />
@@ -888,7 +888,7 @@
                 <While Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
                     <RunCode Name="SummonBlizzaria" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -916,7 +916,7 @@
             <!-- Farm Legendary Blizzaria Medals in North Shroud. -->
 
             <If Condition="&BlizzariaShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Blizzaria Medal(s) in North Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Blizzaria Medal(s) in North Shroud..." />
                 <If Condition="not IsOnMap(154)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(7)">
                         <TeleportTo Name="Fallgourd Float" AetheryteId="7" />
@@ -928,7 +928,7 @@
                 <While Condition="not HasAtLeast(15171,&BlizzariaMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Blizzaria is summoned..." />
                     <RunCode Name="SummonBlizzaria" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -961,16 +961,16 @@
         <!-- Legendary Hovernyan Medals -->
 
         <If Condition="&HovernyanMedals; &gt; 0 and HasAtLeast(15178,&HovernyanMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &HovernyanMedals; Legendary Hovernyan Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &HovernyanMedals; Legendary Hovernyan Medal(s)!" />
         </If>
 
         <If Condition="&HovernyanMedals; &gt; 0 and not HasAtLeast(15178,&HovernyanMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &HovernyanMedals; Legendary Hovernyan Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &HovernyanMedals; Legendary Hovernyan Medal(s)..." />
 
             <!-- Farm Legendary Hovernyan Medals in Western La Noscea. -->
 
             <If Condition="&HovernyanLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Hovernyan Medal(s) in Western La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Hovernyan Medal(s) in Western La Noscea..." />
                 <If Condition="not IsOnMap(138)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(14)">
                         <TeleportTo Name="Aleport" AetheryteId="14" />
@@ -987,7 +987,7 @@
                 <While Condition="not HasAtLeast(15178,&HovernyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
                     <RunCode Name="SummonHovernyan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1025,7 +1025,7 @@
             <!-- Farm Legendary Hovernyan Medals in South Shroud. -->
 
             <If Condition="&HovernyanShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Hovernyan Medal(s) in South Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Hovernyan Medal(s) in South Shroud..." />
                 <If Condition="not IsOnMap(153)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(5)">
                         <TeleportTo Name="Quarrymill" AetheryteId="5" />
@@ -1042,7 +1042,7 @@
                 <While Condition="not HasAtLeast(15178,&HovernyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
                     <RunCode Name="SummonHovernyan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1076,7 +1076,7 @@
             <!-- Farm Legendary Hovernyan Medals in Eastern Thanalan. -->
 
             <If Condition="&HovernyanThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Hovernyan Medal(s) in Eastern Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Hovernyan Medal(s) in Eastern Thanalan..." />
                 <If Condition="not IsOnMap(145)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(18)">
                         <TeleportTo Name="Camp Drybone" AetheryteId="18" />
@@ -1088,7 +1088,7 @@
                 <While Condition="not HasAtLeast(15178,&HovernyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Hovernyan is summoned..." />
                     <RunCode Name="SummonHovernyan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1125,16 +1125,16 @@
         <!-- Legendary Jibanyan Medals -->
 
         <If Condition="&JibanyanMedals; &gt; 0 and HasAtLeast(15168,&JibanyanMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &JibanyanMedals; Legendary Jibanyan Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &JibanyanMedals; Legendary Jibanyan Medal(s)!" />
         </If>
 
         <If Condition="&JibanyanMedals; &gt; 0 and not HasAtLeast(15168,&JibanyanMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &JibanyanMedals; Legendary Jibanyan Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &JibanyanMedals; Legendary Jibanyan Medal(s)..." />
 
             <!-- Farm Legendary Jibanyan Medals in Lower La Noscea. -->
 
             <If Condition="&JibanyanLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Lower La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Lower La Noscea..." />
                 <If Condition="not IsOnMap(135)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(10)">
                         <TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
@@ -1146,7 +1146,7 @@
                 <While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
                     <RunCode Name="SummonJibanyan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1173,7 +1173,7 @@
             <!-- Farm Legendary Jibanyan Medals in Central Shroud. -->
 
             <If Condition="&JibanyanShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Central Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Central Shroud..." />
                 <If Condition="not IsOnMap(148)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(3)">
                         <TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
@@ -1185,7 +1185,7 @@
                 <While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
                     <RunCode Name="SummonJibanyan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1224,7 +1224,7 @@
             <!-- Farm Legendary Jibanyan Medals in Central Thanalan. -->
 
             <If Condition="&JibanyanThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Central Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Jibanyan Medal(s) in Central Thanalan..." />
                 <If Condition="not IsOnMap(141)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(53)">
                         <TeleportTo Name="Black Brush Station" AetheryteId="53" />
@@ -1236,7 +1236,7 @@
                 <While Condition="not HasAtLeast(15168,&JibanyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Jibanyan is summoned..." />
                     <RunCode Name="SummonJibanyan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1266,16 +1266,16 @@
         <!-- Legendary Komajiro Medals -->
 
         <If Condition="&KomajiroMedals; &gt; 0 and HasAtLeast(15173,&KomajiroMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &KomajiroMedals; Legendary Komajiro Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &KomajiroMedals; Legendary Komajiro Medal(s)!" />
         </If>
 
         <If Condition="&KomajiroMedals; &gt; 0 and not HasAtLeast(15173,&KomajiroMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &KomajiroMedals; Legendary Komajiro Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &KomajiroMedals; Legendary Komajiro Medal(s)..." />
 
             <!-- Farm Legendary Komajiro Medals in Western La Noscea. -->
 
             <If Condition="&KomajiroLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komajiro Medal(s) in Western La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Komajiro Medal(s) in Western La Noscea..." />
                 <If Condition="not IsOnMap(138)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(14)">
                         <TeleportTo Name="Aleport" AetheryteId="14" />
@@ -1292,7 +1292,7 @@
                 <While Condition="not HasAtLeast(15173,&KomajiroMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
                     <RunCode Name="SummonKomajiro" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1330,7 +1330,7 @@
             <!-- Farm Legendary Komajiro Medals in East Shroud. -->
 
             <If Condition="&KomajiroShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komajiro Medal(s) in East Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Komajiro Medal(s) in East Shroud..." />
                 <If Condition="not IsOnMap(152)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(4)">
                         <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
@@ -1342,7 +1342,7 @@
                 <While Condition="not HasAtLeast(15173,&KomajiroMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
                     <RunCode Name="SummonKomajiro" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1380,7 +1380,7 @@
             <!-- Farm Legendary Komajiro Medals in Central Thanalan. -->
 
             <If Condition="&KomajiroThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komajiro Medal(s) in Central Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Komajiro Medal(s) in Central Thanalan..." />
                 <If Condition="not IsOnMap(141)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(53)">
                         <TeleportTo Name="Black Brush Station" AetheryteId="53" />
@@ -1392,7 +1392,7 @@
                 <While Condition="not HasAtLeast(15173,&KomajiroMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Komajiro is summoned..." />
                     <RunCode Name="SummonKomajiro" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1422,16 +1422,16 @@
         <!-- Legendary Komasan Medals -->
 
         <If Condition="&KomasanMedals; &gt; 0 and HasAtLeast(15169,&KomasanMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &KomasanMedals; Legendary Komasan Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &KomasanMedals; Legendary Komasan Medal(s)!" />
         </If>
 
         <If Condition="&KomasanMedals; &gt; 0 and not HasAtLeast(15169,&KomasanMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &KomasanMedals; Legendary Komasan Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &KomasanMedals; Legendary Komasan Medal(s)..." />
 
             <!-- Farm Legendary Komasan Medals in Western La Noscea. -->
 
             <If Condition="&KomasanLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komasan Medal(s) in Western La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Komasan Medal(s) in Western La Noscea..." />
                 <If Condition="not IsOnMap(138)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(14)">
                         <TeleportTo Name="Aleport" AetheryteId="14" />
@@ -1448,7 +1448,7 @@
                 <While Condition="not HasAtLeast(15169,&KomasanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
                     <RunCode Name="SummonKomasan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1486,7 +1486,7 @@
             <!-- Farm Legendary Komasan Medals in East Shroud. -->
 
             <If Condition="&KomasanShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komasan Medal(s) in East Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Komasan Medal(s) in East Shroud..." />
                 <If Condition="not IsOnMap(152)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(4)">
                         <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
@@ -1498,7 +1498,7 @@
                 <While Condition="not HasAtLeast(15169,&KomasanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
                     <RunCode Name="SummonKomasan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1536,7 +1536,7 @@
             <!-- Farm Legendary Komasan Medals in Eastern Thanalan. -->
 
             <If Condition="&KomasanThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Komasan Medal(s) in Eastern Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Komasan Medal(s) in Eastern Thanalan..." />
                 <If Condition="not IsOnMap(145)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(18)">
                         <TeleportTo Name="Camp Drybone" AetheryteId="18" />
@@ -1548,7 +1548,7 @@
                 <While Condition="not HasAtLeast(15169,&KomasanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Komasan is summoned..." />
                     <RunCode Name="SummonKomasan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1585,16 +1585,16 @@
         <!-- Legendary Kyubi Medals -->
 
         <If Condition="&KyubiMedals; &gt; 0 and HasAtLeast(15172,&KyubiMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &KyubiMedals; Legendary Kyubi Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &KyubiMedals; Legendary Kyubi Medal(s)!" />
         </If>
 
         <If Condition="&KyubiMedals; &gt; 0 and not HasAtLeast(15172,&KyubiMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &KyubiMedals; Legendary Kyubi Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &KyubiMedals; Legendary Kyubi Medal(s)..." />
 
             <!-- Farm Legendary Kyubi Medals in Lower La Noscea. -->
 
             <If Condition="&KyubiLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Lower La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Lower La Noscea..." />
                 <If Condition="not IsOnMap(135)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(10)">
                         <TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
@@ -1606,7 +1606,7 @@
                 <While Condition="not HasAtLeast(15172,&KyubiMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
                     <RunCode Name="SummonKyubi" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1633,7 +1633,7 @@
             <!-- Farm Legendary Kyubi Medals in Central Shroud. -->
 
             <If Condition="&KyubiShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Central Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Central Shroud..." />
                 <If Condition="not IsOnMap(148)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(3)">
                         <TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
@@ -1645,7 +1645,7 @@
                 <While Condition="not HasAtLeast(15172,&KyubiMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
                     <RunCode Name="SummonKyubi" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1684,7 +1684,7 @@
             <!-- Farm Legendary Kyubi Medals in Western Thanalan. -->
 
             <If Condition="&KyubiThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Western Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Kyubi Medal(s) in Western Thanalan..." />
                 <If Condition="not IsOnMap(140)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(17)">
                         <TeleportTo Name="Horizon" AetheryteId="17" />
@@ -1696,7 +1696,7 @@
                 <While Condition="not HasAtLeast(15172,&KyubiMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Kyubi is summoned..." />
                     <RunCode Name="SummonKyubi" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1730,16 +1730,16 @@
         <!-- Legendary Manjimutt Medals -->
 
         <If Condition="&ManjimuttMedals; &gt; 0 and HasAtLeast(15174,&ManjimuttMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &ManjimuttMedals; Legendary Manjimutt Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &ManjimuttMedals; Legendary Manjimutt Medal(s)!" />
         </If>
 
         <If Condition="&ManjimuttMedals; &gt; 0 and not HasAtLeast(15174,&ManjimuttMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &ManjimuttMedals; Legendary Manjimutt Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &ManjimuttMedals; Legendary Manjimutt Medal(s)..." />
 
             <!-- Farm Legendary Manjimutt Medals in Upper La Noscea. -->
 
             <If Condition="&ManjimuttLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Manjimutt Medal(s) in Upper La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Manjimutt Medal(s) in Upper La Noscea..." />
                 <If Condition="not IsOnSubMap(239)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(15)">
                         <TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
@@ -1751,7 +1751,7 @@
                 <While Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
                     <RunCode Name="SummonManjimutt" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1781,7 +1781,7 @@
             <!-- Farm Legendary Manjimutt Medals in South Shroud. -->
 
             <If Condition="&ManjimuttShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Manjimutt Medal(s) in South Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Manjimutt Medal(s) in South Shroud..." />
                 <If Condition="not IsOnMap(153)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(5)">
                         <TeleportTo Name="Quarrymill" AetheryteId="5" />
@@ -1798,7 +1798,7 @@
                 <While Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
                     <RunCode Name="SummonManjimutt" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1832,7 +1832,7 @@
             <!-- Farm Legendary Manjimutt Medals in Eastern Thanalan. -->
 
             <If Condition="&ManjimuttThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Manjimutt Medal(s) in Eastern Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Manjimutt Medal(s) in Eastern Thanalan..." />
                 <If Condition="not IsOnMap(145)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(18)">
                         <TeleportTo Name="Camp Drybone" AetheryteId="18" />
@@ -1844,7 +1844,7 @@
                 <While Condition="not HasAtLeast(15174,&ManjimuttMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Manjimutt is summoned..." />
                     <RunCode Name="SummonManjimutt" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1881,16 +1881,16 @@
         <!-- Legendary Noko Medals -->
 
         <If Condition="&NokoMedals; &gt; 0 and HasAtLeast(15175,&NokoMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &NokoMedals; Legendary Noko Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &NokoMedals; Legendary Noko Medal(s)!" />
         </If>
 
         <If Condition="&NokoMedals; &gt; 0 and not HasAtLeast(15175,&NokoMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &NokoMedals; Legendary Noko Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &NokoMedals; Legendary Noko Medal(s)..." />
 
             <!-- Farm Legendary Noko Medals in Outer La Noscea. -->
 
             <If Condition="&NokoLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Noko Medal(s) in Outer La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Noko Medal(s) in Outer La Noscea..." />
                 <If Condition="not IsOnMap(180)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(16)">
                         <TeleportTo Name="Camp Overlook" AetheryteId="16" />
@@ -1902,7 +1902,7 @@
                 <While Condition="not HasAtLeast(15175,&NokoMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
                     <RunCode Name="SummonNoko" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1930,7 +1930,7 @@
             <!-- Farm Legendary Noko Medals in North Shroud. -->
 
             <If Condition="&NokoShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Noko Medal(s) in North Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Noko Medal(s) in North Shroud..." />
                 <If Condition="not IsOnMap(154)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(7)">
                         <TeleportTo Name="Fallgourd Float" AetheryteId="7" />
@@ -1942,7 +1942,7 @@
                 <While Condition="not HasAtLeast(15175,&NokoMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
                     <RunCode Name="SummonNoko" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -1973,7 +1973,7 @@
             <!-- Farm Legendary Noko Medals in Southern Thanalan. -->
 
             <If Condition="&NokoThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Noko Medal(s) in Southern Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Noko Medal(s) in Southern Thanalan..." />
                 <If Condition="not IsOnMap(146)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(19)">
                         <TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
@@ -1990,7 +1990,7 @@
                 <While Condition="not HasAtLeast(15175,&NokoMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Noko is summoned..." />
                     <RunCode Name="SummonNoko" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2037,16 +2037,16 @@
         <!-- Legendary Robonyan F-type Medals -->
 
         <If Condition="&RobonyanFtypeMedals; &gt; 0 and HasAtLeast(15179,&RobonyanFtypeMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &RobonyanFtypeMedals; Legendary Robonyan F-type Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &RobonyanFtypeMedals; Legendary Robonyan F-type Medal(s)!" />
         </If>
 
         <If Condition="&RobonyanFtypeMedals; &gt; 0 and not HasAtLeast(15179,&RobonyanFtypeMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &RobonyanFtypeMedals; Legendary Robonyan F-type Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &RobonyanFtypeMedals; Legendary Robonyan F-type Medal(s)..." />
 
             <!-- Farm Legendary Robonyan F-type Medals in Upper La Noscea. -->
 
             <If Condition="&RobonyanFtypeLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Robonyan F-type Medal(s) in Upper La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Robonyan F-type Medal(s) in Upper La Noscea..." />
                 <If Condition="not IsOnSubMap(239)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(15)">
                         <TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
@@ -2058,7 +2058,7 @@
                 <While Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
                     <RunCode Name="SummonRobonyanFtype" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2088,7 +2088,7 @@
             <!-- Farm Legendary Robonyan F-type Medals in North Shroud. -->
 
             <If Condition="&RobonyanFtypeShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Robonyan F-type Medal(s) in North Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Robonyan F-type Medal(s) in North Shroud..." />
                 <If Condition="not IsOnMap(154)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(7)">
                         <TeleportTo Name="Fallgourd Float" AetheryteId="7" />
@@ -2100,7 +2100,7 @@
                 <While Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
                     <RunCode Name="SummonRobonyanFtype" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2131,7 +2131,7 @@
             <!-- Farm Legendary Robonyan F-type Medals in Southern Thanalan. -->
 
             <If Condition="&RobonyanFtypeThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Robonyan F-type Medal(s) in Southern Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Robonyan F-type Medal(s) in Southern Thanalan..." />
                 <If Condition="not IsOnMap(146)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(19)">
                         <TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
@@ -2148,7 +2148,7 @@
                 <While Condition="not HasAtLeast(15179,&RobonyanFtypeMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Robonyan F-type is summoned..." />
                     <RunCode Name="SummonRobonyanFtype" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2195,16 +2195,16 @@
         <!-- Legendary Shogunyan Medals -->
 
         <If Condition="&ShogunyanMedals; &gt; 0 and HasAtLeast(15177,&ShogunyanMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &ShogunyanMedals; Legendary Shogunyan Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &ShogunyanMedals; Legendary Shogunyan Medal(s)!" />
         </If>
 
         <If Condition="&ShogunyanMedals; &gt; 0 and not HasAtLeast(15177,&ShogunyanMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &ShogunyanMedals; Legendary Shogunyan Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &ShogunyanMedals; Legendary Shogunyan Medal(s)..." />
 
             <!-- Farm Legendary Shogunyan Medals in Lower La Noscea. -->
 
             <If Condition="&ShogunyanLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in Lower La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in Lower La Noscea..." />
                 <If Condition="not IsOnMap(135)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(10)">
                         <TeleportTo Name="Moraby Drydocks" AetheryteId="10" />
@@ -2216,7 +2216,7 @@
                 <While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
                     <RunCode Name="SummonShogunyan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2243,7 +2243,7 @@
             <!-- Farm Legendary Shogunyan Medals in East Shroud. -->
 
             <If Condition="&ShogunyanShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in East Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in East Shroud..." />
                 <If Condition="not IsOnMap(152)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(4)">
                         <TeleportTo Name="The Hawthorne Hut" AetheryteId="4" />
@@ -2255,7 +2255,7 @@
                 <While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
                     <RunCode Name="SummonShogunyan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2293,7 +2293,7 @@
             <!-- Farm Legendary Shogunyan Medals in Central Thanalan. -->
 
             <If Condition="&ShogunyanThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in Central Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Shogunyan Medal(s) in Central Thanalan..." />
                 <If Condition="not IsOnMap(141)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(53)">
                         <TeleportTo Name="Black Brush Station" AetheryteId="53" />
@@ -2305,7 +2305,7 @@
                 <While Condition="not HasAtLeast(15177,&ShogunyanMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Shogunyan is summoned..." />
                     <RunCode Name="SummonShogunyan" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2335,16 +2335,16 @@
         <!-- Legendary USApyon Medals -->
 
         <If Condition="&USApyonMedals; &gt; 0 and HasAtLeast(15180,&USApyonMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &USApyonMedals; Legendary USApyon Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &USApyonMedals; Legendary USApyon Medal(s)!" />
         </If>
 
         <If Condition="&USApyonMedals; &gt; 0 and not HasAtLeast(15180,&USApyonMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &USApyonMedals; Legendary USApyon Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &USApyonMedals; Legendary USApyon Medal(s)..." />
 
             <!-- Farm Legendary USApyon Medals in Middle La Noscea. -->
 
             <If Condition="&USApyonMiddleLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary USApyon Medal(s) in Middle La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary USApyon Medal(s) in Middle La Noscea..." />
                 <If Condition="not IsOnMap(134)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(52)">
                         <TeleportTo Name="Summerford Farms" AetheryteId="52" />
@@ -2356,7 +2356,7 @@
                 <While Condition="not HasAtLeast(15180,&USApyonMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
                     <RunCode Name="SummonUSApyon" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2387,7 +2387,7 @@
             <!-- Farm Legendary USApyon Medals in Outer La Noscea. -->
 
             <If Condition="&USApyonOuterLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary USApyon Medal(s) in Outer La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary USApyon Medal(s) in Outer La Noscea..." />
                 <If Condition="not IsOnMap(180)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(16)">
                         <TeleportTo Name="Camp Overlook" AetheryteId="16" />
@@ -2399,7 +2399,7 @@
                 <While Condition="not HasAtLeast(15180,&USApyonMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
                     <RunCode Name="SummonUSApyon" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2427,7 +2427,7 @@
             <!-- Farm Legendary USApyon Medals in Western Thanalan. -->
 
             <If Condition="&USApyonThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary USApyon Medal(s) in Western Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary USApyon Medal(s) in Western Thanalan..." />
                 <If Condition="not IsOnMap(140)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(17)">
                         <TeleportTo Name="Horizon" AetheryteId="17" />
@@ -2439,7 +2439,7 @@
                 <While Condition="not HasAtLeast(15180,&USApyonMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if USApyon is summoned..." />
                     <RunCode Name="SummonUSApyon" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2473,16 +2473,16 @@
         <!-- Legendary Venoct Medals -->
 
         <If Condition="&VenoctMedals; &gt; 0 and HasAtLeast(15176,&VenoctMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &VenoctMedals; Legendary Venoct Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &VenoctMedals; Legendary Venoct Medal(s)!" />
         </If>
 
         <If Condition="&VenoctMedals; &gt; 0 and not HasAtLeast(15176,&VenoctMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &VenoctMedals; Legendary Venoct Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &VenoctMedals; Legendary Venoct Medal(s)..." />
 
             <!-- Farm Legendary Venoct Medals in Middle La Noscea. -->
 
             <If Condition="&VenoctLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Venoct Medal(s) in Middle La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Venoct Medal(s) in Middle La Noscea..." />
                 <If Condition="not IsOnMap(134)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(52)">
                         <TeleportTo Name="Summerford Farms" AetheryteId="52" />
@@ -2494,7 +2494,7 @@
                 <While Condition="not HasAtLeast(15176,&VenoctMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
                     <RunCode Name="SummonVenoct" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2525,7 +2525,7 @@
             <!-- Farm Legendary Venoct Medals in Central Shroud. -->
 
             <If Condition="&VenoctShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Venoct Medal(s) in Central Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Venoct Medal(s) in Central Shroud..." />
                 <If Condition="not IsOnMap(148)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(3)">
                         <TeleportTo Name="Bentbranch Meadows" AetheryteId="3" />
@@ -2537,7 +2537,7 @@
                 <While Condition="not HasAtLeast(15176,&VenoctMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
                     <RunCode Name="SummonVenoct" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2576,7 +2576,7 @@
             <!-- Farm Legendary Venoct Medals in Western Thanalan. -->
 
             <If Condition="&VenoctThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Venoct Medal(s) in Western Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Venoct Medal(s) in Western Thanalan..." />
                 <If Condition="not IsOnMap(140)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(17)">
                         <TeleportTo Name="Horizon" AetheryteId="17" />
@@ -2588,7 +2588,7 @@
                 <While Condition="not HasAtLeast(15176,&VenoctMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Venoct is summoned..." />
                     <RunCode Name="SummonVenoct" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2622,16 +2622,16 @@
         <!-- Legendary Whisper Medals -->
 
         <If Condition="&WhisperMedals; &gt; 0 and HasAtLeast(15170,&WhisperMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've already obtained &WhisperMedals; Legendary Whisper Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've already obtained &WhisperMedals; Legendary Whisper Medal(s)!" />
         </If>
 
         <If Condition="&WhisperMedals; &gt; 0 and not HasAtLeast(15170,&WhisperMedals;)">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming &WhisperMedals; Legendary Whisper Medal(s)..." />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming &WhisperMedals; Legendary Whisper Medal(s)..." />
 
             <!-- Farm Legendary Whisper Medals in Upper La Noscea. -->
 
             <If Condition="&WhisperLaNoscea; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Whisper Medal(s) in Upper La Noscea..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Whisper Medal(s) in Upper La Noscea..." />
                 <If Condition="not IsOnSubMap(239)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(15)">
                         <TeleportTo Name="Camp Bronze Lake" AetheryteId="15" />
@@ -2643,7 +2643,7 @@
                 <While Condition="not HasAtLeast(15170,&WhisperMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
                     <RunCode Name="SummonWhisper" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2673,7 +2673,7 @@
             <!-- Farm Legendary Whisper Medals in South Shroud. -->
 
             <If Condition="&WhisperShroud; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Whisper Medal(s) in South Shroud..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Whisper Medal(s) in South Shroud..." />
                 <If Condition="not IsOnMap(153)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(5)">
                         <TeleportTo Name="Quarrymill" AetheryteId="5" />
@@ -2690,7 +2690,7 @@
                 <While Condition="not HasAtLeast(15170,&WhisperMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
                     <RunCode Name="SummonWhisper" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2724,7 +2724,7 @@
             <!-- Farm Legendary Whisper Medals in Southern Thanalan. -->
 
             <If Condition="&WhisperThanalan; == 1">
-                <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Farming Legendary Whisper Medal(s) in Southern Thanalan..." />
+                <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Farming Legendary Whisper Medal(s) in Southern Thanalan..." />
                 <If Condition="not IsOnMap(146)">
                     <If Condition="Managers.WorldManager.HasAetheryteId(19)">
                         <TeleportTo Name="Little Ala Mhigo" AetheryteId="19" />
@@ -2741,7 +2741,7 @@
                 <While Condition="not HasAtLeast(15170,&WhisperMedals;)">
                     <Dismount/>
                     <WaitTimer WaitTime="3" />
-                    <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
+                    <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Checking if Whisper is summoned..." />
                     <RunCode Name="SummonWhisper" />
                     <WaitTimer WaitTime="3" />
                     <Fate MinLevel="1" MaxLevel="50">
@@ -2786,50 +2786,50 @@
         </If>
 
         <If Condition="HasAtLeast(15167,&Medals;) and &Medals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &Medals; Yo-Kai Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &Medals; Yo-Kai Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15171,&BlizzariaMedals;) and &BlizzariaMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &BlizzariaMedals; Legendary Blizzaria Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &BlizzariaMedals; Legendary Blizzaria Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15178,&HovernyanMedals;) and &HovernyanMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &HovernyanMedals; Legendary Hovernyan Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &HovernyanMedals; Legendary Hovernyan Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15168,&JibanyanMedals;) and &JibanyanMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &JibanyanMedals; Legendary Jibanyan Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &JibanyanMedals; Legendary Jibanyan Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15173,&KomajiroMedals;) and &KomajiroMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &KomajiroMedals; Legendary Komajiro Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &KomajiroMedals; Legendary Komajiro Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15169,&KomasanMedals;) and &KomasanMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &KomasanMedals; Legendary Komasan Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &KomasanMedals; Legendary Komasan Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15172,&KyubiMedals;) and &KyubiMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &KyubiMedals; Legendary Kyubi Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &KyubiMedals; Legendary Kyubi Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15174,&ManjimuttMedals;) and &ManjimuttMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &ManjimuttMedals; Legendary Manjimutt Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &ManjimuttMedals; Legendary Manjimutt Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15175,&NokoMedals;) and &NokoMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &NokoMedals; Legendary Noko Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &NokoMedals; Legendary Noko Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15179,&RobonyanFtypeMedals;) and &RobonyanFtypeMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &RobonyanFtypeMedals; Legendary Robonyan F-type Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &RobonyanFtypeMedals; Legendary Robonyan F-type Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15177,&ShogunyanMedals;) and &ShogunyanMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &ShogunyanMedals; Legendary Shogunyan Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &ShogunyanMedals; Legendary Shogunyan Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15180,&USApyonMedals;) and &USApyonMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &USApyonMedals; Legendary USApyon Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &USApyonMedals; Legendary USApyon Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15176,&VenoctMedals;) and &VenoctMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &VenoctMedals; Legendary Venoct Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &VenoctMedals; Legendary Venoct Medal(s)!" />
         </If>
         <If Condition="HasAtLeast(15170,&WhisperMedals;) and &WhisperMedals; != 0">
-            <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="You've obtained &WhisperMedals; Legendary Whisper Medal(s)!" />
+            <Log Color="&LogColor;" Name="Yo-kai Watch" Message="You've obtained &WhisperMedals; Legendary Whisper Medal(s)!" />
         </If>
 
-        <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="If you need more Medals, please adjust the quantity in the user configuration within the profile!" />
-        <ExLog Color="&ExLog;" Name="Yo-kai Watch" Message="Stopping the bot. Nothing left for me to to!" />
+        <Log Color="&LogColor;" Name="Yo-kai Watch" Message="If you need more Medals, please adjust the quantity in the user configuration within the profile!" />
+        <Log Color="&LogColor;" Name="Yo-kai Watch" Message="Stopping the bot. Nothing left for me to to!" />
 
     </Order>
     <GrindAreas>
