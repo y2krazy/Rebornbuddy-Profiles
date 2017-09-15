@@ -17,6 +17,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using TreeSharp;
 using Action = TreeSharp.Action;
+#if RB_CN
+    using ActionManager = ff14bot.Managers.Actionmanager;
+#endif
 
 namespace ff14bot.NeoProfiles
 {

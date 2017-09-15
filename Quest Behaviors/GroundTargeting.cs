@@ -17,6 +17,9 @@ using ff14bot.NeoProfiles;
 using ff14bot.RemoteWindows;
 using TreeSharp;
 using Action = TreeSharp.Action;
+#if RB_CN
+    using ActionManager = ff14bot.Managers.Actionmanager;
+#endif
 
 namespace ff14bot.NeoProfiles
 {

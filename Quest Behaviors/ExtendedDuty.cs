@@ -18,6 +18,9 @@ using ff14bot.Objects;
 using ff14bot.RemoteWindows;
 using TreeSharp;
 using Action = TreeSharp.Action;
+#if RB_CN
+    using ActionManager = ff14bot.Managers.Actionmanager;
+#endif
 
 namespace ff14bot.NeoProfiles.Tags
 {	
@@ -103,7 +106,7 @@ namespace ff14bot.NeoProfiles.Tags
 							// new Action(r =>
 							// {
 								// Logging.Write("[ExtendedDuty] Using Hide on me!");
-								// ff14bot.Managers.ActionManager.DoAction(2245, Core.Me);
+								// ActionManager.DoAction(2245, Core.Me);
 							// })
 						// ),
 						// CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(3165).Location, 3)
@@ -400,7 +403,7 @@ namespace ff14bot.NeoProfiles.Tags
 									new Action(r =>
 									{
 										Logging.Write("[ExtendedDuty] Using Physick on Tonberry Wanderer!");
-										ff14bot.Managers.ActionManager.DoAction(190, GameObjectManager.GetObjectByNPCId(1650));
+										ActionManager.DoAction(190, GameObjectManager.GetObjectByNPCId(1650));
 									})
 								),
 								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(1650).Location, 3)
@@ -597,7 +600,7 @@ namespace ff14bot.NeoProfiles.Tags
 									new Action(r =>
 									{
 										Logging.Write("[ExtendedDuty] Using spell 3594 on NPC 3861!");
-										ff14bot.Managers.ActionManager.DoAction(3594, GameObjectManager.GetObjectByNPCId(3861));
+										ActionManager.DoAction(3594, GameObjectManager.GetObjectByNPCId(3861));
 									})
 								),
 								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(3861).Location, 3)
@@ -753,14 +756,14 @@ namespace ff14bot.NeoProfiles.Tags
 									new Action(r =>
 									{
 										Logging.Write("[ExtendedDuty] Using Nocturnal Sect on me!");
-										ff14bot.Managers.ActionManager.DoAction(3605, Core.Me);
+										ActionManager.DoAction(3605, Core.Me);
 									})
 								),
 								new Decorator(ret => Core.Me.Location.Distance(GameObjectManager.GetObjectByNPCId(6049).Location) <= 3,
 									new Action(r =>
 									{
 										Logging.Write("[ExtendedDuty] Using Aspected Benefic on Geomantic Bond!");
-										ff14bot.Managers.ActionManager.DoAction(3595, GameObjectManager.GetObjectByNPCId(6049));
+										ActionManager.DoAction(3595, GameObjectManager.GetObjectByNPCId(6049));
 										Thread.Sleep(10000);
 									})
 								),
