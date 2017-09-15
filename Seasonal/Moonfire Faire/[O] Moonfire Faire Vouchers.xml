@@ -24,10 +24,10 @@
 
   <!ENTITY Vouchers "0"> <!-- Moonfire Faire Vouchers to obtain before stopping. -->
 
-  <!-- ExLog Colors -->
+  <!-- Log Colors -->
 
-  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
-  <!ENTITY ExLogAck "#FF0000"> <!-- Warnings -->
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
+  <!ENTITY LogColorAck "#FF0000"> <!-- Warnings -->
 ]>
 <!-- End User Configuration -->
 <Profile>
@@ -37,18 +37,18 @@
 	<Order>
 
         <If Condition="&Vouchers; == 0">
-            <ExLog Color="&ExLogAck;" Name="Moonfire Faire" Message="You have not selected anything to farm! Derp!" />
+            <Log Color="&LogColorAck;" Name="Moonfire Faire" Message="You have not selected anything to farm! Derp!" />
             <StopBot/>
         </If>
 
         <!-- Moonfire Faire Vouchers -->
 
         <If Condition="&Vouchers; == 1 and HasAtLeast(20304,&Vouchers;)">
-            <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="You've already obtained &Vouchers; Moonfire Faire Voucher!" />
+            <Log Color="&LogColor;" Name="Moonfire Faire" Message="You've already obtained &Vouchers; Moonfire Faire Voucher!" />
         </If>
 
         <If Condition="&Vouchers; &gt; 1 and HasAtLeast(20304,&Vouchers;)">
-            <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="You've already obtained &Vouchers; Moonfire Faire Vouchers!" />
+            <Log Color="&LogColor;" Name="Moonfire Faire" Message="You've already obtained &Vouchers; Moonfire Faire Vouchers!" />
         </If>
 
         <While Condition="&Vouchers; &gt; 0 and not HasAtLeast(20304,&Vouchers;)">
@@ -56,7 +56,7 @@
 			<!-- These Fireworks Won't Light Themselves -->
 
 			<If Condition="not HasQuest(68493)">
-				<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Picking up the These Fireworks Won't Light Themselves quest!"/>
+				<Log Color="&LogColor;" Name="Moonfire Faire" Message="Picking up the These Fireworks Won't Light Themselves quest!"/>
 				<GetTo ZoneId="137" XYZ="768.3526, 11.07654, 474.5328" /> <!-- P'obyano -->
 				<If Condition="IsQuestAcceptQualified(68493)">
 					<RunCode Name="Pickup68493" />
@@ -64,7 +64,7 @@
 			</If>
 			<If Condition="HasQuest(68493)">
 				<If Condition="GetQuestStep(68493) == 1">
-					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Using Firework Mortars..."/>
+					<Log Color="&LogColor;" Name="Moonfire Faire" Message="Using Firework Mortars..."/>
 					<GetTo ZoneId="137" XYZ="631.7997, 9.323181, 346.7001" /> <!-- Firework Mortar -->
 					<UseItem NpcIds="2009015,2009016,2009017,2009018,2009019,2009020" ItemId="2002395" QuestId="68493" StepId="1">
 						<HotSpots>
@@ -78,7 +78,7 @@
 					</UseItem>
 				</If>
 				<If Condition="GetQuestStep(68493) == 255">
-					<ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Turning in the These Fireworks Won't Light Themselves quest!" />
+					<Log Color="&LogColor;" Name="Moonfire Faire" Message="Turning in the These Fireworks Won't Light Themselves quest!" />
 
 					<!-- Rewards
 
@@ -94,15 +94,15 @@
 		</While>
 
         <If Condition="HasAtLeast(20304,&Vouchers;) and &Vouchers; == 1">
-            <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="You've obtained &Vouchers; Moonfire Faire Voucher!" />
+            <Log Color="&LogColor;" Name="Moonfire Faire" Message="You've obtained &Vouchers; Moonfire Faire Voucher!" />
         </If>
 
         <If Condition="HasAtLeast(20304,&Vouchers;) and &Vouchers; &gt; 1">
-            <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="You've obtained &Vouchers; Moonfire Faire Vouchers!" />
+            <Log Color="&LogColor;" Name="Moonfire Faire" Message="You've obtained &Vouchers; Moonfire Faire Vouchers!" />
         </If>
 
-        <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="If you need more Vouchers, please adjust the quantity in the user configuration within the profile!" />
-        <ExLog Color="&ExLog;" Name="Moonfire Faire" Message="Stopping the bot. Nothing left for me to to!" />
+        <Log Color="&LogColor;" Name="Moonfire Faire" Message="If you need more Vouchers, please adjust the quantity in the user configuration within the profile!" />
+        <Log Color="&LogColor;" Name="Moonfire Faire" Message="Stopping the bot. Nothing left for me to to!" />
 
 	</Order>
 	<GrindAreas>

@@ -23,10 +23,10 @@
   <!ENTITY Narumi "0"> <!-- Give the spotlight to Narumi. -->
   <!ENTITY Ulala "0"> <!-- Give the spotlight to Ulala. -->
 
-  <!-- ExLog Colors -->
+  <!-- Log Colors -->
 
-  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
-  <!ENTITY ExLogAck "#FF0000"> <!-- Warnings -->
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
+  <!ENTITY LogColorAck "#FF0000"> <!-- Warnings -->
 ]>
 <!-- End User Configuration -->
 
@@ -36,13 +36,13 @@
 	<KillRadius>90</KillRadius>
 	<Order>
 
-		<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Checking for completed quests..."/>
+		<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Checking for completed quests..."/>
 
 		<!-- Birdwatching Gone Wrong -->
 
 		<If Condition="not IsQuestCompleted(67935)">
 			<If Condition="not HasQuest(67935)">
-				<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Picking up the Birdwatching Gone Wrong quest!"/>
+				<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Picking up the Birdwatching Gone Wrong quest!"/>
 				<GetTo ZoneId="130" XYZ="-99.99243, 4, -106.157"/> <!-- Mythril Eye Reporter -->
 				<If Condition="IsQuestAcceptQualified(67935)">
 					<PickupQuestPlus NpcId="1018403" QuestId="67935" XYZ="-99.99243, 4, -106.157"/>
@@ -50,12 +50,12 @@
 			</If>
 			<If Condition="HasQuest(67935)">
 				<If Condition="GetQuestStep(67935) == 1">
-					<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Talking to Royal Seneschal..."/>
+					<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Talking to Royal Seneschal..."/>
 					<GetTo ZoneId="130" XYZ="-38.68164, 4, -144.6098"/> <!-- Royal Seneschal -->
 					<TalkTo NpcId="1018620" XYZ="-38.68164, 4, -144.6098" QuestId="67935" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(67935) == 255">
-					<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Turning in the Birdwatching Gone Wrong quest!"/>
+					<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Turning in the Birdwatching Gone Wrong quest!"/>
 					<GetTo ZoneId="130" XYZ="-21.22534, 10, -47.68445"/> <!-- Royal Seneschal -->
 					<TurnIn QuestId="67935" NpcId="1018621" XYZ="-21.22534, 10, -47.68445"/>
 				</If>
@@ -66,7 +66,7 @@
 
 		<If Condition="not IsQuestCompleted(67936)">
 			<If Condition="not HasQuest(67936)">
-				<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Picking up The Disappearing Act quest!"/>
+				<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Picking up The Disappearing Act quest!"/>
 				<GetTo ZoneId="130" XYZ="-21.22534, 10, -47.68445"/> <!-- Royal Seneschal -->
 				<If Condition="IsQuestAcceptQualified(67936)">
 					<PickupQuest NpcId="1018621" QuestId="67936" XYZ="-21.22534, 10, -47.68445"/>
@@ -75,33 +75,33 @@
 			<If Condition="HasQuest(67936)">
 				<If Condition="GetQuestStep(67936) == 1">
 					<If Condition="not IsTodoChecked(67936, 1, 0)">
-						<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Talking to Ulala..."/>
+						<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Talking to Ulala..."/>
 						<GetTo ZoneId="129" XYZ="-284.8401, 16, 48.78308"/> <!-- Ulala -->
 						<TalkTo NpcId="1018628" XYZ="-284.8401, 16, 48.78308" QuestId="67936" StepId="1"/>
 					</If>
 					<If Condition="not IsTodoChecked(67936, 1, 1)">
-						<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Talking to Narumi..."/>
+						<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Talking to Narumi..."/>
 						<GetTo ZoneId="140" XYZ="55.22229, 45.14525, -242.2675"/> <!-- Narumi -->
 						<TalkTo NpcId="1018629" XYZ="55.22229, 45.14525, -242.2675" QuestId="67936" StepId="1"/>
 					</If>
 					<If Condition="not IsTodoChecked(67936, 1, 2)">
-						<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Talking to Masha..."/>
+						<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Talking to Masha..."/>
 						<GetTo ZoneId="133" XYZ="80.97961, 8.000001, -78.53821"/> <!-- Masha -->
 						<TalkTo NpcId="1018630" XYZ="80.97961, 8.000001, -78.53821" QuestId="67936" StepId="1"/>
 					</If>
 				</If>
 				<If Condition="GetQuestStep(67936) == 2">
-					<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Talking to Royal Seneschal..."/>
+					<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Talking to Royal Seneschal..."/>
 					<GetTo ZoneId="130" XYZ="-21.22534, 10, -47.68445"/> <!-- Royal Seneschal -->
 					<TalkTo NpcId="1018621" XYZ="-21.22534, 10, -47.68445" QuestId="67936" StepId="2"/>
 				</If>
 				<If Condition="GetQuestStep(67936) == 3">
-					<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Talking to Redolent Rose..."/>
+					<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Talking to Redolent Rose..."/>
 					<GetTo ZoneId="131" XYZ="157.3662, 7.792007, 98.92419"/> <!-- Redolent Rose -->
 					<TalkTo NpcId="1003818" XYZ="157.3662, 7.792007, 98.92419" QuestId="67936" StepId="3"/>
 				</If>
 				<If Condition="GetQuestStep(67936) == 255">
-					<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Turning in The Disappearing Act quest!"/>
+					<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Turning in The Disappearing Act quest!"/>
 					<GetTo ZoneId="130" XYZ="-21.22534, 10, -47.68445"/> <!-- Royal Seneschal -->
 					<TurnIn QuestId="67936" NpcId="1018621" XYZ="-21.22534, 10, -47.68445"/>
 				</If>
@@ -114,7 +114,7 @@
 
 			<If Condition="not IsQuestCompleted(67944)">
 				<If Condition="not HasQuest(67944)">
-					<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Picking up the Idols Give Back quest!"/>
+					<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Picking up the Idols Give Back quest!"/>
 					<GetTo ZoneId="130" XYZ="-21.22534, 10, -47.68445"/> <!-- Royal Seneschal -->
 					<If Condition="IsQuestAcceptQualified(67944)">
 						<PickupQuestPlus NpcId="1018621" QuestId="67944" XYZ="-21.22534, 10, -47.68445"/>
@@ -122,30 +122,30 @@
 				</If>
 				<If Condition="HasQuest(67944)">
 					<If Condition="GetQuestStep(67944) == 1">
-						<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Talking to Royal Seneschal..."/>
+						<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Talking to Royal Seneschal..."/>
 						<GetTo ZoneId="130" XYZ="-31.17426, 3.999999, -149.7368"/> <!-- Royal Seneschal -->
 						<TalkTo NpcId="1018641" XYZ="-31.17426, 3.999999, -149.7368" QuestId="67944" StepId="1"/>
 					</If>
 					<If Condition="GetQuestStep(67944) == 255">
-						<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Turning in the Idols Give Back quest!"/>
+						<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Turning in the Idols Give Back quest!"/>
 						<GetTo ZoneId="130" XYZ="-29.16003, 8, -104.9058"/> <!-- Royal Seneschal -->
 						<TurnIn QuestId="67944" NpcId="1018402" XYZ="-29.16003, 8, -104.9058"/>
 					</If>
 				</If>
 			</If>
 
-			<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="You've completed the Little Ladies' Day seasonal event quests!"/>
+			<Log Color="&LogColor;" Name="Little Ladies' Day" Message="You've completed the Little Ladies' Day seasonal event quests!"/>
 			<StopBot/>
 
 		</If>
 
 		<If Condition="&Masha; == 0 and &Narumi; == 0 and &Ulala; == 0">
-			<ExLog Color="&ExLogAck;" Name="Little Ladies' Day" Message="Please choose a NPC to cast your vote with!"/>
+			<Log Color="&LogColorAck;" Name="Little Ladies' Day" Message="Please choose a NPC to cast your vote with!"/>
 			<StopBot/>
 		</If>
 
 		<If Condition="(&Masha; != 0 and &Narumi; != 0 and &Ulala; == 0) or (&Masha; != 0 and &Narumi; == 0 and &Ulala; != 0) or (&Masha; == 0 and &Narumi; != 0 and &Ulala; != 0) or (&Masha; != 0 and &Narumi; != 0 and &Ulala; != 0)">
-			<ExLog Color="&ExLogAck;" Name="Little Ladies' Day" Message="Please choose only 1 NPC to cast your vote with!"/>
+			<Log Color="&LogColorAck;" Name="Little Ladies' Day" Message="Please choose only 1 NPC to cast your vote with!"/>
 			<StopBot/>
 		</If>
 
@@ -155,7 +155,7 @@
 
 			<If Condition="not IsQuestCompleted(67942)">
 				<If Condition="not HasQuest(67942)">
-					<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Picking up the Masha's Grand Performance quest!"/>
+					<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Picking up the Masha's Grand Performance quest!"/>
 					<GetTo ZoneId="130" XYZ="-3.92157, 10, -55.13086"/> <!-- Masha Mhakaracca -->
 					<If Condition="IsQuestAcceptQualified(67942)">
 						<PickupQuestPlus NpcId="1018640" QuestId="67942" XYZ="-3.92157, 10, -55.13086"/>
@@ -163,7 +163,7 @@
 				</If>
 				<If Condition="HasQuest(67942)">
 					<If Condition="GetQuestStep(67942) == 255">
-						<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Turning in the Masha's Grand Performance quest!"/>
+						<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Turning in the Masha's Grand Performance quest!"/>
 						<GetTo ZoneId="130" XYZ="-21.22534, 10, -47.68445"/> <!-- Royal Seneschal -->
 						<TurnIn QuestId="67942" NpcId="1018621" XYZ="-21.22534, 10, -47.68445"/>
 					</If>
@@ -178,7 +178,7 @@
 
 			<If Condition="not IsQuestCompleted(67943)">
 				<If Condition="not HasQuest(67943)">
-					<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Picking up the Narumi's Grand Performance quest!"/>
+					<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Picking up the Narumi's Grand Performance quest!"/>
 					<GetTo ZoneId="130" XYZ="-19.48578, 10, -53.97119"/> <!-- Narumi -->
 					<If Condition="IsQuestAcceptQualified(67943)">
 						<PickupQuestPlus NpcId="1018639" QuestId="67943" XYZ="-19.48578, 10, -53.97119"/>
@@ -186,7 +186,7 @@
 				</If>
 				<If Condition="HasQuest(67943)">
 					<If Condition="GetQuestStep(67943) == 255">
-						<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Turning in the Narumi's Grand Performance quest!"/>
+						<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Turning in the Narumi's Grand Performance quest!"/>
 						<GetTo ZoneId="130" XYZ="-21.22534, 10, -47.68445"/> <!-- Royal Seneschal -->
 						<TurnIn QuestId="67943" NpcId="1018621" XYZ="-21.22534, 10, -47.68445"/>
 					</If>
@@ -201,7 +201,7 @@
 
 			<If Condition="not IsQuestCompleted(67937)">
 				<If Condition="not HasQuest(67937)">
-					<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Picking up the Ulala's Grand Performance quest!"/>
+					<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Picking up the Ulala's Grand Performance quest!"/>
 					<GetTo ZoneId="130" XYZ="-10.81866, 10, -56.50421"/> <!-- Ulala -->
 					<If Condition="IsQuestAcceptQualified(67937)">
 						<PickupQuestPlus NpcId="1018638" QuestId="67937" XYZ="-10.81866, 10, -56.50421"/>
@@ -209,7 +209,7 @@
 				</If>
 				<If Condition="HasQuest(67937)">
 					<If Condition="GetQuestStep(67937) == 255">
-						<ExLog Color="&ExLog;" Name="Little Ladies' Day" Message="Turning in the Ulala's Grand Performance quest!"/>
+						<Log Color="&LogColor;" Name="Little Ladies' Day" Message="Turning in the Ulala's Grand Performance quest!"/>
 						<GetTo ZoneId="130" XYZ="-21.22534, 10, -47.68445"/> <!-- Royal Seneschal -->
 						<TurnIn QuestId="67937" NpcId="1018621" XYZ="-21.22534, 10, -47.68445"/>
 					</If>

@@ -19,10 +19,10 @@
 <!-- User Configuration -->
 <!DOCTYPE Profile [
 
-  <!-- ExLog Colors -->
+  <!-- Log Colors -->
 
-  <!ENTITY ExLog "#66FF66"> <!-- Normal -->
-  <!ENTITY ExLogAck "#FF0000"> <!-- Warnings -->
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
+  <!ENTITY LogColorAck "#FF0000"> <!-- Warnings -->
 ]>
 <!-- End User Configuration -->
 <Profile>
@@ -31,13 +31,13 @@
 	<KillRadius>90</KillRadius>
 	<Order>
 
-		<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Checking for completed quests..." />
+		<Log Color="&LogColor;" Name="Hatching-tide" Message="Checking for completed quests..." />
 
 		<!-- When Eggs Fly -->
 
 		<If Condition="not IsQuestCompleted(67957)">
 			<If Condition="not HasQuest(67957)">
-				<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Picking up the When Eggs Fly quest!" />
+				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up the When Eggs Fly quest!" />
 				<GetTo ZoneId="133" XYZ="-49.97333, 6.5, -89.95197" /> <!-- Jihli Aliapoh -->
 				<If Condition="IsQuestAcceptQualified(67957)">
 					<PickupQuest NpcId="1019591" QuestId="67957" XYZ="-49.97333, 6.5, -89.95197" />
@@ -45,7 +45,7 @@
 			</If>
 			<If Condition="HasQuest(67957)">
 				<If Condition="GetQuestStep(67957) == 255">
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Turning in the When Eggs Fly quest!" />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in the When Eggs Fly quest!" />
 					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
 					<TurnIn QuestId="67957" NpcId="1019592" XYZ="370.7484, -6.244256, -93.82776" />
 				</If>
@@ -56,7 +56,7 @@
 
 		<If Condition="not IsQuestCompleted(67958)">
 			<If Condition="not HasQuest(67958)">
-				<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Picking up Shock-full of Eggcitement quest!" />
+				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up Shock-full of Eggcitement quest!" />
 				<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
 				<If Condition="IsQuestAcceptQualified(67958)">
 					<Dismount/>
@@ -65,54 +65,54 @@
 			</If>
 			<If Condition="HasQuest(67958)">
 				<If Condition="GetQuestStep(67958) == 1">
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Royal Seneschal..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Royal Seneschal..." />
 					<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
 					<TalkTo NpcId="1019593" XYZ="372.8846, -6.640748, -101.6404" QuestId="67958" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(67958) == 2">
 					<If Condition="Actionmanager.CanMount == 0">
-						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
 						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
 						<Dismount/>
 						<RunCode Name="Shockfull_of_Eggcitement" />
 					</If>
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Nonotta..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Nonotta..." />
 					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
 					<RunCode Name="Shockfull_of_Eggcitement2" />
 					<WaitWhile Condition="GetQuestStep(67958) == 2" />
 				</If>
 				<If Condition="GetQuestStep(67958) == 3">
 					<If Condition="Actionmanager.CanMount == 0">
-						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
 						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
 						<Dismount/>
 						<RunCode Name="Shockfull_of_Eggcitement" />
 					</If>
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Expectant Youth..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Expectant Youth..." />
 					<GetTo ZoneId="154" XYZ="289.8451, -7.425683, -25.74207" /> <!-- Expectant Youth -->
 					<RunCode Name="Shockfull_of_Eggcitement3" />
 					<If Condition="Actionmanager.CanMount == 0">
-						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
 						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
 						<Dismount/>
 						<RunCode Name="Shockfull_of_Eggcitement" />
 					</If>
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Impatient Man..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Impatient Man..." />
 					<GetTo ZoneId="154" XYZ="245.7465, -4.641291, -17.28851" /> <!-- Impatient Man -->
 					<RunCode Name="Shockfull_of_Eggcitement4" />
 					<If Condition="Actionmanager.CanMount == 0">
-						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
 						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
 						<Dismount/>
 						<RunCode Name="Shockfull_of_Eggcitement" />
 					</If>
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Anxious Girl..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Anxious Girl..." />
 					<GetTo ZoneId="154" XYZ="269.9473, -11.21869, 24.18555" /> <!-- Anxious Girl -->
 					<RunCode Name="Shockfull_of_Eggcitement5" />
 					<WaitWhile Condition="GetQuestStep(67958) == 3" />
 				</If>
 				<If Condition="GetQuestStep(67958) == 255">
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Turning in Shock-full of Eggcitement quest!" />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in Shock-full of Eggcitement quest!" />
 					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
 					<TurnIn QuestId="67958" NpcId="1019592" ItemId="2002054" XYZ="370.7484, -6.244256, -93.82776" />
 				</If>
@@ -123,7 +123,7 @@
 
 		<If Condition="not IsQuestCompleted(67959)">
 			<If Condition="not HasQuest(67959)">
-				<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Picking up Eggsistential Crisis quest!" />
+				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up Eggsistential Crisis quest!" />
 				<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
 				<If Condition="IsQuestAcceptQualified(67959)">
 					<PickupQuest NpcId="1019592" QuestId="67959" XYZ="370.7484, -6.244256, -93.82776" />
@@ -131,67 +131,67 @@
 			</If>
 			<If Condition="HasQuest(67959)">
 				<If Condition="GetQuestStep(67959) == 1">
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Jihli Aliapoh..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Jihli Aliapoh..." />
 					<GetTo ZoneId="133" XYZ="-49.97333, 6.5, -89.95197" /> <!-- Jihli Aliapoh -->
 					<TalkTo NpcId="1019591" XYZ="-49.97333, 6.5, -89.95197" QuestId="67959" StepId="1" />
 				</If>
 				<If Condition="GetQuestStep(67959) == 2">
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Soothing Riggy..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Soothing Riggy..." />
 					<GetTo ZoneId="133" XYZ="-247.8828, 2.418674, -216.3577" /> <!-- Riggy -->
 					<EmoteNPC NpcId="1019608" Emote="soothe" XYZ="-247.8828, 2.418674, -216.3577" Radius="10" QuestId="67959" StepId="2"/>
 				</If>
 				<If Condition="GetQuestStep(67959) == 3">
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Nonotta..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Nonotta..." />
 					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
 					<TalkTo NpcId="1019592" XYZ="370.7484, -6.244256, -93.82776" QuestId="67959" StepId="3" />
 				</If>
 				<If Condition="GetQuestStep(67959) == 4">
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
 					<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
 					<TalkTo NpcId="1019593" XYZ="372.8846, -6.640748, -101.6404" QuestId="67959" StepId="4" />
 				</If>
 				<If Condition="GetQuestStep(67959) == 5">
 					<If Condition="Actionmanager.CanMount == 0">
-						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
 						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
 						<Dismount/>
 						<RunCode Name="Eggsistential_Crisis" />
 					</If>
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
 					<GetTo ZoneId="154" XYZ="258.8387, -7.039977, -8.590881" /> <!-- Riggy -->
 					<RunCode Name="Eggsistential_Crisis2" />
 				</If>
 				<If Condition="GetQuestStep(67959) == 6">
 					<If Condition="Actionmanager.CanMount == 0">
-						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
 						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
 						<Dismount/>
 						<RunCode Name="Eggsistential_Crisis" />
 					</If>
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
 					<GetTo ZoneId="154" XYZ="238.9104, -12.48186, 77.98877" /> <!-- Riggy -->
 					<RunCode Name="Eggsistential_Crisis3" />
 				</If>
 				<If Condition="GetQuestStep(67959) == 7">
 					<If Condition="Actionmanager.CanMount == 0">
-						<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
 						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
 						<Dismount/>
 						<RunCode Name="Eggsistential_Crisis" />
 					</If>
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
 					<GetTo ZoneId="154" XYZ="338.4907, -5.823289, 29.52612" /> <!-- Riggy -->
 					<RunCode Name="Eggsistential_Crisis4" />
 				</If>
 				<If Condition="GetQuestStep(67959) == 255">
-					<ExLog Color="&ExLog;" Name="Hatching-tide" Message="Turning in Eggsistential Crisis quest!" />
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in Eggsistential Crisis quest!" />
 					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
 					<TurnIn QuestId="67959" NpcId="1019592" ItemId="2002055" XYZ="370.7484, -6.244256, -93.82776" />
 				</If>
 			</If>
 		</If>
 
-		<ExLog Color="&ExLog;" Name="Hatching-tide" Message="You've completed the Hatching-tide seasonal event quests!"/>
+		<Log Color="&LogColor;" Name="Hatching-tide" Message="You've completed the Hatching-tide seasonal event quests!"/>
 
 	</Order>
 	<CodeChunks>
