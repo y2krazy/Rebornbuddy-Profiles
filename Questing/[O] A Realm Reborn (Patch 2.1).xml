@@ -6,7 +6,7 @@
 # Authors: y2krazy                        #
 #          kagamihiiragi17                #
 ###########################################
-# Version: 2.1.2c                         #
+# Version: 3.0.0                          #
 ###########################################
 # Required Level: 50+                     #
 ###########################################
@@ -18,7 +18,7 @@
 ###########################################
 -->
 <Profile>
-	<Name>[O] A Realm Reborn (Patch 2.1) (v2.1.2c)</Name>
+	<Name>[O] A Realm Reborn (Patch 2.1) (v3.0.0)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -80,11 +80,10 @@
         </If>
 
         <!-- The Price of Principles -->
-
         <If Condition="not IsQuestCompleted(66711)">
             <If Condition="not HasQuest(66711)">
                 <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                 </If>
                 <If Condition="IsOnMap(140)">
                     <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -100,7 +99,7 @@
             <If Condition="HasQuest(66711)">
                 <If Condition="GetQuestStep(66711) == 1">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -131,7 +130,7 @@
                 </If>
                 <If Condition="GetQuestStep(66711) == 255">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -139,6 +138,7 @@
                     <If Condition="IsOnMap(212) and IsOnSubMap(374)">
                         <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
                     </If>
+                    <MoveTo Name="Alphinaud" XYZ="2.487183, 5.215406E-07, 4.592957" />
 
                     <!-- Rewards
 
@@ -152,18 +152,15 @@
 
                     -->
 
-                    <MoveTo Name="Alphinaud" XYZ="2.487183, 5.215406E-07, 4.592957" />
                     <TurnIn QuestId="66711" NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" />
                 </If>
             </If>
         </If>
-
         <!-- Moving On -->
-
         <If Condition="not IsQuestCompleted(66712)">
             <If Condition="not HasQuest(66712)">
                 <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                 </If>
                 <If Condition="IsOnMap(140)">
                     <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -179,7 +176,7 @@
             <If Condition="HasQuest(66712)">
                 <If Condition="GetQuestStep(66712) == 1">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -191,23 +188,15 @@
                     <TalkTo NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" QuestId="66712" StepId="1" />
                 </If>
                 <If Condition="GetQuestStep(66712) == 2">
-                    <If Condition="not IsOnMap(145)">
-                        <GetTo ZoneId="145" XYZ="-512.4742, -16.42, -7.522766" />
-                    </If>
-                    <NoCombatMoveTo Name="Iliud" XYZ="-512.4742, -16.42, -7.522766" />
+                    <GetTo ZoneId="145" XYZ="-512.4742, -16.42, -7.522766" /> <!-- Iliud -->
                     <TalkTo NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" QuestId="66712" StepId="2" />
                 </If>
                 <If Condition="GetQuestStep(66712) == 3">
-                    <If Condition="not IsOnMap(145)">
-                        <GetTo ZoneId="145" XYZ="-480.1252, -17.3008, 7.675232" />
-                    </If>
-                    <NoCombatMoveTo Name="Lichyard Visitor" XYZ="-480.1252, -17.3008, 7.675232" />
+                    <GetTo ZoneId="145" XYZ="-480.1252, -17.3008, 7.675232" /> <!-- Lichyard Visitor -->
                     <TalkTo NpcId="1007740" XYZ="-480.1252, -17.3008, 7.675232" QuestId="66712" StepId="3" />
                 </If>
                 <If Condition="GetQuestStep(66712) == 255">
-                    <If Condition="not IsOnMap(145)">
-                        <GetTo ZoneId="145" XYZ="-512.4742, -16.42, -7.522766" />
-                    </If>
+                    <GetTo ZoneId="145" XYZ="-512.4742, -16.42, -7.522766" /> <!-- Iliud -->
 
                     <!-- Rewards
 
@@ -221,20 +210,14 @@
 
                     -->
 
-                    <NoCombatMoveTo Name="Iliud" XYZ="-512.4742, -16.42, -7.522766" />
                     <TurnIn QuestId="66712" NpcId="1006355" XYZ="-512.4742, -16.42, -7.522766" />
                 </If>
             </If>
         </If>
-
         <!-- Flowers for One -->
-
         <If Condition="not IsQuestCompleted(66713)">
             <If Condition="not HasQuest(66713)">
-                <If Condition="not IsOnMap(145)">
-                    <GetTo ZoneId="145" XYZ="-512.4742, -16.42, -7.522766" />
-                </If>
-                <NoCombatMoveTo Name="Iliud" XYZ="-512.4742, -16.42, -7.522766" />
+                <GetTo ZoneId="145" XYZ="-512.4742, -16.42, -7.522766" /> <!-- Iliud -->
                 <If Condition="IsQuestAcceptQualified(66713)">
                     <PickupQuest NpcId="1006355" QuestId="66713" XYZ="-512.4742, -16.42, -7.522766" />
                 </If>
@@ -242,7 +225,7 @@
             <If Condition="HasQuest(66713)">
                 <If Condition="GetQuestStep(66713) == 1">
                     <If Condition="not IsOnMap(137)">
-                        <GetTo ZoneId="137" XYZ="619.0126, 23.93624, 455.1002" />
+                        <GetTo ZoneId="137" XYZ="619.0126, 23.93624, 455.1002" /> <!-- Gegeruju -->
                     </If>
                     <If Condition="IsOnMap(137) and not (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
                         <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003589" XYZ="20.46234, 34.07887, 222.156" />
@@ -252,7 +235,7 @@
                 </If>
                 <While Condition="GetQuestStep(66713) == 2">
                     <If Condition="not IsOnMap(137)">
-                        <GetTo ZoneId="137" XYZ="-25.86407, 71.75401, -36.78955" />
+                        <GetTo ZoneId="137" XYZ="344.6859, 31.88946, 89.37195" /> <!-- Ferry Skipper -->
                     </If>
                     <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
                         <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
@@ -263,7 +246,7 @@
                 </While>
                 <If Condition="GetQuestStep(66713) == 3">
                     <If Condition="not IsOnMap(137)">
-                        <GetTo ZoneId="137" XYZ="10.60498, 71.47817, -16.61713" />
+                        <GetTo ZoneId="137" XYZ="344.6859, 31.88946, 89.37195" /> <!-- Ferry Skipper -->
                     </If>
                     <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
                         <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
@@ -273,7 +256,7 @@
                 </If>
                 <While Condition="GetQuestStep(66713) == 4">
                     <If Condition="not IsOnMap(137)">
-                        <GetTo ZoneId="137" XYZ="16.13137, 52.52961, 485.0495" />
+                        <GetTo ZoneId="137" XYZ="344.6859, 31.88946, 89.37195" /> <!-- Ferry Skipper -->
                     </If>
                     <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
                         <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
@@ -285,7 +268,7 @@
                 </While>
                 <If Condition="GetQuestStep(66713) == 5">
                     <If Condition="not IsOnMap(137)">
-                        <GetTo ZoneId="137" XYZ="29.12939, 54.01148, 484.9469" />
+                        <GetTo ZoneId="137" XYZ="344.6859, 31.88946, 89.37195" /> <!-- Ferry Skipper -->
                     </If>
                     <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
                         <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
@@ -295,7 +278,7 @@
                 </If>
                 <If Condition="GetQuestStep(66713) == 255">
                     <If Condition="not IsOnMap(137)">
-                        <GetTo ZoneId="137" XYZ="-35.11102, 70.34484, 4.043579" />
+                        <GetTo ZoneId="137" XYZ="344.6859, 31.88946, 89.37195" /> <!-- Ferry Skipper -->
                     </If>
                     <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
                         <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
@@ -305,13 +288,11 @@
                 </If>
             </If>
         </If>
-
         <!-- All Things in Time -->
-
         <If Condition="not IsQuestCompleted(66714)">
             <If Condition="not HasQuest(66714)">
                 <If Condition="not IsOnMap(137)">
-                    <GetTo ZoneId="137" XYZ="-34.53119, 70.3476, 2.761841" />
+                    <GetTo ZoneId="137" XYZ="344.6859, 31.88946, 89.37195" /> <!-- Ferry Skipper -->
                 </If>
                 <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
                     <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
@@ -324,7 +305,7 @@
             <If Condition="HasQuest(66714)">
                 <If Condition="GetQuestStep(66714) == 1">
                     <If Condition="not IsOnMap(139)">
-                        <GetTo ZoneId="139" XYZ="586.0926, -3.052768, 152.8452" />
+                        <GetTo ZoneId="139" XYZ="586.0926, -3.052768, 152.8452" /> <!-- Grinding Area -->
                     </If>
                     <If Condition="IsOnMap(139) and not (IsOnSubMap(177) or IsOnSubMap(178) or IsOnSubMap(239) or IsOnSubMap(240) or IsOnSubMap(241))">
                         <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003586" XYZ="-342.1226, -1.024988, 111.467" />
@@ -334,7 +315,7 @@
                 </If>
                 <If Condition="GetQuestStep(66714) == 2">
                     <If Condition="not IsOnMap(139)">
-                        <GetTo ZoneId="139" XYZ="286.366, -3.158691, 145.6168" />
+                        <GetTo ZoneId="139" XYZ="286.366, -3.158691, 145.6168" /> <!-- Destination -->
                     </If>
                     <If Condition="IsOnMap(139) and not (IsOnSubMap(177) or IsOnSubMap(178) or IsOnSubMap(239) or IsOnSubMap(240) or IsOnSubMap(241))">
                         <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003586" XYZ="-342.1226, -1.024988, 111.467" />
@@ -344,7 +325,7 @@
                 </If>
                 <If Condition="GetQuestStep(66714) == 3">
                     <If Condition="not IsOnMap(139)">
-                        <GetTo ZoneId="139" XYZ="298.4207, -3.128174, 166.9185" />
+                        <GetTo ZoneId="139" XYZ="298.4207, -3.128174, 166.9185" /> <!-- Destination -->
                     </If>
                     <If Condition="IsOnMap(139) and not (IsOnSubMap(177) or IsOnSubMap(178) or IsOnSubMap(239) or IsOnSubMap(240) or IsOnSubMap(241))">
                         <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003586" XYZ="-342.1226, -1.024988, 111.467" />
@@ -354,7 +335,7 @@
                 </If>
                 <If Condition="GetQuestStep(66714) == 4">
                     <If Condition="not IsOnMap(137)">
-                        <GetTo ZoneId="137" XYZ="-34.53119, 70.3476, 2.761841" />
+                        <GetTo ZoneId="137" XYZ="344.6859, 31.88946, 89.37195" /> <!-- Ferry Skipper -->
                     </If>
                     <If Condition="IsOnMap(137) and (IsOnSubMap(167) or IsOnSubMap(205) or IsOnSubMap(206) or IsOnSubMap(209) or IsOnSubMap(210) or IsOnSubMap(211))">
                         <UseTransport Name="Ferry Skipper" InteractDistance="3.0" NpcId="1003588" XYZ="344.6859, 31.88946, 89.37195" />
@@ -364,7 +345,7 @@
                 </If>
                 <If Condition="GetQuestStep(66714) == 255">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -372,6 +353,7 @@
                     <If Condition="IsOnMap(212) and IsOnSubMap(356)">
                         <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
                     </If>
+                    <MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548" />
 
                     <!-- Rewards
 
@@ -385,18 +367,15 @@
 
                     -->
 
-                    <MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548" />
                     <TurnIn QuestId="66714" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
                 </If>
             </If>
         </If>
-
         <!-- The Resolute -->
-
         <If Condition="not IsQuestCompleted(66715)">
             <If Condition="not HasQuest(66715)">
                 <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                 </If>
                 <If Condition="IsOnMap(140)">
                     <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -412,7 +391,7 @@
             <If Condition="HasQuest(66715)">
                 <If Condition="GetQuestStep(66715) == 1">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -424,29 +403,20 @@
                     <TalkTo NpcId="1007723" XYZ="3.341675, 4.768372E-07, 3.860474" QuestId="66715" StepId="1" />
                 </If>
                 <If Condition="GetQuestStep(66715) == 2">
-                    <If Condition="not IsOnMap(131)">
-                        <GetTo ZoneId="131" XYZ="-28.85486, 13.8, 118.6693" />
-                    </If>
-                    <MoveTo Name="Memedesu" XYZ="-28.85486, 13.8, 118.6693" />
+                    <GetTo ZoneId="131" XYZ="-28.85486, 13.8, 118.6693" /> <!-- Memedesu -->
                     <HandOver ItemId="2001074" QuestId="66715" StepId="2" NpcId="1006357" XYZ="-28.85486, 13.8, 118.6693" />
                 </If>
                 <If Condition="GetQuestStep(66715) == 3">
-                    <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="-111.9249, -10.8135, 722.6825" />
-                    </If>
-                    <NoCombatMoveTo Name="Odinel" XYZ="-111.9249, -10.8135, 722.6825" />
+                    <GetTo ZoneId="146" XYZ="-111.9249, -10.8135, 722.6825" /> <!-- Odinel -->
                     <TalkTo NpcId="1006294" XYZ="-111.9249, -10.8135, 722.6825" QuestId="66715" StepId="3" />
                 </If>
                 <If Condition="GetQuestStep(66715) == 4">
-                    <If Condition="not IsOnMap(131)">
-                        <GetTo ZoneId="131" XYZ="-28.85486, 13.8, 118.6693" />
-                    </If>
-                    <MoveTo Name="Memedesu" XYZ="-28.85486, 13.8, 118.6693" />
+                    <GetTo ZoneId="131" XYZ="-28.85486, 13.8, 118.6693" /> <!-- Memedesu -->
                     <HandOver ItemId="2001075" QuestId="66715" StepId="4" NpcId="1006357" XYZ="-28.85486, 13.8, 118.6693" />
                 </If>
                 <If Condition="GetQuestStep(66715) == 5">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -459,7 +429,7 @@
                 </If>
                 <If Condition="GetQuestStep(66715) == 255">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -467,6 +437,7 @@
                     <If Condition="IsOnMap(212) and IsOnSubMap(356)">
                         <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
                     </If>
+                    <MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548" />
 
                     <!-- Rewards
 
@@ -480,18 +451,15 @@
 
                     -->
 
-                    <MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548" />
                     <TurnIn QuestId="66715" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
                 </If>
             </If>
         </If>
-
         <!-- Laying the Foundation -->
-
         <If Condition="not IsQuestCompleted(66716)">
             <If Condition="not HasQuest(66716)">
                 <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                 </If>
                 <If Condition="IsOnMap(140)">
                     <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -506,9 +474,7 @@
             </If>
             <If Condition="HasQuest(66716)">
                 <If Condition="GetQuestStep(66716) == 255">
-                    <If Condition="not IsOnMap(156)">
-                        <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" />
-                    </If>
+                    <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" /> <!-- Slafborn -->
 
                     <!-- Rewards
 
@@ -522,50 +488,35 @@
 
                     -->
 
-                    <NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
                     <TurnIn QuestId="66716" NpcId="1006530" ItemId="2001077" XYZ="21.92719, 20.74698, -682.063" />
                 </If>
             </If>
         </If>
-
         <!-- Better Late than Sever -->
-
         <If Condition="not IsQuestCompleted(66717)">
             <If Condition="not HasQuest(66717)">
-                <If Condition="not IsOnMap(156)">
-                    <GetTo ZoneId="156" XYZ="24.09399, 28.99997, -750.0573" />
-                </If>
-                <NoCombatMoveTo Name="Guolgeim" XYZ="24.09399, 28.99997, -750.0573" />
+                <GetTo ZoneId="156" XYZ="24.09399, 28.99997, -750.0573" /> <!-- Guolgeim -->
                 <If Condition="IsQuestAcceptQualified(66717)">
                     <PickupQuest NpcId="1006544" QuestId="66717" XYZ="24.09399, 28.99997, -750.0573" />
                 </If>
             </If>
             <If Condition="HasQuest(66717)">
                 <If Condition="GetQuestStep(66717) == 1">
-                    <If Condition="not IsOnMap(154)">
-                        <GetTo ZoneId="154" XYZ="-24.94855, -40.87433, 239.2156" />
-                    </If>
-                    <NoCombatMoveTo Name="Wood Wailer" XYZ="-24.94855, -40.87433, 239.2156" />
+                    <GetTo ZoneId="154" XYZ="-24.94855, -40.87433, 239.2156" /> <!-- Wood Wailer -->
                     <TalkTo NpcId="1007741" XYZ="-24.94855, -40.87433, 239.2156" QuestId="66717" StepId="1" />
                 </If>
                 <If Condition="GetQuestStep(66717) == 2">
-                    <If Condition="not IsOnMap(154)">
-                        <GetTo ZoneId="154" XYZ="179.3392, -27.80587, 176.7147" />
-                    </If>
-                    <NoCombatMoveTo Name="Wood Wailer" XYZ="179.3392, -27.80587, 176.7147" />
+                    <GetTo ZoneId="154" XYZ="179.3392, -27.80587, 176.7147" /> <!-- Wood Wailer -->
                     <TalkTo NpcId="1007742" XYZ="179.3392, -27.80587, 176.7147" QuestId="66717" StepId="2" />
                 </If>
                 <If Condition="GetQuestStep(66717) == 3">
-                    <If Condition="not IsOnMap(154)">
-                        <GetTo ZoneId="154" XYZ="-51.95703, -7.130762, -158.0988" />
-                    </If>
                     <While Condition="not IsTodoChecked(66717, 3, 0)">
-                        <NoCombatMoveTo Name="Elezen Coachman" XYZ="-51.95703, -7.130762, -158.0988" />
+                        <GetTo ZoneId="154" XYZ="-51.95703, -7.130762, -158.0988" /> <!-- Elezen Coachman -->
                         <TalkTo NpcId="1007746" XYZ="-51.95703, -7.130762, -158.0988" QuestId="66717" StepId="3" />
                         <TalkTo NpcId="1007747" XYZ="-41.03156, -6.904075, -161.1811" QuestId="66717" StepId="3" />
                     </While>
                     <If Condition="not IsTodoChecked(66717, 3, 1)">
-                        <NoCombatMoveTo Name="Stolen Provisions" XYZ="-26.16925, -7.583801, -147.0513" />
+                        <GetTo ZoneId="154" XYZ="-26.16925, -7.583801, -147.0513" /> <!-- Stolen Provisions -->
                         <UseObject NpcIds="2002844,2002846,2002845" QuestId="66717" StepId="3">
                             <HotSpots>
                                 <HotSpot XYZ="-26.16925, -7.583801, -147.0513" Radius="10" />
@@ -576,16 +527,11 @@
                     </If>
                 </If>
                 <If Condition="GetQuestStep(66717) == 4">
-                    <If Condition="not IsOnMap(154)">
-                        <GetTo ZoneId="154" XYZ="178.851, -28.27971, 185.748" />
-                    </If>
-                    <NoCombatMoveTo Name="Elezen Coachman" XYZ="178.851, -28.27971, 185.748" />
+                    <GetTo ZoneId="154" XYZ="178.851, -28.27971, 185.748" /> <!-- Elezen Coachman -->
                     <TalkTo NpcId="1007748" XYZ="178.851, -28.27971, 185.748" QuestId="66717" StepId="4" />
                 </If>
                 <If Condition="GetQuestStep(66717) == 255">
-                    <If Condition="not IsOnMap(156)">
-                        <GetTo ZoneId="156" XYZ="24.09399, 28.99997, -750.0573" />
-                    </If>
+                    <GetTo ZoneId="156" XYZ="24.09399, 28.99997, -750.0573" /> <!-- Guolgeim -->
 
                     <!-- Rewards
 
@@ -599,39 +545,28 @@
 
                     -->
 
-                    <NoCombatMoveTo Name="Guolgeim" XYZ="24.09399, 28.99997, -750.0573" />
                     <TurnIn QuestId="66717" NpcId="1006544" XYZ="24.09399, 28.99997, -750.0573" />
                 </If>
             </If>
         </If>
-
         <!-- Crate Go Kaboom -->
-
         <If Condition="not IsQuestCompleted(66719)">
             <If Condition="not HasQuest(66719)">
-                <If Condition="not IsOnMap(156)">
-                    <GetTo ZoneId="156" XYZ="54.79517, 25.54827, -698.0544" />
-                </If>
-                <NoCombatMoveTo Name="Sark Malark" XYZ="54.79517, 25.54827, -698.0544" />
+                <GetTo ZoneId="156" XYZ="54.79517, 25.54827, -698.0544" /> <!-- Sark Malark -->
                 <If Condition="IsQuestAcceptQualified(66719)">
                     <PickupQuest NpcId="1006552" QuestId="66719" XYZ="54.79517, 25.54827, -698.0544" />
                 </If>
             </If>
             <If Condition="HasQuest(66719)">
                 <While Condition="GetQuestStep(66719) == 1">
-                    <If Condition="not IsOnMap(156)">
-                        <GetTo ZoneId="156" XYZ="-529.6382, -1.787507, -276.4462" />
-                    </If>
-                    <NoCombatMoveTo Name="Imperial Crate" XYZ="-529.6382, -1.787507, -276.4462" />
+                    <GetTo ZoneId="156" XYZ="-529.6382, -1.787507, -276.4462" /> <!-- Imperial Crate -->
                     <GroundTargeting XYZ="-529.6382, -1.787507, -276.4462" NpcId="2002847" ItemId="2001079" Condition="not IsTodoChecked(66719, 1, 0)" Name="Imperial Crate" />
                     <GroundTargeting XYZ="-484.6262, -3.998581, -283.6899" NpcId="2002848" ItemId="2001079" Condition="not IsTodoChecked(66719, 1, 0)" Name="Imperial Crate" />
                     <MoveTo Name="Sark Malark" XYZ="-473.4733, -3.43301, -252.8515" />
                     <GroundTargeting XYZ="-469.2324, -4.000019, -256.7648" NpcId="2002849" ItemId="2001079" Condition="not IsTodoChecked(66719, 1, 0)" Name="Imperial Crate" />
                 </While>
                 <If Condition="GetQuestStep(66719) == 255">
-                    <If Condition="not IsOnMap(156)">
-                        <GetTo ZoneId="156" XYZ="54.79517, 25.54827, -698.0544" />
-                    </If>
+                    <GetTo ZoneId="156" XYZ="54.79517, 25.54827, -698.0544" /> <!-- Sark Malark -->
 
                     <!-- Rewards
 
@@ -645,30 +580,21 @@
 
                     -->
 
-                    <NoCombatMoveTo Name="Sark Malark" XYZ="54.79517, 25.54827, -698.0544" />
                     <TurnIn QuestId="66719" NpcId="1006552" XYZ="54.79517, 25.54827, -698.0544" />
                 </If>
             </If>
         </If>
-
         <!-- Rock-solid Protection -->
-
         <If Condition="not IsQuestCompleted(66718)">
             <If Condition="not HasQuest(66718)">
-                <If Condition="not IsOnMap(156)">
-                    <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" />
-                </If>
-                <NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
+                <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" /> <!-- Slafborn -->
                 <If Condition="IsQuestAcceptQualified(66718)">
                     <PickupQuest NpcId="1006530" QuestId="66718" XYZ="21.92719, 20.74698, -682.063" />
                 </If>
             </If>
             <If Condition="HasQuest(66718)">
                 <If Condition="GetQuestStep(66718) == 1">
-                    <If Condition="not IsOnMap(146)">
-                        <GetTo ZoneId="146" XYZ="185.748, 13.7212, -443.1983" />
-                    </If>
-                    <NoCombatMoveTo Name="Bibimu" XYZ="185.748, 13.7212, -443.1983" />
+                    <GetTo ZoneId="146" XYZ="185.748, 13.7212, -443.1983" /> <!-- Bibimu -->
                     <TalkTo NpcId="1006220" XYZ="185.748, 13.7212, -443.1983" QuestId="66718" StepId="1" />
                 </If>
                 <If Condition="GetQuestStep(66718) == 2">
@@ -676,9 +602,7 @@
                     <StopBot/>
                 </If>
                 <If Condition="GetQuestStep(66718) == 255">
-                    <If Condition="not IsOnMap(156)">
-                        <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" />
-                    </If>
+                    <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" /> <!-- Slafborn -->
 
                     <!-- Rewards
 
@@ -692,80 +616,52 @@
 
                     -->
 
-                    <NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
                     <TurnIn QuestId="66718" NpcId="1006530" ItemId="2001078" XYZ="21.92719, 20.74698, -682.063" />
                 </If>
             </If>
         </If>
-
         <!-- Welcome to Morbol Country -->
-
         <If Condition="not IsQuestCompleted(67097)">
             <If Condition="not HasQuest(67097)">
-                <If Condition="not IsOnMap(156)">
-                    <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" />
-                </If>
-                <NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
+                <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" /> <!-- Slafborn -->
                 <If Condition="IsQuestAcceptQualified(67097)">
                     <PickupQuest NpcId="1006530" QuestId="67097" XYZ="21.92719, 20.74698, -682.063" />
                 </If>
             </If>
             <If Condition="HasQuest(67097)">
                 <If Condition="GetQuestStep(67097) == 1">
-                    <If Condition="not IsOnMap(156)">
-                        <GetTo ZoneId="156" XYZ="-363.5114, -17.14841, -401.2214" />
-                    </If>
-                    <NoCombatMoveTo Name="Grinding Area" XYZ="-363.5114, -17.14841, -401.2214" />
+                    <GetTo ZoneId="156" XYZ="-363.5114, -17.14841, -401.2214" /> <!-- Grinding Area -->
                     <Grind grindRef="Welcome_to_Morbol_Country" while="HasQuest(67097) and GetQuestStep(67097) == 1" />
                 </If>
                 <If Condition="GetQuestStep(67097) == 255">
-                    <If Condition="not IsOnMap(156)">
-                        <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" />
-                    </If>
-                    <NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
+                    <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" /> <!-- Slafborn -->
                     <TurnIn QuestId="67097" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
                 </If>
             </If>
         </If>
-
         <!-- Answering the Call -->
-        
         <If Condition="not IsQuestCompleted(67098)">
             <If Condition="not HasQuest(67098)">
-                <If Condition="not IsOnMap(156)">
-                    <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" />
-                </If>
-                <NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
+                <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" /> <!-- Slafborn -->
                 <If Condition="IsQuestAcceptQualified(67098)">
                     <PickupQuest NpcId="1006530" QuestId="67098" XYZ="21.92719, 20.74698, -682.063" />
                 </If>
             </If>
             <If Condition="HasQuest(67098)">
                 <If Condition="GetQuestStep(67098) == 1">
-                    <If Condition="not IsOnMap(156)">
-                        <GetTo ZoneId="156" XYZ="479.877, -2.450189, -784.8846" />
-                    </If>
-                    <NoCombatMoveTo Name="Grinding Area" XYZ="479.877, -2.450189, -784.8846" />
+                    <GetTo ZoneId="156" XYZ="479.877, -2.450189, -784.8846" /> <!-- Grinding Area -->
                     <Grind grindRef="Answering_the_Call" while="HasQuest(67098) and GetQuestStep(67098) == 1" />
                 </If>
                 <If Condition="GetQuestStep(67098) == 255">
-                    <If Condition="not IsOnMap(156)">
-                        <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" />
-                    </If>
-                    <NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
+                    <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" /> <!-- Slafborn -->
                     <TurnIn QuestId="67098" NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" />
                 </If>
             </If>
         </If>
-
         <!-- You're Gonna Carry That -->
-
         <If Condition="not IsQuestCompleted(66722)">
             <If Condition="not HasQuest(66722)">
-                <If Condition="not IsOnMap(156)">
-                    <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" />
-                </If>
-                <NoCombatMoveTo Name="Slafborn" XYZ="21.92719, 20.74698, -682.063" />
+                <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063" /> <!-- Slafborn -->
                 <If Condition="IsQuestAcceptQualified(66722)">
                     <PickupQuest NpcId="1006530" QuestId="66722" XYZ="21.92719, 20.74698, -682.063" />
                 </If>
@@ -773,7 +669,7 @@
             <If Condition="HasQuest(66722)">
                 <If Condition="GetQuestStep(66722) == 1">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -786,7 +682,7 @@
                 </If>
                 <While Condition="GetQuestStep(66722) == 2">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -808,7 +704,7 @@
                 </While>
                 <If Condition="GetQuestStep(66722) == 255">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-489.8299, 21.48999, -381.9791" />
+                        <GetTo ZoneId="140" XYZ="-489.8299, 21.48999, -381.9791" /> <!-- Tataru -->
                     </If>
                     <If Condition="IsOnMap(212) and IsOnSubMap(374)">
                         <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
@@ -816,6 +712,7 @@
                     <If Condition="IsOnMap(212) and IsOnSubMap(356)">
                         <UseTransport Name="Exit to Vesper Bay" InteractDistance="3.0" NpcId="2001716" XYZ="-15.7016, 1.083313, -0.01531982" />
                     </If>
+                    <NoCombatMoveTo Name="Tataru" XYZ="-489.8299, 21.48999, -381.9791" />
 
                     <!-- Rewards
 
@@ -830,44 +727,29 @@
 
                     -->
 
-                    <NoCombatMoveTo Name="Tataru" XYZ="-489.8299, 21.48999, -381.9791" />
                     <TurnIn QuestId="66722" NpcId="1003785" ItemId="2001080" XYZ="-489.8299, 21.48999, -381.9791" />
                 </If>
             </If>
         </If>
-
         <!-- The Things We Do for Tea -->
-
         <If Condition="not IsQuestCompleted(66723)">
             <If Condition="not HasQuest(66723)">
-                <If Condition="not IsOnMap(140)">
-                    <GetTo ZoneId="140" XYZ="-489.8299, 21.48999, -381.9791" />
-                </If>
-                <NoCombatMoveTo Name="Tataru" XYZ="-489.8299, 21.48999, -381.9791" />
+                <GetTo ZoneId="140" XYZ="-489.8299, 21.48999, -381.9791" /> <!-- Tataru -->
                 <If Condition="IsQuestAcceptQualified(66723)">
                     <PickupQuest NpcId="1003785" QuestId="66723" XYZ="-489.8299, 21.48999, -381.9791" />
                 </If>
             </If>
             <If Condition="HasQuest(66723)">
                 <If Condition="GetQuestStep(66723) == 1">
-                    <If Condition="not IsOnMap(155)">
-                        <GetTo ZoneId="155" XYZ="196.0936, 303.1, -285.0843" />
-                    </If>
-                    <NoCombatMoveTo Name="Medguistl" XYZ="196.0936, 303.1, -285.0843" />
+                    <GetTo ZoneId="155" XYZ="196.0936, 303.1, -285.0843" /> <!-- Medguistl -->
                     <TalkTo NpcId="1006429" XYZ="196.0936, 303.1, -285.0843" QuestId="66723" StepId="1" />
                 </If>
                 <If Condition="GetQuestStep(66723) == 2">
-                    <If Condition="not IsOnMap(155)">
-                        <GetTo ZoneId="155" XYZ="245.4108, 302, -253.8339" />
-                    </If>
-                    <NoCombatMoveTo Name="Emanuel" XYZ="245.4108, 302, -253.8339" />
+                    <GetTo ZoneId="155" XYZ="245.4108, 302, -253.8339" /> <!-- Emanuel -->
                     <TalkTo NpcId="1006428" XYZ="245.4108, 302, -253.8339" QuestId="66723" StepId="2" />
                 </If>
                 <If Condition="GetQuestStep(66723) == 3">
-                    <If Condition="not IsOnMap(155)">
-                        <GetTo ZoneId="155" XYZ="-227.5273, 226.0013, 482.9938" />
-                    </If>
-                    <NoCombatMoveTo Name="Highland Tea Leaves" XYZ="-227.5273, 226.0013, 482.9938" />
+                    <GetTo ZoneId="155" XYZ="-227.5273, 226.0013, 482.9938" /> <!-- Highland Tea Leaves -->
                     <UseObject NpcIds="2002854,2002856,2002855,2002857" QuestId="66723" StepId="3">
                         <HotSpots>
                             <HotSpot XYZ="-227.5273, 226.0013, 482.9938" Radius="10" />
@@ -878,9 +760,7 @@
                     </UseObject>
                 </If>
                 <If Condition="GetQuestStep(66723) == 255">
-                    <If Condition="not IsOnMap(140)">
-                        <GetTo ZoneId="140" XYZ="-489.8299, 21.48999, -381.9791" />
-                    </If>
+                    <GetTo ZoneId="140" XYZ="-489.8299, 21.48999, -381.9791" /> <!-- Tataru -->
 
                     <!-- Rewards
 
@@ -895,20 +775,14 @@
 
                     -->
 
-                    <NoCombatMoveTo Name="Tataru" XYZ="-489.8299, 21.48999, -381.9791" />
                     <TurnIn QuestId="66723" NpcId="1003785" ItemId="2001081" XYZ="-489.8299, 21.48999, -381.9791" />
                 </If>
             </If>
         </If>
-
         <!-- It's Possibly a Primal -->
-
         <If Condition="not IsQuestCompleted(66724)">
             <If Condition="not HasQuest(66724)">
-                <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                    <GetTo ZoneId="140" XYZ="-489.8299, 21.48999, -381.9791" />
-                </If>
-                <NoCombatMoveTo Name="Tataru" XYZ="-489.8299, 21.48999, -381.9791" />
+                <GetTo ZoneId="140" XYZ="-489.8299, 21.48999, -381.9791" /> <!-- Tataru -->
                 <If Condition="IsQuestAcceptQualified(66724)">
                     <PickupQuest NpcId="1003785" QuestId="66724" XYZ="-489.8299, 21.48999, -381.9791" />
                 </If>
@@ -916,7 +790,7 @@
             <If Condition="HasQuest(66724)">
                 <If Condition="GetQuestStep(66724) == 1">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -928,9 +802,7 @@
                     <TalkTo NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" QuestId="66724" StepId="1" />
                 </If>
                 <If Condition="GetQuestStep(66724) == 255">
-                    <If Condition="not IsOnMap(132)">
-                        <GetTo ZoneId="132" XYZ="-75.48645, -0.5013741, -5.081299" />
-                    </If>
+                    <GetTo ZoneId="132" XYZ="-75.48645, -0.5013741, -5.081299" /> <!-- Vorsaile Heuloix -->
 
                     <!-- Rewards
 
@@ -944,20 +816,14 @@
 
                     -->
 
-                    <MoveTo Name="Vorsaile Heuloix" XYZ="-75.48645, -0.5013741, -5.081299" />
                     <TurnInPlus QuestId="66724" NpcId="1000168" XYZ="-75.48645, -0.5013741, -5.081299" />
                 </If>
             </If>
         </If>
-
         <!-- Hail to the King, Kupo -->
-
         <If Condition="not IsQuestCompleted(66725)">
             <If Condition="not HasQuest(66725)">
-                <If Condition="not IsOnMap(132)">
-                    <GetTo ZoneId="132" XYZ="-75.48645, -0.5013741, -5.081299" />
-                </If>
-                <MoveTo Name="Vorsaile Heuloix" XYZ="-75.48645, -0.5013741, -5.081299" />
+                <GetTo ZoneId="132" XYZ="-75.48645, -0.5013741, -5.081299" /> <!-- Vorsaile Heuloix -->
                 <If Condition="IsQuestAcceptQualified(66725)">
                     <PickupQuest NpcId="1000168" QuestId="66725" XYZ="-75.48645, -0.5013741, -5.081299" />
                 </If>
@@ -965,7 +831,7 @@
             <If Condition="HasQuest(66725)">
                 <If Condition="GetQuestStep(66725) == 1">
                     <If Condition="not IsOnMap(133) and not IsOnMap(205)">
-                        <GetTo ZoneId="133" XYZ="-159.411, 4.054098, -4.104736" />
+                        <GetTo ZoneId="133" XYZ="-159.411, 4.054098, -4.104736" /> <!-- Silent Conjurer -->
                     </If>
                     <If Condition="IsOnMap(133)">
                         <UseTransport Name="Silent Conjurer" QuestId="66725" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736" />
@@ -975,11 +841,12 @@
                 </If>
                 <If Condition="GetQuestStep(66725) == 255">
                     <If Condition="not IsOnMap(133) and not IsOnMap(205)">
-                        <GetTo ZoneId="133" XYZ="-258.8083, -5.773526, -27.26788" />
+                        <GetTo ZoneId="133" XYZ="-258.8083, -5.773526, -27.26788" /> <!-- E-Sumi-Yan -->
                     </If>
                     <If Condition="IsOnMap(205)">
                         <UseTransport Name="Exit to Nophica's Altar" InteractDistance="3.0" NpcId="2001216" XYZ="45.87172, 7.763558, 47.41661" />
                     </If>
+                    <MoveTo Name="E-Sumi-Yan" XYZ="-258.8083, -5.773526, -27.26788" />
 
                     <!-- Rewards
 
@@ -993,54 +860,39 @@
 
                     -->
 
-                    <MoveTo Name="E-Sumi-Yan" XYZ="-258.8083, -5.773526, -27.26788" />
                     <TurnIn QuestId="66725" NpcId="1000692" XYZ="-258.8083, -5.773526, -27.26788" />
                 </If>
             </If>
         </If>
-
         <!-- You Have Selected Regicide -->
-
         <If Condition="not IsQuestCompleted(66726)">
             <If Condition="not HasQuest(66726)">
-                <If Condition="not IsOnMap(133)">
-                    <GetTo ZoneId="133" XYZ="-258.8083, -5.773526, -27.26788" />
-                </If>
-                <MoveTo Name="E-Sumi-Yan" XYZ="-258.8083, -5.773526, -27.26788" />
+                <GetTo ZoneId="133" XYZ="-258.8083, -5.773526, -27.26788" /> <!-- E-Sumi-Yan -->
                 <If Condition="IsQuestAcceptQualified(66726)">
                     <PickupQuest NpcId="1000692" QuestId="66726" XYZ="-258.8083, -5.773526, -27.26788" />
                 </If>
             </If>
             <If Condition="HasQuest(66726)">
                 <If Condition="GetQuestStep(66726) == 1">
-                    <If Condition="not IsOnMap(133)">
-                        <GetTo ZoneId="133" XYZ="180.0106, -2.265522, -245.5024" />
-                    </If>
-                    <MoveTo Name="Kuplo Kopp" XYZ="180.0106, -2.265522, -245.5024" />
+                    <GetTo ZoneId="133" XYZ="180.0106, -2.265522, -245.5024" /> <!-- Kuplo Kopp -->
                     <TalkTo NpcId="1008275" XYZ="180.0106, -2.265522, -245.5024" QuestId="66726" StepId="1" />
                 </If>
                 <If Condition="GetQuestStep(66726) == 2">
                     <If Condition="not IsOnMap(152) and not IsOnMap(133)">
-                        <GetTo ZoneId="152" XYZ="-550.0227, 10.72856, 66.06141" />
+                        <GetTo ZoneId="152" XYZ="-550.0227, 10.72856, 66.06141" /> <!-- Kuplo Kopp -->
                     </If>
                     <If Condition="IsOnMap(133)">
                         <UseTransport Name="Romarique" DialogOption="0" InteractDistance="3.0" NpcId="1001263" XYZ="181.4144, -2.35195, -240.4059" />
                     </If>
                     <NoCombatMoveTo Name="Kuplo Kopp" Distance="0.1" XYZ="-550.0227, 10.72856, 66.06141" />
-                    <WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
+                    <WaitWhile Condition="GetQuestStep(66726) == 2" />
                 </If>
                 <If Condition="GetQuestStep(66726) == 3">
-                    <If Condition="not IsOnMap(152)">
-                        <GetTo ZoneId="152" XYZ="-542.9313, 11.20175, 62.24158" />
-                    </If>
-                    <NoCombatMoveTo Name="Kuplo Kopp" XYZ="-542.9313, 11.20175, 62.24158" />
+                    <GetTo ZoneId="152" XYZ="-542.9313, 11.20175, 62.24158" /> <!-- Kuplo Kopp -->
                     <TalkTo NpcId="1008276" XYZ="-542.9313, 11.20175, 62.24158" QuestId="66726" StepId="3" />
                 </If>
                 <While Condition="GetQuestStep(66726) == 4">
-                    <If Condition="not IsOnMap(152)">
-                        <GetTo ZoneId="152" XYZ="-542.9313, 11.20175, 62.24158" />
-                    </If>
-                    <NoCombatMoveTo Name="Kuplo Kopp" XYZ="-542.9313, 11.20175, 62.24158" />
+                    <GetTo ZoneId="152" XYZ="-542.9313, 11.20175, 62.24158" /> <!-- Kuplo Kopp -->
                     <Dismount/>
                     <RunCode Name="Disable_Mount" />
                     <MoveTo Name="Kuplo Kopp" XYZ="-542.9313, 11.20175, 62.24158" />
@@ -1058,17 +910,11 @@
                     <UseObject NpcId="2003347" XYZ="-318.6237, 12.25293, -35.05005" Radius="10" QuestId="66726" StepId="4" />
                 </While>
                 <If Condition="GetQuestStep(66726) == 5">
-                    <If Condition="not IsOnMap(152)">
-                        <GetTo ZoneId="152" XYZ="-317.6776, 12.29312, -37.30841" />
-                    </If>
-                    <NoCombatMoveTo Name="Kuplo Kopp" XYZ="-317.6776, 12.29312, -37.30841" />
+                    <GetTo ZoneId="152" XYZ="-317.6776, 12.29312, -37.30841" /> <!-- Kuplo Kopp -->
                     <TalkTo NpcId="1008277" XYZ="-317.6776, 12.29312, -37.30841" QuestId="66726" StepId="5" />
                 </If>
                 <If Condition="GetQuestStep(66726) == 6">
-                    <If Condition="not IsOnMap(152)">
-                        <GetTo ZoneId="152" XYZ="-318.6237, 12.25293, -35.08057" />
-                    </If>
-                    <NoCombatMoveTo Name="Barrier Threshold" XYZ="-318.6237, 12.25293, -35.08057" />
+                    <GetTo ZoneId="152" XYZ="-318.6237, 12.25293, -35.08057" /> <!-- Barrier Threshold -->
                     <UseObject NpcId="2003046" XYZ="-318.6237, 12.25293, -35.08057" Radius="10" QuestId="66726" StepId="6" />
                 </If>
                 <If Condition="GetQuestStep(66726) == 7">
@@ -1077,8 +923,13 @@
                 </If>
                 <If Condition="GetQuestStep(66726) == 255">
                     <If Condition="not IsOnMap(153)">
-                        <GetTo ZoneId="153" XYZ="-143.6555, 8.149665, 269.7762" />
+                        <GetTo ZoneId="153" XYZ="-143.6555, 8.149665, 269.7762" /> <!-- Jump Spot -->
                     </If>
+                    <If Condition="IsOnMap(153) and Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-139.4522, 8.712891, 281.6968)) &gt; 7">
+                        <NoCombatMoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762" />
+                        <RunCode Name="Camp_Tranquil_Jump" />
+                    </If>
+                    <NoCombatMoveTo Name="Pukni Pakk" XYZ="-140.032, 8.647763, 280.8728" />
 
                     <!-- Rewards
 
@@ -1093,25 +944,18 @@
 
                     -->
 
-                    <If Condition="Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-139.4522, 8.712891, 281.6968)) &gt; 7">
-                        <NoCombatMoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762" />
-                        <RunCode Name="Camp_Tranquil_Jump" />
-                    </If>
-                    <NoCombatMoveTo Name="Pukni Pakk" XYZ="-140.032, 8.647763, 280.8728" />
                     <TurnIn QuestId="66726" NpcId="1007862" XYZ="-140.032, 8.647763, 280.8728" />
                 </If>
             </If>
         </If>
-
         <!-- On the Properties of Primals -->
-
         <If Condition="not IsQuestCompleted(66727)">
 
             <If Condition="not HasQuest(66727)">
                 <If Condition="not IsOnMap(153)">
-                    <GetTo ZoneId="153" XYZ="-143.6555, 8.149665, 269.7762" />
+                    <GetTo ZoneId="153" XYZ="-143.6555, 8.149665, 269.7762" /> <!-- Jump Spot -->
                 </If>
-                <If Condition="Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-139.4522, 8.712891, 281.6968)) &gt; 7">
+                <If Condition="IsOnMap(153) and Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-139.4522, 8.712891, 281.6968)) &gt; 7">
                     <NoCombatMoveTo Name="Jump Spot" XYZ="-143.6555, 8.149665, 269.7762" />
                     <RunCode Name="Camp_Tranquil_Jump" />
                 </If>
@@ -1123,7 +967,7 @@
             <If Condition="HasQuest(66727)">
                 <If Condition="GetQuestStep(66727) == 1">
                     <If Condition="not IsOnMap(133) and not IsOnMap(205)">
-                        <GetTo ZoneId="133" XYZ="-159.411, 4.054098, -4.104736" />
+                        <GetTo ZoneId="133" XYZ="-159.411, 4.054098, -4.104736" /> <!-- Silent Conjurer -->
                     </If>
                     <If Condition="IsOnMap(133)">
                         <UseTransport Name="Silent Conjurer" QuestId="66727" InteractDistance="3.0" NpcId="1000460" XYZ="-159.411, 4.054098, -4.104736" />
@@ -1133,7 +977,7 @@
                 </If>
                 <If Condition="GetQuestStep(66727) == 255">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -1141,6 +985,7 @@
                     <If Condition="IsOnMap(212) and IsOnSubMap(356)">
                         <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982" />
                     </If>
+                    <MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548" />
 
                     <!-- Rewards
 
@@ -1155,18 +1000,15 @@
 
                     -->
 
-                    <MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548" />
                     <TurnIn QuestId="66727" NpcId="1006693" XYZ="39.29187, 1.214808, 0.8086548" />
                 </If>
             </If>
         </If>
-
         <!-- The Gifted -->
-
         <If Condition="not IsQuestCompleted(66728)">
             <If Condition="not HasQuest(66728)">
                 <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                 </If>
                 <If Condition="IsOnMap(140)">
                     <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -1182,7 +1024,7 @@
             <If Condition="HasQuest(66728)">
                 <If Condition="GetQuestStep(66728) == 1">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -1195,7 +1037,7 @@
                 </If>
                 <If Condition="GetQuestStep(66728) == 2">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-458.952, 23.1922, -369.333" />
+                        <GetTo ZoneId="140" XYZ="-458.952, 23.1922, -369.333" /> <!-- White-robed Ascian -->
                     </If>
                     <If Condition="IsOnMap(212) and IsOnSubMap(374)">
                         <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982" />
@@ -1204,41 +1046,32 @@
                         <UseTransport Name="Exit to Vesper Bay" InteractDistance="3.0" NpcId="2001716" XYZ="-15.7016, 1.083313, -0.01531982" />
                     </If>
                     <NoCombatMoveTo Name="White-robed Ascian" XYZ="-458.952, 23.1922, -369.333" />
-                    <WaitWhile Condition="Managers.QuestLogManager.InCutscene" />
+                    <WaitWhile Condition="GetQuestStep(66728) == 2" />
                 </If>
-                <While Condition="GetQuestStep(66728) == 3">
-                    <If Condition="not IsOnMap(140)">
-                        <GetTo ZoneId="140" XYZ="-471.5366, 22.80423, -442.6158" />
-                    </If>
-                    <NoCombatMoveTo Name="White-robed Ascian" XYZ="-471.5366, 22.80423, -442.6158" />
+                <If Condition="GetQuestStep(66728) == 3">
+                    <GetTo ZoneId="140" XYZ="-471.5366, 22.80423, -442.6158" /> <!-- White-robed Ascian -->
                     <NoCombatMoveTo Name="White-robed Ascian" XYZ="-385.2847, 24.55097, -503.652" />
                     <WaitWhile Condition="GetQuestStep(66728) == 3" />
-                </While>
+                </If>
                 <If Condition="GetQuestStep(66728) == 4">
-                    <If Condition="not IsOnMap(140)">
-                        <GetTo ZoneId="140" XYZ="-365.1668, 16.09825, -631.1841" />
-                    </If>
-                    <NoCombatMoveTo Name="White-robed Ascian" XYZ="-365.1668, 16.09825, -631.1841" />
+                    <GetTo ZoneId="140" XYZ="-365.1668, 16.09825, -631.1841" /> <!-- White-robed Ascian -->
+                    <WaitWhile Condition="GetQuestStep(66728) == 4" />
+                </If>
+                <If Condition="GetQuestStep(66728) == 5">
                     <WaitWhile Condition="GetQuestStep(66728) == 5" />
                 </If>
                 <If Condition="GetQuestStep(66728) == 6">
-                    <If Condition="not IsOnMap(140)">
-                        <GetTo ZoneId="140" XYZ="-324.1881, 14.81629, -790.2355" />
-                    </If>
-                    <NoCombatMoveTo Name="White-robed Ascian" XYZ="-324.1881, 14.81629, -790.2355" />
+                    <GetTo ZoneId="140" XYZ="-324.1881, 14.81629, -790.2355" /> <!-- White-robed Ascian -->
                     <WaitWhile Condition="GetQuestStep(66728) == 6" />
                 </If>
                 <If Condition="GetQuestStep(66728) == 7">
-                    <If Condition="not IsOnMap(140)">
-                        <GetTo ZoneId="140" XYZ="-325.185, 14.7074, -784.3595" />
-                    </If>
-                    <NoCombatMoveTo Name="White-robed Ascian" XYZ="-325.185, 14.7074, -784.3595" />
+                    <GetTo ZoneId="140" XYZ="-325.185, 14.7074, -784.3595" /> <!-- White-robed Ascian -->
                     <TalkTo NpcId="1007751" XYZ="-325.185, 14.7074, -784.3595" QuestId="66728" StepId="7" />
                     <WaitWhile Condition="GetQuestStep(66728) == 7" />
                 </If>
                 <If Condition="GetQuestStep(66728) == 255">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -1251,13 +1084,11 @@
                 </If>
             </If>
         </If>
-
         <!-- Build on the Stone -->
-
         <If Condition="not IsQuestCompleted(66729)">
             <If Condition="not HasQuest(66729)">
                 <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                    <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                 </If>
                 <If Condition="IsOnMap(140)">
                     <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -1273,7 +1104,7 @@
             <If Condition="HasQuest(66729)">
                 <If Condition="GetQuestStep(66729) == 1">
                     <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" />
+                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862" /> <!-- Waking Sands Entrance -->
                     </If>
                     <If Condition="IsOnMap(140)">
                         <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862" />
@@ -1285,15 +1116,12 @@
                     <HandOver ItemId="2001124" QuestId="66729" StepId="1" NpcId="1007478" XYZ="-2.822998, -3.000001, -56.22955" />
                 </If>
                 <If Condition="GetQuestStep(66729) == 2">
-                    <If Condition="not IsOnMap(156)">
-                        <GetTo ZoneId="156" XYZ="20.2182, 21.25272, -632.3796" />
-                    </If>
-                    <NoCombatMoveTo Name="Tataru" XYZ="20.2182, 21.25272, -632.3796" />
+                    <GetTo ZoneId="156" XYZ="20.2182, 21.25272, -632.3796" /> <!-- Tataru -->
                     <TalkTo NpcId="1007765" XYZ="20.2182, 21.25272, -632.3796" QuestId="66729" StepId="2" />
                 </If>
                 <If Condition="GetQuestStep(66729) == 255">
                     <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                        <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" />
+                        <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" /> <!-- Rising Stones Entrance -->
                     </If>
                     <If Condition="IsOnMap(156)">
                         <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
@@ -1315,31 +1143,6 @@
 
 	</Order>
 	<CodeChunks>
-		<CodeChunk Name="Disable_Mount">
-			<![CDATA[
-				ff14bot.Settings.CharacterSettings.Instance.UseMount = false;
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="Enable_Mount">
-			<![CDATA[
-				ff14bot.Settings.CharacterSettings.Instance.UseMount = true;
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="Camp_Tranquil_Jump">
-			<![CDATA[ 
-				if(Core.Player.IsMounted)
-				{
-					ActionManager.Dismount();
-					await Coroutine.Sleep(3000);
-				}
-				MovementManager.SetFacing(0.8310049f);
-				MovementManager.MoveForwardStart();
-				await Coroutine.Sleep(500);
-				MovementManager.Jump();
-				await Coroutine.Sleep(1500);
-				MovementManager.MoveStop();
-			]]>
-		</CodeChunk>
 
         <!-- Job Check -->
 
@@ -1493,6 +1296,9 @@
                 await Buddy.Coroutines.Coroutine.Sleep(1000);
             ]]>
         </CodeChunk>
+
+        <!-- Patch 2.1 -->
+
         <CodeChunk Name="Rock_solid_Protection">
             <![CDATA[ 
                 while (ConditionParser.GetQuestStep(66718) == 2)
@@ -1504,6 +1310,16 @@
                 }
             ]]>
         </CodeChunk>
+		<CodeChunk Name="Disable_Mount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = false;
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Enable_Mount">
+			<![CDATA[
+				ff14bot.Settings.CharacterSettings.Instance.UseMount = true;
+			]]>
+		</CodeChunk>
         <CodeChunk Name="You_Have_Selected_Regicide">
             <![CDATA[ 
                 while (ConditionParser.GetQuestStep(66726) == 7)
@@ -1515,6 +1331,21 @@
                 }
             ]]>
         </CodeChunk>
+		<CodeChunk Name="Camp_Tranquil_Jump">
+			<![CDATA[ 
+				if(Core.Player.IsMounted)
+				{
+					ActionManager.Dismount();
+					await Coroutine.Sleep(3000);
+				}
+				MovementManager.SetFacing(0.8310049f);
+				MovementManager.MoveForwardStart();
+				await Coroutine.Sleep(500);
+				MovementManager.Jump();
+				await Coroutine.Sleep(1500);
+				MovementManager.MoveStop();
+			]]>
+		</CodeChunk>
 	</CodeChunks>
 	<GrindAreas>
 		<GrindArea name="All_Things_in_Time">
@@ -1525,7 +1356,7 @@
 				<TargetMob Id="642" /> <!-- Mud Pugil -->
 			</TargetMobs>
 			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
+			<MaxLevel>71</MaxLevel>
 		</GrindArea>
 		<GrindArea name="Welcome_to_Morbol_Country">
 			<Hotspots>
@@ -1535,7 +1366,7 @@
 				<TargetMob Id="237" /> <!-- Morbol -->
 			</TargetMobs>
 			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
+			<MaxLevel>71</MaxLevel>
 		</GrindArea>
 		<GrindArea name="Answering_the_Call">
 			<Hotspots>
@@ -1545,7 +1376,7 @@
 				<TargetMob Id="793" /> <!-- Hapalit -->
 			</TargetMobs>
 			<MinLevel>50</MinLevel>
-			<MaxLevel>61</MaxLevel>
+			<MaxLevel>71</MaxLevel>
 		</GrindArea>
 	</GrindAreas>
 </Profile>
