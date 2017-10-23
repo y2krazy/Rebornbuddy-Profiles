@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+########################################
+# Profile: [O] All Saints' Wake Quests #
+########################################
+# Author: y2krazy                      #
+########################################
+# Version: 3.0.0                       #
+########################################
+# Required Level: 15                   #
+########################################
+# Required Setup:                      #
+#  None                                #
+########################################
+# Required User Interaction:           #
+#  None                                #
+########################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- Pumpkin Cookies Required for: -->
+  <!-- Magicked Prism (Pumpkin): 1 (10 per Cookie) -->
+  <!-- Ghost Candlestand: 2 -->
+  <!-- Pumpkin Tower: 2 -->
+  <!-- Pumpkin Pie Set: 1 -->
+  <!-- Pumpkin Pudding Set: 1 -->
+  <!-- All Saints' Wake Advertisement: 2 -->
+
+  <!-- Log Colors -->
+
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
+  <!ENTITY LogColorAck "#FF0000"> <!-- Warnings -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] All Saints' Wake Quests (v3.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<Log Color="&LogColor;" Name="All Saints' Wake" Message="Checking for completed quests..."/>
+
+		<!-- An Othardian Wolfman in Gridania -->
+		<If Condition="not IsQuestCompleted(68547)">
+			<If Condition="not HasQuest(68547)">
+				<Log Color="&LogColor;" Name="All Saints' Wake" Message="Picking up the An Othardian Wolfman in Gridania quest!"/>
+                <GetTo ZoneId="133" XYZ="-41.76398, 7.159529, -137.1024" /> <!-- Adventurers' Guild Investigator -->
+                <If Condition="IsQuestAcceptQualified(68547)">
+                    <PickupQuest NpcId="1024523" QuestId="68547" XYZ="-41.76398, 7.159529, -137.1024" />
+                </If>
+			</If>
+			<If Condition="HasQuest(68547)">
+				<If Condition="GetQuestStep(68547) == 1">
+					<Log Color="&LogColor;" Name="All Saints' Wake" Message="Talking to Soga..."/>
+                    <GetTo ZoneId="133" XYZ="-102.5254, 5.771181, -152.9412" /> <!-- Soga -->
+                    <TalkTo NpcId="1024524" XYZ="-102.5254, 5.771181, -152.9412" QuestId="68547" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(68547) == 255">
+					<Log Color="&LogColor;" Name="All Saints' Wake" Message="Turning in the An Othardian Wolfman in Gridania quest!"/>
+                    <GetTo ZoneId="133" XYZ="-50.00385, 6.5, -89.7384" /> <!-- Impresario -->
+                    <TurnIn QuestId="68547" NpcId="1024532" XYZ="-50.00385, 6.5, -89.7384" />
+				</If>
+			</If>
+		</If>
+
+        <If Condition="ItemCount(21104) &gt; 0 or ItemCount(21105) &gt; 0">
+			<Log Color="&LogColor;" Name="All Saints' Wake" Message="Opening the Werewolf Attire Chest..."/>
+            <RunCode Name="Werewolf_Attire_Chest" />
+        </If>
+
+		<!-- The Adventurer Who Cried Wolfman -->
+		<If Condition="not IsQuestCompleted(68548)">
+			<If Condition="not HasQuest(68548)">
+				<Log Color="&LogColor;" Name="All Saints' Wake" Message="Picking up the The Adventurer Who Cried Wolfman quest!"/>
+                <GetTo ZoneId="133" XYZ="-50.00385, 6.5, -89.7384" /> <!-- Impresario -->
+                <If Condition="IsQuestAcceptQualified(68548)">
+                    <PickupQuest NpcId="1024532" QuestId="68548" XYZ="-50.00385, 6.5, -89.7384" />
+                </If>
+			</If>
+			<If Condition="HasQuest(68548)">
+				<If Condition="GetQuestStep(68548) == 1">
+					<Log Color="&LogColor;" Name="All Saints' Wake" Message="Equipping the Werewolf Attire..."/>
+					<BotSettings AutoEquip="0" />
+					<RunCode Name="Equip_Werewolf_Attire" />
+					<Log Color="&LogColor;" Name="All Saints' Wake" Message="Talking to Impresario..."/>
+                    <GetTo ZoneId="133" XYZ="-50.00385, 6.5, -89.7384" /> <!-- Impresario -->
+                    <TalkTo NpcId="1024532" XYZ="-50.00385, 6.5, -89.7384" QuestId="68548" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(68548) == 2">
+					<Log Color="&LogColor;" Name="All Saints' Wake" Message="Talking to Soga..."/>
+                    <GetTo ZoneId="133" XYZ="-22.0799, 6.739893, -139.4218" /> <!-- Soga -->
+                    <TalkTo NpcId="1024534" XYZ="-22.0799, 6.739893, -139.4218" QuestId="68548" StepId="2" />
+				</If>
+                <If Condition="GetQuestStep(68548) == 3">
+					<Log Color="&LogColor;" Name="All Saints' Wake" Message="Frightening the Good-humored Gridanian..."/>
+                    <GetTo ZoneId="133" XYZ="-23.02588, 6.906509, -140.8256" /> <!-- Good-humored Gridanian -->
+					<SendChat Message="/say GRRR!" QuestId="68548" StepId="3" />
+                </If>
+                <If Condition="GetQuestStep(68548) == 4">
+					<Log Color="&LogColor;" Name="All Saints' Wake" Message="Frightening the people of Gridania..."/>
+                    <GetTo ZoneId="133" XYZ="133.6843, 13.30394, -103.2578" /> <!-- Strapping Lass -->
+					<SendChat Message="/say GRRR!" QuestId="68548" />
+					<MoveTo Name="Carefree Crone" XYZ="27.20679, 16.30829, -334.493" />
+					<SendChat Message="/say GRRR!" QuestId="68548" />
+					<MoveTo Name="Hapless Hobbledehoy" XYZ="-165.6062, 4.033765, -25.58942" />
+					<SendChat Message="/say GRRR!" QuestId="68548" StepId="4" />
+                </If>
+                <If Condition="GetQuestStep(68548) == 5">
+                    <GetTo ZoneId="133" XYZ="-117.2961, 6.491468, -151.7205" /> <!-- Soga -->
+                    <TalkTo NpcId="1024535" XYZ="-117.2961, 6.491468, -151.7205" QuestId="68548" StepId="5" />
+                </If>
+                <If Condition="GetQuestStep(68548) == 6">
+                    <GetTo ZoneId="133" XYZ="-50.00385, 6.5, -89.7384" /> <!-- Impresario -->
+                    <TalkTo NpcId="1024532" XYZ="-50.00385, 6.5, -89.7384" QuestId="68548" StepId="6" />
+                </If>
+				<If Condition="GetQuestStep(68548) == 255">
+					<Log Color="&LogColor;" Name="All Saints' Wake" Message="Turning in the The Adventurer Who Cried Wolfman quest!"/>
+                    <GetTo ZoneId="133" XYZ="-41.76398, 7.159529, -137.1024" /> <!-- Adventurers' Guild Investigator -->
+                    <TurnIn QuestId="68548" NpcId="1024523" XYZ="-41.76398, 7.159529, -137.1024" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Mind Their Manor -->
+		<If Condition="not IsQuestCompleted(68549)">
+			<If Condition="not HasQuest(68549)">
+				<Log Color="&LogColor;" Name="All Saints' Wake" Message="Picking up the Mind Their Manor quest!"/>
+                <GetTo ZoneId="133" XYZ="-41.76398, 7.159529, -137.1024" /> <!-- Adventurers' Guild Investigator -->
+                <If Condition="IsQuestAcceptQualified(68549)">
+                    <PickupQuest NpcId="1024523" QuestId="68549" XYZ="-41.76398, 7.159529, -137.1024" />
+                </If>
+			</If>
+			<If Condition="HasQuest(68549)">
+				<If Condition="GetQuestStep(68549) == 255">
+					<Log Color="&LogColor;" Name="All Saints' Wake" Message="Turning in the Mind Their Manor quest!"/>
+                    <GetTo ZoneId="133" XYZ="-55.16144, 6.499973, -95.93353" /> <!-- Enthralling Illusionist -->
+                    <TurnIn QuestId="68549" NpcId="1017852" XYZ="-55.16144, 6.499973, -95.93353" />
+                </If>
+			</If>
+		</If>
+
+		<Log Color="&LogColor;" Name="All Saints' Wake" Message="You've completed the All Saints' Wake seasonal event quests!"/>
+
+	</Order>
+	<CodeChunks>
+		<CodeChunk Name="Werewolf_Attire_Chest">
+			<![CDATA[
+				foreach(BagSlot slot in InventoryManager.FilledSlots)
+				{
+					if(slot.RawItemId == 21104 || slot.RawItemId == 21105)
+					{
+						slot.UseItem();
+						await Coroutine.Sleep(1000);
+					}
+				}
+		    ]]>
+		</CodeChunk>
+		<CodeChunk Name="Equip_Werewolf_Attire">
+			<![CDATA[ 
+				foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+				{
+					BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Head];
+					BagSlot EquipSlot2 = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Body];
+					BagSlot EquipSlot3 = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Hands];
+					BagSlot EquipSlot5 = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Legs];
+					BagSlot EquipSlot6 = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Feet];
+					if(slot.RawItemId == 21017)
+					{
+						slot.Move(EquipSlot);
+						await Coroutine.Sleep(1000);
+					}
+					if(slot.RawItemId == 21018)
+					{
+						slot.Move(EquipSlot2);
+						await Coroutine.Sleep(1000);
+					}
+					if(slot.RawItemId == 21019)
+					{
+						slot.Move(EquipSlot3);
+						await Coroutine.Sleep(1000);
+					}
+					if(slot.RawItemId == 21020)
+					{
+						slot.Move(EquipSlot5);
+						await Coroutine.Sleep(1000);
+					}
+					if(slot.RawItemId == 21021)
+					{
+						slot.Move(EquipSlot6);
+						await Coroutine.Sleep(1000);
+					}
+				}
+		]]>
+		</CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
