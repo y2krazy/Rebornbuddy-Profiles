@@ -37,7 +37,7 @@ Achievement: http://ffxiv.gamerescape.com/wiki/A_Weaver%27s_Life_for_Me
 #######################
 ### ╔╗╔╔═╗╔╦╗╔═╗╔═╗ ###
 ### ║║║║ ║ ║ ║╣ ╚═╗ ###
-### ╝╚╝╚═╝ ╩ ╚═╝╚═╝ ###                                
+### ╝╚╝╚═╝ ╩ ╚═╝╚═╝ ###
 #######################
 
 Please check your achievements in-game before starting these orders. Adjust the quantities so that you don't craft more than you need!

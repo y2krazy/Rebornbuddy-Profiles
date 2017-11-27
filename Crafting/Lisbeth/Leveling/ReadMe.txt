@@ -1,31 +1,21 @@
-NEEDS TESTING:
+######################################################################
+###  _____ __  __ _____   ____  _____ _______       _   _ _______  ###
+### |_   _|  \/  |  __ \ / __ \|  __ \__   __|/\   | \ | |__   __| ###
+###   | | | \  / | |__) | |  | | |__) | | |  /  \  |  \| |  | |    ###
+###   | | | |\/| |  ___/| |  | |  _  /  | | / /\ \ | . ` |  | |    ###
+###  _| |_| |  | | |    | |__| | | \ \  | |/ ____ \| |\  |  | |    ###
+### |_____|_|  |_|_|     \____/|_|  \_\ |_/_/    \_\_| \_|  |_|    ###
+###                                                                ###
+######################################################################
 
-50-60 BSM
-50-60 GSM
-50-60 WVR
+Amounts will likely need to be adjusted for every user based on gear, cross-class actions unlocked, etc.
 
-NEEDS REFINEMENT:
+Please use the default amounts as more of a guideline than values that will guarantee you a one-click leveling job.
 
-50-60 CRP
-50-60 LTW
+#######################
+### ╔╗╔╔═╗╔╦╗╔═╗╔═╗ ###
+### ║║║║ ║ ║ ║╣ ╚═╗ ###
+### ╝╚╝╚═╝ ╩ ╚═╝╚═╝ ###
+#######################
 
-#############################
-# IMPORTANT NOTES FOR 50-60 #
-#############################
-
-You MUST have the following cross-classed for the quantities provided to be accurate. If you cannot cross-class them all, you will likely need to craft more than the quantities these import orders are set to.
-
-Careful Synthesis II
-Manipulation
-Hasty Touch
-Byregot's Blessing
-Steady Hand II
-Ingenuity II
-Innovation
-Tricks of the Trade
-Comfort Zone
-
-Optional:
-
-Waste Not II
-Reclaim
+Please make sure you have as much free inventory space as possible before starting!
