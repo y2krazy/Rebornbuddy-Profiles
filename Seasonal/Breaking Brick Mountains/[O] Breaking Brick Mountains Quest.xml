@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+###############################################
+# Profile: [O] Breaking Brick Mountains Quest #
+###############################################
+# Author: y2krazy                             #
+###############################################
+# Version: 3.0.0                              #
+###############################################
+# Required Level: 30                          #
+###############################################
+# Required Setup:                             #
+#  Fill out User Configuration below.         #
+###############################################
+# Required User Interaction:                  #
+#  None                                       #
+###############################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- True = "1" | False = "0" -->
+  <!-- ONLY SET ONE ZONE TO "1"! -->
+
+  <!ENTITY LowerLaNoscea "0"> <!-- Farm chunk of brickman in Lower La Noscea. -->
+  <!ENTITY UpperLaNoscea "0"> <!-- Farm chunk of brickman in Upper La Noscea. -->
+  <!ENTITY CentralShroud "0"> <!-- Farm chunk of brickman in Central Shroud. -->
+  <!ENTITY NorthShroud "0"> <!-- Farm chunk of brickman in North Shroud. -->
+  <!ENTITY CentralThanalan "0"> <!-- Farm chunk of brickman in Central Thanalan. -->
+
+  <!-- Log Colors -->
+
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
+  <!ENTITY LogColorAck "#FF0000"> <!-- Warnings -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] Breaking Brick Mountains Quest (v3.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="GetQuestStep(66824) != 255 and &LowerLaNoscea; == 0 and &UpperLaNoscea; == 0 and &CentralShroud; == 0 and &NorthShroud; == 0 and &CentralThanalan; == 0">
+            <RunCode Name="No_Zone_Selected" />
+            <StopBot/>
+        </If>
+
+		<Log Color="&LogColor;" Name="Breaking Brick Mountains" Message="Checking for completed quest..."/>
+
+		<!-- Breaking Brick Mountains -->
+
+		<If Condition="not IsQuestCompleted(66824)">
+			<If Condition="not HasQuest(66824)">
+				<Log Color="&LogColor;" Name="Breaking Brick Mountains" Message="Picking up the Breaking Brick Mountains quest!"/>
+                <GetTo ZoneId="130" XYZ="47.37915, 4.099995, -148.4551" /> <!-- Havak Alvak -->
+                <If Condition="IsQuestAcceptQualified(66824)">
+                    <PickupQuest NpcId="1005532" QuestId="66824" XYZ="47.37915, 4.099995, -148.4551" />
+                </If>
+			</If>
+			<If Condition="HasQuest(66824)">
+				<If Condition="GetQuestStep(66824) == 1">
+					<Log Color="&LogColor;" Name="Breaking Brick Mountains" Message="Talking to Beefy Businessman..."/>
+                    <GetTo ZoneId="130" XYZ="-146.1357, 14.005, 56.13782" /> <!-- Beefy Businessman -->
+                    <TalkToPlus NpcId="1005533" XYZ="-146.1357, 14.005, 56.13782" QuestId="66824" StepId="1" />
+				</If>
+
+				<!-- Farm chunk of brickman in Lower La Noscea. -->
+
+				<If Condition="&LowerLaNoscea; == 1">
+					<While Condition="GetQuestStep(66824) == 2">
+						<Log Color="&LogColor;" Name="Breaking Brick Mountains" Message="Obtaining a chunk of brickman..."/>
+						<GetTo ZoneId="135" XYZ="276.7286, 70.89819, -204.0882" /> <!-- FATE: Brick by Brick -->
+						<Fate MinLevel="6" MaxLevel="31" Condition="not IsTodoChecked(66824, 2, 0)">
+							<FateIds>
+								<FateId>666</FateId> <!-- Brick by Brick -->
+								<FateId>667</FateId> <!-- Brick by Stone Brick -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+
+				<!-- Farm chunk of brickman in Upper La Noscea. -->
+
+				<If Condition="&UpperLaNoscea; == 1">
+					<While Condition="GetQuestStep(66824) == 2">
+						<Log Color="&LogColor;" Name="Breaking Brick Mountains" Message="Obtaining a chunk of brickman..."/>
+						<GetTo ZoneId="139" XYZ="635.3461, -3.4, 135.6121" /> <!-- FATE: Brick by Brick -->
+						<Fate MinLevel="6" MaxLevel="31" Condition="not IsTodoChecked(66824, 2, 0)">
+							<FateIds>
+								<FateId>668</FateId> <!-- Brick by Brick -->
+								<FateId>669</FateId> <!-- Brick by Stone Brick -->
+								<FateId>670</FateId> <!-- Brick by Brick -->
+								<FateId>671</FateId> <!-- Brick by Gold Brick -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+
+				<!-- Farm chunk of brickman in Central Shroud. -->
+
+				<If Condition="&CentralShroud; == 1">
+					<While Condition="GetQuestStep(66824) == 2">
+						<Log Color="&LogColor;" Name="Breaking Brick Mountains" Message="Obtaining a chunk of brickman..."/>
+						<GetTo ZoneId="148" XYZ="108.6752, -12, 121.7637" /> <!-- FATE: Brick by Brick -->
+						<Fate MinLevel="6" MaxLevel="31" Condition="not IsTodoChecked(66824, 2, 0)">
+							<FateIds>
+								<FateId>672</FateId> <!-- Brick by Brick -->
+								<FateId>673</FateId> <!-- Brick by Stone Brick -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+
+				<!-- Farm chunk of brickman in North Shroud. -->
+
+				<If Condition="&NorthShroud; == 1">
+					<While Condition="GetQuestStep(66824) == 2">
+						<Log Color="&LogColor;" Name="Breaking Brick Mountains" Message="Obtaining a chunk of brickman..."/>
+						<GetTo ZoneId="154" XYZ="-281.4612, -79.32581, 480.1272" /> <!-- FATE: Brick by Brick -->
+						<Fate MinLevel="6" MaxLevel="31" Condition="not IsTodoChecked(66824, 2, 0)">
+							<FateIds>
+								<FateId>674</FateId> <!-- Brick by Brick -->
+								<FateId>675</FateId> <!-- Brick by Stone Brick -->
+								<FateId>676</FateId> <!-- Brick by Brick -->
+								<FateId>677</FateId> <!-- Brick by Gold Brick -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+
+				<!-- Farm chunk of brickman in Central Thanalan. -->
+
+				<If Condition="&CentralThanalan; == 1">
+					<While Condition="GetQuestStep(66824) == 2">
+						<Log Color="&LogColor;" Name="Breaking Brick Mountains" Message="Obtaining a chunk of brickman..."/>
+						<GetTo ZoneId="141" XYZ="-163.062, -30.94036, 100.6626" /> <!-- FATE: Brick by Brick -->
+						<Fate MinLevel="6" MaxLevel="31" Condition="not IsTodoChecked(66824, 2, 0)">
+							<FateIds>
+								<FateId>660</FateId> <!-- Brick by Brick -->
+								<FateId>661</FateId> <!-- Brick by Stone Brick -->
+							</FateIds>
+						</Fate>
+					</While>
+				</If>
+				<If Condition="GetQuestStep(66824) == 255">
+					<Log Color="&LogColor;" Name="Breaking Brick Mountains" Message="Turning in the Breaking Brick Mountains quest!"/>
+                    <GetTo ZoneId="130" XYZ="-146.1357, 14.005, 56.13782" /> <!-- Beefy Businessman -->
+
+					<!-- Rewards
+
+					Wind-up Brickman
+					Thug's Mug
+
+					-->
+
+					<TurnIn QuestId="66824" ItemId="2001166" NpcId="1005533" XYZ="-146.1357, 14.005, 56.13782" />
+				</If>
+			</If>
+		</If>
+
+		<Log Color="&LogColor;" Name="Breaking Brick Mountains" Message="You've completed Breaking Brick Mountains seasonal event quest!"/>
+
+	</Order>
+	<CodeChunks>
+        <CodeChunk Name="No_Zone_Selected">
+            <![CDATA[ 
+                while (!ConditionParser.HasQuest(66824) || ConditionParser.GetQuestStep(66824) >= 1)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "You have not selected a zone to farm in!\nPlease set the zone to farm in\nthe profile configuration.", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
