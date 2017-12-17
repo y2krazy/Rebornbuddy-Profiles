@@ -5,7 +5,7 @@
 #############################################
 # Author: y2krazy                           #
 #############################################
-# Version: 2.0.0                            #
+# Version: 3.0.0                            #
 #############################################
 # Required Level: 15                        #
 #############################################
@@ -24,239 +24,179 @@
   <!ENTITY LogColor "#66FF66"> <!-- Normal -->
 ]>
 <Profile>
-	<Name>[O] Starlight Celebration Quests (v2.0.0)</Name>
+	<Name>[O] Starlight Celebration Quests (v3.0.0)</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
 
 		<Log Color="&LogColor;" Name="Starlight Celebration" Message="Checking for completed quests..."/>
 
-		<!-- Naughty or Nice -->
+		<!-- Stars and Explosions and Bears, Oh My -->
 
-		<If Condition="not IsQuestCompleted(67911)">
-			<If Condition="not HasQuest(67911)">
-				<Log Color="&LogColor;" Name="Starlight Celebration" Message="Picking up the Naughty or Nice quest!"/>
-				<GetTo ZoneId="130" XYZ="-35.17206, 5.000001, -130.8766"/>
-				<If Condition="IsQuestAcceptQualified(67911)">
-					<PickupQuest NpcId="1017814" QuestId="67911" XYZ="-35.17206, 5.000001, -130.8766"/>
+		<If Condition="not IsQuestCompleted(68545)">
+			<If Condition="not HasQuest(68545)">
+				<Log Color="&LogColor;" Name="Starlight Celebration" Message="Picking up the Stars and Explosions and Bears, Oh My quest!"/>
+                <GetTo ZoneId="133" XYZ="-50.12598, 5.960527, -102.7086" /> <!-- Amh Garanjy -->
+                <If Condition="IsQuestAcceptQualified(68545)">
+                    <PickupQuest NpcId="1024169" QuestId="68545" XYZ="-50.12598, 5.960527, -102.7086" />
+                </If>
+			</If>
+			<If Condition="HasQuest(68545)">
+				<If Condition="GetQuestStep(68545) == 1">
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Talking to Baenfaeld..."/>
+                    <GetTo ZoneId="148" XYZ="2.945007, -8.000669, 5.386414" /> <!-- Baenfaeld -->
+                    <TalkTo NpcId="1024170" XYZ="2.945007, -8.000669, 5.386414" QuestId="68545" StepId="1" />
+				</If>
+				<While Condition="GetQuestStep(68545) == 2">
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Talking to Kochab..."/>
+					<GetTo ZoneId="148" XYZ="7.156433, -8.007142, 10.51343" /> <!-- Kochab -->
+					<TalkTo NpcId="1024446" XYZ="7.156433, -8.007142, 10.51343" QuestId="68545" StepId="2" />
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Talking to Pferkad..."/>
+					<TalkTo NpcId="1024447" XYZ="9.414734, -8, 8.712891" QuestId="68545" StepId="2" />
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Talking to Polaris..."/>
+					<TalkTo NpcId="1024445" XYZ="3.738403, -8.011992, 10.66602" QuestId="68545" StepId="2" />
+				</While>
+				<While Condition="GetQuestStep(68545) == 3">
+                    <If Condition="not Core.Player.IsMounted">
+						<Log Color="&LogColor;" Name="Starlight Celebration" Message="Talking to Starlight Bear Handler..." />
+						<GetTo ZoneId="148" XYZ="11.73413, -8.000001, 8.346619" /> <!-- Starlight Bear Handler -->
+						<TalkTo NpcId="1024454" XYZ="11.73413, -8.000001, 8.346619" QuestId="68545" StepId="3" />
+                    </If>
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Throwing a Starburst on the designated location..." />
+					<NoCombatMoveTo Name="Destination" XYZ="-21.22534, -0.01531982, -11.39856" />
+					<RunCode Name="Stars_and_Explosions_and_Bears_Oh_My" />
+				</While>
+				<While Condition="GetQuestStep(68545) == 4">
+                    <If Condition="not Core.Player.IsMounted">
+						<Log Color="&LogColor;" Name="Starlight Celebration" Message="Talking to Starlight Bear Handler..." />
+						<GetTo ZoneId="148" XYZ="11.73413, -8.000001, 8.346619" /> <!-- Starlight Bear Handler -->
+						<TalkTo NpcId="1024454" XYZ="11.73413, -8.000001, 8.346619" QuestId="68545" StepId="4" />
+                    </If>
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Throwing a Starburst on the designated location..." />
+					<NoCombatMoveTo Name="Destination" XYZ="18.32605, -8.011047, 77.83618" />
+					<RunCode Name="Stars_and_Explosions_and_Bears_Oh_My2" />
+				</While>
+				<If Condition="GetQuestStep(68545) == 255">
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Turning in the Stars and Explosions and Bears, Oh My quest!"/>
+                    <GetTo ZoneId="148" XYZ="18.32605, -8, 75.66943" /> <!-- Taff -->
+                    <TurnIn QuestId="68545" NpcId="1024451" XYZ="18.32605, -8, 75.66943" />
 				</If>
 			</If>
-			<If Condition="HasQuest(67911)">
-				<If Condition="GetQuestStep(67911) == 1">
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Searching for the special delivery..."/>
-					<GetTo ZoneId="130" XYZ="-4.135254, 10.1167, -57.11456"/>
-					<UseObject NpcId="2007506" XYZ="-4.135254, 10.1167, -57.11456" Radius="10" QuestId="67911" StepId="1"/>
+		</If>
+
+		<!-- Starlight Stakeout -->
+
+		<If Condition="not IsQuestCompleted(68546)">
+			<If Condition="not HasQuest(68546)">
+				<Log Color="&LogColor;" Name="Starlight Celebration" Message="Picking up the Starlight Stakeout quest!"/>
+                <GetTo ZoneId="148" XYZ="18.32605, -8, 75.66943" /> <!-- Taff -->
+                <If Condition="IsQuestAcceptQualified(68546)">
+                    <PickupQuest NpcId="1024451" QuestId="68546" XYZ="18.32605, -8, 75.66943" />
+                </If>
+			</If>
+			<If Condition="HasQuest(68546)">
+				<If Condition="GetQuestStep(68546) == 1">
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Talking to Baenfaeld..."/>
+                    <GetTo ZoneId="148" XYZ="48.53894, -23.92205, 215.4115" /> <!-- Baenfaeld -->
+                    <TalkTo NpcId="1024518" XYZ="48.53894, -23.92205, 215.4115" QuestId="68546" StepId="1" />
 				</If>
-				<If Condition="GetQuestStep(67911) == 255">
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Turning in the Naughty or Nice quest!"/>
-					<GetTo ZoneId="131" XYZ="-86.16772, 40, 108.5068"/>
+				<If Condition="GetQuestStep(68546) == 2">
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Talking to Starlight Bear Handler..."/>
+                    <GetTo ZoneId="148" XYZ="178.3932, -32.11507, 352.1323" /> <!-- Starlight Bear Handler -->
+                    <TalkTo NpcId="1024516" XYZ="178.3932, -32.11507, 352.1323" QuestId="68546" StepId="2" />
+				</If>
+				<If Condition="GetQuestStep(68546) == 3">
+                    <If Condition="not Core.Player.IsMounted">
+						<Log Color="&LogColor;" Name="Starlight Celebration" Message="Talking to Starlight Bear Handler..." />
+						<GetTo ZoneId="148" XYZ="178.3932, -32.11507, 352.1323" /> <!-- Starlight Bear Handler -->
+						<TalkTo NpcId="1024516" XYZ="178.3932, -32.11507, 352.1323" QuestId="68546" StepId="3" />
+                    </If>
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Completing the Bad Luck Comes in Trees FATE..." />
+					<NoCombatMoveTo Name="FATE: Bad Luck Comes in Trees" XYZ="192.9954, -32.75785, 397.9171" />
+					<RunCode Name="Starlight_Stakeout" />
+				</If>
+				<If Condition="GetQuestStep(68546) == 255">
 
 					<!-- Rewards
 
-					Starlight Robe
+					Starlight Bear Horn
 
 					-->
 
-					<TurnIn QuestId="67911" ItemId="2002019" NpcId="1018114" XYZ="-86.16772, 40, 108.5068"/>
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Turning in the Starlight Stakeout quest!"/>
+                    <GetTo ZoneId="148" XYZ="18.32605, -8, 75.66943" /> <!-- Taff -->
+                    <TurnIn QuestId="68546" NpcId="1024451" XYZ="18.32605, -8, 75.66943" />
 				</If>
 			</If>
 		</If>
 
-		<!-- Think of the Children -->
-
-		<If Condition="not IsQuestCompleted(67912)">
-			<If Condition="not HasQuest(67912)">
-				<Log Color="&LogColor;" Name="Starlight Celebration" Message="Picking up the Think of the Children quest!"/>
-				<GetTo ZoneId="131" XYZ="-86.16772, 40, 108.5068"/>
-				<If Condition="IsQuestAcceptQualified(67912)">
-					<PickupQuest NpcId="1018114" QuestId="67912" XYZ="-86.16772, 40, 108.5068"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(67912)">
-				<If Condition="GetQuestStep(67912) == 1">
-					<If Condition="not IsOnMap(131) and not IsOnMap(611)">
-						<GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<If Condition="IsOnMap(131)">
-						<UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Delivering gifts to the children..."/>
-					<!-- <GetTo ZoneId="611" XYZ="9.445313, 0.003999993, 4.074097"/> -->
-                	<BotSettings AutoEquip="0"/>
-					<RunCode Name="StarlightRobe"/>
-					<While Condition="not IsTodoChecked(67912, 1, 0)">
-						<HandOver ItemId="2002014" QuestId="67912" StepId="1" NpcId="1017809" XYZ="9.445313, 0.003999993, 4.074097"/>
-						<HandOver ItemId="2002014" QuestId="67912" StepId="1" NpcId="1017808" XYZ="1.388489, 7.688999E-06, 3.860474"/>
-						<HandOver ItemId="2002014" QuestId="67912" StepId="1" NpcId="1017807" XYZ="0.3203735, 7.688999E-06, 4.440308"/>
-						<HandOver ItemId="2002014" QuestId="67912" StepId="1" NpcId="1017810" XYZ="-5.661133, 0.005499996, 8.895996"/>
-					</While>
-	                <BotSettings AutoEquip="1"/>
-				</If>
-				<If Condition="GetQuestStep(67912) == 2">
-					<If Condition="not IsOnMap(131) and not IsOnMap(611)">
-						<GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<If Condition="IsOnMap(131)">
-						<UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Returning the undelivered gift..."/>
-					<!-- <GetTo ZoneId="611" XYZ="-1.510742, 7.688999E-06, -1.083435"/> -->
-					<HandOver ItemId="2002014" QuestId="67912" StepId="2" NpcId="1018341" XYZ="-1.510742, 7.688999E-06, -1.083435"/>
-				</If>
-				<If Condition="GetQuestStep(67912) == 3">
-					<If Condition="not IsOnMap(130) and not IsOnMap(131) and not IsOnMap(611)">
-						<GetTo ZoneId="130" XYZ="-15.61005, 8, -96.9101"/>
-					</If>
-					<If Condition="IsOnMap(611)">
-						<UseTransport Name="Exit" InteractDistance="3.0" NpcId="2007463" XYZ="7.400574, 0.8391724, 10.23871"/>
-					</If>
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Searching for Reauverre..."/>
-					<GetTo ZoneId="130" XYZ="-15.61005, 8, -96.9101"/>
-					<TalkTo NpcId="1018188" XYZ="-15.61005, 8, -96.9101" QuestId="67912" StepId="3"/>
-				</If>
-				<If Condition="GetQuestStep(67912) == 4">
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Reporting to the Raven-haired Registrar..."/>
-					<GetTo ZoneId="130" XYZ="-7.980469, 10, -52.84204"/>
-					<TalkTo NpcId="1018194" XYZ="-7.980469, 10, -52.84204" QuestId="67912" StepId="4"/>
-				</If>
-				<If Condition="GetQuestStep(67912) == 255">
-					<If Condition="not IsOnMap(131) and not IsOnMap(611)">
-						<GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<If Condition="IsOnMap(131)">
-						<UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Turning in the Think of the Children quest!"/>
-					<!-- <GetTo ZoneId="611" XYZ="7.614197, 0.005500436, 1.51062"/> -->
-					<TurnIn QuestId="67912" NpcId="1018186" XYZ="7.614197, 0.005500436, 1.51062"/>
-				</If>
-			</If>
-		</If>
-
-		<!-- I'll Be Home for Starlight -->
-
-		<If Condition="not IsQuestCompleted(67913)">
-			<If Condition="not HasQuest(67913)">
-				<If Condition="not IsOnMap(131) and not IsOnMap(611)">
-					<GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
-				</If>
-				<If Condition="IsOnMap(131)">
-					<UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
-				</If>
-				<Log Color="&LogColor;" Name="Starlight Celebration" Message="Picking up the I'll Be Home for Starlight quest!"/>
-				<!-- <GetTo ZoneId="611" XYZ="7.614197, 0.005500436, 1.51062"/> -->
-				<If Condition="IsQuestAcceptQualified(67913)">
-					<PickupQuest NpcId="1018265" QuestId="67913" XYZ="7.614197, 0.005500436, 1.51062"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(67913)">
-				<If Condition="GetQuestStep(67913) == 1">
-					<If Condition="not IsOnMap(131) and not IsOnMap(611)">
-						<GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<If Condition="IsOnMap(131)">
-						<UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Gathering information regarding Reauverre..."/>
-					<!-- <GetTo ZoneId="611" XYZ="9.445313, 0.003999993, 4.074097"/> -->
-					<While Condition="not IsTodoChecked(67913, 1, 0)">
-						<TalkTo NpcId="1017809" XYZ="9.445313, 0.003999993, 4.074097" QuestId="67913" StepId="1"/>
-						<TalkTo NpcId="1017808" XYZ="1.388489, 7.688999E-06, 3.860474" QuestId="67913" StepId="1"/>
-						<TalkTo NpcId="1017807" XYZ="0.3203735, 7.688999E-06, 4.440308" QuestId="67913" StepId="1"/>
-						<TalkTo NpcId="1017810" XYZ="-5.661133, 0.005499996, 8.895996" QuestId="67913" StepId="1"/>
-					</While>
-				</If>
-				<If Condition="GetQuestStep(67913) == 2">
-					<If Condition="not IsOnMap(131) and not IsOnMap(611)">
-						<GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<If Condition="IsOnMap(131)">
-						<UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Searching under Reauverre's bed..."/>
-					<!-- <GetTo ZoneId="611" XYZ="-6.912354, -0.01531982, -2.822998"/> -->
-					<UseObject NpcId="2007505" XYZ="-6.912354, -0.01531982, -2.822998" Radius="10" QuestId="67913" StepId="2"/>
-				</If>
-				<If Condition="GetQuestStep(67913) == 3">
-					<If Condition="not IsOnMap(131) and not IsOnMap(611)">
-						<GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<If Condition="IsOnMap(131)">
-						<UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Delivering the letter to the Raven-haired Registrar..."/>
-					<!-- <GetTo ZoneId="611" XYZ="8.194031, 2.324581E-06, -9.689575"/> -->
-					<HandOver ItemId="2002015" QuestId="67913" StepId="3" NpcId="1018197" XYZ="8.194031, 2.324581E-06, -9.689575"/>
-				</If>
-				<If Condition="GetQuestStep(67913) == 4">
-					<If Condition="not IsOnMap(131) and not IsOnMap(611)">
-						<GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<If Condition="IsOnMap(611)">
-						<UseTransport Name="Exit" InteractDistance="3.0" NpcId="2007463" XYZ="7.400574, 0.8391724, 10.23871"/>
-					</If>
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Rendezvousing with the Raven-haired Registrar..."/>
-					<GetTo ZoneId="131" XYZ="23.94141, 29.99999, 2.731323"/>
-					<TalkTo NpcId="1018203" XYZ="23.94141, 29.99999, 2.731323" QuestId="67913" StepId="4"/>
-				</If>
-				<If Condition="GetQuestStep(67913) == 5">
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Talking to Reauverre's Father..."/>
-					<GetTo ZoneId="129" XYZ="-355.3979, 7.999972, 40.29907"/>
-					<TalkTo NpcId="1018198" XYZ="-355.3979, 7.999972, 40.29907" QuestId="67913" StepId="5"/>
-				</If>
-				<If Condition="GetQuestStep(67913) == 6">
-					<If Condition="not IsOnMap(131) and not IsOnMap(611)">
-						<GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<If Condition="IsOnMap(131)">
-						<UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Showing the present to the Raven-haired Registrar..."/>
-					<!-- <GetTo ZoneId="611" XYZ="7.644714, 0.005500436, 1.480042"/> -->
-					<HandOver ItemId="2002017" QuestId="67913" StepId="6" NpcId="1017805" XYZ="7.644714, 0.005500436, 1.480042"/>
-				</If>
-				<If Condition="GetQuestStep(67913) == 7">
-					<If Condition="not IsOnMap(131) and not IsOnMap(611)">
-						<GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<If Condition="IsOnMap(131)">
-						<UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Delivering the present to Reauverre..."/>
-					<!-- <GetTo ZoneId="611" XYZ="-7.064941, -0.01531982, -2.700867"/> -->
-					<HandOver ItemId="2002017" QuestId="67913" StepId="7" NpcId="1018199" XYZ="-7.064941, -0.01531982, -2.700867"/>
-				</If>
-				<If Condition="GetQuestStep(67913) == 255">
-					<If Condition="not IsOnMap(131) and not IsOnMap(611)">
-						<GetTo ZoneId="131" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<If Condition="IsOnMap(131)">
-						<UseTransport Name="Phrontistery Alchemist" InteractDistance="3.0" NpcId="1017813" XYZ="-83.66528, 40, 109.5139"/>
-					</If>
-					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Turning in the I'll Be Home for Starlight quest!"/>
-					<!-- <GetTo ZoneId="611" XYZ="7.614197, 0.005500436, 1.51062"/> -->
-					<TurnIn QuestId="67913" NpcId="1018186" XYZ="7.614197, 0.005500436, 1.51062"/>
-				</If>
-			</If>
-		</If>
-
-		<Log Color="&LogColor;" Name="Starlight Celebration" Message="You've completed the Starlight Celebration seasonal event quest!"/>
+		<Log Color="&LogColor;" Name="Starlight Celebration" Message="You've completed the Starlight Celebration seasonal event quests!"/>
 
 	</Order>
 	<CodeChunks>
-        <CodeChunk Name="StarlightRobe">
-            <![CDATA[ 
-                BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Body];
-                
-                foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+        <CodeChunk Name="Stars_and_Explosions_and_Bears_Oh_My">
+			<![CDATA[ 
+				await Coroutine.Sleep(1000);
+				GameObjectManager.GetObjectByNPCId(2008623).Target();
+				await Coroutine.Sleep(1000);
+				ActionManager.DoActionLocation(10019,new Vector3(-21.22534f, -0.01531982f, -11.39856f));
+				await Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(1000);
+			]]>
+        </CodeChunk>
+        <CodeChunk Name="Stars_and_Explosions_and_Bears_Oh_My2">
+			<![CDATA[ 
+				await Coroutine.Sleep(1000);
+				GameObjectManager.GetObjectByNPCId(2008624).Target();
+				await Coroutine.Sleep(1000);
+				ActionManager.DoActionLocation(10019,new Vector3(18.32605f, -8.011047f, 77.83618f));
+				await Coroutine.Sleep(10000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(4000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Coroutine.Sleep(1000);
+			]]>
+        </CodeChunk>
+        <CodeChunk Name="Starlight_Stakeout">
+			<![CDATA[ 
+                while (ConditionParser.GetQuestStep(68546) == 3)
                 {
-                    if(slot.RawItemId == 16612)
-                    {
-                        slot.Move(EquipSlot);
-                    }
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Starlight Celebration]\nPlease manually complete the\nBad Luck Comes in Trees duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(1000);
+					if(!Core.Me.IsLevelSynced)
+					{
+						ToDoList.LevelSync();
+						await Coroutine.Sleep(1000);
+					}
+					ActionManager.DoActionLocation(10019,new Vector3(201.0158f, -32.75785f, 402.789f));
+					await Coroutine.Sleep(10000);
+					if(!Core.Me.IsLevelSynced)
+					{
+						ToDoList.LevelSync();
+						await Coroutine.Sleep(1000);
+					}
+					ActionManager.DoActionLocation(10019,new Vector3(189.3112f, -32.42972f, 413.7464f));
+					await Coroutine.Sleep(10000);
+					if(!Core.Me.IsLevelSynced)
+					{
+						ToDoList.LevelSync();
+						await Coroutine.Sleep(1000);
+					}
+					ActionManager.DoActionLocation(10019,new Vector3(187.7738f, -32.91975f, 391.7484f));
+					await Coroutine.Sleep(5000);
                 }
-                await Buddy.Coroutines.Coroutine.Sleep(1000);
-        ]]>
+			]]>
         </CodeChunk>
 	</CodeChunks>
 	<GrindAreas>
