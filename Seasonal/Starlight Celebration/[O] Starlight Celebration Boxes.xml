@@ -5,7 +5,7 @@
 ############################################
 # Author: y2krazy                          #
 ############################################
-# Version: 3.0.1                           #
+# Version: 3.0.1a                          #
 ############################################
 # Required Level: 11                       #
 ############################################
@@ -33,14 +33,14 @@
   <!-- Starlight Celebration Advertisement: 2 -->
   <!-- Starlit Gateway Orchestrion Roll: 2 -->
 
-  <!ENTITY Boxes "0"> <!-- Starlight Boxes to obtain before stopping. -->
+  <!ENTITY Boxes "10"> <!-- Starlight Boxes to obtain before stopping. -->
 
   <!-- Log Colors -->
 
   <!ENTITY LogColor "#66FF66"> <!-- Normal -->
 ]>
 <Profile>
-	<Name>[O] Starlight Celebration Boxes (v3.0.1)</Name>
+	<Name>[O] Starlight Celebration Boxes (v3.0.1a)</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -105,12 +105,12 @@
 				System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
 				Core.OverlayManager.AddToast(() => "[Starlight Celebration]\nPlease manually complete the\nBad Luck Comes in Trees FATE!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
 				await Coroutine.Sleep(25000);
-				if(!Core.Me.IsLevelSynced)
+				if (!Core.Me.IsLevelSynced)
 				{
 					ToDoList.LevelSync();
 					await Coroutine.Sleep(1000);
 				}
-				if(Core.Me.IsLevelSynced)
+				while (Core.Me.IsLevelSynced)
 				{
 					ActionManager.DoActionLocation(10019,new Vector3(201.0158f, -32.75785f, 402.789f));
 					await Coroutine.Sleep(10000);
