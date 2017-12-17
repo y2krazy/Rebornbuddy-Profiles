@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+############################################
+# Profile: [O] Starlight Celebration Boxes #
+############################################
+# Author: y2krazy                          #
+############################################
+# Version: 3.0.0                           #
+############################################
+# Required Level: 11                       #
+############################################
+# Required User Interaction:               #
+#  None                                    #
+############################################
+# Required Setup:                          #
+#  Fill out User Configuration below.      #
+############################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- Boxes Required for: -->
+  <!-- Roast Dodo: 1 -->
+  <!-- Snowflake Peak: 1 -->
+  <!-- Princess Pudding: 1 -->
+  <!-- Ore Fruitcake: 1 -->
+  <!-- Starlight Log: 1 -->
+  <!-- Magicked Prism (Sunshine): 1 (10 per Box) -->
+  <!-- Magicked Prism (Stardust): 1 (10 per Box) -->
+  <!-- Starlight Sapling: 2 -->
+  <!-- Starlight Stew Set: 1 -->
+  <!-- Starlight Log Set: 1 -->
+  <!-- Starlight Celebration Advertisement: 2 -->
+  <!-- Starlit Gateway Orchestrion Roll: 2 -->
+
+  <!ENTITY Boxes "0"> <!-- Starlight Boxes to obtain before stopping. -->
+
+  <!-- Log Colors -->
+
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
+]>
+<Profile>
+	<Name>[O] Starlight Celebration Boxes (v3.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="&Boxes; == 0">
+            <RunCode Name="No_Quantity_Set" />
+            <StopBot/>
+        </If>
+
+		<Dismount />
+
+		<!-- Farm Starlight Boxes -->
+
+		<If Condition="&Boxes; >= 1">
+			<While Condition="not HasAtLeast(21300,&Boxes;)">
+				<If Condition="&Boxes; == 1">
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Farming a Starlight Box..." />
+        		</If>
+				<If Condition="&Boxes; >= 2">
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Farming Starlight Boxes..." />
+        		</If>
+				<If Condition="not Core.Player.IsMounted">
+					<Log Color="&LogColor;" Name="Starlight Celebration" Message="Talking to Starlight Bear Handler..." />
+					<GetTo ZoneId="148" XYZ="178.3932, -32.11507, 352.1323" /> <!-- Starlight Bear Handler -->
+                    <UseTransport Name="Starlight Bear Handler" InteractDistance="3.0" NpcId="1024516" XYZ="178.3932, -32.11507, 352.1323" />
+				</If>
+				<Log Color="&LogColor;" Name="Starlight Celebration" Message="Completing the Bad Luck Comes in Trees FATE..." />
+				<NoCombatMoveTo Name="FATE: Bad Luck Comes in Trees" XYZ="192.9954, -32.75785, 397.9171" />
+				<RunCode Name="Bad_Luck_Comes_in_Trees" />
+			</While>
+		</If>
+
+        <If Condition="HasAtLeast(21300,&Boxes;) and &Boxes; == 1">
+            <Log Color="&LogColor;" Name="Starlight Celebration" Message="You've obtained 1 Starlight Box!" />
+        </If>
+        <If Condition="HasAtLeast(21300,&Boxes;) and &Boxes; >= 2">
+            <Log Color="&LogColor;" Name="Starlight Celebration" Message="You've obtained &Boxes; Starlight Boxes!" />
+        </If>
+
+		<Log Color="&LogColor;" Name="Starlight Celebration" Message="Moving to Starlight Celebrant..." />
+		<GetTo ZoneId="133" XYZ="-30.13178, 7.25, -122.7354" /> <!-- Starlight Celebrant -->
+		<Log Color="&LogColor;" Name="Starlight Celebration" Message="You've arrived at Starlight Celebrant!" />
+
+        <Log Color="&LogColor;" Name="Starlight Celebration" Message="If you need more Boxes, please adjust the quantity in the user configuration within the profile!" />
+
+	</Order>
+	<CodeChunks>
+        <CodeChunk Name="No_Quantity_Set">
+            <![CDATA[ 
+                while (ConditionParser.IsQuestCompleted(68546))
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "You have not set a quantity of boxes to farm!\nPlease set the quantity to farm in\nthe profile configuration.", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+        <CodeChunk Name="Bad_Luck_Comes_in_Trees">
+			<![CDATA[ 
+				System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+				System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+				Core.OverlayManager.AddToast(() => "[Starlight Celebration]\nPlease manually complete the\nBad Luck Comes in Trees FATE!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+				await Coroutine.Sleep(1000);
+				if(!Core.Me.IsLevelSynced)
+				{
+					ToDoList.LevelSync();
+					await Coroutine.Sleep(1000);
+				}
+				ActionManager.DoActionLocation(10019,new Vector3(201.0158f, -32.75785f, 402.789f));
+				await Coroutine.Sleep(10000);
+				if(!Core.Me.IsLevelSynced)
+				{
+					ToDoList.LevelSync();
+					await Coroutine.Sleep(1000);
+				}
+				ActionManager.DoActionLocation(10019,new Vector3(189.3112f, -32.42972f, 413.7464f));
+				await Coroutine.Sleep(10000);
+				if(!Core.Me.IsLevelSynced)
+				{
+					ToDoList.LevelSync();
+					await Coroutine.Sleep(1000);
+				}
+				ActionManager.DoActionLocation(10019,new Vector3(187.7738f, -32.91975f, 391.7484f));
+				await Coroutine.Sleep(5000);
+			]]>
+        </CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
