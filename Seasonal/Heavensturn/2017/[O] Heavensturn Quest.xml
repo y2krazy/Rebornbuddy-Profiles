@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+####################################################
+# Profile: [O] Heavensturn Quest                   #
+####################################################
+# Author: y2krazy                                  #
+####################################################
+# Version: 2.0.0                                   #
+####################################################
+# Required Level: 15                               #
+####################################################
+# Required User Interaction:                       #
+#  FATE: Pounding More Mochi, Pounding More Hearts #
+####################################################
+# Required Setup:                                  #
+#  None                                            #
+####################################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- Log Colors -->
+
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] Heavensturn Quest (v2.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<Log Color="&LogColor;" Name="Heavensturn" Message="Checking for completed quests..."/>
+
+		<!-- A Thousand Blows -->
+
+		<If Condition="not IsQuestCompleted(67085)">
+			<If Condition="not HasQuest(67085)">
+				<If Condition="not IsOnMap(128)">
+					<GetTo ZoneId="128" XYZ="16.28131, 45.656, 133.9285"/>
+				</If>
+				<Log Color="&LogColor;" Name="Heavensturn" Message="Picking up the A Thousand Blows quest!"/>
+				<MoveTo Name="Tori Bugyo" XYZ="16.28131, 45.656, 133.9285"/>
+				<If Condition="IsQuestAcceptQualified(67085)">
+					<PickupQuest NpcId="1018123" QuestId="67085" XYZ="16.28131, 45.656, 133.9285"/>
+				</If>
+			</If>
+			<If Condition="HasQuest(67085)">
+				<If Condition="GetQuestStep(67085) == 1">
+					<If Condition="not IsOnMap(129)">
+						<GetTo ZoneId="129" XYZ="-41.42828, 19.99999, -5.661133"/>
+					</If>
+					<Log Color="&LogColor;" Name="Heavensturn" Message="Speading the word of free desserts..."/>
+					<MoveTo Name="Ryssfloh" XYZ="-41.42828, 19.99999, -5.661133"/>
+					<While Condition="not IsTodoChecked(67085, 1, 0)">
+						<TalkTo NpcId="1003596" XYZ="-41.42828, 19.99999, -5.661133" QuestId="67085" StepId="1"/>
+						<TalkTo NpcId="1001217" XYZ="-140.856, 18.2, 17.01373" QuestId="67085" StepId="1"/>
+						<TalkTo NpcId="1000914" XYZ="-341.7563, 11.99946, 35.08044" QuestId="67085" StepId="1"/>
+					</While>
+				</If>
+				<If Condition="GetQuestStep(67085) == 2">
+					<If Condition="not IsOnMap(128)">
+						<GetTo ZoneId="128" XYZ="16.28131, 45.656, 133.9285"/>
+					</If>
+					<Log Color="&LogColor;" Name="Heavensturn" Message="Reporting to Tori Bugyo..."/>
+					<MoveTo Name="Tori Bugyo" XYZ="16.28131, 45.656, 133.9285"/>
+					<TalkTo NpcId="1018123" XYZ="16.28131, 45.656, 133.9285" QuestId="67085" StepId="2"/>
+				</If>
+				<If Condition="GetQuestStep(67085) == 3">
+					<If Condition="not IsOnMap(134)">
+						<GetTo ZoneId="134" XYZ="164.1733, 57.3862, 233.3321"/>
+					</If>
+					<Log Color="&LogColor;" Name="Heavensturn" Message="Retrieving Advent Cakes for Jiromaru..."/>
+					<NoCombatMoveTo Name="FATE: Pounding More Mochi, Pounding More Hearts" XYZ="164.1733, 57.3862, 233.3321"/>
+					<LogMessage Message="Please manually complete the Pounding More Mochi, Pounding More Hearts FATE at this location (when it appears)."/>
+					<LogMessage Message="Alternatively, you could look for the FATE in Lower La Noscea."/>
+					<StopBot/>
+				</If>
+				<If Condition="GetQuestStep(67085) == 255">
+					<If Condition="not IsOnMap(128)">
+						<GetTo ZoneId="128" XYZ="16.28131, 45.656, 133.9285"/>
+					</If>
+
+					<!-- Rewards
+
+					Red Tori Kabuto
+					Black Tori Kabuto
+
+					-->
+
+					<Log Color="&LogColor;" Name="Heavensturn" Message="Turning in the A Thousand Blows quest!"/>
+					<MoveTo Name="Tori Bugyo" XYZ="16.28131, 45.656, 133.9285"/>
+					<TurnIn QuestId="67085" NpcId="1018123" XYZ="16.28131, 45.656, 133.9285"/>
+				</If>
+			</If>
+		</If>
+
+		<LogMessage Message="You've completed the Heavensturn seasonal event quest!"/>
+
+	</Order>
+	<CodeChunks>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
