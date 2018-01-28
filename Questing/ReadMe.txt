@@ -11,6 +11,7 @@
 Please run the questing profiles in the following order:
 
     01) [O] A Realm Reborn (Immortal Flames) <= This is Patch 2.0
+        -- Run the "[MSQ]" profile to ignore all Sidequests.
     02) [O] A Realm Reborn (Patch 2.1)
     03) [O] A Realm Reborn (Patch 2.2)
     04) [O] A Realm Reborn (Patch 2.3)
@@ -18,6 +19,7 @@ Please run the questing profiles in the following order:
     06) [O] A Realm Reborn (Patch 2.5)
 
     07) [O] Heavensward <= This is Patch 3.0
+        -- Run the "[MSQ]" profile to ignore all Sidequests.
     08) [O] Heavensward (Patch 3.1)
     09) [O] Heavensward (Patch 3.2)
     10) [O] Heavensward (Patch 3.3)
@@ -25,3 +27,5 @@ Please run the questing profiles in the following order:
     12) [O] Heavensward (Patch 3.5)
     
     13) [O] Stormblood <= This is Patch 4.0
+        -- Run the "[MSQ]" profile to ignore all Sidequests.
+    14) [O] Stormblood (Patch 4.1)
