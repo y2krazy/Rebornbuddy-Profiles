@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+############################################
+# Profile: [O] Valentione's Day Chocolates #
+############################################
+# Author: y2krazy                          #
+############################################
+# Version: 3.0.0                           #
+############################################
+# Required Level: 1                        #
+############################################
+# Required Setup:                          #
+#  Fill out User Configuration below.      #
+############################################
+# Required User Interaction:               #
+#  1 Duty Finder Queue                     #
+############################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- NOTE: The following can be purchased from House Valentione Maid in Old Gridania (x10.6, y8.7). -->
+  <!-- Broken Heart Pendant (Left): 6 Valentione's Day Chocolates -->
+  <!-- Broken Heart Pendant (Right): 6 Valentione's Day Chocolates -->
+  <!-- Rose Wagon: 2 Valentione's Day Chocolates -->
+  <!-- Valentione's Day Balloons: 2 Valentione's Day Chocolates -->
+  <!-- Valentione's Day Advertisement: 2 Valentione's Day Chocolates -->
+  <!-- Prismatic Heart (Left): 1 Valentione's Day Chocolate -->
+  <!-- Prismatic Heart (Right): 1 Valentione's Day Chocolate -->
+
+  <!ENTITY Chocolates "3"> <!-- Moonfire Faire Vouchers to obtain before stopping. -->
+
+  <!-- Log Colors -->
+
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
+  <!ENTITY LogColorAck "#FF0000"> <!-- Warnings -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] Valentione's Day Chocolates (v3.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+        <If Condition="&Chocolates; == 0">
+            <Log Color="&LogColorAck;" Name="Valentione's Day" Message="You have not selected anything to farm! Derp!" />
+            <StopBot/>
+        </If>
+
+        <If Condition="&Chocolates; == 1 and HasAtLeast(22403,&Chocolates;)">
+            <Log Color="&LogColor;" Name="Valentione's Day" Message="You've already obtained &Chocolates; Valentione's Day Chocolate!" />
+            <StopBot/>
+        </If>
+
+        <If Condition="&Chocolates; &gt; 1 and HasAtLeast(22403,&Chocolates;)">
+            <Log Color="&LogColor;" Name="Valentione's Day" Message="You've already obtained &Chocolates; Valentione's Day Chocolates!" />
+            <StopBot/>
+        </If>
+
+        <If Condition="&Chocolates; &gt; 0 and not HasAtLeast(22403,&Chocolates;)">
+            <GetTo ZoneId="133" XYZ="-45.94495, 6.877787, -122.9114" /> <!-- House Valentione Servant -->
+            <RunCode Name="Valentiones_Day_Chocolates" />
+            <StopBot />
+        </If>
+
+        <If Condition="&Chocolates; == 1 and HasAtLeast(22403,&Chocolates;)">
+            <Log Color="&LogColor;" Name="Valentione's Day" Message="You've obtained &Chocolates; Valentione's Day Chocolate!" />
+        </If>
+
+        <If Condition="&Chocolates; &gt; 1 and HasAtLeast(22403,&Chocolates;)">
+            <Log Color="&LogColor;" Name="Valentione's Day" Message="You've obtained &Chocolates; Valentione's Day Chocolates!" />
+        </If>
+
+        <Log Color="&LogColor;" Name="Valentione's Day" Message="If you need more Chocolates, please adjust the quantity in the user configuration within the profile!" />
+        <Log Color="&LogColor;" Name="Valentione's Day" Message="Stopping the bot. Nothing left for me to to!" />
+
+	</Order>
+	<CodeChunks>
+        <CodeChunk Name="Valentiones_Day_Chocolates">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68618) != 255)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Valentione's Day]\nPlease manually complete The Valentione's Ceremony duty!\n\nTrial #1: Do not lose all Affinity.\nTrial #2: Use number markers to help match cards.", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>

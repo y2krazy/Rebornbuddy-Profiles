@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#######################################
+# Profile: [O] Valentione's Day Quest #
+#######################################
+# Author: y2krazy                     #
+#######################################
+# Version: 3.0.0                      #
+#######################################
+# Required Level: 15                  #
+#######################################
+# Required Setup:                     #
+#  None                               #
+#######################################
+# Required User Interaction:          #
+#  1 Duty Finder Queue                #
+#######################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- Log Colors -->
+
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] Valentione's Day Quest (v3.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<Log Color="&LogColor;" Name="Valentione's Day" Message="Checking for completed quest..."/>
+
+		<!-- Lessons in Love -->
+
+		<If Condition="not IsQuestCompleted(68618)">
+			<If Condition="not HasQuest(68618)">
+				<Log Color="&LogColor;" Name="Valentione's Day" Message="Picking up the Lessons in Love quest!"/>
+                <GetTo ZoneId="133" XYZ="-50.03442, 6.499999, -89.98254" /> <!-- Lisette de Valentione -->
+                <If Condition="IsQuestAcceptQualified(68618)">
+                    <PickupQuest NpcId="1025311" QuestId="68618" XYZ="-50.03442, 6.499999, -89.98254" />
+                </If>
+			</If>
+			<If Condition="HasQuest(68618)">
+                <If Condition="GetQuestStep(68618) == 1">
+					<Log Color="&LogColor;" Name="Valentione's Day" Message="Speaking to Astrid..."/>
+                    <GetTo ZoneId="133" XYZ="-53.87964, 6.845034, -122.8199" /> <!-- Astrid -->
+                    <TalkTo NpcId="1025319" XYZ="-53.87964, 6.845034, -122.8199" QuestId="68618" StepId="1" />
+                </If>
+                <While Condition="GetQuestStep(68618) == 2">
+					<Log Color="&LogColor;" Name="Valentione's Day" Message="Finding the missing moogles..."/>
+                    <GetTo ZoneId="133" XYZ="-161.5168, 4.101036, -26.16925" /> <!-- Sleepy Moogle -->
+                    <TalkTo NpcId="1025487" XYZ="-161.5168, 4.101036, -26.16925" QuestId="68618" StepId="2" />
+                    <TalkTo NpcId="1025324" XYZ="-253.1624, 1.194825, -205.829" QuestId="68618" StepId="2" />
+					<TalkTo NpcId="1025325" XYZ="27.54248, 16.17217, -339.376" QuestId="68618" StepId="2" />
+                </While>
+                <If Condition="GetQuestStep(68618) == 3">
+					<Log Color="&LogColor;" Name="Valentione's Day" Message="Reporting to Astrid..."/>
+                    <GetTo ZoneId="133" XYZ="-53.87964, 6.845034, -122.8199" /> <!-- Astrid -->
+                    <TalkTo NpcId="1025319" XYZ="-53.87964, 6.845034, -122.8199" QuestId="68618" StepId="3" />
+                </If>
+                <If Condition="GetQuestStep(68618) == 4">
+					<Log Color="&LogColor;" Name="Valentione's Day" Message="Speaking to Kuplu Kumu..."/>
+                    <GetTo ZoneId="133" XYZ="-132.7993, 6.763383, -118.8831" /> <!-- Kuplu Kumu -->
+                    <TalkTo NpcId="1025488" XYZ="-132.7993, 6.763383, -118.8831" QuestId="68618" StepId="4" />
+                </If>
+                <If Condition="GetQuestStep(68618) == 5">
+					<Log Color="&LogColor;" Name="Valentione's Day" Message="Speaking to Slack Moogle..."/>
+                    <GetTo ZoneId="133" XYZ="81.62048, 0, -131.8838" /> <!-- Slack Moogle -->
+                    <TalkTo NpcId="1025489" XYZ="81.62048, 0, -131.8838" QuestId="68618" StepId="5" />
+                </If>
+                <If Condition="GetQuestStep(68618) == 6">
+					<Log Color="&LogColor;" Name="Valentione's Day" Message="Speaking to Astrid..."/>
+                    <GetTo ZoneId="133" XYZ="-53.87964, 6.845034, -122.8199" /> <!-- Astrid -->
+                    <TalkTo NpcId="1025319" XYZ="-53.87964, 6.845034, -122.8199" QuestId="68618" StepId="6" />
+                </If>
+                <If Condition="GetQuestStep(68618) == 7">
+                	<If Condition="not HasAtLeast(1,22403)">
+						<GetTo ZoneId="133" XYZ="-45.94495, 6.877787, -122.9114" /> <!-- House Valentione Servant -->
+						<RunCode Name="Lessons_in_Love" />
+						<StopBot />
+                	</If>
+					<Log Color="&LogColor;" Name="Valentione's Day" Message="Showing the Valentione's Day chocolate to Astrid..."/>
+					<GetTo ZoneId="133" XYZ="-53.87964, 6.845034, -122.8199" /> <!-- Astrid -->
+					<HandOver ItemId="22403" QuestId="68618" StepId="7" NpcId="1025319" XYZ="-53.87964, 6.845034, -122.8199" />
+                </If>
+				<If Condition="GetQuestStep(68618) == 255">
+					<Log Color="&LogColor;" Name="Valentione's Day" Message="Turning in the Lessons in Love quest!"/>
+                    <GetTo ZoneId="133" XYZ="-50.03442, 6.499999, -89.98254" /> <!-- Lisette de Valentione -->
+
+					<!-- Rewards
+
+					Dote Emote
+
+					-->
+
+                    <TurnIn QuestId="68618" NpcId="1025311" XYZ="-50.03442, 6.499999, -89.98254" />
+				</If>
+			</If>
+		</If>
+
+		<Log Color="&LogColor;" Name="Valentione's Day" Message="You've completed the Valentione's Day seasonal event quest!"/>
+
+	</Order>
+	<CodeChunks>
+        <CodeChunk Name="Lessons_in_Love">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(68618) == 7)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "[Valentione's Day]\nPlease manually complete The Valentione's Ceremony duty!\n\nTrial #1: Do not lose all Affinity.\nTrial #2: Use number markers to help match cards.", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>
