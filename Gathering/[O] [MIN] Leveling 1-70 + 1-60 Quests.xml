@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 ##################################################
-# Profile: [O] [MIN] Leveling 1-60 + 1-60 Quests #
+# Profile: [O] [MIN] Leveling 1-70 + 1-60 Quests #
 ##################################################
 # Authors: y2krazy                               #
 #          kagepande                             #
@@ -9,7 +9,7 @@
 #          birduvprey                            #
 #          Eficiente                             #
 ##################################################
-# Version: 1.0.9b                                #
+# Version: 3.0.0                                 #
 ##################################################
 # Required Level: 1                              #
 ##################################################
@@ -31,7 +31,7 @@
 ]>
 <!-- End User Configuration -->
 <Profile>
-	<Name>[O] [MIN] Leveling 1-60 + 1-60 Quests (v1.0.9b)</Name>
+	<Name>[O] [MIN] Leveling 1-70 + 1-60 Quests (v3.0.0)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<CodeChunks>
@@ -40,7 +40,7 @@
 
 		<CodeChunk Name="Miner">
 			<![CDATA[ 
-				ff14bot.Managers.ChatManager.SendChat("/gs change 21");
+				ff14bot.Managers.ChatManager.SendChat("/gs change 24");
 		]]>
 		</CodeChunk>
 
@@ -100,7 +100,8 @@
     	]]>
 		</CodeChunk>
 	</CodeChunks>
-	<Order>			
+	<Order>
+	
 		<RunCode Name="Prospect" />
 
 		<LogMessage Message="The Journey Begins! Remember to Check up on me!" />
@@ -1700,11 +1701,185 @@
 			</If>
 		</If>
 
-		<If Condition="Core.Player.ClassLevel == 60">
-			<LogMessage Message="Congrats! You've hit level 60 Miner!" />
-			<If Condition="not IsOnMap(129)">
-				<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393" /> <!-- Limsa Lominsa Lower Decks -->
-			</If>
+		<!-- Level 60-62 -->
+
+		<While Condition="Core.Player.ClassLevel &lt; 62">
+			<GetTo ZoneId="612" XYZ="-303.2047, 72.39091, -465.3484" /> <!-- Farming Area -->
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="-303.2047, 72.39091, -465.3484" name="Mineral Deposits" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Gyr Abanian Alumen</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+			<NoCombatMoveTo Name="Farming Area" XYZ="-261.9573, 61.36067, -555.2255" />
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="-261.9573, 61.36067, -555.2255" name="Mineral Deposits" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Gyr Abanian Alumen</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+			<NoCombatMoveTo Name="Farming Area" XYZ="-122.7484, 58.57103, -499.0995" />
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="-122.7484, 58.57103, -499.0995" name="Mineral Deposits" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Gyr Abanian Alumen</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</While>
+
+		<!-- Level 62-64 -->
+
+		<While Condition="Core.Player.ClassLevel &lt; 64">
+			<GetTo ZoneId="620" XYZ="105.2464, 114.3518, -510.7864" /> <!-- Farming Area -->
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Rocky Outcrop</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="105.2464, 114.3518, -510.7864" name="Rocky Outcrops" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Koppranickel Sand</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+			<NoCombatMoveTo Name="Farming Area" XYZ="184.9823, 137.1174, -336.4521" />
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Rocky Outcrop</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="184.9823, 137.1174, -336.4521" name="Rocky Outcrops" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Koppranickel Sand</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+			<NoCombatMoveTo Name="Farming Area" XYZ="-11.31979, 112.4206, -401.0388" />
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Rocky Outcrop</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="-11.31979, 112.4206, -401.0388" name="Rocky Outcrops" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Koppranickel Sand</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</While>
+
+		<!-- Level 64-66 -->
+
+		<While Condition="Core.Player.ClassLevel &lt; 66">
+			<GetTo ZoneId="614" XYZ="516.8639, 42.48845, -68.91994" /> <!-- Farming Area -->
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="516.8639, 42.48845, -68.91994" name="Mineral Deposits" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Doman Iron Ore</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+			<NoCombatMoveTo Name="Farming Area" XYZ="413.9455, 65.71731, 14.77979" />
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="413.9455, 65.71731, 14.77979" name="Mineral Deposits" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Doman Iron Ore</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+			<NoCombatMoveTo Name="Farming Area" XYZ="606.0994, 93.00619, 81.90447" />
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="606.0994, 93.00619, 81.90447" name="Mineral Deposits" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Doman Iron Ore</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</While>
+
+		<!-- Level 66-70 -->
+
+		<While Condition="Core.Player.ClassLevel &lt; 70">
+			<GetTo ZoneId="614" XYZ="810.4478, 130.4496, 18.63812" /> <!-- Farming Area -->
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="810.4478, 130.4496, 18.63812" name="Mineral Deposits" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Durium Ore</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+			<NoCombatMoveTo Name="Farming Area" XYZ="890.1586, 140.756, -142.6981" />
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="890.1586, 140.756, -142.6981" name="Mineral Deposits" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Durium Ore</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+			<NoCombatMoveTo Name="Farming Area" XYZ="720.6, 102.7389, -118.9952" />
+			<ExGather Loops="1" DiscoverUnknowns="&DiscoverUnknowns;">
+				<GatherObject>Mineral Deposit</GatherObject>
+				<HotSpots>
+					<HotSpot Radius="90" XYZ="720.6, 102.7389, -118.9952" name="Mineral Deposits" />
+				</HotSpots>
+				<ItemNames>
+					<ItemName>Durium Ore</ItemName>
+				</ItemNames>
+				<GatheringSkillOrder>
+					<GatheringSkill SpellName="Sharp Vision II" TimesToCast="1" />
+				</GatheringSkillOrder>
+			</ExGather>
+		</While>
+
+		<If Condition="Core.Player.ClassLevel == 70">
+			<LogMessage Message="Congrats! You've hit level 70 Miner!" />
+			<GetTo ZoneId="129" XYZ="-84.08636, 18.60033, -12.41393" /> <!-- Limsa Lominsa Lower Decks -->
 		</If>
 
 	</Order>
