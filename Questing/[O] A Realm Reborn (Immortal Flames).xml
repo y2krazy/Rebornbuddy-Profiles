@@ -19350,14 +19350,16 @@
 
 		<CodeChunk Name="Renewing_the_Covenant">
 			<![CDATA[
+				BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Head];
 				foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
 				{
-					BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Head];
 					if(slot.RawItemId == 2651)
 					{
 						slot.Move(EquipSlot);
+						await Coroutine.Sleep(1000);
+						break;
 					}
-				    await Coroutine.Sleep(1000);
+				    
 				}
 			]]>
 		</CodeChunk>
@@ -19376,12 +19378,13 @@
 
 		<CodeChunk Name="A_Mizzenmast_Repast">
 			<![CDATA[ 
+				BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Feet];
 				foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
-				{
-					BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Feet];
+				{					
 					if(slot.RawItemId == 3760)
 					{
 						slot.Move(EquipSlot);
+						break;
 					}
 				}
         	]]>
@@ -19431,12 +19434,13 @@
 		</CodeChunk>
 		<CodeChunk Name="A_Royal_Reception">
 			<![CDATA[ 
+				BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Earring];
 				foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
-				{
-					BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Earring];
+				{			
 					if(slot.RawItemId == 4196)
 					{
 						slot.Move(EquipSlot);
+						break;
 					}
 				}
         	]]>
@@ -19479,10 +19483,10 @@
         </CodeChunk>
 		<CodeChunk Name="Dressed_to_Deceive">
 			<![CDATA[ 
+				BagSlot EquipSlot2 = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Body];
+				BagSlot EquipSlot5 = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Legs];
 				foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
 				{
-					BagSlot EquipSlot2 = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Body];
-					BagSlot EquipSlot5 = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Legs];
 					if(slot.RawItemId == 2995)
 					{
 						slot.Move(EquipSlot2);
@@ -19627,6 +19631,7 @@
 					if(slot.RawItemId == 6001)
 					{
 						slot.UseItem();
+						break;
 					}
 				}
         	]]>
@@ -19860,16 +19865,16 @@
         </CodeChunk>
         <CodeChunk Name="Escape_from_Castrum_Centri">
             <![CDATA[ 
+				BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Head];
+				BagSlot EquipSlot2 = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Body];
 				foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
 				{
-					BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Head];
-					BagSlot EquipSlot2 = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Body];
 					if(slot.RawItemId == 6223)
 					{
 						slot.Move(EquipSlot);
 						await Coroutine.Sleep(1000);
 					}
-					if(slot.RawItemId == 6224)
+					else if(slot.RawItemId == 6224)
 					{
 						slot.Move(EquipSlot2);
 						await Coroutine.Sleep(1000);
