@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#####################################
+# Profile: [O] Hatching-tide Quests #
+#####################################
+# Author: y2krazy                   #
+#####################################
+# Version: 2.0.0a                   #
+#####################################
+# Required Level: 15                #
+#####################################
+# Required User Interaction:        #
+#  None                             #
+#####################################
+# Required Setup:                   #
+#  None                             #
+#####################################
+-->
+<!-- User Configuration -->
+<!DOCTYPE Profile [
+
+  <!-- Log Colors -->
+
+  <!ENTITY LogColor "#66FF66"> <!-- Normal -->
+  <!ENTITY LogColorAck "#FF0000"> <!-- Warnings -->
+]>
+<!-- End User Configuration -->
+<Profile>
+	<Name>[O] Hatching-tide Quests (v2.0.0a)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+		<Log Color="&LogColor;" Name="Hatching-tide" Message="Checking for completed quests..." />
+
+		<!-- When Eggs Fly -->
+
+		<If Condition="not IsQuestCompleted(67957)">
+			<If Condition="not HasQuest(67957)">
+				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up the When Eggs Fly quest!" />
+				<GetTo ZoneId="133" XYZ="-49.97333, 6.5, -89.95197" /> <!-- Jihli Aliapoh -->
+				<If Condition="IsQuestAcceptQualified(67957)">
+					<PickupQuest NpcId="1019591" QuestId="67957" XYZ="-49.97333, 6.5, -89.95197" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67957)">
+				<If Condition="GetQuestStep(67957) == 255">
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in the When Eggs Fly quest!" />
+					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+					<TurnIn QuestId="67957" NpcId="1019592" XYZ="370.7484, -6.244256, -93.82776" />
+				</If>
+			</If>
+		</If>
+
+		<!-- Shock-full of Eggcitement -->
+
+		<If Condition="not IsQuestCompleted(67958)">
+			<If Condition="not HasQuest(67958)">
+				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up Shock-full of Eggcitement quest!" />
+				<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+				<If Condition="IsQuestAcceptQualified(67958)">
+					<Dismount/>
+					<PickupQuest NpcId="1019592" QuestId="67958" XYZ="370.7484, -6.244256, -93.82776" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67958)">
+				<If Condition="GetQuestStep(67958) == 1">
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Royal Seneschal..." />
+					<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+					<TalkTo NpcId="1019593" XYZ="372.8846, -6.640748, -101.6404" QuestId="67958" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67958) == 2">
+					<If Condition="Actionmanager.CanMount == 0">
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Shockfull_of_Eggcitement" />
+					</If>
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Nonotta..." />
+					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+					<RunCode Name="Shockfull_of_Eggcitement2" />
+					<WaitWhile Condition="GetQuestStep(67958) == 2" />
+				</If>
+				<If Condition="GetQuestStep(67958) == 3">
+					<If Condition="Actionmanager.CanMount == 0">
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Shockfull_of_Eggcitement" />
+					</If>
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Expectant Youth..." />
+					<GetTo ZoneId="154" XYZ="289.8451, -7.425683, -25.74207" /> <!-- Expectant Youth -->
+					<RunCode Name="Shockfull_of_Eggcitement3" />
+					<If Condition="Actionmanager.CanMount == 0">
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Shockfull_of_Eggcitement" />
+					</If>
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Impatient Man..." />
+					<GetTo ZoneId="154" XYZ="245.7465, -4.641291, -17.28851" /> <!-- Impatient Man -->
+					<RunCode Name="Shockfull_of_Eggcitement4" />
+					<If Condition="Actionmanager.CanMount == 0">
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Shockfull_of_Eggcitement" />
+					</If>
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Anxious Girl..." />
+					<GetTo ZoneId="154" XYZ="269.9473, -11.21869, 24.18555" /> <!-- Anxious Girl -->
+					<RunCode Name="Shockfull_of_Eggcitement5" />
+					<WaitWhile Condition="GetQuestStep(67958) == 3" />
+				</If>
+				<If Condition="GetQuestStep(67958) == 255">
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in Shock-full of Eggcitement quest!" />
+					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+					<TurnIn QuestId="67958" NpcId="1019592" ItemId="2002054" XYZ="370.7484, -6.244256, -93.82776" />
+				</If>
+			</If>
+		</If>
+ 
+		<!-- Eggsistential Crisis -->
+
+		<If Condition="not IsQuestCompleted(67959)">
+			<If Condition="not HasQuest(67959)">
+				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up Eggsistential Crisis quest!" />
+				<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+				<If Condition="IsQuestAcceptQualified(67959)">
+					<PickupQuest NpcId="1019592" QuestId="67959" XYZ="370.7484, -6.244256, -93.82776" />
+				</If>
+			</If>
+			<If Condition="HasQuest(67959)">
+				<If Condition="GetQuestStep(67959) == 1">
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Jihli Aliapoh..." />
+					<GetTo ZoneId="133" XYZ="-49.97333, 6.5, -89.95197" /> <!-- Jihli Aliapoh -->
+					<TalkTo NpcId="1019591" XYZ="-49.97333, 6.5, -89.95197" QuestId="67959" StepId="1" />
+				</If>
+				<If Condition="GetQuestStep(67959) == 2">
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Soothing Riggy..." />
+					<GetTo ZoneId="133" XYZ="-247.8828, 2.418674, -216.3577" /> <!-- Riggy -->
+					<EmoteNPC NpcId="1019608" Emote="soothe" XYZ="-247.8828, 2.418674, -216.3577" Radius="10" QuestId="67959" StepId="2"/>
+				</If>
+				<If Condition="GetQuestStep(67959) == 3">
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Nonotta..." />
+					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+					<TalkTo NpcId="1019592" XYZ="370.7484, -6.244256, -93.82776" QuestId="67959" StepId="3" />
+				</If>
+				<If Condition="GetQuestStep(67959) == 4">
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
+					<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+					<TalkTo NpcId="1019593" XYZ="372.8846, -6.640748, -101.6404" QuestId="67959" StepId="4" />
+				</If>
+				<If Condition="GetQuestStep(67959) == 5">
+					<If Condition="Actionmanager.CanMount == 0">
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Eggsistential_Crisis" />
+					</If>
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
+					<GetTo ZoneId="154" XYZ="258.8387, -7.039977, -8.590881" /> <!-- Riggy -->
+					<RunCode Name="Eggsistential_Crisis2" />
+				</If>
+				<If Condition="GetQuestStep(67959) == 6">
+					<If Condition="Actionmanager.CanMount == 0">
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Eggsistential_Crisis" />
+					</If>
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
+					<GetTo ZoneId="154" XYZ="238.9104, -12.48186, 77.98877" /> <!-- Riggy -->
+					<RunCode Name="Eggsistential_Crisis3" />
+				</If>
+				<If Condition="GetQuestStep(67959) == 7">
+					<If Condition="Actionmanager.CanMount == 0">
+						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
+						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
+						<Dismount/>
+						<RunCode Name="Eggsistential_Crisis" />
+					</If>
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
+					<GetTo ZoneId="154" XYZ="338.4907, -5.823289, 29.52612" /> <!-- Riggy -->
+					<RunCode Name="Eggsistential_Crisis4" />
+				</If>
+				<If Condition="GetQuestStep(67959) == 255">
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in Eggsistential Crisis quest!" />
+					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
+					<TurnIn QuestId="67959" NpcId="1019592" ItemId="2002055" XYZ="370.7484, -6.244256, -93.82776" />
+				</If>
+			</If>
+		</If>
+
+		<Log Color="&LogColor;" Name="Hatching-tide" Message="You've completed the Hatching-tide seasonal event quests!"/>
+
+	</Order>
+	<CodeChunks>
+		<CodeChunk Name="Shockfull_of_Eggcitement">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019593).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
+					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Shockfull_of_Eggcitement2">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019592).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(370.7484f,-6.244256f,-93.82776f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Shockfull_of_Eggcitement3">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019604).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(289.8451f,-7.425683f,-25.74207f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Shockfull_of_Eggcitement4">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019605).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(245.7465f,-4.641291f,-17.28851f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Shockfull_of_Eggcitement5">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019606).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(269.9473f,-11.21869f,24.18555f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Eggsistential_Crisis">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019593).Interact();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
+					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(2000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Eggsistential_Crisis2">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019612).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(258.8387f,-7.039977f,-8.590881f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Eggsistential_Crisis3">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019613).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(238.9104f,-12.48186f,77.98877f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+			]]>
+		</CodeChunk>
+		<CodeChunk Name="Eggsistential_Crisis4">
+			<![CDATA[ 
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019614).Target();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(338.4907f,-5.823289f,29.52612f));
+				await Buddy.Coroutines.Coroutine.Sleep(5000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(1000);
+				ff14bot.RemoteWindows.Talk.Next();
+				await Buddy.Coroutines.Coroutine.Sleep(4000);
+			]]>
+		</CodeChunk>
+	</CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>

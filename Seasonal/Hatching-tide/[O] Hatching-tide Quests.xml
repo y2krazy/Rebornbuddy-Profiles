@@ -5,7 +5,7 @@
 #####################################
 # Author: y2krazy                   #
 #####################################
-# Version: 2.0.0a                   #
+# Version: 3.0.0                    #
 #####################################
 # Required Level: 15                #
 #####################################
@@ -13,7 +13,7 @@
 #  None                             #
 #####################################
 # Required Setup:                   #
-#  None                             #
+#  1 open Body Armoury slot.        #
 #####################################
 -->
 <!-- User Configuration -->
@@ -26,302 +26,174 @@
 ]>
 <!-- End User Configuration -->
 <Profile>
-	<Name>[O] Hatching-tide Quests (v2.0.0a)</Name>
+	<Name>[O] Hatching-tide Quests (v3.0.0)</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
 
 		<Log Color="&LogColor;" Name="Hatching-tide" Message="Checking for completed quests..." />
 
-		<!-- When Eggs Fly -->
+		<!-- Eggstreme Eggstrapolation -->
 
-		<If Condition="not IsQuestCompleted(67957)">
-			<If Condition="not HasQuest(67957)">
-				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up the When Eggs Fly quest!" />
-				<GetTo ZoneId="133" XYZ="-49.97333, 6.5, -89.95197" /> <!-- Jihli Aliapoh -->
-				<If Condition="IsQuestAcceptQualified(67957)">
-					<PickupQuest NpcId="1019591" QuestId="67957" XYZ="-49.97333, 6.5, -89.95197" />
-				</If>
+		<If Condition="not IsQuestCompleted(68738)">
+			<If Condition="not HasQuest(68738)">
+				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up the Eggstreme Eggstrapolation quest!" />
+			  <GetTo ZoneId="133" XYZ="-49.94281, 6.499999, -89.64679" /> <!-- Jihli Aliapoh -->
+			  <If Condition="IsQuestAcceptQualified(68738)">
+			    <PickupQuest NpcId="1027030" QuestId="68738" XYZ="-49.94281, 6.499999, -89.64679" />
+			  </If>
 			</If>
-			<If Condition="HasQuest(67957)">
-				<If Condition="GetQuestStep(67957) == 255">
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in the When Eggs Fly quest!" />
-					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
-					<TurnIn QuestId="67957" NpcId="1019592" XYZ="370.7484, -6.244256, -93.82776" />
+			<If Condition="HasQuest(68738)">
+				<If Condition="GetQuestStep(68738) == 255">
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in the Eggstreme Eggstrapolation quest!" />
+				  <GetTo ZoneId="132" XYZ="-17.99042, -4.071428, 24.46008" /> <!-- Nonotta -->
+
+				    <!-- Rewards
+
+            Spriggan Jacket
+
+            -->
+
+          <TurnIn QuestId="68738" NpcId="1027044" XYZ="-17.99042, -4.071428, 24.46008" />
 				</If>
 			</If>
 		</If>
 
-		<!-- Shock-full of Eggcitement -->
+		<!-- A Shelltered Eggsistence -->
 
-		<If Condition="not IsQuestCompleted(67958)">
-			<If Condition="not HasQuest(67958)">
-				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up Shock-full of Eggcitement quest!" />
-				<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
-				<If Condition="IsQuestAcceptQualified(67958)">
-					<Dismount/>
-					<PickupQuest NpcId="1019592" QuestId="67958" XYZ="370.7484, -6.244256, -93.82776" />
+		<If Condition="not IsQuestCompleted(68739)">
+			<If Condition="not HasQuest(68739)">
+				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up the A Shelltered Eggsistence quest!" />
+			  <GetTo ZoneId="132" XYZ="-17.99042, -4.071428, 24.46008" /><!-- Nonotta -->
+			  <If Condition="IsQuestAcceptQualified(68739)">
+			    <PickupQuest NpcId="1027044" QuestId="68739" XYZ="-17.99042, -4.071428, 24.46008" />
 				</If>
 			</If>
-			<If Condition="HasQuest(67958)">
-				<If Condition="GetQuestStep(67958) == 1">
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Royal Seneschal..." />
-					<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
-					<TalkTo NpcId="1019593" XYZ="372.8846, -6.640748, -101.6404" QuestId="67958" StepId="1" />
+			<If Condition="HasQuest(68739)">
+			  <Log Color="&LogColor;" Name="Hatching-tide" Message="Equipping your Spriggan Jacket..." />
+			  <RunCode Name="equipSprigganJacket" />
+				<If Condition="GetQuestStep(68739) == 1">
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Nonotta..." />
+				  <GetTo ZoneId="132" XYZ="-17.99042, -4.071428, 24.46008" /> <!-- Nonotta -->
+				  <TalkTo NpcId="1027044" XYZ="-17.99042, -4.071428, 24.46008" QuestId="68739" StepId="1" />
 				</If>
-				<If Condition="GetQuestStep(67958) == 2">
-					<If Condition="Actionmanager.CanMount == 0">
-						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
-						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
-						<Dismount/>
-						<RunCode Name="Shockfull_of_Eggcitement" />
-					</If>
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Nonotta..." />
-					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
-					<RunCode Name="Shockfull_of_Eggcitement2" />
-					<WaitWhile Condition="GetQuestStep(67958) == 2" />
-				</If>
-				<If Condition="GetQuestStep(67958) == 3">
-					<If Condition="Actionmanager.CanMount == 0">
-						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
-						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
-						<Dismount/>
-						<RunCode Name="Shockfull_of_Eggcitement" />
-					</If>
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Expectant Youth..." />
-					<GetTo ZoneId="154" XYZ="289.8451, -7.425683, -25.74207" /> <!-- Expectant Youth -->
-					<RunCode Name="Shockfull_of_Eggcitement3" />
-					<If Condition="Actionmanager.CanMount == 0">
-						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
-						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
-						<Dismount/>
-						<RunCode Name="Shockfull_of_Eggcitement" />
-					</If>
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Impatient Man..." />
-					<GetTo ZoneId="154" XYZ="245.7465, -4.641291, -17.28851" /> <!-- Impatient Man -->
-					<RunCode Name="Shockfull_of_Eggcitement4" />
-					<If Condition="Actionmanager.CanMount == 0">
-						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
-						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
-						<Dismount/>
-						<RunCode Name="Shockfull_of_Eggcitement" />
-					</If>
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Anxious Girl..." />
-					<GetTo ZoneId="154" XYZ="269.9473, -11.21869, 24.18555" /> <!-- Anxious Girl -->
-					<RunCode Name="Shockfull_of_Eggcitement5" />
-					<WaitWhile Condition="GetQuestStep(67958) == 3" />
-				</If>
-				<If Condition="GetQuestStep(67958) == 255">
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in Shock-full of Eggcitement quest!" />
-					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
-					<TurnIn QuestId="67958" NpcId="1019592" ItemId="2002054" XYZ="370.7484, -6.244256, -93.82776" />
-				</If>
+				<While Condition="GetQuestStep(68739) == 2">
+					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Coddled Spriggans..." />
+				  <GetTo ZoneId="132" XYZ="-32.76117, -6.291308, -17.68524" /> <!-- Coddled Spriggan -->
+				  <TalkTo NpcId="1027049" XYZ="-32.76117, -6.291308, -17.68524" QuestId="68739" StepId="2" />
+				  <TalkTo NpcId="1027048" XYZ="-84.61133, -3.308192, 39.53601" QuestId="68739" StepId="2" />
+				  <TalkTo NpcId="1027047" XYZ="174.1816, -2.47361, 69.29114" QuestId="68739" StepId="2" />
+				</While>
+			  <If Condition="GetQuestStep(68739) == 3">
+			    <Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Jihli Aliapoh..." />
+			    <GetTo ZoneId="132" XYZ="-18.2041, -4.078759, 23.17841" /> <!-- Jihli Aliapoh -->
+			    <TalkTo NpcId="1027046" XYZ="-18.2041, -4.078759, 23.17841" QuestId="68739" StepId="3" />
+			  </If>
+			  <If Condition="GetQuestStep(68739) == 4">
+			    <Log Color="&LogColor;" Name="Hatching-tide" Message="Finding the Gilded Tourmaline Egg..." />
+          <GetTo ZoneId="132" XYZ="25.70388, -8, 116.117" /> <!-- Mother Miounne -->
+			    <SendChat Message="/say Egg Hunt" QuestId="68739" StepId="4" />
+			    <WaitWhile Condition="GetQuestStep(68739) == 4" />
+			  </If>
+			  <If Condition="GetQuestStep(68739) == 255">
+			    <Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in the A Shelltered Eggsistence quest!" />
+			    <GetTo ZoneId="132" XYZ="-17.99042, -4.071428, 24.46008" /> <!-- Nonotta -->
+
+			      <!-- Rewards
+
+            Magicked Prisms (Hatching-tide)
+
+            -->
+
+          <TurnIn QuestId="68739" NpcId="1027044" ItemId="2002498" XYZ="-17.99042, -4.071428, 24.46008" />
+			  </If>
 			</If>
 		</If>
  
-		<!-- Eggsistential Crisis -->
+		<!-- Deus Eggs Machina -->
 
-		<If Condition="not IsQuestCompleted(67959)">
-			<If Condition="not HasQuest(67959)">
-				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up Eggsistential Crisis quest!" />
-				<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
-				<If Condition="IsQuestAcceptQualified(67959)">
-					<PickupQuest NpcId="1019592" QuestId="67959" XYZ="370.7484, -6.244256, -93.82776" />
-				</If>
+		<If Condition="not IsQuestCompleted(68740)">
+			<If Condition="not HasQuest(68740)">
+				<Log Color="&LogColor;" Name="Hatching-tide" Message="Picking up the Deus Eggs Machina quest!" />
+			  <GetTo ZoneId="132" XYZ="-18.2041, -4.078759, 23.17841" /> <!-- Jihli Aliapoh -->
+			  <If Condition="IsQuestAcceptQualified(68740)">
+			    <PickupQuest NpcId="1027046" QuestId="68740" XYZ="-18.2041, -4.078759, 23.17841" />
+			  </If>
 			</If>
-			<If Condition="HasQuest(67959)">
-				<If Condition="GetQuestStep(67959) == 1">
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Jihli Aliapoh..." />
-					<GetTo ZoneId="133" XYZ="-49.97333, 6.5, -89.95197" /> <!-- Jihli Aliapoh -->
-					<TalkTo NpcId="1019591" XYZ="-49.97333, 6.5, -89.95197" QuestId="67959" StepId="1" />
-				</If>
-				<If Condition="GetQuestStep(67959) == 2">
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Soothing Riggy..." />
-					<GetTo ZoneId="133" XYZ="-247.8828, 2.418674, -216.3577" /> <!-- Riggy -->
-					<EmoteNPC NpcId="1019608" Emote="soothe" XYZ="-247.8828, 2.418674, -216.3577" Radius="10" QuestId="67959" StepId="2"/>
-				</If>
-				<If Condition="GetQuestStep(67959) == 3">
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Nonotta..." />
-					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
-					<TalkTo NpcId="1019592" XYZ="370.7484, -6.244256, -93.82776" QuestId="67959" StepId="3" />
-				</If>
-				<If Condition="GetQuestStep(67959) == 4">
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
-					<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
-					<TalkTo NpcId="1019593" XYZ="372.8846, -6.640748, -101.6404" QuestId="67959" StepId="4" />
-				</If>
-				<If Condition="GetQuestStep(67959) == 5">
-					<If Condition="Actionmanager.CanMount == 0">
-						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
-						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
-						<Dismount/>
-						<RunCode Name="Eggsistential_Crisis" />
-					</If>
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
-					<GetTo ZoneId="154" XYZ="258.8387, -7.039977, -8.590881" /> <!-- Riggy -->
-					<RunCode Name="Eggsistential_Crisis2" />
-				</If>
-				<If Condition="GetQuestStep(67959) == 6">
-					<If Condition="Actionmanager.CanMount == 0">
-						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
-						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
-						<Dismount/>
-						<RunCode Name="Eggsistential_Crisis" />
-					</If>
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
-					<GetTo ZoneId="154" XYZ="238.9104, -12.48186, 77.98877" /> <!-- Riggy -->
-					<RunCode Name="Eggsistential_Crisis3" />
-				</If>
-				<If Condition="GetQuestStep(67959) == 7">
-					<If Condition="Actionmanager.CanMount == 0">
-						<Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Motte..." />
-						<GetTo ZoneId="154" XYZ="372.8846, -6.640748, -101.6404" /> <!-- Motte -->
-						<Dismount/>
-						<RunCode Name="Eggsistential_Crisis" />
-					</If>
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Using Shockobo on Riggy..." />
-					<GetTo ZoneId="154" XYZ="338.4907, -5.823289, 29.52612" /> <!-- Riggy -->
-					<RunCode Name="Eggsistential_Crisis4" />
-				</If>
-				<If Condition="GetQuestStep(67959) == 255">
-					<Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in Eggsistential Crisis quest!" />
-					<GetTo ZoneId="154" XYZ="370.7484, -6.244256, -93.82776" /> <!-- Nonotta -->
-					<TurnIn QuestId="67959" NpcId="1019592" ItemId="2002055" XYZ="370.7484, -6.244256, -93.82776" />
-				</If>
+			<If Condition="HasQuest(68740)">
+			  <Log Color="&LogColor;" Name="Hatching-tide" Message="Equipping your Spriggan Jacket..." />
+			  <RunCode Name="equipSprigganJacket" />
+			  <While Condition="GetQuestStep(68740) == 1">
+			    <Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Coddled Spriggans..." />
+			    <GetTo ZoneId="133" XYZ="137.743, 13.71939, -103.6545" /> <!-- Coddled Spriggan -->
+			    <TalkTo NpcId="1027051" XYZ="137.743, 13.71939, -103.6545" QuestId="68740" StepId="1" />
+			    <TalkTo NpcId="1027052" XYZ="196.6735, -2.582549, -237.8425" QuestId="68740" StepId="1" />
+			    <TalkTo NpcId="1027053" XYZ="27.42041, 16.30494, -334.0658" QuestId="68740" StepId="1" />
+			    <TalkTo NpcId="1027055" XYZ="-240.7722, 1.163627, -202.7772" QuestId="68740" StepId="1" />
+			    <TalkTo NpcId="1027054" XYZ="-164.9348, 4.047474, -26.41339" QuestId="68740" StepId="1" />
+        </While>
+			  <If Condition="GetQuestStep(68740) == 2">
+			    <Log Color="&LogColor;" Name="Hatching-tide" Message="Talking to Jihli Aliapoh..." />
+			    <GetTo ZoneId="133" XYZ="-50.52271, 6.499999, -89.95197" /> <!-- Jihli Aliapoh -->
+			    <TalkTo NpcId="1027031" XYZ="-50.52271, 6.499999, -89.95197" QuestId="68740" StepId="2" />
+			  </If>
+			  <If Condition="GetQuestStep(68740) == 3">
+			    <Log Color="&LogColor;" Name="Hatching-tide" Message="Finding the Gilded Topaz Egg..." />
+			    <GetTo ZoneId="148" XYZ="286.9154, -3.372314, -31.47937" /> <!-- Gabineaux -->
+          <If Condition="Core.Player.IsMounted">
+            <Dismount/>
+          </If>
+			    <SendChat Message="/say Egg Hunt" QuestId="68740" StepId="3" />
+			    <WaitWhile Condition="GetQuestStep(68740) == 3" />
+			  </If>
+			  <If Condition="GetQuestStep(68740) == 255">
+			    <Log Color="&LogColor;" Name="Hatching-tide" Message="Turning in the Deus Eggs Machina quest!" />
+			    <GetTo ZoneId="133" XYZ="-49.5766, 6.499999, -90.013" /> <!-- Nonotta -->
+
+			      <!-- Rewards
+
+            Pair of Spriggan Bottoms
+            Pair of Spriggan Boots
+
+            -->
+
+			    <TurnIn QuestId="68740" NpcId="1027033" ItemId="2002500" XYZ="-49.5766, 6.499999, -90.013" />
+			  </If>
 			</If>
 		</If>
 
-		<Log Color="&LogColor;" Name="Hatching-tide" Message="You've completed the Hatching-tide seasonal event quests!"/>
+	  <If Condition="IsQuestCompleted(68740)">
+	    <RunCode Name="hatchingtideQuests" />
+	  </If>
 
 	</Order>
 	<CodeChunks>
-		<CodeChunk Name="Shockfull_of_Eggcitement">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019593).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
-					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="Shockfull_of_Eggcitement2">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019592).Target();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(370.7484f,-6.244256f,-93.82776f));
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="Shockfull_of_Eggcitement3">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019604).Target();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(289.8451f,-7.425683f,-25.74207f));
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="Shockfull_of_Eggcitement4">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019605).Target();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(245.7465f,-4.641291f,-17.28851f));
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="Shockfull_of_Eggcitement5">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019606).Target();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(269.9473f,-11.21869f,24.18555f));
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="Eggsistential_Crisis">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019593).Interact();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				if (ff14bot.RemoteWindows.SelectIconString.IsOpen)
-					ff14bot.RemoteWindows.SelectIconString.ClickSlot(0);
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(2000);
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="Eggsistential_Crisis2">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019612).Target();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(258.8387f,-7.039977f,-8.590881f));
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="Eggsistential_Crisis3">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019613).Target();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(238.9104f,-12.48186f,77.98877f));
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-			]]>
-		</CodeChunk>
-		<CodeChunk Name="Eggsistential_Crisis4">
-			<![CDATA[ 
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.GameObjectManager.GetObjectByNPCId(1019614).Target();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.Managers.Actionmanager.DoActionLocation(7599,new Vector3(338.4907f,-5.823289f,29.52612f));
-				await Buddy.Coroutines.Coroutine.Sleep(5000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(1000);
-				ff14bot.RemoteWindows.Talk.Next();
-				await Buddy.Coroutines.Coroutine.Sleep(4000);
-			]]>
-		</CodeChunk>
+	  <CodeChunk Name="equipSprigganJacket">
+	    <![CDATA[ 
+        BagSlot EquipSlot = ff14bot.Managers.InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Body];
+        
+        foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledInventoryAndArmory)
+        {
+          if(slot.RawItemId == 24605)
+          {
+            slot.Move(EquipSlot);
+            await Coroutine.Sleep(1000);
+						break;
+          }
+        }
+      ]]>
+	  </CodeChunk>
+	  <CodeChunk Name="hatchingtideQuests">
+	    <![CDATA[ 
+        while (ConditionParser.GetQuestStep(68740) != 255)
+        {
+          System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+          System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+          Core.OverlayManager.AddToast(() => "You've completed the Hatching-tide seasonal event quests!\n", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+          await Coroutine.Sleep(26000);
+        }
+      ]]>
+	  </CodeChunk>
 	</CodeChunks>
 	<GrindAreas>
 	</GrindAreas>
