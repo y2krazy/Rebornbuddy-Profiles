@@ -5,7 +5,7 @@
 ################################
 # Authors: y2krazy             #
 ################################
-# Version: 3.0.0               #
+# Version: 3.0.1               #
 ################################
 # Required Level: 1            #
 ################################
@@ -17,7 +17,7 @@
 ################################
 -->
 <Profile>
-    <Name>[O] GetTo (v3.0.0)</Name>
+    <Name>[O] GetTo (v3.0.1)</Name>
     <KillRadius>90</KillRadius>
     <Order>
 
@@ -85,6 +85,17 @@
         <GetTo ZoneId="614" XYZ="250.9959, 5.034348, -403.6512" /> <!-- The House of the Fierce -->
         <GetTo ZoneId="622" XYZ="555.8929, -19.50564, 347.3722" /> <!-- Reunion -->
         <GetTo ZoneId="622" XYZ="78.30729, 114.905, 43.24391" /> <!-- The Dawn Throne -->
+        
+        <!-- The Doman Enclave Conditional -->
+        <If Condition="not IsOnMap(614) and not IsOnMap(759)">
+            <GetTo ZoneId="614" XYZ="-493.9803, 1.301181, 542.9006" /> <!-- Mercantile Docks Skipper -->
+        </If>
+        <If Condition="IsOnMap(614)">
+          <UseTransport Name="Mercantile Docks Skipper" InteractDistance="3.0" NpcId="1024794" XYZ="-493.9803, 1.301181, 542.9006" />
+        </If>
+        <!-- The Doman Enclave Conditional -->
+      
+        <GetTo ZoneId="759" XYZ="42.7941, 1.190926, -10.28084" /> <!-- The Doman Enclave -->
 
         <GetTo ZoneId="156" XYZ="41.09607, 20.30506, -677.7967" /> <!-- Revenant's Toll -->
 

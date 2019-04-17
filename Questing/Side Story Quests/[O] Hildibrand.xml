@@ -1,46 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-###########################################################
-# Profile: [O] Hildibrand                                 #
-###########################################################
-# Author: y2krazy                                         #
-###########################################################
-# Version: 1.0.2a                                          #
-###########################################################
-# Required Level: 50                                      #
-###########################################################
-# Required Teleport Locations:                            #
-# 	Aleport or Swiftperch                                 #
-# 	Black Brush Station                                   #
-# 	Camp Bluefog or Ceruleum Processing Plant             #
-# 	Camp Dragonhead                                       #
-# 	Camp Drybone                                          #
-# 	Costa del Sol or Wineport                             #
-# 	Forgotten Springs or Little Ala Mhigo                 #
-# 	Horizon                                               #
-# 	Limsa Lominsa Lower Decks                             #
-# 	Quarrymill or Camp Tranquil                           #
-# 	Ul'dah - Steps of Nald                                #
-###########################################################
-# Required User Interaction:                              #
-# 	Battle in the Big Keep Trial                          #
-# 	Battle on the Big Bridge Trial                        #
-# 	The Dragon's Neck Trial                               #
-# 	The Mandragoras FATE (if you don't use Zekken)        #
-###########################################################
-# Required Setup:                                         #
-# 	The Ultimate Weapon quest completed.                  #
-###########################################################
-# Rewards:                                                #
-# 	Emote: Manderville Dance                              #
-# 	Emote: Most Gentlemanly                               #
-# 	Minion: Wind-up Gentleman                             #
-# 	Parley (Mini-Game)                                    #
-# 	Title: "Gentleman/Gentlewoman"                        #
-###########################################################
+##############################
+# Profile: [O] Hildibrand    #
+##############################
+# Author: y2krazy            #
+##############################
+# Version: 3.0.0             #
+##############################
+# Required Level: 50         #
+##############################
+# Required Setup:            #
+#  None                      #
+##############################
+# Required User Interaction: #
+#  3 Duty Finder Queues      #
+##############################
 -->
 <Profile>
-	<Name>[O] Hildibrand (v1.0.2a)</Name>
+	<Name>[O] Hildibrand (v3.0.0)</Name>
 	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -1288,11 +1265,25 @@
 			</If>
 		</If>
 
-		<LogMessage Message="You've completed the Hildibrand side story questline!" />
+        <If Condition="IsQuestCompleted(66038)">
+            <RunCode Name="Hildibrand_Questline" />
+            <StopBot />
+        </If>
 
 	</Order>
+	<CodeChunks>
+        <CodeChunk Name="Hildibrand_Questline">
+            <![CDATA[ 
+                while (ConditionParser.GetQuestStep(66038) != 255)
+                {
+                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+                    Core.OverlayManager.AddToast(() => "You've completed the Hildibrand questline!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+                    await Coroutine.Sleep(26000);
+                }
+            ]]>
+        </CodeChunk>
+	</CodeChunks>
 	<GrindAreas>
 	</GrindAreas>
-	<CodeChunks>
-	</CodeChunks>
 </Profile>
