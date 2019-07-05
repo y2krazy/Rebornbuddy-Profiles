@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+#######################################
+# Profile: [O] Stormblood (Patch 4.3) #
+#######################################
+# Author: y2krazy                     #
+#######################################
+# Version: 4.0.0                      #
+#######################################
+# Required Level: 70                  #
+#######################################
+# Required Setup:                     #
+#  None                               #
+#######################################
+# Required User Interaction:          #
+#  1 Duty Finder Queue                #
+#  1 Solo Duty Queue                  #
+#######################################
+-->
+<Profile>
+	<Name>[O] Stormblood (Patch 4.3) (v4.0.0)</Name>
+	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+    <BotSettings AutoEquip="1" />
+
+    <If Condition="not IsQuestCompleted(68565)">
+      <LogMessage Message="[Pre-Requisite Check] You haven't completed the Rise of a New Sun quest yet!" />
+      <LogMessage Message="[Pre-Requisite Check] Loading the Stormblood (Patch 4.2) profile..." />
+      <LoadProfile Path="[O] Stormblood (Patch 4.2).xml" />
+    </If>
+
+	  <If Condition="(ClassName != ClassJobType.Astrologian) and (ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.Dancer) and (ClassName != ClassJobType.DarkKnight) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Gunbreaker) and (ClassName != ClassJobType.Machinist) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.RedMage) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Samurai) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
+      <LogMessage Message="[Job Check] You do not have a job assigned on your character." />
+      <LogMessage Message="[Job Check] Equipping your Soul Crystal now..." />
+      <If Condition="ClassName == ClassJobType.Archer">
+        <RunCode Name="EquipBRDCrystal" />
+        <WaitTimer WaitTime="3" />
+      </If>
+      <If Condition="ClassName == ClassJobType.Thaumaturge">
+        <RunCode Name="EquipBLMCrystal" />
+        <WaitTimer WaitTime="3" />
+      </If>
+      <If Condition="ClassName == ClassJobType.Lancer">
+        <RunCode Name="EquipDRGCrystal" />
+        <WaitTimer WaitTime="3" />
+      </If>
+      <If Condition="ClassName == ClassJobType.Pugilist">
+        <RunCode Name="EquipMNKCrystal" />
+        <WaitTimer WaitTime="3" />
+      </If>
+      <If Condition="ClassName == ClassJobType.Rogue">
+        <RunCode Name="EquipNINCrystal" />
+        <WaitTimer WaitTime="3" />
+      </If>
+      <If Condition="ClassName == ClassJobType.Gladiator">
+        <RunCode Name="EquipPLDCrystal" />
+        <WaitTimer WaitTime="3" />
+      </If>
+      <If Condition="ClassName == ClassJobType.Arcanist">
+        <RunCode Name="EquipSCHCrystal" />
+        <WaitTimer WaitTime="3" />
+        <RunCode Name="EquipSMNCrystal" />
+        <WaitTimer WaitTime="3" />
+      </If>
+      <If Condition="ClassName == ClassJobType.Marauder">
+        <RunCode Name="EquipWARCrystal" />
+        <WaitTimer WaitTime="3" />
+      </If>
+      <If Condition="ClassName == ClassJobType.Conjurer">
+        <RunCode Name="EquipWHMCrystal" />
+        <WaitTimer WaitTime="3" />
+      </If>
+      <If Condition="(ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
+        <LogMessage Message="[Job Check] You do not have the proper Soul Crystal in your Armoury or Inventory." />
+        <LogMessage Message="[Job Check] Loading the Class and Job Quests profile..." />
+        <LoadProfile Path="[O] Class and Job Quests.xml" />
+      </If>
+    </If>
+
+    <!-- Gosetsu and Tsuyu -->
+    <If Condition="not IsQuestCompleted(68606)">
+      <If Condition="not HasQuest(68606)">
+        <If Condition="not IsOnMap(628) and not IsOnMap(639)">
+          <GetTo ZoneId="628" XYZ="151.2254, 14.77572, 93.92749" /> <!-- East Aldenard Trading Company Aide -->
+        </If>
+        <If Condition="IsOnMap(628)">
+          <UseTransport Name="East Aldenard Trading Company Aide" InteractDistance="3.0" NpcId="1019070" XYZ="151.2017, 14.77572, 95.78088" />
+        </If>
+        <MoveTo Name="Alphinaud" XYZ="-1.785339, 0.02414881, -0.01531982" />
+        <If Condition="IsQuestAcceptQualified(68606)">
+          <PickupQuest NpcId="1025023" QuestId="68606" XYZ="-1.785339, 0.02414881, -0.01531982" />
+        </If>
+      </If>
+      <If Condition="HasQuest(68606)">
+        <If Condition="GetQuestStep(68606) == 1">
+          <If Condition="not IsOnMap(614) and not IsOnMap(759) and not IsOnMap(744)">
+            <GetTo ZoneId="614" XYZ="-493.9803, 1.301181, 542.9006" /> <!-- Mercantile Docks Skipper -->
+          </If>
+          <If Condition="IsOnMap(614)">
+            <UseTransport Name="Mercantile Docks Skipper" InteractDistance="3.0" NpcId="1024794" XYZ="-493.9803, 1.301181, 542.9006" />
+          </If>
+          <If Condition="IsOnMap(759)">
+            <UseTransport Name="Kienkan Guardsman" InteractDistance="3.0" NpcId="1024974" XYZ="-10.33038, 0.1999732, 12.8938" />
+          </If>
+          <MoveTo Name="Hien" XYZ="0.04577637, 0.02109136, -2.914551" />
+          <TalkTo NpcId="1025552" XYZ="0.04577637, 0.02109136, -2.914551" QuestId="68606" StepId="1" />
+        </If>
+        <If Condition="GetQuestStep(68606) == 255">
+          <If Condition="not IsOnMap(614) and not IsOnMap(759) and not IsOnMap(744)">
+            <GetTo ZoneId="614" XYZ="-493.9803, 1.301181, 542.9006" /> <!-- Mercantile Docks Skipper -->
+          </If>
+          <If Condition="IsOnMap(614)">
+            <UseTransport Name="Mercantile Docks Skipper" InteractDistance="3.0" NpcId="1024794" XYZ="-493.9803, 1.301181, 542.9006" />
+          </If>
+          <If Condition="IsOnMap(744)">
+            <UseTransport Name="Exit" InteractDistance="3.0" NpcId="2009289" XYZ="0.01519775, 0.9002075, 18.29553" />
+          </If>
+          <MoveTo Name="Alphinaud" XYZ="148.0582, -4.178733, 60.13574" />
+          <TurnIn QuestId="68606" NpcId="1025555" XYZ="148.0582, -4.178733, 60.13574" />
+        </If>
+      </If>
+    </If>
+    <!-- Gone Like the Morning Dew -->
+    <If Condition="not IsQuestCompleted(68607)">
+      <If Condition="not HasQuest(68607)">
+        <If Condition="not IsOnMap(614) and not IsOnMap(759)">
+          <GetTo ZoneId="614" XYZ="-493.9803, 1.301181, 542.9006" /> <!-- Mercantile Docks Skipper -->
+        </If>
+        <If Condition="IsOnMap(614)">
+          <UseTransport Name="Mercantile Docks Skipper" InteractDistance="3.0" NpcId="1024794" XYZ="-493.9803, 1.301181, 542.9006" />
+        </If>
+        <MoveTo Name="Hien" XYZ="146.3798, -4.178721, 60.13574" />
+        <If Condition="IsQuestAcceptQualified(68607)">
+          <PickupQuest NpcId="1025557" QuestId="68607" XYZ="146.3798, -4.178721, 60.13574" />
+        </If>
+      </If>
+      <If Condition="HasQuest(68607)">
+        <While Condition="GetQuestStep(68607) == 1">
+          <GetTo ZoneId="614" XYZ="-275.9289, 17.31996, 512.9625" /> <!-- Gyosan -->
+          <TalkTo NpcId="1019297" XYZ="-275.9289, 17.31996, 512.9625" QuestId="68607" StepId="1" />
+          <TalkTo NpcId="1019303" XYZ="-308.9495, 17.73554, 512.4742" QuestId="68607" StepId="1" />
+        </While>
+        <If Condition="GetQuestStep(68607) == 2">
+          <GetTo ZoneId="614" XYZ="67.18542, 17.44098, 349.3247" /> <!-- Destination -->
+          <UseObject NpcId="2009474" XYZ="67.18542, 17.44098, 349.3247" Radius="10" QuestId="68607" StepId="2" />
+        </If>
+        <If Condition="GetQuestStep(68607) == 3">
+          <GetTo ZoneId="614" XYZ="457.267, 31.26563, 234.7905" /> <!-- Destination -->
+          <UseObject NpcId="2009527" XYZ="457.267, 31.26563, 234.7905" Radius="10" QuestId="68607" StepId="3" />
+        </If>
+        <If Condition="GetQuestStep(68607) == 4">
+          <GetTo ZoneId="614" XYZ="545.3727, 84.70276, 126.3295" /> <!-- Destination -->
+          <UseObject NpcId="2009528" XYZ="545.3727, 84.70276, 126.3295" Radius="10" QuestId="68607" StepId="4" />
+        </If>
+        <If Condition="GetQuestStep(68607) == 255">
+          <GetTo ZoneId="614" XYZ="546.9595, 72.12939, 39.78015" /> <!-- Bamboo Hat -->
+          <TurnIn QuestId="68607" NpcId="2009475" XYZ="546.9595, 72.12939, 39.78015" />
+        </If>
+      </If>
+    </If>
+    <!-- Fruits of Her Labor -->
+    <If Condition="not IsQuestCompleted(68608)">
+      <If Condition="not HasQuest(68608)">
+        <GetTo ZoneId="614" XYZ="466.2394, 70.27501, -58.70148" /> <!-- Hien -->
+        <If Condition="IsQuestAcceptQualified(68608)">
+          <PickupQuest NpcId="1025095" QuestId="68608" XYZ="466.2394, 70.27501, -58.70148" />
+        </If>
+      </If>
+      <If Condition="HasQuest(68608)">
+        <If Condition="GetQuestStep(68608) == 1">
+          <GetTo ZoneId="614" XYZ="408.7128, 14.64187, 622.8275" /> <!-- Hien -->
+          <TalkTo NpcId="1025104" XYZ="408.7128, 14.64187, 622.8275" QuestId="68608" StepId="1" />
+        </If>
+        <If Condition="GetQuestStep(68608) == 2">
+          <If Condition="not IsOnMap(614) and not IsOnMap(759) and not IsOnMap(744)">
+            <GetTo ZoneId="614" XYZ="-493.9803, 1.301181, 542.9006" /> <!-- Mercantile Docks Skipper -->
+          </If>
+          <If Condition="IsOnMap(614)">
+            <UseTransport Name="Mercantile Docks Skipper" InteractDistance="3.0" NpcId="1024794" XYZ="-493.9803, 1.301181, 542.9006" />
+          </If>
+          <If Condition="IsOnMap(759)">
+            <UseTransport Name="Kienkan Guardsman" InteractDistance="3.0" NpcId="1024974" XYZ="-10.33038, 0.1999732, 12.8938" />
+          </If>
+          <MoveTo Name="Hien" XYZ="0.1983643, 0.02109136, -3.097595" />
+          <TalkTo NpcId="1024999" XYZ="0.1983643, 0.02109136, -3.097595" QuestId="68608" StepId="2" />
+        </If>
+        <If Condition="GetQuestStep(68608) == 255">
+          <If Condition="not IsOnMap(614) and not IsOnMap(759) and not IsOnMap(744)">
+            <GetTo ZoneId="614" XYZ="-493.9803, 1.301181, 542.9006" /> <!-- Mercantile Docks Skipper -->
+          </If>
+          <If Condition="IsOnMap(614)">
+            <UseTransport Name="Mercantile Docks Skipper" InteractDistance="3.0" NpcId="1024794" XYZ="-493.9803, 1.301181, 542.9006" />
+          </If>
+          <If Condition="IsOnMap(759)">
+            <UseTransport Name="Kienkan Guardsman" InteractDistance="3.0" NpcId="1024974" XYZ="-10.33038, 0.1999732, 12.8938" />
+          </If>
+          <MoveTo Name="Hien" XYZ="0.1983643, 0.02109136, -3.097595" />
+          <TurnIn QuestId="68608" NpcId="1024999" XYZ="0.1983643, 0.02109136, -3.097595" />
+        </If>
+      </If>
+    </If>
+    <!-- Conscripts and Contingencies -->
+    <If Condition="not IsQuestCompleted(68609)">
+      <If Condition="not HasQuest(68609)">
+        <If Condition="not IsOnMap(614) and not IsOnMap(759) and not IsOnMap(744)">
+          <GetTo ZoneId="614" XYZ="-493.9803, 1.301181, 542.9006" /> <!-- Mercantile Docks Skipper -->
+        </If>
+        <If Condition="IsOnMap(614)">
+          <UseTransport Name="Mercantile Docks Skipper" InteractDistance="3.0" NpcId="1024794" XYZ="-493.9803, 1.301181, 542.9006" />
+        </If>
+        <If Condition="IsOnMap(759)">
+          <UseTransport Name="Kienkan Guardsman" InteractDistance="3.0" NpcId="1024974" XYZ="-10.33038, 0.1999732, 12.8938" />
+        </If>
+        <MoveTo Name="Hien" XYZ="0.1983643, 0.02109136, -3.097595" />
+        <If Condition="IsQuestAcceptQualified(68609)">
+          <PickupQuest NpcId="1024999" QuestId="68609" XYZ="0.1983643, 0.02109136, -3.097595" />
+        </If>
+      </If>
+      <If Condition="HasQuest(68609)">
+        <If Condition="GetQuestStep(68609) == 1">
+          <GetTo ZoneId="613" XYZ="79.42322, 33.00897, -669.9474" /> <!-- Rasho -->
+          <TalkTo NpcId="1021505" XYZ="79.42322, 33.00897, -669.9474" QuestId="68609" StepId="1" />
+        </If>
+        <If Condition="GetQuestStep(68609) == 2">
+          <GetTo ZoneId="613" XYZ="78.20239, 0.4729614, -870.6646" /> <!-- Suspect Hull Plank -->
+          <UseObject NpcIds="2009469,2009420" QuestId="68609" StepId="2">
+            <HotSpots>
+              <HotSpot XYZ="78.20239, 0.4729614, -870.6646" Radius="10" />
+              <HotSpot XYZ="106.3096, 0.4729614, -874.3878" Radius="10" />
+            </HotSpots>
+          </UseObject>
+        </If>
+        <If Condition="GetQuestStep(68609) == 3">
+          <GetTo ZoneId="613" XYZ="97.00159, 5.198726, -877.0428" /> <!-- Ihanashi -->
+          <TalkTo NpcId="1025106" XYZ="97.00159, 5.198726, -877.0428" QuestId="68609" StepId="3" />
+        </If>
+        <If Condition="GetQuestStep(68609) == 255">
+          <If Condition="not IsOnMap(614) and not IsOnMap(759) and not IsOnMap(744)">
+            <GetTo ZoneId="614" XYZ="-493.9803, 1.301181, 542.9006" /> <!-- Mercantile Docks Skipper -->
+          </If>
+          <If Condition="IsOnMap(614)">
+            <UseTransport Name="Mercantile Docks Skipper" InteractDistance="3.0" NpcId="1024794" XYZ="-493.9803, 1.301181, 542.9006" />
+          </If>
+          <If Condition="IsOnMap(759)">
+            <UseTransport Name="Kienkan Guardsman" InteractDistance="3.0" NpcId="1024974" XYZ="-10.33038, 0.1999732, 12.8938" />
+          </If>
+          <MoveTo Name="Hien" XYZ="0.1983643, 0.02109136, -3.097595" />
+          <TurnIn QuestId="68609" NpcId="1024999" XYZ="0.1983643, 0.02109136, -3.097595" />
+        </If>
+      </If>
+    </If>
+    <!-- The Primary Agreement -->
+    <If Condition="not IsQuestCompleted(68610)">
+      <If Condition="not HasQuest(68610)">
+        <If Condition="not IsOnMap(614) and not IsOnMap(759) and not IsOnMap(744)">
+          <GetTo ZoneId="614" XYZ="-493.9803, 1.301181, 542.9006" /> <!-- Mercantile Docks Skipper -->
+        </If>
+        <If Condition="IsOnMap(614)">
+          <UseTransport Name="Mercantile Docks Skipper" InteractDistance="3.0" NpcId="1024794" XYZ="-493.9803, 1.301181, 542.9006" />
+        </If>
+        <If Condition="IsOnMap(759)">
+          <UseTransport Name="Kienkan Guardsman" InteractDistance="3.0" NpcId="1024974" XYZ="-10.33038, 0.1999732, 12.8938" />
+        </If>
+        <MoveTo Name="Hien" XYZ="0.1983643, 0.02109136, -3.097595" />
+        <If Condition="IsQuestAcceptQualified(68610)">
+          <PickupQuest NpcId="1024999" QuestId="68610" XYZ="0.1983643, 0.02109136, -3.097595" />
+        </If>
+      </If>
+      <If Condition="HasQuest(68610)">
+        <If Condition="GetQuestStep(68610) == 1">
+          <GetTo ZoneId="614" XYZ="239.1241, 0.9334853, 754.1161" /> <!-- Confederate Skipper -->
+          <TalkTo NpcId="1025523" XYZ="239.1241, 0.9334853, 754.1161" QuestId="68610" StepId="1" />
+        </If>
+        <If Condition="GetQuestStep(68610) == 2">
+          <WaitWhile Condition="GetQuestStep(68610) == 2" />
+        </If>
+        <If Condition="GetQuestStep(68610) == 3">
+          <If Condition="not IsOnMap(614) and not IsOnMap(786)">
+            <GetTo ZoneId="614" XYZ="239.1241, 0.9334853, 754.1161" /> <!-- Confederate Skipper -->
+          </If>
+          <If Condition="IsOnMap(614)">
+            <UseTransport Name="Confederate Skipper" InteractDistance="3.0" NpcId="1025523" XYZ="239.1241, 0.9334853, 754.1161" />
+          </If>
+          <!-- <MoveTo Name="Entrance" XYZ="0, -7.981387, 36.35453" /> -->
+          <MoveTo Name="Entrance" XYZ="0, -7.981387, 36.35453" UseMesh="False" />
+          <RunCode Name="The_Primary_Agreement" />
+        </If>
+        <If Condition="GetQuestStep(68610) == 4">
+          <WaitWhile Condition="GetQuestStep(68610) == 4" />
+        </If>
+        <If Condition="GetQuestStep(68610) == 5">
+          <If Condition="not IsOnMap(614) and not IsOnMap(786)">
+            <GetTo ZoneId="614" XYZ="239.1241, 0.9334853, 754.1161" /> <!-- Confederate Skipper -->
+          </If>
+          <If Condition="IsOnMap(614)">
+            <UseTransport Name="Confederate Skipper" InteractDistance="3.0" NpcId="1025523" XYZ="239.1241, 0.9334853, 754.1161" />
+          </If>
+          <!-- <MoveTo Name="Hien" XYZ="4.318237, -8.000055, 44.32739" /> -->
+          <MoveTo Name="Hien" XYZ="4.318237, -8.000055, 44.32739" UseMesh="False" />
+          <TalkTo NpcId="1025528" XYZ="4.318237, -8.000055, 44.32739" QuestId="68610" StepId="5" />
+        </If>
+        <If Condition="GetQuestStep(68610) == 6">
+          <WaitWhile Condition="GetQuestStep(68610) == 6" />
+        </If>
+        <If Condition="GetQuestStep(68610) == 7">
+          <GetTo ZoneId="759" XYZ="4.745544, 0, 16.06769" /> <!-- Hien -->
+          <TalkTo NpcId="1025538" XYZ="4.745544, 0, 16.06769" QuestId="68610" StepId="7" />
+        </If>
+        <If Condition="GetQuestStep(68610) == 255">
+          <If Condition="not IsOnMap(614) and not IsOnMap(759) and not IsOnMap(744)">
+            <GetTo ZoneId="614" XYZ="-493.9803, 1.301181, 542.9006" /> <!-- Mercantile Docks Skipper -->
+          </If>
+          <If Condition="IsOnMap(614)">
+            <UseTransport Name="Mercantile Docks Skipper" InteractDistance="3.0" NpcId="1024794" XYZ="-493.9803, 1.301181, 542.9006" />
+          </If>
+          <If Condition="IsOnMap(759)">
+            <UseTransport Name="Kienkan Guardsman" InteractDistance="3.0" NpcId="1024974" XYZ="-10.33038, 0.1999732, 12.8938" />
+          </If>
+          <MoveTo Name="Hien" XYZ="0.1983643, 0.02109136, -3.006042" />
+          <TurnIn QuestId="68610" NpcId="1025597" XYZ="0.1983643, 0.02109136, -3.006042" />
+        </If>
+      </If>
+    </If>
+    <!-- Under the Moonlight -->
+    <If Condition="not IsQuestCompleted(68611)">
+        <If Condition="not HasQuest(68611)">
+          <If Condition="not IsOnMap(614) and not IsOnMap(759) and not IsOnMap(744)">
+            <GetTo ZoneId="614" XYZ="-493.9803, 1.301181, 542.9006" />
+            <!-- Mercantile Docks Skipper -->
+          </If>
+          <If Condition="IsOnMap(614)">
+            <UseTransport Name="Mercantile Docks Skipper" InteractDistance="3.0" NpcId="1024794" XYZ="-493.9803, 1.301181, 542.9006" />
+          </If>
+          <If Condition="IsOnMap(759)">
+            <UseTransport Name="Kienkan Guardsman" InteractDistance="3.0" NpcId="1024974" XYZ="-10.33038, 0.1999732, 12.8938" />
+          </If>
+          <MoveTo Name="Alisaie" XYZ="1.327454, 0.02109137, 0.5950317" />
+          <If Condition="IsQuestAcceptQualified(68611)">
+            <PickupQuest NpcId="1025009" QuestId="68611" XYZ="1.327454, 0.02109137, 0.5950317" />
+          </If>
+        </If>
+        <If Condition="HasQuest(68611)">
+          <If Condition="GetQuestStep(68611) == 1">
+            <GetTo ZoneId="635" XYZ="170.5806, 13.02367, -91.96619" /> <!-- Lyse -->
+            <TalkTo NpcId="1019468" XYZ="170.5806, 13.02367, -91.96619" QuestId="68611" StepId="1" />
+          </If>
+          <If Condition="GetQuestStep(68611) == 2">
+              <GetTo ZoneId="621" XYZ="70.87805, 26.19966, -609.4301" /> <!-- Lyse -->
+              <TalkTo NpcId="1025546" XYZ="70.87805, 26.19966, -609.4301" QuestId="68611" StepId="2" />
+          </If>
+          <If Condition="GetQuestStep(68611) == 255">
+            <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+              <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" /> <!-- Rising Stones Entrance -->
+            </If>
+            <If Condition="IsOnMap(156)">
+              <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+            </If>
+            <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+              <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
+            </If>
+            <MoveTo Name="Alisaie" XYZ="1.480042, -1.104176E-05, -11.73425" />
+            <TurnIn QuestId="68611" NpcId="1025549" XYZ="1.480042, -1.104176E-05, -11.73425" />
+          </If>
+        </If>
+    </If>
+    <!-- Emissary of the Dawn -->
+    <If Condition="not IsQuestCompleted(68612)">
+        <If Condition="not HasQuest(68612)">
+          <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+            <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" /> <!-- Rising Stones Entrance -->
+          </If>
+          <If Condition="IsOnMap(156)">
+            <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+          </If>
+          <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+            <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
+          </If>
+          <MoveTo Name="Alisaie" XYZ="1.480042, -1.104176E-05, -11.73425" />
+          <If Condition="IsQuestAcceptQualified(68612)">
+            <PickupQuest NpcId="1025549" QuestId="68612" XYZ="1.480042, -1.104176E-05, -11.73425" />
+          </If>
+        </If>
+        <If Condition="HasQuest(68612)">
+          <If Condition="GetQuestStep(68612) == 1">
+            <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+              <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" /> <!-- Rising Stones Entrance -->
+            </If>
+            <If Condition="IsOnMap(156)">
+              <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+            </If>
+            <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+              <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
+            </If>
+            <MoveTo Name="Destination" XYZ="-5.203369, 0.4729614, 0.3508911" />
+            <RunCode Name="Emissary_of_the_Dawn" />
+
+            <!-- TO DO -->
+
+            <!-- Control and use Alisaie's abilities during the solo Duty. -->
+            
+            <!-- TO DO -->
+            
+            <SimpleDutyPlus InteractNpcId="2009467" XYZ="-5.203369, 0.4729614, 0.3508911" QuestId="68612" StepId="1">
+              <HotSpots>
+                <HotSpot XYZ="-5.203369, 0.4729614, 0.3508911" Radius="90" />
+              </HotSpots>
+              <TargetMobs>
+                <TargetMob Id="9999" Weight="9999" /> <!-- XXXX -->
+              </TargetMobs>
+            </SimpleDutyPlus>
+          </If>
+          <If Condition="GetQuestStep(68612) == 255">
+            <If Condition="not IsOnMap(156) and not IsOnMap(351)">
+              <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281" /> <!-- Rising Stones Entrance -->
+            </If>
+            <If Condition="IsOnMap(156)">
+              <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281" />
+            </If>
+            <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
+              <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159" />
+            </If>
+            <MoveTo Name="Alisaie" XYZ="1.480042, -1.104921E-05, -11.73425" />
+            <TurnIn QuestId="68612" NpcId="1025549" XYZ="1.480042, -1.104921E-05, -11.73425" />
+          </If>
+        </If>
+    </If>
+
+	  <If Condition="IsQuestCompleted(68612)">
+	    <LogMessage Message="[Stormblood (4.3)] You've completed the Stormblood (Patch 4.3) questline!" />
+	    <LogMessage Message="[Stormblood (4.3)] Please manually complete the Stormblood (Patch 4.4) Main Scenario Quests..." />
+	    <!-- <LogMessage Message="[Stormblood (4.3)] Loading the Stormblood (Patch 4.4) profile..." />
+	    <LoadProfile Path="[O] Stormblood (Patch 4.4).xml" /> -->
+	  </If>
+
+	</Order>
+	<CodeChunks>
+
+    <!-- Job Check -->
+
+    <CodeChunk Name="EquipBRDCrystal">
+      <![CDATA[ 
+        await Coroutine.Sleep(1000);
+        BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+        foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
+        {
+        if(slot.RawItemId == 4546)
+        {
+          slot.Move(EquipSlot);
+        }
+        }
+        await Coroutine.Sleep(1000);
+      ]]>
+    </CodeChunk>
+    <CodeChunk Name="EquipBLMCrystal">
+      <![CDATA[ 
+        await Coroutine.Sleep(1000);
+        BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+        foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
+        {
+        if(slot.RawItemId == 4548)
+        {
+          slot.Move(EquipSlot);
+        }
+        }
+        await Coroutine.Sleep(1000);
+      ]]>
+    </CodeChunk>
+    <CodeChunk Name="EquipDRGCrystal">
+      <![CDATA[ 
+        await Coroutine.Sleep(1000);
+        BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+        foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
+        {
+        if(slot.RawItemId == 4545)
+        {
+          slot.Move(EquipSlot);
+        }
+        }
+        await Coroutine.Sleep(1000);
+      ]]>
+    </CodeChunk>
+    <CodeChunk Name="EquipMNKCrystal">
+      <![CDATA[ 
+        await Coroutine.Sleep(1000);
+        BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+        foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
+        {
+        if(slot.RawItemId == 4543)
+        {
+          slot.Move(EquipSlot);
+        }
+        }
+        await Coroutine.Sleep(1000);
+      ]]>
+    </CodeChunk>
+    <CodeChunk Name="EquipNINCrystal">
+      <![CDATA[ 
+        await Coroutine.Sleep(1000);
+        BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+        foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
+        {
+        if(slot.RawItemId == 7886)
+        {
+          slot.Move(EquipSlot);
+        }
+        }
+        await Coroutine.Sleep(1000);
+      ]]>
+    </CodeChunk>
+    <CodeChunk Name="EquipPLDCrystal">
+      <![CDATA[ 
+        await Coroutine.Sleep(1000);
+        BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+        foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
+        {
+        if(slot.RawItemId == 4542)
+        {
+          slot.Move(EquipSlot);
+        }
+        }
+        await Coroutine.Sleep(1000);
+      ]]>
+    </CodeChunk>
+    <CodeChunk Name="EquipSCHCrystal">
+      <![CDATA[ 
+        await Coroutine.Sleep(1000);
+        BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+        foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
+        {
+        if(slot.RawItemId == 4550)
+        {
+          slot.Move(EquipSlot);
+        }
+        }
+        await Coroutine.Sleep(1000);
+      ]]>
+    </CodeChunk>
+    <CodeChunk Name="EquipSMNCrystal">
+      <![CDATA[ 
+        await Coroutine.Sleep(1000);
+        BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+        foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
+        {
+        if(slot.RawItemId == 4549)
+        {
+          slot.Move(EquipSlot);
+        }
+        }
+        await Coroutine.Sleep(1000);
+      ]]>
+    </CodeChunk>
+    <CodeChunk Name="EquipWARCrystal">
+      <![CDATA[ 
+          await Coroutine.Sleep(1000);
+          BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+          foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
+          {
+          if(slot.RawItemId == 4544)
+          {
+            slot.Move(EquipSlot);
+          }
+          }
+          await Coroutine.Sleep(1000);
+      ]]>
+    </CodeChunk>
+    <CodeChunk Name="EquipWHMCrystal">
+      <![CDATA[ 
+          await Coroutine.Sleep(1000);
+          BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+          foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
+          {
+          if(slot.RawItemId == 4547)
+          {
+            slot.Move(EquipSlot);
+          }
+          }
+          await Coroutine.Sleep(1000);
+      ]]>
+    </CodeChunk>
+
+    <!-- Patch 4.3 -->
+
+    <CodeChunk Name="The_Primary_Agreement">
+      <![CDATA[ 
+        while (ConditionParser.GetQuestStep(68610) == 3)
+        {
+          System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+          System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+          Core.OverlayManager.AddToast(() => "[Stormblood (4.3)]\nPlease manually complete the Castrum Fluminis duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+          await Coroutine.Sleep(26000);
+        }
+      ]]>
+    </CodeChunk>
+    <CodeChunk Name="Emissary_of_the_Dawn">
+      <![CDATA[ 
+        while (ConditionParser.GetQuestStep(68612) == 1)
+        {
+          System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+          System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+          Core.OverlayManager.AddToast(() => "[Stormblood (4.3)]\nPlease manually complete the Emissary of the Dawn duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+          await Coroutine.Sleep(26000);
+        }
+      ]]>
+    </CodeChunk>
+  </CodeChunks>
+	<GrindAreas>
+	</GrindAreas>
+</Profile>

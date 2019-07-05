@@ -5,7 +5,7 @@
 #######################################
 # Author: y2krazy                     #
 #######################################
-# Version: 3.0.0                      #
+# Version: 4.0.0                      #
 #######################################
 # Required Level: 70                  #
 #######################################
@@ -13,13 +13,11 @@
 #  None                               #
 #######################################
 # Required User Interaction:          #
-#  X Duty Finder Queue                #
-#  X Solo Duty Queue                  #
-#  X "Cutscene" Objectives            #
+#  None                               #
 #######################################
 -->
 <Profile>
-	<Name>[O] Stormblood (Patch 4.2) (v3.0.0)</Name>
+	<Name>[O] Stormblood (Patch 4.2) (v4.0.0)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -32,7 +30,7 @@
         <LoadProfile Path="[O] Stormblood (Patch 4.1).xml" />
     </If>
 
-    <If Condition="(ClassName != ClassJobType.Astrologian) and (ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.DarkKnight) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Machinist) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.RedMage) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Samurai) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
+	  <If Condition="(ClassName != ClassJobType.Astrologian) and (ClassName != ClassJobType.Bard) and (ClassName != ClassJobType.BlackMage) and (ClassName != ClassJobType.Dancer) and (ClassName != ClassJobType.DarkKnight) and (ClassName != ClassJobType.Dragoon) and (ClassName != ClassJobType.Gunbreaker) and (ClassName != ClassJobType.Machinist) and (ClassName != ClassJobType.Monk) and (ClassName != ClassJobType.Ninja) and (ClassName != ClassJobType.Paladin) and (ClassName != ClassJobType.RedMage) and (ClassName != ClassJobType.Scholar) and (ClassName != ClassJobType.Samurai) and (ClassName != ClassJobType.Summoner) and (ClassName != ClassJobType.Warrior) and (ClassName != ClassJobType.WhiteMage)">
         <LogMessage Message="[Job Check] You do not have a job assigned on your character." />
         <LogMessage Message="[Job Check] Equipping your Soul Crystal now..." />
         <If Condition="ClassName == ClassJobType.Archer">
@@ -402,7 +400,9 @@
 
     <If Condition="IsQuestCompleted(68564)">
         <LogMessage Message="[Stormblood (4.2)] You've completed the Stormblood (Patch 4.2) questline!" />
-        <StopBot />
+        <LogMessage Message="[Stormblood (4.2)] Loading the Stormblood (Patch 4.3) profile..." />
+        <LoadProfile Path="[O] Stormblood (Patch 4.3).xml" />
+      </If>
     </If>
 
 	</Order>
