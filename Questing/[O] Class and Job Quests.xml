@@ -8,7 +8,7 @@
 #          hkme                     #
 #          Eficiente                #
 #####################################
-# Version: 3.1.5                    #
+# Version: 4.0.0                    #
 #####################################
 # Required Level: 1+                #
 #####################################
@@ -20,7 +20,7 @@
 #####################################
 -->
 <Profile>
-	<Name>[O] Class and Job Quests (v3.1.5)</Name>
+	<Name>[O] Class and Job Quests (v4.0.0)</Name>
 	<BehaviorDirectory>../Quest Behaviors</BehaviorDirectory>
 	<KillRadius>90</KillRadius>
 	<Order>
@@ -1299,9 +1299,9 @@
 
 				<If Condition="not IsQuestCompleted(67211)">
 
-					<LogMessage Message="[Class and Job Quests] Skipping Unseen until flying is supported..." />
+					<LogMessage Message="[Class and Job Quests] Unseen requires flying. Please ensure you can fly in the zone..." />
 
-					<!-- <If Condition="Core.Player.ClassLevel &gt; 57">
+					<If Condition="Core.Player.ClassLevel &gt; 57">
 						<If Condition="not HasQuest(67211)">
 							<If Condition="not IsOnMap(139)">
 								<GetTo ZoneId="139" XYZ="206.0426, -3.111818, 41.94702" />
@@ -1340,7 +1340,7 @@
 								<If Condition="not IsOnMap(397)">
 									<GetTo ZoneId="397" XYZ="446.0059, 140.8254, -749.8741" />
 								</If>
-								<ExFlyTo Name="Rime-bound Crate" XYZ="446.0059, 140.8254, -749.8741" />
+								<FlyTo Name="Rime-bound Crate" XYZ="446.0059, 140.8254, -749.8741" />
 								<UseObject NpcId="2005525" XYZ="446.0059, 140.8254, -749.8741" Radius="10" QuestId="67211" StepId="4" />
 							</If>
 							<If Condition="GetQuestStep(67211) == 255">
@@ -1354,7 +1354,7 @@
 								<TurnIn QuestId="67211" ItemId="2001588" NpcId="1013135" XYZ="206.0426, -3.111818, 41.94702" />
 							</If>
 						</If>
-					</If> -->
+					</If>
 				</If>
 
 				<!-- Forward, the Royal Marines -->
