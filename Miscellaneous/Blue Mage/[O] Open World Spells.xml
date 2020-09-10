@@ -1,0 +1,568 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+##################################
+# Profile: [O] Open World Spells #
+##################################
+# Authors: y2krazy               #
+##################################
+# Version: 5.0.0                 #
+##################################
+# Required Level: 1+             #
+##################################
+# Required Setup:                #
+#  Magitek Combat Routine        #
+#  Set Water Cannon Only to True #
+##################################
+# Required User Interaction:     #
+#  None                          #
+##################################
+-->
+<Profile>
+	<Name>[O] Open World Spells (v5.0.0)</Name>
+	<BehaviorDirectory>../../Quest Behaviors</BehaviorDirectory>
+	<KillRadius>90</KillRadius>
+	<Order>
+
+    <BotSettings AutoEquip="1" />
+
+    <If Condition="not IsQuestCompleted(68728)">
+      <Log Name="Pre-Requisite Check" Message="You haven't unlocked the Blue Mage job yet!" />
+      <!-- <Log Name="Pre-Requisite Check" Message="Loading the Blue Mage unlock profile..." />
+      <LoadProfile Path="[O] Blue Mage..xml" /> -->
+      <StopBot />
+    </If>
+
+	  <If Condition="ClassName != ClassJobType.BlueMage">
+      <Log Name="Job Check" Message="You do not have the Blue Mage job assigned on your character." />
+      <Log Name="Job Check" Message="Equipping your Soul Crystal now..." />
+      <If Condition="ClassName == ClassJobType.BlueMage">
+        <RunCode Name="EquipBLUCrystal" />
+        <WaitTimer WaitTime="3" />
+      </If>
+      <If Condition="ClassName != ClassJobType.BlueMage">
+        <Log Name="Job Check" Message="You do not have the proper Soul Crystal in your Armoury or Inventory." />
+        <StopBot />
+      </If>
+    </If>
+
+	  <Log Name="Blue Mage" Message="Checking for missing spells..." />
+
+	  <If Condition="Core.Player.ClassLevel &lt; 5">
+	    <Log Name="Blue Mage" Message="You are not level 5 yet!" />
+	    <Log Name="Blue Mage" Message="Grinding to level 5..." />
+	    <GetTo ZoneId="148" XYZ="82.48471, 4.452861, -189.8516" /> <!-- Grinding Area -->
+	    <Grind grindRef="To_Level_5" while="Core.Player.ClassLevel &lt; 5" />
+	  </If>
+
+	  <!-- Blood Drain (Lv7) -->
+	  <If Condition="not ActionManager.HasSpell(11395)">
+	    <Log Name="Blue Mage" Message="Learning the Blood Drain spell..."/>
+	    <GetTo ZoneId="135" XYZ="259.5175, 73.48402, -319.2849" /> <!-- Grinding Area -->
+	    <Grind grindRef="Blood_Drain" while="not ActionManager.HasSpell(11395)" />
+	  </If>
+
+    <!-- Bomb Toss (Lv7) -->
+    <If Condition="not ActionManager.HasSpell(11396)">
+      <Log Name="Blue Mage" Message="Learning the Bomb Toss spell..."/>
+      <GetTo ZoneId="134" XYZ="121.3067, 50.37472, 5.252206" /> <!-- Grinding Area -->
+      <Grind grindRef="Bomb_Toss" while="not ActionManager.HasSpell(11396)" />
+    </If>
+
+	  <If Condition="Core.Player.ClassLevel &lt; 10">
+	    <Log Name="Blue Mage" Message="You are not level 10 yet!" />
+	    <Log Name="Blue Mage" Message="Grinding to level 10..." />
+	    <GetTo ZoneId="148" XYZ="80.51275, -10.80073, 166.1779" /> <!-- Grinding Area -->
+	    <Grind grindRef="To_Level_10" while="Core.Player.ClassLevel &lt; 10" />
+	  </If>
+
+	  <!-- Faze (Lv9) -->
+	  <If Condition="not ActionManager.HasSpell(11403)">
+	    <Log Name="Blue Mage" Message="Learning the Faze spell..."/>
+	    <GetTo ZoneId="141" XYZ="-184.6893, 20.85431, -125.8744" /> <!-- Grinding Area -->
+	    <Grind grindRef="Faze" while="not ActionManager.HasSpell(11403)" />
+	  </If>
+
+    <!-- Ice Spikes (Lv9) -->
+	  <If Condition="not ActionManager.HasSpell(11418)">
+	    <Log Name="Blue Mage" Message="Learning the Ice Spikes spell..."/>
+	    <GetTo ZoneId="148" XYZ="320.0744, 10.47585, 136.7226" /><!-- Grinding Area -->
+	    <Grind grindRef="Ice_Spikes" while="not ActionManager.HasSpell(11418)" />
+	  </If>
+
+	  <!-- Acorn Bomb (Lv12) -->
+	  <If Condition="not ActionManager.HasSpell(11392)">
+	    <Log Name="Blue Mage" Message="Learning the Acorn Bomb spell..."/>
+	    <GetTo ZoneId="154" XYZ="216.7036, -26.96888, 303.1637" /> <!-- Grinding Area -->
+	    <Grind grindRef="Acorn_Bomb" while="not ActionManager.HasSpell(11392)" />
+	  </If>
+
+    <!-- Self-Destruct (Lv12) -->
+	  <Log Name="Blue Mage" Message="Skipping the Self-Destruct spell as it requires the mob to kill itself..."/>
+    <!-- <If Condition="not ActionManager.HasSpell(11408)">
+	    <Log Name="Blue Mage" Message="Learning the Self-Destruct spell..."/>
+	    <GetTo ZoneId="140" XYZ="304.7924, 62.45493, -227.0965" /> --> <!-- Grinding Area -->
+	    <!-- <Grind grindRef="Self_Destruct" while="not ActionManager.HasSpell(11408)" />
+	  </If> -->
+
+    <!-- Final Sting (Lv13) -->
+	  <Log Name="Blue Mage" Message="Skipping the Final Sting spell as it requires the mob to kill itself..."/>
+    <!-- <If Condition="not ActionManager.HasSpell(11407)">
+	    <Log Name="Blue Mage" Message="Learning the Final Sting spell..."/>
+	    <GetTo ZoneId="134" XYZ="-298.668, 16.13277, -344.5386" /> --> <!-- Grinding Area -->
+	    <!-- <Grind grindRef="Final_Sting" while="not ActionManager.HasSpell(11407)" />
+	  </If> -->
+
+	  <If Condition="Core.Player.ClassLevel &lt; 15">
+	    <Log Name="Blue Mage" Message="You are not level 15 yet!" />
+	    <Log Name="Blue Mage" Message="Grinding to level 15..." />
+	    <GetTo ZoneId="135" XYZ="84.03502, 19.74317, 786.6178" /> <!-- Grinding Area -->
+	    <Grind grindRef="To_Level_15" while="Core.Player.ClassLevel &lt; 15" />
+	  </If>
+
+    <!-- Sticky Tongue (Lv14) -->
+	  <If Condition="not ActionManager.HasSpell(11412)">
+	    <Log Name="Blue Mage" Message="Learning the Sticky Tongue spell..."/>
+	    <GetTo ZoneId="141" XYZ="245.3507, -16.88919, -132.3436" /> <!-- Grinding Area -->
+	    <Grind grindRef="Sticky_Tongue" while="not ActionManager.HasSpell(11412)" />
+	  </If>
+
+	  <If Condition="Core.Player.ClassLevel &lt; 20">
+	    <Log Name="Blue Mage" Message="You are not level 20 yet!" />
+	    <Log Name="Blue Mage" Message="Grinding to level 20..." />
+	    <GetTo ZoneId="145" XYZ="-208.0731, -36.80257, 39.38359" /> <!-- Grinding Area -->
+	    <Grind grindRef="To_Level_20" while="Core.Player.ClassLevel &lt; 20" />
+	  </If>
+
+    <!-- Bristle (Lv20) -->
+	  <If Condition="not ActionManager.HasSpell(11393)">
+	    <Log Name="Blue Mage" Message="Learning the Bristle spell..."/>
+	    <GetTo ZoneId="152" XYZ="-182.8296, -4.404314, 190.8803" /> <!-- Grinding Area -->
+	    <Grind grindRef="Bristle" while="not ActionManager.HasSpell(11393)" />
+	  </If>
+
+	  <If Condition="Core.Player.ClassLevel &lt; 25">
+	    <Log Name="Blue Mage" Message="You are not level 25 yet!" />
+	    <Log Name="Blue Mage" Message="Grinding to level 25..." />
+	    <GetTo ZoneId="153" XYZ="90.63052, 8.265639, -66.31443" /> <!-- Grinding Area -->
+	    <Grind grindRef="To_Level_25" while="Core.Player.ClassLevel &lt; 25" />
+	  </If>
+
+    <!-- Toad Oil (Lv24) -->
+	  <If Condition="not ActionManager.HasSpell(11410)">
+	    <Log Name="Blue Mage" Message="Learning the Toad Oil spell..."/>
+	    <GetTo ZoneId="140" XYZ="-373.7054, 18.65464, -619.9301" /> <!-- Grinding Area -->
+	    <Grind grindRef="Toad_Oil" while="not ActionManager.HasSpell(11410)" />
+	  </If>
+
+    <!-- 1000 Needles (Lv26) -->
+	  <If Condition="not ActionManager.HasSpell(11397)">
+	    <Log Name="Blue Mage" Message="Learning the 1000 Needles spell..."/>
+	    <GetTo ZoneId="146" XYZ="-323.7263, 14.50664, -316.0137" /> <!-- Grinding Area -->
+	    <Grind grindRef="1000_Needles" while="not ActionManager.HasSpell(11397)" />
+	  </If>
+
+    <!-- Plaincracker (Lv28) -->
+	  <If Condition="not ActionManager.HasSpell(11391)">
+	    <Log Name="Blue Mage" Message="Learning the Plaincracker spell..."/>
+	    <GetTo ZoneId="154" XYZ="-59.79451, -47.68055, 325.795" /> <!-- Grinding Area -->
+	    <Grind grindRef="Plaincracker" while="not ActionManager.HasSpell(11391)" />
+	  </If>
+
+	  <If Condition="Core.Player.ClassLevel &lt; 30">
+	    <Log Name="Blue Mage" Message="You are not level 30 yet!" />
+	    <Log Name="Blue Mage" Message="Grinding to level 30..." />
+	    <GetTo ZoneId="154" XYZ="-165.654, -47.02517, 229.1249" /> <!-- Grinding Area -->
+	    <Grind grindRef="To_Level_30" while="Core.Player.ClassLevel &lt; 30" />
+	  </If>
+
+    <!-- Flying Sardine (Lv30) -->
+	  <If Condition="not ActionManager.HasSpell(11423)">
+	    <Log Name="Blue Mage" Message="Learning the Flying Sardine spell..."/>
+	    <GetTo ZoneId="137" XYZ="372.7198, 25.94391, 723.496" /> <!-- Grinding Area -->
+	    <Grind grindRef="Flying_Sardine" while="not ActionManager.HasSpell(11423)" />
+	  </If>
+
+    <!-- Bad Breath (Lv31) -->
+	  <If Condition="not ActionManager.HasSpell(11388)">
+	    <Log Name="Blue Mage" Message="Learning the Bad Breath spell..."/>
+	    <GetTo ZoneId="148" XYZ="-404.8899, 53.36093, 32.73549" /> <!-- Grinding Area -->
+	    <Grind grindRef="Bad_Breath" while="not ActionManager.HasSpell(11388)" />
+	  </If>
+
+	  <If Condition="Core.Player.ClassLevel &lt; 45">
+	    <If Condition="Core.Player.ClassLevel &lt; 35">
+	      <Log Name="Blue Mage" Message="You are not level 35 yet!" />
+	      <Log Name="Blue Mage" Message="Grinding to level 35..." />
+	      <GetTo ZoneId="139" XYZ="388.8916, -3.11904, 161.1838" /> <!-- Grinding Area -->
+	      <Grind grindRef="To_Level_35" while="Core.Player.ClassLevel &lt; 35" />
+	    </If>
+      <If Condition="Core.Player.ClassLevel &lt; 40">
+        <Log Name="Blue Mage" Message="You are not level 40 yet!" />
+        <Log Name="Blue Mage" Message="Grinding to level 40..." />
+        <GetTo ZoneId="155" XYZ="256.2161, 290.8591, -80.73458" /> <!-- Grinding Area -->
+        <Grind grindRef="To_Level_40" while="Core.Player.ClassLevel &lt; 40" />
+      </If>
+	    <If Condition="Core.Player.ClassLevel &lt; 45">
+	      <Log Name="Blue Mage" Message="You are not level 45 yet!" />
+	      <Log Name="Blue Mage" Message="Grinding to level 45..." />
+	      <GetTo ZoneId="145" XYZ="403.3923, 6.809714, 134.7006" /> <!-- Grinding Area -->
+	      <Grind grindRef="To_Level_45" while="Core.Player.ClassLevel &lt; 45" />
+	    </If>
+    </If>
+
+    <!-- Peculiar Light (Lv45) -->
+	  <If Condition="not ActionManager.HasSpell(11421)">
+	    <Log Name="Blue Mage" Message="Learning the Peculiar Light spell..."/>
+	    <GetTo ZoneId="156" XYZ="-399.9001, -9.373686, -519.8043" /> <!-- Grinding Area -->
+	    <Grind grindRef="Peculiar_Light" while="not ActionManager.HasSpell(11421)" />
+	  </If>
+
+	  <If Condition="Core.Player.ClassLevel &lt; 50">
+	    <Log Name="Blue Mage" Message="You are not level 50 yet!" />
+	    <Log Name="Blue Mage" Message="Grinding to level 50..." />
+	    <GetTo ZoneId="156" XYZ="358.4799, -15.22239, -420.7379" /> <!-- Grinding Area -->
+	    <Grind grindRef="To_Level_50" while="Core.Player.ClassLevel &lt; 50" />
+	  </If>
+
+    <!-- the Look (Lv49) -->
+	  <Log Name="Blue Mage" Message="Skipping the Look spell as it requires the Necrologos: The Liminal Ones levequest..."/>
+	  <!-- <If Condition="not ActionManager.HasSpell(11399)">
+	    <Log Name="Blue Mage" Message="Learning the Look spell..."/>
+	    <GetTo ZoneId="0" XYZ="0, 0, 0" /> --> <!-- Grinding Area -->
+	    <!-- <Grind grindRef="the_Look" while="not ActionManager.HasSpell(11399)" />
+	  </If> -->
+
+    <!-- Drill Cannons (Lv50) -->
+	  <If Condition="not ActionManager.HasSpell(11398)">
+	    <Log Name="Blue Mage" Message="Learning the Drill Cannons spell..."/>
+	    <GetTo ZoneId="147" XYZ="-152.8624, 67.45089, -141.2277" /> <!-- Grinding Area -->
+	    <Grind grindRef="Drill_Cannons" while="not ActionManager.HasSpell(11398)" />
+	  </If>
+
+    <!-- Loom (Lv50) -->
+	  <Log Name="Blue Mage" Message="Skipping the Loom spell as it requires killing Flame Sergeant Dalvag, a Rank B hunt..."/>
+	  <!-- <If Condition="not ActionManager.HasSpell(11401)">
+	    <Log Name="Blue Mage" Message="Learning the Loom spell..."/>
+	    <GetTo ZoneId="0" XYZ="0, 0, 0" /> --> <!-- Grinding Area -->
+	    <!-- <Grind grindRef="Loom" while="not ActionManager.HasSpell(11401)" />
+	  </If> -->
+
+    <If Condition="IsQuestCompleted(68728)">
+        <RunCode Name="Open_World_Spells" />
+        <StopBot />
+    </If>
+
+	</Order>
+	<CodeChunks>
+
+    <!-- Job Check -->
+
+    <CodeChunk Name="EquipBLUCrystal">
+      <![CDATA[ 
+        await Coroutine.Sleep(1000);
+        BagSlot EquipSlot = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.SoulCrystal];
+
+        foreach(BagSlot slot in InventoryManager.FilledInventoryAndArmory)
+        {
+          if(slot.RawItemId == 22747)
+          {
+            slot.Move(EquipSlot);
+          }
+        }
+        await Coroutine.Sleep(1000);
+      ]]>
+    </CodeChunk>
+
+    <!-- Blue Mage -->
+
+    <CodeChunk Name="Open_World_Spells">
+      <![CDATA[ 
+        while (ConditionParser.GetQuestStep(68728) != 255)
+        {
+          System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
+          System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
+          Core.OverlayManager.AddToast(() => "You've learned all of the open world Blue Mage spells!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
+          await Coroutine.Sleep(26000);
+        }
+      ]]>
+    </CodeChunk>
+	</CodeChunks>
+  <GrindAreas>
+    <GrindArea Name="To_Level_5">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="82.48471, 4.452861, -189.8516" Name="Open World Mobs" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="47" /> <!-- Forest Funguar -->
+        <TargetMob Id="37" /> <!-- Ground Squirrel -->
+        <TargetMob Id="49" /> <!-- Little Ladybug -->
+      </TargetMobs>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="To_Level_10">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="80.51275, -10.80073, 166.1779" Name="Open World Mobs" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="54" /> <!-- Hornet Swarm -->
+        <TargetMob Id="22" /> <!-- Roselet -->
+      </TargetMobs>
+      <MinLevel>5</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="To_Level_15">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="84.03502, 19.74317, 786.6178" Name="Open World Mobs" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="561" Weight="2000" /> <!-- Megalocrab -->
+        <TargetMob Id="117" Weight="1000" /> <!-- Lightning Sprite -->
+      </TargetMobs>
+      <MinLevel>10</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="To_Level_20">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="-151.4554, -31.8591, -37.03714" Name="Open World Mobs" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="113" /> <!-- Earth Sprite -->
+        <TargetMob Id="273" /> <!-- Myotragus Billy -->
+        <TargetMob Id="274" /> <!-- Myotragus Nanny -->
+      </TargetMobs>
+      <MinLevel>15</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="To_Level_25">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="90.63052, 8.265639, -66.31443" Name="Open World Mobs" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="4" /> <!-- Antelope Stag -->
+      </TargetMobs>
+      <MinLevel>20</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="To_Level_30">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="-165.654, -47.02517, 229.1249" name="Open World Mobs" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="17" /> <!-- Balloon -->
+        <TargetMob Id="11" /> <!-- Banemite -->
+        <TargetMob Id="224" /> <!-- Ziz -->
+      </TargetMobs>
+      <MinLevel>25</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="To_Level_35">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="388.8916, -3.11904, 161.1838" name="Open World Mobs" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="643" Weight="2000" /> <!-- Uragnite -->
+        <TargetMob Id="56" Weight="1000" /> <!-- Water Sprite -->
+      </TargetMobs>
+      <MinLevel>30</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="To_Level_40">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="256.2161, 290.8591, -80.73458" name="Open World Mobs" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="795" Weight="2000" /> <!-- Ornery Karakul -->
+        <TargetMob Id="114" Weight="1000" /> <!-- Ice Sprite -->
+      </TargetMobs>
+      <MinLevel>35</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="To_Level_45">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="403.3923, 6.809714, 134.7006" name="Open World Mobs" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="634" Weight="2000" /> <!-- Mirrorknight -->
+        <TargetMob Id="271" Weight="1000" /> <!-- Golden Fleece -->
+        <TargetMob Id="275" Weight="1000" /> <!-- Quartz Doblyn -->
+      </TargetMobs>
+      <MinLevel>40</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="To_Level_50">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="358.4799, -15.22239, -420.7379" name="Open World Mobs" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="648" Weight="3000" /> <!-- Gigas Sozu -->
+        <TargetMob Id="647" Weight="2000" /> <!-- Gigas Shramana -->
+        <TargetMob Id="646" Weight="1000" /> <!-- Gigas Bonze -->
+      </TargetMobs>
+      <MinLevel>45</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Blood_Drain">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="259.5175, 73.48402, -319.2849" Name="Cave Bat" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="364" /> <!-- Cave Bat -->
+      </TargetMobs>
+      <MinLevel>4</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Bomb_Toss">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="121.3067, 50.37472, 5.252206" Name="Goblin Fisher &amp; Goblin Gambler" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="367" /> <!-- Goblin Fisher -->
+        <TargetMob Id="3099" /> <!-- Goblin Gambler -->
+      </TargetMobs>
+      <MinLevel>4</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Faze">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="-184.6893, 20.85431, -125.8744" Name="Qiqirn Shellsweeper" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="266" /> <!-- Qiqirn Shellsweeper -->
+      </TargetMobs>
+      <MinLevel>6</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Ice_Spikes">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="320.0744, 10.47585, 136.7226" Name="Trickster Imp" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="21" /> <!-- Trickster Imp -->
+      </TargetMobs>
+      <MinLevel>6</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Acorn_Bomb">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="216.7036, -26.96888, 303.1637" Name="Treant Sapling" />
+        <Hotspot Radius="250" XYZ="436.5437, -3.096148, 266.5736" Name="Treant Sapling" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="128" /> <!-- Treant Sapling -->
+      </TargetMobs>
+      <MinLevel>9</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Self_Destruct">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="304.7924, 62.45493, -227.0965" Name="Glide Bomb" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="8135" /> <!-- Glide Bomb -->
+      </TargetMobs>
+      <MinLevel>9</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Final_Sting">
+			<Hotspots>
+				<Hotspot Radius="250" XYZ="-298.668, 16.13277, -344.5386" Name="Killer Wespe" />
+			</Hotspots>
+			<TargetMobs>
+				<TargetMob Id="8134" /> <!-- Killer Wespe -->
+			</TargetMobs>
+			<MinLevel>10</MinLevel>
+			<MaxLevel>81</MaxLevel>
+		</GrindArea>
+    <GrindArea Name="Sticky_Tongue">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="245.3507, -16.88919, -132.3436" Name="Toxic Toad" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="216" /> <!-- Toxic Toad -->
+      </TargetMobs>
+      <MinLevel>11</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Bristle">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="-182.8296, -4.404314, 190.8803" Name="Wild Boar" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="16" /> <!-- Wild Boar -->
+      </TargetMobs>
+      <MinLevel>17</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Toad_Oil">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="-373.7054, 18.65464, -619.9301" Name="Giggling Gigantoad" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="8136" /> <!-- Giggling Gigantoad -->
+      </TargetMobs>
+      <MinLevel>20</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="1000_Needles">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="-323.7263, 14.50664, -316.0137" Name="Sabotender Bailaor" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="8137" /> <!-- Sabotender Bailaor -->
+      </TargetMobs>
+      <MinLevel>22</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Plaincracker">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="-59.79451, -47.68055, 325.795" Name="Clay Golem" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="30" /> <!-- Clay Golem -->
+      </TargetMobs>
+      <MinLevel>25</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Flying_Sardine">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="372.7198, 25.94391, 723.496" Name="Apkallu" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="341" /> <!-- Apkallu -->
+      </TargetMobs>
+      <MinLevel>27</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Bad_Breath">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="-404.8899, 53.36093, 32.73549" Name="Stroper" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="238" /> <!-- Stroper -->
+      </TargetMobs>
+      <MinLevel>28</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Peculiar_Light">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="-399.9001, -9.373686, -519.8043" Name="Lentic Mudpuppy" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="8139" /> <!-- Lentic Mudpuppy -->
+      </TargetMobs>
+      <MinLevel>42</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+    <GrindArea Name="Drill_Cannons">
+      <Hotspots>
+        <Hotspot Radius="250" XYZ="-209.4047, 76.56863, -171.5291" Name="Magitek Vanguard H-2" />
+      </Hotspots>
+      <TargetMobs>
+        <TargetMob Id="8138" /> <!-- Magitek Vanguard H-2 -->
+      </TargetMobs>
+      <MinLevel>47</MinLevel>
+      <MaxLevel>81</MaxLevel>
+    </GrindArea>
+  </GrindAreas>
+</Profile>
