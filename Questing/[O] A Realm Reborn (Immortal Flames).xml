@@ -1350,11 +1350,15 @@
                     </If>
                     <While Condition="GetQuestStep(65665) == 2">
                         <GetTo ZoneId="148" XYZ="314.3511, 14.2085, 157.0305" /> <!-- Worried Wood Wailer -->
-                        <TalkTo NpcId="1000512" XYZ="314.3511, 14.2085, 157.0305" QuestId="65665" StepId="2" />
-                        <TalkTo NpcId="1000513" XYZ="303.9138, 15.89804, 160.8759" QuestId="65665" StepId="2" />
-                        <TalkTo NpcId="1000514" XYZ="296.3455, 15.99998, 171.4961" QuestId="65665" StepId="2" />
-                        <TalkTo NpcId="1000515" XYZ="291.5541, 19.86471, 175.2192" QuestId="65665" StepId="2" />
-                        <TalkTo NpcId="1000516" XYZ="285.6335, 21.60632, 186.3584" QuestId="65665" StepId="2" />
+						<UseObject NpcIds="1000512,1000513,1000514,1000515,1000516" Condition="GetQuestStep(65665) == 2">
+                                <HotSpots>
+									<HotSpot XYZ="314.3511, 14.2085, 157.0305"  Radius="25" />
+                                    <HotSpot XYZ="303.9138, 15.89804, 160.8759" Radius="10" />
+                                    <HotSpot XYZ="296.3455, 15.99998, 171.4961" Radius="10" />
+                                    <HotSpot XYZ="291.5541, 19.86471, 175.2192" Radius="10" />
+                                    <HotSpot XYZ="285.6335, 21.60632, 186.3584" Radius="10" />
+                                </HotSpots>
+                        </UseObject>
                     </While>
                     <If Condition="GetQuestStep(65665) == 3">
                         <GetTo ZoneId="148" XYZ="260.1815, 24, 192.2179" /> <!-- Injured Hearer -->
@@ -1426,32 +1430,6 @@
                     <If Condition="GetQuestStep(65911) == 255">
                         <GetTo ZoneId="148" XYZ="-56.38214, -0.031689, 40.97046" /> <!-- Kukuvachi -->
                         <TurnIn QuestId="65911" NpcId="1000742" XYZ="-56.38214, -0.031689, 40.97046" />
-                    </If>
-				</If>
-			</If>
-
-			<!-- Look, but Won't Touch -->
-
-			<If Condition="not IsQuestCompleted(65914)">
-				<If Condition="not HasQuest(65914)">
-                    <GetTo ZoneId="148" XYZ="-125.2308, 4.157372, -43.59509" /> <!-- Roseline -->
-					<If Condition="IsQuestAcceptQualified(65914)">
-						<PickupQuest NpcId="1000748" QuestId="65914" XYZ="-125.2308, 4.157372, -43.59509" />
-					</If>
-				</If>
-				<If Condition="HasQuest(65914)">
-                    <If Condition="GetQuestStep(65914) == 1">
-                        <GetTo ZoneId="148" XYZ="-127.7943, -1.14447, -60.95984" /> <!-- Diremite Eggs -->
-                        <UseObject NpcIds="2001084,2001083" QuestId="65914" StepId="1">
-                            <HotSpots>
-                                <HotSpot XYZ="-127.7943, -1.14447, -60.95984" Radius="10" />
-                                <HotSpot XYZ="-184.4969, 41.9165, -128.6489" Radius="10" />
-                            </HotSpots>
-                        </UseObject>
-                    </If>
-                    <If Condition="GetQuestStep(65914) == 255">
-                        <GetTo ZoneId="148" XYZ="-125.2308, 4.157372, -43.59509" /> <!-- Roseline -->
-                        <TurnIn QuestId="65914" NpcId="1000748" XYZ="-125.2308, 4.157372, -43.59509" />
                     </If>
 				</If>
 			</If>
@@ -1910,8 +1888,7 @@
                         <GetTo ZoneId="148" XYZ="154.1924, -24.33813, 503.4713" /> <!-- Fallen Cargo -->
                         <UseObject NpcIds="2001016,2001018" QuestId="65923" StepId="1">
                             <HotSpots>
-                                <HotSpot XYZ="154.1924, -24.33813, 503.4713" Radius="10" />
-                                <HotSpot XYZ="161.6693, -24.61285, 521.1414" Radius="10" />
+                                <HotSpot XYZ="154.1924, -24.33813, 503.4713" Radius="50" />
                             </HotSpots>
                         </UseObject>
                     </If>
