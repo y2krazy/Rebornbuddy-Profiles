@@ -7213,266 +7213,270 @@
             </If>
         </If>
 
-        <!-- Beauty Is Only Scalp Deep -->
 
-        <If Condition="not IsQuestCompleted(66746)">
-            <If Condition="not HasQuest(66746)">
-                <GetTo ZoneId="128" XYZ="-3.280701, 39.51757, -9.414856" /> <!-- S'dhodjbi -->
-                <If Condition="IsQuestAcceptQualified(66746)">
-                    <PickupQuest NpcId="1003601" QuestId="66746" XYZ="-3.280701, 39.51757, -9.414856" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66746)">
-                <If Condition="GetQuestStep(66746) == 1">
-                    <GetTo ZoneId="128" XYZ="-46.0365, 40, 63.76746" /> <!-- Disgruntled Madam -->
-                    <TalkTo NpcId="1005516" XYZ="-46.0365, 40, 63.76746" QuestId="66746" StepId="1" />
-                </If>
-                <If Condition="GetQuestStep(66746) == 2">
-                    <GetTo ZoneId="128" XYZ="-44.44952, 40, 61.81433" /> <!-- Flustered Man -->
-                    <EmoteNPC NpcId="1005515" Emote="doubt" XYZ="-44.44952, 40, 61.81433" Radius="10" QuestId="66746" StepId="2" />
-                </If>
-                <If Condition="GetQuestStep(66746) == 3">
-                    <If Condition="not IsTodoChecked(66746, 3, 0)">
-                        <GetTo ZoneId="128" XYZ="-32.02869, 41.49999, 208.3923" /> <!-- H'naanza -->
-                        <TalkTo NpcId="1001000" XYZ="-32.02869, 41.49999, 208.3923" QuestId="66746" StepId="3" />
-                    </If>
-                    <If Condition="not IsTodoChecked(66746, 3, 1)">
-                        <GetTo ZoneId="132" XYZ="-44.87683, -1.250002, 56.83984" /> <!-- Beatin -->
-                        <TalkTo NpcId="1000153" XYZ="-44.87683, -1.250002, 56.83984" QuestId="66746" StepId="3" />
-                    </If>
-                    <If Condition="not IsTodoChecked(66746, 3, 2)">
-                        <GetTo ZoneId="131" XYZ="-98.8938, 40.19999, 120.8362" /> <!-- Severian -->
-                        <TalkTo NpcId="1002299" XYZ="-98.8938, 40.19999, 120.8362" QuestId="66746" StepId="3" />
-                    </If>
-                </If>
-                <If Condition="GetQuestStep(66746) == 255">
-                    <GetTo ZoneId="128" XYZ="-44.44952, 40, 61.81433" /> <!-- Flustered Man -->
-                    <TurnIn QuestId="66746" NpcId="1005515" ItemId="2001110,2001111,2001112" XYZ="-44.44952, 40, 61.81433" />
-                </If>
-            </If>
-        </If>
+		<If Condition="Core.Player.ClassLevel &lt; 18">
+			<!-- Beauty Is Only Scalp Deep -->
 
-        <!-- Rising to the Challenge -->
+			<If Condition="not IsQuestCompleted(66746)">
+				<If Condition="not HasQuest(66746)">
+					<GetTo ZoneId="128" XYZ="-3.280701, 39.51757, -9.414856" /> <!-- S'dhodjbi -->
+					<If Condition="IsQuestAcceptQualified(66746)">
+						<PickupQuest NpcId="1003601" QuestId="66746" XYZ="-3.280701, 39.51757, -9.414856" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66746)">
+					<If Condition="GetQuestStep(66746) == 1">
+						<GetTo ZoneId="128" XYZ="-46.0365, 40, 63.76746" /> <!-- Disgruntled Madam -->
+						<TalkTo NpcId="1005516" XYZ="-46.0365, 40, 63.76746" QuestId="66746" StepId="1" />
+					</If>
+					<If Condition="GetQuestStep(66746) == 2">
+						<GetTo ZoneId="128" XYZ="-44.44952, 40, 61.81433" /> <!-- Flustered Man -->
+						<EmoteNPC NpcId="1005515" Emote="doubt" XYZ="-44.44952, 40, 61.81433" Radius="10" QuestId="66746" StepId="2" />
+					</If>
+					<If Condition="GetQuestStep(66746) == 3">
+						<If Condition="not IsTodoChecked(66746, 3, 0)">
+							<GetTo ZoneId="128" XYZ="-32.02869, 41.49999, 208.3923" /> <!-- H'naanza -->
+							<TalkTo NpcId="1001000" XYZ="-32.02869, 41.49999, 208.3923" QuestId="66746" StepId="3" />
+						</If>
+						<If Condition="not IsTodoChecked(66746, 3, 1)">
+							<GetTo ZoneId="132" XYZ="-44.87683, -1.250002, 56.83984" /> <!-- Beatin -->
+							<TalkTo NpcId="1000153" XYZ="-44.87683, -1.250002, 56.83984" QuestId="66746" StepId="3" />
+						</If>
+						<If Condition="not IsTodoChecked(66746, 3, 2)">
+							<GetTo ZoneId="131" XYZ="-98.8938, 40.19999, 120.8362" /> <!-- Severian -->
+							<TalkTo NpcId="1002299" XYZ="-98.8938, 40.19999, 120.8362" QuestId="66746" StepId="3" />
+						</If>
+					</If>
+					<If Condition="GetQuestStep(66746) == 255">
+						<GetTo ZoneId="128" XYZ="-44.44952, 40, 61.81433" /> <!-- Flustered Man -->
+						<TurnIn QuestId="66746" NpcId="1005515" ItemId="2001110,2001111,2001112" XYZ="-44.44952, 40, 61.81433" />
+					</If>
+				</If>
+			</If>
 
-        <If Condition="not IsQuestCompleted(66967)">
-            <If Condition="not HasQuest(66967)">
-                <GetTo ZoneId="128" XYZ="13.41266, 40.2, -13.26007" /> <!-- I'tolwann -->
-                <If Condition="IsQuestAcceptQualified(66967)">
-                    <PickupQuest NpcId="1005411" QuestId="66967" XYZ="13.41266, 40.2, -13.26007" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66967)">
-                <If Condition="GetQuestStep(66967) == 1">
-                    <GetTo ZoneId="128" XYZ="-12.06995, 40.00053, 11.45953" /> <!-- Quentenain -->
-                    <TalkTo NpcId="1003598" XYZ="-12.06995, 40.00053, 11.45953" QuestId="66967" StepId="1" />
-                </If>
-                <If Condition="GetQuestStep(66967) == 255">
-                    <GetTo ZoneId="129" XYZ="-183.4516, 1.999996, 210.3946" /> <!-- Wastlleid -->
-                    <TurnIn QuestId="66967" NpcId="1005410" ItemId="2001297" XYZ="-183.4516, 1.999996, 210.3946" />
-                </If>
-            </If>
-        </If>
+			<!-- Rising to the Challenge -->
 
-        <!-- Like Cats and Dogs -->
+			<If Condition="not IsQuestCompleted(66967)">
+				<If Condition="not HasQuest(66967)">
+					<GetTo ZoneId="128" XYZ="13.41266, 40.2, -13.26007" /> <!-- I'tolwann -->
+					<If Condition="IsQuestAcceptQualified(66967)">
+						<PickupQuest NpcId="1005411" QuestId="66967" XYZ="13.41266, 40.2, -13.26007" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66967)">
+					<If Condition="GetQuestStep(66967) == 1">
+						<GetTo ZoneId="128" XYZ="-12.06995, 40.00053, 11.45953" /> <!-- Quentenain -->
+						<TalkTo NpcId="1003598" XYZ="-12.06995, 40.00053, 11.45953" QuestId="66967" StepId="1" />
+					</If>
+					<If Condition="GetQuestStep(66967) == 255">
+						<GetTo ZoneId="129" XYZ="-183.4516, 1.999996, 210.3946" /> <!-- Wastlleid -->
+						<TurnIn QuestId="66967" NpcId="1005410" ItemId="2001297" XYZ="-183.4516, 1.999996, 210.3946" />
+					</If>
+				</If>
+			</If>
 
-        <If Condition="not IsQuestCompleted(66825)">
-            <If Condition="not HasQuest(66825)">
-                <GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
-                <If Condition="IsQuestAcceptQualified(66825)">
-                    <PickupQuest NpcId="1005394" QuestId="66825" XYZ="246.8757, -25.00046, 246.1737" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66825)">
-                <If Condition="GetQuestStep(66825) == 1">
-                    <GetTo ZoneId="138" XYZ="210.254, -25.00961, 223.7125" /> <!-- R'kontai -->
-                    <TalkTo NpcId="1005392" XYZ="210.254, -25.00961, 223.7125" QuestId="66825" StepId="1" />
-                </If>
-                <If Condition="GetQuestStep(66825) == 2">
-                    <GetTo ZoneId="138" XYZ="221.1489, -36.40597, 323.5675" /> <!-- Grinding Area -->
-                    <Grind grindRef="Like_Cats_and_Dogs" while="HasQuest(66825) and GetQuestStep(66825) == 2" />
-                </If>
-                <If Condition="GetQuestStep(66825) == 3">
-                    <GetTo ZoneId="138" XYZ="221.1489, -36.40597, 323.5675" /> <!-- R'kontai -->
-                    <TalkTo NpcId="1005393" XYZ="221.1489, -36.40597, 323.5675" QuestId="66825" StepId="3" />
-                </If>
-                <If Condition="GetQuestStep(66825) == 255">
-                    <GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
-                    <TurnIn QuestId="66825" NpcId="1005394" ItemId="2001110" XYZ="246.8757, -25.00046, 246.1737" />
-                </If>
-            </If>
-        </If>
+			<!-- Like Cats and Dogs -->
 
-        <!-- Man's Best Fiend -->
+			<If Condition="not IsQuestCompleted(66825)">
+				<If Condition="not HasQuest(66825)">
+					<GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
+					<If Condition="IsQuestAcceptQualified(66825)">
+						<PickupQuest NpcId="1005394" QuestId="66825" XYZ="246.8757, -25.00046, 246.1737" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66825)">
+					<If Condition="GetQuestStep(66825) == 1">
+						<GetTo ZoneId="138" XYZ="210.254, -25.00961, 223.7125" /> <!-- R'kontai -->
+						<TalkTo NpcId="1005392" XYZ="210.254, -25.00961, 223.7125" QuestId="66825" StepId="1" />
+					</If>
+					<If Condition="GetQuestStep(66825) == 2">
+						<GetTo ZoneId="138" XYZ="221.1489, -36.40597, 323.5675" /> <!-- Grinding Area -->
+						<Grind grindRef="Like_Cats_and_Dogs" while="HasQuest(66825) and GetQuestStep(66825) == 2" />
+					</If>
+					<If Condition="GetQuestStep(66825) == 3">
+						<GetTo ZoneId="138" XYZ="221.1489, -36.40597, 323.5675" /> <!-- R'kontai -->
+						<TalkTo NpcId="1005393" XYZ="221.1489, -36.40597, 323.5675" QuestId="66825" StepId="3" />
+					</If>
+					<If Condition="GetQuestStep(66825) == 255">
+						<GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
+						<TurnIn QuestId="66825" NpcId="1005394" ItemId="2001110" XYZ="246.8757, -25.00046, 246.1737" />
+					</If>
+				</If>
+			</If>
 
-        <If Condition="not IsQuestCompleted(66826)">
-            <If Condition="not HasQuest(66826)">
-                <GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
-                <If Condition="IsQuestAcceptQualified(66826)">
-                    <PickupQuest NpcId="1005394" QuestId="66826" XYZ="246.8757, -25.00046, 246.1737" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66826)">
-                <If Condition="GetQuestStep(66826) == 1">
-                    <GetTo ZoneId="138" XYZ="210.254, -25.00961, 223.7125" /> <!-- R'kontai -->
-                    <TalkTo NpcId="1005392" XYZ="210.254, -25.00961, 223.7125" QuestId="66826" StepId="1" />
-                </If>
-                <If Condition="GetQuestStep(66826) == 2">
-                    <GetTo ZoneId="138" XYZ="523.6437, 24.75488, 292.3781" /> <!-- Starved Pup -->
-                    <UseItem NpcId="1005395" ItemId="2001083" XYZ="523.6437, 24.75488, 292.3781" Radius="10" QuestId="66826" StepId="2" />
-                </If>
-                <If Condition="GetQuestStep(66826) == 3">
-                    <GetTo ZoneId="138" XYZ="523.6437, 24.75488, 292.3781" /> <!-- Starved Pup -->
-                    <EmoteNPC NpcId="1005395" Emote="soothe" XYZ="523.6437, 24.75488, 292.3781" Radius="10" QuestId="66826" StepId="3" />
-                </If>
-                <If Condition="GetQuestStep(66826) == 255">
-                    <GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
-                    <TurnIn QuestId="66826" NpcId="1005394" ItemId="2001084" XYZ="246.8757, -25.00046, 246.1737" />
-                </If>
-            </If>
-        </If>
+			<!-- Man's Best Fiend -->
 
-        <!-- Curiosity Killed the Coeurl -->
+			<If Condition="not IsQuestCompleted(66826)">
+				<If Condition="not HasQuest(66826)">
+					<GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
+					<If Condition="IsQuestAcceptQualified(66826)">
+						<PickupQuest NpcId="1005394" QuestId="66826" XYZ="246.8757, -25.00046, 246.1737" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66826)">
+					<If Condition="GetQuestStep(66826) == 1">
+						<GetTo ZoneId="138" XYZ="210.254, -25.00961, 223.7125" /> <!-- R'kontai -->
+						<TalkTo NpcId="1005392" XYZ="210.254, -25.00961, 223.7125" QuestId="66826" StepId="1" />
+					</If>
+					<If Condition="GetQuestStep(66826) == 2">
+						<GetTo ZoneId="138" XYZ="523.6437, 24.75488, 292.3781" /> <!-- Starved Pup -->
+						<UseItem NpcId="1005395" ItemId="2001083" XYZ="523.6437, 24.75488, 292.3781" Radius="10" QuestId="66826" StepId="2" />
+					</If>
+					<If Condition="GetQuestStep(66826) == 3">
+						<GetTo ZoneId="138" XYZ="523.6437, 24.75488, 292.3781" /> <!-- Starved Pup -->
+						<EmoteNPC NpcId="1005395" Emote="soothe" XYZ="523.6437, 24.75488, 292.3781" Radius="10" QuestId="66826" StepId="3" />
+					</If>
+					<If Condition="GetQuestStep(66826) == 255">
+						<GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
+						<TurnIn QuestId="66826" NpcId="1005394" ItemId="2001084" XYZ="246.8757, -25.00046, 246.1737" />
+					</If>
+				</If>
+			</If>
 
-        <If Condition="not IsQuestCompleted(66827)">
-            <If Condition="not HasQuest(66827)">
-                <GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
-                <If Condition="IsQuestAcceptQualified(66827)">
-                    <PickupQuest NpcId="1005394" QuestId="66827" XYZ="246.8757, -25.00046, 246.1737" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66827)">
-                <If Condition="GetQuestStep(66827) == 1">
-                    <GetTo ZoneId="138" XYZ="209.5215, -16.91942, 114.4579" /> <!-- Grinding Area -->
-                    <Grind grindRef="Curiosity_Killed_the_Coeurl" while="HasQuest(66827) and GetQuestStep(66827) == 1" />
-                </If>
-                <If Condition="GetQuestStep(66827) == 2">
-                    <GetTo ZoneId="138" XYZ="209.5215, -16.91942, 114.4579" /> <!-- Baby Coeurl -->
-                    <TalkTo NpcId="1005396" XYZ="209.5215, -16.91942, 114.4579" QuestId="66827" StepId="2" />
-                </If>
-                <If Condition="GetQuestStep(66827) == 255">
-                    <GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
-                    <TurnIn QuestId="66827" NpcId="1005394" ItemId="2001086" XYZ="246.8757, -25.00046, 246.1737" />
-                </If>
-            </If>
-        </If>
+			<!-- Curiosity Killed the Coeurl -->
 
-        <!-- Keep Your Day Job -->
+			<If Condition="not IsQuestCompleted(66827)">
+				<If Condition="not HasQuest(66827)">
+					<GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
+					<If Condition="IsQuestAcceptQualified(66827)">
+						<PickupQuest NpcId="1005394" QuestId="66827" XYZ="246.8757, -25.00046, 246.1737" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66827)">
+					<If Condition="GetQuestStep(66827) == 1">
+						<GetTo ZoneId="138" XYZ="209.5215, -16.91942, 114.4579" /> <!-- Grinding Area -->
+						<Grind grindRef="Curiosity_Killed_the_Coeurl" while="HasQuest(66827) and GetQuestStep(66827) == 1" />
+					</If>
+					<If Condition="GetQuestStep(66827) == 2">
+						<GetTo ZoneId="138" XYZ="209.5215, -16.91942, 114.4579" /> <!-- Baby Coeurl -->
+						<TalkTo NpcId="1005396" XYZ="209.5215, -16.91942, 114.4579" QuestId="66827" StepId="2" />
+					</If>
+					<If Condition="GetQuestStep(66827) == 255">
+						<GetTo ZoneId="138" XYZ="246.8757, -25.00046, 246.1737" /> <!-- Skribyld -->
+						<TurnIn QuestId="66827" NpcId="1005394" ItemId="2001086" XYZ="246.8757, -25.00046, 246.1737" />
+					</If>
+				</If>
+			</If>
 
-        <If Condition="not IsQuestCompleted(66678)">
-            <If Condition="not HasQuest(66678)">
-                <GetTo ZoneId="138" XYZ="263.6606, -4.184404, 202.1667" /> <!-- S'nairoh -->
-                <If Condition="IsQuestAcceptQualified(66678)">
-                    <PickupQuest NpcId="1003359" QuestId="66678" XYZ="263.6606, -4.184404, 202.1667" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66678)">
-                <If Condition="GetQuestStep(66678) == 1">
-                    <GetTo ZoneId="138" XYZ="295.3472, -14.47835, 154.7115" /> <!-- Grinding Area -->
-                    <Grind grindRef="Keep_Your_Day_Job" while="HasQuest(66678) and GetQuestStep(66678) == 1" />
-                </If>
-                <If Condition="GetQuestStep(66678) == 255">
-                    <GetTo ZoneId="138" XYZ="263.4292, -5.238798, 203.316" /> <!-- S'nairoh -->
-                    <TurnIn QuestId="66678" NpcId="1003359" XYZ="263.6606, -4.184404, 202.1667" />
-                </If>
-            </If>
-        </If>
+			<!-- Keep Your Day Job -->
 
-        <!-- Mountains out of Molehills -->
+			<If Condition="not IsQuestCompleted(66678)">
+				<If Condition="not HasQuest(66678)">
+					<GetTo ZoneId="138" XYZ="263.6606, -4.184404, 202.1667" /> <!-- S'nairoh -->
+					<If Condition="IsQuestAcceptQualified(66678)">
+						<PickupQuest NpcId="1003359" QuestId="66678" XYZ="263.6606, -4.184404, 202.1667" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66678)">
+					<If Condition="GetQuestStep(66678) == 1">
+						<GetTo ZoneId="138" XYZ="295.3472, -14.47835, 154.7115" /> <!-- Grinding Area -->
+						<Grind grindRef="Keep_Your_Day_Job" while="HasQuest(66678) and GetQuestStep(66678) == 1" />
+					</If>
+					<If Condition="GetQuestStep(66678) == 255">
+						<GetTo ZoneId="138" XYZ="263.4292, -5.238798, 203.316" /> <!-- S'nairoh -->
+						<TurnIn QuestId="66678" NpcId="1003359" XYZ="263.6606, -4.184404, 202.1667" />
+					</If>
+				</If>
+			</If>
 
-        <If Condition="not IsQuestCompleted(66679)">
-            <If Condition="not HasQuest(66679)">
-                <GetTo ZoneId="138" XYZ="263.6606, -4.184404, 202.1667" /> <!-- S'nairoh -->
-                <If Condition="IsQuestAcceptQualified(66679)">
-                    <PickupQuest NpcId="1003359" QuestId="66679" XYZ="263.6606, -4.184404, 202.1667" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66679)">
-                <If Condition="GetQuestStep(66679) == 1">
-                    <GetTo ZoneId="138" XYZ="251.0827, -12.40818, 103.8747" /> <!-- Grinding Area -->
-                    <Grind grindRef="Mountains_out_of_Molehills" while="HasQuest(66679) and GetQuestStep(66679) == 1" />
-                </If>
-                <If Condition="GetQuestStep(66679) == 255">
-                    <GetTo ZoneId="138" XYZ="263.6606, -4.184404, 202.1667" /> <!-- S'nairoh -->
-                    <TurnIn QuestId="66679" NpcId="1003359" XYZ="263.6606, -4.184404, 202.1667" />
-                </If>
-            </If>
-        </If>
+			<!-- Mountains out of Molehills -->
 
-        <!-- Walk of Shame -->
+			<If Condition="not IsQuestCompleted(66679)">
+				<If Condition="not HasQuest(66679)">
+					<GetTo ZoneId="138" XYZ="263.6606, -4.184404, 202.1667" /> <!-- S'nairoh -->
+					<If Condition="IsQuestAcceptQualified(66679)">
+						<PickupQuest NpcId="1003359" QuestId="66679" XYZ="263.6606, -4.184404, 202.1667" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66679)">
+					<If Condition="GetQuestStep(66679) == 1">
+						<GetTo ZoneId="138" XYZ="251.0827, -12.40818, 103.8747" /> <!-- Grinding Area -->
+						<Grind grindRef="Mountains_out_of_Molehills" while="HasQuest(66679) and GetQuestStep(66679) == 1" />
+					</If>
+					<If Condition="GetQuestStep(66679) == 255">
+						<GetTo ZoneId="138" XYZ="263.6606, -4.184404, 202.1667" /> <!-- S'nairoh -->
+						<TurnIn QuestId="66679" NpcId="1003359" XYZ="263.6606, -4.184404, 202.1667" />
+					</If>
+				</If>
+			</If>
 
-        <If Condition="not IsQuestCompleted(66680)">
-            <If Condition="not HasQuest(66680)">
-                <GetTo ZoneId="138" XYZ="263.6606, -4.184404, 202.1667" /> <!-- S'nairoh -->
-                <If Condition="IsQuestAcceptQualified(66680)">
-                    <PickupQuest NpcId="1003359" QuestId="66680" XYZ="263.6606, -4.184404, 202.1667" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66680)">
-                <If Condition="GetQuestStep(66680) == 255">
-                    <GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748" /> <!-- Falkbryda -->
-                    <TurnIn QuestId="66680" NpcId="1006614" ItemId="2000967" XYZ="65.87317, -3.118188, 61.41748" />
-                </If>
-            </If>
-        </If>
+			<!-- Walk of Shame -->
 
-        <!-- On a Wing and a Prayer -->
+			<If Condition="not IsQuestCompleted(66680)">
+				<If Condition="not HasQuest(66680)">
+					<GetTo ZoneId="138" XYZ="263.6606, -4.184404, 202.1667" /> <!-- S'nairoh -->
+					<If Condition="IsQuestAcceptQualified(66680)">
+						<PickupQuest NpcId="1003359" QuestId="66680" XYZ="263.6606, -4.184404, 202.1667" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66680)">
+					<If Condition="GetQuestStep(66680) == 255">
+						<GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748" /> <!-- Falkbryda -->
+						<TurnIn QuestId="66680" NpcId="1006614" ItemId="2000967" XYZ="65.87317, -3.118188, 61.41748" />
+					</If>
+				</If>
+			</If>
 
-        <If Condition="not IsQuestCompleted(66681)">
-            <If Condition="not HasQuest(66681)">
-                <GetTo ZoneId="138" XYZ="305.4703, -36.325, 351.7662" /> <!-- Ahldfoet -->
-                <If Condition="IsQuestAcceptQualified(66681)">
-                    <PickupQuest NpcId="1003393" QuestId="66681" XYZ="305.4703, -36.325, 351.7662" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66681)">
-                <If Condition="GetQuestStep(66681) == 1">
-                    <GetTo ZoneId="138" XYZ="158.2583, -13.11411, 95.84136" /> <!-- Grinding Area -->
-                    <Grind grindRef="On_a_Wing_and_a_Prayer" while="HasQuest(66681) and GetQuestStep(66681) == 1" />
-                </If>
-                <If Condition="GetQuestStep(66681) == 255">
-                    <GetTo ZoneId="138" XYZ="305.4703, -36.325, 351.7662" /> <!-- Ahldfoet -->
-                    <TurnIn QuestId="66681" NpcId="1003393" ItemId="2000968" XYZ="305.4703, -36.325, 351.7662" />
-                </If>
-            </If>
-        </If>
+			<!-- On a Wing and a Prayer -->
 
-        <!-- Mummy Dearest -->
+			<If Condition="not IsQuestCompleted(66681)">
+				<If Condition="not HasQuest(66681)">
+					<GetTo ZoneId="138" XYZ="305.4703, -36.325, 351.7662" /> <!-- Ahldfoet -->
+					<If Condition="IsQuestAcceptQualified(66681)">
+						<PickupQuest NpcId="1003393" QuestId="66681" XYZ="305.4703, -36.325, 351.7662" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66681)">
+					<If Condition="GetQuestStep(66681) == 1">
+						<GetTo ZoneId="138" XYZ="158.2583, -13.11411, 95.84136" /> <!-- Grinding Area -->
+						<Grind grindRef="On_a_Wing_and_a_Prayer" while="HasQuest(66681) and GetQuestStep(66681) == 1" />
+					</If>
+					<If Condition="GetQuestStep(66681) == 255">
+						<GetTo ZoneId="138" XYZ="305.4703, -36.325, 351.7662" /> <!-- Ahldfoet -->
+						<TurnIn QuestId="66681" NpcId="1003393" ItemId="2000968" XYZ="305.4703, -36.325, 351.7662" />
+					</If>
+				</If>
+			</If>
 
-        <If Condition="not IsQuestCompleted(66682)">
-            <If Condition="not HasQuest(66682)">
-                <GetTo ZoneId="138" XYZ="305.4703, -36.325, 351.7662" /> <!-- Ahldfoet -->
-                <If Condition="IsQuestAcceptQualified(66682)">
-                    <PickupQuest NpcId="1003393" QuestId="66682" XYZ="305.4703, -36.325, 351.7662" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66682)">
-                <If Condition="GetQuestStep(66682) == 255">
-                    <GetTo ZoneId="138" XYZ="86.56433, -14.4917, 38.49854" /> <!-- Wiltswys -->
-                    <TurnIn QuestId="66682" NpcId="1003450" ItemId="2000969" XYZ="86.56433, -14.4917, 38.49854" />
-                </If>
-            </If>
-        </If>
+			<!-- Mummy Dearest -->
 
-        <!-- Color Your World -->
+			<If Condition="not IsQuestCompleted(66682)">
+				<If Condition="not HasQuest(66682)">
+					<GetTo ZoneId="138" XYZ="305.4703, -36.325, 351.7662" /> <!-- Ahldfoet -->
+					<If Condition="IsQuestAcceptQualified(66682)">
+						<PickupQuest NpcId="1003393" QuestId="66682" XYZ="305.4703, -36.325, 351.7662" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66682)">
+					<If Condition="GetQuestStep(66682) == 255">
+						<GetTo ZoneId="138" XYZ="86.56433, -14.4917, 38.49854" /> <!-- Wiltswys -->
+						<TurnIn QuestId="66682" NpcId="1003450" ItemId="2000969" XYZ="86.56433, -14.4917, 38.49854" />
+					</If>
+				</If>
+			</If>
 
-        <If Condition="not IsQuestCompleted(66235)">
-            <If Condition="not HasQuest(66235)">
-                <GetTo ZoneId="140" XYZ="-441.6419, 23.66986, -358.9685" /> <!-- Swyrgeim -->
-                <If Condition="IsQuestAcceptQualified(66235)">
-                    <PickupQuest NpcId="1004990" QuestId="66235" XYZ="-441.6419, 23.66986, -358.9685" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66235)">
-                <If Condition="GetQuestStep(66235) == 255">
-                    <If Condition="not HasAtLeast(4745,1)">
-                        <GetTo ZoneId="140" XYZ="-464.4873, 23.0212, -378.9821" /> <!-- Merchant & Mender -->
-                        <BuyItem ItemIds="4745" ItemCounts="1" DialogOption="2" InteractDistance="3.0" NpcId="1004038" XYZ="-464.4873, 23.0212, -378.9821" />
-                    </If>
-                    <GetTo ZoneId="140" XYZ="-441.6419, 23.66986, -358.9685" /> <!-- Swyrgeim -->
-                    <TurnIn QuestId="66235" NpcId="1004990" ItemId="4745" XYZ="-441.6419, 23.66986, -358.9685" />
-                </If>
-            </If>
-        </If>
+			<!-- Color Your World -->
+
+			<If Condition="not IsQuestCompleted(66235)">
+				<If Condition="not HasQuest(66235)">
+					<GetTo ZoneId="140" XYZ="-441.6419, 23.66986, -358.9685" /> <!-- Swyrgeim -->
+					<If Condition="IsQuestAcceptQualified(66235)">
+						<PickupQuest NpcId="1004990" QuestId="66235" XYZ="-441.6419, 23.66986, -358.9685" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66235)">
+					<If Condition="GetQuestStep(66235) == 255">
+						<If Condition="not HasAtLeast(4745,1)">
+							<GetTo ZoneId="140" XYZ="-464.4873, 23.0212, -378.9821" /> <!-- Merchant & Mender -->
+							<BuyItem ItemIds="4745" ItemCounts="1" DialogOption="2" InteractDistance="3.0" NpcId="1004038" XYZ="-464.4873, 23.0212, -378.9821" />
+						</If>
+						<GetTo ZoneId="140" XYZ="-441.6419, 23.66986, -358.9685" /> <!-- Swyrgeim -->
+						<TurnIn QuestId="66235" NpcId="1004990" ItemId="4745" XYZ="-441.6419, 23.66986, -358.9685" />
+					</If>
+				</If>
+			</If>
+		</If>
+
 
         <!-- Call of the Forest -->
 
@@ -7497,140 +7501,143 @@
 
         <LogMessage Message="[A Realm Reborn] Checking level 16 quests..." />
 
-        <!-- Toxic Avenger -->
 
-        <If Condition="not IsQuestCompleted(66684)">
-            <If Condition="not HasQuest(66684)">
-                <GetTo ZoneId="138" XYZ="86.56433, -14.4917, 38.49854" /> <!-- Wiltswys -->
-                <If Condition="IsQuestAcceptQualified(66684)">
-                    <PickupQuest NpcId="1003450" QuestId="66684" XYZ="86.56433, -14.4917, 38.49854" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66684)">
-                <If Condition="GetQuestStep(66684) == 1">
-                    <GetTo ZoneId="138" XYZ="142.604, -15.5279, 75.61333" /> <!-- Grinding Area -->
-                    <Grind grindRef="Toxic_Avenger" while="HasQuest(66684) and GetQuestStep(66684) == 1" />
-                </If>
-                <If Condition="GetQuestStep(66684) == 255">
-                    <GetTo ZoneId="138" XYZ="86.56433, -14.4917, 38.49854" /> <!-- Wiltswys -->
-                    <TurnIn QuestId="66684" NpcId="1003450" ItemId="2000970" XYZ="86.56433, -14.4917, 38.49854" />
-                </If>
-            </If>
-        </If>
 
-        <!-- My Brother's Not a Keeper -->
+        <If Condition="Core.Player.ClassLevel &lt; 18">
+			<!-- Toxic Avenger -->
 
-        <If Condition="not IsQuestCompleted(66685)">
-            <If Condition="not HasQuest(66685)">
-                <GetTo ZoneId="138" XYZ="86.56433, -14.4917, 38.49854" /> <!-- Wiltswys -->
-                <If Condition="IsQuestAcceptQualified(66685)">
-                    <PickupQuest NpcId="1003450" QuestId="66685" XYZ="86.56433, -14.4917, 38.49854" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66685)">
-                <If Condition="GetQuestStep(66685) == 1">
-                    <GetTo ZoneId="138" XYZ="-97.0932, -25.00205, 66.72766" /> <!-- Sthalrhet -->
-                    <HandOver ItemId="2000971" QuestId="66685" StepId="1" NpcId="1006627" XYZ="-97.0932, -25.00205, 66.72766" />
-                </If>
-                <If Condition="GetQuestStep(66685) == 2">
-                    <GetTo ZoneId="138" XYZ="86.56433, -14.4917, 38.49854" /> <!-- Wiltswys -->
-                    <TalkTo NpcId="1003450" XYZ="86.56433, -14.4917, 38.49854" QuestId="66685" StepId="2" />
-                </If>
-                <If Condition="GetQuestStep(66685) == 255">
-                    <GetTo ZoneId="138" XYZ="26.56592, -10.28117, -83.39056" /> <!-- Nortmoen -->
-                    <TurnIn QuestId="66685" NpcId="1006626" ItemId="2000971" XYZ="26.56592, -10.28117, -83.39056" />
-                </If>
-            </If>
-        </If>
+			<If Condition="not IsQuestCompleted(66684)">
+				<If Condition="not HasQuest(66684)">
+					<GetTo ZoneId="138" XYZ="86.56433, -14.4917, 38.49854" /> <!-- Wiltswys -->
+					<If Condition="IsQuestAcceptQualified(66684)">
+						<PickupQuest NpcId="1003450" QuestId="66684" XYZ="86.56433, -14.4917, 38.49854" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66684)">
+					<If Condition="GetQuestStep(66684) == 1">
+						<GetTo ZoneId="138" XYZ="142.604, -15.5279, 75.61333" /> <!-- Grinding Area -->
+						<Grind grindRef="Toxic_Avenger" while="HasQuest(66684) and GetQuestStep(66684) == 1" />
+					</If>
+					<If Condition="GetQuestStep(66684) == 255">
+						<GetTo ZoneId="138" XYZ="86.56433, -14.4917, 38.49854" /> <!-- Wiltswys -->
+						<TurnIn QuestId="66684" NpcId="1003450" ItemId="2000970" XYZ="86.56433, -14.4917, 38.49854" />
+					</If>
+				</If>
+			</If>
 
-        <!-- Flowers for Aerghaemr -->
+			<!-- My Brother's Not a Keeper -->
 
-        <If Condition="not IsQuestCompleted(66686)">
-            <If Condition="not HasQuest(66686)">
-                <GetTo ZoneId="138" XYZ="46.15845, -9.616937, -73.5943" /> <!-- Alyrloef -->
-                <If Condition="IsQuestAcceptQualified(66686)">
-                    <PickupQuest NpcId="1003438" QuestId="66686" XYZ="46.15845, -9.616937, -73.5943" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66686)">
-                <If Condition="GetQuestStep(66686) == 1">
-                    <GetTo ZoneId="138" XYZ="81.95618, -2.358437, -56.47369" /> <!-- Roehanth -->
-                    <HandOver ItemId="2000972" QuestId="66686" StepId="1" NpcId="1003475" XYZ="81.95618, -2.358437, -56.47369" />
-                </If>
-                <If Condition="GetQuestStep(66686) == 2">
-                    <GetTo ZoneId="138" XYZ="83.81775, -1.205505, -58.60992" /> <!-- Destination -->
-                    <UseItem NpcId="2002554" ItemId="2000972" XYZ="83.81775, -1.205505, -58.60992" Radius="10" QuestId="66686" StepId="2" />
-                </If>
-                <If Condition="GetQuestStep(66686) == 255">
-                    <GetTo ZoneId="138" XYZ="81.95618, -2.358437, -56.47369" /> <!-- Roehanth -->
-                    <TurnIn QuestId="66686" NpcId="1003475" XYZ="81.95618, -2.358437, -56.47369" />
-                </If>
-            </If>
-        </If>
-        
-        <!-- Scythe Extra Large -->
+			<If Condition="not IsQuestCompleted(66685)">
+				<If Condition="not HasQuest(66685)">
+					<GetTo ZoneId="138" XYZ="86.56433, -14.4917, 38.49854" /> <!-- Wiltswys -->
+					<If Condition="IsQuestAcceptQualified(66685)">
+						<PickupQuest NpcId="1003450" QuestId="66685" XYZ="86.56433, -14.4917, 38.49854" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66685)">
+					<If Condition="GetQuestStep(66685) == 1">
+						<GetTo ZoneId="138" XYZ="-97.0932, -25.00205, 66.72766" /> <!-- Sthalrhet -->
+						<HandOver ItemId="2000971" QuestId="66685" StepId="1" NpcId="1006627" XYZ="-97.0932, -25.00205, 66.72766" />
+					</If>
+					<If Condition="GetQuestStep(66685) == 2">
+						<GetTo ZoneId="138" XYZ="86.56433, -14.4917, 38.49854" /> <!-- Wiltswys -->
+						<TalkTo NpcId="1003450" XYZ="86.56433, -14.4917, 38.49854" QuestId="66685" StepId="2" />
+					</If>
+					<If Condition="GetQuestStep(66685) == 255">
+						<GetTo ZoneId="138" XYZ="26.56592, -10.28117, -83.39056" /> <!-- Nortmoen -->
+						<TurnIn QuestId="66685" NpcId="1006626" ItemId="2000971" XYZ="26.56592, -10.28117, -83.39056" />
+					</If>
+				</If>
+			</If>
 
-        <If Condition="not IsQuestCompleted(66687)">
-            <If Condition="not HasQuest(66687)">
-                <GetTo ZoneId="138" XYZ="81.95618, -2.358437, -56.47369" /> <!-- Roehanth -->
-                <If Condition="IsQuestAcceptQualified(66687)">
-                    <PickupQuest NpcId="1003475" QuestId="66687" XYZ="81.95618, -2.358437, -56.47369" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66687)">
-                <If Condition="GetQuestStep(66687) == 1">
-                    <GetTo ZoneId="138" XYZ="69.47083, -5.637325, -48.06143" /> <!-- Grinding Area -->
-                    <Grind grindRef="Scythe_Extra_Large" while="HasQuest(66687) and GetQuestStep(66687) == 1" />
-                </If>
-                <If Condition="GetQuestStep(66687) == 2">
-                    <GetTo ZoneId="138" XYZ="81.95618, -2.358437, -56.47369" /> <!-- Roehanth -->
-                    <TalkTo NpcId="1003475" XYZ="81.95618, -2.358437, -56.47369" QuestId="66687" StepId="2" />
-                </If>
-                <If Condition="GetQuestStep(66687) == 255">
-                    <GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748" /> <!-- Falkbryda -->
-                    <TurnIn QuestId="66687" NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748" />
-                </If>
-            </If>
-        </If>
+			<!-- Flowers for Aerghaemr -->
 
-        <!-- Nest We Forget -->
+			<If Condition="not IsQuestCompleted(66686)">
+				<If Condition="not HasQuest(66686)">
+					<GetTo ZoneId="138" XYZ="46.15845, -9.616937, -73.5943" /> <!-- Alyrloef -->
+					<If Condition="IsQuestAcceptQualified(66686)">
+						<PickupQuest NpcId="1003438" QuestId="66686" XYZ="46.15845, -9.616937, -73.5943" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66686)">
+					<If Condition="GetQuestStep(66686) == 1">
+						<GetTo ZoneId="138" XYZ="81.95618, -2.358437, -56.47369" /> <!-- Roehanth -->
+						<HandOver ItemId="2000972" QuestId="66686" StepId="1" NpcId="1003475" XYZ="81.95618, -2.358437, -56.47369" />
+					</If>
+					<If Condition="GetQuestStep(66686) == 2">
+						<GetTo ZoneId="138" XYZ="83.81775, -1.205505, -58.60992" /> <!-- Destination -->
+						<UseItem NpcId="2002554" ItemId="2000972" XYZ="83.81775, -1.205505, -58.60992" Radius="10" QuestId="66686" StepId="2" />
+					</If>
+					<If Condition="GetQuestStep(66686) == 255">
+						<GetTo ZoneId="138" XYZ="81.95618, -2.358437, -56.47369" /> <!-- Roehanth -->
+						<TurnIn QuestId="66686" NpcId="1003475" XYZ="81.95618, -2.358437, -56.47369" />
+					</If>
+				</If>
+			</If>
+			
+			<!-- Scythe Extra Large -->
 
-        <If Condition="not IsQuestCompleted(66683)">
-            <If Condition="not HasQuest(66683)">
-                <GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748" /> <!-- Falkbryda -->
-                <If Condition="IsQuestAcceptQualified(66683)">
-                    <PickupQuest NpcId="1006614" QuestId="66683" XYZ="65.87317, -3.118188, 61.41748" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66683)">
-                <If Condition="GetQuestStep(66683) == 1">
-                    <GetTo ZoneId="138" XYZ="52.32312, -13.65692, 41.18408" /> <!-- Dodo Nest -->
-                    <UseObject NpcId="2002532" XYZ="52.32312, -13.65692, 41.18408" Radius="10" QuestId="66683" StepId="1" />
-                </If>
-                <If Condition="GetQuestStep(66683) == 255">
-                    <GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748" /> <!-- Falkbryda -->
-                    <TurnIn QuestId="66683" NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748" />
-                </If>
-            </If>
-        </If>
+			<If Condition="not IsQuestCompleted(66687)">
+				<If Condition="not HasQuest(66687)">
+					<GetTo ZoneId="138" XYZ="81.95618, -2.358437, -56.47369" /> <!-- Roehanth -->
+					<If Condition="IsQuestAcceptQualified(66687)">
+						<PickupQuest NpcId="1003475" QuestId="66687" XYZ="81.95618, -2.358437, -56.47369" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66687)">
+					<If Condition="GetQuestStep(66687) == 1">
+						<GetTo ZoneId="138" XYZ="69.47083, -5.637325, -48.06143" /> <!-- Grinding Area -->
+						<Grind grindRef="Scythe_Extra_Large" while="HasQuest(66687) and GetQuestStep(66687) == 1" />
+					</If>
+					<If Condition="GetQuestStep(66687) == 2">
+						<GetTo ZoneId="138" XYZ="81.95618, -2.358437, -56.47369" /> <!-- Roehanth -->
+						<TalkTo NpcId="1003475" XYZ="81.95618, -2.358437, -56.47369" QuestId="66687" StepId="2" />
+					</If>
+					<If Condition="GetQuestStep(66687) == 255">
+						<GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748" /> <!-- Falkbryda -->
+						<TurnIn QuestId="66687" NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748" />
+					</If>
+				</If>
+			</If>
 
-        <!-- I Hereby Relieve You -->
+			<!-- Nest We Forget -->
 
-        <If Condition="not IsQuestCompleted(66688)">
-            <If Condition="not HasQuest(66688)">
-                <GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748" /> <!-- Falkbryda -->
-                <If Condition="IsQuestAcceptQualified(66688)">
-                    <PickupQuest NpcId="1006614" QuestId="66688" XYZ="65.87317, -3.118188, 61.41748" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66688)">
-                <If Condition="GetQuestStep(66688) == 255">
-                    <GetTo ZoneId="138" XYZ="345.7235, 1.840361, 72.86182" /> <!-- Catguistl -->
-                    <TurnIn QuestId="66688" NpcId="1007638" XYZ="345.7235, 1.840361, 72.86182" />
-                </If>
-            </If>
-        </If>
+			<If Condition="not IsQuestCompleted(66683)">
+				<If Condition="not HasQuest(66683)">
+					<GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748" /> <!-- Falkbryda -->
+					<If Condition="IsQuestAcceptQualified(66683)">
+						<PickupQuest NpcId="1006614" QuestId="66683" XYZ="65.87317, -3.118188, 61.41748" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66683)">
+					<If Condition="GetQuestStep(66683) == 1">
+						<GetTo ZoneId="138" XYZ="52.32312, -13.65692, 41.18408" /> <!-- Dodo Nest -->
+						<UseObject NpcId="2002532" XYZ="52.32312, -13.65692, 41.18408" Radius="10" QuestId="66683" StepId="1" />
+					</If>
+					<If Condition="GetQuestStep(66683) == 255">
+						<GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748" /> <!-- Falkbryda -->
+						<TurnIn QuestId="66683" NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748" />
+					</If>
+				</If>
+			</If>
 
+			<!-- I Hereby Relieve You -->
+
+			<If Condition="not IsQuestCompleted(66688)">
+				<If Condition="not HasQuest(66688)">
+					<GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748" /> <!-- Falkbryda -->
+					<If Condition="IsQuestAcceptQualified(66688)">
+						<PickupQuest NpcId="1006614" QuestId="66688" XYZ="65.87317, -3.118188, 61.41748" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66688)">
+					<If Condition="GetQuestStep(66688) == 255">
+						<GetTo ZoneId="138" XYZ="345.7235, 1.840361, 72.86182" /> <!-- Catguistl -->
+						<TurnIn QuestId="66688" NpcId="1007638" XYZ="345.7235, 1.840361, 72.86182" />
+					</If>
+				</If>
+			</If>
+		</If>
         <!-- Fire in the Gloom -->
 
         <If Condition="not IsQuestCompleted(66213)">
