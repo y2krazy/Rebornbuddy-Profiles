@@ -7686,26 +7686,30 @@
 
         <LogMessage Message="[A Realm Reborn] Checking level 17 quests..." />
 
-        <!-- Seeds of Change -->
 
-        <If Condition="not IsQuestCompleted(66960)">
-            <If Condition="not HasQuest(66960)">
-                <GetTo ZoneId="140" XYZ="-472.1904, 23.00789, -320.8515" /> <!-- Tatafu -->
-                <If Condition="IsQuestAcceptQualified(66960)">
-                    <PickupQuest NpcId="1008758" QuestId="66960" XYZ="-472.1904, 23.00789, -320.8515" />
-                </If>
-            </If>
-            <If Condition="HasQuest(66960)">
-                <If Condition="GetQuestStep(66960) == 1">
-                    <GetTo ZoneId="140" XYZ="-299.5194, 18.41363, -179.4614" /> <!-- Nanalai -->
-                    <HandOver ItemId="2001240,2001241" QuestId="66960" StepId="1" NpcId="1008760" XYZ="-299.5194, 18.41363, -179.4614" />
-                </If>
-                <If Condition="GetQuestStep(66960) == 255">
-                    <GetTo ZoneId="140" XYZ="-472.1904, 23.00789, -320.8515" /> <!-- Tatafu -->
-                    <TurnIn QuestId="66960" NpcId="1008758" ItemId="2001242" XYZ="-472.1904, 23.00789, -320.8515" />
-                </If>
-            </If>
-        </If>
+        <If Condition="Core.Player.ClassLevel &lt; 19">
+
+			<!-- Seeds of Change -->
+
+			<If Condition="not IsQuestCompleted(66960)">
+				<If Condition="not HasQuest(66960)">
+					<GetTo ZoneId="140" XYZ="-472.1904, 23.00789, -320.8515" /> <!-- Tatafu -->
+					<If Condition="IsQuestAcceptQualified(66960)">
+						<PickupQuest NpcId="1008758" QuestId="66960" XYZ="-472.1904, 23.00789, -320.8515" />
+					</If>
+				</If>
+				<If Condition="HasQuest(66960)">
+					<If Condition="GetQuestStep(66960) == 1">
+						<GetTo ZoneId="140" XYZ="-299.5194, 18.41363, -179.4614" /> <!-- Nanalai -->
+						<HandOver ItemId="2001240,2001241" QuestId="66960" StepId="1" NpcId="1008760" XYZ="-299.5194, 18.41363, -179.4614" />
+					</If>
+					<If Condition="GetQuestStep(66960) == 255">
+						<GetTo ZoneId="140" XYZ="-472.1904, 23.00789, -320.8515" /> <!-- Tatafu -->
+						<TurnIn QuestId="66960" NpcId="1008758" ItemId="2001242" XYZ="-472.1904, 23.00789, -320.8515" />
+					</If>
+				</If>
+			</If>
+		</If>
 
         <!-- Into a Copper Hell -->
 
