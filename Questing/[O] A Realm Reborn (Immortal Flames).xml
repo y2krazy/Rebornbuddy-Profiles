@@ -1051,27 +1051,6 @@
 				</If>
 			</If>
 
-			<!-- Sidequest: More than a Flesh Wound -->
-
-			<If Condition="not IsQuestCompleted(65708)">
-				<If Condition="not HasQuest(65708)">
-                    <GetTo ZoneId="148" XYZ="204.7607, -5.255962, -99.44305" /> <!-- Arold -->
-					<If Condition="IsQuestAcceptQualified(65708)">
-						<PickupQuest NpcId="1000430" QuestId="65708" XYZ="204.7607, -5.255962, -99.44305" />
-					</If>
-				</If>
-				<If Condition="HasQuest(65708)">
-                    <If Condition="GetQuestStep(65708) == 255">
-                        <If Condition="not HasAtLeast(4552,1)">
-                            <GetTo ZoneId="148" XYZ="82.59705, -7.893894, -103.3494" /> <!-- Merchant & Mender -->
-                            <BuyItem ItemIds="4552" ItemCounts="1" DialogOption="4" NpcId="1000396" XYZ="82.59705, -7.893894, -103.3494" />
-                        </If>
-                        <GetTo ZoneId="148" XYZ="204.7607, -5.255962, -99.44305" /> <!-- Arold -->
-                        <TurnIn ItemId="4552" QuestId="65708" NpcId="1000430" XYZ="204.7607, -5.255962, -99.44305" />
-                    </If>
-				</If>
-			</If>
-
 			<!-- Eggs over Queasy -->
 
 			<If Condition="not IsQuestCompleted(69390)">
@@ -1089,6 +1068,27 @@
                     <If Condition="GetQuestStep(69390) == 255">
                         <GetTo ZoneId="148" XYZ="201.8309, -5.541967, -107.2557" /> <!-- Monranguin -->
                         <TurnIn QuestId="69390" NpcId="1000449" ItemId="2000062" XYZ="201.8309, -5.541967, -107.2557" />
+                    </If>
+				</If>
+			</If>
+			
+			<!-- Sidequest: More than a Flesh Wound -->
+
+			<If Condition="not IsQuestCompleted(65708)">
+				<If Condition="not HasQuest(65708)">
+                    <GetTo ZoneId="148" XYZ="204.7607, -5.255962, -99.44305" /> <!-- Arold -->
+					<If Condition="IsQuestAcceptQualified(65708)">
+						<PickupQuest NpcId="1000430" QuestId="65708" XYZ="204.7607, -5.255962, -99.44305" />
+					</If>
+				</If>
+				<If Condition="HasQuest(65708)">
+                    <If Condition="GetQuestStep(65708) == 255">
+                        <If Condition="not HasAtLeast(4552,1)">
+                            <GetTo ZoneId="148" XYZ="82.59705, -7.893894, -103.3494" /> <!-- Merchant & Mender -->
+                            <BuyItem ItemIds="4552" ItemCounts="1" DialogOption="4" NpcId="1000396" XYZ="82.59705, -7.893894, -103.3494" />
+                        </If>
+                        <GetTo ZoneId="148" XYZ="204.7607, -5.255962, -99.44305" /> <!-- Arold -->
+                        <TurnIn ItemId="4552" QuestId="65708" NpcId="1000430" XYZ="204.7607, -5.255962, -99.44305" />
                     </If>
 				</If>
 			</If>
