@@ -8902,7 +8902,10 @@
 					</SimpleDuty>
 				</If>
 				<If Condition="GetQuestStep(65879) == 3">
-					<GetTo ZoneId="145" XYZ="-63.1571, -25.21552, -554.6502"/>
+					<If Condition="not IsOnMap(146)">
+						<LogMessage Message="Get inside the cave manually"/>
+						<StopBot/>
+					</If>
 					<!-- Flame Sergeant -->
 					<TalkTo NpcId="1005017" XYZ="-63.1571, -25.21552, -554.6502" QuestId="65879" StepId="3"/>
 				</If>
@@ -9183,6 +9186,73 @@
 					<TurnIn QuestId="66221" NpcId="1005012" ItemId="2001110" XYZ="22.50702, 0.9999986, -2.02948"/>
 				</If>
 			</If>
+		</If>
+		<!-- My Little Chocobo (Immortal Flames) -->
+		<If Condition="not IsQuestCompleted(66238)">
+			<If Condition="not HasQuest(66238)">
+				<GetTo ZoneId="130" XYZ="-141.6495, 4.1, -114.6716"/>
+				<!-- Swift -->
+				<If Condition="IsQuestAcceptQualified(66238)">
+					<PickupQuest NpcId="1004576" QuestId="66238" XYZ="-141.6495, 4.1, -114.6716"/>
+				</If>
+			</If>
+			<If Condition="HasQuest(66238)">
+				<If Condition="GetQuestStep(66238) == 1">
+					<If Condition="ItemCount(22) &lt; 200 and not HasItem(6019)">
+						<If Condition="not HuntGCEntryCompleted(0)">
+							<GetTo ZoneId="145" XYZ="-92.74359, -29.95116, 297.4802"/>
+							<!-- Grinding Area -->
+							<Grind grindRef="Immortal_Flames_0" while="not HuntGCEntryCompleted(0)"/>
+						</If>
+						<If Condition="not HuntGCEntryCompleted(4) and ItemCount(22) &lt; 200">
+							<GetTo ZoneId="152" XYZ="-122.9229, 15.64054, 13.87206"/>
+							<!-- Grinding Area -->
+							<Grind grindRef="Immortal_Flames_4" while="not HuntGCEntryCompleted(4)"/>
+						</If>
+						<If Condition="not HuntGCEntryCompleted(5) and ItemCount(22) &lt; 200">
+							<GetTo ZoneId="139" XYZ="-462.4637, 27.76927, 61.46323"/>
+							<!-- Grinding Area -->
+							<Grind grindRef="Immortal_Flames_5" while="not HuntGCEntryCompleted(5)"/>
+						</If>
+						<If Condition="not HuntGCEntryCompleted(6) and ItemCount(22) &lt; 200">
+							<GetTo ZoneId="139" XYZ="-462.4637, 27.76927, 61.46323"/>
+							<!-- Grinding Area -->
+							<Grind grindRef="Immortal_Flames_6" while="not HuntGCEntryCompleted(6)"/>
+						</If>
+						<If Condition="not HuntGCEntryCompleted(7) and ItemCount(22) &lt; 200">
+							<GetTo ZoneId="146" XYZ="-51.07159, 23.37398, -305.3966"/>
+							<!-- Grinding Area -->
+							<Grind grindRef="Immortal_Flames_7" while="not HuntGCEntryCompleted(7)"/>
+						</If>
+						<If Condition="not HuntGCEntryCompleted(8) and ItemCount(22) &lt; 200">
+							<GetTo ZoneId="154" XYZ="63.04838, -35.8153, 316.9796"/>
+							<!-- Grinding Area -->
+							<Grind grindRef="Immortal_Flames_8" while="not HuntGCEntryCompleted(8)"/>
+						</If>
+					</If>
+					<If Condition="not HasItem(6019)">
+						<GetTo ZoneId="130" XYZ="-142.0366, 4.1, -107.4613"/>
+						<!-- Flame Quartermaster -->
+						<RunCode Name="My_Little_Chocobo"/>
+						<StopBot/>
+					</If>
+					<GetTo ZoneId="130" XYZ="55.34448, 4.124078, -143.9079"/>
+					<!-- Mimigun -->
+					<HandOver ItemId="6019" QuestId="66238" StepId="1" NpcId="1001978" XYZ="55.34448, 4.124078, -143.9079"/>
+				</If>
+				<If Condition="GetQuestStep(66238) == 2">
+					<RunCode Name="My_Little_Chocobo2"/>
+					<StopBot/>
+				</If>
+				<If Condition="GetQuestStep(66238) == 255">
+					<GetTo ZoneId="130" XYZ="55.34448, 4.124078, -143.9079"/>
+					<!-- Mimigun -->
+					<TurnIn QuestId="66238" NpcId="1001978" XYZ="55.34448, 4.124078, -143.9079"/>
+				</If>
+			</If>
+		</If>
+		<If Condition="IsQuestCompleted(66238) and HasItem(6001)">
+			<RunCode Name="Activate_Chocobo"/>
 		</If>
 		<!-- Sylph-management -->
 		<If Condition="not IsQuestCompleted(66049)">
@@ -12238,71 +12308,6 @@
 		</If>
 		<If Condition="ClassName == ClassJobType.Thaumaturge and not IsQuestCompleted(65889)">
 			<LoadProfile Path="[O] Class and Job Quests.xml"/>
-		</If>
-		<!-- My Little Chocobo (Immortal Flames) -->
-		<If Condition="not IsQuestCompleted(66238)">
-			<If Condition="not HasQuest(66238)">
-				<GetTo ZoneId="130" XYZ="-141.6495, 4.1, -114.6716"/>
-				<!-- Swift -->
-				<If Condition="IsQuestAcceptQualified(66238)">
-					<PickupQuest NpcId="1004576" QuestId="66238" XYZ="-141.6495, 4.1, -114.6716"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66238)">
-				<If Condition="GetQuestStep(66238) == 1">
-					<If Condition="not HuntGCEntryCompleted(0)">
-						<GetTo ZoneId="145" XYZ="-92.74359, -29.95116, 297.4802"/>
-						<!-- Grinding Area -->
-						<Grind grindRef="Immortal_Flames_0" while="not HuntGCEntryCompleted(0)"/>
-					</If>
-					<If Condition="not HuntGCEntryCompleted(4)">
-						<GetTo ZoneId="152" XYZ="-122.9229, 15.64054, 13.87206"/>
-						<!-- Grinding Area -->
-						<Grind grindRef="Immortal_Flames_4" while="not HuntGCEntryCompleted(4)"/>
-					</If>
-					<If Condition="not HuntGCEntryCompleted(5)">
-						<GetTo ZoneId="139" XYZ="-462.4637, 27.76927, 61.46323"/>
-						<!-- Grinding Area -->
-						<Grind grindRef="Immortal_Flames_5" while="not HuntGCEntryCompleted(5)"/>
-					</If>
-					<If Condition="not HuntGCEntryCompleted(6)">
-						<GetTo ZoneId="139" XYZ="-462.4637, 27.76927, 61.46323"/>
-						<!-- Grinding Area -->
-						<Grind grindRef="Immortal_Flames_6" while="not HuntGCEntryCompleted(6)"/>
-					</If>
-					<If Condition="not HuntGCEntryCompleted(7)">
-						<GetTo ZoneId="146" XYZ="-51.07159, 23.37398, -305.3966"/>
-						<!-- Grinding Area -->
-						<Grind grindRef="Immortal_Flames_7" while="not HuntGCEntryCompleted(7)"/>
-					</If>
-					<If Condition="not HuntGCEntryCompleted(8)">
-						<GetTo ZoneId="154" XYZ="63.04838, -35.8153, 316.9796"/>
-						<!-- Grinding Area -->
-						<Grind grindRef="Immortal_Flames_8" while="not HuntGCEntryCompleted(8)"/>
-					</If>
-					<If Condition="not HasItem(6019)">
-						<GetTo ZoneId="130" XYZ="-142.0366, 4.1, -107.4613"/>
-						<!-- Flame Quartermaster -->
-						<RunCode Name="My_Little_Chocobo"/>
-						<StopBot/>
-					</If>
-					<GetTo ZoneId="130" XYZ="55.34448, 4.124078, -143.9079"/>
-					<!-- Mimigun -->
-					<HandOver ItemId="6019" QuestId="66238" StepId="1" NpcId="1001978" XYZ="55.34448, 4.124078, -143.9079"/>
-				</If>
-				<If Condition="GetQuestStep(66238) == 2">
-					<RunCode Name="My_Little_Chocobo2"/>
-					<StopBot/>
-				</If>
-				<If Condition="GetQuestStep(66238) == 255">
-					<GetTo ZoneId="130" XYZ="55.34448, 4.124078, -143.9079"/>
-					<!-- Mimigun -->
-					<TurnIn QuestId="66238" NpcId="1001978" XYZ="55.34448, 4.124078, -143.9079"/>
-				</If>
-			</If>
-		</If>
-		<If Condition="IsQuestCompleted(66238) and HasItem(6001)">
-			<RunCode Name="Activate_Chocobo"/>
 		</If>
 		<!-- Sidequest: My Feisty Little Chocobo -->
 		<If Condition="not IsQuestCompleted(66698)">
