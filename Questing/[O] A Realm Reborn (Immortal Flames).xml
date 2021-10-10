@@ -9916,184 +9916,186 @@
 				</If>
 			</If>
 		</If>
-		<!-- No Guts, No Glory -->
-		<If Condition="not IsQuestCompleted(66265)">
-			<If Condition="not HasQuest(66265)">
-				<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
-				<!-- Auphiliot -->
-				<If Condition="IsQuestAcceptQualified(66265)">
-					<PickupQuest NpcId="1000598" QuestId="66265" XYZ="-170.8248, 9.964111, -84.15356"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66265)">
-				<If Condition="GetQuestStep(66265) == 1">
-					<GetTo ZoneId="153" XYZ="-104.9251, 1.743613, -43.40409"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="No_Guts_No_Glory" while="HasQuest(66265) and GetQuestStep(66265) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66265) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 23">
+			<!-- No Guts, No Glory -->
+			<If Condition="not IsQuestCompleted(66265)">
+				<If Condition="not HasQuest(66265)">
 					<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
 					<!-- Auphiliot -->
-					<TurnIn QuestId="66265" NpcId="1000598" XYZ="-170.8248, 9.964111, -84.15356"/>
+					<If Condition="IsQuestAcceptQualified(66265)">
+						<PickupQuest NpcId="1000598" QuestId="66265" XYZ="-170.8248, 9.964111, -84.15356"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66265)">
+					<If Condition="GetQuestStep(66265) == 1">
+						<GetTo ZoneId="153" XYZ="-104.9251, 1.743613, -43.40409"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="No_Guts_No_Glory" while="HasQuest(66265) and GetQuestStep(66265) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66265) == 255">
+						<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
+						<!-- Auphiliot -->
+						<TurnIn QuestId="66265" NpcId="1000598" XYZ="-170.8248, 9.964111, -84.15356"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Occupational Hazards -->
-		<If Condition="not IsQuestCompleted(66266)">
-			<If Condition="not HasQuest(66266)">
-				<GetTo ZoneId="153" XYZ="-162.3408, 8.533126, -57.41974"/>
-				<!-- Yoenne -->
-				<If Condition="IsQuestAcceptQualified(66266)">
-					<PickupQuest NpcId="1006191" QuestId="66266" XYZ="-162.3408, 8.533126, -57.41974"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66266)">
-				<If Condition="GetQuestStep(66266) == 1">
-					<GetTo ZoneId="153" XYZ="-209.5217, 7.41438, 39.4751"/>
-					<!-- Irielle -->
-					<TalkTo NpcId="1000438" XYZ="-209.5217, 7.41438, 39.4751" QuestId="66266" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66266) == 2">
-					<GetTo ZoneId="153" XYZ="-242.5727, 10.48285, 39.50549"/>
-					<!-- Strange Shadow -->
-					<UseObject NpcId="2002459" XYZ="-242.5727, 10.48285, 39.50549" Radius="10" QuestId="66266" StepId="2"/>
-				</If>
-				<If Condition="GetQuestStep(66266) == 3">
-					<GetTo ZoneId="153" XYZ="-209.5217, 7.41438, 39.4751"/>
-					<!-- Irielle -->
-					<TalkTo NpcId="1000438" XYZ="-209.5217, 7.41438, 39.4751" QuestId="66266" StepId="3"/>
-				</If>
-				<If Condition="GetQuestStep(66266) == 255">
+			<!-- Occupational Hazards -->
+			<If Condition="not IsQuestCompleted(66266)">
+				<If Condition="not HasQuest(66266)">
 					<GetTo ZoneId="153" XYZ="-162.3408, 8.533126, -57.41974"/>
 					<!-- Yoenne -->
-					<TurnIn QuestId="66266" NpcId="1006191" XYZ="-162.3408, 8.533126, -57.41974"/>
+					<If Condition="IsQuestAcceptQualified(66266)">
+						<PickupQuest NpcId="1006191" QuestId="66266" XYZ="-162.3408, 8.533126, -57.41974"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66266)">
+					<If Condition="GetQuestStep(66266) == 1">
+						<GetTo ZoneId="153" XYZ="-209.5217, 7.41438, 39.4751"/>
+						<!-- Irielle -->
+						<TalkTo NpcId="1000438" XYZ="-209.5217, 7.41438, 39.4751" QuestId="66266" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66266) == 2">
+						<GetTo ZoneId="153" XYZ="-242.5727, 10.48285, 39.50549"/>
+						<!-- Strange Shadow -->
+						<UseObject NpcId="2002459" XYZ="-242.5727, 10.48285, 39.50549" Radius="10" QuestId="66266" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66266) == 3">
+						<GetTo ZoneId="153" XYZ="-209.5217, 7.41438, 39.4751"/>
+						<!-- Irielle -->
+						<TalkTo NpcId="1000438" XYZ="-209.5217, 7.41438, 39.4751" QuestId="66266" StepId="3"/>
+					</If>
+					<If Condition="GetQuestStep(66266) == 255">
+						<GetTo ZoneId="153" XYZ="-162.3408, 8.533126, -57.41974"/>
+						<!-- Yoenne -->
+						<TurnIn QuestId="66266" NpcId="1006191" XYZ="-162.3408, 8.533126, -57.41974"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Potsherds for Posterity -->
-		<If Condition="not IsQuestCompleted(66267)">
-			<If Condition="not HasQuest(66267)">
-				<GetTo ZoneId="153" XYZ="-211.5969, 6.840959, 39.78015"/>
-				<!-- Rolandaix -->
-				<If Condition="IsQuestAcceptQualified(66267)">
-					<PickupQuest NpcId="1000439" QuestId="66267" XYZ="-211.5969, 6.840959, 39.78015"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66267)">
-				<While Condition="GetQuestStep(66267) == 1">
-					<GetTo ZoneId="153" XYZ="-198.6877, 6.973328, 32.60852"/>
-					<!-- Muddy Potsherd -->
-					<UseObject NpcId="2001188" XYZ="-198.6877, 6.973328, 32.60852" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
-					<UseObject NpcId="2001187" XYZ="-213.8247, 9.170593, 19.60779" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
-					<MoveTo Name="Muddy Potsherd" Distance="2" XYZ="-225.67, 11.05485, 10.7805"/>
-					<MoveTo Name="Muddy Potsherd" Distance="1" UseMesh="False" XYZ="-225.5108, 11.07416, 15.31145"/>
-					<UseObject NpcId="2000727" XYZ="-226.4897, 10.60498, 16.67804" UseDistance="5" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
-					<MoveTo Name="Muddy Potsherd" Distance="1" UseMesh="False" XYZ="-230.0282, 14.82775, 9.151011"/>
-					<UseObject NpcId="2001186" XYZ="-238.4833, 15.82355, 17.25787" UseDistance="3" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
-					<MoveTo Name="Muddy Potsherd" Distance="2" XYZ="-250.0812, 14.81333, 30.47591"/>
-					<UseObject NpcId="2001185" XYZ="-251.3925, 14.14508, 32.24219" UseDistance="5" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
-					<MoveTo Name="Muddy Potsherd" Distance="3" XYZ="-259.8717, 17.93331, 43.93291"/>
-					<MoveTo Name="Muddy Potsherd" Distance="1" UseMesh="False" XYZ="-261.3271, 17.62906, 47.85891"/>
-					<UseObject NpcId="2000729" XYZ="-261.6769, 16.40344, 49.8512" UseDistance="5" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
-					<MoveTo Name="Muddy Potsherd" Distance="3" XYZ="-245.2682, 13.47114, 53.97752"/>
-					<MoveTo Name="Muddy Potsherd" Distance="1" UseMesh="False" XYZ="-242.1076, 12.17377, 52.78794"/>
-					<UseObject NpcId="2000728" XYZ="-240.4364, 11.09326, 52.23157" UseDistance="5" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
-					<UseObject NpcId="2001184" XYZ="-228.626, 13.80933, 66.57507" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
-				</While>
-				<If Condition="GetQuestStep(66267) == 255">
+			<!-- Potsherds for Posterity -->
+			<If Condition="not IsQuestCompleted(66267)">
+				<If Condition="not HasQuest(66267)">
 					<GetTo ZoneId="153" XYZ="-211.5969, 6.840959, 39.78015"/>
 					<!-- Rolandaix -->
-					<TurnIn QuestId="66267" NpcId="1000439" ItemId="2000585" XYZ="-211.5969, 6.840959, 39.78015"/>
+					<If Condition="IsQuestAcceptQualified(66267)">
+						<PickupQuest NpcId="1000439" QuestId="66267" XYZ="-211.5969, 6.840959, 39.78015"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66267)">
+					<While Condition="GetQuestStep(66267) == 1">
+						<GetTo ZoneId="153" XYZ="-198.6877, 6.973328, 32.60852"/>
+						<!-- Muddy Potsherd -->
+						<UseObject NpcId="2001188" XYZ="-198.6877, 6.973328, 32.60852" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
+						<UseObject NpcId="2001187" XYZ="-213.8247, 9.170593, 19.60779" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
+						<MoveTo Name="Muddy Potsherd" Distance="2" XYZ="-225.67, 11.05485, 10.7805"/>
+						<MoveTo Name="Muddy Potsherd" Distance="1" UseMesh="False" XYZ="-225.5108, 11.07416, 15.31145"/>
+						<UseObject NpcId="2000727" XYZ="-226.4897, 10.60498, 16.67804" UseDistance="5" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
+						<MoveTo Name="Muddy Potsherd" Distance="1" UseMesh="False" XYZ="-230.0282, 14.82775, 9.151011"/>
+						<UseObject NpcId="2001186" XYZ="-238.4833, 15.82355, 17.25787" UseDistance="3" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
+						<MoveTo Name="Muddy Potsherd" Distance="2" XYZ="-250.0812, 14.81333, 30.47591"/>
+						<UseObject NpcId="2001185" XYZ="-251.3925, 14.14508, 32.24219" UseDistance="5" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
+						<MoveTo Name="Muddy Potsherd" Distance="3" XYZ="-259.8717, 17.93331, 43.93291"/>
+						<MoveTo Name="Muddy Potsherd" Distance="1" UseMesh="False" XYZ="-261.3271, 17.62906, 47.85891"/>
+						<UseObject NpcId="2000729" XYZ="-261.6769, 16.40344, 49.8512" UseDistance="5" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
+						<MoveTo Name="Muddy Potsherd" Distance="3" XYZ="-245.2682, 13.47114, 53.97752"/>
+						<MoveTo Name="Muddy Potsherd" Distance="1" UseMesh="False" XYZ="-242.1076, 12.17377, 52.78794"/>
+						<UseObject NpcId="2000728" XYZ="-240.4364, 11.09326, 52.23157" UseDistance="5" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
+						<UseObject NpcId="2001184" XYZ="-228.626, 13.80933, 66.57507" Radius="10" UseTimes="1" QuestId="66267" StepId="1"/>
+					</While>
+					<If Condition="GetQuestStep(66267) == 255">
+						<GetTo ZoneId="153" XYZ="-211.5969, 6.840959, 39.78015"/>
+						<!-- Rolandaix -->
+						<TurnIn QuestId="66267" NpcId="1000439" ItemId="2000585" XYZ="-211.5969, 6.840959, 39.78015"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Stash Saboteur -->
-		<If Condition="not IsQuestCompleted(66268)">
-			<If Condition="not HasQuest(66268)">
-				<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
-				<!-- Auphiliot -->
-				<If Condition="IsQuestAcceptQualified(66268)">
-					<PickupQuest NpcId="1000598" QuestId="66268" XYZ="-170.8248, 9.964111, -84.15356"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66268)">
-				<While Condition="GetQuestStep(66268) == 1">
-					<GetTo ZoneId="153" XYZ="-294.3618, 24.24658, -207.6601"/>
-					<!-- Storage Case -->
-					<GroundTargeting Name="Storage Case" XYZ="-294.3618, 24.24658, -207.6601" NpcId="2001943" ItemId="2000586" Condition="not IsTodoChecked(66268, 1, 0)"/>
-					<GroundTargeting Name="Storage Case" XYZ="-295.179, 23.65579, -192.538" NpcId="2001944" ItemId="2000586" Condition="not IsTodoChecked(66268, 1, 0)"/>
-					<GroundTargeting Name="Storage Case" XYZ="-285.7177, 23.63568, -193.7965" NpcId="2001942" ItemId="2000586" Distance="5" Condition="not IsTodoChecked(66268, 1, 0)"/>
-				</While>
-				<If Condition="GetQuestStep(66268) == 255">
+			<!-- Stash Saboteur -->
+			<If Condition="not IsQuestCompleted(66268)">
+				<If Condition="not HasQuest(66268)">
 					<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
 					<!-- Auphiliot -->
-					<TurnIn QuestId="66268" NpcId="1000598" XYZ="-170.8248, 9.964111, -84.15356"/>
+					<If Condition="IsQuestAcceptQualified(66268)">
+						<PickupQuest NpcId="1000598" QuestId="66268" XYZ="-170.8248, 9.964111, -84.15356"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66268)">
+					<While Condition="GetQuestStep(66268) == 1">
+						<GetTo ZoneId="153" XYZ="-294.3618, 24.24658, -207.6601"/>
+						<!-- Storage Case -->
+						<GroundTargeting Name="Storage Case" XYZ="-294.3618, 24.24658, -207.6601" NpcId="2001943" ItemId="2000586" Condition="not IsTodoChecked(66268, 1, 0)"/>
+						<GroundTargeting Name="Storage Case" XYZ="-295.179, 23.65579, -192.538" NpcId="2001944" ItemId="2000586" Condition="not IsTodoChecked(66268, 1, 0)"/>
+						<GroundTargeting Name="Storage Case" XYZ="-285.7177, 23.63568, -193.7965" NpcId="2001942" ItemId="2000586" Distance="5" Condition="not IsTodoChecked(66268, 1, 0)"/>
+					</While>
+					<If Condition="GetQuestStep(66268) == 255">
+						<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
+						<!-- Auphiliot -->
+						<TurnIn QuestId="66268" NpcId="1000598" XYZ="-170.8248, 9.964111, -84.15356"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Cloven-hoofed Horrors -->
-		<If Condition="not IsQuestCompleted(66263)">
-			<If Condition="not HasQuest(66263)">
-				<GetTo ZoneId="153" XYZ="-167.9255, 9.869228, -76.70715"/>
-				<!-- Ianna -->
-				<If Condition="IsQuestAcceptQualified(66263)">
-					<PickupQuest NpcId="1000594" QuestId="66263" XYZ="-167.9255, 9.869228, -76.70715"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66263)">
-				<If Condition="GetQuestStep(66263) == 1">
-					<GetTo ZoneId="153" XYZ="-147.6712, 3.907661, 110.9307"/>
-					<!-- Scarred Antelope -->
-					<UseItem NpcId="1992" ItemId="2000828" XYZ="-147.6712, 3.907661, 110.9307" Radius="100" QuestId="66263" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66263) == 255">
+			<!-- Cloven-hoofed Horrors -->
+			<If Condition="not IsQuestCompleted(66263)">
+				<If Condition="not HasQuest(66263)">
 					<GetTo ZoneId="153" XYZ="-167.9255, 9.869228, -76.70715"/>
 					<!-- Ianna -->
-					<TurnIn QuestId="66263" NpcId="1000594" XYZ="-167.9255, 9.869228, -76.70715"/>
-				</If>
-			</If>
-		</If>
-		<!-- The Trees Have Eyes -->
-		<If Condition="not IsQuestCompleted(66264)">
-			<If Condition="not HasQuest(66264)">
-				<GetTo ZoneId="153" XYZ="-167.9255, 9.869228, -76.70715"/>
-				<!-- Rolandaix -->
-				<If Condition="IsQuestAcceptQualified(66264)">
-					<PickupQuest NpcId="1000594" QuestId="66264" XYZ="-167.9255, 9.869228, -76.70715"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66264)">
-				<If Condition="GetQuestStep(66264) == 1">
-					<If Condition="not IsTodoChecked(66264, 1, 0)">
-						<GetTo ZoneId="153" XYZ="-181.1333, 8.35632, 24.13214"/>
-						<!-- Grinding Area -->
-						<Grind grindRef="The_Trees_Have_Eyes" while="not IsTodoChecked(66264, 1, 0)"/>
-					</If>
-					<If Condition="not IsTodoChecked(66264, 1, 1)">
-						<GetTo ZoneId="153" XYZ="-80.19974, 3.506294, -57.9953"/>
-						<!-- Grinding Area -->
-						<Grind grindRef="The_Trees_Have_Eyes2" while="not IsTodoChecked(66264, 1, 1)"/>
+					<If Condition="IsQuestAcceptQualified(66263)">
+						<PickupQuest NpcId="1000594" QuestId="66263" XYZ="-167.9255, 9.869228, -76.70715"/>
 					</If>
 				</If>
-				<If Condition="GetQuestStep(66264) == 2">
-					<GetTo ZoneId="153" XYZ="42.92358, 4.226685, 48.05066"/>
-					<!-- Withered Treant -->
-					<HandOver ItemId="2000582" QuestId="66264" StepId="2" InteractDistance="4.0" NpcId="2002258" XYZ="42.92358, 4.226685, 48.05066"/>
+				<If Condition="HasQuest(66263)">
+					<If Condition="GetQuestStep(66263) == 1">
+						<GetTo ZoneId="153" XYZ="-147.6712, 3.907661, 110.9307"/>
+						<!-- Scarred Antelope -->
+						<UseItem NpcId="1992" ItemId="2000828" XYZ="-147.6712, 3.907661, 110.9307" Radius="100" QuestId="66263" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66263) == 255">
+						<GetTo ZoneId="153" XYZ="-167.9255, 9.869228, -76.70715"/>
+						<!-- Ianna -->
+						<TurnIn QuestId="66263" NpcId="1000594" XYZ="-167.9255, 9.869228, -76.70715"/>
+					</If>
 				</If>
-				<If Condition="GetQuestStep(66264) == 3">
-					<GetTo ZoneId="153" XYZ="42.92358, 4.226685, 48.05066"/>
-					<!-- Withered Treant -->
-					<HandOver ItemId="2000583" QuestId="66264" StepId="3" InteractDistance="4.0" NpcId="2002258" XYZ="42.92358, 4.226685, 48.05066"/>
-				</If>
-				<If Condition="GetQuestStep(66264) == 4">
-					<GetTo ZoneId="153" XYZ="42.92358, 4.226685, 48.05066"/>
-					<!-- Withered Treant -->
-					<EmoteNPC NpcId="2002258" Emote="kneel" XYZ="42.92358, 4.226685, 48.05066" Radius="10" QuestId="66264" StepId="4"/>
-				</If>
-				<If Condition="GetQuestStep(66264) == 255">
+			</If>
+			<!-- The Trees Have Eyes -->
+			<If Condition="not IsQuestCompleted(66264)">
+				<If Condition="not HasQuest(66264)">
 					<GetTo ZoneId="153" XYZ="-167.9255, 9.869228, -76.70715"/>
 					<!-- Rolandaix -->
-					<TurnIn QuestId="66264" NpcId="1000594" XYZ="-167.9255, 9.869228, -76.70715"/>
+					<If Condition="IsQuestAcceptQualified(66264)">
+						<PickupQuest NpcId="1000594" QuestId="66264" XYZ="-167.9255, 9.869228, -76.70715"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66264)">
+					<If Condition="GetQuestStep(66264) == 1">
+						<If Condition="not IsTodoChecked(66264, 1, 0)">
+							<GetTo ZoneId="153" XYZ="-181.1333, 8.35632, 24.13214"/>
+							<!-- Grinding Area -->
+							<Grind grindRef="The_Trees_Have_Eyes" while="not IsTodoChecked(66264, 1, 0)"/>
+						</If>
+						<If Condition="not IsTodoChecked(66264, 1, 1)">
+							<GetTo ZoneId="153" XYZ="-80.19974, 3.506294, -57.9953"/>
+							<!-- Grinding Area -->
+							<Grind grindRef="The_Trees_Have_Eyes2" while="not IsTodoChecked(66264, 1, 1)"/>
+						</If>
+					</If>
+					<If Condition="GetQuestStep(66264) == 2">
+						<GetTo ZoneId="153" XYZ="42.92358, 4.226685, 48.05066"/>
+						<!-- Withered Treant -->
+						<HandOver ItemId="2000582" QuestId="66264" StepId="2" InteractDistance="4.0" NpcId="2002258" XYZ="42.92358, 4.226685, 48.05066"/>
+					</If>
+					<If Condition="GetQuestStep(66264) == 3">
+						<GetTo ZoneId="153" XYZ="42.92358, 4.226685, 48.05066"/>
+						<!-- Withered Treant -->
+						<HandOver ItemId="2000583" QuestId="66264" StepId="3" InteractDistance="4.0" NpcId="2002258" XYZ="42.92358, 4.226685, 48.05066"/>
+					</If>
+					<If Condition="GetQuestStep(66264) == 4">
+						<GetTo ZoneId="153" XYZ="42.92358, 4.226685, 48.05066"/>
+						<!-- Withered Treant -->
+						<EmoteNPC NpcId="2002258" Emote="kneel" XYZ="42.92358, 4.226685, 48.05066" Radius="10" QuestId="66264" StepId="4"/>
+					</If>
+					<If Condition="GetQuestStep(66264) == 255">
+						<GetTo ZoneId="153" XYZ="-167.9255, 9.869228, -76.70715"/>
+						<!-- Rolandaix -->
+						<TurnIn QuestId="66264" NpcId="1000594" XYZ="-167.9255, 9.869228, -76.70715"/>
+					</If>
 				</If>
 			</If>
 		</If>
