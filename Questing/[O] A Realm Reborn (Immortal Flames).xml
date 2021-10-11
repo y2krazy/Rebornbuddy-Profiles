@@ -10167,62 +10167,64 @@
 				</If>
 			</If>
 		</If>
-		<!-- The Hottest of Box Lunches -->
-		<If Condition="not IsQuestCompleted(66271)">
-			<If Condition="not HasQuest(66271)">
-				<GetTo ZoneId="139" XYZ="-333.6385, -2.391408, 140.2151"/>
-				<!-- Gegeroon -->
-				<If Condition="IsQuestAcceptQualified(66271)">
-					<PickupQuest NpcId="1006194" QuestId="66271" XYZ="-333.6385, -2.391408, 140.2151"/>
+		<If Condition="Core.Player.ClassLevel &lt; 24">
+			<!-- The Hottest of Box Lunches -->
+			<If Condition="not IsQuestCompleted(66271)">
+				<If Condition="not HasQuest(66271)">
+					<GetTo ZoneId="139" XYZ="-333.6385, -2.391408, 140.2151"/>
+					<!-- Gegeroon -->
+					<If Condition="IsQuestAcceptQualified(66271)">
+						<PickupQuest NpcId="1006194" QuestId="66271" XYZ="-333.6385, -2.391408, 140.2151"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66271)">
+					<If Condition="GetQuestStep(66271) == 255">
+						<GetTo ZoneId="139" XYZ="-453.3608, 4.574484, 71.54956"/>
+						<!-- Tanga Tonga -->
+						<TurnIn QuestId="66271" NpcId="1006195" ItemId="2000591" XYZ="-453.3608, 4.574484, 71.54956"/>
+					</If>
 				</If>
 			</If>
-			<If Condition="HasQuest(66271)">
-				<If Condition="GetQuestStep(66271) == 255">
+			<!-- Buried Truth -->
+			<If Condition="not IsQuestCompleted(66272)">
+				<If Condition="not HasQuest(66272)">
 					<GetTo ZoneId="139" XYZ="-453.3608, 4.574484, 71.54956"/>
 					<!-- Tanga Tonga -->
-					<TurnIn QuestId="66271" NpcId="1006195" ItemId="2000591" XYZ="-453.3608, 4.574484, 71.54956"/>
+					<If Condition="IsQuestAcceptQualified(66272)">
+						<PickupQuest NpcId="1006195" QuestId="66272" XYZ="-453.3608, 4.574484, 71.54956"/>
+					</If>
 				</If>
-			</If>
-		</If>
-		<!-- Buried Truth -->
-		<If Condition="not IsQuestCompleted(66272)">
-			<If Condition="not HasQuest(66272)">
-				<GetTo ZoneId="139" XYZ="-453.3608, 4.574484, 71.54956"/>
-				<!-- Tanga Tonga -->
-				<If Condition="IsQuestAcceptQualified(66272)">
-					<PickupQuest NpcId="1006195" QuestId="66272" XYZ="-453.3608, 4.574484, 71.54956"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66272)">
-				<If Condition="GetQuestStep(66272) == 1">
-					<While Condition="not IsTodoChecked(66272, 1, 0)">
-						<GetTo ZoneId="139" XYZ="-418.3077, 33.73617, 55.86398"/>
-						<!-- Jump Spot -->
-						<MoveTo Name="Jump" Distance="3" UseMesh="False" XYZ="-409.7274, 20.08604, 59.6351"/>
-						<UseObject NpcId="2002827" XYZ="-418.3871, 20.2182, 58.39624" Radius="10" UseTimes="1" QuestId="66272" StepId="1"/>
-						<MoveTo Name="Jump" Distance="3" UseMesh="False" XYZ="-425.3462, -1.77862, 67.17412"/>
-					</While>
-					<While Condition="not IsTodoChecked(66272, 1, 1)">
-						<GetTo ZoneId="139" XYZ="-352.4845, 47.10546, -9.334973"/>
-						<!-- Jump Spot -->
-						<MoveTo Name="Jump Spot" Distance="0.8" UseMesh="False" XYZ="-359.4892, 50.80139, 1.919641"/>
-						<MoveTo Name="Jump Spot" Distance="0.5" UseMesh="False" XYZ="-362.6792, 54.73707, -2.049459"/>
-						<RunCode Name="Buried_Truth"/>
-						<WaitTimer WaitTime="2"/>
-						<RunCode Name="Buried_Truth2"/>
-						<WaitTimer WaitTime="2"/>
-						<UseObject NpcId="2001948" XYZ="-362.8748, 56.38196, -8.285706" Radius="10" UseTimes="1" QuestId="66272" StepId="1"/>
-						<RunCode Name="Buried_Truth3"/>
-						<WaitTimer WaitTime="2"/>
-						<MoveTo Name="Oblong Fossil" Distance="0.8" UseMesh="False" XYZ="-370.8705, 59.22021, -10.39142"/>
-						<UseObject NpcId="2002829" XYZ="-370.8705, 59.22021, -10.39142" Radius="10" UseTimes="1" QuestId="66272" StepId="1"/>
-						<MoveTo Name="Jump" Distance="3" UseMesh="False" XYZ="-377.8396, 42.53019, -0.03968491"/>
-					</While>
-				</If>
-				<If Condition="GetQuestStep(66272) == 255">
-					<GetTo ZoneId="139" XYZ="-451.3892, 4.569882, 73.56237"/>
-					<!-- Tanga Tonga -->
-					<TurnIn QuestId="66272" NpcId="1006195" ItemId="2000592,2000593" XYZ="-453.3608, 4.574484, 71.54956"/>
+				<If Condition="HasQuest(66272)">
+					<If Condition="GetQuestStep(66272) == 1">
+						<While Condition="not IsTodoChecked(66272, 1, 0)">
+							<GetTo ZoneId="139" XYZ="-418.3077, 33.73617, 55.86398"/>
+							<!-- Jump Spot -->
+							<MoveTo Name="Jump" Distance="3" UseMesh="False" XYZ="-409.7274, 20.08604, 59.6351"/>
+							<UseObject NpcId="2002827" XYZ="-418.3871, 20.2182, 58.39624" Radius="10" UseTimes="1" QuestId="66272" StepId="1"/>
+							<MoveTo Name="Jump" Distance="3" UseMesh="False" XYZ="-425.3462, -1.77862, 67.17412"/>
+						</While>
+						<While Condition="not IsTodoChecked(66272, 1, 1)">
+							<GetTo ZoneId="139" XYZ="-352.4845, 47.10546, -9.334973"/>
+							<!-- Jump Spot -->
+							<MoveTo Name="Jump Spot" Distance="0.8" UseMesh="False" XYZ="-359.4892, 50.80139, 1.919641"/>
+							<MoveTo Name="Jump Spot" Distance="0.5" UseMesh="False" XYZ="-362.6792, 54.73707, -2.049459"/>
+							<RunCode Name="Buried_Truth"/>
+							<WaitTimer WaitTime="2"/>
+							<RunCode Name="Buried_Truth2"/>
+							<WaitTimer WaitTime="2"/>
+							<UseObject NpcId="2001948" XYZ="-362.8748, 56.38196, -8.285706" Radius="10" UseTimes="1" QuestId="66272" StepId="1"/>
+							<RunCode Name="Buried_Truth3"/>
+							<WaitTimer WaitTime="2"/>
+							<MoveTo Name="Oblong Fossil" Distance="0.8" UseMesh="False" XYZ="-370.8705, 59.22021, -10.39142"/>
+							<UseObject NpcId="2002829" XYZ="-370.8705, 59.22021, -10.39142" Radius="10" UseTimes="1" QuestId="66272" StepId="1"/>
+							<MoveTo Name="Jump" Distance="3" UseMesh="False" XYZ="-377.8396, 42.53019, -0.03968491"/>
+						</While>
+					</If>
+					<If Condition="GetQuestStep(66272) == 255">
+						<GetTo ZoneId="139" XYZ="-451.3892, 4.569882, 73.56237"/>
+						<!-- Tanga Tonga -->
+						<TurnIn QuestId="66272" NpcId="1006195" ItemId="2000592,2000593" XYZ="-453.3608, 4.574484, 71.54956"/>
+					</If>
 				</If>
 			</If>
 		</If>
@@ -10297,34 +10299,36 @@
 				</If>
 			</If>
 		</If>
-		<!-- Enemy Mine -->
-		<If Condition="not IsQuestCompleted(66275)">
-			<If Condition="not HasQuest(66275)">
-				<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
-				<!-- Auphiliot -->
-				<If Condition="IsQuestAcceptQualified(66275)">
-					<PickupQuest NpcId="1000598" QuestId="66275" XYZ="-170.8248, 9.964111, -84.15356"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66275)">
-				<If Condition="GetQuestStep(66275) == 1">
-					<While Condition="not IsTodoChecked(66275, 1, 0)">
-						<GetTo ZoneId="153" XYZ="-171.2936, 14.57654, 32.23314"/>
-						<!-- Jump Spot -->
-						<MoveTo Name="Jump" Distance="1" UseMesh="False" XYZ="-152.7777, 18.72315, 38.50201"/>
-						<TalkTo NpcId="1006197" XYZ="-151.7205, 18.63123, 39.53601" QuestId="66275" StepId="1"/>
-						<MoveTo Name="Jump" UseMesh="False" XYZ="-150.0031, 5.261061, 28.74784"/>
-					</While>
-					<If Condition="not IsTodoChecked(66275, 1, 1)">
-						<GetTo ZoneId="153" XYZ="-237.171, 15.565, 104.3259"/>
-						<!-- Redbelly Flyer -->
-						<TalkTo NpcId="1006198" XYZ="-237.171, 15.565, 104.3259" QuestId="66275" StepId="1"/>
-					</If>
-				</If>
-				<If Condition="GetQuestStep(66275) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 24">
+			<!-- Enemy Mine -->
+			<If Condition="not IsQuestCompleted(66275)">
+				<If Condition="not HasQuest(66275)">
 					<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
 					<!-- Auphiliot -->
-					<TurnIn QuestId="66275" NpcId="1000598" XYZ="-170.8248, 9.964111, -84.15356"/>
+					<If Condition="IsQuestAcceptQualified(66275)">
+						<PickupQuest NpcId="1000598" QuestId="66275" XYZ="-170.8248, 9.964111, -84.15356"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66275)">
+					<If Condition="GetQuestStep(66275) == 1">
+						<While Condition="not IsTodoChecked(66275, 1, 0)">
+							<GetTo ZoneId="153" XYZ="-171.2936, 14.57654, 32.23314"/>
+							<!-- Jump Spot -->
+							<MoveTo Name="Jump" Distance="1" UseMesh="False" XYZ="-152.7777, 18.72315, 38.50201"/>
+							<TalkTo NpcId="1006197" XYZ="-151.7205, 18.63123, 39.53601" QuestId="66275" StepId="1"/>
+							<MoveTo Name="Jump" UseMesh="False" XYZ="-150.0031, 5.261061, 28.74784"/>
+						</While>
+						<If Condition="not IsTodoChecked(66275, 1, 1)">
+							<GetTo ZoneId="153" XYZ="-237.171, 15.565, 104.3259"/>
+							<!-- Redbelly Flyer -->
+							<TalkTo NpcId="1006198" XYZ="-237.171, 15.565, 104.3259" QuestId="66275" StepId="1"/>
+						</If>
+					</If>
+					<If Condition="GetQuestStep(66275) == 255">
+						<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
+						<!-- Auphiliot -->
+						<TurnIn QuestId="66275" NpcId="1000598" XYZ="-170.8248, 9.964111, -84.15356"/>
+					</If>
 				</If>
 			</If>
 		</If>
