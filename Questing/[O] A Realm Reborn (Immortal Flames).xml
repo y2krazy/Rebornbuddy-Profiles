@@ -10416,30 +10416,32 @@
 				</If>
 			</If>
 		</If>
-		<!-- Shadows of the Empire -->
-		<If Condition="not IsQuestCompleted(66278)">
-			<If Condition="not HasQuest(66278)">
-				<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
-				<!-- Auphiliot -->
-				<If Condition="IsQuestAcceptQualified(66278)">
-					<PickupQuest NpcId="1000598" QuestId="66278" XYZ="-170.8248, 9.964111, -84.15356"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66278)">
-				<If Condition="GetQuestStep(66278) == 1">
-					<GetTo ZoneId="153" XYZ="-110.0328, 1.998901, -57.05353"/>
-					<!-- Destination -->
-					<UseObject NpcIds="2001956,2001955" QuestId="66278" StepId="1">
-						<HotSpots>
-							<HotSpot XYZ="-110.0328, 1.998901, -57.05353" Radius="10"/>
-							<HotSpot XYZ="-97.70355, 11.69337, -84.00098" Radius="10"/>
-						</HotSpots>
-					</UseObject>
-				</If>
-				<If Condition="GetQuestStep(66278) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 25">
+			<!-- Shadows of the Empire -->
+			<If Condition="not IsQuestCompleted(66278)">
+				<If Condition="not HasQuest(66278)">
 					<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
 					<!-- Auphiliot -->
-					<TurnIn QuestId="66278" NpcId="1000598" XYZ="-170.8248, 9.964111, -84.15356"/>
+					<If Condition="IsQuestAcceptQualified(66278)">
+						<PickupQuest NpcId="1000598" QuestId="66278" XYZ="-170.8248, 9.964111, -84.15356"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66278)">
+					<If Condition="GetQuestStep(66278) == 1">
+						<GetTo ZoneId="153" XYZ="-110.0328, 1.998901, -57.05353"/>
+						<!-- Destination -->
+						<UseObject NpcIds="2001956,2001955" QuestId="66278" StepId="1">
+							<HotSpots>
+								<HotSpot XYZ="-110.0328, 1.998901, -57.05353" Radius="10"/>
+								<HotSpot XYZ="-97.70355, 11.69337, -84.00098" Radius="10"/>
+							</HotSpots>
+						</UseObject>
+					</If>
+					<If Condition="GetQuestStep(66278) == 255">
+						<GetTo ZoneId="153" XYZ="-170.8248, 9.964111, -84.15356"/>
+						<!-- Auphiliot -->
+						<TurnIn QuestId="66278" NpcId="1000598" XYZ="-170.8248, 9.964111, -84.15356"/>
+					</If>
 				</If>
 			</If>
 		</If>
