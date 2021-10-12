@@ -10631,81 +10631,83 @@
 				</If>
 			</If>
 		</If>
-		<!-- Hair Club for Hyur -->
-		<If Condition="not IsQuestCompleted(66287)">
-			<If Condition="not HasQuest(66287)">
-				<GetTo ZoneId="145" XYZ="-67.27704, -20.29624, -3.006042"/>
-				<!-- Halmhart -->
-				<If Condition="IsQuestAcceptQualified(66287)">
-					<PickupQuest NpcId="1006209" QuestId="66287" XYZ="-67.27704, -20.29624, -3.006042"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66287)">
-				<If Condition="GetQuestStep(66287) == 1">
-					<GetTo ZoneId="145" XYZ="81.90088, -4.887692, 2.493304"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Hair_Club_for_Hyur" while="HasQuest(66287) and GetQuestStep(66287) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66287) == 2">
+		<If Condition="Core.Player.ClassLevel &lt; 25">
+			<!-- Hair Club for Hyur -->
+			<If Condition="not IsQuestCompleted(66287)">
+				<If Condition="not HasQuest(66287)">
 					<GetTo ZoneId="145" XYZ="-67.27704, -20.29624, -3.006042"/>
 					<!-- Halmhart -->
-					<HandOver ItemId="2000600" QuestId="66287" StepId="2" NpcId="1006209" XYZ="-67.27704, -20.29624, -3.006042"/>
+					<If Condition="IsQuestAcceptQualified(66287)">
+						<PickupQuest NpcId="1006209" QuestId="66287" XYZ="-67.27704, -20.29624, -3.006042"/>
+					</If>
 				</If>
-				<If Condition="GetQuestStep(66287) == 255">
-					<GetTo ZoneId="145" XYZ="-67.27704, -20.29624, -3.006042"/>
-					<!-- Halmhart -->
-					<TurnInPlus QuestId="66287" NpcId="1006209" XYZ="-67.27704, -20.29624, -3.006042"/>
+				<If Condition="HasQuest(66287)">
+					<If Condition="GetQuestStep(66287) == 1">
+						<GetTo ZoneId="145" XYZ="81.90088, -4.887692, 2.493304"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Hair_Club_for_Hyur" while="HasQuest(66287) and GetQuestStep(66287) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66287) == 2">
+						<GetTo ZoneId="145" XYZ="-67.27704, -20.29624, -3.006042"/>
+						<!-- Halmhart -->
+						<HandOver ItemId="2000600" QuestId="66287" StepId="2" NpcId="1006209" XYZ="-67.27704, -20.29624, -3.006042"/>
+					</If>
+					<If Condition="GetQuestStep(66287) == 255">
+						<GetTo ZoneId="145" XYZ="-67.27704, -20.29624, -3.006042"/>
+						<!-- Halmhart -->
+						<TurnInPlus QuestId="66287" NpcId="1006209" XYZ="-67.27704, -20.29624, -3.006042"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Buzz Off, Birds -->
-		<If Condition="not IsQuestCompleted(66286)">
-			<If Condition="not HasQuest(66286)">
-				<GetTo ZoneId="145" XYZ="-91.26422, -28.91589, -60.28845"/>
-				<!-- Gogoshu -->
-				<If Condition="IsQuestAcceptQualified(66286)">
-					<PickupQuest NpcId="1006208" QuestId="66286" XYZ="-91.26422, -28.91589, -60.28845"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66286)">
-				<If Condition="GetQuestStep(66286) == 1">
-					<GetTo ZoneId="145" XYZ="60.40336, -2.634103, -51.96116"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Buzz_Off_Birds" while="HasQuest(66286) and GetQuestStep(66286) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66286) == 255">
+			<!-- Buzz Off, Birds -->
+			<If Condition="not IsQuestCompleted(66286)">
+				<If Condition="not HasQuest(66286)">
 					<GetTo ZoneId="145" XYZ="-91.26422, -28.91589, -60.28845"/>
 					<!-- Gogoshu -->
-					<TurnIn QuestId="66286" NpcId="1006208" XYZ="-91.26422, -28.91589, -60.28845"/>
+					<If Condition="IsQuestAcceptQualified(66286)">
+						<PickupQuest NpcId="1006208" QuestId="66286" XYZ="-91.26422, -28.91589, -60.28845"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66286)">
+					<If Condition="GetQuestStep(66286) == 1">
+						<GetTo ZoneId="145" XYZ="60.40336, -2.634103, -51.96116"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Buzz_Off_Birds" while="HasQuest(66286) and GetQuestStep(66286) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66286) == 255">
+						<GetTo ZoneId="145" XYZ="-91.26422, -28.91589, -60.28845"/>
+						<!-- Gogoshu -->
+						<TurnIn QuestId="66286" NpcId="1006208" XYZ="-91.26422, -28.91589, -60.28845"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Strawman Defense -->
-		<If Condition="not IsQuestCompleted(66285)">
-			<If Condition="not HasQuest(66285)">
-				<GetTo ZoneId="145" XYZ="-65.50708, -33.1637, -54.52057"/>
-				<!-- Claudien -->
-				<If Condition="IsQuestAcceptQualified(66285)">
-					<PickupQuest NpcId="1006207" QuestId="66285" XYZ="-65.50708, -33.1637, -54.52057"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66285)">
-				<While Condition="GetQuestStep(66285) == 1">
-					<GetTo ZoneId="145" XYZ="-7.766907, -31.05212, -8.133057"/>
-					<!-- Destination -->
-					<UseItem NpcId="2001962" ItemId="2000599" XYZ="-7.766907, -31.05212, -8.133057" Radius="10" UseTimes="1" QuestId="66285" StepId="1"/>
-					<UseItem NpcId="2001961" ItemId="2000599" XYZ="-20.34033, -31.02167, -32.88324" Radius="10" UseTimes="1" QuestId="66285" StepId="1"/>
-					<UseItem NpcId="2001960" ItemId="2000599" XYZ="-0.2594604, -30.96057, -43.7171" Radius="10" UseTimes="1" QuestId="66285" StepId="1"/>
-					<MoveTo Name="Jump Spot" Distance="3" XYZ="6.909186, -6.014271, -25.55181"/>
-					<MoveTo Name="Jump" Distance="2" UseMesh="False" XYZ="1.926272, -7.165794, -25.6487"/>
-					<UseItem NpcId="2001963" ItemId="2000599" XYZ="0.2288208, -7.187073, -41.39777" Radius="10" UseTimes="1" QuestId="66285" StepId="1"/>
-					<NoCombatMoveTo Name="Jump Spot" Distance="2" XYZ="5.001227, -7.165794, -25.42595"/>
-					<RunCode Name="Strawman_Defense"/>
-				</While>
-				<If Condition="GetQuestStep(66285) == 255">
+			<!-- Strawman Defense -->
+			<If Condition="not IsQuestCompleted(66285)">
+				<If Condition="not HasQuest(66285)">
 					<GetTo ZoneId="145" XYZ="-65.50708, -33.1637, -54.52057"/>
 					<!-- Claudien -->
-					<TurnIn QuestId="66285" NpcId="1006207" XYZ="-65.50708, -33.1637, -54.52057"/>
+					<If Condition="IsQuestAcceptQualified(66285)">
+						<PickupQuest NpcId="1006207" QuestId="66285" XYZ="-65.50708, -33.1637, -54.52057"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66285)">
+					<While Condition="GetQuestStep(66285) == 1">
+						<GetTo ZoneId="145" XYZ="-7.766907, -31.05212, -8.133057"/>
+						<!-- Destination -->
+						<UseItem NpcId="2001962" ItemId="2000599" XYZ="-7.766907, -31.05212, -8.133057" Radius="10" UseTimes="1" QuestId="66285" StepId="1"/>
+						<UseItem NpcId="2001961" ItemId="2000599" XYZ="-20.34033, -31.02167, -32.88324" Radius="10" UseTimes="1" QuestId="66285" StepId="1"/>
+						<UseItem NpcId="2001960" ItemId="2000599" XYZ="-0.2594604, -30.96057, -43.7171" Radius="10" UseTimes="1" QuestId="66285" StepId="1"/>
+						<MoveTo Name="Jump Spot" Distance="3" XYZ="6.909186, -6.014271, -25.55181"/>
+						<MoveTo Name="Jump" Distance="2" UseMesh="False" XYZ="1.926272, -7.165794, -25.6487"/>
+						<UseItem NpcId="2001963" ItemId="2000599" XYZ="0.2288208, -7.187073, -41.39777" Radius="10" UseTimes="1" QuestId="66285" StepId="1"/>
+						<NoCombatMoveTo Name="Jump Spot" Distance="2" XYZ="5.001227, -7.165794, -25.42595"/>
+						<RunCode Name="Strawman_Defense"/>
+					</While>
+					<If Condition="GetQuestStep(66285) == 255">
+						<GetTo ZoneId="145" XYZ="-65.50708, -33.1637, -54.52057"/>
+						<!-- Claudien -->
+						<TurnIn QuestId="66285" NpcId="1006207" XYZ="-65.50708, -33.1637, -54.52057"/>
+					</If>
 				</If>
 			</If>
 		</If>
