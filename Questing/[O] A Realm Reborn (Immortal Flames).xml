@@ -10462,25 +10462,27 @@
 				</If>
 			</If>
 		</If>
-		<!-- The Blood Price -->
-		<If Condition="not IsQuestCompleted(66281)">
-			<If Condition="not HasQuest(66281)">
-				<GetTo ZoneId="152" XYZ="21.46942, -4.575078, 221.7593"/>
-				<!-- Knolexia -->
-				<If Condition="IsQuestAcceptQualified(66281)">
-					<PickupQuest NpcId="1000576" QuestId="66281" XYZ="21.46942, -4.575078, 221.7593"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66281)">
-				<If Condition="GetQuestStep(66281) == 1">
-					<GetTo ZoneId="152" XYZ="-280.9372, 11.80239, -24.78382"/>
-					<!-- Swollen Djigga -->
-					<UseItem NpcId="2187" ItemId="2000597" XYZ="-301.2894, 12.22629, -38.74268" UseHealthPercent="40" InCombatOnly="True" Radius="90" QuestId="66281" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66281) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 25">
+			<!-- The Blood Price -->
+			<If Condition="not IsQuestCompleted(66281)">
+				<If Condition="not HasQuest(66281)">
 					<GetTo ZoneId="152" XYZ="21.46942, -4.575078, 221.7593"/>
 					<!-- Knolexia -->
-					<TurnIn QuestId="66281" NpcId="1000576" ItemId="2000598" XYZ="21.46942, -4.575078, 221.7593"/>
+					<If Condition="IsQuestAcceptQualified(66281)">
+						<PickupQuest NpcId="1000576" QuestId="66281" XYZ="21.46942, -4.575078, 221.7593"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66281)">
+					<If Condition="GetQuestStep(66281) == 1">
+						<GetTo ZoneId="152" XYZ="-280.9372, 11.80239, -24.78382"/>
+						<!-- Swollen Djigga -->
+						<UseItem NpcId="2187" ItemId="2000597" XYZ="-301.2894, 12.22629, -38.74268" UseHealthPercent="40" InCombatOnly="True" Radius="90" QuestId="66281" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66281) == 255">
+						<GetTo ZoneId="152" XYZ="21.46942, -4.575078, 221.7593"/>
+						<!-- Knolexia -->
+						<TurnIn QuestId="66281" NpcId="1000576" ItemId="2000598" XYZ="21.46942, -4.575078, 221.7593"/>
+					</If>
 				</If>
 			</If>
 		</If>
