@@ -26,6 +26,54 @@
 	<KillRadius>90</KillRadius>
 	<Order>
 		<BotSettings AutoEquip="1"/>
+		<If Condition="Core.Player.ClassLevel &gt; 29">
+			<!-- Sidequest: My Feisty Little Chocobo -->
+			<If Condition="(IsQuestCompleted(66236) or IsQuestCompleted(66237) or IsQuestCompleted(66238)) and not IsQuestCompleted(66698)">
+				<If Condition="not HasQuest(66698)">
+					<GetTo ZoneId="153" XYZ="-219.2264, 20.92336, 338.4298"/>
+					<!-- Docette -->
+					<If Condition="IsQuestAcceptQualified(66698)">
+						<PickupQuest NpcId="1002754" QuestId="66698" XYZ="-219.2264, 20.92336, 338.4298"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66698)">
+					<If Condition="GetQuestStep(66698) == 1">
+						<GetTo ZoneId="148" XYZ="-60.47156, 0.2, 6.301941"/>
+						<!-- Luquelot -->
+						<TalkTo NpcId="1000471" XYZ="-60.47156, 0.2, 6.301941" QuestId="66698" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66698) == 2">
+						<GetTo ZoneId="148" XYZ="-54.73419, 1.449585, -36.698"/>
+						<!-- Gysahl Greens -->
+						<UseObject NpcId="2001467" XYZ="-54.73419, 1.449585, -36.698" Radius="10" QuestId="66698" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66698) == 3">
+						<GetTo ZoneId="148" XYZ="-60.47156, 0.2, 6.301941"/>
+						<!-- Luquelot -->
+						<HandOver ItemId="2000085" QuestId="66698" StepId="3" NpcId="1000471" XYZ="-60.47156, 0.2, 6.301941"/>
+					</If>
+					<If Condition="GetQuestStep(66698) == 4">
+						<If Condition="not IsOnMap(148)">
+							<GetTo ZoneId="148" XYZ="16.18976, -8.010208, -15.64056"/>
+							<!-- Merchant & Mender -->
+						</If>
+						<If Condition="not HasAtLeast(4868,10)">
+							<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="16.18976, -8.010208, -15.64056"/>
+							<BuyItem ItemIds="4868" ItemCounts="98" DialogOption="4" NpcId="1000220" XYZ="16.18976, -8.010208, -15.64056"/>
+						</If>
+						<RunCode Name="Summon_Chocobo"/>
+						<GetTo ZoneId="148" XYZ="-239.3125, 57.47225, -93.26726"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="My_Feisty_Little_Chocobo" while="HasQuest(66698) and GetQuestStep(66698) == 4"/>
+					</If>
+					<If Condition="GetQuestStep(66698) == 255">
+						<GetTo ZoneId="148" XYZ="-60.47156, 0.2, 6.301941"/>
+						<!-- Luquelot -->
+						<TurnIn QuestId="66698" NpcId="1000471" XYZ="-60.47156, 0.2, 6.301941"/>
+					</If>
+				</If>
+			</If>
+		</If>
 		<If Condition="(ClassName == ClassJobType.Archer or ClassName == ClassJobType.Lancer or ClassName == ClassJobType.Conjurer) and not IsQuestCompleted(65643) and not IsQuestCompleted(66130)">
 			<LogMessage Message="[A Realm Reborn] Checking level 1 quests..."/>
 			<!-- Coming to Gridania -->
