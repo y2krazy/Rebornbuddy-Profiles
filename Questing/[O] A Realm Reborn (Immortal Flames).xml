@@ -10736,25 +10736,27 @@
 				</If>
 			</If>
 		</If>
-		<!-- Ratting It Out -->
-		<If Condition="not IsQuestCompleted(66288)">
-			<If Condition="not HasQuest(66288)">
-				<GetTo ZoneId="145" XYZ="-63.98114, -20.29624, -5.142395"/>
-				<!-- Hihibaru -->
-				<If Condition="IsQuestAcceptQualified(66288)">
-					<PickupQuest NpcId="1006196" QuestId="66288" XYZ="-63.98114, -20.29624, -5.142395"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66288)">
-				<If Condition="GetQuestStep(66288) == 1">
-					<GetTo ZoneId="145" XYZ="97.91711, -10.23883, 155.9624"/>
-					<!-- Undecipherable Letter -->
-					<UseObject NpcId="2001964" XYZ="97.91711, -10.23883, 155.9624" Radius="10" QuestId="66288" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66288) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 25">
+			<!-- Ratting It Out -->
+			<If Condition="not IsQuestCompleted(66288)">
+				<If Condition="not HasQuest(66288)">
 					<GetTo ZoneId="145" XYZ="-63.98114, -20.29624, -5.142395"/>
 					<!-- Hihibaru -->
-					<TurnIn QuestId="66288" NpcId="1006196" ItemId="2000601" XYZ="-63.98114, -20.29624, -5.142395"/>
+					<If Condition="IsQuestAcceptQualified(66288)">
+						<PickupQuest NpcId="1006196" QuestId="66288" XYZ="-63.98114, -20.29624, -5.142395"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66288)">
+					<If Condition="GetQuestStep(66288) == 1">
+						<GetTo ZoneId="145" XYZ="97.91711, -10.23883, 155.9624"/>
+						<!-- Undecipherable Letter -->
+						<UseObject NpcId="2001964" XYZ="97.91711, -10.23883, 155.9624" Radius="10" QuestId="66288" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66288) == 255">
+						<GetTo ZoneId="145" XYZ="-63.98114, -20.29624, -5.142395"/>
+						<!-- Hihibaru -->
+						<TurnIn QuestId="66288" NpcId="1006196" ItemId="2000601" XYZ="-63.98114, -20.29624, -5.142395"/>
+					</If>
 				</If>
 			</If>
 		</If>
@@ -10790,59 +10792,61 @@
 		<If Condition="ClassName == ClassJobType.Thaumaturge and not IsQuestCompleted(65888)">
 			<LoadProfile Path="[O] Class and Job Quests.xml"/>
 		</If>
-		<!-- Scholarly Funds -->
-		<If Condition="not IsQuestCompleted(66289)">
-			<If Condition="not HasQuest(66289)">
-				<GetTo ZoneId="145" XYZ="-65.50708, -33.1637, -54.52057"/>
-				<!-- Claudien -->
-				<If Condition="IsQuestAcceptQualified(66289)">
-					<PickupQuest NpcId="1006207" QuestId="66289" XYZ="-65.50708, -33.1637, -54.52057"/>
+		<If Condition="Core.Player.ClassLevel &lt; 26">
+			<!-- Scholarly Funds -->
+			<If Condition="not IsQuestCompleted(66289)">
+				<If Condition="not HasQuest(66289)">
+					<GetTo ZoneId="145" XYZ="-65.50708, -33.1637, -54.52057"/>
+					<!-- Claudien -->
+					<If Condition="IsQuestAcceptQualified(66289)">
+						<PickupQuest NpcId="1006207" QuestId="66289" XYZ="-65.50708, -33.1637, -54.52057"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66289)">
+					<If Condition="GetQuestStep(66289) == 255">
+						<GetTo ZoneId="145" XYZ="244.7089, 9.268953, -271.5649"/>
+						<!-- Kyokyozo -->
+						<TurnIn QuestId="66289" NpcId="1006210" ItemId="2000602" XYZ="244.7089, 9.268953, -271.5649"/>
+					</If>
 				</If>
 			</If>
-			<If Condition="HasQuest(66289)">
-				<If Condition="GetQuestStep(66289) == 255">
+			<!-- The Perils of Pilgrimage -->
+			<If Condition="not IsQuestCompleted(66290)">
+				<If Condition="not HasQuest(66290)">
 					<GetTo ZoneId="145" XYZ="244.7089, 9.268953, -271.5649"/>
 					<!-- Kyokyozo -->
-					<TurnIn QuestId="66289" NpcId="1006210" ItemId="2000602" XYZ="244.7089, 9.268953, -271.5649"/>
+					<If Condition="IsQuestAcceptQualified(66290)">
+						<PickupQuest NpcId="1006210" QuestId="66290" XYZ="244.7089, 9.268953, -271.5649"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66290)">
+					<If Condition="GetQuestStep(66290) == 1">
+						<GetTo ZoneId="145" XYZ="242.4483, 1.670112, -200.936"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="The_Perils_of_Pilgrimage" while="HasQuest(66290) and GetQuestStep(66290) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66290) == 255">
+						<GetTo ZoneId="145" XYZ="244.7089, 9.268953, -271.5649"/>
+						<!-- Kyokyozo -->
+						<TurnIn QuestId="66290" NpcId="1006210" XYZ="244.7089, 9.268953, -271.5649"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- The Perils of Pilgrimage -->
-		<If Condition="not IsQuestCompleted(66290)">
-			<If Condition="not HasQuest(66290)">
-				<GetTo ZoneId="145" XYZ="244.7089, 9.268953, -271.5649"/>
-				<!-- Kyokyozo -->
-				<If Condition="IsQuestAcceptQualified(66290)">
-					<PickupQuest NpcId="1006210" QuestId="66290" XYZ="244.7089, 9.268953, -271.5649"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66290)">
-				<If Condition="GetQuestStep(66290) == 1">
-					<GetTo ZoneId="145" XYZ="242.4483, 1.670112, -200.936"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="The_Perils_of_Pilgrimage" while="HasQuest(66290) and GetQuestStep(66290) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66290) == 255">
+			<!-- Friendlier Skies -->
+			<If Condition="not IsQuestCompleted(66291)">
+				<If Condition="not HasQuest(66291)">
 					<GetTo ZoneId="145" XYZ="244.7089, 9.268953, -271.5649"/>
 					<!-- Kyokyozo -->
-					<TurnIn QuestId="66290" NpcId="1006210" XYZ="244.7089, 9.268953, -271.5649"/>
+					<If Condition="IsQuestAcceptQualified(66291)">
+						<PickupQuest NpcId="1006210" QuestId="66291" XYZ="244.7089, 9.268953, -271.5649"/>
+					</If>
 				</If>
-			</If>
-		</If>
-		<!-- Friendlier Skies -->
-		<If Condition="not IsQuestCompleted(66291)">
-			<If Condition="not HasQuest(66291)">
-				<GetTo ZoneId="145" XYZ="244.7089, 9.268953, -271.5649"/>
-				<!-- Kyokyozo -->
-				<If Condition="IsQuestAcceptQualified(66291)">
-					<PickupQuest NpcId="1006210" QuestId="66291" XYZ="244.7089, 9.268953, -271.5649"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66291)">
-				<If Condition="GetQuestStep(66291) == 255">
-					<GetTo ZoneId="145" XYZ="-63.98114, -20.29624, -5.142395"/>
-					<!-- Hihibaru -->
-					<TurnIn QuestId="66291" NpcId="1006196" ItemId="2000603" XYZ="-63.98114, -20.29624, -5.142395"/>
+				<If Condition="HasQuest(66291)">
+					<If Condition="GetQuestStep(66291) == 255">
+						<GetTo ZoneId="145" XYZ="-63.98114, -20.29624, -5.142395"/>
+						<!-- Hihibaru -->
+						<TurnIn QuestId="66291" NpcId="1006196" ItemId="2000603" XYZ="-63.98114, -20.29624, -5.142395"/>
+					</If>
 				</If>
 			</If>
 		</If>
@@ -10892,77 +10896,78 @@
 				</If>
 			</If>
 		</If>
-		<!-- Bad Blood -->
-		<If Condition="not IsQuestCompleted(66294)">
-			<If Condition="not HasQuest(66294)">
-				<GetTo ZoneId="146" XYZ="-217.4869, 26.25821, -361.2574"/>
-				<!-- Hihira -->
-				<If Condition="IsQuestAcceptQualified(66294)">
-					<PickupQuest NpcId="1006211" QuestId="66294" XYZ="-217.4869, 26.25821, -361.2574"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66294)">
-				<While Condition="GetQuestStep(66294) == 1">
-					<GetTo ZoneId="146" XYZ="-238.88, 27.28959, -373.8003"/>
-					<!-- Berold -->
-					<HandOver ItemId="2000827" QuestId="66294" StepId="1" NpcId="1006212" XYZ="-238.88, 27.28959, -373.8003"/>
-					<HandOver ItemId="2000827" QuestId="66294" StepId="1" NpcId="1006213" XYZ="-102.4949, 37.8654, -355.9777"/>
-					<HandOver ItemId="2000827" QuestId="66294" StepId="1" NpcId="1006214" XYZ="-96.48285, 37.99265, -348.2567"/>
-				</While>
-				<If Condition="GetQuestStep(66294) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 26">
+			<!-- Bad Blood -->
+			<If Condition="not IsQuestCompleted(66294)">
+				<If Condition="not HasQuest(66294)">
 					<GetTo ZoneId="146" XYZ="-217.4869, 26.25821, -361.2574"/>
 					<!-- Hihira -->
-					<TurnIn QuestId="66294" NpcId="1006211" ItemId="2000607" XYZ="-217.4869, 26.25821, -361.2574"/>
+					<If Condition="IsQuestAcceptQualified(66294)">
+						<PickupQuest NpcId="1006211" QuestId="66294" XYZ="-217.4869, 26.25821, -361.2574"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66294)">
+					<While Condition="GetQuestStep(66294) == 1">
+						<GetTo ZoneId="146" XYZ="-238.88, 27.28959, -373.8003"/>
+						<!-- Berold -->
+						<HandOver ItemId="2000827" QuestId="66294" StepId="1" NpcId="1006212" XYZ="-238.88, 27.28959, -373.8003"/>
+						<HandOver ItemId="2000827" QuestId="66294" StepId="1" NpcId="1006213" XYZ="-102.4949, 37.8654, -355.9777"/>
+						<HandOver ItemId="2000827" QuestId="66294" StepId="1" NpcId="1006214" XYZ="-96.48285, 37.99265, -348.2567"/>
+					</While>
+					<If Condition="GetQuestStep(66294) == 255">
+						<GetTo ZoneId="146" XYZ="-217.4869, 26.25821, -361.2574"/>
+						<!-- Hihira -->
+						<TurnIn QuestId="66294" NpcId="1006211" ItemId="2000607" XYZ="-217.4869, 26.25821, -361.2574"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Prickly Patients -->
-		<If Condition="not IsQuestCompleted(66295)">
-			<If Condition="not HasQuest(66295)">
-				<GetTo ZoneId="146" XYZ="-217.4869, 26.25821, -361.2574"/>
-				<!-- Hihira -->
-				<If Condition="IsQuestAcceptQualified(66295)">
-					<PickupQuest NpcId="1006211" QuestId="66295" XYZ="-217.4869, 26.25821, -361.2574"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66295)">
-				<If Condition="GetQuestStep(66295) == 1">
-					<GetTo ZoneId="146" XYZ="-160.7233, 27.33398, -437.2168"/>
-					<!-- Alfan -->
-					<TalkTo NpcId="1006216" XYZ="-160.7233, 27.33398, -437.2168" QuestId="66295" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66295) == 2">
-					<GetTo ZoneId="146" XYZ="-226.493, 18.08889, -283.1416"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Prickly_Patients" while="HasQuest(66295) and GetQuestStep(66295) == 2"/>
-				</If>
-				<If Condition="GetQuestStep(66295) == 3">
+			<!-- Prickly Patients -->
+			<If Condition="not IsQuestCompleted(66295)">
+				<If Condition="not HasQuest(66295)">
 					<GetTo ZoneId="146" XYZ="-217.4869, 26.25821, -361.2574"/>
 					<!-- Hihira -->
-					<HandOver ItemId="2000605" QuestId="66295" StepId="3" NpcId="1006211" XYZ="-217.4869, 26.25821, -361.2574"/>
+					<If Condition="IsQuestAcceptQualified(66295)">
+						<PickupQuest NpcId="1006211" QuestId="66295" XYZ="-217.4869, 26.25821, -361.2574"/>
+					</If>
 				</If>
-				<While Condition="GetQuestStep(66295) == 4">
-					<GetTo ZoneId="146" XYZ="-238.88, 27.28959, -373.8003"/>
-					<!-- Berold -->
-					<HandOver ItemId="2000855" QuestId="66295" StepId="4" NpcId="1006212" XYZ="-238.88, 27.28959, -373.8003"/>
-					<HandOver ItemId="2000855" QuestId="66295" StepId="4" NpcId="1006213" XYZ="-102.4949, 37.8654, -355.9777"/>
-					<HandOver ItemId="2000855" QuestId="66295" StepId="4" NpcId="1006214" XYZ="-96.48285, 37.99265, -348.2567"/>
-				</While>
-				<If Condition="GetQuestStep(66295) == 255">
-					<GetTo ZoneId="146" XYZ="-217.4869, 26.25821, -361.2574"/>
-					<!-- Hihira -->
-					<TurnIn QuestId="66295" NpcId="1006211" XYZ="-217.4869, 26.25821, -361.2574"/>
+				<If Condition="HasQuest(66295)">
+					<If Condition="GetQuestStep(66295) == 1">
+						<GetTo ZoneId="146" XYZ="-160.7233, 27.33398, -437.2168"/>
+						<!-- Alfan -->
+						<TalkTo NpcId="1006216" XYZ="-160.7233, 27.33398, -437.2168" QuestId="66295" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66295) == 2">
+						<GetTo ZoneId="146" XYZ="-226.493, 18.08889, -283.1416"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Prickly_Patients" while="HasQuest(66295) and GetQuestStep(66295) == 2"/>
+					</If>
+					<If Condition="GetQuestStep(66295) == 3">
+						<GetTo ZoneId="146" XYZ="-217.4869, 26.25821, -361.2574"/>
+						<!-- Hihira -->
+						<HandOver ItemId="2000605" QuestId="66295" StepId="3" NpcId="1006211" XYZ="-217.4869, 26.25821, -361.2574"/>
+					</If>
+					<While Condition="GetQuestStep(66295) == 4">
+						<GetTo ZoneId="146" XYZ="-238.88, 27.28959, -373.8003"/>
+						<!-- Berold -->
+						<HandOver ItemId="2000855" QuestId="66295" StepId="4" NpcId="1006212" XYZ="-238.88, 27.28959, -373.8003"/>
+						<HandOver ItemId="2000855" QuestId="66295" StepId="4" NpcId="1006213" XYZ="-102.4949, 37.8654, -355.9777"/>
+						<HandOver ItemId="2000855" QuestId="66295" StepId="4" NpcId="1006214" XYZ="-96.48285, 37.99265, -348.2567"/>
+					</While>
+					<If Condition="GetQuestStep(66295) == 255">
+						<GetTo ZoneId="146" XYZ="-217.4869, 26.25821, -361.2574"/>
+						<!-- Hihira -->
+						<TurnIn QuestId="66295" NpcId="1006211" XYZ="-217.4869, 26.25821, -361.2574"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Blast from the Past -->
-		<!-- TOO MANY DEATHS! -->
-		<!-- <If Condition="not IsQuestCompleted(66296)">
+			<!-- Blast from the Past -->
+			<!-- TOO MANY DEATHS! -->
+			<!-- <If Condition="not IsQuestCompleted(66296)">
             <If Condition="not HasQuest(66296)">
                 <If Condition="not IsOnMap(146)">
                 <GetTo ZoneId="146" XYZ="-138.8724, 27.26698, -427.8173" /> -->
-		<!-- Annabel -->
-		<!-- <If Condition="IsQuestAcceptQualified(66296)">
+			<!-- Annabel -->
+			<!-- <If Condition="IsQuestAcceptQualified(66296)">
                     <PickupQuest NpcId="1004894" QuestId="66296" XYZ="-138.8724, 27.26698, -427.8173" />
                 </If>
             </If>
@@ -10970,22 +10975,23 @@
                 <If Condition="GetQuestStep(66296) == 1">
                     <If Condition="not IsTodoChecked(66296, 1, 0)">
                         <GetTo ZoneId="146" XYZ="-74.74588, 17.49739, -277.4286" /> -->
-		<!-- Tempered Sword -->
-		<!-- <UseItem NpcId="1998" ItemId="2000606" LacksAuraId="22" UseHealthPercent="100" XYZ="-93.94989, 14.76092, -235.6757" Radius="30" QuestId="66296" StepId="1" />
+			<!-- Tempered Sword -->
+			<!-- <UseItem NpcId="1998" ItemId="2000606" LacksAuraId="22" UseHealthPercent="100" XYZ="-93.94989, 14.76092, -235.6757" Radius="30" QuestId="66296" StepId="1" />
                     </While>
                     <If Condition="not IsTodoChecked(66296, 1, 1)">
                         <GetTo ZoneId="146" XYZ="-74.74588, 17.49739, -277.4286" /> -->
-		<!-- Tempered Brand -->
-		<!-- <UseItem NpcId="1999" ItemId="2000606" LacksAuraId="22" UseHealthPercent="100" XYZ="-93.49207, 14.63189, -215.6558" Radius="30" QuestId="66296" StepId="1" />
+			<!-- Tempered Brand -->
+			<!-- <UseItem NpcId="1999" ItemId="2000606" LacksAuraId="22" UseHealthPercent="100" XYZ="-93.49207, 14.63189, -215.6558" Radius="30" QuestId="66296" StepId="1" />
                     </If>
                 </If>
                 <If Condition="GetQuestStep(66296) == 255">
                     <GetTo ZoneId="146" XYZ="-138.8724, 27.26698, -427.8173" /> -->
-		<!-- Annabel -->
-		<!-- <TurnIn QuestId="66296" NpcId="1004894" XYZ="-138.8724, 27.26698, -427.8173" />
+			<!-- Annabel -->
+			<!-- <TurnIn QuestId="66296" NpcId="1004894" XYZ="-138.8724, 27.26698, -427.8173" />
                 </If>
             </If>
         </If> -->
+		</If>
 		<!-- Tea for Three -->
 		<If Condition="not IsQuestCompleted(66297)">
 			<If Condition="not HasQuest(66297)">
