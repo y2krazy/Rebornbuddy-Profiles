@@ -14447,58 +14447,60 @@
 				</If>
 			</If>
 		</If>
-		<!-- With a Little Elbow Grease -->
-		<If Condition="not IsQuestCompleted(66407)">
-			<If Condition="not HasQuest(66407)">
-				<GetTo ZoneId="145" XYZ="-518.1201, -16.22, 0.1677856"/>
-				<!-- Eaduuard -->
-				<If Condition="IsQuestAcceptQualified(66407)">
-					<PickupQuest NpcId="1003937" QuestId="66407" XYZ="-518.1201, -16.22, 0.1677856"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66407)">
-				<If Condition="GetQuestStep(66407) == 1">
-					<GetTo ZoneId="145" XYZ="-509.3614, -16.42, -7.522766"/>
-					<!-- Marques -->
-					<HandOver ItemId="2000677" QuestId="66407" StepId="1" NpcId="1006672" XYZ="-509.3614, -16.42, -7.522766"/>
-				</If>
-				<If Condition="GetQuestStep(66407) == 255">
-					<If Condition="not HasAtLeast(2394,1)">
-						<GetTo ZoneId="145" XYZ="-533.5012, 4.599574, -238.3917"/>
-						<!-- Merchant & Mender -->
-						<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-533.5012, 4.599574, -238.3917"/>
-						<BuyItem ItemIds="2394" ItemCounts="1" DialogOption="1" InteractDistance="3.0" NpcId="1004428" XYZ="-533.5012, 4.599574, -238.3917"/>
+		<If Condition="Core.Player.ClassLevel &lt; 36">
+			<!-- With a Little Elbow Grease -->
+			<If Condition="not IsQuestCompleted(66407)">
+				<If Condition="not HasQuest(66407)">
+					<GetTo ZoneId="145" XYZ="-518.1201, -16.22, 0.1677856"/>
+					<!-- Eaduuard -->
+					<If Condition="IsQuestAcceptQualified(66407)">
+						<PickupQuest NpcId="1003937" QuestId="66407" XYZ="-518.1201, -16.22, 0.1677856"/>
 					</If>
-					<GetTo ZoneId="145" XYZ="-509.3614, -16.42, -7.522766"/>
-					<!-- Marques -->
-					<TurnIn QuestId="66407" NpcId="1006672" ItemId="2394" XYZ="-509.3614, -16.42, -7.522766"/>
+				</If>
+				<If Condition="HasQuest(66407)">
+					<If Condition="GetQuestStep(66407) == 1">
+						<GetTo ZoneId="145" XYZ="-509.3614, -16.42, -7.522766"/>
+						<!-- Marques -->
+						<HandOver ItemId="2000677" QuestId="66407" StepId="1" NpcId="1006672" XYZ="-509.3614, -16.42, -7.522766"/>
+					</If>
+					<If Condition="GetQuestStep(66407) == 255">
+						<If Condition="not HasAtLeast(2394,1)">
+							<GetTo ZoneId="145" XYZ="-533.5012, 4.599574, -238.3917"/>
+							<!-- Merchant & Mender -->
+							<NoCombatMoveTo Name="Merchant &amp; Mender" XYZ="-533.5012, 4.599574, -238.3917"/>
+							<BuyItem ItemIds="2394" ItemCounts="1" DialogOption="1" InteractDistance="3.0" NpcId="1004428" XYZ="-533.5012, 4.599574, -238.3917"/>
+						</If>
+						<GetTo ZoneId="145" XYZ="-509.3614, -16.42, -7.522766"/>
+						<!-- Marques -->
+						<TurnIn QuestId="66407" NpcId="1006672" ItemId="2394" XYZ="-509.3614, -16.42, -7.522766"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- A Tall Drink of Aqua del Sol -->
-		<If Condition="not IsQuestCompleted(66417)">
-			<If Condition="not HasQuest(66417)">
-				<GetTo ZoneId="145" XYZ="-495.9945, -19.70993, 39.4751"/>
-				<!-- Ilcum -->
-				<If Condition="IsQuestAcceptQualified(66417)">
-					<PickupQuest NpcId="1006367" QuestId="66417" XYZ="-495.9945, -19.70993, 39.4751"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66417)">
-				<If Condition="GetQuestStep(66417) == 1">
-					<GetTo ZoneId="145" XYZ="-237.049, -35.81299, 160.9674"/>
-					<!-- Destination -->
-					<UseObject NpcId="2002104" XYZ="-237.049, -35.81299, 160.9674" Radius="10" QuestId="66417" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66417) == 2">
+			<!-- A Tall Drink of Aqua del Sol -->
+			<If Condition="not IsQuestCompleted(66417)">
+				<If Condition="not HasQuest(66417)">
 					<GetTo ZoneId="145" XYZ="-495.9945, -19.70993, 39.4751"/>
 					<!-- Ilcum -->
-					<HandOver ItemId="2000688" QuestId="66417" StepId="2" NpcId="1006367" XYZ="-495.9945, -19.70993, 39.4751"/>
+					<If Condition="IsQuestAcceptQualified(66417)">
+						<PickupQuest NpcId="1006367" QuestId="66417" XYZ="-495.9945, -19.70993, 39.4751"/>
+					</If>
 				</If>
-				<If Condition="GetQuestStep(66417) == 255">
-					<GetTo ZoneId="145" XYZ="-509.3614, -16.42, -7.522766"/>
-					<!-- Marques -->
-					<TurnIn QuestId="66417" NpcId="1006672" ItemId="2000689" XYZ="-509.3614, -16.42, -7.522766"/>
+				<If Condition="HasQuest(66417)">
+					<If Condition="GetQuestStep(66417) == 1">
+						<GetTo ZoneId="145" XYZ="-237.049, -35.81299, 160.9674"/>
+						<!-- Destination -->
+						<UseObject NpcId="2002104" XYZ="-237.049, -35.81299, 160.9674" Radius="10" QuestId="66417" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66417) == 2">
+						<GetTo ZoneId="145" XYZ="-495.9945, -19.70993, 39.4751"/>
+						<!-- Ilcum -->
+						<HandOver ItemId="2000688" QuestId="66417" StepId="2" NpcId="1006367" XYZ="-495.9945, -19.70993, 39.4751"/>
+					</If>
+					<If Condition="GetQuestStep(66417) == 255">
+						<GetTo ZoneId="145" XYZ="-509.3614, -16.42, -7.522766"/>
+						<!-- Marques -->
+						<TurnIn QuestId="66417" NpcId="1006672" ItemId="2000689" XYZ="-509.3614, -16.42, -7.522766"/>
+					</If>
 				</If>
 			</If>
 		</If>
@@ -14558,25 +14560,27 @@
 				</If>
 			</If>
 		</If>
-		<!-- The Warden Works in Mysterious Ways -->
-		<If Condition="not IsQuestCompleted(66413)">
-			<If Condition="not HasQuest(66413)">
-				<GetTo ZoneId="145" XYZ="-497.7035, -19.6308, 39.9939"/>
-				<!-- Eluned -->
-				<If Condition="IsQuestAcceptQualified(66413)">
-					<PickupQuest NpcId="1003958" QuestId="66413" XYZ="-497.7035, -19.6308, 39.9939"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66413)">
-				<If Condition="GetQuestStep(66413) == 1">
-					<GetTo ZoneId="145" XYZ="149.0043, -3.067139, 408.4382"/>
-					<!-- Mark of the Warden -->
-					<UseObject NpcId="2002103" XYZ="149.0043, -3.067139, 408.4382" Radius="10" QuestId="66413" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66413) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 36">
+			<!-- The Warden Works in Mysterious Ways -->
+			<If Condition="not IsQuestCompleted(66413)">
+				<If Condition="not HasQuest(66413)">
 					<GetTo ZoneId="145" XYZ="-497.7035, -19.6308, 39.9939"/>
 					<!-- Eluned -->
-					<TurnIn QuestId="66413" NpcId="1003958" XYZ="-497.7035, -19.6308, 39.9939"/>
+					<If Condition="IsQuestAcceptQualified(66413)">
+						<PickupQuest NpcId="1003958" QuestId="66413" XYZ="-497.7035, -19.6308, 39.9939"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66413)">
+					<If Condition="GetQuestStep(66413) == 1">
+						<GetTo ZoneId="145" XYZ="149.0043, -3.067139, 408.4382"/>
+						<!-- Mark of the Warden -->
+						<UseObject NpcId="2002103" XYZ="149.0043, -3.067139, 408.4382" Radius="10" QuestId="66413" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66413) == 255">
+						<GetTo ZoneId="145" XYZ="-497.7035, -19.6308, 39.9939"/>
+						<!-- Eluned -->
+						<TurnIn QuestId="66413" NpcId="1003958" XYZ="-497.7035, -19.6308, 39.9939"/>
+					</If>
 				</If>
 			</If>
 		</If>
