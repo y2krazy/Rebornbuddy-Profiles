@@ -12757,221 +12757,223 @@
 		<!-- LEVEL 31 -->
 		<!-- ######## -->
 		<LogMessage Message="[A Realm Reborn] Checking level 31 quests..."/>
-		<!-- Fetch the Freshman -->
-		<If Condition="not IsQuestCompleted(66359)">
-			<If Condition="not HasQuest(66359)">
-				<GetTo ZoneId="146" XYZ="-354.6655, 8.469922, 416.8002"/>
-				<!-- U'tykha Tia -->
-				<If Condition="IsQuestAcceptQualified(66359)">
-					<PickupQuest NpcId="1006287" QuestId="66359" XYZ="-354.6655, 8.469922, 416.8002"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66359)">
-				<If Condition="GetQuestStep(66359) == 1">
-					<GetTo ZoneId="146" XYZ="-454.3679, 7.319653, 580.3158"/>
-					<!-- U'kahzuna -->
-					<TalkTo NpcId="1006289" XYZ="-454.3679, 7.319653, 580.3158" QuestId="66359" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66359) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 32">
+			<!-- Fetch the Freshman -->
+			<If Condition="not IsQuestCompleted(66359)">
+				<If Condition="not HasQuest(66359)">
 					<GetTo ZoneId="146" XYZ="-354.6655, 8.469922, 416.8002"/>
 					<!-- U'tykha Tia -->
-					<TurnIn QuestId="66359" NpcId="1006287" XYZ="-354.6655, 8.469922, 416.8002"/>
+					<If Condition="IsQuestAcceptQualified(66359)">
+						<PickupQuest NpcId="1006287" QuestId="66359" XYZ="-354.6655, 8.469922, 416.8002"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66359)">
+					<If Condition="GetQuestStep(66359) == 1">
+						<GetTo ZoneId="146" XYZ="-454.3679, 7.319653, 580.3158"/>
+						<!-- U'kahzuna -->
+						<TalkTo NpcId="1006289" XYZ="-454.3679, 7.319653, 580.3158" QuestId="66359" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66359) == 255">
+						<GetTo ZoneId="146" XYZ="-354.6655, 8.469922, 416.8002"/>
+						<!-- U'tykha Tia -->
+						<TurnIn QuestId="66359" NpcId="1006287" XYZ="-354.6655, 8.469922, 416.8002"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Mind Games -->
-		<If Condition="not IsQuestCompleted(66365)">
-			<If Condition="not HasQuest(66365)">
-				<GetTo ZoneId="146" XYZ="-354.6655, 8.469922, 416.8002"/>
-				<!-- U'tykha Tia -->
-				<If Condition="IsQuestAcceptQualified(66365)">
-					<PickupQuest NpcId="1006287" QuestId="66365" XYZ="-354.6655, 8.469922, 416.8002"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66365)">
-				<If Condition="GetQuestStep(66365) == 1">
-					<GetTo ZoneId="146" XYZ="173.3088, 5.612431, 630.8533"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Mind_Games" while="HasQuest(66365) and GetQuestStep(66365) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66365) == 2">
-					<GetTo ZoneId="146" XYZ="300.2517, 7.636738, 651.2396"/>
-					<!-- U'kahzuna -->
-					<EmoteNPC NpcId="1006736" Emote="psych" XYZ="300.2517, 7.636738, 651.2396" Radius="10" QuestId="66365" StepId="2"/>
-				</If>
-				<If Condition="GetQuestStep(66365) == 255">
+			<!-- Mind Games -->
+			<If Condition="not IsQuestCompleted(66365)">
+				<If Condition="not HasQuest(66365)">
 					<GetTo ZoneId="146" XYZ="-354.6655, 8.469922, 416.8002"/>
 					<!-- U'tykha Tia -->
-					<TurnIn QuestId="66365" NpcId="1006287" XYZ="-354.6655, 8.469922, 416.8002"/>
+					<If Condition="IsQuestAcceptQualified(66365)">
+						<PickupQuest NpcId="1006287" QuestId="66365" XYZ="-354.6655, 8.469922, 416.8002"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66365)">
+					<If Condition="GetQuestStep(66365) == 1">
+						<GetTo ZoneId="146" XYZ="173.3088, 5.612431, 630.8533"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Mind_Games" while="HasQuest(66365) and GetQuestStep(66365) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66365) == 2">
+						<GetTo ZoneId="146" XYZ="300.2517, 7.636738, 651.2396"/>
+						<!-- U'kahzuna -->
+						<EmoteNPC NpcId="1006736" Emote="psych" XYZ="300.2517, 7.636738, 651.2396" Radius="10" QuestId="66365" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66365) == 255">
+						<GetTo ZoneId="146" XYZ="-354.6655, 8.469922, 416.8002"/>
+						<!-- U'tykha Tia -->
+						<TurnIn QuestId="66365" NpcId="1006287" XYZ="-354.6655, 8.469922, 416.8002"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- U Don't Know Me -->
-		<If Condition="not IsQuestCompleted(66366)">
-			<If Condition="not HasQuest(66366)">
-				<GetTo ZoneId="146" XYZ="-361.41, 8.465333, 426.1385"/>
-				<!-- U'khuba Tia -->
-				<If Condition="IsQuestAcceptQualified(66366)">
-					<PickupQuest NpcId="1006288" QuestId="66366" XYZ="-361.41, 8.465333, 426.1385"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66366)">
-				<If Condition="GetQuestStep(66366) == 1">
-					<GetTo ZoneId="146" XYZ="-354.6655, 8.469922, 416.8002"/>
-					<!-- U'tykha Tia -->
-					<TalkTo NpcId="1006287" XYZ="-354.6655, 8.469922, 416.8002" QuestId="66366" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66366) == 2">
-					<GetTo ZoneId="146" XYZ="-332.723, 4.196404, 278.2177"/>
-					<!-- U'kahzuna -->
-					<TalkTo NpcId="1006737" XYZ="-332.723, 4.196404, 278.2177" QuestId="66366" StepId="2"/>
-				</If>
-				<If Condition="GetQuestStep(66366) == 3">
-					<GetTo ZoneId="146" XYZ="-196.0022, 8.79367, 465.4459"/>
-					<!-- Dune Anglers -->
-					<UseItem NpcId="2191" ItemId="2000647" XYZ="-196.0022, 8.79367, 465.4459" UseHealthPercent="40" InCombatOnly="True" Radius="50" QuestId="66366" StepId="3"/>
-				</If>
-				<If Condition="GetQuestStep(66366) == 4">
-					<GetTo ZoneId="146" XYZ="-332.723, 4.196404, 278.2177"/>
-					<!-- U'kahzuna -->
-					<HandOver ItemId="2000648" QuestId="66366" StepId="4" NpcId="1006737" XYZ="-332.723, 4.196404, 278.2177"/>
-				</If>
-				<If Condition="GetQuestStep(66366) == 255">
-					<GetTo ZoneId="146" XYZ="-354.6655, 8.469922, 416.8002"/>
-					<!-- U'tykha Tia -->
-					<TurnIn QuestId="66366" NpcId="1006287" XYZ="-354.6655, 8.469922, 416.8002"/>
-				</If>
-			</If>
-		</If>
-		<!-- Survey Says -->
-		<If Condition="not IsQuestCompleted(66360)">
-			<If Condition="not HasQuest(66360)">
-				<GetTo ZoneId="146" XYZ="-361.41, 8.465333, 426.1385"/>
-				<!-- U'khuba Tia -->
-				<If Condition="IsQuestAcceptQualified(66360)">
-					<PickupQuest NpcId="1006288" QuestId="66360" XYZ="-361.41, 8.465333, 426.1385"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66360)">
-				<While Condition="GetQuestStep(66360) == 1">
-					<GetTo ZoneId="146" XYZ="-269.4591, 7.368057, 420.5232"/>
-					<!-- Drifting Cloud -->
-					<TalkTo NpcId="1006291" XYZ="-269.4591, 7.368057, 420.5232" QuestId="66360" StepId="1"/>
-					<TalkTo NpcId="1006292" XYZ="-333.3334, 9.101427, 352.2545" QuestId="66360" StepId="1"/>
-					<TalkTo NpcId="1006290" XYZ="-347.2496, 2.354607, 265.7358" QuestId="66360" StepId="1"/>
-				</While>
-				<If Condition="GetQuestStep(66360) == 255">
+			<!-- U Don't Know Me -->
+			<If Condition="not IsQuestCompleted(66366)">
+				<If Condition="not HasQuest(66366)">
 					<GetTo ZoneId="146" XYZ="-361.41, 8.465333, 426.1385"/>
 					<!-- U'khuba Tia -->
-					<TurnIn QuestId="66360" NpcId="1006288" XYZ="-361.41, 8.465333, 426.1385"/>
+					<If Condition="IsQuestAcceptQualified(66366)">
+						<PickupQuest NpcId="1006288" QuestId="66366" XYZ="-361.41, 8.465333, 426.1385"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66366)">
+					<If Condition="GetQuestStep(66366) == 1">
+						<GetTo ZoneId="146" XYZ="-354.6655, 8.469922, 416.8002"/>
+						<!-- U'tykha Tia -->
+						<TalkTo NpcId="1006287" XYZ="-354.6655, 8.469922, 416.8002" QuestId="66366" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66366) == 2">
+						<GetTo ZoneId="146" XYZ="-332.723, 4.196404, 278.2177"/>
+						<!-- U'kahzuna -->
+						<TalkTo NpcId="1006737" XYZ="-332.723, 4.196404, 278.2177" QuestId="66366" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66366) == 3">
+						<GetTo ZoneId="146" XYZ="-196.0022, 8.79367, 465.4459"/>
+						<!-- Dune Anglers -->
+						<UseItem NpcId="2191" ItemId="2000647" XYZ="-196.0022, 8.79367, 465.4459" UseHealthPercent="40" InCombatOnly="True" Radius="50" QuestId="66366" StepId="3"/>
+					</If>
+					<If Condition="GetQuestStep(66366) == 4">
+						<GetTo ZoneId="146" XYZ="-332.723, 4.196404, 278.2177"/>
+						<!-- U'kahzuna -->
+						<HandOver ItemId="2000648" QuestId="66366" StepId="4" NpcId="1006737" XYZ="-332.723, 4.196404, 278.2177"/>
+					</If>
+					<If Condition="GetQuestStep(66366) == 255">
+						<GetTo ZoneId="146" XYZ="-354.6655, 8.469922, 416.8002"/>
+						<!-- U'tykha Tia -->
+						<TurnIn QuestId="66366" NpcId="1006287" XYZ="-354.6655, 8.469922, 416.8002"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Tools of Office -->
-		<If Condition="not IsQuestCompleted(66361)">
-			<If Condition="not HasQuest(66361)">
-				<GetTo ZoneId="146" XYZ="-361.41, 8.465333, 426.1385"/>
-				<!-- U'khuba Tia -->
-				<If Condition="IsQuestAcceptQualified(66361)">
-					<PickupQuest NpcId="1006288" QuestId="66361" XYZ="-361.41, 8.465333, 426.1385"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66361)">
-				<If Condition="GetQuestStep(66361) == 1">
-					<GetTo ZoneId="146" XYZ="-404.866, 7.337718, 521.1203"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Tools_of_Office" while="HasQuest(66361) and GetQuestStep(66361) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66361) == 255">
+			<!-- Survey Says -->
+			<If Condition="not IsQuestCompleted(66360)">
+				<If Condition="not HasQuest(66360)">
 					<GetTo ZoneId="146" XYZ="-361.41, 8.465333, 426.1385"/>
 					<!-- U'khuba Tia -->
-					<TurnIn QuestId="66361" NpcId="1006288" ItemId="2000646" XYZ="-361.41, 8.465333, 426.1385"/>
+					<If Condition="IsQuestAcceptQualified(66360)">
+						<PickupQuest NpcId="1006288" QuestId="66360" XYZ="-361.41, 8.465333, 426.1385"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66360)">
+					<While Condition="GetQuestStep(66360) == 1">
+						<GetTo ZoneId="146" XYZ="-269.4591, 7.368057, 420.5232"/>
+						<!-- Drifting Cloud -->
+						<TalkTo NpcId="1006291" XYZ="-269.4591, 7.368057, 420.5232" QuestId="66360" StepId="1"/>
+						<TalkTo NpcId="1006292" XYZ="-333.3334, 9.101427, 352.2545" QuestId="66360" StepId="1"/>
+						<TalkTo NpcId="1006290" XYZ="-347.2496, 2.354607, 265.7358" QuestId="66360" StepId="1"/>
+					</While>
+					<If Condition="GetQuestStep(66360) == 255">
+						<GetTo ZoneId="146" XYZ="-361.41, 8.465333, 426.1385"/>
+						<!-- U'khuba Tia -->
+						<TurnIn QuestId="66360" NpcId="1006288" XYZ="-361.41, 8.465333, 426.1385"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Minority Rapport -->
-		<If Condition="not IsQuestCompleted(66362)">
-			<If Condition="not HasQuest(66362)">
-				<GetTo ZoneId="146" XYZ="-347.2496, 2.354607, 265.7358"/>
-				<!-- Riridesu -->
-				<If Condition="IsQuestAcceptQualified(66362)">
-					<PickupQuest NpcId="1006290" QuestId="66362" XYZ="-347.2496, 2.354607, 265.7358"/>
+			<!-- Tools of Office -->
+			<If Condition="not IsQuestCompleted(66361)">
+				<If Condition="not HasQuest(66361)">
+					<GetTo ZoneId="146" XYZ="-361.41, 8.465333, 426.1385"/>
+					<!-- U'khuba Tia -->
+					<If Condition="IsQuestAcceptQualified(66361)">
+						<PickupQuest NpcId="1006288" QuestId="66361" XYZ="-361.41, 8.465333, 426.1385"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66361)">
+					<If Condition="GetQuestStep(66361) == 1">
+						<GetTo ZoneId="146" XYZ="-404.866, 7.337718, 521.1203"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Tools_of_Office" while="HasQuest(66361) and GetQuestStep(66361) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66361) == 255">
+						<GetTo ZoneId="146" XYZ="-361.41, 8.465333, 426.1385"/>
+						<!-- U'khuba Tia -->
+						<TurnIn QuestId="66361" NpcId="1006288" ItemId="2000646" XYZ="-361.41, 8.465333, 426.1385"/>
+					</If>
 				</If>
 			</If>
-			<If Condition="HasQuest(66362)">
-				<If Condition="GetQuestStep(66362) == 255">
-					<GetTo ZoneId="146" XYZ="-111.9249, -10.8135, 722.6825"/>
-					<!-- Odinel -->
-					<TurnIn QuestId="66362" NpcId="1006294" ItemId="2000851" XYZ="-111.9249, -10.8135, 722.6825"/>
+			<!-- Minority Rapport -->
+			<If Condition="not IsQuestCompleted(66362)">
+				<If Condition="not HasQuest(66362)">
+					<GetTo ZoneId="146" XYZ="-347.2496, 2.354607, 265.7358"/>
+					<!-- Riridesu -->
+					<If Condition="IsQuestAcceptQualified(66362)">
+						<PickupQuest NpcId="1006290" QuestId="66362" XYZ="-347.2496, 2.354607, 265.7358"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66362)">
+					<If Condition="GetQuestStep(66362) == 255">
+						<GetTo ZoneId="146" XYZ="-111.9249, -10.8135, 722.6825"/>
+						<!-- Odinel -->
+						<TurnIn QuestId="66362" NpcId="1006294" ItemId="2000851" XYZ="-111.9249, -10.8135, 722.6825"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Heat of the Moment -->
-		<If Condition="not IsQuestCompleted(66363)">
-			<If Condition="not HasQuest(66363)">
-				<GetTo ZoneId="146" XYZ="-113.5119, -10.75769, 723.5979"/>
-				<!-- Mumugoi -->
-				<If Condition="IsQuestAcceptQualified(66363)">
-					<PickupQuest NpcId="1006295" QuestId="66363" XYZ="-113.5119, -10.75769, 723.5979"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66363)">
-				<If Condition="GetQuestStep(66363) == 1">
-					<GetTo ZoneId="146" XYZ="-115.7397, -11.00183, 728.7556"/>
-					<!-- Sand Dune -->
-					<UseObject NpcIds="2002047,2002048,2002049" BlacklistAfter="True" QuestId="66363" StepId="1">
-						<HotSpots>
-							<HotSpot XYZ="-115.7397, -11.00183, 728.7556" Radius="10"/>
-							<HotSpot XYZ="-102.9527, -11.30695, 735.7747" Radius="10"/>
-							<HotSpot XYZ="-88.05988, -11.09338, 726.3446" Radius="10"/>
-						</HotSpots>
-					</UseObject>
-				</If>
-				<If Condition="GetQuestStep(66363) == 2">
+			<!-- Heat of the Moment -->
+			<If Condition="not IsQuestCompleted(66363)">
+				<If Condition="not HasQuest(66363)">
 					<GetTo ZoneId="146" XYZ="-113.5119, -10.75769, 723.5979"/>
 					<!-- Mumugoi -->
-					<TalkTo NpcId="1006295" XYZ="-113.5119, -10.75769, 723.5979" QuestId="66363" StepId="2"/>
+					<If Condition="IsQuestAcceptQualified(66363)">
+						<PickupQuest NpcId="1006295" QuestId="66363" XYZ="-113.5119, -10.75769, 723.5979"/>
+					</If>
 				</If>
-				<If Condition="GetQuestStep(66363) == 3">
-					<GetTo ZoneId="146" XYZ="-152.8181, 0.2817318, 737.7456"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Heat_of_the_Moment" while="HasQuest(66363) and GetQuestStep(66363) == 3"/>
-				</If>
-				<If Condition="GetQuestStep(66363) == 255">
-					<GetTo ZoneId="146" XYZ="-113.5119, -10.75769, 723.5979"/>
-					<!-- Mumugoi -->
-					<TurnIn QuestId="66363" NpcId="1006295" XYZ="-113.5119, -10.75769, 723.5979"/>
+				<If Condition="HasQuest(66363)">
+					<If Condition="GetQuestStep(66363) == 1">
+						<GetTo ZoneId="146" XYZ="-115.7397, -11.00183, 728.7556"/>
+						<!-- Sand Dune -->
+						<UseObject NpcIds="2002047,2002048,2002049" BlacklistAfter="True" QuestId="66363" StepId="1">
+							<HotSpots>
+								<HotSpot XYZ="-115.7397, -11.00183, 728.7556" Radius="10"/>
+								<HotSpot XYZ="-102.9527, -11.30695, 735.7747" Radius="10"/>
+								<HotSpot XYZ="-88.05988, -11.09338, 726.3446" Radius="10"/>
+							</HotSpots>
+						</UseObject>
+					</If>
+					<If Condition="GetQuestStep(66363) == 2">
+						<GetTo ZoneId="146" XYZ="-113.5119, -10.75769, 723.5979"/>
+						<!-- Mumugoi -->
+						<TalkTo NpcId="1006295" XYZ="-113.5119, -10.75769, 723.5979" QuestId="66363" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66363) == 3">
+						<GetTo ZoneId="146" XYZ="-152.8181, 0.2817318, 737.7456"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Heat_of_the_Moment" while="HasQuest(66363) and GetQuestStep(66363) == 3"/>
+					</If>
+					<If Condition="GetQuestStep(66363) == 255">
+						<GetTo ZoneId="146" XYZ="-113.5119, -10.75769, 723.5979"/>
+						<!-- Mumugoi -->
+						<TurnIn QuestId="66363" NpcId="1006295" XYZ="-113.5119, -10.75769, 723.5979"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- The Eyes Have It -->
-		<If Condition="not IsQuestCompleted(66364)">
-			<If Condition="not HasQuest(66364)">
-				<GetTo ZoneId="146" XYZ="-272.8771, 5, 474.296"/>
-				<!-- U'rahtalo -->
-				<If Condition="IsQuestAcceptQualified(66364)">
-					<PickupQuest NpcId="1006296" QuestId="66364" XYZ="-272.8771, 5, 474.296"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66364)">
-				<If Condition="GetQuestStep(66364) == 1">
-					<GetTo ZoneId="146" XYZ="-278.2483, 5.172791, 485.3741"/>
-					<!-- Laboring Lad -->
-					<EmoteNPC Emote="furious" NpcIds="1006301,1006300,1006302,1006299,1006298,1006297" QuestId="66364" StepId="1">
-						<HotSpots>
-							<HotSpot XYZ="-278.2483, 5.172791, 485.3741" Radius="10"/>
-							<HotSpot XYZ="-250.0191, 6.912292, 494.6211" Radius="10"/>
-							<HotSpot XYZ="-245.594, 7.248047, 504.509" Radius="10"/>
-							<HotSpot XYZ="-250.3853, 4.989685, 478.0498" Radius="10"/>
-							<HotSpot XYZ="-250.4769, 5.020142, 477.1953" Radius="10"/>
-							<HotSpot XYZ="-287.8615, 7.370056, 466.7277" Radius="10"/>
-						</HotSpots>
-					</EmoteNPC>
-				</If>
-				<If Condition="GetQuestStep(66364) == 255">
+			<!-- The Eyes Have It -->
+			<If Condition="not IsQuestCompleted(66364)">
+				<If Condition="not HasQuest(66364)">
 					<GetTo ZoneId="146" XYZ="-272.8771, 5, 474.296"/>
 					<!-- U'rahtalo -->
-					<TurnIn QuestId="66364" NpcId="1006296" XYZ="-272.8771, 5, 474.296"/>
+					<If Condition="IsQuestAcceptQualified(66364)">
+						<PickupQuest NpcId="1006296" QuestId="66364" XYZ="-272.8771, 5, 474.296"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66364)">
+					<If Condition="GetQuestStep(66364) == 1">
+						<GetTo ZoneId="146" XYZ="-278.2483, 5.172791, 485.3741"/>
+						<!-- Laboring Lad -->
+						<EmoteNPC Emote="furious" NpcIds="1006301,1006300,1006302,1006299,1006298,1006297" QuestId="66364" StepId="1">
+							<HotSpots>
+								<HotSpot XYZ="-278.2483, 5.172791, 485.3741" Radius="10"/>
+								<HotSpot XYZ="-250.0191, 6.912292, 494.6211" Radius="10"/>
+								<HotSpot XYZ="-245.594, 7.248047, 504.509" Radius="10"/>
+								<HotSpot XYZ="-250.3853, 4.989685, 478.0498" Radius="10"/>
+								<HotSpot XYZ="-250.4769, 5.020142, 477.1953" Radius="10"/>
+								<HotSpot XYZ="-287.8615, 7.370056, 466.7277" Radius="10"/>
+							</HotSpots>
+						</EmoteNPC>
+					</If>
+					<If Condition="GetQuestStep(66364) == 255">
+						<GetTo ZoneId="146" XYZ="-272.8771, 5, 474.296"/>
+						<!-- U'rahtalo -->
+						<TurnIn QuestId="66364" NpcId="1006296" XYZ="-272.8771, 5, 474.296"/>
+					</If>
 				</If>
 			</If>
 		</If>
