@@ -15771,60 +15771,62 @@
 				</If>
 			</If>
 		</If>
-		<!-- A Cup of Joy -->
-		<If Condition="not IsQuestCompleted(66449)">
-			<If Condition="not HasQuest(66449)">
-				<GetTo ZoneId="155" XYZ="281.0558, 319.0841, -235.7977"/>
-				<!-- Aurelle -->
-				<If Condition="IsQuestAcceptQualified(66449)">
-					<PickupQuest NpcId="1006427" QuestId="66449" XYZ="281.0558, 319.0841, -235.7977"/>
+		<If Condition="Core.Player.ClassLevel &lt; 39">
+			<!-- A Cup of Joy -->
+			<If Condition="not IsQuestCompleted(66449)">
+				<If Condition="not HasQuest(66449)">
+					<GetTo ZoneId="155" XYZ="281.0558, 319.0841, -235.7977"/>
+					<!-- Aurelle -->
+					<If Condition="IsQuestAcceptQualified(66449)">
+						<PickupQuest NpcId="1006427" QuestId="66449" XYZ="281.0558, 319.0841, -235.7977"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66449)">
+					<If Condition="GetQuestStep(66449) == 1">
+						<GetTo ZoneId="155" XYZ="245.4108, 302, -253.8339"/>
+						<!-- Emanuel -->
+						<TalkTo NpcId="1006428" XYZ="245.4108, 302, -253.8339" QuestId="66449" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66449) == 255">
+						<GetTo ZoneId="155" XYZ="196.0936, 303.1, -285.0843"/>
+						<!-- Medguistl -->
+						<TurnIn QuestId="66449" NpcId="1006429" ItemId="2000716" XYZ="196.0936, 303.1, -285.0843"/>
+					</If>
 				</If>
 			</If>
-			<If Condition="HasQuest(66449)">
-				<If Condition="GetQuestStep(66449) == 1">
-					<GetTo ZoneId="155" XYZ="245.4108, 302, -253.8339"/>
-					<!-- Emanuel -->
-					<TalkTo NpcId="1006428" XYZ="245.4108, 302, -253.8339" QuestId="66449" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66449) == 255">
-					<GetTo ZoneId="155" XYZ="196.0936, 303.1, -285.0843"/>
-					<!-- Medguistl -->
-					<TurnIn QuestId="66449" NpcId="1006429" ItemId="2000716" XYZ="196.0936, 303.1, -285.0843"/>
-				</If>
-			</If>
-		</If>
-		<!-- Second Lives -->
-		<If Condition="not IsQuestCompleted(66450)">
-			<If Condition="not HasQuest(66450)">
-				<GetTo ZoneId="155" XYZ="207.3242, 310.015, -297.3831"/>
-				<!-- Juline -->
-				<If Condition="IsQuestAcceptQualified(66450)">
-					<PickupQuest NpcId="1006430" QuestId="66450" XYZ="207.3242, 310.015, -297.3831"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66450)">
-				<If Condition="GetQuestStep(66450) == 1">
-					<GetTo ZoneId="155" XYZ="464.3778, 250.8735, -329.8543"/>
-					<!-- Snow Mound -->
-					<UseObject NpcIds="2002412,2002413,2002411,2002409" UseTimes="4" QuestId="66450" StepId="1">
-						<HotSpots>
-							<HotSpot XYZ="464.3778, 250.8735, -329.8543" Radius="10"/>
-							<HotSpot XYZ="489.2804, 249.0425, -322.4689" Radius="10"/>
-							<HotSpot XYZ="445.1208, 252.491, -299.2753" Radius="10"/>
-							<HotSpot XYZ="476.0051, 247.4556, -285.6642" Radius="10"/>
-						</HotSpots>
-					</UseObject>
-					<MoveTo Name="Snow Mound" Distance="0.7" XYZ="486.3961, 247.7017, -278.4283"/>
-					<RunCode Name="Second_Lives"/>
-					<UseObject NpcId="2002410" XYZ="497.5203, 252.5215, -289.6315" Radius="10" UseTimes="1" QuestId="66450" StepId="1"/>
-					<MoveTo Name="Jump" Distance="2" UseMesh="False" XYZ="488.6321, 247.8715, -274.5728"/>
-					<UseObject NpcId="2002414" XYZ="456.6262, 249.8054, -239.3989" Radius="10" UseTimes="1" QuestId="66450" StepId="1"/>
-					<WaitWhile Condition="GetQuestStep(66450) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66450) == 255">
+			<!-- Second Lives -->
+			<If Condition="not IsQuestCompleted(66450)">
+				<If Condition="not HasQuest(66450)">
 					<GetTo ZoneId="155" XYZ="207.3242, 310.015, -297.3831"/>
 					<!-- Juline -->
-					<TurnIn QuestId="66450" NpcId="1006430" ItemId="2000717" XYZ="207.3242, 310.015, -297.3831"/>
+					<If Condition="IsQuestAcceptQualified(66450)">
+						<PickupQuest NpcId="1006430" QuestId="66450" XYZ="207.3242, 310.015, -297.3831"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66450)">
+					<If Condition="GetQuestStep(66450) == 1">
+						<GetTo ZoneId="155" XYZ="464.3778, 250.8735, -329.8543"/>
+						<!-- Snow Mound -->
+						<UseObject NpcIds="2002412,2002413,2002411,2002409" UseTimes="4" QuestId="66450" StepId="1">
+							<HotSpots>
+								<HotSpot XYZ="464.3778, 250.8735, -329.8543" Radius="10"/>
+								<HotSpot XYZ="489.2804, 249.0425, -322.4689" Radius="10"/>
+								<HotSpot XYZ="445.1208, 252.491, -299.2753" Radius="10"/>
+								<HotSpot XYZ="476.0051, 247.4556, -285.6642" Radius="10"/>
+							</HotSpots>
+						</UseObject>
+						<MoveTo Name="Snow Mound" Distance="0.7" XYZ="486.3961, 247.7017, -278.4283"/>
+						<RunCode Name="Second_Lives"/>
+						<UseObject NpcId="2002410" XYZ="497.5203, 252.5215, -289.6315" Radius="10" UseTimes="1" QuestId="66450" StepId="1"/>
+						<MoveTo Name="Jump" Distance="2" UseMesh="False" XYZ="488.6321, 247.8715, -274.5728"/>
+						<UseObject NpcId="2002414" XYZ="456.6262, 249.8054, -239.3989" Radius="10" UseTimes="1" QuestId="66450" StepId="1"/>
+						<WaitWhile Condition="GetQuestStep(66450) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66450) == 255">
+						<GetTo ZoneId="155" XYZ="207.3242, 310.015, -297.3831"/>
+						<!-- Juline -->
+						<TurnIn QuestId="66450" NpcId="1006430" ItemId="2000717" XYZ="207.3242, 310.015, -297.3831"/>
+					</If>
 				</If>
 			</If>
 		</If>
