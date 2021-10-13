@@ -13100,199 +13100,201 @@
 				</If>
 			</If>
 		</If>
-		<!-- Who Moved My Headcheese -->
-		<If Condition="not IsQuestCompleted(66369)">
-			<If Condition="not HasQuest(66369)">
-				<GetTo ZoneId="137" XYZ="603.2349, 23.93624, 454.7036"/>
-				<!-- Kuzai Tazai -->
-				<If Condition="IsQuestAcceptQualified(66369)">
-					<PickupQuest NpcId="1006269" QuestId="66369" XYZ="603.2349, 23.93624, 454.7036"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66369)">
-				<If Condition="GetQuestStep(66369) == 1">
-					<GetTo ZoneId="137" XYZ="577.4777, 17.7157, 421.6525"/>
-					<!-- Destination -->
-					<UseItem ItemId="2000650" NpcIds="2002294,2002293,2002292,2002291,2002050" UseDistance="2" QuestId="66369" StepId="1">
-						<HotSpots>
-							<HotSpot XYZ="577.4777, 17.7157, 421.6525" Radius="10"/>
-							<HotSpot XYZ="567.0709, 17.7157, 415.5184" Radius="10"/>
-							<HotSpot XYZ="564.599, 17.53253, 406.0273" Radius="10"/>
-							<HotSpot XYZ="562.89, 14.57233, 393.8811" Radius="10"/>
-							<HotSpot XYZ="548.5465, 14.57233, 393.8811" Radius="10"/>
-						</HotSpots>
-					</UseItem>
-				</If>
-				<If Condition="GetQuestStep(66369) == 2">
-					<GetTo ZoneId="137" XYZ="565.1788, 18.14294, 424.3992"/>
-					<!-- Destination -->
-					<UseObject NpcId="2002051" XYZ="565.1788, 18.14294, 424.3992" Radius="10" QuestId="66369" StepId="2"/>
-				</If>
-				<If Condition="GetQuestStep(66369) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 33">
+			<!-- Who Moved My Headcheese -->
+			<If Condition="not IsQuestCompleted(66369)">
+				<If Condition="not HasQuest(66369)">
 					<GetTo ZoneId="137" XYZ="603.2349, 23.93624, 454.7036"/>
 					<!-- Kuzai Tazai -->
-					<TurnIn QuestId="66369" NpcId="1006269" XYZ="603.2349, 23.93624, 454.7036"/>
+					<If Condition="IsQuestAcceptQualified(66369)">
+						<PickupQuest NpcId="1006269" QuestId="66369" XYZ="603.2349, 23.93624, 454.7036"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66369)">
+					<If Condition="GetQuestStep(66369) == 1">
+						<GetTo ZoneId="137" XYZ="577.4777, 17.7157, 421.6525"/>
+						<!-- Destination -->
+						<UseItem ItemId="2000650" NpcIds="2002294,2002293,2002292,2002291,2002050" UseDistance="2" QuestId="66369" StepId="1">
+							<HotSpots>
+								<HotSpot XYZ="577.4777, 17.7157, 421.6525" Radius="10"/>
+								<HotSpot XYZ="567.0709, 17.7157, 415.5184" Radius="10"/>
+								<HotSpot XYZ="564.599, 17.53253, 406.0273" Radius="10"/>
+								<HotSpot XYZ="562.89, 14.57233, 393.8811" Radius="10"/>
+								<HotSpot XYZ="548.5465, 14.57233, 393.8811" Radius="10"/>
+							</HotSpots>
+						</UseItem>
+					</If>
+					<If Condition="GetQuestStep(66369) == 2">
+						<GetTo ZoneId="137" XYZ="565.1788, 18.14294, 424.3992"/>
+						<!-- Destination -->
+						<UseObject NpcId="2002051" XYZ="565.1788, 18.14294, 424.3992" Radius="10" QuestId="66369" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66369) == 255">
+						<GetTo ZoneId="137" XYZ="603.2349, 23.93624, 454.7036"/>
+						<!-- Kuzai Tazai -->
+						<TurnIn QuestId="66369" NpcId="1006269" XYZ="603.2349, 23.93624, 454.7036"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Get a Grip -->
-		<!-- TOO MANY DEATHS! -->
-		<!-- <If Condition="not IsQuestCompleted(66370)">
+			<!-- Get a Grip -->
+			<!-- TOO MANY DEATHS! -->
+			<!-- <If Condition="not IsQuestCompleted(66370)">
             <If Condition="not HasQuest(66370)">
                 <GetTo ZoneId="137" XYZ="603.2349, 23.93624, 454.7036" /> -->
-		<!-- Kuzai Tazai -->
-		<!-- <If Condition="IsQuestAcceptQualified(66370)">
+			<!-- Kuzai Tazai -->
+			<!-- <If Condition="IsQuestAcceptQualified(66370)">
                     <PickupQuest NpcId="1006269" QuestId="66370" XYZ="603.2349, 23.93624, 454.7036" />
                 </If>
             </If>
             <If Condition="HasQuest(66370)">
                 <If Condition="GetQuestStep(66370) == 1">
                     <GetTo ZoneId="137" XYZ="465.0787, 11.32708, 629.8575" /> -->
-		<!-- Grinding Area -->
-		<!-- <Grind grindRef="Get_a_Grip" while="HasQuest(66370) and GetQuestStep(66370) == 1" />
+			<!-- Grinding Area -->
+			<!-- <Grind grindRef="Get_a_Grip" while="HasQuest(66370) and GetQuestStep(66370) == 1" />
                 </If>
                 <While Condition="GetQuestStep(66370) == 2">
                     <GetTo ZoneId="137" XYZ="472.9227, 9.994568, 743.5262" /> -->
-		<!-- Unsavory Shoreline -->
-		<!-- <UseObject NpcId="2002052" XYZ="472.9227, 9.994568, 743.5262" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="66370" StepId="2" />
+			<!-- Unsavory Shoreline -->
+			<!-- <UseObject NpcId="2002052" XYZ="472.9227, 9.994568, 743.5262" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="66370" StepId="2" />
                     <UseItem NpcId="1995" ItemId="2000830" XYZ="470.4301, 10.2653, 743.0786" LacksAuraId="22" UseHealthPercent="100" InCombatOnly="True" Radius="10" QuestId="66370" StepId="2" />
                 </While>
                 <If Condition="GetQuestStep(66370) == 255">
                     <GetTo ZoneId="137" XYZ="603.2349, 23.93624, 454.7036" /> -->
-		<!-- Kuzai Tazai -->
-		<!-- <TurnIn QuestId="66370" NpcId="1006269" XYZ="603.2349, 23.93624, 454.7036" />
+			<!-- Kuzai Tazai -->
+			<!-- <TurnIn QuestId="66370" NpcId="1006269" XYZ="603.2349, 23.93624, 454.7036" />
                 </If>
             </If>
         </If> -->
-		<!-- Unrefined Methods -->
-		<If Condition="not IsQuestCompleted(66371)">
-			<If Condition="not HasQuest(66371)">
-				<GetTo ZoneId="137" XYZ="603.2654, 23.93624, 455.9548"/>
-				<!-- Fyrilsunn -->
-				<If Condition="IsQuestAcceptQualified(66371)">
-					<PickupQuest NpcId="1006270" QuestId="66371" XYZ="603.2654, 23.93624, 455.9548"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66371)">
-				<While Condition="GetQuestStep(66371) == 1">
-					<GetTo ZoneId="137" XYZ="367.0251, 29.49561, 352.4376"/>
-					<!-- Refiner -->
-					<GroundTargeting XYZ="367.0251, 29.49561, 352.4376" NpcId="2002054" ItemId="2000651" QuestId="66371" StepId="1" Condition="not IsTodoChecked(66371, 1, 0)" Name="Brass Contraption"/>
-					<GroundTargeting XYZ="381.5823, 27.66455, 375.7839" NpcId="2002053" ItemId="2000651" QuestId="66371" StepId="1" Condition="not IsTodoChecked(66371, 1, 0)" Name="Brass Contraption"/>
-					<GroundTargeting XYZ="379.4766, 30.50269, 314.0764" NpcId="2002055" ItemId="2000651" QuestId="66371" StepId="1" Condition="not IsTodoChecked(66371, 1, 0)" Name="Brass Contraption"/>
-				</While>
-				<If Condition="GetQuestStep(66371) == 255">
+			<!-- Unrefined Methods -->
+			<If Condition="not IsQuestCompleted(66371)">
+				<If Condition="not HasQuest(66371)">
 					<GetTo ZoneId="137" XYZ="603.2654, 23.93624, 455.9548"/>
 					<!-- Fyrilsunn -->
-					<TurnIn QuestId="66371" NpcId="1006270" XYZ="603.2654, 23.93624, 455.9548"/>
+					<If Condition="IsQuestAcceptQualified(66371)">
+						<PickupQuest NpcId="1006270" QuestId="66371" XYZ="603.2654, 23.93624, 455.9548"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66371)">
+					<While Condition="GetQuestStep(66371) == 1">
+						<GetTo ZoneId="137" XYZ="367.0251, 29.49561, 352.4376"/>
+						<!-- Refiner -->
+						<GroundTargeting XYZ="367.0251, 29.49561, 352.4376" NpcId="2002054" ItemId="2000651" QuestId="66371" StepId="1" Condition="not IsTodoChecked(66371, 1, 0)" Name="Brass Contraption"/>
+						<GroundTargeting XYZ="381.5823, 27.66455, 375.7839" NpcId="2002053" ItemId="2000651" QuestId="66371" StepId="1" Condition="not IsTodoChecked(66371, 1, 0)" Name="Brass Contraption"/>
+						<GroundTargeting XYZ="379.4766, 30.50269, 314.0764" NpcId="2002055" ItemId="2000651" QuestId="66371" StepId="1" Condition="not IsTodoChecked(66371, 1, 0)" Name="Brass Contraption"/>
+					</While>
+					<If Condition="GetQuestStep(66371) == 255">
+						<GetTo ZoneId="137" XYZ="603.2654, 23.93624, 455.9548"/>
+						<!-- Fyrilsunn -->
+						<TurnIn QuestId="66371" NpcId="1006270" XYZ="603.2654, 23.93624, 455.9548"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- To You from Failing Hands We Throw -->
-		<If Condition="not IsQuestCompleted(66374)">
-			<If Condition="not HasQuest(66374)">
-				<GetTo ZoneId="137" XYZ="603.2654, 23.93624, 455.9548"/>
-				<!-- Fyrilsunn -->
-				<If Condition="IsQuestAcceptQualified(66374)">
-					<PickupQuest NpcId="1006270" QuestId="66374" XYZ="603.2654, 23.93624, 455.9548"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66374)">
-				<While Condition="GetQuestStep(66374) == 1">
-					<GetTo ZoneId="137" XYZ="399.4323, 77.62446, 622.1735"/>
-					<!-- Gullperch Tower -->
-					<MoveTo Name="Gullperch Tower" Distance="1" XYZ="399.4323, 77.62446, 622.1735"/>
-					<RunCode Name="To_You_From_Failing_Hands_We_Throw"/>
-					<SendChat Message="/lookout" QuestId="66374" StepId="1"/>
-				</While>
-				<If Condition="GetQuestStep(66374) == 2">
-					<GetTo ZoneId="137" XYZ="399.4323, 77.62446, 622.1735"/>
-					<!-- Lion Medal -->
-					<MoveTo Name="Lion Medal" Distance="2" UseMesh="False" XYZ="400.8995, 77.8347, 622.2839"/>
-					<UseObject NpcIds="2002057,2002056,2002058" QuestId="66374" StepId="2">
-						<HotSpots>
-							<HotSpot XYZ="386.6178, 38.28479, 608.2399" Radius="10"/>
-							<HotSpot XYZ="380.5142, 40.14648, 636.9573" Radius="10"/>
-							<HotSpot XYZ="365.1636, 36.05701, 643.9763" Radius="10"/>
-						</HotSpots>
-					</UseObject>
-				</If>
-				<If Condition="GetQuestStep(66374) == 255">
+			<!-- To You from Failing Hands We Throw -->
+			<If Condition="not IsQuestCompleted(66374)">
+				<If Condition="not HasQuest(66374)">
 					<GetTo ZoneId="137" XYZ="603.2654, 23.93624, 455.9548"/>
 					<!-- Fyrilsunn -->
-					<TurnIn QuestId="66374" NpcId="1006270" ItemId="2000652" XYZ="603.2654, 23.93624, 455.9548"/>
+					<If Condition="IsQuestAcceptQualified(66374)">
+						<PickupQuest NpcId="1006270" QuestId="66374" XYZ="603.2654, 23.93624, 455.9548"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66374)">
+					<While Condition="GetQuestStep(66374) == 1">
+						<GetTo ZoneId="137" XYZ="399.4323, 77.62446, 622.1735"/>
+						<!-- Gullperch Tower -->
+						<MoveTo Name="Gullperch Tower" Distance="1" XYZ="399.4323, 77.62446, 622.1735"/>
+						<RunCode Name="To_You_From_Failing_Hands_We_Throw"/>
+						<SendChat Message="/lookout" QuestId="66374" StepId="1"/>
+					</While>
+					<If Condition="GetQuestStep(66374) == 2">
+						<GetTo ZoneId="137" XYZ="399.4323, 77.62446, 622.1735"/>
+						<!-- Lion Medal -->
+						<MoveTo Name="Lion Medal" Distance="2" UseMesh="False" XYZ="400.8995, 77.8347, 622.2839"/>
+						<UseObject NpcIds="2002057,2002056,2002058" QuestId="66374" StepId="2">
+							<HotSpots>
+								<HotSpot XYZ="386.6178, 38.28479, 608.2399" Radius="10"/>
+								<HotSpot XYZ="380.5142, 40.14648, 636.9573" Radius="10"/>
+								<HotSpot XYZ="365.1636, 36.05701, 643.9763" Radius="10"/>
+							</HotSpots>
+						</UseObject>
+					</If>
+					<If Condition="GetQuestStep(66374) == 255">
+						<GetTo ZoneId="137" XYZ="603.2654, 23.93624, 455.9548"/>
+						<!-- Fyrilsunn -->
+						<TurnIn QuestId="66374" NpcId="1006270" ItemId="2000652" XYZ="603.2654, 23.93624, 455.9548"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Buffaloed All the Way -->
-		<If Condition="not IsQuestCompleted(66372)">
-			<If Condition="not HasQuest(66372)">
-				<GetTo ZoneId="137" XYZ="617.9751, 23.93624, 456.8702"/>
-				<!-- P'ebaloh -->
-				<If Condition="IsQuestAcceptQualified(66372)">
-					<PickupQuest NpcId="1006271" QuestId="66372" XYZ="617.9751, 23.93624, 456.8702"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66372)">
-				<If Condition="GetQuestStep(66372) == 1">
-					<GetTo ZoneId="137" XYZ="317.8703, 36.96009, 441.6178"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Buffaloed_All_the_Way" while="HasQuest(66372) and GetQuestStep(66372) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66372) == 255">
+			<!-- Buffaloed All the Way -->
+			<If Condition="not IsQuestCompleted(66372)">
+				<If Condition="not HasQuest(66372)">
 					<GetTo ZoneId="137" XYZ="617.9751, 23.93624, 456.8702"/>
 					<!-- P'ebaloh -->
-					<TurnIn QuestId="66372" NpcId="1006271" XYZ="617.9751, 23.93624, 456.8702"/>
+					<If Condition="IsQuestAcceptQualified(66372)">
+						<PickupQuest NpcId="1006271" QuestId="66372" XYZ="617.9751, 23.93624, 456.8702"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66372)">
+					<If Condition="GetQuestStep(66372) == 1">
+						<GetTo ZoneId="137" XYZ="317.8703, 36.96009, 441.6178"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Buffaloed_All_the_Way" while="HasQuest(66372) and GetQuestStep(66372) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66372) == 255">
+						<GetTo ZoneId="137" XYZ="617.9751, 23.93624, 456.8702"/>
+						<!-- P'ebaloh -->
+						<TurnIn QuestId="66372" NpcId="1006271" XYZ="617.9751, 23.93624, 456.8702"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Pests in the Pillars -->
-		<If Condition="not IsQuestCompleted(66373)">
-			<If Condition="not HasQuest(66373)">
-				<GetTo ZoneId="137" XYZ="617.9751, 23.93624, 456.8702"/>
-				<!-- P'ebaloh -->
-				<If Condition="IsQuestAcceptQualified(66373)">
-					<PickupQuest NpcId="1006271" QuestId="66373" XYZ="617.9751, 23.93624, 456.8702"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66373)">
-				<If Condition="GetQuestStep(66373) == 1">
-					<GetTo ZoneId="137" XYZ="561.5167, 8.682312, 452.2622"/>
-					<!-- Sturdy Pillar -->
-					<UseItem ItemId="2000863" NpcIds="2002415,2002416,2002417" QuestId="66373" StepId="1">
-						<HotSpots>
-							<HotSpot XYZ="561.5167, 8.682312, 452.2622" Radius="10"/>
-							<HotSpot XYZ="531.4564, 8.682312, 452.842" Radius="10"/>
-							<HotSpot XYZ="565.0569, 8.682312, 514.7631" Radius="10"/>
-						</HotSpots>
-					</UseItem>
-				</If>
-				<If Condition="GetQuestStep(66373) == 255">
+			<!-- Pests in the Pillars -->
+			<If Condition="not IsQuestCompleted(66373)">
+				<If Condition="not HasQuest(66373)">
 					<GetTo ZoneId="137" XYZ="617.9751, 23.93624, 456.8702"/>
 					<!-- P'ebaloh -->
-					<TurnIn QuestId="66373" NpcId="1006271" XYZ="617.9751, 23.93624, 456.8702"/>
+					<If Condition="IsQuestAcceptQualified(66373)">
+						<PickupQuest NpcId="1006271" QuestId="66373" XYZ="617.9751, 23.93624, 456.8702"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66373)">
+					<If Condition="GetQuestStep(66373) == 1">
+						<GetTo ZoneId="137" XYZ="561.5167, 8.682312, 452.2622"/>
+						<!-- Sturdy Pillar -->
+						<UseItem ItemId="2000863" NpcIds="2002415,2002416,2002417" QuestId="66373" StepId="1">
+							<HotSpots>
+								<HotSpot XYZ="561.5167, 8.682312, 452.2622" Radius="10"/>
+								<HotSpot XYZ="531.4564, 8.682312, 452.842" Radius="10"/>
+								<HotSpot XYZ="565.0569, 8.682312, 514.7631" Radius="10"/>
+							</HotSpots>
+						</UseItem>
+					</If>
+					<If Condition="GetQuestStep(66373) == 255">
+						<GetTo ZoneId="137" XYZ="617.9751, 23.93624, 456.8702"/>
+						<!-- P'ebaloh -->
+						<TurnIn QuestId="66373" NpcId="1006271" XYZ="617.9751, 23.93624, 456.8702"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Raptor 'round Your Little Finger -->
-		<If Condition="not IsQuestCompleted(66377)">
-			<If Condition="not HasQuest(66377)">
-				<GetTo ZoneId="137" XYZ="-24.42969, 71.754, -36.82013"/>
-				<!-- Etgar -->
-				<If Condition="IsQuestAcceptQualified(66377)">
-					<PickupQuest NpcId="1006307" QuestId="66377" XYZ="-24.42969, 71.754, -36.82013"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66377)">
-				<If Condition="GetQuestStep(66377) == 1">
-					<GetTo ZoneId="137" XYZ="123.6131, 78.50808, -42.89709"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Raptor_round_Your_Little_Finger" while="HasQuest(66377) and GetQuestStep(66377) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66377) == 255">
+			<!-- Raptor 'round Your Little Finger -->
+			<If Condition="not IsQuestCompleted(66377)">
+				<If Condition="not HasQuest(66377)">
 					<GetTo ZoneId="137" XYZ="-24.42969, 71.754, -36.82013"/>
 					<!-- Etgar -->
-					<TurnIn QuestId="66377" NpcId="1006307" XYZ="-24.42969, 71.754, -36.82013"/>
+					<If Condition="IsQuestAcceptQualified(66377)">
+						<PickupQuest NpcId="1006307" QuestId="66377" XYZ="-24.42969, 71.754, -36.82013"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66377)">
+					<If Condition="GetQuestStep(66377) == 1">
+						<GetTo ZoneId="137" XYZ="123.6131, 78.50808, -42.89709"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Raptor_round_Your_Little_Finger" while="HasQuest(66377) and GetQuestStep(66377) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66377) == 255">
+						<GetTo ZoneId="137" XYZ="-24.42969, 71.754, -36.82013"/>
+						<!-- Etgar -->
+						<TurnIn QuestId="66377" NpcId="1006307" XYZ="-24.42969, 71.754, -36.82013"/>
+					</If>
 				</If>
 			</If>
 		</If>
