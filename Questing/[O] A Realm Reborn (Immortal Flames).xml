@@ -15106,300 +15106,302 @@
 		<!-- LEVEL 37 -->
 		<!-- ######## -->
 		<LogMessage Message="[A Realm Reborn] Checking level 37 quests..."/>
-		<!-- Dead Is Dead -->
-		<If Condition="not IsQuestCompleted(66435)">
-			<If Condition="not HasQuest(66435)">
-				<GetTo ZoneId="155" XYZ="263.8132, 303.1, -195.7885"/>
-				<!-- Corentiaux -->
-				<If Condition="IsQuestAcceptQualified(66435)">
-					<PickupQuest NpcId="1006400" QuestId="66435" XYZ="263.8132, 303.1, -195.7885"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66435)">
-				<If Condition="GetQuestStep(66435) == 1">
-					<GetTo ZoneId="155" XYZ="350.0995, 303.056, -352.7033"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Dead_Is_Dead" while="HasQuest(66435) and GetQuestStep(66435) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66435) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 38">
+			<!-- Dead Is Dead -->
+			<If Condition="not IsQuestCompleted(66435)">
+				<If Condition="not HasQuest(66435)">
 					<GetTo ZoneId="155" XYZ="263.8132, 303.1, -195.7885"/>
 					<!-- Corentiaux -->
-					<TurnIn QuestId="66435" NpcId="1006400" ItemId="2000703" XYZ="263.8132, 303.1, -195.7885"/>
+					<If Condition="IsQuestAcceptQualified(66435)">
+						<PickupQuest NpcId="1006400" QuestId="66435" XYZ="263.8132, 303.1, -195.7885"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66435)">
+					<If Condition="GetQuestStep(66435) == 1">
+						<GetTo ZoneId="155" XYZ="350.0995, 303.056, -352.7033"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Dead_Is_Dead" while="HasQuest(66435) and GetQuestStep(66435) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66435) == 255">
+						<GetTo ZoneId="155" XYZ="263.8132, 303.1, -195.7885"/>
+						<!-- Corentiaux -->
+						<TurnIn QuestId="66435" NpcId="1006400" ItemId="2000703" XYZ="263.8132, 303.1, -195.7885"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Don't Light My Fire -->
-		<If Condition="not IsQuestCompleted(66436)">
-			<If Condition="not HasQuest(66436)">
-				<GetTo ZoneId="155" XYZ="263.8132, 303.1, -195.7885"/>
-				<!-- Corentiaux -->
-				<If Condition="IsQuestAcceptQualified(66436)">
-					<PickupQuest NpcId="1006400" QuestId="66436" XYZ="263.8132, 303.1, -195.7885"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66436)">
-				<If Condition="GetQuestStep(66436) == 1">
-					<GetTo ZoneId="155" XYZ="682.1459, 295.663, -328.4788"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Dont_Light_My_Fire" while="HasQuest(66436) and GetQuestStep(66436) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66436) == 255">
+			<!-- Don't Light My Fire -->
+			<If Condition="not IsQuestCompleted(66436)">
+				<If Condition="not HasQuest(66436)">
 					<GetTo ZoneId="155" XYZ="263.8132, 303.1, -195.7885"/>
 					<!-- Corentiaux -->
-					<TurnIn QuestId="66436" NpcId="1006400" XYZ="263.8132, 303.1, -195.7885"/>
+					<If Condition="IsQuestAcceptQualified(66436)">
+						<PickupQuest NpcId="1006400" QuestId="66436" XYZ="263.8132, 303.1, -195.7885"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66436)">
+					<If Condition="GetQuestStep(66436) == 1">
+						<GetTo ZoneId="155" XYZ="682.1459, 295.663, -328.4788"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Dont_Light_My_Fire" while="HasQuest(66436) and GetQuestStep(66436) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66436) == 255">
+						<GetTo ZoneId="155" XYZ="263.8132, 303.1, -195.7885"/>
+						<!-- Corentiaux -->
+						<TurnIn QuestId="66436" NpcId="1006400" XYZ="263.8132, 303.1, -195.7885"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Dark and Stormy Night -->
-		<If Condition="not IsQuestCompleted(66438)">
-			<If Condition="not HasQuest(66438)">
-				<GetTo ZoneId="155" XYZ="242.359, 325.3143, -151.4763"/>
-				<!-- Arthurioux -->
-				<If Condition="IsQuestAcceptQualified(66438)">
-					<PickupQuest NpcId="1006402" QuestId="66438" XYZ="242.359, 325.3143, -151.4763"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66438)">
-				<If Condition="GetQuestStep(66438) == 1">
-					<GetTo ZoneId="155" XYZ="240.1617, 301.9912, -184.8326"/>
-					<!-- Unlit Brazier -->
-					<UseItem NpcIds="2002130,2002126,2002127,2002128,2002129" ItemId="2000706" QuestId="66438" StepId="1">
-						<HotSpots>
-							<HotSpot XYZ="240.1617, 301.9912, -184.8326" Radius="10"/>
-							<HotSpot XYZ="218.5549, 302.6322, -161.9135" Radius="10"/>
-							<HotSpot XYZ="185.5649, 302.4795, -167.9561" Radius="10"/>
-							<HotSpot XYZ="215.5337, 311.9706, -227.2831" Radius="10"/>
-							<HotSpot XYZ="232.5627, 311.9706, -226.7949" Radius="10"/>
-						</HotSpots>
-					</UseItem>
-				</If>
-				<If Condition="GetQuestStep(66438) == 255">
+			<!-- Dark and Stormy Night -->
+			<If Condition="not IsQuestCompleted(66438)">
+				<If Condition="not HasQuest(66438)">
 					<GetTo ZoneId="155" XYZ="242.359, 325.3143, -151.4763"/>
 					<!-- Arthurioux -->
-					<TurnIn QuestId="66438" NpcId="1006402" XYZ="242.359, 325.3143, -151.4763"/>
+					<If Condition="IsQuestAcceptQualified(66438)">
+						<PickupQuest NpcId="1006402" QuestId="66438" XYZ="242.359, 325.3143, -151.4763"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66438)">
+					<If Condition="GetQuestStep(66438) == 1">
+						<GetTo ZoneId="155" XYZ="240.1617, 301.9912, -184.8326"/>
+						<!-- Unlit Brazier -->
+						<UseItem NpcIds="2002130,2002126,2002127,2002128,2002129" ItemId="2000706" QuestId="66438" StepId="1">
+							<HotSpots>
+								<HotSpot XYZ="240.1617, 301.9912, -184.8326" Radius="10"/>
+								<HotSpot XYZ="218.5549, 302.6322, -161.9135" Radius="10"/>
+								<HotSpot XYZ="185.5649, 302.4795, -167.9561" Radius="10"/>
+								<HotSpot XYZ="215.5337, 311.9706, -227.2831" Radius="10"/>
+								<HotSpot XYZ="232.5627, 311.9706, -226.7949" Radius="10"/>
+							</HotSpots>
+						</UseItem>
+					</If>
+					<If Condition="GetQuestStep(66438) == 255">
+						<GetTo ZoneId="155" XYZ="242.359, 325.3143, -151.4763"/>
+						<!-- Arthurioux -->
+						<TurnIn QuestId="66438" NpcId="1006402" XYZ="242.359, 325.3143, -151.4763"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Too Many Enemies -->
-		<If Condition="not IsQuestCompleted(66439)">
-			<If Condition="not HasQuest(66439)">
-				<GetTo ZoneId="155" XYZ="252.0027, 312, -261.738"/>
-				<!-- Stephannot -->
-				<If Condition="IsQuestAcceptQualified(66439)">
-					<PickupQuest NpcId="1006403" QuestId="66439" XYZ="252.0027, 312, -261.738"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66439)">
-				<While Condition="GetQuestStep(66439) == 1">
-					<GetTo ZoneId="155" XYZ="446.7842, 305.3613, -223.1413"/>
-					<!-- Wagon -->
-					<Dismount/>
-					<MoveTo Name="Wagon" Distance="3" XYZ="461.8792, 303.7581, -224.3152"/>
-					<WaitWhile Condition="GetQuestStep(66439) == 1"/>
-				</While>
-				<If Condition="GetQuestStep(66439) == 255">
+			<!-- Too Many Enemies -->
+			<If Condition="not IsQuestCompleted(66439)">
+				<If Condition="not HasQuest(66439)">
 					<GetTo ZoneId="155" XYZ="252.0027, 312, -261.738"/>
 					<!-- Stephannot -->
-					<TurnIn QuestId="66439" NpcId="1006403" XYZ="252.0027, 312, -261.738"/>
+					<If Condition="IsQuestAcceptQualified(66439)">
+						<PickupQuest NpcId="1006403" QuestId="66439" XYZ="252.0027, 312, -261.738"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66439)">
+					<While Condition="GetQuestStep(66439) == 1">
+						<GetTo ZoneId="155" XYZ="446.7842, 305.3613, -223.1413"/>
+						<!-- Wagon -->
+						<Dismount/>
+						<MoveTo Name="Wagon" Distance="3" XYZ="461.8792, 303.7581, -224.3152"/>
+						<WaitWhile Condition="GetQuestStep(66439) == 1"/>
+					</While>
+					<If Condition="GetQuestStep(66439) == 255">
+						<GetTo ZoneId="155" XYZ="252.0027, 312, -261.738"/>
+						<!-- Stephannot -->
+						<TurnIn QuestId="66439" NpcId="1006403" XYZ="252.0027, 312, -261.738"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- The Forest for the Trees -->
-		<If Condition="not IsQuestCompleted(66440)">
-			<If Condition="not HasQuest(66440)">
-				<GetTo ZoneId="155" XYZ="252.0027, 312, -261.738"/>
-				<!-- Belmont -->
-				<If Condition="IsQuestAcceptQualified(66440)">
-					<PickupQuest NpcId="1006403" QuestId="66440" XYZ="252.0027, 312, -261.738"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66440)">
-				<If Condition="GetQuestStep(66440) == 1">
-					<GetTo ZoneId="155" XYZ="585.9922, 321.767, -279.1944"/>
-					<!-- Dropped Lumber -->
-					<UseObject NpcId="2002132" XYZ="585.9922, 321.767, -279.1944" Radius="10" QuestId="66440" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66440) == 255">
+			<!-- The Forest for the Trees -->
+			<If Condition="not IsQuestCompleted(66440)">
+				<If Condition="not HasQuest(66440)">
 					<GetTo ZoneId="155" XYZ="252.0027, 312, -261.738"/>
 					<!-- Belmont -->
-					<TurnIn QuestId="66440" NpcId="1006403" ItemId="2000707" XYZ="252.0027, 312, -261.738"/>
+					<If Condition="IsQuestAcceptQualified(66440)">
+						<PickupQuest NpcId="1006403" QuestId="66440" XYZ="252.0027, 312, -261.738"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66440)">
+					<If Condition="GetQuestStep(66440) == 1">
+						<GetTo ZoneId="155" XYZ="585.9922, 321.767, -279.1944"/>
+						<!-- Dropped Lumber -->
+						<UseObject NpcId="2002132" XYZ="585.9922, 321.767, -279.1944" Radius="10" QuestId="66440" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66440) == 255">
+						<GetTo ZoneId="155" XYZ="252.0027, 312, -261.738"/>
+						<!-- Belmont -->
+						<TurnIn QuestId="66440" NpcId="1006403" ItemId="2000707" XYZ="252.0027, 312, -261.738"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Stand and Quiver -->
-		<If Condition="not IsQuestCompleted(66441)">
-			<If Condition="not HasQuest(66441)">
-				<GetTo ZoneId="155" XYZ="252.0027, 312, -261.738"/>
-				<!-- Belmont -->
-				<If Condition="IsQuestAcceptQualified(66441)">
-					<PickupQuest NpcId="1006403" QuestId="66441" XYZ="252.0027, 312, -261.738"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66441)">
-				<If Condition="GetQuestStep(66441) == 255">
-					<GetTo ZoneId="154" XYZ="-32.76117, -40.70508, 179.2477"/>
-					<!-- Isaudorel -->
-					<TurnIn QuestId="66441" NpcId="1006404" ItemId="2000708" XYZ="-32.76117, -40.70508, 179.2477"/>
-				</If>
-			</If>
-		</If>
-		<!-- Tit for Tat -->
-		<If Condition="not IsQuestCompleted(66442)">
-			<If Condition="not HasQuest(66442)">
-				<GetTo ZoneId="154" XYZ="-32.76117, -40.70508, 179.2477"/>
-				<!-- Isaudorel -->
-				<If Condition="IsQuestAcceptQualified(66442)">
-					<PickupQuest NpcId="1006404" QuestId="66442" XYZ="-32.76117, -40.70508, 179.2477"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66442)">
-				<If Condition="GetQuestStep(66442) == 1">
-					<GetTo ZoneId="154" XYZ="51.10242, -19.85205, 175.494"/>
-					<!-- Antelope Carcass -->
-					<UseObject NpcId="2002133" XYZ="51.10242, -19.85205, 175.494" Radius="10" QuestId="66442" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66442) == 255">
-					<GetTo ZoneId="154" XYZ="-32.76117, -40.70508, 179.2477"/>
-					<!-- Isaudorel -->
-					<TurnIn QuestId="66442" NpcId="1006404" XYZ="-32.76117, -40.70508, 179.2477"/>
-				</If>
-			</If>
-		</If>
-		<!-- Inquire at the Spire -->
-		<If Condition="not IsQuestCompleted(66443)">
-			<If Condition="not HasQuest(66443)">
-				<GetTo ZoneId="154" XYZ="-33.64618, -40.70508, 178.912"/>
-				<!-- Ireine -->
-				<If Condition="IsQuestAcceptQualified(66443)">
-					<PickupQuest NpcId="1006405" QuestId="66443" XYZ="-33.64618, -40.70508, 178.912"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66443)">
-				<If Condition="GetQuestStep(66443) == 255">
-					<GetTo ZoneId="154" XYZ="63.15698, -13.3626, 140.917"/>
-					<!-- Miah Molkot -->
-					<TurnIn QuestId="66443" NpcId="1006406" XYZ="63.15698, -13.3626, 140.917"/>
-				</If>
-			</If>
-		</If>
-		<!-- Don't Shut Me Out -->
-		<If Condition="not IsQuestCompleted(66444)">
-			<If Condition="not HasQuest(66444)">
-				<GetTo ZoneId="154" XYZ="63.15698, -13.3626, 140.917"/>
-				<!-- Miah Molkot -->
-				<If Condition="IsQuestAcceptQualified(66444)">
-					<PickupQuest NpcId="1006406" QuestId="66444" XYZ="63.15698, -13.3626, 140.917"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66444)">
-				<If Condition="GetQuestStep(66444) == 1">
-					<GetTo ZoneId="154" XYZ="39.59705, -13.44324, 13.10748"/>
-					<!-- Ixali Blockade -->
-					<UseItem NpcId="2002134" ItemId="2000709" XYZ="39.59705, -13.44324, 13.10748" Radius="10" QuestId="66444" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66444) == 255">
-					<GetTo ZoneId="154" XYZ="63.15698, -13.3626, 140.917"/>
-					<!-- Miah Molkot -->
-					<TurnIn QuestId="66444" NpcId="1006406" XYZ="63.15698, -13.3626, 140.917"/>
-				</If>
-			</If>
-		</If>
-		<!-- From Gridania, with Love -->
-		<If Condition="not IsQuestCompleted(66445)">
-			<If Condition="not HasQuest(66445)">
-				<GetTo ZoneId="154" XYZ="63.15698, -13.3626, 140.917"/>
-				<!-- Miah Molkot -->
-				<If Condition="IsQuestAcceptQualified(66445)">
-					<PickupQuest NpcId="1006406" QuestId="66445" XYZ="63.15698, -13.3626, 140.917"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66445)">
-				<If Condition="GetQuestStep(66445) == 255">
+			<!-- Stand and Quiver -->
+			<If Condition="not IsQuestCompleted(66441)">
+				<If Condition="not HasQuest(66441)">
 					<GetTo ZoneId="155" XYZ="252.0027, 312, -261.738"/>
 					<!-- Belmont -->
-					<TurnIn QuestId="66445" NpcId="1006403" ItemId="2000710" XYZ="252.0027, 312, -261.738"/>
+					<If Condition="IsQuestAcceptQualified(66441)">
+						<PickupQuest NpcId="1006403" QuestId="66441" XYZ="252.0027, 312, -261.738"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66441)">
+					<If Condition="GetQuestStep(66441) == 255">
+						<GetTo ZoneId="154" XYZ="-32.76117, -40.70508, 179.2477"/>
+						<!-- Isaudorel -->
+						<TurnIn QuestId="66441" NpcId="1006404" ItemId="2000708" XYZ="-32.76117, -40.70508, 179.2477"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- A Fool and His Life Are Soon Parted -->
-		<If Condition="not IsQuestCompleted(66451)">
-			<If Condition="not HasQuest(66451)">
-				<GetTo ZoneId="155" XYZ="195.6969, 309.9871, -289.8757"/>
-				<!-- Meduil -->
-				<If Condition="IsQuestAcceptQualified(66451)">
-					<PickupQuest NpcId="1006432" QuestId="66451" XYZ="195.6969, 309.9871, -289.8757"/>
+			<!-- Tit for Tat -->
+			<If Condition="not IsQuestCompleted(66442)">
+				<If Condition="not HasQuest(66442)">
+					<GetTo ZoneId="154" XYZ="-32.76117, -40.70508, 179.2477"/>
+					<!-- Isaudorel -->
+					<If Condition="IsQuestAcceptQualified(66442)">
+						<PickupQuest NpcId="1006404" QuestId="66442" XYZ="-32.76117, -40.70508, 179.2477"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66442)">
+					<If Condition="GetQuestStep(66442) == 1">
+						<GetTo ZoneId="154" XYZ="51.10242, -19.85205, 175.494"/>
+						<!-- Antelope Carcass -->
+						<UseObject NpcId="2002133" XYZ="51.10242, -19.85205, 175.494" Radius="10" QuestId="66442" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66442) == 255">
+						<GetTo ZoneId="154" XYZ="-32.76117, -40.70508, 179.2477"/>
+						<!-- Isaudorel -->
+						<TurnIn QuestId="66442" NpcId="1006404" XYZ="-32.76117, -40.70508, 179.2477"/>
+					</If>
 				</If>
 			</If>
-			<If Condition="HasQuest(66451)">
-				<If Condition="GetQuestStep(66451) == 1">
-					<GetTo ZoneId="155" XYZ="683.3752, 298.5427, -300.6791"/>
-					<!-- Knight's Effects -->
-					<UseItem NpcId="2002151" ItemId="2000860" XYZ="683.3752, 298.5427, -300.6791" Radius="10" QuestId="66451" StepId="1"/>
+			<!-- Inquire at the Spire -->
+			<If Condition="not IsQuestCompleted(66443)">
+				<If Condition="not HasQuest(66443)">
+					<GetTo ZoneId="154" XYZ="-33.64618, -40.70508, 178.912"/>
+					<!-- Ireine -->
+					<If Condition="IsQuestAcceptQualified(66443)">
+						<PickupQuest NpcId="1006405" QuestId="66443" XYZ="-33.64618, -40.70508, 178.912"/>
+					</If>
 				</If>
-				<If Condition="GetQuestStep(66451) == 255">
+				<If Condition="HasQuest(66443)">
+					<If Condition="GetQuestStep(66443) == 255">
+						<GetTo ZoneId="154" XYZ="63.15698, -13.3626, 140.917"/>
+						<!-- Miah Molkot -->
+						<TurnIn QuestId="66443" NpcId="1006406" XYZ="63.15698, -13.3626, 140.917"/>
+					</If>
+				</If>
+			</If>
+			<!-- Don't Shut Me Out -->
+			<If Condition="not IsQuestCompleted(66444)">
+				<If Condition="not HasQuest(66444)">
+					<GetTo ZoneId="154" XYZ="63.15698, -13.3626, 140.917"/>
+					<!-- Miah Molkot -->
+					<If Condition="IsQuestAcceptQualified(66444)">
+						<PickupQuest NpcId="1006406" QuestId="66444" XYZ="63.15698, -13.3626, 140.917"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66444)">
+					<If Condition="GetQuestStep(66444) == 1">
+						<GetTo ZoneId="154" XYZ="39.59705, -13.44324, 13.10748"/>
+						<!-- Ixali Blockade -->
+						<UseItem NpcId="2002134" ItemId="2000709" XYZ="39.59705, -13.44324, 13.10748" Radius="10" QuestId="66444" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66444) == 255">
+						<GetTo ZoneId="154" XYZ="63.15698, -13.3626, 140.917"/>
+						<!-- Miah Molkot -->
+						<TurnIn QuestId="66444" NpcId="1006406" XYZ="63.15698, -13.3626, 140.917"/>
+					</If>
+				</If>
+			</If>
+			<!-- From Gridania, with Love -->
+			<If Condition="not IsQuestCompleted(66445)">
+				<If Condition="not HasQuest(66445)">
+					<GetTo ZoneId="154" XYZ="63.15698, -13.3626, 140.917"/>
+					<!-- Miah Molkot -->
+					<If Condition="IsQuestAcceptQualified(66445)">
+						<PickupQuest NpcId="1006406" QuestId="66445" XYZ="63.15698, -13.3626, 140.917"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66445)">
+					<If Condition="GetQuestStep(66445) == 255">
+						<GetTo ZoneId="155" XYZ="252.0027, 312, -261.738"/>
+						<!-- Belmont -->
+						<TurnIn QuestId="66445" NpcId="1006403" ItemId="2000710" XYZ="252.0027, 312, -261.738"/>
+					</If>
+				</If>
+			</If>
+			<!-- A Fool and His Life Are Soon Parted -->
+			<If Condition="not IsQuestCompleted(66451)">
+				<If Condition="not HasQuest(66451)">
 					<GetTo ZoneId="155" XYZ="195.6969, 309.9871, -289.8757"/>
 					<!-- Meduil -->
-					<TurnIn QuestId="66451" NpcId="1006432" ItemId="2000718" XYZ="195.6969, 309.9871, -289.8757"/>
+					<If Condition="IsQuestAcceptQualified(66451)">
+						<PickupQuest NpcId="1006432" QuestId="66451" XYZ="195.6969, 309.9871, -289.8757"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66451)">
+					<If Condition="GetQuestStep(66451) == 1">
+						<GetTo ZoneId="155" XYZ="683.3752, 298.5427, -300.6791"/>
+						<!-- Knight's Effects -->
+						<UseItem NpcId="2002151" ItemId="2000860" XYZ="683.3752, 298.5427, -300.6791" Radius="10" QuestId="66451" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66451) == 255">
+						<GetTo ZoneId="155" XYZ="195.6969, 309.9871, -289.8757"/>
+						<!-- Meduil -->
+						<TurnIn QuestId="66451" NpcId="1006432" ItemId="2000718" XYZ="195.6969, 309.9871, -289.8757"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Papa Do Preach -->
-		<If Condition="not IsQuestCompleted(66434)">
-			<If Condition="not HasQuest(66434)">
-				<GetTo ZoneId="155" XYZ="205.0354, 310.015, -298.0544"/>
-				<!-- Duchesnelt -->
-				<If Condition="IsQuestAcceptQualified(66434)">
-					<PickupQuest NpcId="1006397" QuestId="66434" XYZ="205.0354, 310.015, -298.0544"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66434)">
-				<If Condition="GetQuestStep(66434) == 1">
-					<GetTo ZoneId="155" XYZ="565.1788, 348.0707, -756.6797"/>
-					<!-- Duchesnelt's Daughter -->
-					<TalkTo NpcId="1006398" XYZ="565.1788, 348.0707, -756.6797" QuestId="66434" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66434) == 2">
-					<GetTo ZoneId="155" XYZ="530.022, 352.439, -695.7961"/>
-					<!-- Suspicious Fellow -->
-					<TalkTo NpcId="1006399" XYZ="530.022, 352.439, -695.7961" QuestId="66434" StepId="2"/>
-				</If>
-				<If Condition="GetQuestStep(66434) == 3">
-					<GetTo ZoneId="155" XYZ="530.3273, 352.4376, -696.0708"/>
-					<!-- Dull Knife -->
-					<UseObject NpcId="2002124" XYZ="530.3273, 352.4376, -696.0708" Radius="10" QuestId="66434" StepId="3"/>
-				</If>
-				<If Condition="GetQuestStep(66434) == 4">
-					<GetTo ZoneId="155" XYZ="565.1788, 348.0707, -756.6797"/>
-					<!-- Duchesnelt's Daughter -->
-					<HandOver ItemId="2000702" QuestId="66434" StepId="4" NpcId="1006398" XYZ="565.1788, 348.0707, -756.6797"/>
-				</If>
-				<If Condition="GetQuestStep(66434) == 255">
+			<!-- Papa Do Preach -->
+			<If Condition="not IsQuestCompleted(66434)">
+				<If Condition="not HasQuest(66434)">
 					<GetTo ZoneId="155" XYZ="205.0354, 310.015, -298.0544"/>
 					<!-- Duchesnelt -->
-					<TurnIn QuestId="66434" NpcId="1006397" ItemId="2000702" XYZ="205.0354, 310.015, -298.0544"/>
+					<If Condition="IsQuestAcceptQualified(66434)">
+						<PickupQuest NpcId="1006397" QuestId="66434" XYZ="205.0354, 310.015, -298.0544"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66434)">
+					<If Condition="GetQuestStep(66434) == 1">
+						<GetTo ZoneId="155" XYZ="565.1788, 348.0707, -756.6797"/>
+						<!-- Duchesnelt's Daughter -->
+						<TalkTo NpcId="1006398" XYZ="565.1788, 348.0707, -756.6797" QuestId="66434" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66434) == 2">
+						<GetTo ZoneId="155" XYZ="530.022, 352.439, -695.7961"/>
+						<!-- Suspicious Fellow -->
+						<TalkTo NpcId="1006399" XYZ="530.022, 352.439, -695.7961" QuestId="66434" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66434) == 3">
+						<GetTo ZoneId="155" XYZ="530.3273, 352.4376, -696.0708"/>
+						<!-- Dull Knife -->
+						<UseObject NpcId="2002124" XYZ="530.3273, 352.4376, -696.0708" Radius="10" QuestId="66434" StepId="3"/>
+					</If>
+					<If Condition="GetQuestStep(66434) == 4">
+						<GetTo ZoneId="155" XYZ="565.1788, 348.0707, -756.6797"/>
+						<!-- Duchesnelt's Daughter -->
+						<HandOver ItemId="2000702" QuestId="66434" StepId="4" NpcId="1006398" XYZ="565.1788, 348.0707, -756.6797"/>
+					</If>
+					<If Condition="GetQuestStep(66434) == 255">
+						<GetTo ZoneId="155" XYZ="205.0354, 310.015, -298.0544"/>
+						<!-- Duchesnelt -->
+						<TurnIn QuestId="66434" NpcId="1006397" ItemId="2000702" XYZ="205.0354, 310.015, -298.0544"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Feats of Strength -->
-		<If Condition="not IsQuestCompleted(66432)">
-			<If Condition="not HasQuest(66432)">
-				<GetTo ZoneId="155" XYZ="263.5996, 303.1, -199.9695"/>
-				<!-- Haurchefant -->
-				<If Condition="IsQuestAcceptQualified(66432)">
-					<PickupQuest NpcId="1006384" QuestId="66432" XYZ="263.5996, 303.1, -199.9695"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66432)">
-				<If Condition="GetQuestStep(66432) == 1">
-					<GetTo ZoneId="155" XYZ="157.0917, 295.0045, -265.4612"/>
-					<!-- Storied Knight -->
-					<TalkTo NpcId="1007715" XYZ="157.0917, 295.0045, -265.4612" QuestId="66432" StepId="1"/>
-					<WaitWhile Condition="GetQuestStep(66432) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66432) == 255">
+			<!-- Feats of Strength -->
+			<If Condition="not IsQuestCompleted(66432)">
+				<If Condition="not HasQuest(66432)">
 					<GetTo ZoneId="155" XYZ="263.5996, 303.1, -199.9695"/>
 					<!-- Haurchefant -->
-					<TurnIn QuestId="66432" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695"/>
+					<If Condition="IsQuestAcceptQualified(66432)">
+						<PickupQuest NpcId="1006384" QuestId="66432" XYZ="263.5996, 303.1, -199.9695"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66432)">
+					<If Condition="GetQuestStep(66432) == 1">
+						<GetTo ZoneId="155" XYZ="157.0917, 295.0045, -265.4612"/>
+						<!-- Storied Knight -->
+						<TalkTo NpcId="1007715" XYZ="157.0917, 295.0045, -265.4612" QuestId="66432" StepId="1"/>
+						<WaitWhile Condition="GetQuestStep(66432) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66432) == 255">
+						<GetTo ZoneId="155" XYZ="263.5996, 303.1, -199.9695"/>
+						<!-- Haurchefant -->
+						<TurnIn QuestId="66432" NpcId="1006384" XYZ="263.5996, 303.1, -199.9695"/>
+					</If>
 				</If>
 			</If>
 		</If>
@@ -15448,192 +15450,194 @@
 		<!-- LEVEL 38 -->
 		<!-- ######## -->
 		<LogMessage Message="[A Realm Reborn] Checking level 38 quests..."/>
-		<!-- Sebastian vs. the Ogre -->
-		<If Condition="not IsQuestCompleted(66437)">
-			<If Condition="not HasQuest(66437)">
-				<GetTo ZoneId="155" XYZ="257.8011, 303.1581, -204.4252"/>
-				<!-- Yaelle -->
-				<If Condition="IsQuestAcceptQualified(66437)">
-					<PickupQuest NpcId="1006401" QuestId="66437" XYZ="257.8011, 303.1581, -204.4252"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66437)">
-				<If Condition="GetQuestStep(66437) == 1">
-					<GetTo ZoneId="155" XYZ="319.7832, 301.8904, -256.9772"/>
-					<!-- Sebastian -->
-					<UseItem NpcId="1007571" ItemId="2000704" XYZ="319.7832, 301.8904, -256.9772" Radius="10" QuestId="66437" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66437) == 2">
-					<GetTo ZoneId="155" XYZ="424.4906, 328.2977, -394.4915"/>
-					<!-- Destination -->
-					<UseItem NpcId="2002125" ItemId="2000705" XYZ="424.4906, 328.2977, -394.4915" Radius="10" QuestId="66437" StepId="2"/>
-				</If>
-				<If Condition="GetQuestStep(66437) == 3">
-					<GetTo ZoneId="155" XYZ="408.7434, 325.4901, -396.6583"/>
-					<!-- Destination -->
-					<UseObject NpcId="2002571" XYZ="408.7434, 325.4901, -396.6583" Radius="10" QuestId="66437" StepId="3"/>
-				</If>
-				<If Condition="GetQuestStep(66437) == 4">
-					<GetTo ZoneId="155" XYZ="424.5212, 329.0912, -394.522"/>
-					<!-- Sebastian's Bonds -->
-					<UseObject NpcId="2002686" XYZ="424.5212, 329.0912, -394.522" Radius="10" QuestId="66437" StepId="4"/>
-				</If>
-				<If Condition="GetQuestStep(66437) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 39">
+			<!-- Sebastian vs. the Ogre -->
+			<If Condition="not IsQuestCompleted(66437)">
+				<If Condition="not HasQuest(66437)">
 					<GetTo ZoneId="155" XYZ="257.8011, 303.1581, -204.4252"/>
 					<!-- Yaelle -->
-					<TurnIn QuestId="66437" NpcId="1006401" XYZ="257.8011, 303.1581, -204.4252"/>
+					<If Condition="IsQuestAcceptQualified(66437)">
+						<PickupQuest NpcId="1006401" QuestId="66437" XYZ="257.8011, 303.1581, -204.4252"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66437)">
+					<If Condition="GetQuestStep(66437) == 1">
+						<GetTo ZoneId="155" XYZ="319.7832, 301.8904, -256.9772"/>
+						<!-- Sebastian -->
+						<UseItem NpcId="1007571" ItemId="2000704" XYZ="319.7832, 301.8904, -256.9772" Radius="10" QuestId="66437" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66437) == 2">
+						<GetTo ZoneId="155" XYZ="424.4906, 328.2977, -394.4915"/>
+						<!-- Destination -->
+						<UseItem NpcId="2002125" ItemId="2000705" XYZ="424.4906, 328.2977, -394.4915" Radius="10" QuestId="66437" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66437) == 3">
+						<GetTo ZoneId="155" XYZ="408.7434, 325.4901, -396.6583"/>
+						<!-- Destination -->
+						<UseObject NpcId="2002571" XYZ="408.7434, 325.4901, -396.6583" Radius="10" QuestId="66437" StepId="3"/>
+					</If>
+					<If Condition="GetQuestStep(66437) == 4">
+						<GetTo ZoneId="155" XYZ="424.5212, 329.0912, -394.522"/>
+						<!-- Sebastian's Bonds -->
+						<UseObject NpcId="2002686" XYZ="424.5212, 329.0912, -394.522" Radius="10" QuestId="66437" StepId="4"/>
+					</If>
+					<If Condition="GetQuestStep(66437) == 255">
+						<GetTo ZoneId="155" XYZ="257.8011, 303.1581, -204.4252"/>
+						<!-- Yaelle -->
+						<TurnIn QuestId="66437" NpcId="1006401" XYZ="257.8011, 303.1581, -204.4252"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Burn Before Reading -->
-		<If Condition="not IsQuestCompleted(66452)">
-			<If Condition="not HasQuest(66452)">
-				<GetTo ZoneId="155" XYZ="202.8076, 309.0734, -220.6913"/>
-				<!-- Eugennoix -->
-				<If Condition="IsQuestAcceptQualified(66452)">
-					<PickupQuest NpcId="1006433" QuestId="66452" XYZ="202.8076, 309.0734, -220.6913"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66452)">
-				<If Condition="GetQuestStep(66452) == 1">
-					<GetTo ZoneId="155" XYZ="206.9256, 357.0694, -559.4581"/>
-					<!-- Worm-eaten Almanac -->
-					<Dismount/>
-					<UseObject NpcId="2002152" XYZ="193.4386, 358.1139, -567.4983" Radius="10" QuestId="66452" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66452) == 255">
+			<!-- Burn Before Reading -->
+			<If Condition="not IsQuestCompleted(66452)">
+				<If Condition="not HasQuest(66452)">
 					<GetTo ZoneId="155" XYZ="202.8076, 309.0734, -220.6913"/>
 					<!-- Eugennoix -->
-					<TurnIn QuestId="66452" NpcId="1006433" ItemId="2000719" XYZ="202.8076, 309.0734, -220.6913"/>
+					<If Condition="IsQuestAcceptQualified(66452)">
+						<PickupQuest NpcId="1006433" QuestId="66452" XYZ="202.8076, 309.0734, -220.6913"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66452)">
+					<If Condition="GetQuestStep(66452) == 1">
+						<GetTo ZoneId="155" XYZ="206.9256, 357.0694, -559.4581"/>
+						<!-- Worm-eaten Almanac -->
+						<Dismount/>
+						<UseObject NpcId="2002152" XYZ="193.4386, 358.1139, -567.4983" Radius="10" QuestId="66452" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66452) == 255">
+						<GetTo ZoneId="155" XYZ="202.8076, 309.0734, -220.6913"/>
+						<!-- Eugennoix -->
+						<TurnIn QuestId="66452" NpcId="1006433" ItemId="2000719" XYZ="202.8076, 309.0734, -220.6913"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Where's My Juice -->
-		<If Condition="not IsQuestCompleted(66454)">
-			<If Condition="not HasQuest(66454)">
-				<GetTo ZoneId="155" XYZ="265.0948, 313.7561, -252.2469"/>
-				<!-- Edwyn -->
-				<If Condition="IsQuestAcceptQualified(66454)">
-					<PickupQuest NpcId="1006436" QuestId="66454" XYZ="265.0948, 313.7561, -252.2469"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66454)">
-				<If Condition="GetQuestStep(66454) == 255">
-					<GetTo ZoneId="131" XYZ="138.3588, 4, -58.75545"/>
-					<!-- Syntgoht -->
-					<RunCode Name="Wheres_My_Juice"/>
-					<TurnIn QuestId="66454" NpcId="1001679" XYZ="137.5945,4,-58.5603"/>
-				</If>
-			</If>
-		</If>
-		<!-- Hold for Customer Support -->
-		<If Condition="not IsQuestCompleted(66455)">
-			<If Condition="not HasQuest(66455)">
-				<GetTo ZoneId="131" XYZ="138.3588, 4, -58.75545"/>
-				<!-- Syntgoht -->
-				<If Condition="IsQuestAcceptQualified(66455)">
-					<PickupQuest NpcId="1001679" QuestId="66455" XYZ="137.5945,4,-58.5603"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66455)">
-				<If Condition="GetQuestStep(66455) == 255">
-					<GetTo ZoneId="147" XYZ="-28.88544, 6.984501, 480.2776"/>
-					<!-- Papawazu -->
-					<TurnIn QuestId="66455" NpcId="1006438" XYZ="-28.88544, 6.984501, 480.2776"/>
-				</If>
-			</If>
-		</If>
-		<!-- Thieves and Robbers -->
-		<If Condition="not IsQuestCompleted(66456)">
-			<If Condition="not HasQuest(66456)">
-				<GetTo ZoneId="147" XYZ="-28.88544, 6.984501, 480.2776"/>
-				<!-- Papawazu -->
-				<If Condition="IsQuestAcceptQualified(66456)">
-					<PickupQuest NpcId="1006438" QuestId="66456" XYZ="-28.88544, 6.984501, 480.2776"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66456)">
-				<If Condition="GetQuestStep(66456) == 1">
-					<GetTo ZoneId="147" XYZ="-40.84845, 3.789374, 428.8549"/>
-					<!-- Spirited Porter -->
-					<EmoteNPC NpcId="1006718" Emote="doubt" XYZ="-40.84845, 3.789374, 428.8549" Radius="10" QuestId="66456" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66456) == 2">
-					<GetTo ZoneId="147" XYZ="-44.02228, 5.020142, 417.9902"/>
-					<!-- Processed Ceruleum -->
-					<UseObject NpcIds="2002153,2002154,2002155" QuestId="66456" StepId="2">
-						<HotSpots>
-							<HotSpot XYZ="-44.02228, 5.020142, 417.9902" Radius="10"/>
-							<HotSpot XYZ="-27.02374, 5.172791, 411.9783" Radius="10"/>
-							<HotSpot XYZ="-26.01666, 5.264343, 423.9718" Radius="10"/>
-						</HotSpots>
-					</UseObject>
-				</If>
-				<If Condition="GetQuestStep(66456) == 3">
-					<GetTo ZoneId="147" XYZ="-40.84845, 3.789374, 428.8549"/>
-					<!-- Spirited Porter -->
-					<TalkTo NpcId="1006718" XYZ="-40.84845, 3.789374, 428.8549" QuestId="66456" StepId="3"/>
-				</If>
-				<If Condition="GetQuestStep(66456) == 255">
-					<GetTo ZoneId="147" XYZ="-28.88544, 6.984501, 480.2776"/>
-					<!-- Papawazu -->
-					<TurnIn QuestId="66456" NpcId="1006438" XYZ="-28.88544, 6.984501, 480.2776"/>
-				</If>
-			</If>
-		</If>
-		<!-- The Ceruleum Must Flow -->
-		<If Condition="not IsQuestCompleted(66458)">
-			<If Condition="not HasQuest(66458)">
-				<GetTo ZoneId="147" XYZ="-28.88544, 6.984501, 480.2776"/>
-				<!-- Papawazu -->
-				<If Condition="IsQuestAcceptQualified(66458)">
-					<PickupQuest NpcId="1006438" QuestId="66458" XYZ="-28.88544, 6.984501, 480.2776"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66458)">
-				<If Condition="GetQuestStep(66458) == 255">
-					<GetTo ZoneId="131" XYZ="138.3588, 4, -58.75545"/>
-					<!-- Syntgoht -->
-					<TurnIn QuestId="66458" NpcId="1001679" XYZ="137.5945,4,-58.5603"/>
-				</If>
-			</If>
-		</If>
-		<!-- Dishonor Before Death -->
-		<If Condition="not IsQuestCompleted(66457)">
-			<If Condition="not HasQuest(66457)">
-				<GetTo ZoneId="131" XYZ="140.3982, 4, -54.1543"/>
-				<!-- Sibold -->
-				<If Condition="IsQuestAcceptQualified(66457)">
-					<PickupQuest NpcId="1006440" QuestId="66457" XYZ="140.3982, 4, -54.1543"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66457)">
-				<If Condition="GetQuestStep(66457) == 1">
-					<GetTo ZoneId="141" XYZ="-276.6003, -3.799561, -368.7648"/>
-					<!-- Destination -->
-					<UseItem NpcId="2001019" ItemId="2000715" XYZ="-276.6003, -3.799561, -368.7648" Radius="10" QuestId="66457" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66457) == 255">
-					<GetTo ZoneId="141" XYZ="-282.887, -5.987557, -372.6406"/>
-					<!-- Norman -->
-					<TurnIn QuestId="66457" NpcId="1007818" XYZ="-282.887, -5.987557, -372.6406"/>
-				</If>
-			</If>
-		</If>
-		<!-- A Tale of Three Cities -->
-		<If Condition="not IsQuestCompleted(66459)">
-			<If Condition="not HasQuest(66459)">
-				<GetTo ZoneId="131" XYZ="138.3588, 4, -58.75545"/>
-				<!-- Syntgoht -->
-				<If Condition="IsQuestAcceptQualified(66459)">
-					<PickupQuest NpcId="1001679" QuestId="66459" XYZ="137.5945,4,-58.5603"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66459)">
-				<If Condition="GetQuestStep(66459) == 255">
+			<!-- Where's My Juice -->
+			<If Condition="not IsQuestCompleted(66454)">
+				<If Condition="not HasQuest(66454)">
 					<GetTo ZoneId="155" XYZ="265.0948, 313.7561, -252.2469"/>
 					<!-- Edwyn -->
-					<TurnIn QuestId="66459" NpcId="1006436" ItemId="2000852" XYZ="265.0948, 313.7561, -252.2469"/>
+					<If Condition="IsQuestAcceptQualified(66454)">
+						<PickupQuest NpcId="1006436" QuestId="66454" XYZ="265.0948, 313.7561, -252.2469"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66454)">
+					<If Condition="GetQuestStep(66454) == 255">
+						<GetTo ZoneId="131" XYZ="138.3588, 4, -58.75545"/>
+						<!-- Syntgoht -->
+						<RunCode Name="Wheres_My_Juice"/>
+						<TurnIn QuestId="66454" NpcId="1001679" XYZ="137.5945,4,-58.5603"/>
+					</If>
+				</If>
+			</If>
+			<!-- Hold for Customer Support -->
+			<If Condition="not IsQuestCompleted(66455)">
+				<If Condition="not HasQuest(66455)">
+					<GetTo ZoneId="131" XYZ="138.3588, 4, -58.75545"/>
+					<!-- Syntgoht -->
+					<If Condition="IsQuestAcceptQualified(66455)">
+						<PickupQuest NpcId="1001679" QuestId="66455" XYZ="137.5945,4,-58.5603"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66455)">
+					<If Condition="GetQuestStep(66455) == 255">
+						<GetTo ZoneId="147" XYZ="-28.88544, 6.984501, 480.2776"/>
+						<!-- Papawazu -->
+						<TurnIn QuestId="66455" NpcId="1006438" XYZ="-28.88544, 6.984501, 480.2776"/>
+					</If>
+				</If>
+			</If>
+			<!-- Thieves and Robbers -->
+			<If Condition="not IsQuestCompleted(66456)">
+				<If Condition="not HasQuest(66456)">
+					<GetTo ZoneId="147" XYZ="-28.88544, 6.984501, 480.2776"/>
+					<!-- Papawazu -->
+					<If Condition="IsQuestAcceptQualified(66456)">
+						<PickupQuest NpcId="1006438" QuestId="66456" XYZ="-28.88544, 6.984501, 480.2776"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66456)">
+					<If Condition="GetQuestStep(66456) == 1">
+						<GetTo ZoneId="147" XYZ="-40.84845, 3.789374, 428.8549"/>
+						<!-- Spirited Porter -->
+						<EmoteNPC NpcId="1006718" Emote="doubt" XYZ="-40.84845, 3.789374, 428.8549" Radius="10" QuestId="66456" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66456) == 2">
+						<GetTo ZoneId="147" XYZ="-44.02228, 5.020142, 417.9902"/>
+						<!-- Processed Ceruleum -->
+						<UseObject NpcIds="2002153,2002154,2002155" QuestId="66456" StepId="2">
+							<HotSpots>
+								<HotSpot XYZ="-44.02228, 5.020142, 417.9902" Radius="10"/>
+								<HotSpot XYZ="-27.02374, 5.172791, 411.9783" Radius="10"/>
+								<HotSpot XYZ="-26.01666, 5.264343, 423.9718" Radius="10"/>
+							</HotSpots>
+						</UseObject>
+					</If>
+					<If Condition="GetQuestStep(66456) == 3">
+						<GetTo ZoneId="147" XYZ="-40.84845, 3.789374, 428.8549"/>
+						<!-- Spirited Porter -->
+						<TalkTo NpcId="1006718" XYZ="-40.84845, 3.789374, 428.8549" QuestId="66456" StepId="3"/>
+					</If>
+					<If Condition="GetQuestStep(66456) == 255">
+						<GetTo ZoneId="147" XYZ="-28.88544, 6.984501, 480.2776"/>
+						<!-- Papawazu -->
+						<TurnIn QuestId="66456" NpcId="1006438" XYZ="-28.88544, 6.984501, 480.2776"/>
+					</If>
+				</If>
+			</If>
+			<!-- The Ceruleum Must Flow -->
+			<If Condition="not IsQuestCompleted(66458)">
+				<If Condition="not HasQuest(66458)">
+					<GetTo ZoneId="147" XYZ="-28.88544, 6.984501, 480.2776"/>
+					<!-- Papawazu -->
+					<If Condition="IsQuestAcceptQualified(66458)">
+						<PickupQuest NpcId="1006438" QuestId="66458" XYZ="-28.88544, 6.984501, 480.2776"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66458)">
+					<If Condition="GetQuestStep(66458) == 255">
+						<GetTo ZoneId="131" XYZ="138.3588, 4, -58.75545"/>
+						<!-- Syntgoht -->
+						<TurnIn QuestId="66458" NpcId="1001679" XYZ="137.5945,4,-58.5603"/>
+					</If>
+				</If>
+			</If>
+			<!-- Dishonor Before Death -->
+			<If Condition="not IsQuestCompleted(66457)">
+				<If Condition="not HasQuest(66457)">
+					<GetTo ZoneId="131" XYZ="140.3982, 4, -54.1543"/>
+					<!-- Sibold -->
+					<If Condition="IsQuestAcceptQualified(66457)">
+						<PickupQuest NpcId="1006440" QuestId="66457" XYZ="140.3982, 4, -54.1543"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66457)">
+					<If Condition="GetQuestStep(66457) == 1">
+						<GetTo ZoneId="141" XYZ="-276.6003, -3.799561, -368.7648"/>
+						<!-- Destination -->
+						<UseItem NpcId="2001019" ItemId="2000715" XYZ="-276.6003, -3.799561, -368.7648" Radius="10" QuestId="66457" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66457) == 255">
+						<GetTo ZoneId="141" XYZ="-282.887, -5.987557, -372.6406"/>
+						<!-- Norman -->
+						<TurnIn QuestId="66457" NpcId="1007818" XYZ="-282.887, -5.987557, -372.6406"/>
+					</If>
+				</If>
+			</If>
+			<!-- A Tale of Three Cities -->
+			<If Condition="not IsQuestCompleted(66459)">
+				<If Condition="not HasQuest(66459)">
+					<GetTo ZoneId="131" XYZ="138.3588, 4, -58.75545"/>
+					<!-- Syntgoht -->
+					<If Condition="IsQuestAcceptQualified(66459)">
+						<PickupQuest NpcId="1001679" QuestId="66459" XYZ="137.5945,4,-58.5603"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66459)">
+					<If Condition="GetQuestStep(66459) == 255">
+						<GetTo ZoneId="155" XYZ="265.0948, 313.7561, -252.2469"/>
+						<!-- Edwyn -->
+						<TurnIn QuestId="66459" NpcId="1006436" ItemId="2000852" XYZ="265.0948, 313.7561, -252.2469"/>
+					</If>
 				</If>
 			</If>
 		</If>
