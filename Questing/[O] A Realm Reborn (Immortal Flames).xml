@@ -13342,25 +13342,27 @@
 				</If>
 			</If>
 		</If>
-		<!-- Put a Cork in It -->
-		<If Condition="not IsQuestCompleted(66378)">
-			<If Condition="not HasQuest(66378)">
-				<GetTo ZoneId="137" XYZ="-25.86407, 71.75401, -36.78955"/>
-				<!-- Byrglaent -->
-				<If Condition="IsQuestAcceptQualified(66378)">
-					<PickupQuest NpcId="1006306" QuestId="66378" XYZ="-25.86407, 71.75401, -36.78955"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66378)">
-				<If Condition="GetQuestStep(66378) == 1">
-					<GetTo ZoneId="137" XYZ="-125.2921, 43.05314, 188.899"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Put_a_Cork_in_It" while="HasQuest(66378) and GetQuestStep(66378) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66378) == 255">
+		<If Condition="Core.Player.ClassLevel &lt; 33">
+			<!-- Put a Cork in It -->
+			<If Condition="not IsQuestCompleted(66378)">
+				<If Condition="not HasQuest(66378)">
 					<GetTo ZoneId="137" XYZ="-25.86407, 71.75401, -36.78955"/>
 					<!-- Byrglaent -->
-					<TurnIn QuestId="66378" NpcId="1006306" ItemId="2000654" XYZ="-25.86407, 71.75401, -36.78955"/>
+					<If Condition="IsQuestAcceptQualified(66378)">
+						<PickupQuest NpcId="1006306" QuestId="66378" XYZ="-25.86407, 71.75401, -36.78955"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66378)">
+					<If Condition="GetQuestStep(66378) == 1">
+						<GetTo ZoneId="137" XYZ="-125.2921, 43.05314, 188.899"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Put_a_Cork_in_It" while="HasQuest(66378) and GetQuestStep(66378) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66378) == 255">
+						<GetTo ZoneId="137" XYZ="-25.86407, 71.75401, -36.78955"/>
+						<!-- Byrglaent -->
+						<TurnIn QuestId="66378" NpcId="1006306" ItemId="2000654" XYZ="-25.86407, 71.75401, -36.78955"/>
+					</If>
 				</If>
 			</If>
 		</If>
