@@ -17391,156 +17391,158 @@
 		<!-- LEVEL 43 -->
 		<!-- ######## -->
 		<LogMessage Message="[A Realm Reborn] Checking level 43 quests..."/>
-		<!-- Peace for Thanalan -->
-		<If Condition="not IsQuestCompleted(66753)">
-			<If Condition="not HasQuest(66753)">
-				<GetTo ZoneId="130" XYZ="-141.6495, 4.1, -114.6716"/>
-				<!-- Swift -->
-				<If Condition="IsQuestAcceptQualified(66753)">
-					<PickupQuest NpcId="1004576" QuestId="66753" XYZ="-141.6495, 4.1, -114.6716"/>
+		<If Condition="Core.Player.ClassLevel &lt; 44">
+			<!-- Peace for Thanalan -->
+			<If Condition="not IsQuestCompleted(66753)">
+				<If Condition="not HasQuest(66753)">
+					<GetTo ZoneId="130" XYZ="-141.6495, 4.1, -114.6716"/>
+					<!-- Swift -->
+					<If Condition="IsQuestAcceptQualified(66753)">
+						<PickupQuest NpcId="1004576" QuestId="66753" XYZ="-141.6495, 4.1, -114.6716"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66753)">
+					<If Condition="GetQuestStep(66753) == 1">
+						<GetTo ZoneId="146" XYZ="-181.0483, 28.21407, -402.0295"/>
+						<!-- Gisilbehrt -->
+						<TalkTo NpcId="1006217" XYZ="-181.0483, 28.21407, -402.0295" QuestId="66753" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66753) == 2">
+						<GetTo ZoneId="146" XYZ="90.95898, 9.994568, -460.4105"/>
+						<!-- Destination -->
+						<UseObject NpcId="2002919" XYZ="90.95898, 9.994568, -460.4105" Radius="10" QuestId="66753" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66753) == 255">
+						<GetTo ZoneId="146" XYZ="122.6062, 16.40265, -362.1119"/>
+						<!-- Hamujj Gah -->
+						<TurnIn QuestId="66753" NpcId="1005553" XYZ="122.6062, 16.40265, -362.1119"/>
+					</If>
 				</If>
 			</If>
-			<If Condition="HasQuest(66753)">
-				<If Condition="GetQuestStep(66753) == 1">
-					<GetTo ZoneId="146" XYZ="-181.0483, 28.21407, -402.0295"/>
-					<!-- Gisilbehrt -->
-					<TalkTo NpcId="1006217" XYZ="-181.0483, 28.21407, -402.0295" QuestId="66753" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66753) == 2">
-					<GetTo ZoneId="146" XYZ="90.95898, 9.994568, -460.4105"/>
-					<!-- Destination -->
-					<UseObject NpcId="2002919" XYZ="90.95898, 9.994568, -460.4105" Radius="10" QuestId="66753" StepId="2"/>
-				</If>
-				<If Condition="GetQuestStep(66753) == 255">
+			<!-- Brotherhood of Ash -->
+			<If Condition="not IsQuestCompleted(66754)">
+				<If Condition="not HasQuest(66754)">
 					<GetTo ZoneId="146" XYZ="122.6062, 16.40265, -362.1119"/>
 					<!-- Hamujj Gah -->
-					<TurnIn QuestId="66753" NpcId="1005553" XYZ="122.6062, 16.40265, -362.1119"/>
+					<If Condition="IsQuestAcceptQualified(66754)">
+						<PickupQuest NpcId="1005553" QuestId="66754" XYZ="122.6062, 16.40265, -362.1119"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66754)">
+					<If Condition="GetQuestStep(66754) == 1">
+						<GetTo ZoneId="146" XYZ="-268.5435, 4.745544, -77.16492"/>
+						<!-- Destination -->
+						<UseObject NpcId="2002931" XYZ="-268.5435, 4.745544, -77.16492" Radius="10" QuestId="66754" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66754) == 2">
+						<GetTo ZoneId="146" XYZ="-262.3789, 4.44912, -75.79156"/>
+						<!-- Skittish Salesman -->
+						<TalkTo NpcId="1005579" XYZ="-262.3789, 4.44912, -75.79156" QuestId="66754" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66754) == 3">
+						<GetTo ZoneId="146" XYZ="89.00586, 14.43948, -387.7775"/>
+						<!-- Loonh Gah -->
+						<TalkTo NpcId="1005578" XYZ="89.00586, 14.43948, -387.7775" QuestId="66754" StepId="3"/>
+					</If>
+					<If Condition="GetQuestStep(66754) == 255">
+						<GetTo ZoneId="146" XYZ="122.6062, 16.40265, -362.1119"/>
+						<!-- Hamujj Gah -->
+						<TurnIn QuestId="66754" NpcId="1005553" XYZ="122.6062, 16.40265, -362.1119"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Brotherhood of Ash -->
-		<If Condition="not IsQuestCompleted(66754)">
-			<If Condition="not HasQuest(66754)">
-				<GetTo ZoneId="146" XYZ="122.6062, 16.40265, -362.1119"/>
-				<!-- Hamujj Gah -->
-				<If Condition="IsQuestAcceptQualified(66754)">
-					<PickupQuest NpcId="1005553" QuestId="66754" XYZ="122.6062, 16.40265, -362.1119"/>
+			<!-- Adventurer for Hire -->
+			<If Condition="not IsQuestCompleted(66505)">
+				<If Condition="not HasQuest(66505)">
+					<GetTo ZoneId="133" XYZ="-140.3983, 7.898616, -142.9924"/>
+					<!-- Selaine -->
+					<If Condition="IsQuestAcceptQualified(66505)">
+						<PickupQuest NpcId="1006711" QuestId="66505" XYZ="-140.3983, 7.898616, -142.9924"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66505)">
+					<If Condition="GetQuestStep(66505) == 255">
+						<GetTo ZoneId="152" XYZ="5.722107, -7.278625, 270.9545"/>
+						<!-- Jeulerand -->
+						<TurnIn QuestId="66505" NpcId="1000617" ItemId="2000950" XYZ="5.722107, -7.278625, 270.9545"/>
+					</If>
 				</If>
 			</If>
-			<If Condition="HasQuest(66754)">
-				<If Condition="GetQuestStep(66754) == 1">
-					<GetTo ZoneId="146" XYZ="-268.5435, 4.745544, -77.16492"/>
-					<!-- Destination -->
-					<UseObject NpcId="2002931" XYZ="-268.5435, 4.745544, -77.16492" Radius="10" QuestId="66754" StepId="1"/>
-				</If>
-				<If Condition="GetQuestStep(66754) == 2">
-					<GetTo ZoneId="146" XYZ="-262.3789, 4.44912, -75.79156"/>
-					<!-- Skittish Salesman -->
-					<TalkTo NpcId="1005579" XYZ="-262.3789, 4.44912, -75.79156" QuestId="66754" StepId="2"/>
-				</If>
-				<If Condition="GetQuestStep(66754) == 3">
-					<GetTo ZoneId="146" XYZ="89.00586, 14.43948, -387.7775"/>
-					<!-- Loonh Gah -->
-					<TalkTo NpcId="1005578" XYZ="89.00586, 14.43948, -387.7775" QuestId="66754" StepId="3"/>
-				</If>
-				<If Condition="GetQuestStep(66754) == 255">
-					<GetTo ZoneId="146" XYZ="122.6062, 16.40265, -362.1119"/>
-					<!-- Hamujj Gah -->
-					<TurnIn QuestId="66754" NpcId="1005553" XYZ="122.6062, 16.40265, -362.1119"/>
-				</If>
-			</If>
-		</If>
-		<!-- Adventurer for Hire -->
-		<If Condition="not IsQuestCompleted(66505)">
-			<If Condition="not HasQuest(66505)">
-				<GetTo ZoneId="133" XYZ="-140.3983, 7.898616, -142.9924"/>
-				<!-- Selaine -->
-				<If Condition="IsQuestAcceptQualified(66505)">
-					<PickupQuest NpcId="1006711" QuestId="66505" XYZ="-140.3983, 7.898616, -142.9924"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66505)">
-				<If Condition="GetQuestStep(66505) == 255">
+			<!-- Some Seedy Business -->
+			<If Condition="not IsQuestCompleted(66506)">
+				<If Condition="not HasQuest(66506)">
 					<GetTo ZoneId="152" XYZ="5.722107, -7.278625, 270.9545"/>
 					<!-- Jeulerand -->
-					<TurnIn QuestId="66505" NpcId="1000617" ItemId="2000950" XYZ="5.722107, -7.278625, 270.9545"/>
+					<If Condition="IsQuestAcceptQualified(66506)">
+						<PickupQuest NpcId="1000617" QuestId="66506" XYZ="5.722107, -7.278625, 270.9545"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66506)">
+					<If Condition="GetQuestStep(66506) == 1">
+						<GetTo ZoneId="152" XYZ="-7.248047, -8.407776, 268.2383"/>
+						<!-- Dellexia -->
+						<HandOver ItemId="2000749" QuestId="66506" StepId="1" NpcId="1000587" XYZ="-7.248047, -8.407776, 268.2383"/>
+					</If>
+					<If Condition="GetQuestStep(66506) == 2">
+						<GetTo ZoneId="152" XYZ="233.6614, 6.42395, 199.1149"/>
+						<!-- Sylvan Lily Seed -->
+						<UseObject NpcIds="2002190,2002191,2002192" UseDistance="4" QuestId="66506" StepId="2">
+							<HotSpots>
+								<HotSpot XYZ="233.6614, 6.42395, 199.1149" Radius="10"/>
+								<HotSpot XYZ="189.6543, 7.94989, 133.6537" Radius="10"/>
+								<HotSpot XYZ="181.0482, 0.07623291, 43.28979" Radius="10"/>
+							</HotSpots>
+						</UseObject>
+					</If>
+					<If Condition="GetQuestStep(66506) == 255">
+						<GetTo ZoneId="152" XYZ="-170.6722, 56.71352, -255.9701"/>
+						<!-- Kain -->
+						<TurnIn QuestId="66506" NpcId="1006715" ItemId="2000750" XYZ="-170.6722, 56.71352, -255.9701"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- Some Seedy Business -->
-		<If Condition="not IsQuestCompleted(66506)">
-			<If Condition="not HasQuest(66506)">
-				<GetTo ZoneId="152" XYZ="5.722107, -7.278625, 270.9545"/>
-				<!-- Jeulerand -->
-				<If Condition="IsQuestAcceptQualified(66506)">
-					<PickupQuest NpcId="1000617" QuestId="66506" XYZ="5.722107, -7.278625, 270.9545"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66506)">
-				<If Condition="GetQuestStep(66506) == 1">
-					<GetTo ZoneId="152" XYZ="-7.248047, -8.407776, 268.2383"/>
-					<!-- Dellexia -->
-					<HandOver ItemId="2000749" QuestId="66506" StepId="1" NpcId="1000587" XYZ="-7.248047, -8.407776, 268.2383"/>
-				</If>
-				<If Condition="GetQuestStep(66506) == 2">
-					<GetTo ZoneId="152" XYZ="233.6614, 6.42395, 199.1149"/>
-					<!-- Sylvan Lily Seed -->
-					<UseObject NpcIds="2002190,2002191,2002192" UseDistance="4" QuestId="66506" StepId="2">
-						<HotSpots>
-							<HotSpot XYZ="233.6614, 6.42395, 199.1149" Radius="10"/>
-							<HotSpot XYZ="189.6543, 7.94989, 133.6537" Radius="10"/>
-							<HotSpot XYZ="181.0482, 0.07623291, 43.28979" Radius="10"/>
-						</HotSpots>
-					</UseObject>
-				</If>
-				<If Condition="GetQuestStep(66506) == 255">
+			<!-- This One's for the Lovers -->
+			<If Condition="not IsQuestCompleted(66508)">
+				<If Condition="not HasQuest(66508)">
 					<GetTo ZoneId="152" XYZ="-170.6722, 56.71352, -255.9701"/>
 					<!-- Kain -->
-					<TurnIn QuestId="66506" NpcId="1006715" ItemId="2000750" XYZ="-170.6722, 56.71352, -255.9701"/>
+					<If Condition="IsQuestAcceptQualified(66508)">
+						<PickupQuest NpcId="1006715" QuestId="66508" XYZ="-170.6722, 56.71352, -255.9701"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66508)">
+					<If Condition="GetQuestStep(66508) == 1">
+						<GetTo ZoneId="152" XYZ="-183.5814, 57.45181, -144.7319"/>
+						<!-- Nervy Nipper -->
+						<HandOver ItemId="2000865" QuestId="66508" StepId="1" NpcId="1007568" XYZ="-183.5814, 57.45181, -144.7319"/>
+					</If>
+					<If Condition="GetQuestStep(66508) == 255">
+						<GetTo ZoneId="152" XYZ="-170.6722, 56.71352, -255.9701"/>
+						<!-- Kain -->
+						<TurnIn QuestId="66508" NpcId="1006715" XYZ="-170.6722, 56.71352, -255.9701"/>
+					</If>
 				</If>
 			</If>
-		</If>
-		<!-- This One's for the Lovers -->
-		<If Condition="not IsQuestCompleted(66508)">
-			<If Condition="not HasQuest(66508)">
-				<GetTo ZoneId="152" XYZ="-170.6722, 56.71352, -255.9701"/>
-				<!-- Kain -->
-				<If Condition="IsQuestAcceptQualified(66508)">
-					<PickupQuest NpcId="1006715" QuestId="66508" XYZ="-170.6722, 56.71352, -255.9701"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66508)">
-				<If Condition="GetQuestStep(66508) == 1">
-					<GetTo ZoneId="152" XYZ="-183.5814, 57.45181, -144.7319"/>
-					<!-- Nervy Nipper -->
-					<HandOver ItemId="2000865" QuestId="66508" StepId="1" NpcId="1007568" XYZ="-183.5814, 57.45181, -144.7319"/>
-				</If>
-				<If Condition="GetQuestStep(66508) == 255">
-					<GetTo ZoneId="152" XYZ="-170.6722, 56.71352, -255.9701"/>
-					<!-- Kain -->
-					<TurnIn QuestId="66508" NpcId="1006715" XYZ="-170.6722, 56.71352, -255.9701"/>
-				</If>
-			</If>
-		</If>
-		<!-- Windy Wedding -->
-		<If Condition="not IsQuestCompleted(66509)">
-			<If Condition="not HasQuest(66509)">
-				<GetTo ZoneId="152" XYZ="-236.2555, 51.49915, -193.1335"/>
-				<!-- Elfleda -->
-				<If Condition="IsQuestAcceptQualified(66509)">
-					<PickupQuest NpcId="1006717" QuestId="66509" XYZ="-236.2555, 51.49915, -193.1335"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66509)">
-				<If Condition="GetQuestStep(66509) == 1">
-					<GetTo ZoneId="152" XYZ="24.09139, 17.8057, -1.862859"/>
-					<!-- Grinding Area -->
-					<Grind grindRef="Windy_Wedding" while="HasQuest(66509) and GetQuestStep(66509) == 1"/>
-				</If>
-				<If Condition="GetQuestStep(66509) == 255">
+			<!-- Windy Wedding -->
+			<If Condition="not IsQuestCompleted(66509)">
+				<If Condition="not HasQuest(66509)">
 					<GetTo ZoneId="152" XYZ="-236.2555, 51.49915, -193.1335"/>
 					<!-- Elfleda -->
-					<TurnIn QuestId="66509" NpcId="1006717" ItemId="2000751" XYZ="-236.2555, 51.49915, -193.1335"/>
+					<If Condition="IsQuestAcceptQualified(66509)">
+						<PickupQuest NpcId="1006717" QuestId="66509" XYZ="-236.2555, 51.49915, -193.1335"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66509)">
+					<If Condition="GetQuestStep(66509) == 1">
+						<GetTo ZoneId="152" XYZ="24.09139, 17.8057, -1.862859"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Windy_Wedding" while="HasQuest(66509) and GetQuestStep(66509) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66509) == 255">
+						<GetTo ZoneId="152" XYZ="-236.2555, 51.49915, -193.1335"/>
+						<!-- Elfleda -->
+						<TurnIn QuestId="66509" NpcId="1006717" ItemId="2000751" XYZ="-236.2555, 51.49915, -193.1335"/>
+					</If>
 				</If>
 			</If>
 		</If>
