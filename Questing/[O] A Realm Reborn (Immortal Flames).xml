@@ -18246,6 +18246,38 @@
 			</If>
 		</If>
 		<If Condition="Core.Player.ClassLevel &lt; 49">
+			<!-- Passing the Smell Test -->
+			<If Condition="not IsQuestCompleted(66533)">
+				<If Condition="not HasQuest(66533)">
+					<GetTo ZoneId="156" XYZ="30.62488, 21.25268, -643.5798"/>
+					<!-- Aganbold -->
+					<If Condition="IsQuestAcceptQualified(66533)">
+						<PickupQuest NpcId="1006542" QuestId="66533" XYZ="30.62488, 21.25268, -643.5798"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66533)">
+					<If Condition="GetQuestStep(66533) == 1">
+						<GetTo ZoneId="156" XYZ="-317.2148, -17.11894, -451.7776"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Passing_the_Smell_Test" while="HasQuest(66533) and GetQuestStep(66533) == 1"/>
+					</If>
+					<If Condition="GetQuestStep(66533) == 2">
+						<GetTo ZoneId="156" XYZ="30.62488, 21.25268, -643.5798"/>
+						<!-- Aganbold -->
+						<TalkTo NpcId="1006542" XYZ="30.62488, 21.25268, -643.5798" QuestId="66533" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66533) == 3">
+						<GetTo ZoneId="156" XYZ="-287.007, -16.9223, -361.2574"/>
+						<!-- Destination -->
+						<UseObject NpcId="2002213" XYZ="-287.007, -16.9223, -361.2574" Radius="10" QuestId="66533" StepId="3"/>
+					</If>
+					<If Condition="GetQuestStep(66533) == 255">
+						<GetTo ZoneId="156" XYZ="30.62488, 21.25268, -643.5798"/>
+						<!-- Aganbold -->
+						<TurnIn QuestId="66533" NpcId="1006542" XYZ="30.62488, 21.25268, -643.5798"/>
+					</If>
+				</If>
+			</If>
 			<!-- The Trickster of the Toll -->
 			<If Condition="not IsQuestCompleted(66535)">
 				<If Condition="not HasQuest(66535)">
@@ -19224,6 +19256,35 @@
 					</If>
 				</If>
 			</If>
+			<!-- Honor the Fallen -->
+			<If Condition="not IsQuestCompleted(66554)">
+				<If Condition="not HasQuest(66554)">
+					<GetTo ZoneId="180" XYZ="-110.155, 64.49942, -238.819"/>
+					<!-- F'majha -->
+					<If Condition="IsQuestAcceptQualified(66554)">
+						<PickupQuest NpcId="1006594" QuestId="66554" XYZ="-110.155, 64.49942, -238.819"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66554)">
+					<If Condition="GetQuestStep(66554) == 1">
+						<GetTo ZoneId="180" XYZ="8.895996, 48.50842, -308.217"/>
+						<!-- Mark of the Red Swallow -->
+						<UseObject NpcIds="2002566,2002567,2002568,2002569" QuestId="66554" StepId="1">
+							<HotSpots>
+								<HotSpot XYZ="8.895996, 48.50842, -308.217" Radius="10"/>
+								<HotSpot XYZ="-3.311279, 50.18689, -346.1204" Radius="10"/>
+								<HotSpot XYZ="39.4751, 48.66101, -345.7542" Radius="10"/>
+								<HotSpot XYZ="81.31531, 49.05774, -398.0927" Radius="10"/>
+							</HotSpots>
+						</UseObject>
+					</If>
+					<If Condition="GetQuestStep(66554) == 255">
+						<GetTo ZoneId="180" XYZ="-110.155, 64.49942, -238.819"/>
+						<!-- F'majha -->
+						<TurnIn QuestId="66554" NpcId="1006594" ItemId="2000775" XYZ="-110.155, 64.49942, -238.819"/>
+					</If>
+				</If>
+			</If>
 			<!-- Claiming the Booty -->
 			<If Condition="not IsQuestCompleted(66556)">
 				<If Condition="not HasQuest(66556)">
@@ -19252,35 +19313,6 @@
 						</If>
 						<MoveTo Name="Slafswys" XYZ="2.883911, -2.000001, -12.25305"/>
 						<TurnIn QuestId="66556" NpcId="1007487" XYZ="2.883911, -2.000001, -12.25305"/>
-					</If>
-				</If>
-			</If>
-			<!-- Honor the Fallen -->
-			<If Condition="not IsQuestCompleted(66554)">
-				<If Condition="not HasQuest(66554)">
-					<GetTo ZoneId="180" XYZ="-110.155, 64.49942, -238.819"/>
-					<!-- F'majha -->
-					<If Condition="IsQuestAcceptQualified(66554)">
-						<PickupQuest NpcId="1006594" QuestId="66554" XYZ="-110.155, 64.49942, -238.819"/>
-					</If>
-				</If>
-				<If Condition="HasQuest(66554)">
-					<If Condition="GetQuestStep(66554) == 1">
-						<GetTo ZoneId="180" XYZ="8.895996, 48.50842, -308.217"/>
-						<!-- Mark of the Red Swallow -->
-						<UseObject NpcIds="2002566,2002567,2002568,2002569" QuestId="66554" StepId="1">
-							<HotSpots>
-								<HotSpot XYZ="8.895996, 48.50842, -308.217" Radius="10"/>
-								<HotSpot XYZ="-3.311279, 50.18689, -346.1204" Radius="10"/>
-								<HotSpot XYZ="39.4751, 48.66101, -345.7542" Radius="10"/>
-								<HotSpot XYZ="81.31531, 49.05774, -398.0927" Radius="10"/>
-							</HotSpots>
-						</UseObject>
-					</If>
-					<If Condition="GetQuestStep(66554) == 255">
-						<GetTo ZoneId="180" XYZ="-110.155, 64.49942, -238.819"/>
-						<!-- F'majha -->
-						<TurnIn QuestId="66554" NpcId="1006594" ItemId="2000775" XYZ="-110.155, 64.49942, -238.819"/>
 					</If>
 				</If>
 			</If>
