@@ -18755,6 +18755,7 @@
 							<!-- Magitek Vanguard H-1 -->
 						</TargetMobs>
 					</SimpleDuty>
+					<WaitWhile Condition="not IsOnSubMap(421)"/>
 				</If>
 				<If Condition="GetQuestStep(66541) == 255">
 					<If Condition="not IsOnMap(156)">
@@ -18790,9 +18791,9 @@
 						<UseTransport Name="Workshop Exit" NpcId="2002502" InteractDistance="3.0" XYZ="0.7476196, -156.9391, 16.28131"/>
 					</If>
 					<BotSettings AutoEquip="0"/>
-					<If Condition="InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Head].RawItemId != 6223 or InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Body].RawItemId != 6224">
+					<While Condition="InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Head].RawItemId != 6223 or InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Body].RawItemId != 6224">
 						<RunCode Name="Escape_from_Castrum_Centri"/>
-					</If>
+					</While>
 					<GetTo ZoneId="156" XYZ="-358.2361, -16.24856, -481.1323"/>
 					<!-- Cid -->
 					<TalkTo NpcId="1007537" XYZ="-358.2361, -16.24856, -481.1323" QuestId="66057" StepId="1"/>
