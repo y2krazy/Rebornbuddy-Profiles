@@ -18149,6 +18149,102 @@
 		<If Condition="ClassName == ClassJobType.WhiteMage and (not IsQuestCompleted(66618) or not IsQuestCompleted(66619))">
 			<LoadProfile Path="[O] Class and Job Quests.xml"/>
 		</If>
+		<!-- Drowning Out the Voices -->
+		<If Condition="not IsQuestCompleted(66537)">
+			<If Condition="not HasQuest(66537)">
+				<GetTo ZoneId="156" XYZ="26.90161, 20.54392, -687.4037"/>
+				<!-- Cid -->
+				<If Condition="IsQuestAcceptQualified(66537)">
+					<PickupQuest NpcId="1006535" QuestId="66537" XYZ="26.90161, 20.54392, -687.4037"/>
+				</If>
+			</If>
+			<If Condition="HasQuest(66537)">
+				<While Condition="GetQuestStep(66537) == 1">
+					<GetTo ZoneId="156" XYZ="-171.5267, 4.013123, -655.787"/>
+					<!-- Prime Location -->
+					<UseItem NpcId="2002230" ItemId="2000766" XYZ="-171.5267, 4.013123, -655.787" Radius="10" UseTimes="1" QuestId="66537" StepId="1"/>
+					<UseItem NpcId="2002234" ItemId="2000766" XYZ="-216.8155, 5.691528, -637.4762" Radius="10" UseTimes="1" QuestId="66537" StepId="1"/>
+					<UseItem NpcId="2002233" ItemId="2000766" XYZ="-202.0753, 3.890991, -625.9099" Radius="10" UseTimes="1" QuestId="66537" StepId="1"/>
+					<UseItem NpcId="2002232" ItemId="2000766" XYZ="-146.9291, 0.4729614, -616.0525" Radius="10" UseTimes="1" QuestId="66537" StepId="1"/>
+					<MoveTo Name="Prime Location" Distance="1" XYZ="-154.6501, -0.1790416, -640.8011"/>
+					<MoveTo Name="Prime Location" Distance="1" UseMesh="False" XYZ="-159.5489, 2.520941, -635.6184"/>
+					<MoveTo Name="Prime Location" Distance="1" UseMesh="False" XYZ="-162.4342, 7.829698, -626.2077"/>
+					<MoveTo Name="Prime Location" Distance="1" UseMesh="False" XYZ="-167.1872, 12.7937, -614.0298"/>
+					<MoveTo Name="Prime Location" Distance="1" UseMesh="False" XYZ="-175.948, 10.04406, -605.6812"/>
+					<UseItem NpcId="2002231" ItemId="2000766" XYZ="-174.9142, 10.75757, -603.8148" Radius="10" QuestId="66537" StepId="1"/>
+					<MoveTo Name="Jump" Distance="1" UseMesh="False" XYZ="-162.5251, -2.65722, -600.072"/>
+				</While>
+				<If Condition="GetQuestStep(66537) == 255">
+					<GetTo ZoneId="156" XYZ="26.90161, 20.54392, -687.4037"/>
+					<!-- Cid -->
+					<TurnIn QuestId="66537" NpcId="1006535" ItemId="2000766" XYZ="26.90161, 20.54392, -687.4037"/>
+				</If>
+			</If>
+		</If>
+		<!-- Acting the Part -->
+		<If Condition="not IsQuestCompleted(66538)">
+			<If Condition="not HasQuest(66538)">
+				<GetTo ZoneId="156" XYZ="53.81848, 25.00952, -697.0779"/>
+				<!-- Glaumunt -->
+				<If Condition="IsQuestAcceptQualified(66538)">
+					<PickupQuest NpcId="1006531" QuestId="66538" XYZ="53.81848, 25.00952, -697.0779"/>
+				</If>
+			</If>
+			<If Condition="HasQuest(66538)">
+				<While Condition="GetQuestStep(66538) == 1">
+					<GetTo ZoneId="156" XYZ="-499.5816, -1.891596, -486.3689"/>
+					<!-- Destination -->
+					<Dismount/>
+					<UseObject NpcId="2002238" XYZ="-505.211, -1.968445, -467.4601" Radius="10" QuestId="66538" StepId="1"/>
+				</While>
+				<If Condition="GetQuestStep(66538) == 255">
+					<GetTo ZoneId="156" XYZ="53.81848, 25.00952, -697.0779"/>
+					<!-- Glaumunt -->
+					<TurnIn QuestId="66538" NpcId="1006531" XYZ="53.81848, 25.00952, -697.0779"/>
+				</If>
+			</If>
+		</If>
+		<!-- Dressed for Conquest -->
+		<If Condition="not IsQuestCompleted(69407)">
+			<If Condition="not HasQuest(69407)">
+				<GetTo ZoneId="156" XYZ="54.79517, 25.54827, -698.0544"/>
+				<!-- Sark Malark -->
+				<If Condition="IsQuestAcceptQualified(69407)">
+					<PickupQuest NpcId="1006552" QuestId="69407" XYZ="54.79517, 25.54827, -698.0544"/>
+				</If>
+			</If>
+			<If Condition="HasQuest(69407)">
+				<If Condition="GetQuestStep(69407) == 1">
+					<If Condition="not IsTodoChecked(69407, 1, 0)">
+						<GetTo ZoneId="156" XYZ="-468.7451, -7.353733, -449.2023"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Dressed_for_Conquest" while="not IsTodoChecked(69407, 1, 0)"/>
+					</If>
+					<If Condition="not IsTodoChecked(69407, 1, 1)">
+						<GetTo ZoneId="156" XYZ="-468.7451, -7.353733, -449.2023"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Dressed_for_Conquest2" while="not IsTodoChecked(69407, 1, 1)"/>
+					</If>
+				</If>
+				<If Condition="GetQuestStep(69407) == 2">
+					<GetTo ZoneId="156" XYZ="54.79517, 25.54827, -698.0544"/>
+					<!-- Sark Malark -->
+					<HandOver ItemId="2000767,2000768" QuestId="69407" StepId="2" NpcId="1006552" XYZ="54.79517, 25.54827, -698.0544"/>
+				</If>
+				<If Condition="GetQuestStep(69407) == 3">
+					<If Condition="not IsTodoChecked(69407, 3, 0)">
+						<GetTo ZoneId="156" XYZ="37.34294, 29, -795.4738"/>
+						<!-- Eginol -->
+						<HandOver ItemId="2003021,2003022" QuestId="69407" StepId="3" NpcId="1006988" XYZ="41.33667, 29, -795.4681"/>
+					</If>
+				</If>
+				<If Condition="GetQuestStep(69407) == 255">
+					<GetTo ZoneId="156" XYZ="54.79517, 25.54827, -698.0544"/>
+					<!-- Sark Malark -->
+					<TurnIn QuestId="69407" NpcId="1006552" ItemId="2000769,2000770" XYZ="54.79517, 25.54827, -698.0544"/>
+				</If>
+			</If>
+		</If>
 		<If Condition="Core.Player.ClassLevel &lt; 46">
 			<!-- The Trickster of the Toll -->
 			<If Condition="not IsQuestCompleted(66535)">
@@ -18490,107 +18586,6 @@
 		<!-- LEVEL 46 -->
 		<!-- ######## -->
 		<LogMessage Message="[A Realm Reborn] Checking level 46 quests..."/>
-		<!-- Acting the Part -->
-		<If Condition="not IsQuestCompleted(66538)">
-			<If Condition="not HasQuest(66538)">
-				<GetTo ZoneId="156" XYZ="53.81848, 25.00952, -697.0779"/>
-				<!-- Glaumunt -->
-				<If Condition="IsQuestAcceptQualified(66538)">
-					<PickupQuest NpcId="1006531" QuestId="66538" XYZ="53.81848, 25.00952, -697.0779"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66538)">
-				<While Condition="GetQuestStep(66538) == 1">
-					<GetTo ZoneId="156" XYZ="-499.5816, -1.891596, -486.3689"/>
-					<!-- Destination -->
-					<Dismount/>
-					<UseObject NpcId="2002238" XYZ="-505.211, -1.968445, -467.4601" Radius="10" QuestId="66538" StepId="1"/>
-				</While>
-				<If Condition="GetQuestStep(66538) == 255">
-					<GetTo ZoneId="156" XYZ="53.81848, 25.00952, -697.0779"/>
-					<!-- Glaumunt -->
-					<TurnIn QuestId="66538" NpcId="1006531" XYZ="53.81848, 25.00952, -697.0779"/>
-				</If>
-			</If>
-		</If>
-		<!-- Dressed for Conquest -->
-		<If Condition="not IsQuestCompleted(66539)">
-			<If Condition="not HasQuest(66539)">
-				<GetTo ZoneId="156" XYZ="54.79517, 25.54827, -698.0544"/>
-				<!-- Sark Malark -->
-				<If Condition="IsQuestAcceptQualified(66539)">
-					<PickupQuest NpcId="1006552" QuestId="66539" XYZ="54.79517, 25.54827, -698.0544"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66539)">
-				<If Condition="GetQuestStep(66539) == 1">
-					<If Condition="not IsTodoChecked(66539, 1, 0)">
-						<GetTo ZoneId="156" XYZ="-468.7451, -7.353733, -449.2023"/>
-						<!-- Grinding Area -->
-						<Grind grindRef="Dressed_for_Conquest" while="not IsTodoChecked(66539, 1, 0)"/>
-					</If>
-					<If Condition="not IsTodoChecked(66539, 1, 1)">
-						<GetTo ZoneId="156" XYZ="-468.7451, -7.353733, -449.2023"/>
-						<!-- Grinding Area -->
-						<Grind grindRef="Dressed_for_Conquest2" while="not IsTodoChecked(66539, 1, 1)"/>
-					</If>
-				</If>
-				<If Condition="GetQuestStep(66539) == 2">
-					<GetTo ZoneId="156" XYZ="54.79517, 25.54827, -698.0544"/>
-					<!-- Sark Malark -->
-					<HandOver ItemId="2000767,2000768" QuestId="66539" StepId="2" NpcId="1006552" XYZ="54.79517, 25.54827, -698.0544"/>
-				</If>
-				<If Condition="GetQuestStep(66539) == 3">
-					<If Condition="not IsTodoChecked(66539, 3, 0)">
-						<GetTo ZoneId="131" XYZ="142.7175, 7.500003, 94.19385"/>
-						<!-- Aethelwine -->
-						<HandOver ItemId="2000767" QuestId="66539" StepId="3" NpcId="1001685" XYZ="142.7175, 7.500003, 94.19385"/>
-					</If>
-					<If Condition="not IsTodoChecked(66539, 3, 1)">
-						<GetTo ZoneId="128" XYZ="-32.02869, 41.49999, 208.3923"/>
-						<!-- H'naanza -->
-						<HandOver ItemId="2000768" QuestId="66539" StepId="3" NpcId="1001000" XYZ="-32.02869, 41.49999, 208.3923"/>
-					</If>
-				</If>
-				<If Condition="GetQuestStep(66539) == 255">
-					<GetTo ZoneId="156" XYZ="54.79517, 25.54827, -698.0544"/>
-					<!-- Sark Malark -->
-					<TurnIn QuestId="66539" NpcId="1006552" ItemId="2000769,2000770" XYZ="54.79517, 25.54827, -698.0544"/>
-				</If>
-			</If>
-		</If>
-		<!-- Drowning Out the Voices -->
-		<If Condition="not IsQuestCompleted(66537)">
-			<If Condition="not HasQuest(66537)">
-				<GetTo ZoneId="156" XYZ="26.90161, 20.54392, -687.4037"/>
-				<!-- Cid -->
-				<If Condition="IsQuestAcceptQualified(66537)">
-					<PickupQuest NpcId="1006535" QuestId="66537" XYZ="26.90161, 20.54392, -687.4037"/>
-				</If>
-			</If>
-			<If Condition="HasQuest(66537)">
-				<While Condition="GetQuestStep(66537) == 1">
-					<GetTo ZoneId="156" XYZ="-171.5267, 4.013123, -655.787"/>
-					<!-- Prime Location -->
-					<UseItem NpcId="2002230" ItemId="2000766" XYZ="-171.5267, 4.013123, -655.787" Radius="10" UseTimes="1" QuestId="66537" StepId="1"/>
-					<UseItem NpcId="2002234" ItemId="2000766" XYZ="-216.8155, 5.691528, -637.4762" Radius="10" UseTimes="1" QuestId="66537" StepId="1"/>
-					<UseItem NpcId="2002233" ItemId="2000766" XYZ="-202.0753, 3.890991, -625.9099" Radius="10" UseTimes="1" QuestId="66537" StepId="1"/>
-					<UseItem NpcId="2002232" ItemId="2000766" XYZ="-146.9291, 0.4729614, -616.0525" Radius="10" UseTimes="1" QuestId="66537" StepId="1"/>
-					<MoveTo Name="Prime Location" Distance="1" XYZ="-154.6501, -0.1790416, -640.8011"/>
-					<MoveTo Name="Prime Location" Distance="1" UseMesh="False" XYZ="-159.5489, 2.520941, -635.6184"/>
-					<MoveTo Name="Prime Location" Distance="1" UseMesh="False" XYZ="-162.4342, 7.829698, -626.2077"/>
-					<MoveTo Name="Prime Location" Distance="1" UseMesh="False" XYZ="-167.1872, 12.7937, -614.0298"/>
-					<MoveTo Name="Prime Location" Distance="1" UseMesh="False" XYZ="-175.948, 10.04406, -605.6812"/>
-					<UseItem NpcId="2002231" ItemId="2000766" XYZ="-174.9142, 10.75757, -603.8148" Radius="10" QuestId="66537" StepId="1"/>
-					<MoveTo Name="Jump" Distance="1" UseMesh="False" XYZ="-162.5251, -2.65722, -600.072"/>
-				</While>
-				<If Condition="GetQuestStep(66537) == 255">
-					<GetTo ZoneId="156" XYZ="26.90161, 20.54392, -687.4037"/>
-					<!-- Cid -->
-					<TurnIn QuestId="66537" NpcId="1006535" ItemId="2000766" XYZ="26.90161, 20.54392, -687.4037"/>
-				</If>
-			</If>
-		</If>
 		<!-- Fool Me Twice -->
 		<If Condition="not IsQuestCompleted(66540)">
 			<If Condition="not HasQuest(66540)">
