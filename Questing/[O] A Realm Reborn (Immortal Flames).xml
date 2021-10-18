@@ -16796,7 +16796,7 @@
 				</If>
 			</If>
 		</If>
-		<If Condition="Core.Player.ClassLevel &lt; 42">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- All Due Precautions -->
 			<If Condition="not IsQuestCompleted(66490)">
 				<If Condition="not HasQuest(66490)">
@@ -16886,7 +16886,7 @@
 				</If>
 			</If>
 		</If>
-		<If Condition="Core.Player.ClassLevel &lt; 42">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Highway Robbery -->
 			<If Condition="not IsQuestCompleted(66856)">
 				<If Condition="not HasQuest(66856)">
@@ -17076,7 +17076,7 @@
 		<!-- LEVEL 42 -->
 		<!-- ######## -->
 		<LogMessage Message="[A Realm Reborn] Checking level 42 quests..."/>
-		<If Condition="Core.Player.ClassLevel &lt; 43">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Seeking Solace -->
 			<If Condition="not IsQuestCompleted(66788)">
 				<If Condition="not HasQuest(66788)">
@@ -17120,9 +17120,9 @@
 						<UseObject NpcId="2002864" XYZ="270.283, -0.2594604, 168.5359" Radius="10" QuestId="66789" StepId="1"/>
 					</If>
 					<If Condition="GetQuestStep(66789) == 2">
-						<GetTo ZoneId="152" XYZ="292.7748, -0.001534343, 145.1285"/>
+						<GetTo ZoneId="152" XYZ="296.1591, -1.066438, 147.5534"/>
 						<!-- Voyce -->
-						<TalkTo NpcId="1005570" XYZ="292.7748, -0.001534343, 145.1285" QuestId="66789" StepId="2"/>
+						<TalkTo NpcId="1005570" XYZ="296.1591, -1.066438, 147.5534" QuestId="66789" StepId="2"/>
 					</If>
 					<If Condition="GetQuestStep(66789) == 3">
 						<GetTo ZoneId="152" XYZ="22.47644, -6.21051, 252.552"/>
@@ -17229,10 +17229,17 @@
 				</If>
 			</If>
 		</If>
-		<If Condition="Core.Player.ClassLevel &lt; 43">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Sidequest: Grave Happenings -->
 			<If Condition="not IsQuestCompleted(66500)">
 				<If Condition="not HasQuest(66500)">
+					<If Condition="not IsOnMap(138)">
+						<GetTo ZoneId="138" XYZ="317.9521, -40.425, 374.1055"/>
+						<!-- Ferry Skipper -->
+					</If>
+					<If Condition="IsOnMap(138) and not (IsOnSubMap(461) or IsOnSubMap(173) or IsOnSubMap(228))">
+						<UseTransport Name="Ferry Skipper" NpcId="1003584" InteractDistance="3.5" XYZ="317.4333, -36.325, 352.8649" DialogOption="2"/>
+					</If>
 					<GetTo ZoneId="138" XYZ="-254.5358, -37.89772, 485.191"/>
 					<!-- Otan Yaratan -->
 					<If Condition="IsQuestAcceptQualified(66500)">
@@ -17391,7 +17398,7 @@
 		<!-- LEVEL 43 -->
 		<!-- ######## -->
 		<LogMessage Message="[A Realm Reborn] Checking level 43 quests..."/>
-		<If Condition="Core.Player.ClassLevel &lt; 44">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Peace for Thanalan -->
 			<If Condition="not IsQuestCompleted(66753)">
 				<If Condition="not HasQuest(66753)">
@@ -17719,7 +17726,7 @@
 				</If>
 			</If>
 		</If>
-		<If Condition="Core.Player.ClassLevel &lt; 45">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Fort of Fear -->
 			<If Condition="not IsQuestCompleted(66515)">
 				<If Condition="not HasQuest(66515)">
@@ -17877,7 +17884,7 @@
 				</If>
 			</If>
 		</If>
-		<If Condition="Core.Player.ClassLevel &lt; 45">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Doubt Truth to Be a Liar -->
 			<If Condition="not IsQuestCompleted(66521)">
 				<If Condition="not HasQuest(66521)">
@@ -17957,7 +17964,7 @@
 				</If>
 			</If>
 		</If>
-		<If Condition="Core.Player.ClassLevel &lt; 45">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Crazy about Crystals -->
 			<If Condition="not IsQuestCompleted(66524)">
 				<If Condition="not HasQuest(66524)">
@@ -22910,15 +22917,17 @@
 		</GrindArea>
 		<GrindArea name="To_Level_46_47_48_49_50">
 			<Hotspots>
-				<Hotspot Radius="90" XYZ="358.4799, -15.22239, -420.7379" name="World Mobs"/>
+				<Hotspot Radius="100" XYZ="358.4799, -15.22239, -420.7379" name="World Mobs"/>
+				<Hotspot Radius="90" XYZ="200.3374, -22.94278, -444.5216" name="World Mobs"/>
 			</Hotspots>
 			<TargetMobs>
-				<TargetMob Id="648" Weight="3000"/>
+				<TargetMob Id="648" Weight="1000"/>
 				<!-- Gigas Sozu -->
-				<TargetMob Id="647" Weight="2000"/>
+				<TargetMob Id="647" Weight="1000"/>
 				<!-- Gigas Shramana -->
 				<TargetMob Id="646" Weight="1000"/>
-				<!-- Gigas Bonze -->
+				<!-- Lake Cobra -->
+				<TargetMob Id="1851" Weight="1000"/>
 			</TargetMobs>
 			<MinLevel>44</MinLevel>
 			<MaxLevel>71</MaxLevel>
