@@ -17016,7 +17016,7 @@
 				</If>
 			</If>
 			<!-- Tresses in Distress -->
-			<If Condition="not IsQuestCompleted(66493)">
+			<If Condition="IsQuestCompleted(66287) and not IsQuestCompleted(66493)">
 				<If Condition="not HasQuest(66493)">
 					<GetTo ZoneId="145" XYZ="-67.27704, -20.29624, -3.006042"/>
 					<!-- Helmhart -->
@@ -19694,7 +19694,10 @@
 					<While Condition="GetQuestStep(66567) == 1">
 						<GetTo ZoneId="138" XYZ="26.56592, -10.28117, -83.39056"/>
 						<!-- Nortmoen -->
-						<HandOver ItemId="2000783" QuestId="66567" StepId="1" NpcId="1006626" XYZ="26.56592, -10.28117, -83.39056"/>
+						<If Condition="not IsTodoChecked(66567, 1, 0)">
+							<HandOver ItemId="2000783" QuestId="66567" StepId="1" NpcId="1006626" XYZ="26.56592, -10.28117, -83.39056"/>
+						</If>
+						<NoCombatMoveTo Name="Handover location" XYZ="-97.0932, -25.00205, 66.72766"/>
 						<HandOver ItemId="2000783" QuestId="66567" StepId="1" NpcId="1006627" XYZ="-97.0932, -25.00205, 66.72766"/>
 					</While>
 					<If Condition="GetQuestStep(66567) == 255">
@@ -19740,13 +19743,6 @@
 						<PickupQuest NpcId="1006627" QuestId="66570" XYZ="-97.0932, -25.00205, 66.72766"/>
 					</If>
 				</If>
-				<If Condition="HasQuest(66570)">
-					<If Condition="GetQuestStep(66570) == 255">
-						<GetTo ZoneId="138" XYZ="-97.0932, -25.00205, 66.72766"/>
-						<!-- Sthalrhet -->
-						<TurnIn QuestId="66570" NpcId="1006627" ItemId="2000848" XYZ="-97.0932, -25.00205, 66.72766"/>
-					</If>
-				</If>
 			</If>
 			<!-- Sea Wasp Run -->
 			<If Condition="not IsQuestCompleted(66569)">
@@ -19770,6 +19766,14 @@
 					</If>
 				</If>
 			</If>
+			<If Condition="HasQuest(66570)">
+				<If Condition="GetQuestStep(66570) == 255">
+					<GetTo ZoneId="138" XYZ="-97.0932, -25.00205, 66.72766"/>
+					<!-- Sthalrhet -->
+					<TurnIn QuestId="66570" NpcId="1006627" ItemId="2000848" XYZ="-97.0932, -25.00205, 66.72766"/>
+				</If>
+			</If>
+
 		</If>
 		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<LogMessage Message="[A Realm Reborn] You are not level 49 yet!"/>
