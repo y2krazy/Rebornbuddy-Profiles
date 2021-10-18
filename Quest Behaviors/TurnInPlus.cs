@@ -174,7 +174,7 @@ namespace ff14bot.NeoProfiles
 						)
 					)
                 ),
-				new Decorator(ret => QuestId == 66579 && Vector3.Distance(Core.Player.Location, XYZ) < InteractDistance && !actiontaken,
+				new Decorator(ret => QuestId == 69408 && Vector3.Distance(Core.Player.Location, XYZ) < InteractDistance && !actiontaken,
                     new Sequence(
 						new Action(r =>
 						{
