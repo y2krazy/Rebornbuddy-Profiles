@@ -20055,23 +20055,27 @@
 			<LoadProfile Path="[O] Class and Job Quests.xml"/>
 		</If>
 		<!-- Rock the Castrum -->
-		<If Condition="not IsQuestCompleted(66672)">
-			<If Condition="not HasQuest(66672)">
-				<GetTo ZoneId="147" XYZ="-294.8196, 88, -225.1774"/>
-				<!-- Raubahn -->
-				<If Condition="IsQuestAcceptQualified(66672)">
-					<PickupQuest NpcId="1006657" QuestId="66672" XYZ="-294.8196, 88, -225.1774"/>
+		<If Condition="not IsQuestCompleted(69409)">
+			<If Condition="not HasQuest(69409)">
+				<GetTo ZoneId="147" XYZ="-29.95355, 46.99734, 32.54749"/>
+				<!-- Edelstein -->
+				<If Condition="IsQuestAcceptQualified(69409)">
+					<PickupQuest NpcId="1006646" QuestId="69409" XYZ="-29.95355, 46.99734, 32.54749"/>
 				</If>
 			</If>
-			<If Condition="HasQuest(66672)">
-				<If Condition="GetQuestStep(66672) == 1">
+			<If Condition="HasQuest(69409)">
+				<If Condition="GetQuestStep(69409) == 1">
+					<GetTo ZoneId="147" XYZ="-294.8196, 88, -225.1774"/>
+					<TalkTo InteractDistance="3.0" QuestId="69409" StepId="1" NpcId="1006657" XYZ="-294.8196, 88, -225.1774"/>
+				</If>
+				<If Condition="GetQuestStep(69409) == 2">
 					<RunCode Name="Rock_the_Castrum"/>
 					<StopBot/>
 				</If>
-				<If Condition="GetQuestStep(66672) == 255">
+				<If Condition="GetQuestStep(69409) == 255">
 					<GetTo ZoneId="147" XYZ="-294.8196, 88, -225.1774"/>
 					<!-- Raubahn -->
-					<TurnIn QuestId="66672" NpcId="1006657" XYZ="-294.8196, 88, -225.1774"/>
+					<TurnIn QuestId="69409" NpcId="1006657" XYZ="-294.8196, 88, -225.1774"/>
 				</If>
 			</If>
 		</If>
@@ -20756,7 +20760,7 @@
 		</CodeChunk>
 		<CodeChunk Name="Rock_the_Castrum">
 			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(66672) == 1)
+                while (ConditionParser.GetQuestStep(69409) == 1)
                 {
                     System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
                     System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
