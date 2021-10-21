@@ -20125,7 +20125,15 @@
 			</If>
 			<If Condition="HasQuest(66642)">
 				<If Condition="GetQuestStep(66642) == 255">
-					<GetTo ZoneId="250" XYZ="0.01519775, 3.583684, -30.38074"/>
+					<If Condition="IsAetheryteKnown(55)">
+						<GetTo ZoneId="250" XYZ="0.05818227, 3.583684, -27.1002" />
+					</If>
+					<If Condition="not IsAetheryteKnown(55) and not IsOnMap(250)">
+						<GetTo ZoneId="135" XYZ="270.7103, 4.403121, 719.9968"/>
+						<UseTransport NpcId="1002484" InteractDistance="3.5" XYZ="270.7103, 4.403121, 719.9968"/>
+					</If>
+
+					<GetTo ZoneId="250" XYZ="0.05818227, 3.583684, -27.1002" />
 					<!-- Berkoeya Loetahlsyn -->
 					<TurnInPlus QuestId="66642" NpcId="1005184" XYZ="0.01519775, 3.583684, -30.38074"/>
 				</If>
