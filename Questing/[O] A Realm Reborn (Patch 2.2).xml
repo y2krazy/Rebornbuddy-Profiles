@@ -80,42 +80,33 @@
         </If>
 
         <!-- Still Waters -->
-        <If Condition="not IsQuestCompleted(66881)">
-            <If Condition="not HasQuest(66881)">
-                <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                    <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/> <!-- Rising Stones Entrance -->
-                </If>
-                <If Condition="IsOnMap(156)">
-                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
-                </If>
-                <If Condition="IsOnMap(351) and IsOnSubMap(481)">
-                    <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
-                </If>
-                <MoveTo Name="Minfilia" XYZ="1.022339, -1.995725, -45.79236"/>
-                <If Condition="IsQuestAcceptQualified(66881)">
-                    <PickupQuest NpcId="1007724" QuestId="66881" XYZ="1.022339, -1.995725, -45.79236"/>
+        <If Condition="not IsQuestCompleted(69415)">
+            <If Condition="not HasQuest(69415)">
+                <GetTo ZoneId="351" Name="Minfilia" XYZ="1.022339, -1.995725, -45.79236"/>
+                <If Condition="IsQuestAcceptQualified(69415)">
+                    <PickupQuest NpcId="1007724" QuestId="69415" XYZ="1.022339, -1.995725, -45.79236"/>
                 </If>
             </If>
-            <If Condition="HasQuest(66881)">
-                <If Condition="GetQuestStep(66881) == 1">
+            <If Condition="HasQuest(69415)">
+                <If Condition="GetQuestStep(69415) == 1">
                     <GetTo ZoneId="140" XYZ="79.60632, 46.311, -251.6976"/> <!-- Y'shtola -->
-                    <TalkTo NpcId="1008595" XYZ="79.60632, 46.311, -251.6976" QuestId="66881" StepId="1"/>
+                    <TalkTo NpcId="1008595" XYZ="79.60632, 46.311, -251.6976" QuestId="69415" StepId="1"/>
                 </If>
-                <If Condition="GetQuestStep(66881) == 2">
+                <If Condition="GetQuestStep(69415) == 2">
                     <GetTo ZoneId="140" XYZ="59.61694, 45.14532, -215.9"/> <!-- Fufulupa -->
-                    <TalkTo NpcId="1002058" XYZ="59.61694, 45.14532, -215.9" QuestId="66881" StepId="2"/>
+                    <TalkTo NpcId="1002058" XYZ="59.61694, 45.14532, -215.9" QuestId="69415" StepId="2"/>
                 </If>
-                <If Condition="GetQuestStep(66881) == 3">
+                <If Condition="GetQuestStep(69415) == 3">
                     <GetTo ZoneId="140" XYZ="79.60632, 46.311, -251.6976"/> <!-- Y'shtola -->
-                    <TalkTo NpcId="1008595" XYZ="79.60632, 46.311, -251.6976" QuestId="66881" StepId="3"/>
+                    <TalkTo NpcId="1008595" XYZ="79.60632, 46.311, -251.6976" QuestId="69415" StepId="3"/>
                 </If>
-                <If Condition="GetQuestStep(66881) == 4">
+                <If Condition="GetQuestStep(69415) == 4">
                     <GetTo ZoneId="145" XYZ="-204.7609, -28.56065, 322.1942"/> <!-- Thancred -->
-                    <TalkTo NpcId="1008596" XYZ="-204.7609, -28.56065, 322.1942" QuestId="66881" StepId="4"/>
+                    <TalkTo NpcId="1008596" XYZ="-204.7609, -28.56065, 322.1942" QuestId="69415" StepId="4"/>
                 </If>
-                <If Condition="GetQuestStep(66881) == 255">
+                <If Condition="GetQuestStep(69415) == 255">
                     <GetTo ZoneId="140" XYZ="57.66382, 45, -220.9354"/> <!-- Thancred -->
-                    <TurnIn QuestId="66881" NpcId="1008597" XYZ="57.66382, 45, -220.9354"/>
+                    <TurnIn QuestId="69415" NpcId="1008597" XYZ="57.66382, 45, -220.9354"/>
                 </If>
             </If>
         </If>
@@ -141,7 +132,10 @@
                     <TalkTo NpcId="1008598" XYZ="140.4592, 55.32161, -33.06635" QuestId="66882" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(66882) == 255">
-                    <GetTo ZoneId="140" XYZ="59.61694, 45.14532, -215.9"/> <!-- Fufulupa -->
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="59.61694, 45.14532, -215.9"/> <!-- Fufulupa -->
+                    </If>
+                    <FlyTo Land="True" XYZ="61.38591, 45.11074, -215.2206"/>
                     <TurnIn QuestId="66882" NpcId="1002058" XYZ="59.61694, 45.14532, -215.9"/>
                 </If>
             </If>
@@ -172,21 +166,21 @@
                     <TalkTo NpcId="1008608" XYZ="33.18835, 7.199998, -95.38416" QuestId="66883" StepId="4"/>
                 </If>
                 <If Condition="GetQuestStep(66883) == 5">
-                    <GetTo ZoneId="130" XYZ="21.07263, 7.45, -78.78235"/> <!-- Momodi -->
+                    <GetTo ZoneId="130" XYZ="22.01955, 6.999995, -81.78854"/> <!-- Momodi -->
                     <TalkTo NpcId="1001353" XYZ="21.07263, 7.45, -78.78235" QuestId="66883" StepId="5"/>
                 </If>
                 <If Condition="GetQuestStep(66883) == 6">
                     <If Condition="not IsTodoChecked(66883, 6, 0)">
-                        <GetTo ZoneId="131" XYZ="126.7262, 4.01, -83.84839"/> <!-- Fridurih -->
+                        <GetTo ZoneId="131" XYZ="124.0148, 3.999999, -82.22234"/> <!-- Fridurih -->
                         <HandOver ItemId="2001202" QuestId="66883" StepId="6" NpcId="1001966" XYZ="126.7262, 4.01, -83.84839"/>
                     </If>
                     <If Condition="not IsTodoChecked(66883, 6, 1)">
-                        <GetTo ZoneId="131" XYZ="136.0951, 4.009988, -67.85687"/> <!-- Katherine -->
+                        <GetTo ZoneId="131" XYZ="133.4498, 4, -66.53184"/> <!-- Katherine -->
                         <HandOver ItemId="2001203" QuestId="66883" StepId="6" NpcId="1001968" XYZ="136.0951, 4.009988, -67.85687"/>
                     </If>
                 </If>
                 <If Condition="GetQuestStep(66883) == 7">
-                    <GetTo ZoneId="130" XYZ="21.07263, 7.45, -78.78235"/> <!-- Momodi -->
+                    <GetTo ZoneId="130" XYZ="22.12, 6.999994, -82.15363"/> <!-- Momodi -->
                     <TalkTo NpcId="1001353" XYZ="21.07263, 7.45, -78.78235" QuestId="66883" StepId="7"/>
                 </If>
                 <If Condition="GetQuestStep(66883) == 8">
@@ -213,52 +207,52 @@
             </If>
         </If>
         <!-- Promises to Keep -->
-        <If Condition="not IsQuestCompleted(66884)">
-            <If Condition="not HasQuest(66884)">
+        <If Condition="not IsQuestCompleted(69416)">
+            <If Condition="not HasQuest(69416)">
                 <GetTo ZoneId="131" XYZ="-18.26508, 36.0139, 57.93848"/> <!-- Raubahn -->
-                <If Condition="IsQuestAcceptQualified(66884)">
-                    <PickupQuest NpcId="1008616" QuestId="66884" XYZ="-18.26508, 36.0139, 57.93848"/>
+                <If Condition="IsQuestAcceptQualified(69416)">
+                    <PickupQuest NpcId="1008616" QuestId="69416" XYZ="-18.26508, 36.0139, 57.93848"/>
                 </If>
             </If>
-            <If Condition="HasQuest(66884)">
-                <If Condition="GetQuestStep(66884) == 1">
+            <If Condition="HasQuest(69416)">
+                <If Condition="GetQuestStep(69416) == 1">
                     <GetTo ZoneId="130" XYZ="-132.5247, 4.1, -111.9249"/> <!-- Raubahn -->
-                    <TalkTo NpcId="1008700" XYZ="-132.5247, 4.1, -111.9249" QuestId="66884" StepId="1"/>
+                    <TalkTo NpcId="1008700" XYZ="-132.5247, 4.1, -111.9249" QuestId="69416" StepId="1"/>
                 </If>
-                <If Condition="GetQuestStep(66884) == 2">
+                <If Condition="GetQuestStep(69416) == 2">
                     <GetTo ZoneId="130" XYZ="24.88745, 6.999997, -80.03363"/> <!-- Alphinaud -->
-                    <TalkTo NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363" QuestId="66884" StepId="2"/>
+                    <TalkTo NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363" QuestId="69416" StepId="2"/>
                 </If>
-                <If Condition="GetQuestStep(66884) == 3">
+                <If Condition="GetQuestStep(69416) == 3">
                     <GetTo ZoneId="140" XYZ="213.4584, 52.03812, 151.4458"/> <!-- Gigiyon -->
-                    <TalkTo NpcId="1003889" XYZ="213.4584, 52.03812, 151.4458" QuestId="66884" StepId="3"/>
+                    <TalkTo NpcId="1003889" XYZ="213.4584, 52.03812, 151.4458" QuestId="69416" StepId="3"/>
                 </If>
-                <If Condition="GetQuestStep(66884) == 4">
+                <If Condition="GetQuestStep(69416) == 4">
                     <GetTo ZoneId="141" XYZ="-96.97113, -11.35, -42.00812"/> <!-- Hyuran Coachman -->
-                    <TalkTo NpcId="1008624" XYZ="-96.97113, -11.35, -42.00812" QuestId="66884" StepId="4"/>
+                    <TalkTo NpcId="1008624" XYZ="-96.97113, -11.35, -42.00812" QuestId="69416" StepId="4"/>
                 </If>
-                <If Condition="GetQuestStep(66884) == 5">
+                <If Condition="GetQuestStep(69416) == 5">
                     <GetTo ZoneId="141" XYZ="-96.97113, -11.35, -42.00812"/> <!-- Hyuran Coachman -->
-                    <EmoteNPC NpcId="1008624" Emote="me" XYZ="-96.97113, -11.35, -42.00812" Radius="10" QuestId="66884" StepId="5"/>
+                    <EmoteNPC NpcId="1008624" Emote="me" XYZ="-96.97113, -11.35, -42.00812" Radius="10" QuestId="69416" StepId="5"/>
                 </If>
-                <If Condition="GetQuestStep(66884) == 6">
+                <If Condition="GetQuestStep(69416) == 6">
                     <GetTo ZoneId="140" XYZ="89.43311, 15.28377, 154.2839"/> <!-- Brass Blade -->
-                    <TalkTo NpcId="1008625" XYZ="89.43311, 15.28377, 154.2839" QuestId="66884" StepId="6"/>
-                    <Grind grindRef="Promises_to_Keep" while="HasQuest(66884) and GetQuestStep(66884) == 6"/>
+                    <TalkTo NpcId="1008625" XYZ="89.43311, 15.28377, 154.2839" QuestId="69416" StepId="6"/>
+                    <Grind grindRef="Promises_to_Keep" while="HasQuest(69416) and GetQuestStep(69416) == 6"/>
                 </If>
-                <If Condition="GetQuestStep(66884) == 7">
+                <If Condition="GetQuestStep(69416) == 7">
                     <GetTo ZoneId="140" XYZ="89.43311, 15.28377, 154.2839"/> <!-- Brass Blade -->
-                    <TalkTo NpcId="1008625" XYZ="89.43311, 15.28377, 154.2839" QuestId="66884" StepId="7"/>
+                    <TalkTo NpcId="1008625" XYZ="89.43311, 15.28377, 154.2839" QuestId="69416" StepId="7"/>
                 </If>
-                <If Condition="GetQuestStep(66884) == 8">
+                <If Condition="GetQuestStep(69416) == 8">
                     <GetTo ZoneId="141" XYZ="-96.97113, -11.35, -42.00812"/> <!-- Hyuran Coachman -->
-                    <HandOver ItemId="2001204,2001205" QuestId="66884" StepId="8" NpcId="1008624" XYZ="-96.97113, -11.35, -42.00812"/>
+                    <HandOver ItemId="2001204,2001205" QuestId="69416" StepId="8" NpcId="1008624" XYZ="-96.97113, -11.35, -42.00812"/>
                 </If>
-                <If Condition="GetQuestStep(66884) == 9">
+                <If Condition="GetQuestStep(69416) == 9">
                     <GetTo ZoneId="140" XYZ="213.4584, 52.03812, 151.4458"/> <!-- Gigiyon -->
-                    <TalkTo NpcId="1003889" XYZ="213.4584, 52.03812, 151.4458" QuestId="66884" StepId="9"/>
+                    <TalkTo NpcId="1003889" XYZ="213.4584, 52.03812, 151.4458" QuestId="69416" StepId="9"/>
                 </If>
-                <If Condition="GetQuestStep(66884) == 255">
+                <If Condition="GetQuestStep(69416) == 255">
                     <GetTo ZoneId="130" XYZ="24.88745, 6.999997, -80.03363"/> <!-- Alphinaud -->
 
                     <!-- Rewards
@@ -269,134 +263,44 @@
 
                     If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
 
-                    <TurnIn QuestId="66884" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363" RewardSlot="0" />
+                    <TurnIn QuestId="69416" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363" RewardSlot="0" />
 
                     -->
 
-                    <TurnIn QuestId="66884" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363"/>
-                </If>
-            </If>
-        </If>
-        <!-- A Small-scale Operation -->
-        <If Condition="not IsQuestCompleted(66885)">
-            <If Condition="not HasQuest(66885)">
-                <GetTo ZoneId="130" XYZ="24.88745, 6.999997, -80.03363"/> <!-- Alphinaud -->
-                <If Condition="IsQuestAcceptQualified(66885)">
-                    <PickupQuest NpcId="1008623" QuestId="66885" XYZ="24.88745, 6.999997, -80.03363"/>
-                </If>
-            </If>
-            <If Condition="HasQuest(66885)">
-                <If Condition="GetQuestStep(66885) == 1">
-                    <GetTo ZoneId="140" XYZ="-417.4106, 23.16707, -350.5455"/> <!-- Hozan -->
-                    <TalkTo NpcId="1008626" XYZ="-417.4106, 23.16707, -350.5455" QuestId="66885" StepId="1"/>
-                </If>
-                <If Condition="GetQuestStep(66885) == 2">
-                    <GetTo ZoneId="140" XYZ="-494.9264, 19.02795, -352.2545"/> <!-- Weathered Crate -->
-                    <UseObject NpcId="2003564" XYZ="-494.9264, 19.02795, -352.2545" Radius="10" QuestId="66885" StepId="2"/>
-                </If>
-                <If Condition="GetQuestStep(66885) == 3">
-                    <GetTo ZoneId="140" XYZ="-417.4106, 23.16707, -350.5455"/> <!-- Hozan -->
-                    <HandOver ItemId="2001206" QuestId="66885" StepId="3" NpcId="1008626" XYZ="-417.4106, 23.16707, -350.5455"/>
-                </If>
-                <If Condition="GetQuestStep(66885) == 4">
-                    <GetTo ZoneId="140" XYZ="-444.8463, 22.9953, -360.586"/> <!-- Black Scale -->
-                    <UseObject NpcIds="2003565,2003566,2003567,2003568" QuestId="66885" StepId="4">
-                        <HotSpots>
-                            <HotSpot XYZ="-444.8463, 22.9953, -360.586" Radius="10"/>
-                            <HotSpot XYZ="-462.8824, 23.02582, -361.1658" Radius="10"/>
-                            <HotSpot XYZ="-477.1649, 21.53046, -362.6307" Radius="10"/>
-                            <HotSpot XYZ="-492.1798, 19.02795, -356.283" Radius="10"/>
-                        </HotSpots>
-                    </UseObject>
-                </If>
-                <If Condition="GetQuestStep(66885) == 255">
-                    <GetTo ZoneId="140" XYZ="-417.4106, 23.16707, -350.5455"/> <!-- Hozan -->
-
-                    <!-- Rewards
-
-                    0: Intelligence Earrings
-                    1: Mind/Piety Earrings
-
-                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
-
-                    <TurnIn QuestId="66885" NpcId="1008626" ItemId="2001207" XYZ="-417.4106, 23.16707, -350.5455" RewardSlot="0" />
-
-                    -->
-
-                    <TurnIn QuestId="66885" NpcId="1008626" ItemId="2001207" XYZ="-417.4106, 23.16707, -350.5455"/>
+                    <TurnIn QuestId="69416" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363"/>
                 </If>
             </If>
         </If>
         <!-- Yugiri's Game -->
-        <If Condition="not IsQuestCompleted(66886)">
-            <If Condition="not HasQuest(66886)">
-                <GetTo ZoneId="140" XYZ="-417.4106, 23.16707, -350.5455"/> <!-- Hozan -->
-                <If Condition="IsQuestAcceptQualified(66886)">
-                    <PickupQuest NpcId="1008626" QuestId="66886" XYZ="-417.4106, 23.16707, -350.5455"/>
+        <If Condition="not IsQuestCompleted(69417)">
+            <If Condition="not HasQuest(69417)">
+                <GetTo ZoneId="130" XYZ="25.92434, 6.999999, -82.33062"/> <!-- Alphinaud -->
+                <If Condition="IsQuestAcceptQualified(69417)">
+                    <PickupQuest NpcId="1008623" QuestId="69417" XYZ="25.92434, 6.999999, -82.33062"/>
                 </If>
             </If>
-            <If Condition="HasQuest(66886)">
-                <If Condition="GetQuestStep(66886) == 1">
+            <If Condition="HasQuest(69417)">
+                <If Condition="GetQuestStep(69417) == 1">
+                    <GetTo ZoneId="140" XYZ="-495.6759, 19.05129, -355.7355"/> <!-- Hozan -->
+                    <TalkTo InteractDistance="3.0" QuestId="69417" StepId="1" NpcId="1008639" XYZ="-497.9477, 19.0513, -354.757"/>
+                </If>
+                <If Condition="GetQuestStep(69417) == 2">
                     <GetTo ZoneId="140" XYZ="-431.8761, 25.98387, -368.368"/> <!-- Yozan -->
-                    <TalkTo NpcId="1008628" XYZ="-431.8761, 25.98387, -368.368" QuestId="66886" StepId="1"/>
+                    <TalkTo NpcId="1008628" XYZ="-431.8761, 25.98387, -368.368" QuestId="69417" StepId="2"/>
                 </If>
-                <While Condition="GetQuestStep(66886) == 2">
-                    <GetTo ZoneId="140" XYZ="-415.9152, 23.11401, -394.6136"/> <!-- Hiding Child -->
-                    <TalkTo NpcId="1008636" XYZ="-415.9152, 23.11401, -394.6136" QuestId="66886" StepId="2"/>
-                    <TalkTo NpcId="1008635" XYZ="-444.2969, 30.99988, -329.6407" QuestId="66886" StepId="2"/>
-                    <TalkTo NpcId="1008637" XYZ="-482.5666, 20.99989, -384.5426" QuestId="66886" StepId="2"/>
-                </While>
-                <If Condition="GetQuestStep(66886) == 255">
-                    <GetTo ZoneId="140" XYZ="-417.4106, 23.16707, -350.5455"/> <!-- Hozan -->
-                    <TurnIn QuestId="66886" NpcId="1008626" ItemId="2001207" XYZ="-417.4106, 23.16707, -350.5455"/>
+                <If Condition="GetQuestStep(69417) == 3">
+                    <GetTo ZoneId="140" XYZ="-431.8761, 25.98387, -368.368"/> <!-- Yozan -->
+                    <UseObject NpcIds="1008636,1008635,1008637" QuestId="69417" StepId="3">
+                        <HotSpots>
+                            <HotSpot XYZ="-415.9152, 23.11401, -394.61361" Radius="50"/>
+                            <HotSpot XYZ="-444.2969, 30.99988, -329.6407" Radius="50"/>
+                            <HotSpot XYZ="-482.5666, 20.99989, -384.5426" Radius="50"/>
+                        </HotSpots>
+                    </UseObject>
                 </If>
-            </If>
-        </If>
-        <!-- If Wishes Were Horsebirds -->
-        <If Condition="not IsQuestCompleted(66887)">
-            <If Condition="not HasQuest(66887)">
-                <GetTo ZoneId="140" XYZ="-417.4106, 23.16707, -350.5455"/> <!-- Hozan -->
-                <If Condition="IsQuestAcceptQualified(66887)">
-                    <PickupQuest NpcId="1008626" QuestId="66887" XYZ="-417.4106, 23.16707, -350.5455"/>
-                </If>
-            </If>
-            <If Condition="HasQuest(66887)">
-                <If Condition="GetQuestStep(66887) == 1">
-                    <GetTo ZoneId="140" XYZ="-444.7548, 25, -324.2695"/> <!-- Folclind -->
-                    <TalkTo NpcId="1004096" XYZ="-444.7548, 25, -324.2695" QuestId="66887" StepId="1"/>
-                </If>
-                <If Condition="GetQuestStep(66887) == 2">
-                    <GetTo ZoneId="140" XYZ="-386.4042, 23, -350.1183"/> <!-- Chocobo -->
-                    <UseItem NpcId="1008611" ItemId="2001208" XYZ="-386.4042, 23, -350.1183" Radius="10" QuestId="66887" StepId="2"/>
-                </If>
-                <If Condition="GetQuestStep(66887) == 3">
-                    <GetTo ZoneId="140" XYZ="-386.4042, 23, -350.1183"/> <!-- Chocobo -->
-                    <TalkTo NpcId="1008611" XYZ="-386.4042, 23, -350.1183" QuestId="66887" StepId="3"/>
-                </If>
-                <If Condition="GetQuestStep(66887) == 4">
-                    <GetTo ZoneId="140" XYZ="-388.6931, 23, -350.9423"/> <!-- Hyuran Coachman -->
-                    <TalkTo NpcId="1008632" XYZ="-388.6931, 23, -350.9423" QuestId="66887" StepId="4"/>
-                </If>
-                <If Condition="GetQuestStep(66887) == 5">
-                    <GetTo ZoneId="140" XYZ="-417.4106, 23.16707, -350.5455"/> <!-- Hozan -->
-                    <HandOver ItemId="2001209" QuestId="66887" StepId="5" NpcId="1008626" XYZ="-417.4106, 23.16707, -350.5455"/>
-                </If>
-                <If Condition="GetQuestStep(66887) == 255">
-                    <GetTo ZoneId="140" XYZ="-497.9477, 19.05133, -354.757"/> <!-- Hozan -->
-
-                    <!-- Rewards
-
-                    0: Woad Blue Dye
-                    1: Lavender Purple Dye
-                    2: Meadow Green Dye
-
-                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
-
-                    <TurnIn QuestId="66887" NpcId="1008639" XYZ="-497.9477, 19.05133, -354.757" RewardSlot="0" />
-
-                    -->
-
-                    <TurnIn QuestId="66887" NpcId="1008639" XYZ="-497.9477, 19.05133, -354.757"/>
+                <If Condition="GetQuestStep(69417) == 255">
+                    <GetTo ZoneId="140" XYZ="-497.9477, 19.0513, -354.757"/> <!-- Hozan -->
+                    <TurnIn QuestId="69417" NpcId="1008639" ItemId="2001207" XYZ="-497.9477, 19.0513, -354.757"/>
                 </If>
             </If>
         </If>
@@ -414,11 +318,14 @@
                     <TalkTo NpcId="1008632" XYZ="-388.6931, 23, -350.9423" QuestId="66888" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66888) == 2">
-                    <GetTo ZoneId="140" XYZ="192.6757, 52.56726, 14.63336"/> <!-- Destination -->
-                    <UseObject NpcId="2003573" XYZ="192.6757, 52.56726, 14.63336" Radius="10" QuestId="66888" StepId="2"/>
+                    <GetTo ZoneId="140" XYZ="184.6493, 52.14001, 29.06836"/> <!-- Destination -->
+                    <UseObject NpcIds="2003573" XYZ="184.6493, 52.14001, 29.06836" Radius="25" QuestId="66888" StepId="2"/>
                 </If>
                 <If Condition="GetQuestStep(66888) == 3">
-                    <GetTo ZoneId="140" XYZ="126.1768, 49.27656, -173.2357"/> <!-- Hyuran Coachman -->
+                    <If Condition="not IsOnMap(140)">
+                        <GetTo ZoneId="140" XYZ="126.1768, 49.27656, -173.2357"/> <!-- Hyuran Coachman -->
+                    </If>
+                    <FlyTo Land="True" XYZ="126.1768, 49.27656, -173.2357"/>
                     <TalkTo NpcId="1008640" XYZ="126.1768, 49.27656, -173.2357" QuestId="66888" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(66888) == 255">
@@ -428,32 +335,28 @@
             </If>
         </If>
         <!-- All Due Respect -->
-        <If Condition="not IsQuestCompleted(66889)">
-            <If Condition="not HasQuest(66889)">
+        <If Condition="not IsQuestCompleted(69418)">
+            <If Condition="not HasQuest(69418)">
                 <GetTo ZoneId="130" XYZ="24.88745, 6.999997, -80.03363"/> <!-- Alphinaud -->
-                <If Condition="IsQuestAcceptQualified(66889)">
-                    <PickupQuest NpcId="1008623" QuestId="66889" XYZ="24.88745, 6.999997, -80.03363"/>
+                <If Condition="IsQuestAcceptQualified(69418)">
+                    <PickupQuest NpcId="1008623" QuestId="69418" XYZ="24.88745, 6.999997, -80.03363"/>
                 </If>
             </If>
-            <If Condition="HasQuest(66889)">
-                <If Condition="GetQuestStep(66889) == 1">
+            <If Condition="HasQuest(69418)">
+                <If Condition="GetQuestStep(69418) == 1">
                     <GetTo ZoneId="156" XYZ="21.92719, 20.74698, -682.063"/> <!-- Slafborn -->
-                    <TalkTo NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" QuestId="66889" StepId="1"/>
+                    <TalkTo NpcId="1006530" XYZ="21.92719, 20.74698, -682.063" QuestId="69418" StepId="1"/>
                 </If>
-                <If Condition="GetQuestStep(66889) == 2">
+                <If Condition="GetQuestStep(69418) == 2">
                     <GetTo ZoneId="156" XYZ="22.53754, 20.07001, -678.1567"/> <!-- Yugiri -->
-                    <TalkTo NpcId="1008659" XYZ="22.53754, 20.07001, -678.1567" QuestId="66889" StepId="2"/>
+                    <TalkTo NpcId="1008659" XYZ="22.53754, 20.07001, -678.1567" QuestId="69418" StepId="2"/>
                 </If>
-                <If Condition="GetQuestStep(66889) == 255">
-                    <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                        <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/> <!-- Rising Stones Entrance -->
-                    </If>
-                    <If Condition="IsOnMap(156)">
-                        <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
-                    </If>
-                    <If Condition="IsOnMap(351) and IsOnSubMap(481)">
-                        <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
-                    </If>
+                <If Condition="GetQuestStep(69418) == 3">
+                    <GetTo ZoneId="351" Name="Minfilia" XYZ="1.022339, -1.995725, -45.79236"/> <!-- Minfilia -->
+                    <TalkTo QuestId="69418" StepId="3" NpcId="1008547" XYZ="0.7781982, -1.995725, -45.48718"/>
+                </If>
+                <If Condition="GetQuestStep(69418) == 255">
+                    <GetTo ZoneId="351" Name="Minfilia" XYZ="1.022339, -1.995725, -45.79236"/>
 
                     <!-- Rewards
 
@@ -463,161 +366,17 @@
 
                     If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
 
-                    <TurnIn QuestId="66889" NpcId="1008547" XYZ="0.7781982, -1.995725, -45.48718" RewardSlot="0" />
+                    <TurnIn QuestId="69418" NpcId="1008547" XYZ="0.7781982, -1.995725, -45.48718" RewardSlot="0" />
 
                     -->
-
-                    <MoveTo Name="Minfilia" XYZ="0.7781982, -1.995725, -45.48718"/>
-                    <TurnIn QuestId="66889" NpcId="1008547" XYZ="0.7781982, -1.995725, -45.48718"/>
-                </If>
-            </If>
-        </If>
-        <!-- Full Belly, Happy Heart -->
-        <If Condition="not IsQuestCompleted(66890)">
-            <If Condition="not HasQuest(66890)">
-                <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                    <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/> <!-- Rising Stones Entrance -->
-                </If>
-                <If Condition="IsOnMap(156)">
-                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
-                </If>
-                <If Condition="IsOnMap(351) and IsOnSubMap(481)">
-                    <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
-                </If>
-                <MoveTo Name="Minfilia" XYZ="1.632629, -1.995725, -41.91656"/>
-                <If Condition="IsQuestAcceptQualified(66890)">
-                    <PickupQuest NpcId="1008554" QuestId="66890" XYZ="1.632629, -1.995725, -41.91656"/>
-                </If>
-            </If>
-            <If Condition="HasQuest(66890)">
-                <If Condition="GetQuestStep(66890) == 1">
-                    <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                        <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/> <!-- Rising Stones Entrance -->
-                    </If>
-                    <If Condition="IsOnMap(156)">
-                        <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
-                    </If>
-                    <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-                        <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159"/>
-                    </If>
-                    <MoveTo Name="F'lhaminn" XYZ="9.567322, 7.450581E-09, -10.17786"/>
-                    <TalkTo NpcId="1008559" XYZ="9.567322, 7.450581E-09, -10.17786" QuestId="66890" StepId="1"/>
-                </If>
-                <If Condition="GetQuestStep(66890) == 2">
-                    <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                        <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/> <!-- Rising Stones Entrance -->
-                    </If>
-                    <If Condition="IsOnMap(156)">
-                        <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
-                    </If>
-                    <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-                        <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159"/>
-                    </If>
-                    <MoveTo Name="Wine Bottles" XYZ="10.45239, 0.9002075, -9.079163"/>
-                    <UseObject NpcIds="2003574,2003575" XYZ="10.45239, 0.9002075, -9.079163" Radius="10" QuestId="66890" StepId="2"/>
-                </If>
-                <If Condition="GetQuestStep(66890) == 3">
-                    <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                        <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/> <!-- Rising Stones Entrance -->
-                    </If>
-                    <If Condition="IsOnMap(351) and IsOnSubMap(1350)">
-                        <UseTransport Name="Exit to the Rising Stones" InteractDistance="3.0" NpcId="2002880" XYZ="-0.01531982, -1.022339, -29.25159"/>
-                    </If>
-                    <If Condition="IsOnMap(351) and IsOnSubMap(481)">
-                        <UseTransport Name="Exit to Revenant's Toll" InteractDistance="3.0" NpcId="2002879" XYZ="-0.01531982, 2.975464, 27.48145"/>
-                    </If>
-                    <NoCombatMoveTo Name="Alys" XYZ="14.75543, 21.25269, -640.7111"/>
-                    <TalkTo NpcId="1006950" XYZ="14.75543, 21.25269, -640.7111" QuestId="66890" StepId="3"/>
-                </If>
-                <If Condition="GetQuestStep(66890) == 4">
-                    <GetTo ZoneId="156" XYZ="15.82355, 22.20184, -639.0326"/> <!-- Seventh Heaven Special -->
-                    <UseObject NpcIds="2003576,2003577,2003578" XYZ="15.82355, 22.20184, -639.0326" Radius="10" QuestId="66890" StepId="4"/>
-                </If>
-                <If Condition="GetQuestStep(66890) == 255">
-                    <GetTo ZoneId="156" XYZ="87.38831, 31.40296, -729.0913"/> <!-- Adventurers' Guild Assistant -->
-
-                    <!-- Rewards
-
-                    0: Intelligence Earrings
-                    1: Mind/Piety Earrings
-
-                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
-
-                    <TurnIn QuestId="66884" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363" RewardSlot="0" />
-
-                    -->
-
-                    <TurnIn QuestId="66890" NpcId="1008663" ItemIds="2001210,2001211" XYZ="87.38831, 31.40296, -729.0913"/>
-                </If>
-            </If>
-        </If>
-        <!-- Writhing in the Dark -->
-        <If Condition="not IsQuestCompleted(66891)">
-            <If Condition="not HasQuest(66891)">
-                <GetTo ZoneId="156" XYZ="87.38831, 31.40296, -729.0913"/> <!-- Adventurers' Guild Assistant -->
-                <If Condition="IsQuestAcceptQualified(66891)">
-                    <PickupQuest NpcId="1008663" QuestId="66891" XYZ="87.38831, 31.40296, -729.0913"/>
-                </If>
-            </If>
-            <If Condition="HasQuest(66891)">
-                <If Condition="GetQuestStep(66891) == 1">
-                    <GetTo ZoneId="156" XYZ="211.2001, 1.266479, -561.059"/> <!-- Cobra Nest -->
-                    <UseItem NpcIds="2003579,2003580,2003581,2003582,2003583,2003584" ItemId="2001212" Radius="250" QuestId="66891" StepId="1">
-                        <HotSpots>
-                            <HotSpot XYZ="211.2001, 1.266479, -561.059" Radius="10"/>
-                            <HotSpot XYZ="234.0886, -2.304138, -544.3961" Radius="10"/>
-                            <HotSpot XYZ="82.93274, -2.02948, -482.353" Radius="10"/>
-                            <HotSpot XYZ="168.017, -17.50214, -472.4651" Radius="10"/>
-                            <HotSpot XYZ="273.8231, -22.62915, -452.8115" Radius="10"/>
-                            <HotSpot XYZ="311.0552, -19.08911, -455.0088" Radius="10"/>
-                        </HotSpots>
-                    </UseItem>
-                </If>
-                <If Condition="GetQuestStep(66891) == 2">
-                    <GetTo ZoneId="156" XYZ="32.66956, 20.47859, -681.3916"/> <!-- Adventurers' Guild Assistant -->
-                    <TalkTo NpcId="1008705" XYZ="32.66956, 20.47859, -681.3916" QuestId="66891" StepId="2"/>
-                </If>
-                <If Condition="GetQuestStep(66891) == 255">
-                    <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                        <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/> <!-- Rising Stones Entrance -->
-                    </If>
-                    <If Condition="IsOnMap(156)">
-                        <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
-                    </If>
-                    <If Condition="IsOnMap(351) and IsOnSubMap(481)">
-                        <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
-                    </If>
-
-                    <!-- Rewards
-
-                    0: Vitality Necklace
-                    1: Strength Necklace
-                    2: Dexterity Necklace
-
-                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
-
-                    <TurnIn QuestId="66891" NpcId="1008565" XYZ="1.632629, -1.995725, -41.91656" RewardSlot="0" />
-
-                    -->
-
-                    <MoveTo Name="Minfilia" XYZ="1.632629, -1.995725, -41.91656"/>
-                    <TurnIn QuestId="66891" NpcId="1008565" XYZ="1.632629, -1.995725, -41.91656"/>
+                    <TurnIn QuestId="69418" NpcId="1008554" XYZ="1.632629, -1.995725, -41.91656"/>
                 </If>
             </If>
         </If>
         <!-- The Sea Rises -->
         <If Condition="not IsQuestCompleted(66892)">
             <If Condition="not HasQuest(66892)">
-                <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                    <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/> <!-- Rising Stones Entrance -->
-                </If>
-                <If Condition="IsOnMap(156)">
-                    <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
-                </If>
-                <If Condition="IsOnMap(351) and IsOnSubMap(481)">
-                    <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
-                </If>
-                <MoveTo Name="Minfilia" XYZ="0.8086548, -1.995725, -42.55743"/>
+                <GetTo ZoneId="351" Name="Minfilia" XYZ="0.8086548, -1.995725, -42.55743"/>
                 <If Condition="IsQuestAcceptQualified(66892)">
                     <PickupQuest NpcId="1008542" QuestId="66892" XYZ="0.8086548, -1.995725, -42.55743"/>
                 </If>
@@ -651,50 +410,6 @@
                 </If>
             </If>
         </If>
-        <!-- Fireworks and Fish Don't Mix -->
-        <If Condition="not IsQuestCompleted(66893)">
-            <If Condition="not HasQuest(66893)">
-                <GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748"/> <!-- Falkbryda -->
-                <If Condition="IsQuestAcceptQualified(66893)">
-                    <PickupQuest NpcId="1006614" QuestId="66893" XYZ="65.87317, -3.118188, 61.41748"/>
-                </If>
-            </If>
-            <If Condition="HasQuest(66893)">
-                <If Condition="GetQuestStep(66893) == 1">
-                    <GetTo ZoneId="138" XYZ="256.80933, -3.110172, 53.78796"/> <!-- U'jughal -->
-                    <TalkTo NpcId="1006616" XYZ="56.80933, -3.110172, 53.78796" QuestId="66893" StepId="1"/>
-                </If>
-                <If Condition="GetQuestStep(66893) == 2">
-                    <GetTo ZoneId="138" XYZ="-34.92792, -19.7605, -129.0456"/> <!-- Sahagin Pavis -->
-                    <UseItem NpcIds="2003585,2003586,2003587,2003588,2003589" ItemId="2001213" Radius="250" QuestId="66893" StepId="2">
-                        <HotSpots>
-                            <HotSpot XYZ="-34.92792, -19.7605, -129.0456" Radius="10"/>
-                            <HotSpot XYZ="-47.62347, -22.87329, -152.7886" Radius="10"/>
-                            <HotSpot XYZ="-110.6737, -31.17426, -158.8007" Radius="10"/>
-                            <HotSpot XYZ="-107.2557, -31.4184, -105.1805" Radius="10"/>
-                            <HotSpot XYZ="-55.375, -24.03302, -102.2203" Radius="10"/>
-                        </HotSpots>
-                    </UseItem>
-                </If>
-                <If Condition="GetQuestStep(66893) == 255">
-                    <GetTo ZoneId="138" XYZ="65.87317, -3.118188, 61.41748"/> <!-- Falkbryda -->
-
-                    <!-- Rewards
-
-                    0: Vitality Bracelets
-                    1: Strength Bracelets
-                    2: Dexterity Bracelets
-
-                    If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
-
-                    <TurnIn QuestId="66893" NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748" RewardSlot="0" />
-
-                    -->
-
-                    <TurnIn QuestId="66893" NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748"/>
-                </If>
-            </If>
-        </If>
         <!-- Scouts in Distress -->
         <If Condition="not IsQuestCompleted(66894)">
             <If Condition="not HasQuest(66894)">
@@ -705,7 +420,10 @@
             </If>
             <If Condition="HasQuest(66894)">
                 <If Condition="GetQuestStep(66894) == 1">
-                    <GetTo ZoneId="138" XYZ="-208.4536, -38.99379, -113.2983"/> <!-- Storm Private -->
+                    <If Condition="not IsOnMap(138)">
+                        <GetTo ZoneId="138" XYZ="-208.4536, -38.99379, -113.2983"/> <!-- Storm Private -->
+                    </If>
+                    <FlyTo Land="True" XYZ="-208.4536, -38.99379, -113.2983"/>
                     <UseItem NpcId="1008683" ItemId="2001214" XYZ="-208.4536, -38.99379, -113.2983" Radius="10" QuestId="66894" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(66894) == 2">
@@ -770,7 +488,7 @@
 
                     If you want a specific reward from the above list, replace the TurnIn tag below with the following and change the "Reward Slot" to the number you want:
 
-                    <TurnIn QuestId="66884" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363" RewardSlot="0" />
+                    <TurnIn QuestId="69416" NpcId="1008623" XYZ="24.88745, 6.999997, -80.03363" RewardSlot="0" />
 
                     -->
 
@@ -908,15 +626,7 @@
             </If>
             <If Condition="HasQuest(66899)">
                 <If Condition="GetQuestStep(66899) == 255">
-                    <If Condition="not IsOnMap(156) and not IsOnMap(351)">
-                        <GetTo ZoneId="156" XYZ="21.13373, 22.32391, -631.281"/> <!-- Rising Stones Entrance -->
-                    </If>
-                    <If Condition="IsOnMap(156)">
-                        <UseTransport Name="Rising Stones Entrance" InteractDistance="3.0" NpcId="2002881" XYZ="21.13373, 22.32391, -631.281"/>
-                    </If>
-                    <If Condition="IsOnMap(351) and IsOnSubMap(481)">
-                        <UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2002878" XYZ="-0.01531982, -1.022339, -26.7796"/>
-                    </If>
+                    <GetTo ZoneId="351" Name="Minfilia" XYZ="1.022339, -1.995725, -45.79236"/>
 
                     <!-- Rewards
 
