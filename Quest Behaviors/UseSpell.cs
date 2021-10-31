@@ -73,48 +73,47 @@ namespace ff14bot.NeoProfiles
         protected Composite Behavior()
         {
             return new PrioritySelector(
-				new Decorator(ret => Condition != null && !ConditionCheck(),
-                    new Action(ret => _done = true)),
-				new Decorator(ret => QuestId != 0 && StepId != 0 && QuestLogManager.GetQuestById(QuestId).Step > StepId,
-                    new Action(r =>
-                    {
-                        _done = true;
-                    })
-                ),
-				new Decorator(ret => Core.Player.IsMounted,
-                    CommonBehaviors.Dismount()
-                ),
-				new Decorator(ret => Talk.DialogOpen,
-                    new Action(r =>
-                    {
-                        Talk.Next();
-                    })
-                ),
+				new Decorator(ret => Condition != null && !ConditionCheck(),new Action(ret => _done = true)),
+				new Decorator(ret => QuestId != 0 && StepId != 0 && QuestLogManager.GetQuestById(QuestId).Step > StepId,new Action(r =>{_done = true;})),
+				new Decorator(ret => Core.Player.IsMounted,CommonBehaviors.Dismount()),
+				new Decorator(ret => Talk.DialogOpen,new Action(r =>{Talk.Next();})),
 				new Decorator(ret => casted,
                     new Sequence(
 						new Sleep(3,5),
 						new Action(r => casted = false)
 					)
 				),
-                new Decorator(ret => Core.Me.Location.Distance(Position) <= Distance && IsFinished,
-                    new Action(ret => _done = true)),
+                new Decorator(ret => Core.Me.Location.Distance(Position) <= Distance && IsFinished,new Action(ret => _done = true)),
                 new Decorator(ret => Core.Me.Location.Distance(Position) <= Distance && !casted,
                     new Action(r =>
                     {
                         Navigator.PlayerMover.MoveStop();
                         if (!Core.Player.IsCasting)
                         {
-                            GameObjectManager.GetObjectByNPCId(NPC).Face();
-                            if (ActionManager.DoAction(SpellID, GameObjectManager.GetObjectByNPCId(NPC)))
-                            {
-                                ActionManager.DoAction(SpellID, GameObjectManager.GetObjectByNPCId(NPC));
-								casted = true;
-                            }
-                            else
-                            {
-                                ActionManager.DoActionLocation(SpellID, Core.Player.Location);
-								casted = true;
-                            }
+							var obj = GameObjectManager.GetObjectByNPCId(NPC);
+							
+							obj.Target();
+                            obj.Face();
+							
+							if (DataManager.SpellCache.TryGetValue(SpellID,out var spellData))
+							{
+								if (spellData.GroundTarget)
+								{
+									ActionManager.DoActionLocation(SpellID, Core.Player.Location);
+								}
+								else
+								{
+									if (ActionManager.CanCast(SpellID, obj))
+									{
+										ActionManager.DoAction(SpellID, obj);
+										casted = true;
+									}
+								}
+							}
+							
+							
+  
+     
                         }
                     })
 				),
