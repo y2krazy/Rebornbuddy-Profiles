@@ -89,15 +89,7 @@
             </If>
             <If Condition="HasQuest(66711)">
                 <If Condition="GetQuestStep(66711) == 1">
-                    <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/> <!-- Waking Sands Entrance -->
-                    </If>
-                    <If Condition="IsOnMap(140)">
-                        <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-                    </If>
-                    <If Condition="IsOnMap(212) and IsOnSubMap(374)">
-                        <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-                    </If>
+					<GetTo ZoneId="212" Name="Y'shtola" XYZ="-0.8087769, -3, -47.80658"/>
                     <If Condition="not IsTodoChecked(66711, 1, 0)">
                         <MoveTo Name="Y'shtola" XYZ="-0.8087769, -3, -47.80658"/>
                         <TalkTo NpcId="1007533" XYZ="-0.8087769, -3, -47.80658" QuestId="66711" StepId="1"/>
@@ -120,16 +112,7 @@
                     </If>
                 </If>
                 <If Condition="GetQuestStep(66711) == 255">
-                    <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/> <!-- Waking Sands Entrance -->
-                    </If>
-                    <If Condition="IsOnMap(140)">
-                        <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-                    </If>
-                    <If Condition="IsOnMap(212) and IsOnSubMap(374)">
-                        <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-                    </If>
-                    <MoveTo Name="Alphinaud" XYZ="2.487183, 5.215406E-07, 4.592957"/>
+                    <GetTo ZoneId="212" Name="Alphinaud" XYZ="2.487183, 5.215406E-07, 4.592957"/>
 
                     <!-- Rewards
 
@@ -157,16 +140,7 @@
             </If>
             <If Condition="HasQuest(69410)">
                 <If Condition="GetQuestStep(69410) == 1">
-                    <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/> <!-- Waking Sands Entrance -->
-                    </If>
-                    <If Condition="IsOnMap(140)">
-                        <UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-                    </If>
-                    <If Condition="IsOnMap(212) and IsOnSubMap(374)">
-                        <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-                    </If>
-                    <MoveTo Name="Alphinaud" XYZ="2.487183, 5.215406E-07, 4.592957"/>
+                    <GetTo ZoneId="212" Name="Alphinaud" XYZ="2.487183, 5.215406E-07, 4.592957"/>
                     <TalkTo NpcId="1007722" XYZ="2.487183, 5.215406E-07, 4.592957" QuestId="69410" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(69410) == 2">
@@ -191,6 +165,7 @@
                     </If>
                     <FlyTo Land="True" XYZ="15.44654, 52.12818, 491.4514"/>
                     <MoveTo Name="F'lhaminn" XYZ="29.12939, 54.01148, 484.9469"/>
+                    <WaitWhile Condition="GetQuestStep(69410) == 5"/>
                 </If>
                 <If Condition="GetQuestStep(69410) == 6">
                     <If Condition="not IsOnMap(137)">
@@ -379,8 +354,8 @@
                     <UseObject NpcId="2003046" XYZ="-318.6237, 12.25293, -35.08057" Radius="10" QuestId="66726" StepId="6"/>
                 </If>
                 <If Condition="GetQuestStep(66726) == 7">
-                    <RunCode Name="You_Have_Selected_Regicide"/>
-                    <StopBot/>
+                    <UserDialog QuestId="66726" StepId="7" DialogText="Please manually complete the Thornmarch (Hard) duty!" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(66726) != 255"/>
                 </If>
                 <If Condition="GetQuestStep(66726) == 255">
                     <If Condition="not IsOnMap(153)">
@@ -471,16 +446,7 @@
                     <WaitWhile Condition="not IsOnSubMap(374)"/>
                 </If>
                 <If Condition="GetQuestStep(66728) == 2">
-                    <If Condition="not IsOnMap(140) and not IsOnMap(212)">
-                        <GetTo ZoneId="140" XYZ="-458.952, 23.1922, -369.333"/> <!-- White-robed Ascian -->
-                    </If>
-                    <If Condition="IsOnMap(212) and IsOnSubMap(374)">
-                        <UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-                    </If>
-                    <If Condition="IsOnMap(212) and IsOnSubMap(356)">
-                        <UseTransport Name="Exit to Vesper Bay" InteractDistance="3.0" NpcId="2001716" XYZ="-15.7016, 1.083313, -0.01531982"/>
-                    </If>
-                    <NoCombatMoveTo Name="White-robed Ascian" XYZ="-458.952, 23.1922, -369.333"/>
+                    <GetTo ZoneId="140" Name="White-robed Ascian" XYZ="-458.952, 23.1922, -369.333"/>
                     <WaitWhile Condition="GetQuestStep(66728) == 2"/>
                 </If>
                 <If Condition="GetQuestStep(66728) == 3">
@@ -719,17 +685,6 @@
             <![CDATA[
 				ff14bot.Settings.CharacterSettings.Instance.UseMount = true;
 			]]>
-        </CodeChunk>
-        <CodeChunk Name="You_Have_Selected_Regicide">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(66726) == 7)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[Heavensward (3.5)]\nPlease manually complete the Thornmarch (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
         </CodeChunk>
         <CodeChunk Name="Camp_Tranquil_Jump">
             <![CDATA[ 
