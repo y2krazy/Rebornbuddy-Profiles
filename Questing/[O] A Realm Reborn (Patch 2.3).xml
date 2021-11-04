@@ -192,6 +192,9 @@
                     <If Condition="not IsOnMap(141)">
                         <GetTo ZoneId="141" XYZ="-8.881566, -2.072275, -169.8706"/>
                     </If>
+                    <If Condition="IsOnMap(141) and IsOnSubMap(294)">
+                        <MoveTo XYZ="91.22936, 0.3407531, -264.4042"/>
+                    </If>
                     <FlyTo Land="True" XYZ="-138.8444, 4.267366, 232.0612"/>
                     <TalkTo QuestId="69420" StepId="1" NpcId="1009055" XYZ="-142.7482, 4.235418, 232.7762"/>
                 </If>
@@ -342,9 +345,11 @@
                     <TalkTo QuestId="69421" StepId="3" NpcId="1009119" XYZ="106.8589, -27.48706, -366.3844"/>
                 </If>
                 <If Condition="GetQuestStep(69421) == 4">
-                    <GetTo ZoneId="152" XYZ="193.4081, -31.44195, -219.6841"/> <!-- Beastman Aetheryte -->
-                    <RunCode Name="Levin_an_Impression"/>
-                    <StopBot/>
+                    <GetTo ZoneId="152" XYZ="193.4081, -31.44195, -219.6841"/><!-- Beastman Aetheryte -->
+                </If>
+                <If Condition="GetQuestStep(69421) == 5">
+                    <UserDialog QuestId="69421" StepId="5" DialogText="Please manually complete The Striking Tree (Hard) duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(69421) != 255"/>
                 </If>
                 <If Condition="GetQuestStep(69421) == 255">
                     <GetTo ZoneId="152" XYZ="22.87323, -3.774938, 211.1696"/> <!-- Serpent Lieutenant -->

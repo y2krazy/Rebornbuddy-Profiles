@@ -558,8 +558,8 @@
             </If>
             <If Condition="HasQuest(66897)">
                 <If Condition="GetQuestStep(66897) == 1">
-                    <RunCode Name="Lord_of_the_Whorl"/>
-                    <StopBot/>
+                    <UserDialog QuestId="66897" StepId="1" DialogText="Please manually complete Whorleater (Hard) duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(66897) != 255"/>
                 </If>
                 <If Condition="GetQuestStep(66897) == 255">
                     <If Condition="not IsOnMap(129) and not IsOnSubMap(351)">
@@ -809,18 +809,6 @@
         </CodeChunk>
 
         <!-- Patch 2.2 -->
-
-        <CodeChunk Name="Lord_of_the_Whorl">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(66897) == 1)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.2)]\nPlease manually complete the Whorleater (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
     </CodeChunks>
     <GrindAreas>
         <GrindArea name="Promises_to_Keep">
