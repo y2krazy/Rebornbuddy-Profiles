@@ -867,7 +867,7 @@
                     <TalkTo NpcId="1011952" XYZ="-277.6379, -184.5974, 741.6038" QuestId="67132" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(67132) == 2">
-                    <GetTo ZoneId="418" XYZ="164.5074, -12.63491, -23.17853"/> <!-- Haurchefant -->
+                    <GetTo ZoneId="419" XYZ="164.5074, -12.63491, -23.17853"/> <!-- Haurchefant -->
                     <TalkTo NpcId="1012375" XYZ="164.5074, -12.63491, -23.17853" QuestId="67132" StepId="2"/>
                 </If>
 
@@ -1111,9 +1111,8 @@
             <If Condition="HasQuest(67137)">
                 <If Condition="GetQuestStep(67137) == 1">
                     <GetTo ZoneId="145" XYZ="-380.8805, -23.06451, 388.632"/> <!-- Hozan -->
-                    <RunCode Name="Keeping_the_Flame_Alive"/>
-                    <StopBot/>
-
+                    <UserDialog QuestId="67137" StepId="1" DialogText="Please manually complete Leeping the Flame Alive duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(67137) != 2"/>
                     <!-- TO DO -->
 
                     <!-- Find a way to interact with the quest objects. -->
@@ -1144,6 +1143,7 @@
                             <TargetMob Id="3119" Weight="1000"/> <!-- Ilberd of the Dull Blade -->
                         </TargetMobs>
                     </SimpleDutyObject>
+
                 </If>
                 <If Condition="GetQuestStep(67137) == 2">
                     <WaitWhile Condition="GetQuestStep(67137) == 2"/>
@@ -2006,12 +2006,12 @@
                     <If Condition="IsOnMap(398)">
                         <UseTransport Name="Sacrificial Chamber Entrance" InteractDistance="3.0" NpcId="2005446" XYZ="-9.079163, -127.7333, 734.0046"/>
                     </If>
-                    <MoveTo Name="Inner Chamber" XYZ="-6.37802, -0.02866316, 19.86776"/>
+                    <MoveTo Name="Inner Chamber" XYZ="-4.605978, -0.0002331734, 25.74373"/>
                     <WaitWhile Condition="GetQuestStep(67152) == 2"/>
                 </If>
                 <If Condition="GetQuestStep(67152) == 3">
-                    <RunCode Name="Lord_of_the_Hive"/>
-                    <StopBot/>
+                    <UserDialog QuestId="67152" StepId="5" DialogText="Please manually complete Thok as Thok (Hard) duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(67152) != 5"/>
                 </If>
                 <If Condition="GetQuestStep(67152) == 5">
                     <GetTo ZoneId="398" XYZ="-10.9408, -128.9908, 728.2673"/> <!-- Ysayle -->
@@ -2047,8 +2047,8 @@
                     <UseObject NpcId="2005448" XYZ="-688.3802, 4.898132, -794.8882" Radius="10" QuestId="67153" StepId="2"/>
                 </If>
                 <If Condition="GetQuestStep(67153) == 3">
-                    <RunCode Name="Mourn_in_Passing"/>
-                    <StopBot/>
+                    <UserDialog QuestId="67153" StepId="3" DialogText="Please manually complete Sohm Al duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(67153) != 255"/>
                 </If>
 
                 <!-- [TurnIn Quest] -->
@@ -2310,8 +2310,8 @@
                 <!-- [TurnIn Quest] -->
 
                 <If Condition="GetQuestStep(67155) == 255">
-                    <GetTo ZoneId="400" XYZ="381.7043, -66.84979, 700.8619"/> <!-- Moglin -->
-
+                    <GetTo ZoneId="400" XYZ="379.5395, -69.42951, 694.8398"/> <!-- Moglin -->
+                    
                     <!-- Rewards
 
                     0: Paladin Weapon
@@ -2479,7 +2479,7 @@
         <!-- Moglin's Judgment -->
         <If Condition="not IsQuestCompleted(67159)">
             <If Condition="not HasQuest(67159)">
-                <GetTo ZoneId="400" XYZ="381.7043, -66.84979, 700.8619"/> <!-- Moglin -->
+                <GetTo ZoneId="400" XYZ="379.5395, -69.42951, 694.8398"/> <!-- Moglin -->
                 <If Condition="IsQuestAcceptQualified(67159)">
                     <PickupQuest NpcId="1012077" QuestId="67159" XYZ="381.7043, -66.84979, 700.8619"/>
                 </If>
@@ -2511,7 +2511,7 @@
                     </If>
                 </If>
                 <If Condition="GetQuestStep(67159) == 2">
-                    <GetTo ZoneId="400" XYZ="381.7043, -66.84979, 700.8619"/> <!-- Moglin -->
+                    <GetTo ZoneId="400" XYZ="379.5395, -69.42951, 694.8398"/> <!-- Moglin -->
                     <ExtendedTalkTo NpcId="1012077" XYZ="381.7043, -66.84979, 700.8619" QuestId="67159" StepId="2"/>
                 </If>
 
@@ -5578,40 +5578,6 @@
         </CodeChunk>
 
         <!-- Duties -->
-
-        <CodeChunk Name="Keeping_the_Flame_Alive">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(67137) == 1)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[Heavensward]\nPlease manually complete the Keeping the Flame Alive duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
-        <CodeChunk Name="Lord_of_the_Hive">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(67152) == 3)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[Heavensward]\nPlease manually complete the Thok ast Thok (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
-        <CodeChunk Name="Mourn_in_Passing">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(67153) == 3)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[Heavensward]\nPlease manually complete the Sohm Al duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
         <CodeChunk Name="Into_the_Aery">
             <![CDATA[ 
                 while (ConditionParser.GetQuestStep(67170) == 2)
