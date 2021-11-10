@@ -8048,8 +8048,8 @@
 					<TalkTo NpcId="1004612" XYZ="-114.9463, -39.70216, 335.4695" QuestId="66213" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(66213) == 2">
-					<RunCode Name="Fire_in_the_Gloom"/>
-					<StopBot/>
+                    <UserDialog QuestId="66213" StepId="2" DialogText="Please manually complete Tam-Tara Deepcroft duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(66213) != 255"/>
 				</If>
 				<If Condition="GetQuestStep(66213) == 255">
 					<GetTo ZoneId="132" XYZ="25.54354, -8, 115.3249"/>
@@ -8170,17 +8170,7 @@
 					<TalkTo NpcId="1004603" XYZ="-489.8299, 21.48999, -381.9791" QuestId="66045" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(66045) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Scion Of The Seventh Dawn" XYZ="22.50702, 0.9999986, -2.02948"/>
+					<GetTo ZoneId="212" Name="Scion Of The Seventh Dawn" XYZ="22.50702, 0.9999986, -2.02948"/>
 					<TurnIn QuestId="66045" NpcId="1005012" XYZ="22.50702, 0.9999986, -2.02948"/>
 				</If>
 			</If>
@@ -8188,34 +8178,14 @@
 		<!-- A Wild Rose By Any Other Name -->
 		<If Condition="not IsQuestCompleted(66046)">
 			<If Condition="not HasQuest(66046)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+				<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 				<If Condition="IsQuestAcceptQualified(66046)">
 					<PickupQuestPlus NpcId="1003783" QuestId="66046" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
 			</If>
 			<If Condition="HasQuest(66046)">
 				<If Condition="GetQuestStep(66046) == 1">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Thancred" XYZ="33.37146, 1.199997, 6.454529"/>
+					<GetTo ZoneId="212" Name="Thancred" XYZ="33.37146, 1.199997, 6.454529"/>
 					<TalkTo NpcId="1005119" XYZ="33.37146, 1.199997, 6.454529" QuestId="66046" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(66046) == 255">
@@ -8848,17 +8818,7 @@
 					<BotSettings AutoEquip="1"/>
 				</While>
 				<If Condition="GetQuestStep(66110) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+					<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 					<TurnIn QuestId="66110" NpcId="1005116" ItemId="2001110" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
 			</If>
@@ -8866,17 +8826,7 @@
 		<!-- Life, Materia and Everything -->
 		<If Condition="not IsQuestCompleted(65808)">
 			<If Condition="not HasQuest(65808)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+				<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 				<If Condition="IsQuestAcceptQualified(65808)">
 					<PickupQuest NpcId="1005116" QuestId="65808" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
@@ -8888,17 +8838,7 @@
 					<HandOver ItemId="2000461" QuestId="65808" StepId="1" NpcId="1001425" XYZ="115.1293, 31.8761, -392.2027"/>
 				</If>
 				<If Condition="GetQuestStep(65808) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+					<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 					<TurnIn QuestId="65808" NpcId="1005116" ItemId="2000462" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
 			</If>
@@ -8938,17 +8878,7 @@
 		<!-- Hallo Halatali -->
 		<If Condition="not IsQuestCompleted(66233)">
 			<If Condition="not HasQuest(66233)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-472.4957, 23.02882, -355.0012"/>
-					<!-- Nedrick Ironheart -->
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-					<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Exit to Vesper Bay" InteractDistance="3.0" NpcId="2001716" XYZ="-15.7016, 1.083313, -0.01531982"/>
-				</If>
-				<NoCombatMoveTo Name="Nedrick Ironheart" XYZ="-472.4957, 23.02882, -355.0012"/>
+				<GetTo ZoneId="140" Name="Nedrick Ironheart" XYZ="-472.4957, 23.02882, -355.0012"/>
 				<If Condition="IsQuestAcceptQualified(66233)">
 					<PickupQuest NpcId="1005021" QuestId="66233" XYZ="-472.4957, 23.02882, -355.0012"/>
 				</If>
@@ -8964,17 +8894,7 @@
 		<!-- Lord of the Inferno -->
 		<If Condition="not IsQuestCompleted(65879)">
 			<If Condition="not HasQuest(65879)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+				<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 				<If Condition="IsQuestAcceptQualified(65879)">
 					<PickupQuest NpcId="1005116" QuestId="65879" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
@@ -9022,17 +8942,7 @@
 					<TalkTo NpcId="1005156" XYZ="-372.7322, -57.07999, 151.0491" QuestId="65879" StepId="5"/>
 				</If>
 				<If Condition="GetQuestStep(65879) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Scion Of The Seventh Dawn" XYZ="22.50702, 0.9999986, -2.02948"/>
+					<GetTo ZoneId="212" Name="Scion Of The Seventh Dawn" XYZ="22.50702, 0.9999986, -2.02948"/>
 					<TurnIn QuestId="65879" NpcId="1005012" ItemId="2001110" XYZ="22.50702, 0.9999986, -2.02948"/>
 				</If>
 			</If>
@@ -9040,34 +8950,14 @@
 		<!-- A Hero in the Making -->
 		<If Condition="not IsQuestCompleted(66047)">
 			<If Condition="not HasQuest(66047)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+				<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 				<If Condition="IsQuestAcceptQualified(66047)">
 					<PickupQuest NpcId="1005116" QuestId="66047" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
 			</If>
 			<If Condition="HasQuest(66047)">
 				<If Condition="GetQuestStep(66047) == 1">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-489.8299, 21.48999, -381.9791"/>
-						<!-- Tataru -->
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Exit to Vesper Bay" InteractDistance="3.0" NpcId="2001716" XYZ="-15.7016, 1.083313, -0.01531982"/>
-					</If>
-					<NoCombatMoveTo Name="Tataru" XYZ="-489.8299, 21.48999, -381.9791"/>
+					<GetTo ZoneId="140" Name="Tataru" XYZ="-489.8299, 21.48999, -381.9791"/>
 					<TalkTo NpcId="1003785" XYZ="-489.8299, 21.48999, -381.9791" QuestId="66047" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(66047) == 2">
@@ -9093,17 +8983,7 @@
 					</If>
 				</If>
 				<If Condition="GetQuestStep(66047) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+					<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 					<TurnIn QuestId="66047" NpcId="1005122" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
 			</If>
@@ -9215,17 +9095,7 @@
 		<!-- The Company You Keep (Immortal Flames) -->
 		<If Condition="not IsQuestCompleted(66218)">
 			<If Condition="not HasQuest(66218)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Flame Officer" XYZ="37.88806, 1.200001, 4.135132"/>
+				<GetTo ZoneId="212" Name="Flame Officer" XYZ="37.88806, 1.200001, 4.135132"/>
 				<If Condition="IsQuestAcceptQualified(66218)">
 					<PickupQuest NpcId="1004883" QuestId="66218" XYZ="37.88806, 1.200001, 4.135132"/>
 				</If>
@@ -9275,17 +9145,7 @@
 			</If>
 			<If Condition="HasQuest(66221)">
 				<If Condition="GetQuestStep(66221) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Scion Of The Seventh Dawn" XYZ="22.50702, 0.9999986, -2.02948"/>
+					<GetTo ZoneId="212" Name="Scion Of The Seventh Dawn" XYZ="22.50702, 0.9999986, -2.02948"/>
 					<TurnIn QuestId="66221" NpcId="1005012" ItemId="2001110" XYZ="22.50702, 0.9999986, -2.02948"/>
 				</If>
 			</If>
@@ -9360,17 +9220,7 @@
 		<!-- Sylph-management -->
 		<If Condition="not IsQuestCompleted(66049)">
 			<If Condition="not HasQuest(66049)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+				<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 				<If Condition="IsQuestAcceptQualified(66049)">
 					<PickupQuest NpcId="1005128" QuestId="66049" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
@@ -10641,17 +10491,7 @@
 					<WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
 				</If>
 				<If Condition="GetQuestStep(66282) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+					<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 					<TurnIn QuestId="66282" NpcId="1006688" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
 			</If>
@@ -10659,17 +10499,7 @@
 		<!-- Shadow of Darkness -->
 		<If Condition="not IsQuestCompleted(66283)">
 			<If Condition="not HasQuest(66283)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+				<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 				<If Condition="IsQuestAcceptQualified(66283)">
 					<PickupQuest NpcId="1006688" QuestId="66283" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
@@ -11082,17 +10912,7 @@
 			</If>
 			<If Condition="HasQuest(66298)">
 				<If Condition="GetQuestStep(66298) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+					<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 					<TurnIn QuestId="66298" NpcId="1006688" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
 			</If>
@@ -11104,34 +10924,14 @@
 		<!-- Meeting with the Resistance -->
 		<If Condition="not IsQuestCompleted(66299)">
 			<If Condition="not HasQuest(66299)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+				<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 				<If Condition="IsQuestAcceptQualified(66299)">
 					<PickupQuest NpcId="1006688" QuestId="66299" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
 			</If>
 			<If Condition="HasQuest(66299)">
 				<If Condition="GetQuestStep(66299) == 1">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<NoCombatMoveTo Name="Haribehrt" XYZ="9.689453, -3.000002, -55.98541"/>
+					<GetTo ZoneId="212" Name="Haribehrt" XYZ="9.689453, -3.000002, -55.98541"/>
 					<TalkTo NpcId="1007418" XYZ="9.689453, -3.000002, -55.98541" QuestId="66299" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(66299) == 255">
@@ -11691,17 +11491,7 @@
 			</If>
 			<If Condition="HasQuest(66319)">
 				<If Condition="GetQuestStep(66319) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+					<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 					<TurnIn QuestId="66319" NpcId="1006688" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
 			</If>
@@ -11709,34 +11499,14 @@
 		<!-- Terror at Fallgourd -->
 		<If Condition="not IsQuestCompleted(69399)">
 			<If Condition="not HasQuest(69399)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+				<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 				<If Condition="IsQuestAcceptQualified(69399)">
 					<PickupQuest NpcId="1006688" QuestId="69399" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
 			</If>
 			<If Condition="HasQuest(69399)">
 				<If Condition="GetQuestStep(69399) == 1">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Noraxia" XYZ="1.235901, -3.000001, -57.66388"/>
+					<GetTo ZoneId="212" Name="Noraxia" XYZ="1.235901, -3.000001, -57.66388"/>
 					<TalkTo NpcId="1007417" XYZ="1.235901, -3.000001, -57.66388" QuestId="69399" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(69399) == 2">
@@ -12203,17 +11973,7 @@
 					<TalkTo NpcId="1006263" XYZ="36.81995, 16.35147, -334.5846" QuestId="66337" StepId="4"/>
 				</If>
 				<If Condition="GetQuestStep(66337) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+					<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 					<TurnIn QuestId="66337" NpcId="1006688" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
 			</If>
@@ -12465,17 +12225,7 @@
 		<!-- Wrath of the Titan -->
 		<If Condition="not IsQuestCompleted(66052)">
 			<If Condition="not HasQuest(66052)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
+				<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
 				<If Condition="IsQuestAcceptQualified(66052)">
 					<PickupQuest NpcId="1006688" QuestId="66052" XYZ="39.29187, 1.214808, 0.8086548"/>
 				</If>
@@ -14253,17 +14003,7 @@
 					<WaitWhile Condition="GetQuestStep(66053) == 2"/>
 				</If>
 				<If Condition="GetQuestStep(66053) == 3">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Noraxia" XYZ="36.05701, 0.3203735, -1.541199"/>
+					<GetTo ZoneId="212" Name="Noraxia" XYZ="36.05701, 0.3203735, -1.541199"/>
 					<TalkTo NpcId="1007467" XYZ="36.05701, 0.3203735, -1.541199" QuestId="66053" StepId="3"/>
 				</If>
 				<If Condition="GetQuestStep(66053) == 255">
@@ -17740,17 +17480,7 @@
 			</If>
 			<If Condition="HasQuest(66056)">
 				<If Condition="GetQuestStep(66056) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Alphinaud" XYZ="22.81219, 0.9999986, 2.182007"/>
+					<GetTo ZoneId="212" Name="Alphinaud" XYZ="22.81219, 0.9999986, 2.182007"/>
 					<TurnIn QuestId="66056" NpcId="1007630" XYZ="22.81219, 0.9999986, 2.182007"/>
 				</If>
 			</If>
@@ -17758,17 +17488,7 @@
 		<!-- Casing the Castrum -->
 		<If Condition="not IsQuestCompleted(66514)">
 			<If Condition="not HasQuest(66514)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Y'shtola" XYZ="37.30823, 1.200001, 2.914429"/>
+				<GetTo ZoneId="212" Name="Y'shtola" XYZ="37.30823, 1.200001, 2.914429"/>
 				<If Condition="IsQuestAcceptQualified(66514)">
 					<PickupQuest NpcId="1007473" QuestId="66514" XYZ="37.30823, 1.200001, 2.914429"/>
 				</If>
@@ -19006,17 +18726,7 @@
 					<TalkTo NpcId="1001821" XYZ="-24.12457, 38, 85.31323" QuestId="66058" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(66058) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Minfilia" XYZ="39.26135, 1.214808, 0.8086548"/>
+					<GetTo ZoneId="212" Name="Minfilia" XYZ="39.26135, 1.214808, 0.8086548"/>
 					<TurnIn QuestId="66058" NpcId="1006690" XYZ="39.26135, 1.214808, 0.8086548"/>
 				</If>
 			</If>
@@ -19025,17 +18735,7 @@
 			<!-- Primal Fear -->
 			<If Condition="not IsQuestCompleted(66543)">
 				<If Condition="not HasQuest(66543)">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955"/>
+					<GetTo ZoneId="212" Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955"/>
 					<If Condition="IsQuestAcceptQualified(66543)">
 						<PickupQuest NpcId="1007478" QuestId="66543" XYZ="-2.822998, -3.000001, -56.22955"/>
 					</If>
@@ -19149,17 +18849,7 @@
 				</If>
 				<If Condition="HasQuest(66548)">
 					<If Condition="GetQuestStep(66548) == 255">
-						<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-							<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-							<!-- Waking Sands Entrance -->
-						</If>
-						<If Condition="IsOnMap(140)">
-							<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-						</If>
-						<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-							<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-						</If>
-						<MoveTo Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955"/>
+						<GetTo ZoneId="212" Name="Urianger" XYZ="-2.822998, -3.000001, -56.22955"/>
 						<TurnIn QuestId="66548" NpcId="1007478" ItemId="2000846" XYZ="-2.822998, -3.000001, -56.22955"/>
 					</If>
 				</If>
@@ -19246,17 +18936,7 @@
 			<!-- A Kobold Initiative -->
 			<If Condition="not IsQuestCompleted(66551)">
 				<If Condition="not HasQuest(66551)">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Slafswys" XYZ="2.883911, -2.000001, -12.25305"/>
+					<GetTo ZoneId="212" Name="Slafswys" XYZ="2.883911, -2.000001, -12.25305"/>
 					<If Condition="IsQuestAcceptQualified(66551)">
 						<PickupQuest NpcId="1007487" QuestId="66551" XYZ="2.883911, -2.000001, -12.25305"/>
 					</If>
@@ -19363,17 +19043,7 @@
 						<HandOver ItemId="2000777" QuestId="66556" StepId="1" NpcId="1003281" XYZ="97.52039, 40.24854, 81.1322"/>
 					</If>
 					<If Condition="GetQuestStep(66556) == 255">
-						<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-							<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-							<!-- Waking Sands Entrance -->
-						</If>
-						<If Condition="IsOnMap(140)">
-							<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-						</If>
-						<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-							<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-						</If>
-						<MoveTo Name="Slafswys" XYZ="2.883911, -2.000001, -12.25305"/>
+						<GetTo ZoneId="212" Name="Slafswys" XYZ="2.883911, -2.000001, -12.25305"/>
 						<TurnIn QuestId="66556" NpcId="1007487" XYZ="2.883911, -2.000001, -12.25305"/>
 					</If>
 				</If>
@@ -19381,17 +19051,7 @@
 			<!-- Sidequest: Can't Do It without U -->
 			<If Condition="not IsQuestCompleted(67089)">
 				<If Condition="not HasQuest(67089)">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Wigstan" XYZ="10.2998, -3.000002, -54.8562"/>
+					<GetTo ZoneId="212" Name="Wigstan" XYZ="10.2998, -3.000002, -54.8562"/>
 					<If Condition="IsQuestAcceptQualified(67089)">
 						<PickupQuest NpcId="1011618" QuestId="67089" XYZ="10.2998, -3.000002, -54.8562"/>
 					</If>
@@ -19483,17 +19143,7 @@
 						<TalkTo NpcId="1004917" XYZ="-358.6328, 8.469424, 422.4154" QuestId="66560" StepId="2"/>
 					</If>
 					<If Condition="GetQuestStep(66560) == 255">
-						<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-							<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-							<!-- Waking Sands Entrance -->
-						</If>
-						<If Condition="IsOnMap(140)">
-							<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-						</If>
-						<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-							<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-						</If>
-						<MoveTo Name="Wigstan" XYZ="10.2998, -3.000002, -54.8562"/>
+						<GetTo ZoneId="212" Name="Wigstan" XYZ="10.2998, -3.000002, -54.8562"/>
 						<TurnIn QuestId="66560" NpcId="1011618" XYZ="10.2998, -3.000002, -54.8562"/>
 					</If>
 				</If>
@@ -19514,17 +19164,7 @@
 			<!-- Into the Valley of the Skull -->
 			<If Condition="not IsQuestCompleted(66561)">
 				<If Condition="not HasQuest(66561)">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Radolf" XYZ="-1.205505, -2.00001, -28.00031"/>
+					<GetTo ZoneId="212" Name="Radolf" XYZ="-1.205505, -2.00001, -28.00031"/>
 					<If Condition="IsQuestAcceptQualified(66561)">
 						<PickupQuest NpcId="1007488" QuestId="66561" XYZ="-1.205505, -2.00001, -28.00031"/>
 					</If>
@@ -19654,17 +19294,7 @@
 						<TalkTo NpcId="1006614" XYZ="65.87317, -3.118188, 61.41748" QuestId="66571" StepId="2"/>
 					</If>
 					<If Condition="GetQuestStep(66571) == 255">
-						<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-							<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-							<!-- Waking Sands Entrance -->
-						</If>
-						<If Condition="IsOnMap(140)">
-							<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-						</If>
-						<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-							<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-						</If>
-						<NoCombatMoveTo Name="Radolf" XYZ="-1.205505, -2.00001, -28.00031"/>
+						<GetTo ZoneId="212" Name="Radolf" XYZ="-1.205505, -2.00001, -28.00031"/>
 						<TurnIn QuestId="66571" NpcId="1007488" XYZ="-1.205505, -2.00001, -28.00031"/>
 					</If>
 				</If>
@@ -19844,29 +19474,13 @@
 		<!-- Operation Archon -->
 		<If Condition="not IsQuestCompleted(66572)">
 			<If Condition="not HasQuest(66572)">
-				<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-					<GetTo ZoneId="140" XYZ="-480.9181, 18.00103, -386.862"/>
-					<!-- Waking Sands Entrance -->
-				</If>
-				<If Condition="IsOnMap(140)">
-					<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-				</If>
-				<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-					<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-				</If>
-				<MoveTo Name="Minfilia" XYZ="39.26135, 1.214808, 0.8086548"/>
+				<GetTo ZoneId="212" Name="Minfilia" XYZ="39.26135, 1.214808, 0.8086548"/>
 				<If Condition="IsQuestAcceptQualified(66572)">
 					<PickupQuest NpcId="1006690" QuestId="66572" XYZ="39.26135, 1.214808, 0.8086548"/>
 				</If>
 			</If>
 			<If Condition="HasQuest(66572)">
 				<If Condition="GetQuestStep(66572) == 1">
-					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
-						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Exit to Vesper Bay" InteractDistance="3.0" NpcId="2001716" XYZ="-15.7016, 1.083313, -0.01531982"/>
-					</If>
 					<GetTo ZoneId="140" XYZ="-467.277, 22.99698, -475.2117"/>
 					<!-- Allied Communications Officer -->
 					<TalkTo NpcId="1006578" XYZ="-467.277, 22.99698, -475.2117"/>
@@ -20154,17 +19768,7 @@
 					<StopBot/>
 				</If>
 				<If Condition="GetQuestStep(66060) == 255">
-					<If Condition="not IsOnMap(140) and not IsOnMap(212)">
-						<GetTo ZoneId="140" XYZ="-480.9186, 17.99036, -386.862"/>
-						<!-- Waking Sands Entrance -->
-					</If>
-					<If Condition="IsOnMap(140)">
-						<UseTransport Name="Waking Sands Entrance" InteractDistance="3.0" NpcId="2001711" XYZ="-480.9186, 17.99036, -386.862"/>
-					</If>
-					<If Condition="IsOnMap(212) and IsOnSubMap(356)">
-						<UseTransport Name="Entrance to the Solar" InteractDistance="3.0" NpcId="2001715" XYZ="23.23944, 2.090454, -0.01531982"/>
-					</If>
-					<MoveTo Name="Minfilia" XYZ="39.26135, 1.214808, 0.8086548"/>
+					<GetTo ZoneId="212" Name="Minfilia" XYZ="39.26135, 1.214808, 0.8086548"/>
 					<TurnIn QuestId="66060" NpcId="1006692" XYZ="39.26135, 1.214808, 0.8086548"/>
 				</If>
 			</If>
@@ -20376,17 +19980,6 @@
         	]]>
 		</CodeChunk>
 		<!-- 15-50 Quests -->
-		<CodeChunk Name="Fire_in_the_Gloom">
-			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(66213) == 2)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn]\nPlease manually complete the Tam-Tara Deepcroft duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-		</CodeChunk>
 		<CodeChunk Name="Into_a_Copper_Hell">
 			<![CDATA[ 
                 while (ConditionParser.GetQuestStep(66196) == 3)
