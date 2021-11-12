@@ -8124,8 +8124,8 @@
 					<TalkTo NpcId="1002285" XYZ="326.4667, 63, -231.6473" QuestId="66196" StepId="2"/>
 				</If>
 				<If Condition="GetQuestStep(66196) == 3">
-					<RunCode Name="Into_a_Copper_Hell"/>
-					<StopBot/>
+					<UserDialog QuestId="66196" StepId="3" DialogText="Please manually complete Copperbell Mines duty" IsBotStopAllowed="true"/>
+					<WaitWhile Condition="GetQuestStep(66196) != 4"/>
 				</If>
 				<If Condition="GetQuestStep(66196) == 4">
 					<GetTo ZoneId="130" XYZ="23.11737, 6.999991, -86.53394"/>
@@ -19980,17 +19980,6 @@
         	]]>
 		</CodeChunk>
 		<!-- 15-50 Quests -->
-		<CodeChunk Name="Into_a_Copper_Hell">
-			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(66196) == 3)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn]\nPlease manually complete the Copperbell Mines duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-		</CodeChunk>
 		<CodeChunk Name="Dressed_to_Deceive">
 			<![CDATA[ 
 				BagSlot EquipSlot2 = InventoryManager.GetBagByInventoryBagId(ff14bot.Enums.InventoryBagId.EquippedItems)[ff14bot.Enums.EquipmentSlot.Body];

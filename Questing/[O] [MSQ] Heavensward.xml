@@ -3031,8 +3031,8 @@
                     <ExtendedTalkTo NpcId="1013168" XYZ="-187.1824, 15.994, -47.68445" QuestId="67170" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(67170) == 2">
-                    <RunCode Name="Into_the_Aery"/>
-                    <StopBot/>
+                    <UserDialog QuestId="67170" StepId="2" DialogText="Please manually complete Aery duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(67170) != 255"/>
                 </If>
 
                 <!-- [TurnIn Quest] -->
@@ -5578,17 +5578,6 @@
         </CodeChunk>
 
         <!-- Duties -->
-        <CodeChunk Name="Into_the_Aery">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(67170) == 2)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[Heavensward]\nPlease manually complete The Aery duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
         <CodeChunk Name="A_Knights_Calling">
             <![CDATA[ 
                 while (ConditionParser.GetQuestStep(67176) == 3)
