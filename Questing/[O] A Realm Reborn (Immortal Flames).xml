@@ -8925,16 +8925,13 @@
 					</SimpleDuty>
 				</If>
 				<If Condition="GetQuestStep(65879) == 3">
-					<If Condition="not IsOnMap(146)">
-						<LogMessage Message="Get inside the cave manually"/>
-						<StopBot/>
-					</If>
+					<WaitWhile Condition="not IsOnMap(146)"/>
 					<!-- Flame Sergeant -->
 					<TalkTo NpcId="1005017" XYZ="-63.1571, -25.21552, -554.6502" QuestId="65879" StepId="3"/>
 				</If>
 				<If Condition="GetQuestStep(65879) == 4">
-					<RunCode Name="Lord_of_the_Inferno"/>
-					<StopBot/>
+                    <UserDialog QuestId="65879" StepId="4" DialogText="Please manually complete Bowl of Embers duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(65879) != 5"/>
 				</If>
 				<If Condition="GetQuestStep(65879) == 5">
 					<GetTo ZoneId="145" XYZ="-372.7322, -57.07999, 151.0491"/>
@@ -10244,6 +10241,7 @@
 					<UseObject NpcId="2001952" XYZ="18.72278, 7.614197, -43.13727" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="66274" StepId="1"/>
 					<NoCombatMoveTo Name="Jump" Distance="1" UseMesh="False" XYZ="14.96859, -1.230137, -52.50957"/>
 					<UseObject NpcId="2001950" XYZ="63.55383, 13.47363, -32.33392" Radius="10" UseTimes="1" BlacklistAfter="True" QuestId="66274" StepId="1"/>
+					<WaitWhile Condition="GetQuestStep(66274) != 255"/>
 				</If>
 				<If Condition="GetQuestStep(66274) == 255">
 					<GetTo ZoneId="153" XYZ="-167.4839, 9.869229, -80.15215"/>
@@ -10488,7 +10486,7 @@
 					<If Condition="IsOnMap(212) and IsOnSubMap(374)">
 						<UseTransport Name="Exit to the Waking Sands" InteractDistance="3.0" NpcId="2001717" XYZ="25.4978, 2.090454, -0.01531982"/>
 					</If>
-					<WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
+					<WaitWhile Condition="Managers.QuestLogManager.InCutscene == True"/>
 				</If>
 				<If Condition="GetQuestStep(66282) == 255">
 					<GetTo ZoneId="212" Name="Minfilia" XYZ="39.29187, 1.214808, 0.8086548"/>
@@ -11612,9 +11610,10 @@
 				</If>
 				<If Condition="HasQuest(66329)">
 					<If Condition="GetQuestStep(66329) == 1">
-						<GetTo ZoneId="154" XYZ="-104.8799, -51.08397, 382.9469"/>
-						<!-- Grinding Area -->
-						<Grind grindRef="Trouble_on_the_Road" while="HasQuest(66329) and GetQuestStep(66329) == 1"/>
+						<GetTo ZoneId="154" XYZ="-104.4699, -52.22872, 368.7816"/>
+						<Dismount/>
+						<MoveTo ZoneId="154" XYZ="-107.3167, -52.25655, 390.4935"/>
+	
 					</If>
 					<If Condition="GetQuestStep(66329) == 2">
 						<GetTo ZoneId="154" XYZ="-107.3167, -52.25655, 390.4935"/>
@@ -16715,7 +16714,7 @@
 					<If Condition="GetQuestStep(66856) == 5">
 						<GetTo ZoneId="180" XYZ="20.7532, 16.69439, -168.4228"/>
 						<!-- xXx -->
-						<WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
+						<WaitWhile Condition="Managers.QuestLogManager.InCutscene == True"/>
 					</If>
 					<If Condition="GetQuestStep(66856) == 6">
 						<GetTo ZoneId="180" XYZ="19.48578, 16.1593, -196.4294"/>
@@ -17422,7 +17421,7 @@
 				<If Condition="IsQuestAcceptQualified(66055)">
 					<PickupQuest NpcId="1006492" QuestId="66055" XYZ="7.339539, -21.97097, 121.9348"/>
 				</If>
-				<WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
+				<WaitWhile Condition="Managers.QuestLogManager.InCutscene  == True"/>
 				<WaitTimer WaitTime="5"/>
 			</If>
 			<If Condition="HasQuest(66055)">
@@ -19998,17 +19997,6 @@
 					}
 				}
 		]]>
-		</CodeChunk>
-		<CodeChunk Name="Lord_of_the_Inferno">
-			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(65879) == 4)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn]\nPlease manually complete the Bowl of Embers duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
 		</CodeChunk>
 		<CodeChunk Name="Sylph_Says">
 			<![CDATA[ 

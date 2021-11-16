@@ -12587,8 +12587,8 @@
                     <TalkTo NpcId="1012212" XYZ="-6.790344, 42.34489, -207.0497" QuestId="67176" StepId="2"/>
                 </If>
                 <If Condition="GetQuestStep(67176) == 3">
-                    <RunCode Name="A_Knights_Calling"/>
-                    <StopBot/>
+					<UserDialog QuestId="67176" StepId="3" DialogText="Please manually complete Vault duty" IsBotStopAllowed="true"/>
+					<WaitWhile Condition="GetQuestStep(67176) != 5"/>
                 </If>
                 <If Condition="GetQuestStep(67176) == 5">
                     <GetTo ZoneId="419" XYZ="-6.790344, 42.34489, -207.0497"/> <!-- Temple Knight Squire -->
@@ -12839,15 +12839,6 @@
                 </If>
                 <If Condition="GetQuestStep(67180) == 2">
                     <GetTo ZoneId="401" XYZ="-761.8904, -38.69292, 75.92774"/> <!-- Farther North -->
-                    <RunCode Name="Familiar_Faces"/>
-                    <StopBot/>
-
-                    <!-- TO DO -->
-
-                    <!-- Why was this not working? -->
-
-                    <!-- TO DO -->
-
                     <Dismount/>
                     <SendChat Message="/lookout" QuestId="67180" StepId="2"/>
                     <SimpleDuty XYZ="-761.8904, -38.69292, 75.92774" QuestId="67180" StepId="2">
@@ -13321,8 +13312,8 @@
         <If Condition="not IsQuestCompleted(67183)">
             <If Condition="HasQuest(67183)">
                 <If Condition="GetQuestStep(67183) == 4">
-                    <RunCode Name="Bolt_Chain_and_Island"/>
-                    <StopBot/>
+                    <UserDialog QuestId="67183" StepId="4" DialogText="Please manually complete Limitless Blue (Hard) duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(67183) != 255"/>
                 </If>
 
                 <!-- [TurnIn Quest] -->
@@ -14545,13 +14536,6 @@
                     <If Condition="not IsOnMap(478)">
                         <GetTo ZoneId="478" XYZ="71.02926, 209.25, -15.71163"/> <!-- Idyllshire Aetheryte -->
                     </If>
-                    <If Condition="not Managers.WorldManager.HasAetheryteId(75)">
-                        <LogMessage Message="[Heavensward] Attuning to the Idyllshire Aetheryte..."/>
-                        <MoveTo Name="Idyllshire Aetheryte" XYZ="71.02926, 209.25, -15.71163"/>
-                        <UseObject UseDistance="8.0" NpcId="75" XYZ="71.96497, 211.2655, -18.88614" Radius="10" UseTimes="1" BlacklistAfter="True"/>
-                        <LogMessage Message="[Heavensward] Setting Idyllshire as your Home Point..."/>
-                        <UseTransport NpcId="75" UseTimes="1" DialogOption="0" BlacklistAfter="True" InteractDistance="10" XYZ="71.96497, 211.2655, -18.88614" Radius="10" WaitTime="5000"/>
-                    </If>
 
                     <!-- Rewards
 
@@ -14566,7 +14550,7 @@
 
                     -->
 
-                    <MoveTo Name="Slowfix" XYZ="73.3501, 205.8894, 23.48358"/>
+                    <GetTo ZoneId="478" Name="Slowfix" XYZ="73.3501, 205.8894, 23.48358"/>
                     <TurnIn QuestId="67191" NpcId="1012097" XYZ="73.3501, 205.8894, 23.48358" RewardSlot="2"/>
                 </If>
             </If>
@@ -19350,39 +19334,6 @@
                     System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
                     System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
                     Core.OverlayManager.AddToast(() => "[Heavensward]\nPlease manually complete The Dusk Vigil duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
-        <CodeChunk Name="A_Knights_Calling">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(67176) == 3)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[Heavensward]\nPlease manually complete The Vault duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
-        <CodeChunk Name="Familiar_Faces">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(67180) == 2)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[Heavensward]\nPlease manually complete the Familiar Faces duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
-        <CodeChunk Name="Bolt_Chain_and_Island">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(67183) == 4)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[Heavensward]\nPlease manually complete The Limitless Blue (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
                     await Coroutine.Sleep(26000);
                 }
             ]]>

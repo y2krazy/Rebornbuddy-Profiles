@@ -6805,7 +6805,7 @@
 							<NoCombatMoveTo Name="Destination" XYZ="-94.95697, 298.6343, -212.665"/>
 							<Dismount/>
 							<SendChat Message="/say Fray!" QuestId="67594" StepId="1"/>
-							<WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
+							<WaitWhile Condition="Managers.QuestLogManager.InCutscene == True"/>
 						</If>
 						<If Condition="GetQuestStep(67594) == 2">
 							<If Condition="not IsOnMap(155)">
@@ -11370,8 +11370,8 @@
 							<While Condition="GetQuestStep(65849) == 10">
 								<GetTo ZoneId="135" XYZ="160.4721, 33.63541, 77.49911"/> <!-- Sighard -->
 								<Dismount/>
-								<MoveTo Name="Sighard" XYZ="158.9813, 33.70064, 89.23701"/>
-								<SimpleDuty XYZ="155.8101, 34.22191, 95.6513" QuestId="65849" StepId="10">
+								<MoveTo Name="Sighard" XYZ="158.1554, 33.74164, 87.90929"/>
+								<SimpleDuty XYZ="158.1554, 33.74164, 87.90929" QuestId="65849" StepId="10">
 									<HotSpots>
 										<HotSpot XYZ="155.6387, 34.26702, 95.90092" Radius="90"/>
 									</HotSpots>
@@ -11494,7 +11494,7 @@
 									<RunCode Name="Agelyss_River_Jump"/>
 								</If>
 								<MoveTo ZoneId="134" XYZ="-225.33, 42.19116, -35.20258"/> <!-- Unmovable Boulder -->
-								<UseSpell SpellId="31" NpcId="2001486" XYZ="-225.33, 42.19116, -35.20258" QuestId="65852" StepId="5"/>
+								<UseSpell SpellId="35" NpcId="2001486" XYZ="-225.33, 42.19116, -35.20258" QuestId="65852" StepId="5"/>
 							</If>
 							<If Condition="GetQuestStep(65852) == 6">
 								<If Condition="not IsOnMap(134)">
@@ -11580,7 +11580,7 @@
 									<GetTo ZoneId="138" XYZ="299.1836, 0.713913, 86.10657"/>
 								</If>
 								<NoCombatMoveTo Name="Solkwyb" XYZ="299.1836, 0.713913, 86.10657"/>
-								<ExtendedDuty InteractNpcId="1002684" GuardianNPCId="824" XYZ="299.1836, 0.713913, 86.10657" QuestId="65853" StepId="6">
+								<SimpleDuty InteractNpcId="1002684" GuardianNPCId="824" XYZ="299.1836, 0.713913, 86.10657" QuestId="65853" StepId="6">
 									<HotSpots>
 										<HotSpot XYZ="296.9577, 0.8551753, 85.03024" Radius="90"/>
 									</HotSpots>
@@ -11588,7 +11588,7 @@
 										<TargetMob Id="835" Weight="2000"/> <!-- Pack Jackal -->
 										<TargetMob Id="834" Weight="1000"/> <!-- Scarred Jackal -->
 									</TargetMobs>
-								</ExtendedDuty>
+								</SimpleDuty>
 							</If>
 							<If Condition="GetQuestStep(65853) == 7">
 								<If Condition="not IsOnMap(135)">
@@ -12990,14 +12990,14 @@
 							</If>
 							<While Condition="GetQuestStep(66090) == 3">
 								<GetTo ZoneId="140" XYZ="229.0933, 51.94556, 91.25763"/> <!-- Trial Stone -->
-								<MoveTo Distance=".5" Name="Trial Stone" XYZ="224.9629, 52.80996, 78.25069"/>
+								<MoveTo Name="Trial Stone" XYZ="224.9629, 52.80996, 78.25069"/>
 								<UseSpell SpellId="53" NpcId="2001541" XYZ="224.7196, 52.04846, 79.45361" QuestId="66090" StepId="3"/>
-								<MoveTo Name="Trial Stone" XYZ="244.0418, 51.40976, 60.30481"/>
-								<UseSpell SpellId="53" Distance="1" NpcId="2001542" XYZ="244.0418, 51.40976, 60.30481" QuestId="66090" StepId="3"/>
-								<MoveTo Distance=".5" Name="Trial Stone" XYZ="222.513, 52.76848, 40.68093"/>
+								<MoveTo Name="Trial Stone" XYZ="245.7159, 52.47571, 58.09106"/>
+								<UseSpell SpellId="53" Distance="1" NpcId="2001542" XYZ="245.7159, 52.47571, 58.09106" QuestId="66090" StepId="3"/>
+								<MoveTo Name="Trial Stone" XYZ="222.513, 52.76848, 40.68093"/>
 								<UseSpell SpellId="53" Distance="2.5" NpcId="2001543" XYZ="224.0176, 52.23157, 41.36719" QuestId="66090" StepId="3"/>
-								<MoveTo Distance=".5" Name="Trial Stone" XYZ="260.7476, 55.22758, 25.22368"/>
-								<UseSpell SpellId="53" NpcId="2001544" XYZ="260.7476, 55.22758, 25.22368" QuestId="66090" StepId="3"/>
+								<MoveTo Name="Trial Stone" XYZ="261.3669, 55.53403, 24.92537"/>
+								<UseSpell SpellId="53" NpcId="2001544" XYZ="259.0524, 53.42175, 25.40625" QuestId="66090" StepId="3"/>
 								<WaitTimer WaitTime="3"/>
 							</While>
 							<If Condition="GetQuestStep(66090) == 255">
@@ -18429,7 +18429,7 @@
 							<If Condition="GetQuestStep(67217) == 255">
 								<GetTo ZoneId="131" XYZ="87.5105, 18, 113.7255"/> <!-- Lalai -->
 								<TurnIn QuestId="67217" NpcId="1006752" XYZ="87.5105, 18, 113.7255"/>
-								<WaitWhile Condition="Managers.QuestLogManager.InCutscene"/>
+								<WaitWhile Condition="Managers.QuestLogManager.InCutscene == True"/>
 							</If>
 						</If>
 					</If>
