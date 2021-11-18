@@ -10357,8 +10357,8 @@
 					<TalkTo NpcId="1000393" XYZ="-89.46368, 3.318795, -168.9021" QuestId="66050" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(66050) == 2">
-					<RunCode Name="Into_the_Beasts_Maw"/>
-					<StopBot/>
+                    <UserDialog QuestId="66050" StepId="2" DialogText="Please manually complete Thousand Maws of Toto-Rak duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(66050) != 255"/>
 				</If>
 				<If Condition="GetQuestStep(66050) == 255">
 					<GetTo ZoneId="153" XYZ="-167.4839, 9.869229, -80.15215"/>
@@ -20049,17 +20049,6 @@
 				await Coroutine.Sleep(500);
 				MovementManager.MoveStop();
         	]]>
-		</CodeChunk>
-		<CodeChunk Name="Into_the_Beasts_Maw">
-			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(66050) == 2)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn]\nPlease manually complete the Thousand Maws of Toto-rak duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
 		</CodeChunk>
 		<CodeChunk Name="Strawman_Defense">
 			<![CDATA[ 
