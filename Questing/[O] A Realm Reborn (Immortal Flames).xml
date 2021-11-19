@@ -10448,7 +10448,8 @@
 			</If>
 			<If Condition="HasQuest(66280)">
 				<If Condition="GetQuestStep(66280) == 1">
-					<GetTo ZoneId="152" XYZ="191.3454, 8.679883, 187.5115"/>
+					<GetTo ZoneId="152" XYZ="191.0618, 8.662374, 187.3795"/>
+					<MoveTo Name="Spot" Distance="0.5" XYZ="190.937, 8.659506, 187.3839"/>
 					<!-- Lookout Spot -->
 					<Dismount/>
 					<SendChat Message="/lookout" QuestId="66280" StepId="1"/>
@@ -11904,7 +11905,9 @@
 			</If>
 			<If Condition="HasQuest(66335)">
 				<If Condition="GetQuestStep(66335) == 1">
-					<GetTo ZoneId="154" XYZ="-305.2386, -51.76113, 329.9097"/>
+					<GetTo ZoneId="154" XYZ="-292.1333, -49.57651, 341.687"/>
+					<Dismount/>
+					<MoveTo XYZ="-302.8459, -51.76896, 331.197"/>
 					<!-- Mangled Corpse -->
 					<TalkTo NpcId="1007541" XYZ="-302.8459, -51.76896, 331.197" QuestId="66335" StepId="1"/>
 				</If>
@@ -11963,8 +11966,8 @@
 					<UseObject NpcId="2001999" XYZ="-576.1349, 68.13147, 69.41321" Radius="10" QuestId="66337" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(66337) == 2">
-					<RunCode Name="Skeletons_in_Her_Closet"/>
-					<StopBot/>
+                    <UserDialog QuestId="66337" StepId="2" DialogText="Please manually complete the Haukke Manor duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(66337) != 4"/>
 				</If>
 				<If Condition="GetQuestStep(66337) == 4">
 					<GetTo ZoneId="133" XYZ="36.81995, 16.35147, -334.5846"/>
@@ -12889,8 +12892,8 @@
 					<TalkTo NpcId="1006268" XYZ="-334.6151, 69.69995, 153.7957" QuestId="66368" StepId="2"/>
 				</If>
 				<If Condition="GetQuestStep(66368) == 3">
-					<RunCode Name="The_Things_We_Do_for_Cheese"/>
-					<StopBot/>
+					<UserDialog QuestId="66368" StepId="3" DialogText="Please manually complete the Brayflox's Longstop duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(66368) != 4"/>
 				</If>
 				<If Condition="GetQuestStep(66368) == 4">
 					<GetTo ZoneId="137" XYZ="-334.6151, 69.69995, 153.7957"/>
@@ -13610,8 +13613,8 @@
 					<UseObject NpcId="2002086" XYZ="382.5588, 25.25366, -139.025" Radius="10" QuestId="66393" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(66393) == 2">
-					<RunCode Name="Lord_of_Crags"/>
-					<StopBot/>
+                    <UserDialog QuestId="66393" StepId="2" DialogText="Please manually complete The Navel duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(66393) != 255"/>
 				</If>
 				<If Condition="GetQuestStep(66393) == 255">
 					<GetTo ZoneId="139" XYZ="427.634, 4.115109, 85.92346"/>
@@ -16551,8 +16554,8 @@
 					<TalkTo NpcId="1006490" XYZ="-673.2128, 205.9598, -515.7702" QuestId="66488" StepId="2"/>
 				</If>
 				<If Condition="GetQuestStep(66488) == 3">
-					<RunCode Name="In_Pursuit_of_the_Past"/>
-					<StopBot/>
+                    <UserDialog QuestId="66488" StepId="3" DialogText="Please manually complete The Stone Vigil duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(66488) != 255"/>
 				</If>
 				<If Condition="GetQuestStep(66488) == 255">
 					<If Condition="not IsOnMap(132)">
@@ -20067,17 +20070,6 @@
 				ChatManager.SendChat("/soothe");
         	]]>
 		</CodeChunk>
-		<CodeChunk Name="Skeletons_in_Her_Closet">
-			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(66337) == 2)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn]\nPlease manually complete the Haukke Manor duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-		</CodeChunk>
 		<CodeChunk Name="My_Little_Chocobo">
 			<![CDATA[
                 while (ConditionParser.GetQuestStep(66238) == 1)
@@ -20121,17 +20113,6 @@
 				}
         	]]>
 		</CodeChunk>
-		<CodeChunk Name="The_Things_We_Do_for_Cheese">
-			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(66368) == 3)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn]\nPlease manually complete the Brayflox's Longstop duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-		</CodeChunk>
 		<CodeChunk Name="To_You_From_Failing_Hands_We_Throw">
 			<![CDATA[ 
 				if(Core.Player.IsMounted)
@@ -20152,17 +20133,6 @@
 				MovementManager.MoveStop();
 				await Coroutine.Sleep(1000);
         	]]>
-		</CodeChunk>
-		<CodeChunk Name="Lord_of_Crags">
-			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(66393) == 2)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn]\nPlease manually complete the The Navel duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
 		</CodeChunk>
 		<CodeChunk Name="Speak_Softly_to_Me">
 			<![CDATA[ 
@@ -20301,17 +20271,6 @@
 				await Coroutine.Sleep(500);
 				MovementManager.MoveStop();
         	]]>
-		</CodeChunk>
-		<CodeChunk Name="In_Pursuit_of_the_Past">
-			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(66488) == 3)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn]\nPlease manually complete the Stone Vigil duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
 		</CodeChunk>
 		<CodeChunk Name="Its_Probably_Not_Pirates">
 			<![CDATA[ 

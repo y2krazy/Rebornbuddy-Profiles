@@ -4573,8 +4573,8 @@
                     <TalkTo NpcId="1012427" XYZ="300.4653, 232.541, 767.8796" QuestId="67196" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(67196) == 4">
-                    <RunCode Name="Forbidden_Knowledge"/>
-                    <StopBot/>
+                    <UserDialog QuestId="67196" StepId="4" DialogText="Please manually complete The Great Gubal Library duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(67196) != 255"/>
                 </If>
 
                 <!-- [TurnIn Quest] -->
@@ -5561,17 +5561,6 @@
         </CodeChunk>
 
         <!-- Duties -->
-        <CodeChunk Name="Forbidden_Knowledge">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(67196) == 4)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[Heavensward]\nPlease manually complete The Great Gubal Library duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
         <CodeChunk Name="Close_Encounters_of_the_Vith_Kind">
             <![CDATA[ 
                 while (ConditionParser.GetQuestStep(67203) == 4)
