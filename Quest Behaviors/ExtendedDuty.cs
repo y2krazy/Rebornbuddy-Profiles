@@ -37,14 +37,18 @@ namespace ff14bot.NeoProfiles.Tags
 			ff14bot.NeoProfiles.GameEvents.OnPlayerDied += ResetThing;
 			base.OnStart();
 		}
+
+		protected override void OnDone()
+        {
+			ff14bot.NeoProfiles.GameEvents.OnPlayerDied -= ResetThing;
+			base.OnDone();
+        }
 		
         protected override Composite CreateBehavior()
         {
             return new PrioritySelector(
 				CommonBehaviors.HandleLoading,
-				new Decorator(ret => QuestLogManager.InCutscene,
-					new ActionAlwaysSucceed()
-				),
+				new Decorator(ret => QuestLogManager.InCutscene,new ActionAlwaysSucceed()),
 				new Decorator(ret => QuestId == 65680 && !Core.Player.InCombat && ((GameObjectManager.GetObjectByNPCId(2004819) != null && GameObjectManager.GetObjectByNPCId(2004819).IsVisible) || (GameObjectManager.GetObjectByNPCId(2004821) != null && GameObjectManager.GetObjectByNPCId(2004821).IsVisible) || (GameObjectManager.GetObjectByNPCId(2004824) != null && GameObjectManager.GetObjectByNPCId(2004824).IsVisible) || (GameObjectManager.GetObjectByNPCId(2004823) != null && GameObjectManager.GetObjectByNPCId(2004823).IsVisible)),
                     new PrioritySelector(
 						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2004819) != null && GameObjectManager.GetObjectByNPCId(2004819).IsVisible,
@@ -164,15 +168,7 @@ namespace ff14bot.NeoProfiles.Tags
 										Thread.Sleep(5000);
 										foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
 										{
-											if(slot.RawItemId == 2000525)
-											{
-												slot.Handover();
-											}
-										}
-										Thread.Sleep(2000);
-										foreach(ff14bot.Managers.BagSlot slot in ff14bot.Managers.InventoryManager.FilledSlots)
-										{
-											if(slot.RawItemId == 2000526)
+											if(slot.RawItemId == 2000525 || slot.RawItemId == 2000526)
 											{
 												slot.Handover();
 											}
@@ -216,7 +212,7 @@ namespace ff14bot.NeoProfiles.Tags
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2002521).Location, 3)
                     )
                 ),
-				new Decorator(ret => QuestId == 66057 && ((GameObjectManager.GetObjectByNPCId(2002428) != null && GameObjectManager.GetObjectByNPCId(2002428).IsVisible) || (GameObjectManager.GetObjectByNPCId(2002427) != null && GameObjectManager.GetObjectByNPCId(2002427).IsVisible)),
+				new Decorator(ret => QuestId == 66057 && !GameObjectManager.Attackers.Any(r=>r.NpcId == 1813) && ((GameObjectManager.GetObjectByNPCId(2002428) != null && GameObjectManager.GetObjectByNPCId(2002428).IsVisible) || (GameObjectManager.GetObjectByNPCId(2002427) != null && GameObjectManager.GetObjectByNPCId(2002427).IsVisible)),
                     new PrioritySelector(
 						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2002428) != null && GameObjectManager.GetObjectByNPCId(2002428).IsVisible,
 							new PrioritySelector(
