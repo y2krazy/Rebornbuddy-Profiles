@@ -14903,7 +14903,7 @@
 		<!-- LEVEL 37 -->
 		<!-- ######## -->
 		<LogMessage Message="[A Realm Reborn] Checking level 37 quests..."/>
-		<If Condition="Core.Player.ClassLevel &lt; 38">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Dead Is Dead -->
 			<If Condition="not IsQuestCompleted(66435)">
 				<If Condition="not HasQuest(66435)">
@@ -15247,7 +15247,7 @@
 		<!-- LEVEL 38 -->
 		<!-- ######## -->
 		<LogMessage Message="[A Realm Reborn] Checking level 38 quests..."/>
-		<If Condition="Core.Player.ClassLevel &lt; 39">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Sebastian vs. the Ogre -->
 			<If Condition="not IsQuestCompleted(66437)">
 				<If Condition="not HasQuest(66437)">
@@ -15566,7 +15566,7 @@
 				</If>
 			</If>
 		</If>
-		<If Condition="Core.Player.ClassLevel &lt; 39">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- A Cup of Joy -->
 			<If Condition="not IsQuestCompleted(66449)">
 				<If Condition="not HasQuest(66449)">
@@ -19528,8 +19528,8 @@
 					<UseObject NpcId="2002252" XYZ="-662.3484, 63.67578, -805.478" Radius="10" QuestId="66572" StepId="3"/>
 				</If>
 				<If Condition="GetQuestStep(66572) == 4">
-					<RunCode Name="Operation_Archon"/>
-					<StopBot/>
+                    <UserDialog QuestId="66572" StepId="4" DialogText="Please manually complete the Cape Westwind duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(66572) != 255"/>
 				</If>
 				<If Condition="GetQuestStep(66572) == 255">
 					<GetTo ZoneId="140" XYZ="-467.277, 22.99698, -475.2117"/>
@@ -20335,17 +20335,6 @@
 					}
 				}
         	]]>
-		</CodeChunk>
-		<CodeChunk Name="Operation_Archon">
-			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(66572) == 4)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn]\nPlease manually complete the Cape Westwind duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
 		</CodeChunk>
 		<CodeChunk Name="Rock_the_Castrum">
 			<![CDATA[ 
