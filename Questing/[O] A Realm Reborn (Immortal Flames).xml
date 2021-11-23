@@ -15700,7 +15700,7 @@
 				</If>
 			</If>
 		</If>
-		<If Condition="Core.Player.ClassLevel &lt; 40">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Run, Fido, Run -->
 			<If Condition="not IsQuestCompleted(66469)">
 				<If Condition="not HasQuest(66469)">
@@ -15996,7 +15996,7 @@
 				</If>
 			</If>
 		</If>
-		<If Condition="Core.Player.ClassLevel &lt; 40">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Opportunity Knocks -->
 			<If Condition="not IsQuestCompleted(66461)">
 				<If Condition="not HasQuest(66461)">
@@ -16215,31 +16215,35 @@
 				</If>
 			</If>
 		</If>
-		<If Condition="Core.Player.ClassLevel &lt; 41">
+		<If Condition="Core.Player.ClassLevel &lt; 49">
 			<!-- Blood Sacrifice -->
-			<If Condition="not IsQuestCompleted(66480)">
-				<If Condition="not HasQuest(66480)">
-					<GetTo ZoneId="155" XYZ="-405.417, 210.7882, -225.7267"/>
-					<!-- Daimbert -->
-					<If Condition="IsQuestAcceptQualified(66480)">
-						<PickupQuest NpcId="1006476" QuestId="66480" XYZ="-405.417, 210.7882, -225.7267"/>
-					</If>
-				</If>
-				<If Condition="HasQuest(66480)">
-					<If Condition="GetQuestStep(66480) == 1">
-						<GetTo ZoneId="155" XYZ="-458.5184, 211.4575, -287.0985"/>
-						<!-- Ferdillaix -->
-						<TalkTo NpcId="1006459" XYZ="-458.5184, 211.4575, -287.0985" QuestId="66480" StepId="1"/>
-					</If>
-					<If Condition="GetQuestStep(66480) == 2">
-						<GetTo ZoneId="155" XYZ="-454.8257, 207, -291.8593"/>
-						<!-- Laurence -->
-						<HandOver ItemId="2000736" QuestId="66480" StepId="2" NpcId="1006477" XYZ="-454.8257, 207, -291.8593"/>
-					</If>
-					<If Condition="GetQuestStep(66480) == 255">
+
+
+			<If Condition="IsQuestCompleted(66471)">
+				<If Condition="not IsQuestCompleted(66480)">
+					<If Condition="not HasQuest(66480)">
 						<GetTo ZoneId="155" XYZ="-405.417, 210.7882, -225.7267"/>
 						<!-- Daimbert -->
-						<TurnIn QuestId="66480" NpcId="1006476" XYZ="-405.417, 210.7882, -225.7267"/>
+						<If Condition="IsQuestAcceptQualified(66480)">
+							<PickupQuest NpcId="1006476" QuestId="66480" XYZ="-405.417, 210.7882, -225.7267"/>
+						</If>
+					</If>
+					<If Condition="HasQuest(66480)">
+						<If Condition="GetQuestStep(66480) == 1">
+							<GetTo ZoneId="155" XYZ="-458.5184, 211.4575, -287.0985"/>
+							<!-- Ferdillaix -->
+							<TalkTo NpcId="1006459" XYZ="-458.5184, 211.4575, -287.0985" QuestId="66480" StepId="1"/>
+						</If>
+						<If Condition="GetQuestStep(66480) == 2">
+							<GetTo ZoneId="155" XYZ="-457.0289, 207.0444, -291.7842"/>
+							<!-- Laurence -->
+							<HandOver ItemId="2000736" QuestId="66480" StepId="2" NpcId="1006477" XYZ="-454.8257, 207, -291.8593"/>
+						</If>
+						<If Condition="GetQuestStep(66480) == 255">
+							<GetTo ZoneId="155" XYZ="-405.417, 210.7882, -225.7267"/>
+							<!-- Daimbert -->
+							<TurnIn QuestId="66480" NpcId="1006476" XYZ="-405.417, 210.7882, -225.7267"/>
+						</If>
 					</If>
 				</If>
 			</If>
@@ -16391,44 +16395,7 @@
 					</If>
 				</If>
 			</If>
-			<!-- Physician, Find Yourself -->
-			<If Condition="not IsQuestCompleted(66479)">
-				<If Condition="not HasQuest(66479)">
-					<GetTo ZoneId="155" XYZ="-417.9294, 225, -301.8998"/>
-					<!-- Astidien -->
-					<If Condition="IsQuestAcceptQualified(66479)">
-						<PickupQuest NpcId="1006442" QuestId="66479" XYZ="-417.9294, 225, -301.8998"/>
-					</If>
-				</If>
-				<If Condition="HasQuest(66479)">
-					<If Condition="GetQuestStep(66479) == 1">
-						<GetTo ZoneId="155" XYZ="197.1923, 303.1125, -288.7465"/>
-						<!-- Braitognieux -->
-						<TalkTo NpcId="1006474" XYZ="197.1923, 303.1125, -288.7465" QuestId="66479" StepId="1"/>
-					</If>
-					<If Condition="GetQuestStep(66479) == 2">
-						<GetTo ZoneId="155" XYZ="-219.6841, 278.6613, -83.72626"/>
-						<!-- Lost Chirurgeon -->
-						<UseItem NpcId="1006475" ItemId="2000735" XYZ="-219.6841, 278.6613, -83.72626" Radius="10" QuestId="66479" StepId="2"/>
-					</If>
-					<If Condition="GetQuestStep(66479) == 3">
-						<GetTo ZoneId="155" XYZ="-298.6343, 260.6277, -115.5872"/>
-						<!-- Lost Chirurgeon -->
-						<TalkTo NpcId="1007636" XYZ="-298.6343, 260.6277, -115.5872" QuestId="66479" StepId="3"/>
-						<WaitWhile Condition="GetQuestStep(66479) == 3"/>
-					</If>
-					<If Condition="GetQuestStep(66479) == 4">
-						<GetTo ZoneId="155" XYZ="-298.6343, 260.6277, -115.5872"/>
-						<!-- Lost Chirurgeon -->
-						<TalkTo NpcId="1007636" XYZ="-298.6343, 260.6277, -115.5872" QuestId="66479" StepId="4"/>
-					</If>
-					<If Condition="GetQuestStep(66479) == 255">
-						<GetTo ZoneId="155" XYZ="-417.9294, 225, -301.8998"/>
-						<!-- Astidien -->
-						<TurnIn QuestId="66479" NpcId="1006442" XYZ="-417.9294, 225, -301.8998"/>
-					</If>
-				</If>
-			</If>
+
 			<!-- Whey Too into You -->
 			<If Condition="not IsQuestCompleted(66485)">
 				<If Condition="not HasQuest(66485)">
@@ -16470,6 +16437,7 @@
 					<If Condition="GetQuestStep(66484) == 1">
 						<If Condition="IsOnMap(155) and Clio.Utilities.Vector3.Distance(Core.Player.Location, Vector3(-952.6055, 276.7833, -38.13239)) &gt; 5">
 							<GetTo ZoneId="155" XYZ="-896.5005, 231.1043, 17.1819"/>
+							<MoveTo Name="Jump Spot" Distance="1" XYZ="-896.5005, 231.1043, 17.1819"/>
 							<!-- Jump Spot -->
 							<Dismount/>
 							<MoveTo Name="Jump Spot" Distance="1" UseMesh="False" XYZ="-904.3309, 236.6141, 16.26139"/>
@@ -16521,7 +16489,49 @@
 					</If>
 				</If>
 			</If>
+
+			<!-- Physician, Find Yourself -->
+			<If Condition="not IsQuestCompleted(66479)">
+				<If Condition="not HasQuest(66479)">
+					<GetTo ZoneId="155" XYZ="-417.9294, 225, -301.8998"/>
+					<!-- Astidien -->
+					<If Condition="IsQuestAcceptQualified(66479)">
+						<PickupQuest NpcId="1006442" QuestId="66479" XYZ="-417.9294, 225, -301.8998"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(66479)">
+					<If Condition="GetQuestStep(66479) == 1">
+						<GetTo ZoneId="155" XYZ="197.1923, 303.1125, -288.7465"/>
+						<!-- Braitognieux -->
+						<TalkTo NpcId="1006474" XYZ="197.1923, 303.1125, -288.7465" QuestId="66479" StepId="1"/>
+					</If>
+					<If Condition="GetQuestStep(66479) == 2">
+						<GetTo ZoneId="155" XYZ="-219.6841, 278.6613, -83.72626"/>
+						<!-- Lost Chirurgeon -->
+						<UseItem NpcId="1006475" ItemId="2000735" XYZ="-219.6841, 278.6613, -83.72626" Radius="10" QuestId="66479" StepId="2"/>
+					</If>
+					<If Condition="GetQuestStep(66479) == 3">
+						<GetTo ZoneId="155" XYZ="-298.6343, 260.6277, -115.5872"/>
+						<!-- Lost Chirurgeon -->
+						<TalkTo NpcId="1007636" XYZ="-298.6343, 260.6277, -115.5872" QuestId="66479" StepId="3"/>
+						<WaitWhile Condition="GetQuestStep(66479) == 3"/>
+					</If>
+					<If Condition="GetQuestStep(66479) == 4">
+						<GetTo ZoneId="155" XYZ="-298.6343, 260.6277, -115.5872"/>
+						<!-- Lost Chirurgeon -->
+						<TalkTo NpcId="1007636" XYZ="-298.6343, 260.6277, -115.5872" QuestId="66479" StepId="4"/>
+					</If>
+					<If Condition="GetQuestStep(66479) == 255">
+						<GetTo ZoneId="155" XYZ="-417.9294, 225, -301.8998"/>
+						<!-- Astidien -->
+						<TurnIn QuestId="66479" NpcId="1006442" XYZ="-417.9294, 225, -301.8998"/>
+					</If>
+				</If>
+			</If>
+
 		</If>
+
+
 		<If Condition="Core.Player.ClassLevel &lt; 41">
 			<LogMessage Message="[A Realm Reborn] You are not level 41 yet!"/>
 			<LogMessage Message="[A Realm Reborn] Grinding to level 41..."/>
@@ -18925,14 +18935,8 @@
 						<PickupQuest NpcId="1005021" QuestId="66550" XYZ="-472.4957, 23.02882, -355.0012"/>
 					</If>
 				</If>
-				<If Condition="HasQuest(66550)">
-					<If Condition="GetQuestStep(66550) == 255">
-						<GetTo ZoneId="155" XYZ="-354.1772, 214.6081, 692.6528"/>
-						<!-- Willielmus -->
-						<TurnIn QuestId="66550" NpcId="1007625" XYZ="-354.1772, 214.6081, 692.6528"/>
-					</If>
-				</If>
 			</If>
+
 			<!-- A Kobold Initiative -->
 			<If Condition="not IsQuestCompleted(66551)">
 				<If Condition="not HasQuest(66551)">
@@ -18941,14 +18945,26 @@
 						<PickupQuest NpcId="1007487" QuestId="66551" XYZ="2.883911, -2.000001, -12.25305"/>
 					</If>
 				</If>
-				<If Condition="HasQuest(66551)">
-					<If Condition="GetQuestStep(66551) == 255">
-						<GetTo ZoneId="180" XYZ="-141.558, 64.59769, -212.2683"/>
-						<!-- Slafswys -->
-						<TurnIn QuestId="66551" NpcId="1006325" XYZ="-141.558, 64.59769, -212.2683"/>
-					</If>
+			</If>
+
+			<!-- Going for Gold -->
+			<If Condition="HasQuest(66550)">
+				<If Condition="GetQuestStep(66550) == 255">
+					<GetTo ZoneId="155" XYZ="-354.1772, 214.6081, 692.6528"/>
+					<!-- Willielmus -->
+					<TurnIn QuestId="66550" NpcId="1007625" XYZ="-354.1772, 214.6081, 692.6528"/>
 				</If>
 			</If>
+
+			<!-- A Kobold Initiative -->
+			<If Condition="HasQuest(66551)">
+				<If Condition="GetQuestStep(66551) == 255">
+					<GetTo ZoneId="180" XYZ="-141.558, 64.59769, -212.2683"/>
+					<!-- Slafswys -->
+					<TurnIn QuestId="66551" NpcId="1006325" XYZ="-141.558, 64.59769, -212.2683"/>
+				</If>
+			</If>
+
 			<!-- A Pirate's Life for Me -->
 			<If Condition="not IsQuestCompleted(66553)">
 				<If Condition="not HasQuest(66553)">
@@ -18983,20 +18999,6 @@
 						<PickupQuest NpcId="1006325" QuestId="66555" XYZ="-141.558, 64.59769, -212.2683"/>
 					</If>
 				</If>
-				<If Condition="HasQuest(66555)">
-					<While Condition="GetQuestStep(66555) == 1">
-						<GetTo ZoneId="180" XYZ="16.31183, 48.41687, -370.9926"/>
-						<!-- Kobold Supplies -->
-						<GroundTargeting XYZ="16.31183, 48.41687, -370.9926" NpcId="2002242" ItemId="2000776" Condition="not IsTodoChecked(66555, 1, 0)" Name="Kobold Supplies"/>
-						<GroundTargeting XYZ="71.58008, 48.50842, -409.7811" NpcId="2002243" ItemId="2000776" Condition="not IsTodoChecked(66555, 1, 0)" Name="Kobold Supplies"/>
-						<GroundTargeting XYZ="88.39539, 55.58862, -481.0406" NpcId="2002244" ItemId="2000776" Condition="not IsTodoChecked(66555, 1, 0)" Name="Kobold Supplies"/>
-					</While>
-					<If Condition="GetQuestStep(66555) == 255">
-						<GetTo ZoneId="180" XYZ="-141.558, 64.59769, -212.2683"/>
-						<!-- Bloeidin -->
-						<TurnIn QuestId="66555" NpcId="1006325" XYZ="-141.558, 64.59769, -212.2683"/>
-					</If>
-				</If>
 			</If>
 			<!-- Honor the Fallen -->
 			<If Condition="not IsQuestCompleted(66554)">
@@ -19007,26 +19009,56 @@
 						<PickupQuest NpcId="1006594" QuestId="66554" XYZ="-110.155, 64.49942, -238.819"/>
 					</If>
 				</If>
-				<If Condition="HasQuest(66554)">
-					<If Condition="GetQuestStep(66554) == 1">
-						<GetTo ZoneId="180" XYZ="8.895996, 48.50842, -308.217"/>
-						<!-- Mark of the Red Swallow -->
-						<UseObject NpcIds="2002566,2002567,2002568,2002569" QuestId="66554" StepId="1">
-							<HotSpots>
-								<HotSpot XYZ="8.895996, 48.50842, -308.217" Radius="10"/>
-								<HotSpot XYZ="-3.311279, 50.18689, -346.1204" Radius="10"/>
-								<HotSpot XYZ="39.4751, 48.66101, -345.7542" Radius="10"/>
-								<HotSpot XYZ="81.31531, 49.05774, -398.0927" Radius="10"/>
-							</HotSpots>
-						</UseObject>
-					</If>
-					<If Condition="GetQuestStep(66554) == 255">
-						<GetTo ZoneId="180" XYZ="-110.155, 64.49942, -238.819"/>
-						<!-- F'majha -->
-						<TurnIn QuestId="66554" NpcId="1006594" ItemId="2000775" XYZ="-110.155, 64.49942, -238.819"/>
-					</If>
+			</If>
+
+
+			<!-- Operation: Crucible Down -->
+			<If Condition="HasQuest(66555)">
+				<While Condition="GetQuestStep(66555) == 1">
+					<GetTo ZoneId="180" XYZ="16.31183, 48.41687, -370.9926"/>
+					<!-- Kobold Supplies -->
+					<GroundTargeting XYZ="16.31183, 48.41687, -370.9926" NpcId="2002242" ItemId="2000776" Condition="not IsTodoChecked(66555, 1, 0)" Name="Kobold Supplies"/>
+					<GroundTargeting XYZ="71.58008, 48.50842, -409.7811" NpcId="2002243" ItemId="2000776" Condition="not IsTodoChecked(66555, 1, 0)" Name="Kobold Supplies"/>
+					<GroundTargeting XYZ="88.39539, 55.58862, -481.0406" NpcId="2002244" ItemId="2000776" Condition="not IsTodoChecked(66555, 1, 0)" Name="Kobold Supplies"/>
+				</While>
+			</If>
+
+			<!-- Honor the Fallen -->
+			<If Condition="HasQuest(66554)">
+				<If Condition="GetQuestStep(66554) == 1">
+					<GetTo ZoneId="180" XYZ="8.895996, 48.50842, -308.217"/>
+					<!-- Mark of the Red Swallow -->
+					<UseObject NpcIds="2002566,2002567,2002568,2002569" QuestId="66554" StepId="1">
+						<HotSpots>
+							<HotSpot XYZ="8.895996, 48.50842, -308.217" Radius="10"/>
+							<HotSpot XYZ="-3.311279, 50.18689, -346.1204" Radius="10"/>
+							<HotSpot XYZ="39.4751, 48.66101, -345.7542" Radius="10"/>
+							<HotSpot XYZ="81.31531, 49.05774, -398.0927" Radius="10"/>
+						</HotSpots>
+					</UseObject>
 				</If>
 			</If>
+
+
+			<!-- turn in -->
+
+			<!-- Operation: Crucible Down -->
+			<If Condition="HasQuest(66555)">
+				<If Condition="GetQuestStep(66555) == 255">
+					<GetTo ZoneId="180" XYZ="-141.558, 64.59769, -212.2683"/>
+					<!-- Bloeidin -->
+					<TurnIn QuestId="66555" NpcId="1006325" XYZ="-141.558, 64.59769, -212.2683"/>
+				</If>
+			</If>
+			<!-- Honor the Fallen -->
+			<If Condition="HasQuest(66554)">
+				<If Condition="GetQuestStep(66554) == 255">
+					<GetTo ZoneId="180" XYZ="-110.155, 64.49942, -238.819"/>
+					<!-- F'majha -->
+					<TurnIn QuestId="66554" NpcId="1006594" ItemId="2000775" XYZ="-110.155, 64.49942, -238.819"/>
+				</If>
+			</If>
+
 			<!-- Claiming the Booty -->
 			<If Condition="not IsQuestCompleted(66556)">
 				<If Condition="not HasQuest(66556)">
