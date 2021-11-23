@@ -19769,9 +19769,9 @@
 					<GetTo ZoneId="147" XYZ="-294.8196, 88, -225.1774"/>
 					<TalkTo InteractDistance="3.0" QuestId="69409" StepId="1" NpcId="1006657" XYZ="-294.8196, 88, -225.1774"/>
 				</If>
-				<If Condition="GetQuestStep(69409) == 2">
-					<RunCode Name="Rock_the_Castrum"/>
-					<StopBot/>
+				<If Condition="GetQuestStep(69409) == 2">		
+                    <UserDialog QuestId="69409" StepId="4" DialogText="Please manually complete the Castrum Meridianum duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(69409) != 255"/>
 				</If>
 				<If Condition="GetQuestStep(69409) == 255">
 					<GetTo ZoneId="147" XYZ="-294.8196, 88, -225.1774"/>
@@ -19796,8 +19796,8 @@
 					<TalkTo NpcId="1006668" XYZ="-115.1904, 47.37239, 28.67163" QuestId="66060" StepId="1"/>
 				</If>
 				<If Condition="GetQuestStep(66060) == 2">
-					<RunCode Name="The_Ultimate_Weapon"/>
-					<StopBot/>
+					<UserDialog QuestId="66060" StepId="2" DialogText="Please manually complete the Praetorium duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(66060) != 255"/>
 				</If>
 				<If Condition="GetQuestStep(66060) == 255">
 					<GetTo ZoneId="212" Name="Minfilia" XYZ="39.26135, 1.214808, 0.8086548"/>
@@ -19878,8 +19878,9 @@
 			</If>
 		</If>
 		<If Condition="IsQuestCompleted(66060)">
-			<RunCode Name="A_Realm_Reborn_Questline"/>
-			<StopBot/>
+            <LogMessage Message="[A Realm Reborn] You've completed the A Realm Reborn questline!"/>
+            <LogMessage Message="[A Realm Reborn] Loading the A Realm Reborn profile..."/>
+            <LoadProfile Path="[O] A Realm Reborn (Patch 2.1).xml"/>
 		</If>
 	</Order>
 	<CodeChunks>
@@ -20335,28 +20336,6 @@
 					}
 				}
         	]]>
-		</CodeChunk>
-		<CodeChunk Name="Rock_the_Castrum">
-			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(69409) == 1)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn]\nPlease manually complete the Castrum Meridianum duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-		</CodeChunk>
-		<CodeChunk Name="The_Ultimate_Weapon">
-			<![CDATA[ 
-                while (ConditionParser.GetQuestStep(66060) == 2)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn]\nPlease manually complete the Praetorium duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
 		</CodeChunk>
 	</CodeChunks>
 	<GrindAreas>
