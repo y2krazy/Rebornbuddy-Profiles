@@ -364,8 +364,8 @@
                     <TalkTo NpcId="1010054" XYZ="-916.6552, 229.3692, -6.424072" QuestId="65611" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(65611) == 4">
-                    <RunCode Name="The_Path_of_the_Righteous"/>
-                    <StopBot/>
+                    <UserDialog QuestId="65611" StepId="4" DialogText="Please manually complete the Snowcloak duty" IsBotStopAllowed="true"/>
+                    <WaitWhile Condition="GetQuestStep(65611) != 255"/>
                 </If>
                 <If Condition="GetQuestStep(65611) == 255">
                     <GetTo ZoneId="155" XYZ="-902.6169, 229.2524, -9.689575"/> <!-- Alphinaud -->
@@ -907,17 +907,6 @@
 
         <!-- Patch 2.4 -->
 
-        <CodeChunk Name="The_Path_of_the_Righteous">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(65611) == 4)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.4)]\nPlease manually complete the Snowcloak duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
         <CodeChunk Name="The_Instruments_of_Our_Deliverance">
             <![CDATA[ 
                 while (ConditionParser.GetQuestStep(65620) == 4)
