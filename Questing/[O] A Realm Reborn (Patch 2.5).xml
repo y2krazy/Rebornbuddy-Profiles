@@ -604,8 +604,8 @@
             </If>
             <If Condition="HasQuest(65955)">
                 <If Condition="GetQuestStep(65955) == 1">
-                    <RunCode Name="The_Steps_of_Faith"/>
-                    <StopBot/>
+                    <UserDialog QuestId="65955" StepId="1" DialogText="Please manually complete The Steps of Faith duty" />
+                    <WaitWhile Condition="GetQuestStep(65955) != 3"/>
                 </If>
                 <If Condition="GetQuestStep(65955) == 3">
                     <GetTo ZoneId="155" XYZ="-157.8241, 304.1538, -313.8323"/> <!-- Alphinaud -->
@@ -1443,17 +1443,6 @@
 				MovementManager.MoveForwardStop();
 				await Coroutine.Sleep(500);
 		    ]]>
-        </CodeChunk>
-        <CodeChunk Name="The_Steps_of_Faith">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(65955) == 1)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Steps of Faith duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
         </CodeChunk>
         <CodeChunk Name="2_5_Questline">
             <![CDATA[ 
