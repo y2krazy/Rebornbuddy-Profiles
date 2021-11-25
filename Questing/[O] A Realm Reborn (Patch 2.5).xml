@@ -371,8 +371,8 @@
                     <WaitWhile Condition="GetQuestStep(65905) == 2"/>
                 </If>
                 <If Condition="GetQuestStep(65905) == 3">
-                    <RunCode Name="An_Uninvited_Ascian"/>
-                    <StopBot/>
+                    <UserDialog QuestId="65905" StepId="3" DialogText="Please manually complete The Chrysalis  duty" />
+                    <WaitWhile Condition="GetQuestStep(65905) != 255"/>
                 </If>
                 <If Condition="GetQuestStep(65905) == 255">
                     <!-- Rewards
@@ -402,7 +402,10 @@
             </If>
             <If Condition="HasQuest(65965)">
                 <If Condition="GetQuestStep(65965) == 1">
-                    <GetTo ZoneId="156" Name="Destination" XYZ="-146.0642, 43.90116, -190.8459"/>
+                    <GetTo ZoneId="156" XYZ="-50.62765, 17.88646, -627.1751"/>
+                    <FlyTo XYZ="-243.5051, 67.38368, -413.7113"/>
+                    <FlyTo XYZ="-228.1109, 54.38685, -243.5217"/>
+                    <FlyTo Land="True" XYZ="-161.7356, 39.91045, -193.9863"/>
                     <UseObject NpcId="2005045" XYZ="-146.4409, 43.65601, -188.6168" Radius="10" QuestId="65965" StepId="1"/>
                 </If>
                 <If Condition="GetQuestStep(65965) == 255">
@@ -1437,17 +1440,6 @@
 				MovementManager.MoveForwardStop();
 				await Coroutine.Sleep(500);
 		    ]]>
-        </CodeChunk>
-        <CodeChunk Name="An_Uninvited_Ascian">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(65905) == 3)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Chrysalis duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
         </CodeChunk>
         <CodeChunk Name="The_Steps_of_Faith">
             <![CDATA[ 
