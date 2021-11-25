@@ -364,7 +364,7 @@
                     <TalkTo NpcId="1010054" XYZ="-916.6552, 229.3692, -6.424072" QuestId="65611" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(65611) == 4">
-                    <UserDialog QuestId="65611" StepId="4" DialogText="Please manually complete the Snowcloak duty" IsBotStopAllowed="true"/>
+                    <UserDialog QuestId="65611" StepId="4" DialogText="Please manually complete the Snowcloak duty" />
                     <WaitWhile Condition="GetQuestStep(65611) != 255"/>
                 </If>
                 <If Condition="GetQuestStep(65611) == 255">
@@ -592,8 +592,8 @@
                     <TalkTo NpcId="1010054" XYZ="-916.6552, 229.3692, -6.424072" QuestId="65620" StepId="3"/>
                 </If>
                 <If Condition="GetQuestStep(65620) == 4">
-                    <RunCode Name="The_Instruments_of_Our_Deliverance"/>
-                    <StopBot/>
+                    <UserDialog QuestId="65620" StepId="4" DialogText="Please manually complete the Akh Afah Amphitheatre (Hard) duty" />
+                    <WaitWhile Condition="GetQuestStep(65620) != 255"/>
                 </If>
                 <If Condition="GetQuestStep(65620) == 255">
                     <GetTo ZoneId="155" XYZ="-905.7603, 229.2982, -10.14728"/> <!-- Moenbryda -->
@@ -902,20 +902,6 @@
                 }
                 }
                 await Buddy.Coroutines.Coroutine.Sleep(1000);
-            ]]>
-        </CodeChunk>
-
-        <!-- Patch 2.4 -->
-
-        <CodeChunk Name="The_Instruments_of_Our_Deliverance">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(65620) == 4)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.4)]\nPlease manually complete the Akh Afah Amphitheatre (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
             ]]>
         </CodeChunk>
     </CodeChunks>

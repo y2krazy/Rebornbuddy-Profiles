@@ -122,8 +122,7 @@
             <If Condition="not HasQuest(66693)">
                 <GetTo ZoneId="212" Name="Papalymo" XYZ="0.1677856, -3.000001, -52.71997"/>
                 <If Condition="not IsQuestAcceptQualified(66693)">
-                    <RunCode Name="In_for_Garuda_Awakening"/>
-                    <StopBot/>
+                    <UserDialog QuestId="66693" DialogText="Please manually complete The Bowl of Embers (Hard) duty" QuestRequirementInLog="Available"/>
                 </If>
                 <If Condition="IsQuestAcceptQualified(66693)">
                     <PickupQuest NpcId="1007531" QuestId="66693" XYZ="0.1677856, -3.000001, -52.71997"/>
@@ -146,13 +145,12 @@
         <!-- In a Titan Spot -->
         <If Condition="not IsQuestCompleted(66694)">
             <If Condition="not HasQuest(66694)">
-                <GetTo ZoneId="212" Name="Y'shtola" XYZ="-0.8087769, -3, -47.80658"/>
+                <GetTo ZoneId="212" Name="Y'shtola" XYZ="1.285024, -3.000001, -51.00135"/>
                 <If Condition="not IsQuestAcceptQualified(66694)">
-                    <RunCode Name="In_a_Titan_Spot"/>
-                    <StopBot/>
+                    <UserDialog QuestId="66694" DialogText="Please manually complete The Howling Eye (Hard) duty" QuestRequirementInLog="Available"/>
                 </If>
                 <If Condition="IsQuestAcceptQualified(66694)">
-                    <PickupQuest NpcId="1007533" QuestId="66694" XYZ="-0.8087769, -3, -47.80658"/>
+                    <PickupQuest NpcId="1007533" QuestId="66694" XYZ="1.285024, -3.000001, -51.00135"/>
                 </If>
             </If>
             <If Condition="HasQuest(66694)">
@@ -174,8 +172,7 @@
             <If Condition="not HasQuest(65899)">
                 <GetTo ZoneId="351" Name="Minfilia" XYZ="-0.01635557, -1.995725, -41.12296"/>
                 <If Condition="not IsQuestAcceptQualified(65899)">
-                    <RunCode Name="Good_Intentions"/>
-                    <StopBot/>
+                    <UserDialog QuestId="65899" DialogText="Please manually complete The Navel (Hard) duty" QuestRequirementInLog="Available"/>
                 </If>
                 <If Condition="IsQuestAcceptQualified(65899)">
                     <PickupQuest NpcId="1008969" QuestId="65899" XYZ="0.9917603, -1.995725, -45.70081"/>
@@ -265,8 +262,8 @@
                     <TalkTo NpcId="1010881" XYZ="336.3545, -27.80885, -369.7414" QuestId="65902" StepId="2"/>
                 </If>
                 <If Condition="GetQuestStep(65902) == 3">
-                    <RunCode Name="The_Rising_Chorus"/>
-                    <StopBot/>
+                    <UserDialog QuestId="65902" StepId="3" DialogText="Please manually complete The Keeper of the Lake duty" />
+                    <WaitWhile Condition="GetQuestStep(65902) != 5"/>
                 </If>
                 <If Condition="GetQuestStep(65902) == 5">
                     <GetTo ZoneId="156" XYZ="336.3545, -27.80885, -369.7414"/> <!-- Doman Refugee -->
@@ -988,7 +985,7 @@
                 </If>
 
                 <If Condition="GetQuestStep(66738) == 2">
-                    <UserDialog QuestId="66738" StepId="2" DialogText="Please manually complete Labyrinth of the Ancients duty" IsBotStopAllowed="true"/>
+                    <UserDialog QuestId="66738" StepId="2" DialogText="Please manually complete Labyrinth of the Ancients duty" />
                 </If>
                 <If Condition="GetQuestStep(66738) == 255">
                     <If Condition="not IsOnMap(156) or not IsOnSubMap(416)">
@@ -1078,7 +1075,7 @@
                     <TalkTo QuestId="67010" StepId="3" NpcId="1009376" XYZ="730.7391, 15.42845, -56.16852"/>
                 </If>
                 <If Condition="GetQuestStep(67010) == 4">
-                    <UserDialog QuestId="67010" StepId="4" DialogText="Please manually complete Syrcus Tower duty" IsBotStopAllowed="true"/>
+                    <UserDialog QuestId="67010" StepId="4" DialogText="Please manually complete Syrcus Tower duty" />
                     <WaitWhile Condition="GetQuestStep(67010) != 255"/>
                 </If>
                 <If Condition="GetQuestStep(67010) == 255">
@@ -1134,7 +1131,7 @@
                     <TalkTo QuestId="66030" StepId="2" NpcId="1011640" XYZ="732.0515, 15.33271, -68.65039"/>
                 </If>
                 <If Condition="GetQuestStep(66030) == 3">
-                    <UserDialog QuestId="66030" StepId="3" DialogText="Please manually complete The World of Darkness duty" IsBotStopAllowed="true"/>
+                    <UserDialog QuestId="66030" StepId="3" DialogText="Please manually complete The World of Darkness duty" />
                     <WaitWhile Condition="GetQuestStep(66030) != 255"/>
                 </If>
                 <If Condition="GetQuestStep(66030) == 255">
@@ -1431,51 +1428,6 @@
         </CodeChunk>
 
         <!-- Patch 2.5 -->
-
-        <CodeChunk Name="In_for_Garuda_Awakening">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(66693) != 255)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Bowl of Embers (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
-        <CodeChunk Name="In_a_Titan_Spot">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(66694) != 255)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Howling Eye (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
-        <CodeChunk Name="Good_Intentions">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(65899) != 255)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Navel (Hard) duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
-        <CodeChunk Name="The_Rising_Chorus">
-            <![CDATA[ 
-                while (ConditionParser.GetQuestStep(65902) == 3)
-                {
-                    System.Windows.Media.Color textColor = System.Windows.Media.Color.FromRgb(29,213,226);
-                    System.Windows.Media.Color shadowColor = System.Windows.Media.Color.FromRgb(13,106,175);
-                    Core.OverlayManager.AddToast(() => "[A Realm Reborn (2.5)]\nPlease manually complete The Keeper of the Lake duty!", TimeSpan.FromMilliseconds(25000), textColor, shadowColor, new System.Windows.Media.FontFamily("Gautami"));
-                    await Coroutine.Sleep(26000);
-                }
-            ]]>
-        </CodeChunk>
         <CodeChunk Name="Jump_Forward">
             <![CDATA[
 				MovementManager.MoveForwardStart();
