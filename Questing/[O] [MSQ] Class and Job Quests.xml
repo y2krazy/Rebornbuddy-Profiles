@@ -30,6 +30,7 @@
 	<Order>
 
 		<BotSettings AutoEquip="1"/>
+		<EnablePlugin Names="SideStep"/>
 
 		<If Condition="(ClassName == ClassJobType.Arcanist) or (ClassName == ClassJobType.Scholar) or (ClassName == ClassJobType.Summoner)">
 
@@ -900,6 +901,7 @@
 								<RunCode Name="In_the_Image_of_the_Ancients"/>
 								<TurnIn NpcId="1006757" QuestId="66636" XYZ="-4.470947, 44.99989, -250.5685"/>
 								<BotSettings AutoEquip="1"/>
+								<EnablePlugin Names="SideStep"/>
 							</While>
 						</If>
 					</If>
@@ -2231,8 +2233,10 @@
 										<TargetMob Id="1403" Weight="1000"/> <!-- Titan-Egi -->
 									</TargetMobs>
 								</ExtendedDuty>
+								<WaitWhile Condition="not IsOnMap(130)"/>
 							</If>
 							<If Condition="GetQuestStep(67640) == 255">
+
 								<If Condition="not IsOnMap(130)">
 									<GetTo ZoneId="130" XYZ="-126.5736, 4.099995, -96.23871"/>
 								</If>
@@ -2469,84 +2473,81 @@
 				<!-- An Art for the Living -->
 
 				<If Condition="not IsQuestCompleted(68165)">
-
-					<LogMessage Message="[Class and Job Quests] Skipping An Art for the Living until flying is supported..."/>
-
-					<!-- <If Condition="Core.Player.ClassLevel &gt; 69">
+					<If Condition="Core.Player.ClassLevel &gt; 69">
 						<If Condition="not HasQuest(68165)">
-							<GetTo ZoneId="133" XYZ="-16.89185, 10.17425, -246.8757" /> -->
-					<!-- Y'mhitra -->
-					<!-- <If Condition="IsQuestAcceptQualified(68165)">
-								<PickupQuest NpcId="1006756" QuestId="68165" XYZ="-16.89185, 10.17425, -246.8757" />
+							<GetTo ZoneId="133" XYZ="-16.89185, 10.17425, -246.8757"/>
+							<!-- Y'mhitra -->
+							<If Condition="IsQuestAcceptQualified(68165)">
+								<PickupQuest NpcId="1006756" QuestId="68165" XYZ="-16.89185, 10.17425, -246.8757"/>
 							</If>
 						</If>
 						<If Condition="HasQuest(68165)">
 							<If Condition="GetQuestStep(68165) == 1">
-								<GetTo ZoneId="402" XYZ="-624.6891, -176.4502, -565.0569" /> -->
-					<!-- Y'mhitra -->
-					<!-- <TalkTo NpcId="1022785" XYZ="-624.6891, -176.4502, -565.0569" QuestId="68165" StepId="1" />
+								<GetTo ZoneId="402" XYZ="-624.6891, -176.4502, -565.0569"/>
+								<!-- Y'mhitra -->
+								<TalkTo NpcId="1022785" XYZ="-624.6891, -176.4502, -565.0569" QuestId="68165" StepId="1"/>
 							</If>
 							<If Condition="GetQuestStep(68165) == 2">
 								<If Condition="not IsOnMap(402)">
-									<GetTo ZoneId="402" XYZ="-710.4073, -187.544, -589.1729" /> -->
-					<!-- Helix -->
-					<!-- </If>
-								<ExFlyTo Name="Leveva" XYZ="18.39055, 293.9, -0.3309811" />
-								<WaitWhile Condition="GetQuestStep(68165) == 2" />
+									<GetTo ZoneId="402" XYZ="-710.4073, -187.544, -589.1729"/>
+									<!-- Helix -->
+								</If>
+								<FlyTo XYZ="-101.2027, 416.673, -341.1152"/>
+								<FlyTo AllowedVariance="0.5" Land="True" XYZ="20.20739, 293.9777, 0.3770643"/>
+								<WaitWhile Condition="GetQuestStep(68165) == 2"/>
 							</If>
 							<If Condition="GetQuestStep(68165) == 3">
 								<If Condition="not IsOnMap(402)">
-									<GetTo ZoneId="402" XYZ="-710.4073, -187.544, -589.1729" /> -->
-					<!-- Helix -->
-					<!-- </If>
-								<ExFlyTo Name="Facility Terminal" XYZ="16.617, 293.8734, 0.07623291" />
-                    			<UseObject NpcId="2008640" XYZ="16.617, 293.8734, 0.07623291" Radius="10" QuestId="68165" StepId="3" />
+									<GetTo ZoneId="402" XYZ="-710.4073, -187.544, -589.1729"/>
+									<!-- Helix -->
+								</If>
+								<FlyTo Name="Facility Terminal" XYZ="16.617, 293.8734, 0.07623291"/>
+								<UseObject NpcId="2008640" XYZ="16.617, 293.8734, 0.07623291" Radius="10" QuestId="68165" StepId="3"/>
 							</If>
 							<If Condition="GetQuestStep(68165) == 4">
 								<If Condition="not IsOnMap(402)">
-									<GetTo ZoneId="402" XYZ="-710.4073, -187.544, -589.1729" /> -->
-					<!-- Helix -->
-					<!-- </If>
-								<ExFlyTo Name="Dancing Wolf" XYZ="21.98816, 293.9, 0.4119263" />
-								<RunCode Name="An_Art_for_the_Living" />
-								<StopBot /> -->
+									<GetTo ZoneId="402" XYZ="-710.4073, -187.544, -589.1729"/>
+									<!-- Helix -->
+								</If>
+								<FlyTo Name="Dancing Wolf" XYZ="21.98816, 293.9, 0.4119263"/>
+								<!--<RunCode Name="An_Art_for_the_Living"/>
+								<StopBot/>
+								 TO DO -->
 
-					<!-- TO DO -->
+								<!-- Too many deaths! Needs OMEN (SideStep's replacement). -->
 
-					<!-- Too many deaths! Needs OMEN (SideStep's replacement). -->
+								<!-- TO DO -->
 
-					<!-- TO DO -->
-
-					<!-- <SimpleDuty InteractNpcId="1023595" XYZ="21.98816, 293.9, 0.4119263" QuestId="68165" StepId="4">
+								<SimpleDuty InteractNpcId="1023595" XYZ="21.98816, 293.9, 0.4119263" QuestId="68165" StepId="4">
 									<HotSpots>
-										<HotSpot XYZ="-111.2571, 395.0476, -295.4595" Radius="90" />
+										<HotSpot XYZ="-111.2571, 395.0476, -295.4595" Radius="90"/>
 									</HotSpots>
 									<TargetMobs>
-										<TargetMob Id="6699" Weight="5000" /> -->
-					<!-- FX1979 -->
-					<!-- <TargetMob Id="6698" Weight="4000" /> -->
-					<!-- FX1975 -->
-					<!-- <TargetMob Id="6696" Weight="3000" /> -->
-					<!-- Summoned Minotaur -->
-					<!-- <TargetMob Id="6709" Weight="2000" /> -->
-					<!-- High Summoner Sari -->
-					<!-- <TargetMob Id="6695" Weight="1000" /> -->
-					<!-- Summoning Node -->
-					<!-- </TargetMobs>
+										<TargetMob Id="6699" Weight="5000"/>
+										<!-- FX1979 -->
+										<TargetMob Id="6698" Weight="4000"/>
+										<!-- FX1975 -->
+										<TargetMob Id="6696" Weight="3000"/>
+										<!-- Summoned Minotaur -->
+										<TargetMob Id="6709" Weight="2000"/>
+										<!-- High Summoner Sari -->
+										<TargetMob Id="6695" Weight="1000"/>
+										<!-- Summoning Node -->
+									</TargetMobs>
 								</SimpleDuty>
 							</If>
 							<If Condition="GetQuestStep(68165) == 5">
-								<GetTo ZoneId="402" XYZ="21.9577, 293.9, -1.052917" /> -->
-					<!-- Y'mhitra -->
-					<!-- <TalkTo NpcId="1022790" XYZ="21.9577, 293.9, -1.052917" QuestId="68165" StepId="5" />
+								<GetTo ZoneId="402" XYZ="21.9577, 293.9, -1.052917"/>
+								<!-- Y'mhitra -->
+								<TalkTo NpcId="1022790" XYZ="21.9577, 293.9, -1.052917" QuestId="68165" StepId="5"/>
 							</If>
 							<If Condition="GetQuestStep(68165) == 255">
-								<GetTo ZoneId="133" XYZ="-16.89185, 10.17425, -246.8757" /> -->
-					<!-- Y'mhitra -->
-					<!-- <TurnIn QuestId="68165" NpcId="1006756" XYZ="-16.89185, 10.17425, -246.8757" />
+								<GetTo ZoneId="133" XYZ="-16.89185, 10.17425, -246.8757"/>
+								<!-- Y'mhitra -->
+								<TurnIn QuestId="68165" NpcId="1006756" XYZ="-16.89185, 10.17425, -246.8757"/>
 							</If>
 						</If>
-					</If> -->
+					</If>
 				</If>
 
 			</If>
