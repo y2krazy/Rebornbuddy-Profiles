@@ -43,6 +43,24 @@ namespace ff14bot.NeoProfiles.Tags
 			ff14bot.NeoProfiles.GameEvents.OnPlayerDied -= ResetThing;
 			base.OnDone();
         }
+
+		#region specific quest logic
+
+
+
+		#region scholar
+
+        private static FrameCachedObject<GameObject> SlingsAndArrows_TownsPerson = new FrameCachedObject<GameObject>(
+            () =>
+            {
+                var location = new Vector3(-40.36017f, 39.92936f, 64.92712f);
+                return GameObjectManager.GetObjectsByNPCId(2005851).FirstOrDefault(r => r.Distance(location) < 3);
+            });
+
+
+		#endregion
+
+		#endregion
 		
         protected override Composite CreateBehavior()
         {
@@ -545,18 +563,18 @@ namespace ff14bot.NeoProfiles.Tags
                         CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2005959).Location, 3)
                     )
                 ),
-				new Decorator(ret => QuestId == 67552 && ((GameObjectManager.GetObjectByNPCId(2005851) != null && GameObjectManager.GetObjectByNPCId(2005851).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006044) != null && GameObjectManager.GetObjectByNPCId(2006044).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006045) != null && GameObjectManager.GetObjectByNPCId(2006045).IsVisible)),
+				new Decorator(ret => QuestId == 67552 && ((SlingsAndArrows_TownsPerson.Value != null && SlingsAndArrows_TownsPerson.Value.IsVisible) || (GameObjectManager.GetObjectByNPCId(2006044) != null && GameObjectManager.GetObjectByNPCId(2006044).IsVisible) || (GameObjectManager.GetObjectByNPCId(2006045) != null && GameObjectManager.GetObjectByNPCId(2006045).IsVisible)),
                     new PrioritySelector(
-						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2005851) != null && GameObjectManager.GetObjectByNPCId(2005851).IsVisible,
+						new Decorator(ret => SlingsAndArrows_TownsPerson.Value != null && SlingsAndArrows_TownsPerson.Value.IsVisible,
 							new PrioritySelector(
-								new Decorator(ret => Vector3.Distance(Core.Player.Location, new Vector3(6.698669f, 44.51124f, -41.33673f)) <= 3,
+								new Decorator(ret => Vector3.Distance(Core.Player.Location, new Vector3(-40.36017f, 39.92936f, 64.92712f)) <= 3,
 									new Action(r =>
 									{
 										Logging.Write("[ExtendedDuty] Interacting with Townsperson!");
-										GameObjectManager.GetObjectByNPCId(2005851).Interact();
+										SlingsAndArrows_TownsPerson.Value.Interact();
 									})
 								),
-								CommonBehaviors.MoveAndStop(ret => GameObjectManager.GetObjectByNPCId(2005851).Location, 3)
+								CommonBehaviors.MoveAndStop(ret => SlingsAndArrows_TownsPerson.Value.Location, 3)
 							)
 						),
 						new Decorator(ret => GameObjectManager.GetObjectByNPCId(2006044) != null && GameObjectManager.GetObjectByNPCId(2006044).IsVisible,
