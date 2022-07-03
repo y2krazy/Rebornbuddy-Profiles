@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE Profile [
-  <!ENTITY dailyIds "70087,70092,70093">
+  <!ENTITY dailyIds "70087,70088,70092,70093">
 ]>
 
 <!--
@@ -593,7 +593,9 @@
     <If Condition="IsQuestCompleted(70081)">
       <RegisterDailies QuestIds="&dailyIds;" />
       <If Condition="not HasAtLeastOneQuest(Array[int]([&dailyIds;]))">
-        <GetTo ZoneId="957" XYZ="136.6066, 5.526416, 599.2065" />
+        <If Condition="not IsOnMap(957)">
+          <GetTo ZoneId="957" XYZ="136.6066, 5.526416, 599.2065" />
+        </If>
         <FlyTo Land="True" XYZ="-75.86499, 40.35262, 334.4712" />
 
 
@@ -610,6 +612,12 @@
           <PickupQuest NpcId="1042301" QuestId="70092" />
         </If>
 
+
+        <!--  Deal by the Docks -->
+        <If Condition="IsQuestAcceptQualified(70088)">
+          <PickupQuest NpcId="1042301" QuestId="70088" />
+        </If>
+
       </If>
       <!-- friendly quests -->
 
@@ -618,6 +626,18 @@
       <If Condition="GetQuestStep(70093) == 1">
         <TalkTo QuestId="70093" StepId="1" NpcId="1042302" XYZ="-102.4338, 40.01001, 331.8989"/>
       </If>-->
+
+
+      <!--  Deal by the Docks -->
+      <If Condition="GetQuestStep(70088) == 1">
+        <FlyTo Land="True" XYZ="-288.959, 1.693672, 549.2889" />
+        <HandOver ItemId="2003394" QuestId="70088" StepId="1" NpcId="1037644" XYZ="-293.7209, 1.460028, 551.0491" />
+      </If>
+      <If Condition="GetQuestStep(70088) == 2">
+        <FlyTo AllowedVariance="1.0" Land="True" XYZ="196.8235, 1.769999, 759.3507" />
+        <HandOver ItemId="2003395" QuestId="70088" StepId="2" NpcId="1042366" XYZ="185.5649, 1.874232, 760.4332" />
+      </If>
+
 
       <!--  Ridin' Flyers for Flyin' Riders -->
       <If Condition="GetQuestStep(70087) == 1">
@@ -667,6 +687,10 @@
           <TurnIn QuestId="70092" NpcId="1042301" XYZ="-66.02582, 40.00471, 321.0649" />
         </If>
 
+        <!--  Deal by the Docks -->
+        <If Condition="GetQuestStep(70088) == 255">
+          <TurnIn QuestId="70088" NpcId="1042301" ItemId="2003396" XYZ="-66.02582, 40.00471, 321.0649" />
+        </If>
 
       </If>
 
