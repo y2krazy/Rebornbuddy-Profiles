@@ -6084,7 +6084,57 @@
 			<!-- ####### -->
 			<LogMessage Message="[A Realm Reborn] Checking level 7 quests..."/>
 
-
+  <![CDATA[
+			<!--[[ Listen to Your Fish -->
+			<If Condition="not IsQuestCompleted(65858)">
+				<If Condition="not HasQuest(65858)">
+					<GetTo ZoneId="141" XYZ="67.06335, 0.9387207, 255.6344"/>
+					<!-- Hihiyaja -->
+					<If Condition="IsQuestAcceptQualified(65858)">
+						<PickupQuest NpcId="1001457" QuestId="65858" XYZ="67.06335, 0.9387207, 255.6344"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(65858)">
+					<If Condition="GetQuestStep(65858) == 1">
+						<GetTo ZoneId="141" XYZ="-1.64098, -7, 162.0013"/>
+						<!-- Grinding Area -->
+						<Grind grindRef="Listen_to_your_Fish" while="GetQuestStep(65858) == 1 and HasQuest(65858)"/>
+					</If>
+					<If Condition="GetQuestStep(65858) == 255">
+						<GetTo ZoneId="141" XYZ="-97.06268, -11.35, -48.69159"/>
+						<!-- Wowobaru -->
+						<TurnIn QuestId="65858" NpcId="1001460" ItemId="2000214" XYZ="-97.06268, -11.35, -48.69159"/>
+					</If>
+				</If>
+			</If>
+			<!-- The Tasting of the Shrews -->
+			<If Condition="not IsQuestCompleted(65840)">
+				<If Condition="not HasQuest(65840)">
+					<GetTo ZoneId="141" XYZ="-97.06268, -11.35, -48.69159"/>
+					<!-- Wowobaru -->
+					<If Condition="IsQuestAcceptQualified(65840)">
+						<PickupQuest NpcId="1001460" QuestId="65840" XYZ="-97.06268, -11.35, -48.69159"/>
+					</If>
+				</If>
+				<If Condition="HasQuest(65840)">
+					<If Condition="GetQuestStep(65840) == 1">
+						<GetTo ZoneId="141" XYZ="15.79303, 0.6866455, -59.40338"/>
+						<!-- Barrel Trap -->
+						<UseObject NpcIds="2000741,2000742" QuestId="65840" StepId="1">
+							<HotSpots>
+								<HotSpot XYZ="15.79303, 0.6866455, -59.40338" Radius="10"/>
+								<HotSpot XYZ="10.23871, 2.639771, -28.15289" Radius="10"/>
+							</HotSpots>
+						</UseObject>
+					</If>
+					<If Condition="GetQuestStep(65840) == 255">
+						<GetTo ZoneId="141" XYZ="-97.06268, -11.35, -48.69159"/>
+						<!-- Wowobaru -->
+						<TurnIn QuestId="65840" NpcId="1001460" ItemId="2000211" XYZ="-97.06268, -11.35, -48.69159"/>
+					</If>
+				</If>
+			</If>
+			    ]]>
 
 			<If Condition="Core.Player.ClassLevel &lt; 8">
 				<!-- Greasing the Cogs -->
